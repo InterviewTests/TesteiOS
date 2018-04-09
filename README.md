@@ -7,7 +7,7 @@ Em uma tela terá um formulário dinâmico com alguns campos predefinidos, confo
 
 Na segunda tela terá o detalhe de um ativo financeiro. As informações devem ser consumidas através do link ([https://floating-mountain-50292.herokuapp.com/fund.json](https://floating-mountain-50292.herokuapp.com/fund.json)).
 
-O visual do aplicativo está em anexo no arquivo teste.pdf e em um arquivo do sketch (30 dias grátis, caso não tenha a licença).
+O visual do aplicativo está em anexo no arquivo telas.png e em um arquivo do [Sketch](https://www.sketchapp.com) (30 dias grátis, caso não tenha a licença).
 
 ![Image](https://floating-mountain-50292.herokuapp.com/telas.png)
 
@@ -20,7 +20,7 @@ Você será avaliado pela usabilidade, por respeitar o design e pela arquitetura
 * Autolayout
 * O app deve funcionar no iOS 9
 * Testes unitários (De preferência XCTest). Mas pode usar o que você tem mais experiência, só nos explique o que ele tem de bom.
-* Arquitetura a ser utilizada: Swift Clean ([https://clean-swift.com/handbook/](https://clean-swift.com/handbook/) [https://github.com/Clean-Swift/CleanStore](https://github.com/Clean-Swift/CleanStore)).
+* Arquitetura a ser utilizada: Swift Clean ([https://clean-swift.com/handbook/](https://clean-swift.com/handbook/) && [https://github.com/Clean-Swift/CleanStore](https://github.com/Clean-Swift/CleanStore)).
 * Uso do git.
 
 ### # Dicas para o layout
@@ -29,6 +29,7 @@ Você será avaliado pela usabilidade, por respeitar o design e pela arquitetura
 * Se o texto estiver muito grande, quebre em linhas e exiba por completo.
 * O sketch está na proporção do iPhone 6, para iPhones menores/maiores é indicado que os espaçamentos se adaptem proporcionalmente.
 * Na tela Fundos, o botão baixar irá abrir um SafariViewController no [google.com](http://google.com).
+* A fonte a ser utilizada está em anexo no repositório.
 
 ### # Como interpretar o cells.json:
 
