@@ -20,7 +20,7 @@ Você será avaliado pela usabilidade, por respeitar o design e pela arquitetura
 * Autolayout
 * O app deve funcionar no iOS 9
 * Testes unitários (De preferência XCTest). Mas pode usar o que você tem mais experiência, só nos explique o que ele tem de bom.
-* Arquitetura a ser utilizada: Swift Clean ([https://clean-swift.com/handbook/](https://clean-swift.com/handbook/) && [https://github.com/Clean-Swift/CleanStore](https://github.com/Clean-Swift/CleanStore)).
+* Arquitetura a ser utilizada: Swift Clean ([https://clean-swift.com/handbook/](https://clean-swift.com/handbook/) && [https://github.com/Clean-Swift/CleanStore](https://github.com/Clean-Swift/CleanStore)) && ([https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)).
 * Uso do git.
 
 ### # Dicas para o layout
