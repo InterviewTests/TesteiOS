@@ -13,7 +13,6 @@
 import UIKit
 
 @objc protocol FormRoutingLogic{
-    func routeToMessage(segue: UIStoryboardSegue?)
     func routeToInvestimentos(segue: UIStoryboardSegue?)
 }
 
@@ -26,20 +25,6 @@ class FormRouter: NSObject, FormRoutingLogic, FormDataPassing{
     var dataStore: FormDataStore?
     
     //MARK: Routing
-    
-    func routeToMessage(segue: UIStoryboardSegue?){
-        if let segue = segue {
-            let destinationVC = segue.destination as! MessageViewController
-            var destinationDS = destinationVC.router!.dataStore!
-            passDataToMessage(source: dataStore!, destination: &destinationDS)
-        } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let destinationVC = storyboard.instantiateViewController(withIdentifier: "MessageViewController") as! MessageViewController
-            var destinationDS = destinationVC.router!.dataStore!
-            passDataToMessage(source: dataStore!, destination: &destinationDS)
-            navigateToMessage(source: viewController!, destination: destinationVC)
-        }
-    }
     
     func routeToInvestimentos(segue: UIStoryboardSegue?){
         if let segue = segue {
@@ -56,20 +41,14 @@ class FormRouter: NSObject, FormRoutingLogic, FormDataPassing{
     }
     
     //MARK: Navigation
-    func navigateToMessage(source: FormViewController, destination: MessageViewController){
-        source.show(destination, sender: nil)
-    }
     
     func navigateToInvestimentos(source: FormViewController, destination: InvestimentosViewController){
         source.show(destination, sender: nil)
     }
     
     //MARK: Passing data
-    func passDataToMessage(source: FormDataStore, destination: inout MessageDataStore){
-        destination.name = source.name
-    }
     
     func passDataToInvestimentos(source: FormDataStore, destination: inout InvestimentosDataStore){
-        destination.name = source.name
+//        destination.name = source.name
     }
 }
