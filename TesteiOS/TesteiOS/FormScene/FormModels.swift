@@ -12,20 +12,21 @@
 
 import UIKit
 
-enum Form
-{
+enum Form {
   // MARK: Use cases
+    struct Request {
+      let screen: Screen?
+
+      
+    }
+    struct Response {
+      let screen: Screen?
+
+      
+    }
+    struct ViewModel {
+      let screen: Screen?
   
-  enum Something
-  {
-    struct Request
-    {
-    }
-    struct Response
-    {
-    }
-    struct ViewModel
-    {
-    }
+      
   }
 }

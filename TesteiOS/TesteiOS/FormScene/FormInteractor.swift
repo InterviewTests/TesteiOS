@@ -11,10 +11,12 @@
 //
 
 import UIKit
+import Moya
+import RxSwift
 
 protocol FormBusinessLogic
 {
-  func doSomething(request: Form.Something.Request)
+  func doSomething(request: Form.Request)
 }
 
 protocol FormDataStore
@@ -30,12 +32,24 @@ class FormInteractor: FormBusinessLogic, FormDataStore
   
   // MARK: Do something
   
-  func doSomething(request: Form.Something.Request)
+  func doSomething(request: Form.Request)
   {
     worker = FormWorker()
     worker?.doSomeWork()
     
-    let response = Form.Something.Response()
-    presenter?.presentSomething(response: response)
+        FundManager.getFund().subscribe(onNext: { (fund) in
+          print(fund)
+          
+          let response = Form.Response(screen: fund.screen)
+          
+          self.presenter?.presentSomething(response: response)
+        }, onError: { (error) in
+          print(error)
+        }, onCompleted: {
+          print("Completed")
+        }).disposed(by: DisposeBag())
+    
+  
+    
   }
 }

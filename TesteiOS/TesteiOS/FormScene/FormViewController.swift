@@ -11,10 +11,12 @@
 //
 
 import UIKit
+import Moya
+import RxSwift
 
 protocol FormDisplayLogic: class
 {
-  func displaySomething(viewModel: Form.Something.ViewModel)
+  func displaySomething(viewModel: Form.ViewModel)
 }
 
 class FormViewController: UIViewController, FormDisplayLogic
@@ -78,12 +80,21 @@ class FormViewController: UIViewController, FormDisplayLogic
   
   func doSomething()
   {
-    let request = Form.Something.Request()
+    let request = Form.Request(screen: nil)
     interactor?.doSomething(request: request)
   }
   
-  func displaySomething(viewModel: Form.Something.ViewModel)
+  func displaySomething(viewModel: Form.ViewModel)
   {
-    //nameTextField.text = viewModel.name
+    print(viewModel.screen)
+    
+    FundManager.getFund().subscribe(onNext: { (fund) in
+      print(fund)
+    }, onError: { (error) in
+      print(error)
+    }, onCompleted: {
+      print("Completed")
+    }).disposed(by: DisposeBag())
   }
+  
 }

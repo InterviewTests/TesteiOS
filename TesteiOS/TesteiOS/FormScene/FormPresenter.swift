@@ -14,7 +14,7 @@ import UIKit
 
 protocol FormPresentationLogic
 {
-  func presentSomething(response: Form.Something.Response)
+  func presentSomething(response: Form.Response)
 }
 
 class FormPresenter: FormPresentationLogic
@@ -23,9 +23,9 @@ class FormPresenter: FormPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: Form.Something.Response)
+  func presentSomething(response: Form.Response)
   {
-    let viewModel = Form.Something.ViewModel()
+    let viewModel = Form.ViewModel(screen: response.screen)
     viewController?.displaySomething(viewModel: viewModel)
   }
 }

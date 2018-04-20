@@ -12,9 +12,23 @@
 
 import UIKit
 
-class FormWorker
-{
-  func doSomeWork()
-  {
+
+class FormWorker {
+
+  
+  func doSomeWork() {
+    
+    print("WORK")
   }
+    
+//    FundManager.getFund().subscribe(onNext: { (fund) in
+//      print(fund)
+//    }, onError: { (error) in
+//      print(error)
+//    }, onCompleted: {
+//      print("Completed")
+//    }).disposed(by: bag)
+//  }
+//
+  
 }
