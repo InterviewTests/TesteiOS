@@ -39,6 +39,12 @@ class FormCellBuilder: TableViewCellBuilder {
             }
             cell.setup(title: item.message)
             return cell
+        case .field:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "InputTextCell") as? InputTextCell else {
+                fatalError("Must be provide a InputTextCell")
+            }
+            cell.setup()
+            return cell
         default:
             break
         }

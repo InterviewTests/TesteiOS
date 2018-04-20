@@ -14,11 +14,13 @@ class InputTextCell: UITableViewCell {
         label.textColor = UIColor.inputTitleLightGray
         label.font = UIFont.regularFont(of: 11.0)
         label.text = "Title Label"
+        label.numberOfLines = 0
         return label
     }()
     
-    lazy var textField: UITextField = {
-        let textField = UITextField()
+    lazy var textField: TextField = {
+        let textField = TextField()
+        textField.addCleanButton()
         return textField
     }()
     
@@ -65,6 +67,9 @@ extension InputTextCell: ViewConfigurationProtocol {
         textField.snp.makeConstraints { (make) in
             make.left.right.equalTo(0)
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            make.height.equalTo(43)
+            make.bottom.equalTo(0)
         }
+        textField.changeBorderColor(to: UIColor.red.cgColor)
     }
 }

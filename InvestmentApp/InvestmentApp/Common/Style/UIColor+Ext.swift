@@ -33,4 +33,8 @@ extension UIColor {
     static var inputTitleLightGray: UIColor {
         return #colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1)
     }
+    
+    static var textFieldBorderLightGray: UIColor {
+        return #colorLiteral(red: 0.937254902, green: 0.9333333333, blue: 0.9294117647, alpha: 1)
+    }
 }
