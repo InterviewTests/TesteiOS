@@ -22,6 +22,14 @@ extension UIColor {
         return #colorLiteral(red: 0.5019607843, green: 0.5058823529, blue: 0.568627451, alpha: 1)
     }
     
+    static var textCellLightGray: UIColor {
+        return #colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1)
+    }
+    
+    static var cardSeparatorLightGray: UIColor {
+        return #colorLiteral(red: 0.937254902, green: 0.9333333333, blue: 0.9294117647, alpha: 1)
+    }
+    
     static var inputTitleLightGray: UIColor {
         return #colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1)
     }

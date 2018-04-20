@@ -19,6 +19,7 @@ class FormCellBuilder: TableViewCellBuilder {
     
     func registerCell() {
         tableView.register(InputTextCell.self, forCellReuseIdentifier: "InputTextCell")
+        tableView.register(TextCell.self, forCellReuseIdentifier: "TextCell")
     }
     
     func build() -> TableSectionable {
@@ -30,11 +31,18 @@ class FormCellBuilder: TableViewCellBuilder {
     }
     
     func cellAt(indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "InputTextCell") as? InputTextCell else {
-            fatalError("Must be provide a InputTextCell")
+        let item = items[indexPath.row]
+        switch item.type {
+        case .text:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell") as? TextCell else {
+                fatalError("Must be provide a TextCell")
+            }
+            cell.setup(title: item.message)
+            return cell
+        default:
+            break
         }
-        cell.setup()
-        return cell
+        return UITableViewCell()
     }
     
     func numberOfItems() -> Int {

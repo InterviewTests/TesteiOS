@@ -40,7 +40,8 @@ class FormView: UIView, ViewConfigurationProtocol {
     
     func setupLayout() {
         tableView.snp.makeConstraints({ (make) in
-            make.top.left.equalTo(16)
+            make.top.equalTo(32)
+            make.left.equalTo(16)
             make.bottom.right.equalTo(-16)
             make.centerX.equalTo(self)
         })
