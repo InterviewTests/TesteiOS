@@ -1,5 +1,5 @@
 //
-//  StatusProtocol.swift
+//  Status.swift
 //  InvestmentApp
 //
 //  Created by Matheus Weber on 19/04/18.
