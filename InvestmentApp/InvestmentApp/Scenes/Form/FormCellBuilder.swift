@@ -37,13 +37,13 @@ class FormCellBuilder: TableViewCellBuilder {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell") as? TextCell else {
                 fatalError("Must be provide a TextCell")
             }
-            cell.setup(title: item.message)
+            cell.setup(title: item.message, topSpacing: CGFloat(item.topSpacing))
             return cell
         case .field:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "InputTextCell") as? InputTextCell else {
                 fatalError("Must be provide a InputTextCell")
             }
-            cell.setup()
+            cell.setup(topSpacing: CGFloat(item.topSpacing))
             return cell
         default:
             break

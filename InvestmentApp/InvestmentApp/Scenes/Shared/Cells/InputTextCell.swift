@@ -9,6 +9,8 @@
 import UIKit
 
 class InputTextCell: UITableViewCell {
+    var topSpacing: CGFloat = 0
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.inputTitleLightGray
@@ -45,8 +47,8 @@ class InputTextCell: UITableViewCell {
 }
 
 extension InputTextCell: ViewConfigurationProtocol {
-    func setup() {
-        
+    func setup(topSpacing: CGFloat) {
+        self.topSpacing = topSpacing
         setupView()
     }
     
@@ -61,7 +63,7 @@ extension InputTextCell: ViewConfigurationProtocol {
     func setupLayout() {
         titleLabel.snp.makeConstraints({ (make) in
             make.left.right.equalTo(0)
-            make.top.equalTo(self.snp.top).offset(0)
+            make.top.equalTo(self.snp.top).offset(topSpacing)
         })
         
         textField.snp.makeConstraints { (make) in

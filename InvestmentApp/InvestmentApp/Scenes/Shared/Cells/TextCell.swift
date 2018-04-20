@@ -9,6 +9,8 @@
 import UIKit
 
 class TextCell: UITableViewCell {
+    var topSpacing: CGFloat = 0
+    
     lazy var cardView: CardView = {
         let card = CardView()
         return card
@@ -43,8 +45,9 @@ class TextCell: UITableViewCell {
 }
 
 extension TextCell: ViewConfigurationProtocol {
-    func setup(title: String) {
+    func setup(title: String, topSpacing: CGFloat) {
         titleLabel.text = title
+        self.topSpacing = topSpacing
         
         setupView()
     }
@@ -60,9 +63,9 @@ extension TextCell: ViewConfigurationProtocol {
     func setupLayout() {
         cardView.snp.makeConstraints { (make) in
             make.left.right.equalTo(0)
-            make.height.equalTo(46).priority(250)
+            make.height.greaterThanOrEqualTo(46)
             make.bottom.equalTo(0)
-            make.top.equalTo(0)
+            make.top.equalTo(self.snp.top).offset(topSpacing)
         }
         
         titleLabel.snp.makeConstraints({ (make) in
