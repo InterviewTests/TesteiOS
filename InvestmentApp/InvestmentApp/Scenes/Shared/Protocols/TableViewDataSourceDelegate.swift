@@ -37,7 +37,7 @@ class BaseSection: TableSectionable {
     }
     
     func cellHeightForIndexPath(_ indexPath: IndexPath, in tableView: UITableView) -> CGFloat {
-        return cellBuilder.cellHeight()
+        return cellBuilder.estimatedCellHeight(indexPath: indexPath)
     }
     
     func headerView() -> UIView? {

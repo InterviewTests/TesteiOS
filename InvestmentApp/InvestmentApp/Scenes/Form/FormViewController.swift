@@ -23,10 +23,20 @@ extension FormInfoProtocol {
 
 class FormViewController: UIViewController {
     var mainView: FormView?
+    var cells: [CellModel]?
+    var cellsBuilder: FormCellBuilder?
+    
     var datasource: TableViewSectionableDataSourceDelegate?
-
+    
     init(mainView: FormView = FormView()) {
         self.mainView = mainView
+        self.cells = CellModel.mockCells()
+        
+        guard let cells = self.cells, let tableView = self.mainView?.tableView else {
+            fatalError("Cells and tableView must be provided")
+        }
+        
+        self.cellsBuilder = FormCellBuilder(items: cells, tableView: tableView)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -56,7 +66,7 @@ class FormViewController: UIViewController {
     }
     
     func setupDatasource() {
-        //menuViewModel?.registerCell()
+        cellsBuilder?.registerCell()
         datasource = TableViewSectionableDataSourceDelegate(sections: sections())
         datasource?.delegate = self
         mainView?.tableView.delegate = datasource
@@ -74,7 +84,10 @@ extension FormViewController: TableViewSectionableDelegate {
 
 extension FormViewController: FormInfoProtocol {
     func itemsInfoSections() -> [TableSectionable] {
-        return []
+        guard let cellsBuilder = self.cellsBuilder else {
+            fatalError("CellsBuilder must be provided")
+        }
+        return [cellsBuilder.build()]
     }
     
 }

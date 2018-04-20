@@ -14,6 +14,8 @@ class FormView: UIView, ViewConfigurationProtocol {
         let tableView = UITableView()
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.white
+        tableView.estimatedRowHeight = 56.0
+        tableView.rowHeight = UITableViewAutomaticDimension
         return tableView
     }()
     

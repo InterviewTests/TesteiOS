@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TableViewCellBuilder {
-    func cellHeight() -> CGFloat
+    func estimatedCellHeight(indexPath: IndexPath) -> CGFloat
     func cellAt(indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell
     func numberOfItems() -> Int
     func registerCell()

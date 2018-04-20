@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1C1A4EFFCA8098925AF9D2EA /* Pods_InvestmentAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 567FCAFEBDE0B6ADB4CAB3FC /* Pods_InvestmentAppTests.framework */; };
+		23AEFDA9208A634F00F7C568 /* InputTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AEFDA8208A634F00F7C568 /* InputTextCell.swift */; };
+		23AEFDAC208A63D500F7C568 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AEFDAB208A63D500F7C568 /* UIFont+Ext.swift */; };
+		23AEFDAE208A658400F7C568 /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AEFDAD208A658400F7C568 /* CellModel.swift */; };
+		23AEFDB0208A694300F7C568 /* FormCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AEFDAF208A694300F7C568 /* FormCellBuilder.swift */; };
+		23AEFDB2208A6CB100F7C568 /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AEFDB1208A6CB100F7C568 /* TextCell.swift */; };
 		23C63FDC208967590064BD1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C63FDB208967590064BD1B /* AppDelegate.swift */; };
 		23C63FE3208967590064BD1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23C63FE2208967590064BD1B /* Assets.xcassets */; };
 		23C63FE6208967590064BD1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23C63FE4208967590064BD1B /* LaunchScreen.storyboard */; };
@@ -47,6 +52,11 @@
 
 /* Begin PBXFileReference section */
 		02534657780A1356780A0585 /* Pods_InvestmentApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InvestmentApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23AEFDA8208A634F00F7C568 /* InputTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextCell.swift; sourceTree = "<group>"; };
+		23AEFDAB208A63D500F7C568 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
+		23AEFDAD208A658400F7C568 /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
+		23AEFDAF208A694300F7C568 /* FormCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCellBuilder.swift; sourceTree = "<group>"; };
+		23AEFDB1208A6CB100F7C568 /* TextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
 		23C63FD8208967590064BD1B /* InvestmentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvestmentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23C63FDB208967590064BD1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23C63FE2208967590064BD1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -128,6 +138,15 @@
 				69137C44BB2F9981F2816113 /* Pods_InvestmentAppUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		23AEFDA7208A631700F7C568 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				23AEFDA8208A634F00F7C568 /* InputTextCell.swift */,
+				23AEFDB1208A6CB100F7C568 /* TextCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		23C63FCF208967590064BD1B = {
@@ -214,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				23C640102089686E0064BD1B /* UIColor+Ext.swift */,
+				23AEFDAB208A63D500F7C568 /* UIFont+Ext.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -239,6 +259,7 @@
 		23C6401820896A050064BD1B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				23AEFDAD208A658400F7C568 /* CellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,6 +269,7 @@
 			children = (
 				23C6401B20896BEB0064BD1B /* FormViewController.swift */,
 				23C6401D2089743A0064BD1B /* FormView.swift */,
+				23AEFDAF208A694300F7C568 /* FormCellBuilder.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -255,6 +277,7 @@
 		23C6401F208974510064BD1B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				23AEFDA7208A631700F7C568 /* Cells */,
 				23C6402A208975170064BD1B /* Views */,
 				23C64025208974AB0064BD1B /* Types */,
 				23C64020208974590064BD1B /* Protocols */,
@@ -594,14 +617,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23AEFDAC208A63D500F7C568 /* UIFont+Ext.swift in Sources */,
 				23C640122089686E0064BD1B /* ToastView.swift in Sources */,
+				23AEFDB2208A6CB100F7C568 /* TextCell.swift in Sources */,
 				23C6401C20896BEB0064BD1B /* FormViewController.swift in Sources */,
+				23AEFDA9208A634F00F7C568 /* InputTextCell.swift in Sources */,
 				23C64024208974870064BD1B /* Status.swift in Sources */,
 				23C64027208974E30064BD1B /* TableViewDataSourceDelegate.swift in Sources */,
 				23C6401E2089743A0064BD1B /* FormView.swift in Sources */,
 				23C63FDC208967590064BD1B /* AppDelegate.swift in Sources */,
+				23AEFDAE208A658400F7C568 /* CellModel.swift in Sources */,
 				23C640142089686E0064BD1B /* UIColor+Ext.swift in Sources */,
 				23C6402C208975360064BD1B /* ErrorView.swift in Sources */,
+				23AEFDB0208A694300F7C568 /* FormCellBuilder.swift in Sources */,
 				23C640132089686E0064BD1B /* String+Ext.swift in Sources */,
 				23C640112089686E0064BD1B /* ProgressView.swift in Sources */,
 				23C64022208974640064BD1B /* ViewConfigurationProtocol.swift in Sources */,
