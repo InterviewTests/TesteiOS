@@ -18,6 +18,9 @@
 		23C640132089686E0064BD1B /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C6400E2089686E0064BD1B /* String+Ext.swift */; };
 		23C640142089686E0064BD1B /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C640102089686E0064BD1B /* UIColor+Ext.swift */; };
 		23C6401C20896BEB0064BD1B /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C6401B20896BEB0064BD1B /* FormViewController.swift */; };
+		23C6401E2089743A0064BD1B /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C6401D2089743A0064BD1B /* FormView.swift */; };
+		23C64022208974640064BD1B /* ViewConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C64021208974640064BD1B /* ViewConfigurationProtocol.swift */; };
+		23C64024208974870064BD1B /* StatusProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C64023208974870064BD1B /* StatusProtocol.swift */; };
 		4E09B8ECEB46636F0613F10C /* Pods_InvestmentAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69137C44BB2F9981F2816113 /* Pods_InvestmentAppUITests.framework */; };
 		F0BAF4E3E27FE8B2350CA87F /* Pods_InvestmentApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02534657780A1356780A0585 /* Pods_InvestmentApp.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +60,9 @@
 		23C6400E2089686E0064BD1B /* String+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		23C640102089686E0064BD1B /* UIColor+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		23C6401B20896BEB0064BD1B /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		23C6401D2089743A0064BD1B /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
+		23C64021208974640064BD1B /* ViewConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfigurationProtocol.swift; sourceTree = "<group>"; };
+		23C64023208974870064BD1B /* StatusProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusProtocol.swift; sourceTree = "<group>"; };
 		4709D4BEE601723BDAB18FDB /* Pods-InvestmentApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvestmentApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-InvestmentApp/Pods-InvestmentApp.release.xcconfig"; sourceTree = "<group>"; };
 		567FCAFEBDE0B6ADB4CAB3FC /* Pods_InvestmentAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InvestmentAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6718586A0755F03B36DA319E /* Pods-InvestmentApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvestmentApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InvestmentApp/Pods-InvestmentApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -218,6 +224,7 @@
 		23C64016208968E10064BD1B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				23C6401F208974510064BD1B /* Shared */,
 				23C6401920896B520064BD1B /* Form */,
 			);
 			path = Scenes;
@@ -234,8 +241,26 @@
 			isa = PBXGroup;
 			children = (
 				23C6401B20896BEB0064BD1B /* FormViewController.swift */,
+				23C6401D2089743A0064BD1B /* FormView.swift */,
 			);
 			path = Form;
+			sourceTree = "<group>";
+		};
+		23C6401F208974510064BD1B /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				23C64020208974590064BD1B /* Protocols */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		23C64020208974590064BD1B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				23C64021208974640064BD1B /* ViewConfigurationProtocol.swift */,
+				23C64023208974870064BD1B /* StatusProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -546,10 +571,13 @@
 			files = (
 				23C640122089686E0064BD1B /* ToastView.swift in Sources */,
 				23C6401C20896BEB0064BD1B /* FormViewController.swift in Sources */,
+				23C64024208974870064BD1B /* StatusProtocol.swift in Sources */,
+				23C6401E2089743A0064BD1B /* FormView.swift in Sources */,
 				23C63FDC208967590064BD1B /* AppDelegate.swift in Sources */,
 				23C640142089686E0064BD1B /* UIColor+Ext.swift in Sources */,
 				23C640132089686E0064BD1B /* String+Ext.swift in Sources */,
 				23C640112089686E0064BD1B /* ProgressView.swift in Sources */,
+				23C64022208974640064BD1B /* ViewConfigurationProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
