@@ -13,11 +13,11 @@
 import UIKit
 
 class FormWorker{
-    var api = API()
+    var api = ApiManager()
     
     func fetchCells(completionHandler: @escaping ([Cell]) -> Void){
         api.fetchCells{cells in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async{
                 completionHandler(cells)
             }
         }

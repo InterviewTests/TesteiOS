@@ -22,14 +22,7 @@ class FormPresenter: FormPresentationLogic{
   // MARK: Do something
   
   func presentCells(response: FormModels.FetchCell.Response){
-    
-    var displayedCells = [Cell]()
-    for cell in response.cells {
-        displayedCells.append(cell)
-    }
-    
-    let viewModel = FormModels.FetchCell.ViewModel(displayedCells: displayedCells)
-    viewController?.displayCells(viewModel: viewModel)
+    viewController?.displayCells(viewModel: FormModels.FetchCell.ViewModel(displayedCells: response.cells))
     
   }
 }

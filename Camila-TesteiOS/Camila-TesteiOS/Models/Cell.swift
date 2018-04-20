@@ -25,10 +25,8 @@ class Cell {
         self.topSpacing = viewModel.topSpacing
         self.show = viewModel.show
         self.required = viewModel.required
-        
-        //tratando erro de api
-        self.typeField = TypeField(rawValue: viewModel.typefield) ?? TypeField.fromString("\(viewModel.typefield)")
-        self.type = Type(rawValue: viewModel.type) ?? Type.fromString("\(viewModel.type)")
+        self.typeField = TypeField(rawValue: viewModel.typefield) ?? TypeField.text
+        self.type = Type(rawValue: viewModel.type) ?? Type.field
     }
     
 }

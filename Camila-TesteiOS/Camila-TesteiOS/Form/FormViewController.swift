@@ -70,12 +70,14 @@ class FormViewController: UIViewController, FormDisplayLogic{
     // MARK: Fetch Cells
     
     func fetchCells(){
-        let request = FormModels.FetchCell.Request()
-        interactor?.fetchCells(request: request)
+        self.interactor?.fetchCells(request: FormModels.FetchCell.Request())
     }
     
     func displayCells(viewModel: FormModels.FetchCell.ViewModel){
         displayedCells = viewModel.displayedCells
-        self.view.reloadInputViews()
+        for cell in displayedCells{
+            //create each cell
+        }
+        
     }
 }

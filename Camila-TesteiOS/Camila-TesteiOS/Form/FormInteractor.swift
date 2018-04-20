@@ -29,7 +29,6 @@ class FormInteractor:FormBusinessLogic, FormDataStore{
     
     func fetchCells(request: FormModels.FetchCell.Request){
         worker = FormWorker()
-        
         worker?.fetchCells { (cells) -> Void in
             self.cells = cells
             let response = FormModels.FetchCell.Response(cells: cells)
