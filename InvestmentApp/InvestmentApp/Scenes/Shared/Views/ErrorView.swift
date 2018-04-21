@@ -69,6 +69,7 @@ class ErrorView: UIView, ViewConfigurationProtocol {
 //MARK - Delegate methods
 extension ErrorView {
     func setupItems() {
+        self.backgroundColor = UIColor.white
         addSubview(contentView)
         contentView.addSubview(errorIcon)
         contentView.addSubview(errorLabel)
