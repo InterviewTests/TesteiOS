@@ -17,7 +17,8 @@ protocol FormDisplayLogic: class{
 }
 
 class FormViewController: UIViewController, FormDisplayLogic{
-    
+    @IBOutlet weak var navigationBar: UINavigationBar?
+    @IBOutlet weak var tableView: UITableView?
     @IBOutlet weak var bottoMenuStack: BottomMenuStack?
     
     var interactor: FormBusinessLogic?
@@ -69,8 +70,6 @@ class FormViewController: UIViewController, FormDisplayLogic{
     override func viewDidLoad(){
         super.viewDidLoad()
         fetchCells()
-        
-        Util().setupNavBar(viewController: self, title: "Contato")
     }
     
     override func viewWillLayoutSubviews() {
@@ -108,4 +107,22 @@ extension FormViewController: UINavigationBarDelegate {
     public func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
     }
+}
+
+extension FormViewController: UITableViewDelegate{
+}
+
+extension FormViewController: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =  UITableViewCell()
+        
+        cell.backgroundColor = UIColor.blue
+        return cell
+    }
+    
+    
 }

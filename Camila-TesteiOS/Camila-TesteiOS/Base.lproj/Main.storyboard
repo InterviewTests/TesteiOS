@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -54,24 +55,47 @@
                                     <outlet property="InvestimentosButton" destination="edY-e6-NmU" id="0F2-58-izs"/>
                                 </connections>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Bl-Tu-K21">
+                                <rect key="frame" x="0.0" y="64" width="375" height="543"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="YHO-e6-YBh"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="E17-fI-rlI"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WE1-as-q2j" customClass="CustomNavBar" customModule="Camila_TesteiOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Contato" id="32r-mi-Ub7"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="qQk-gn-SdP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2x9-RQ-GCn"/>
+                            <constraint firstItem="9Bl-Tu-K21" firstAttribute="top" secondItem="WE1-as-q2j" secondAttribute="bottom" id="GH6-YK-gX2"/>
+                            <constraint firstItem="WE1-as-q2j" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="REu-6i-AzI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qQk-gn-SdP" secondAttribute="bottom" id="Sgd-R4-qpU"/>
+                            <constraint firstItem="WE1-as-q2j" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fo4-2b-1SQ"/>
+                            <constraint firstItem="qQk-gn-SdP" firstAttribute="top" secondItem="9Bl-Tu-K21" secondAttribute="bottom" id="gqJ-Xy-ljE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qQk-gn-SdP" secondAttribute="trailing" id="mCf-7t-EsS"/>
+                            <constraint firstItem="WE1-as-q2j" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="oFZ-WD-laR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Bl-Tu-K21" secondAttribute="trailing" id="rqK-bX-Rag"/>
+                            <constraint firstItem="9Bl-Tu-K21" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ucv-LU-Vkr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Contato" id="meQ-vF-om8"/>
                     <connections>
                         <outlet property="bottoMenuStack" destination="qQk-gn-SdP" id="ETR-tB-U4h"/>
+                        <outlet property="navigationBar" destination="WE1-as-q2j" id="dmr-Sa-JrR"/>
+                        <outlet property="tableView" destination="9Bl-Tu-K21" id="uoe-z9-Qgl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="6g0-aE-O1L" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="286" y="159"/>
+            <point key="canvasLocation" x="285.60000000000002" y="158.77061469265368"/>
         </scene>
         <!--Investimento-->
         <scene sceneID="HmJ-OT-3i6">
@@ -115,17 +139,39 @@
                                     <outlet property="InvestimentosButton" destination="bdW-gX-mXL" id="H30-ts-u4d"/>
                                 </connections>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wQM-d4-h9W">
+                                <rect key="frame" x="0.0" y="64" width="375" height="543"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HK8-ii-p18" customClass="CustomNavBar" customModule="Camila_TesteiOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Investimento" id="l0x-2k-5uJ">
+                                        <barButtonItem key="rightBarButtonItem" image="ShareSymbol" style="plain" id="5BJ-44-RYa">
+                                            <color key="tintColor" name="MainColor"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="HK8-ii-p18" firstAttribute="trailing" secondItem="JaQ-Tp-85n" secondAttribute="trailing" id="72Y-Wf-4W3"/>
+                            <constraint firstItem="JaQ-Tp-85n" firstAttribute="trailing" secondItem="wQM-d4-h9W" secondAttribute="trailing" id="9Mn-k9-gS2"/>
                             <constraint firstItem="JaQ-Tp-85n" firstAttribute="bottom" secondItem="aI3-oc-BQF" secondAttribute="bottom" id="Akj-bM-2nT"/>
+                            <constraint firstItem="HK8-ii-p18" firstAttribute="top" secondItem="JaQ-Tp-85n" secondAttribute="top" id="CMg-nS-z26"/>
                             <constraint firstItem="JaQ-Tp-85n" firstAttribute="trailing" secondItem="aI3-oc-BQF" secondAttribute="trailing" id="Mci-G6-3eT"/>
                             <constraint firstItem="aI3-oc-BQF" firstAttribute="leading" secondItem="JaQ-Tp-85n" secondAttribute="leading" id="P1Q-9v-6u8"/>
+                            <constraint firstItem="HK8-ii-p18" firstAttribute="leading" secondItem="JaQ-Tp-85n" secondAttribute="leading" id="Vbo-AH-nQT"/>
+                            <constraint firstItem="wQM-d4-h9W" firstAttribute="top" secondItem="HK8-ii-p18" secondAttribute="bottom" id="ZkC-jh-9wh"/>
+                            <constraint firstItem="aI3-oc-BQF" firstAttribute="top" secondItem="wQM-d4-h9W" secondAttribute="bottom" id="en9-1x-XFk"/>
+                            <constraint firstItem="wQM-d4-h9W" firstAttribute="leading" secondItem="JaQ-Tp-85n" secondAttribute="leading" id="kfT-02-Fcc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JaQ-Tp-85n"/>
                     </view>
                     <connections>
                         <outlet property="bottoMenuStack" destination="aI3-oc-BQF" id="VsZ-3K-Ctj"/>
+                        <outlet property="navigationBar" destination="HK8-ii-p18" id="bQ4-c8-GJf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ut2-h1-6sQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -134,6 +180,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ShareSymbol" width="19" height="24"/>
+        <namedColor name="MainColor">
+            <color red="0.85500001907348633" green="0.0040000001899898052" blue="0.0040000001899898052" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="MainColor">
             <color red="0.85500001907348633" green="0.0040000001899898052" blue="0.0040000001899898052" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

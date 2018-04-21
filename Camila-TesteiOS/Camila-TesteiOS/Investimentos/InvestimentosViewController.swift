@@ -18,6 +18,7 @@ protocol InvestimentosDisplayLogic: class{
 
 class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
     @IBOutlet weak var bottoMenuStack: BottomMenuStack?
+    @IBOutlet weak var navigationBar: UINavigationBar?
     
     var interactor: InvestimentosBusinessLogic?
     var router: (NSObjectProtocol & InvestimentosRoutingLogic & InvestimentosDataPassing)?
@@ -51,15 +52,6 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
         router.dataStore = interactor
     }
     
-    private func setNavigationBar(){
-        let navBar = Util().setupNavBar(viewController: self, title: "Investimento")
-        if let item = navBar?.items?.first{
-            let rightItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ShareSymbol"), style: .plain, target: self, action: #selector(btnShareClicked))
-            rightItem.tintColor = UIColor.app.MainColor
-            item.rightBarButtonItem = rightItem
-        }
-    }
-    
     // MARK: Routing
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -77,8 +69,6 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
     override func viewDidLoad(){
         super.viewDidLoad()
         doSomething()
-        
-        setNavigationBar()
     }
     
     override func viewWillLayoutSubviews() {
