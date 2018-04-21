@@ -70,6 +70,8 @@ class FormViewController: UIViewController, FormDisplayLogic{
     override func viewDidLoad(){
         super.viewDidLoad()
         fetchCells()
+        tableView?.allowsSelection = false
+        tableView?.isScrollEnabled = false
     }
     
     override func viewWillLayoutSubviews() {
@@ -91,14 +93,11 @@ class FormViewController: UIViewController, FormDisplayLogic{
     
     func displayCells(viewModel: FormModels.FetchCell.ViewModel){
         displayedCells = viewModel.displayedCells
-        for cell in displayedCells{
-            //create each cell
-        }
+        tableView?.reloadData()
     }
     
     
     @IBAction func investimentoButtonClicked(_ sender: Any) {
-//        bottoMenuStack?.setInvestimentoOn(true)
         router?.routeToInvestimentos(segue: nil)
     }
 }
@@ -110,19 +109,91 @@ extension FormViewController: UINavigationBarDelegate {
 }
 
 extension FormViewController: UITableViewDelegate{
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        guard displayedCells.count > indexPath.item else{
+            return 0
+        }
+        
+//        let visible = CGFloat(visibleCells)
+        let topSpacingAll = self.topSpacingAll
+        let cell = displayedCells[indexPath.item]
+        
+        let hight = cell.hidden ? 0 : ((tableView.frame.height - topSpacingAll) / CGFloat(displayedCells.count)) + CGFloat(cell.topSpacing)
+        
+        return hight
+    }
+    
+    //MARK:- userfull functions
+    
+    func showCell(_ state: Bool = true, withId id: Int){
+        for cell in displayedCells{
+            if cell.id == id{
+                cell.hidden = !state
+            }
+        }
+        
+        tableView?.reloadData()
+    }
+    
+    var topSpacingAll: CGFloat{
+        var count: CGFloat = 0
+        for i in displayedCells{
+            count += CGFloat(i.topSpacing)
+        }
+        return count
+    }
+    
+    var visibleCells: Int{
+        var count = 0
+        for i in displayedCells{
+            if !i.hidden{
+                count += 1
+            }
+        }
+        return count == 0 ? 1 : count
+    }
 }
 
 extension FormViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return displayedCells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  UITableViewCell()
+        guard displayedCells.count > indexPath.item else{
+            return UITableViewCell()
+        }
         
-        cell.backgroundColor = UIColor.blue
-        return cell
+        let cellConfig = displayedCells[indexPath.item]
+        var nibCell: (CellProtocol & UITableViewCell)?
+        
+        switch cellConfig.type {
+        case .field:
+            nibCell =  UINib(nibName: "FieldTableViewCell", bundle: nil).instantiate(withOwner: self, options: nil).first as? CellProtocol & UITableViewCell
+            
+        case .text:
+            nibCell =  UINib(nibName: "TextTableViewCell", bundle: nil).instantiate(withOwner: self, options: nil).first as? CellProtocol & UITableViewCell
+        
+        case .send:
+            nibCell =  UINib(nibName: "SendTableViewCell", bundle: nil).instantiate(withOwner: self, options: nil).first as? CellProtocol & UITableViewCell
+        
+        case .checkbox:
+            nibCell =  UINib(nibName: "CheckboxTableViewCell", bundle: nil).instantiate(withOwner: self, options: nil).first as? CellProtocol & UITableViewCell
+           
+            (nibCell as? CheckboxTableViewCell)?.controller = self
+        
+        default:
+            return UITableViewCell()
+        }
+        
+        //setup cells
+        if var nibCell = nibCell {
+            nibCell.cell = cellConfig
+            nibCell.setup()
+            return nibCell
+        }
+        
+        return UITableViewCell()
     }
-    
-    
+
 }

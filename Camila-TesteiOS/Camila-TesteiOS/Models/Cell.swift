@@ -14,7 +14,7 @@ class Cell {
     var message: String
     var typeField: TypeField
     var topSpacing: Float
-    var show: Int
+    var show: Int?
     var required: Bool
     var hidden: Bool
     

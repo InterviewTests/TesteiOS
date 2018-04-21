@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="KGk-i7-Jjw" customClass="SendTableViewCell" customModule="Camila_TesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCZ-cf-jdH" customClass="CustomButton" customModule="Camila_TesteiOS" customModuleProvider="target">
+                        <rect key="frame" x="32" y="11" width="256" height="53"/>
+                        <color key="backgroundColor" name="MainColor"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleShadowColor" name="SelectedTab"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JDO-LZ-wnh"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="JCZ-cf-jdH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="Soe-Jp-Hm2"/>
+                    <constraint firstItem="JCZ-cf-jdH" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="aPs-6Q-Hxg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="JCZ-cf-jdH" secondAttribute="trailing" constant="16" id="bFB-l0-m16"/>
+                    <constraint firstItem="JCZ-cf-jdH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="qP5-qv-VEJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="button" destination="JCZ-cf-jdH" id="9Ke-7d-VS7"/>
+                <outlet property="topSpacing" destination="qP5-qv-VEJ" id="6eb-fu-xLW"/>
+            </connections>
+            <point key="canvasLocation" x="-81" y="111"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="MainColor">
+            <color red="0.85500001907348633" green="0.0040000001899898052" blue="0.0040000001899898052" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SelectedTab">
+            <color red="0.67799997329711914" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

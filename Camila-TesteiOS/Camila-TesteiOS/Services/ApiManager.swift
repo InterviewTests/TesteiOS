@@ -46,7 +46,7 @@ class ApiManager: NSObject {
                 let required = data["required"].boolValue
                 let message = data["message"].stringValue
                 let type = data["type"].intValue
-                let show = data["show"].intValue
+                let show = data["show"].int
                 
                 //api error handling
                 var typeField : Int

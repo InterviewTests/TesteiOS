@@ -29,7 +29,7 @@ enum FormModels{
                 var typefield: Int
                 var hidden: Bool
                 var topSpacing: Float
-                var show: Int
+                var show: Int?
                 var required: Bool
             }
             
