@@ -21,6 +21,7 @@ enum Color {
     static let lineRed = #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1215686275, alpha: 1)
     
     //gray scale
+    static let white = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
     static let lightGray = #colorLiteral(red: 0.937254902, green: 0.9333333333, blue: 0.9294117647, alpha: 1)
     static let gray = #colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1)
     static let secondaryGray = #colorLiteral(red: 0.4941176471, green: 0.4941176471, blue: 0.4941176471, alpha: 1)
