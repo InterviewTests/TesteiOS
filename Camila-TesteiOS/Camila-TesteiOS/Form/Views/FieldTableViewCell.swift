@@ -33,7 +33,6 @@ class FieldTableViewCell: UITableViewCell, CellProtocol {
         label?.text = cell.message
         topSpacing?.constant = CGFloat(cell.topSpacing)
         
-//        self.layer.borderColor = UIColor.green.cgColor
         self.backgroundColor = UIColor.clear
         
         textField?.textContentType = cell.typeField.textContentType
@@ -61,17 +60,24 @@ class FieldTableViewCell: UITableViewCell, CellProtocol {
         line.lineJoin = kCALineJoinRound
         return line
     }
-   
+
+    static var input: String?
     @IBAction func editDidChange(_ sender: UITextField) {
         let color = getColorLineAccordingTo(forString: sender.text, withValidator: TypefieldValidator(cell?.typeField))
         line?.strokeColor = color
+        
+        //FORMAT
+        if cell?.typeField == TypeField.telNumber{
+            let text = sender.text?.digitsOnly() ?? ""
+            textField?.text = TypefieldFormater.format(phone: text)
+        }
+        
     }
     
     fileprivate func getColorLineAccordingTo(forString str: String?, withValidator validator: TypefieldValidator) -> CGColor{
         guard let str = str, !str.isEmpty else{
             return UIColor.gray.cgColor
         }
-        
         if validator.validate(str) {
             return UIColor.app.CorrectInput.cgColor
         }else{

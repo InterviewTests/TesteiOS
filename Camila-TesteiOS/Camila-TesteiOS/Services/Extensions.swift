@@ -50,3 +50,12 @@ extension UIColor{
     }
 }
 
+extension String{
+    func digitsOnly() -> String{
+        let stringArray = self.components(
+            separatedBy: NSCharacterSet.decimalDigits.inverted)
+        let newString = stringArray.joined(separator: "")
+        
+        return newString
+    }
+}

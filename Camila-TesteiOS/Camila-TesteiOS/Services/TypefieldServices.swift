@@ -39,7 +39,17 @@ class TypefieldValidator {
     }
     
     fileprivate func validatePhonenumber(phone str: String) -> Bool{
+        let str = str.digitsOnly()
         let regex = try! NSRegularExpression(pattern: "^[0-9]{10,11}$", options: .caseInsensitive)
         return regex.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.count)) != nil
+    }
+}
+
+import AnyFormatKit
+enum TypefieldFormater{
+    static func format(phone: String)-> String?{
+        let pattern = phone.count < 11 ?  "(##) ####-####" : "(##) #####-####"
+        let phoneFormatter = TextFormatter(textPattern: pattern)
+        return phoneFormatter.formattedText(from: phone)
     }
 }
