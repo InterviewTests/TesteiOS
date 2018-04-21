@@ -108,19 +108,22 @@ extension TextField {
     
     @objc
     fileprivate func validateFields() {
+        validField = false
         switch type {
         case .text:
             if let text = text {
                 validField = !text.isEmpty
-            } else {
-                validField = false
             }
         case .telephone:
-            
-        break
-            
+            if let text = text {
+                if text.count >= 13 {
+                    validField = true
+                }
+            }            
         case .email:
-            break
+            if let text = text {
+                validField = text.isValidEmail()
+            }
         }
     }
     
