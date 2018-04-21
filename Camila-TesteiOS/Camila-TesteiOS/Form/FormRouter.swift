@@ -43,8 +43,9 @@ class FormRouter: NSObject, FormRoutingLogic, FormDataPassing{
     //MARK: Navigation
     
     func navigateToInvestimentos(source: FormViewController, destination: InvestimentosViewController){
-        source.show(destination, sender: nil)
-        //source.present(destination, animated: false, completion: nil)
+//        source.show(destination, sender: nil)
+        source.present(destination, animated: false, completion: nil)
+//        source.showDetailViewController(destination, sender: nil)"
     }
     
     //MARK: Passing data

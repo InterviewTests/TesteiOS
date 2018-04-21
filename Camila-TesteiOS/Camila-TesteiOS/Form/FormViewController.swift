@@ -51,6 +51,8 @@ class FormViewController: UIViewController, FormDisplayLogic{
         router.dataStore = interactor
     }
     
+    
+    
     // MARK: Routing
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -67,12 +69,18 @@ class FormViewController: UIViewController, FormDisplayLogic{
     override func viewDidLoad(){
         super.viewDidLoad()
         fetchCells()
+        
+        Util().setupNavBar(viewController: self, title: "Contato")
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         //layout
         bottoMenuStack?.setContatoOn(true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     
@@ -93,5 +101,11 @@ class FormViewController: UIViewController, FormDisplayLogic{
     @IBAction func investimentoButtonClicked(_ sender: Any) {
 //        bottoMenuStack?.setInvestimentoOn(true)
         router?.routeToInvestimentos(segue: nil)
+    }
+}
+
+extension FormViewController: UINavigationBarDelegate {
+    public func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
     }
 }

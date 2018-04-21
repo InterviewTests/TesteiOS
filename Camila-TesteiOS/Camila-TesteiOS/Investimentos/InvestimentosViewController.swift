@@ -51,6 +51,7 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
         router.dataStore = interactor
     }
     
+    
     // MARK: Routing
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -69,7 +70,7 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
         super.viewDidLoad()
         doSomething()
         
-        self.navigationItem.setHidesBackButton(true, animated: false)
+        Util().setupNavBar(viewController: self, title: "Investimento")
     }
     
     override func viewWillLayoutSubviews() {
@@ -94,5 +95,11 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
     @IBAction func contatoButtonClicked(_ sender: Any) {
 //        bottoMenuStack?.setInvestimentoOn(false)
         router?.routeToBack(segue: nil)
+    }
+}
+
+extension InvestimentosViewController: UINavigationBarDelegate {
+    public func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
     }
 }

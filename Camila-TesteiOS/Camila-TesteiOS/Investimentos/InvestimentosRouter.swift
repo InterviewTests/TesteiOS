@@ -57,8 +57,8 @@ class InvestimentosRouter: NSObject, InvestimentosRoutingLogic, InvestimentosDat
     }
     
     func navigateBack(source: InvestimentosViewController){
-        //        source.dismiss(animated: false, completion: nil)
-        source.navigationController?.popViewController(animated: false)
+        source.dismiss(animated: false, completion: nil)
+//        source.navigationController?.popViewController(animated: false)
     }
     
     // MARK: Passing data
