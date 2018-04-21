@@ -25,17 +25,23 @@ class CheckBox: UIButton {
     
     init() {
         super.init(frame: CGRect.zero)
-        self.layer.cornerRadius = 5
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.borderCheckbox.cgColor
-        self.addTarget(self, action: #selector(buttonClicked), for: UIControlEvents.touchUpInside)
-        self.isChecked = false
+        setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setup() {
+        self.layer.cornerRadius = 5
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.borderCheckbox.cgColor
+        self.addTarget(self, action: #selector(buttonClicked), for: UIControlEvents.touchUpInside)
+        self.isChecked = false
+    }
+}
+
+extension CheckBox {
     @objc
     func buttonClicked(sender: UIButton) {
         if sender == self {

@@ -53,4 +53,8 @@ extension UIColor {
     static var borderCheckbox: UIColor {
         return #colorLiteral(red: 0.5921568627, green: 0.5921568627, blue: 0.5921568627, alpha: 1)
     }
+    
+    static var buttonBackgroundRed: UIColor {
+        return #colorLiteral(red: 0.8549019608, green: 0.003921568627, blue: 0.003921568627, alpha: 1)
+    }
 }
