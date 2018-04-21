@@ -15,10 +15,10 @@ class FormWorker {
         self.manager = manager
     }
     
-    func getForm(success: @escaping (_ notice: [CellModel]) -> (),
+    func getForm(success: @escaping (_ cells: [CellModel]) -> (),
                    failure: @escaping (_ error: NetworkResponse) -> ()) {
-        manager.request(request: InvestmentAPI.cells, success: { (cells: [CellModel]) in
-            success(cells)
+        manager.request(request: InvestmentAPI.cells, success: { (cells: CellsModel) in
+            success(cells.cells)
         }) { (error) in
             failure(error)
         }

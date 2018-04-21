@@ -20,6 +20,10 @@ enum TypeField: Int, Codable {
     case email = 3
 }
 
+struct CellsModel: Codable {
+    var cells: [CellModel]
+}
+
 struct CellModel: Codable {
     var id: Int
     var type: CellType
@@ -30,14 +34,20 @@ struct CellModel: Codable {
     var show: Int?
     var required: Bool
     
-    static func mockCells() -> [CellModel] {
-        let textCell = CellModel(id: 1, type: .text, message: "Text Cell", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true)
-        let fieldCell = CellModel(id: 1, type: .field, message: "Field Cell", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true)
-        let emailCell = CellModel(id: 1, type: .field, message: "Email Cell", typefield: .email, hidden: false, topSpacing: 18.0, show: nil, required: true)
-        let phoneCell = CellModel(id: 1, type: .field, message: "Phone Cell", typefield: .telNumber, hidden: false, topSpacing: 18.0, show: nil, required: true)
-        let checkboxCell = CellModel(id: 1, type: .checkbox, message: "Checkbox", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true)
-        let sendCell = CellModel(id: 1, type: .send, message: "Send", typefield: nil, hidden: false, topSpacing: 18.0, show: nil, required: true)
-        
-        return [textCell, fieldCell, emailCell, phoneCell, checkboxCell, sendCell]
+    // There is a error on API Answer, this init is being used only to work around the error.
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(Int.self, forKey: .id)
+        type = try values.decode(CellType.self, forKey: .type)
+        message = try values.decode(String.self, forKey: .message)
+        if let type = try? values.decode(TypeField?.self, forKey: .typefield) {
+            typefield = type
+        } else {
+            typefield = TypeField.telNumber
+        }
+        hidden = try values.decode(Bool.self, forKey: .hidden)
+        topSpacing = try values.decode(Float.self, forKey: .topSpacing)
+        show = try values.decode(Int?.self, forKey: .show)
+        required = try values.decode(Bool.self, forKey: .required)
     }
 }

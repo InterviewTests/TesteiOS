@@ -83,6 +83,7 @@ class FormViewController: UIViewController {
     }
     
     private func setupDatasource() {
+        self.view = mainView
         cellsBuilder?.registerCell()
         datasource = TableViewSectionableDataSourceDelegate(sections: sections())
         datasource?.delegate = self
@@ -115,11 +116,14 @@ extension FormViewController: FormViewControllerInput {
     }
     
     func displayForm(viewModel: FormViewModel) {
-        guard let tableView = self.mainView?.tableView else {
-            fatalError("Cells and tableView must be provided")
+        DispatchQueue.main.async {
+            ProgressView.shared.hideProgressView()
+            guard let tableView = self.mainView?.tableView else {
+                fatalError("Cells and tableView must be provided")
+            }
+            self.cellsBuilder = FormCellBuilder(items: viewModel.cells, tableView: tableView)
+            self.setupDatasource()
         }
-        self.cellsBuilder = FormCellBuilder(items: viewModel.cells, tableView: tableView)
-        setupDatasource()
     }
 }
 
@@ -128,7 +132,6 @@ extension FormViewController: TableViewSectionableDelegate {
         
     }
 }
-
 
 extension FormViewController: FormInfoProtocol {
     func itemsInfoSections() -> [TableSectionable] {
