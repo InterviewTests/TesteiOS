@@ -12,5 +12,17 @@ protocol CellProtocol where Self: UITableViewCell {
     weak var topSpacing: NSLayoutConstraint? {get set}
     weak var cell: Cell? {get set}
     func setup()
-    
+    var lastState: Any? {get set}
+    var uniqueKey: String {get}
+}
+
+extension CellProtocol{
+    var lastState: Any?{
+        set{
+            UserDefaults().set(newValue, forKey: uniqueKey)
+        }
+        get{
+            return UserDefaults().value(forKey: uniqueKey)
+        }
+    }
 }

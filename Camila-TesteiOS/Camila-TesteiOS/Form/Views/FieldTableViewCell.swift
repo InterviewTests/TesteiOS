@@ -9,11 +9,24 @@
 import UIKit
 
 class FieldTableViewCell: UITableViewCell, CellProtocol {
+    var uniqueKey: String{
+        return "Field\(cell?.id ?? 0)"
+    }
+    
     var cell: Cell?
     @IBOutlet weak var label: UILabel?
     @IBOutlet weak var textField: UITextField?
     @IBOutlet weak var topSpacing: NSLayoutConstraint?
     fileprivate var line: CAShapeLayer?
+    var fieldChanged: ((Bool)->())?
+    var lastState: Any?{
+        set{
+            UserDefaults().set(newValue, forKey: uniqueKey)
+        }
+        get{
+            return UserDefaults().value(forKey: uniqueKey)
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,6 +50,7 @@ class FieldTableViewCell: UITableViewCell, CellProtocol {
         
         textField?.textContentType = cell.typeField.textContentType
         textField?.keyboardType = cell.typeField.keyboardType
+        textField?.text = lastState as? String
     }
     
     override func draw(_ rect: CGRect) {
@@ -45,8 +59,9 @@ class FieldTableViewCell: UITableViewCell, CellProtocol {
         guard let y = textField?.frame.origin.y, let x = textField?.frame.origin.x, let width = textField?.frame.size.width, let hight = textField?.frame.size.height else {
             return
         }
-        line = createLine(fromPoint: CGPoint(x: x, y: y + hight ), toPoint: CGPoint(x: x + width, y: y + hight))
+        line = createLine(fromPoint: CGPoint(x: x, y: y + hight + 3), toPoint: CGPoint(x: x + width, y: y + hight + 3))
         self.layer.addSublayer(line!)
+        validateField()
     }
     
     func createLine(fromPoint start: CGPoint, toPoint end:CGPoint) -> CAShapeLayer{
@@ -63,27 +78,36 @@ class FieldTableViewCell: UITableViewCell, CellProtocol {
 
     static var input: String?
     @IBAction func editDidChange(_ sender: UITextField) {
-        let color = getColorLineAccordingTo(forString: sender.text, withValidator: TypefieldValidator(cell?.typeField))
-        line?.strokeColor = color
+        validateField()
+        formatField()
         
-        //FORMAT
-        if cell?.typeField == TypeField.telNumber{
-            let text = sender.text?.digitsOnly() ?? ""
-            textField?.text = TypefieldFormater.format(phone: text)
-        }
-        
+        lastState = sender.text
     }
     
-    fileprivate func getColorLineAccordingTo(forString str: String?, withValidator validator: TypefieldValidator) -> CGColor{
-        guard let str = str, !str.isEmpty else{
-            return UIColor.gray.cgColor
-        }
-        if validator.validate(str) {
-            return UIColor.app.CorrectInput.cgColor
-        }else{
-            return UIColor.app.MainColor.cgColor
+    func validateField() {
+        guard let txt = textField?.text else {
+            return
         }
         
+        let valid: Bool = TypefieldValidator(cell?.typeField).validate(txt)
+        
+        if txt.isEmpty  {
+            line?.strokeColor = UIColor.gray.cgColor
+        }else if valid {
+            line?.strokeColor = UIColor.app.CorrectInput.cgColor
+        }else{
+            line?.strokeColor = UIColor.app.MainColor.cgColor
+        }
+        
+        fieldChanged?(valid)
+    }
+    
+    func formatField(){
+        //FORMAT
+        if cell?.typeField == TypeField.telNumber{
+            let text = textField?.text?.digitsOnly() ?? ""
+            textField?.text = TypefieldFormater.format(phone: text)
+        }
     }
     
 }

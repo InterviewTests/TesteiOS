@@ -9,6 +9,10 @@
 import UIKit
 
 class SendTableViewCell: UITableViewCell, CellProtocol {
+    var uniqueKey: String{
+        return "Send\(cell?.id ?? 0)"
+    }
+    
     var cell: Cell?
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var topSpacing: NSLayoutConstraint?
@@ -16,7 +20,6 @@ class SendTableViewCell: UITableViewCell, CellProtocol {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        button.layer.cornerRadius = button.frame.height * 0.3
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -32,6 +35,11 @@ class SendTableViewCell: UITableViewCell, CellProtocol {
         }
         button.setTitle(cell.message, for: .normal)
         topSpacing?.constant = CGFloat(cell.topSpacing)
+    }
+
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        button.layer.cornerRadius = button.layer.frame.height * 0.5
     }
     
 }

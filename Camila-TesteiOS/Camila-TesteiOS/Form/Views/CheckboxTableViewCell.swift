@@ -13,17 +13,13 @@ class CheckboxTableViewCell: UITableViewCell, CellProtocol {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var checkbox: UIButton!
     @IBOutlet weak var topSpacing: NSLayoutConstraint?
-    var controller: FormViewController?
+    var checkBoxChanged: ((Bool)->())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         label.isUserInteractionEnabled = false
         
-        setCheckBoxState(to: CheckboxTableViewCell.lastState)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(checboxClicked))
-        label.addGestureRecognizer(tap)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -39,19 +35,36 @@ class CheckboxTableViewCell: UITableViewCell, CellProtocol {
         }
         label.text = cell.message
         topSpacing?.constant = CGFloat(cell.topSpacing)
-    }
-    fileprivate static var lastState = false
-    
-    private func setCheckBoxState(to state: Bool){
-        CheckboxTableViewCell.lastState = state
-        checkbox.isSelected = state
         
-        if let id = cell?.show, let controller = self.controller{
-            controller.showCell(state, withId: id)
+        setCheckBoxState(to: lastState as? Bool)
+    }
+    
+    
+    private func setCheckBoxState(to state: Bool?){
+        guard let state = state else{
+            return
+        }
+        
+        checkbox.isSelected = state
+        lastState = state
+    }
+    
+    var lastState: Any?{
+        set{
+            UserDefaults().set(newValue, forKey: uniqueKey)
+        }
+        get{
+            return UserDefaults().value(forKey: uniqueKey) ?? false
         }
     }
     
     @IBAction func checboxClicked() {
-       setCheckBoxState(to: !checkbox.isSelected)
+        setCheckBoxState(to: !checkbox.isSelected)
+        checkBoxChanged?(checkbox.isSelected)
     }
+    
+    var uniqueKey: String{
+        return "CheckBox\(cell?.id ?? 0)"
+    }
+    
 }

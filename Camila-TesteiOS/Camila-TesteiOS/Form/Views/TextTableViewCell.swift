@@ -9,6 +9,10 @@
 import UIKit
 
 class TextTableViewCell: UITableViewCell, CellProtocol {
+    var uniqueKey: String{
+        return "Text\(cell?.id ?? 0)"
+    }
+    
     var cell: Cell?
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var topSpacing: NSLayoutConstraint?

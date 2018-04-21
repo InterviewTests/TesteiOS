@@ -113,7 +113,7 @@ extension FormViewController: UITableViewDelegate{
             return 0
         }
         
-//        let visible = CGFloat(visibleCells)
+        let visible = CGFloat(visibleCells)
         let topSpacingAll = self.topSpacingAll
         let cell = displayedCells[indexPath.item]
         
@@ -121,14 +121,18 @@ extension FormViewController: UITableViewDelegate{
             return 0
         }
         
-        let hight = ((tableView.frame.height - topSpacingAll) / CGFloat(displayedCells.count)) + CGFloat(cell.topSpacing)
+        let hight = ((tableView.frame.height - topSpacingAll) / CGFloat(visible)) + CGFloat(cell.topSpacing)
         let minimum = 50 + CGFloat(cell.topSpacing)
         return hight < minimum ? minimum : hight
     }
     
     //MARK:- userfull functions
     
-    func showCell(_ state: Bool = true, withId id: Int){
+    func showCell(_ state: Bool = true, withId id: Int?){
+        guard let id = id else {
+            return
+        }
+        
         for cell in displayedCells{
             if cell.id == id{
                 cell.hidden = !state
@@ -183,7 +187,11 @@ extension FormViewController: UITableViewDataSource{
         case .checkbox:
             nibCell =  UINib(nibName: "CheckboxTableViewCell", bundle: nil).instantiate(withOwner: self, options: nil).first as? CellProtocol & UITableViewCell
            
-            (nibCell as? CheckboxTableViewCell)?.controller = self
+            (nibCell as? CheckboxTableViewCell)?.checkBoxChanged = {selected in
+                self.showCell(selected, withId: cellConfig.show)
+                //save state
+                
+            }
         
         default:
             return UITableViewCell()
