@@ -18,6 +18,8 @@ protocol FormDisplayLogic: class{
 
 class FormViewController: UIViewController, FormDisplayLogic{
     
+    @IBOutlet weak var bottoMenuStack: BottomMenuStack?
+    
     var interactor: FormBusinessLogic?
     var router: (NSObjectProtocol & FormRoutingLogic & FormDataPassing)?
     var displayedCells = [Cell]()
@@ -67,6 +69,13 @@ class FormViewController: UIViewController, FormDisplayLogic{
         fetchCells()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        //layout
+        bottoMenuStack?.setContatoOn(true)
+    }
+    
+    
     // MARK: Fetch Cells
     
     func fetchCells(){
@@ -78,6 +87,11 @@ class FormViewController: UIViewController, FormDisplayLogic{
         for cell in displayedCells{
             //create each cell
         }
-        
+    }
+    
+    
+    @IBAction func investimentoButtonClicked(_ sender: Any) {
+//        bottoMenuStack?.setInvestimentoOn(true)
+        router?.routeToInvestimentos(segue: nil)
     }
 }

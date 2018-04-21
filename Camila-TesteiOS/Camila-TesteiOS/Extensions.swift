@@ -14,7 +14,7 @@ extension UIColor{
         
         ///If color name does not exist it crashes the program in a good way
         fileprivate static func color(named: String) -> UIColor{
-            let color = UIColor.init(named: "lvl1")
+            let color = UIColor.init(named: named)
             assert(color != nil, "Color with name \(named) does not exist")
             return color!
         }

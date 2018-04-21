@@ -34,8 +34,8 @@ class FormRouter: NSObject, FormRoutingLogic, FormDataPassing{
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let destinationVC = storyboard.instantiateViewController(withIdentifier: "InvestimentosViewController") as! InvestimentosViewController
-            var destinationDS = destinationVC.router!.dataStore!
-            passDataToInvestimentos(source: dataStore!, destination: &destinationDS)
+//            let destinationDS = destinationVC.router!.dataStore!
+//            passDataToInvestimentos(source: dataStore!, destination: &destinationDS)
             navigateToInvestimentos(source: viewController!, destination: destinationVC)
         }
     }
@@ -44,11 +44,12 @@ class FormRouter: NSObject, FormRoutingLogic, FormDataPassing{
     
     func navigateToInvestimentos(source: FormViewController, destination: InvestimentosViewController){
         source.show(destination, sender: nil)
+        //source.present(destination, animated: false, completion: nil)
     }
     
     //MARK: Passing data
     
     func passDataToInvestimentos(source: FormDataStore, destination: inout InvestimentosDataStore){
-//        destination.name = source.name
+        
     }
 }

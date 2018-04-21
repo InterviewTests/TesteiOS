@@ -12,49 +12,58 @@
 
 import UIKit
 
-@objc protocol InvestimentosRoutingLogic
-{
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+@objc protocol InvestimentosRoutingLogic{
+    func routeToForm(segue: UIStoryboardSegue?)
+    func routeToBack(segue: UIStoryboardSegue?)
 }
 
-protocol InvestimentosDataPassing
-{
-  var dataStore: InvestimentosDataStore? { get }
+protocol InvestimentosDataPassing{
+    var dataStore: InvestimentosDataStore? { get }
 }
 
 class InvestimentosRouter: NSObject, InvestimentosRoutingLogic, InvestimentosDataPassing
 {
-  weak var viewController: InvestimentosViewController?
-  var dataStore: InvestimentosDataStore?
-  
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
-
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: InvestimentosViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: InvestimentosDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+    weak var viewController: InvestimentosViewController?
+    var dataStore: InvestimentosDataStore?
+    
+    // MARK: Routing
+    
+    func routeToForm(segue: UIStoryboardSegue?){
+        if let segue = segue {
+            let destinationVC = segue.destination as! FormViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToForm(source: dataStore!, destination: &destinationDS)
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: "FormViewController") as! FormViewController
+//            let destinationDS = destinationVC.router!.dataStore!
+//            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
+            navigateToForm(source: viewController!, destination: destinationVC)
+        }
+    }
+    
+    func routeToBack(segue: UIStoryboardSegue?){
+        if let segue = segue{
+            segue.perform()
+        }else{
+            navigateBack(source: viewController!)
+        }
+    }
+    
+    // MARK: Navigation
+    
+    func navigateToForm(source: InvestimentosViewController, destination: FormViewController){
+        source.show(destination, sender: nil)
+    }
+    
+    func navigateBack(source: InvestimentosViewController){
+        //        source.dismiss(animated: false, completion: nil)
+        source.navigationController?.popViewController(animated: false)
+    }
+    
+    // MARK: Passing data
+    
+    func passDataToForm(source: InvestimentosDataStore, destination: inout FormDataStore){
+        
+    }
 }

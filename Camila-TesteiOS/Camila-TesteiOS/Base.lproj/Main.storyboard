@@ -6,61 +6,156 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Form View Controller-->
+        <!--Contato-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="FormViewController" customModule="Camila_TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Contato" id="BYZ-38-t0r" customClass="FormViewController" customModule="Camila_TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qQk-gn-SdP" customClass="BottomMenuStack" customModule="Camila_TesteiOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edY-e6-NmU">
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="60"/>
+                                        <color key="backgroundColor" name="MainColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="6fj-dO-F10"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Investimento"/>
+                                        <connections>
+                                            <action selector="InvestimentosButton:" destination="6g0-aE-O1L" eventType="touchUpInside" id="hAA-m1-oiZ"/>
+                                            <action selector="investimentoButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sxI-1S-rQr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qJ-wG-Z6m">
+                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="60"/>
+                                        <color key="backgroundColor" name="MainColor"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Contato"/>
+                                        <connections>
+                                            <action selector="ContatoButton:" destination="6g0-aE-O1L" eventType="touchUpInside" id="i8W-2b-EhA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="MainColor"/>
+                                <constraints>
+                                    <constraint firstItem="8qJ-wG-Z6m" firstAttribute="height" secondItem="edY-e6-NmU" secondAttribute="height" id="ibK-SO-yue"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="ContatoButton" destination="8qJ-wG-Z6m" id="HAH-sN-NgH"/>
+                                    <outlet property="InvestimentosButton" destination="edY-e6-NmU" id="0F2-58-izs"/>
+                                </connections>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qQk-gn-SdP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2x9-RQ-GCn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qQk-gn-SdP" secondAttribute="bottom" id="Sgd-R4-qpU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qQk-gn-SdP" secondAttribute="trailing" id="mCf-7t-EsS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="meQ-vF-om8"/>
+                    <navigationItem key="navigationItem" title="Contato" id="meQ-vF-om8"/>
                     <connections>
-                        <segue destination="4cJ-if-14Z" kind="show" identifier="ShowInvestimentos" id="7eO-90-nAU"/>
+                        <outlet property="bottoMenuStack" destination="qQk-gn-SdP" id="ETR-tB-U4h"/>
+                        <segue destination="4cJ-if-14Z" kind="show" id="OBw-6T-gH4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="6g0-aE-O1L" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="460" y="159"/>
+            <point key="canvasLocation" x="286" y="159"/>
         </scene>
-        <!--Investimentos View Controller-->
+        <!--Investimento-->
         <scene sceneID="HmJ-OT-3i6">
             <objects>
-                <viewController restorationIdentifier="InvestimentosViewController" storyboardIdentifier="InvestimentosViewController" id="4cJ-if-14Z" customClass="InvestimentosViewController" customModule="Camila_TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="InvestimentosViewController" storyboardIdentifier="InvestimentosViewController" title="Investimento" id="4cJ-if-14Z" customClass="InvestimentosViewController" customModule="Camila_TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fi2-aH-SBy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aI3-oc-BQF" customClass="BottomMenuStack" customModule="Camila_TesteiOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdW-gX-mXL">
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="60"/>
+                                        <color key="backgroundColor" name="MainColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="IzZ-BA-NAL"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Investimento"/>
+                                        <connections>
+                                            <action selector="InvestimentosButton:" destination="aI3-oc-BQF" eventType="touchUpInside" id="tIl-QS-qf7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJB-dV-cbQ">
+                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="60"/>
+                                        <color key="backgroundColor" name="MainColor"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Contato"/>
+                                        <connections>
+                                            <action selector="contatoButtonClicked:" destination="4cJ-if-14Z" eventType="touchUpInside" id="zZE-Ke-16o"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="MainColor"/>
+                                <constraints>
+                                    <constraint firstItem="cJB-dV-cbQ" firstAttribute="height" secondItem="bdW-gX-mXL" secondAttribute="height" id="omJ-i7-KIX"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="ContatoButton" destination="cJB-dV-cbQ" id="kBb-cE-C1v"/>
+                                    <outlet property="InvestimentosButton" destination="bdW-gX-mXL" id="H30-ts-u4d"/>
+                                </connections>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JaQ-Tp-85n" firstAttribute="bottom" secondItem="aI3-oc-BQF" secondAttribute="bottom" id="Akj-bM-2nT"/>
+                            <constraint firstItem="JaQ-Tp-85n" firstAttribute="trailing" secondItem="aI3-oc-BQF" secondAttribute="trailing" id="Mci-G6-3eT"/>
+                            <constraint firstItem="aI3-oc-BQF" firstAttribute="leading" secondItem="JaQ-Tp-85n" secondAttribute="leading" id="P1Q-9v-6u8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="JaQ-Tp-85n"/>
                     </view>
+                    <connections>
+                        <outlet property="bottoMenuStack" destination="aI3-oc-BQF" id="VsZ-3K-Ctj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ut2-h1-6sQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1207" y="159"/>
+            <point key="canvasLocation" x="978" y="159"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="47i-cF-0nV">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OgH-nG-kVp" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4h9-2P-zgn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="flipHorizontal" id="OgH-nG-kVp" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1y0-3I-nCT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1y0-3I-nCT" customClass="CustomNavBar" customModule="Camila_TesteiOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="MainColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="JVr-Gb-1WT"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4h9-2P-zgn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-358" y="159"/>
+            <point key="canvasLocation" x="-418" y="159"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="MainColor">
+            <color red="0.85500001907348633" green="0.0040000001899898052" blue="0.0040000001899898052" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
