@@ -21,6 +21,7 @@ class FormCellBuilder: TableViewCellBuilder {
         tableView.register(InputTextCell.self, forCellReuseIdentifier: "InputTextCell")
         tableView.register(TextCell.self, forCellReuseIdentifier: "TextCell")
         tableView.register(CheckboxCell.self, forCellReuseIdentifier: "CheckboxCell")
+        tableView.register(ButtonCell.self, forCellReuseIdentifier: "ButtonCell")
     }
     
     func build() -> TableSectionable {
@@ -63,6 +64,12 @@ class FormCellBuilder: TableViewCellBuilder {
         case .checkbox:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "CheckboxCell") as? CheckboxCell else {
                 fatalError("Must be provide a CheckboxCell")
+            }
+            cell.setup(title: item.message, topSpacing: CGFloat(item.topSpacing))
+            return cell
+        case .send:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell") as? ButtonCell else {
+                fatalError("Must be provide a ButtonCell")
             }
             cell.setup(title: item.message, topSpacing: CGFloat(item.topSpacing))
             return cell

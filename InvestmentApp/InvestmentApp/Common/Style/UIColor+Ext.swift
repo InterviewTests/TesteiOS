@@ -57,4 +57,8 @@ extension UIColor {
     static var buttonBackgroundRed: UIColor {
         return #colorLiteral(red: 0.8549019608, green: 0.003921568627, blue: 0.003921568627, alpha: 1)
     }
+    
+    static var buttonBackgroundLightRed: UIColor {
+        return #colorLiteral(red: 0.9215686275, green: 0.462745098, blue: 0.462745098, alpha: 1)
+    }
 }
