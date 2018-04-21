@@ -45,4 +45,12 @@ extension UIColor {
     static var invalidFieldRed: UIColor {
         return #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1215686275, alpha: 1)
     }
+    
+    static var selectedCheckbox: UIColor {
+        return #colorLiteral(red: 0.8549019608, green: 0.003921568627, blue: 0.003921568627, alpha: 1)
+    }
+    
+    static var borderCheckbox: UIColor {
+        return #colorLiteral(red: 0.5921568627, green: 0.5921568627, blue: 0.5921568627, alpha: 1)
+    }
 }
