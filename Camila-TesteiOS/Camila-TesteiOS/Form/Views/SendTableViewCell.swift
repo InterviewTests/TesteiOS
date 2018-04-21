@@ -16,7 +16,7 @@ class SendTableViewCell: UITableViewCell, CellProtocol {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        button.layer.cornerRadius = 25
+        button.layer.cornerRadius = button.frame.height * 0.3
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

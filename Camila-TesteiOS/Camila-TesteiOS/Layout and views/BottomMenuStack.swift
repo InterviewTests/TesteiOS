@@ -11,9 +11,6 @@ import UIKit
 class BottomMenuStack: UIStackView {
     
     func setContatoOn(_ state: Bool){
-        ContatoButton?.backgroundColor = state ? UIColor.app.SelectedTab : UIColor.app.MainColor
-        InvestimentosButton?.backgroundColor = state ? UIColor.app.MainColor : UIColor.app.SelectedTab
-        
         ContatoButton?.isUserInteractionEnabled = !state
         InvestimentosButton?.isUserInteractionEnabled = state
     }

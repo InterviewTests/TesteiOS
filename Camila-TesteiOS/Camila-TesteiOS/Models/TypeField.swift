@@ -29,5 +29,27 @@ enum TypeField: Int{
             return self.text
         }
     }
+    
+    var textContentType: UITextContentType{
+        switch self {
+        case .email:
+            return UITextContentType.emailAddress
+        case .telNumber:
+            return UITextContentType.telephoneNumber
+        default:
+            return UITextContentType.name
+        }
+    }
+    
+    var keyboardType: UIKeyboardType{
+        switch self {
+        case .email:
+            return UIKeyboardType.emailAddress
+        case .telNumber:
+            return UIKeyboardType.phonePad
+        default:
+            return UIKeyboardType.alphabet
+        }
+    }
 }
 

@@ -19,7 +19,11 @@ class CheckboxTableViewCell: UITableViewCell, CellProtocol {
         super.awakeFromNib()
         // Initialization code
         label.isUserInteractionEnabled = false
+        
         setCheckBoxState(to: CheckboxTableViewCell.lastState)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(checboxClicked))
+        label.addGestureRecognizer(tap)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

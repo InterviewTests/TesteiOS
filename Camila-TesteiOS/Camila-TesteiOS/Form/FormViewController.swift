@@ -71,7 +71,6 @@ class FormViewController: UIViewController, FormDisplayLogic{
         super.viewDidLoad()
         fetchCells()
         tableView?.allowsSelection = false
-        tableView?.isScrollEnabled = false
     }
     
     override func viewWillLayoutSubviews() {
@@ -118,9 +117,13 @@ extension FormViewController: UITableViewDelegate{
         let topSpacingAll = self.topSpacingAll
         let cell = displayedCells[indexPath.item]
         
-        let hight = cell.hidden ? 0 : ((tableView.frame.height - topSpacingAll) / CGFloat(displayedCells.count)) + CGFloat(cell.topSpacing)
+        guard cell.hidden == false else{
+            return 0
+        }
         
-        return hight
+        let hight = ((tableView.frame.height - topSpacingAll) / CGFloat(displayedCells.count)) + CGFloat(cell.topSpacing)
+        let minimum = 50 + CGFloat(cell.topSpacing)
+        return hight < minimum ? minimum : hight
     }
     
     //MARK:- userfull functions

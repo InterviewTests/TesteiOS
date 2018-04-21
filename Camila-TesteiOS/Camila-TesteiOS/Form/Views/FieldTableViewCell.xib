@@ -20,11 +20,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="460" height="126.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oDl-nR-Z5f">
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="oDl-nR-Z5f">
                         <rect key="frame" x="36" y="42" width="388" height="74"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
+                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                        <connections>
+                            <action selector="editDidChange:" destination="KGk-i7-Jjw" eventType="editingChanged" id="Mbi-JZ-aIz"/>
+                        </connections>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLe-M6-8VF">
                         <rect key="frame" x="36" y="16" width="388" height="21"/>
@@ -46,7 +49,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="label" destination="MLe-M6-8VF" id="HyF-kt-w3w"/>
-                <outlet property="textFiel" destination="oDl-nR-Z5f" id="Kvx-j4-hyb"/>
+                <outlet property="textField" destination="oDl-nR-Z5f" id="fXG-a3-rrH"/>
                 <outlet property="topSpacing" destination="pO0-bE-gmI" id="HmH-vE-qlY"/>
             </connections>
             <point key="canvasLocation" x="104" y="95.5"/>
