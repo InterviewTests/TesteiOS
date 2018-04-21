@@ -9,10 +9,10 @@
 import UIKit
 
 class Util: NSObject {
-    func setupNavBar<T:UIViewController>(viewController: T, title: String) where T:UINavigationBarDelegate{
+    func setupNavBar<T:UIViewController>(viewController: T, title: String) -> UINavigationBar? where T:UINavigationBarDelegate{
         
         guard let view = viewController.view else {
-            return
+            return nil
         }
 
         let navigationBar = CustomNavBar()
@@ -38,5 +38,7 @@ class Util: NSObject {
         } else {
             navigationBar.isHidden = false
         }
+        
+        return navigationBar
     }
 }

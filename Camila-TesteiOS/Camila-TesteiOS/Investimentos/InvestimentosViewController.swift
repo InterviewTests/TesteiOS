@@ -51,6 +51,14 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
         router.dataStore = interactor
     }
     
+    private func setNavigationBar(){
+        let navBar = Util().setupNavBar(viewController: self, title: "Investimento")
+        if let item = navBar?.items?.first{
+            let rightItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ShareSymbol"), style: .plain, target: self, action: #selector(btnShareClicked))
+            rightItem.tintColor = UIColor.app.MainColor
+            item.rightBarButtonItem = rightItem
+        }
+    }
     
     // MARK: Routing
     
@@ -70,7 +78,7 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
         super.viewDidLoad()
         doSomething()
         
-        Util().setupNavBar(viewController: self, title: "Investimento")
+        setNavigationBar()
     }
     
     override func viewWillLayoutSubviews() {
@@ -95,6 +103,10 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
     @IBAction func contatoButtonClicked(_ sender: Any) {
 //        bottoMenuStack?.setInvestimentoOn(false)
         router?.routeToBack(segue: nil)
+    }
+    
+    @IBAction func btnShareClicked() {
+        print("Share button clicked")
     }
 }
 

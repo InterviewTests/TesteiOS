@@ -23,5 +23,6 @@ class CustomNavBar: UINavigationBar {
         setBackgroundImage(UIImage(), for: .default)
         shadowImage = UIImage()
         isTranslucent = true
+        barTintColor = UIColor.app.MainColor
     }
 }
