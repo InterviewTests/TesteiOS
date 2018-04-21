@@ -22,7 +22,7 @@ class InputTextCell: UITableViewCell {
     
     lazy var textField: TextField = {
         let textField = TextField()
-        textField.addCleanButton()
+        textField.borderColor = UIColor.textFieldBorderLightGray.cgColor
         return textField
     }()
     
@@ -72,6 +72,5 @@ extension InputTextCell: ViewConfigurationProtocol {
             make.height.equalTo(43)
             make.bottom.equalTo(0)
         }
-        textField.changeBorderColor(to: UIColor.red.cgColor)
     }
 }

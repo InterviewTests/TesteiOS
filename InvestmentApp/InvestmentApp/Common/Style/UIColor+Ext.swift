@@ -37,4 +37,12 @@ extension UIColor {
     static var textFieldBorderLightGray: UIColor {
         return #colorLiteral(red: 0.937254902, green: 0.9333333333, blue: 0.9294117647, alpha: 1)
     }
+    
+    static var validFieldGreen: UIColor {
+        return #colorLiteral(red: 0.3960784314, green: 0.7450980392, blue: 0.1882352941, alpha: 1)
+    }
+    
+    static var invalidFieldRed: UIColor {
+        return #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1215686275, alpha: 1)
+    }
 }
