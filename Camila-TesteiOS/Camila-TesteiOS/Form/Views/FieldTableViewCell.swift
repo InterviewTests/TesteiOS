@@ -18,7 +18,10 @@ class FieldTableViewCell: UITableViewCell, CellProtocol {
     @IBOutlet weak var textField: UITextField?
     @IBOutlet weak var topSpacing: NSLayoutConstraint?
     fileprivate var line: CAShapeLayer?
+    public var valid: Bool = false
+    
     var fieldChanged: ((Bool)->())?
+    
     var lastState: Any?{
         set{
             UserDefaults().set(newValue, forKey: uniqueKey)
@@ -89,7 +92,7 @@ class FieldTableViewCell: UITableViewCell, CellProtocol {
             return
         }
         
-        let valid: Bool = TypefieldValidator(cell?.typeField).validate(txt)
+        valid = TypefieldValidator(cell?.typeField).validate(txt)
         
         if txt.isEmpty  {
             line?.strokeColor = UIColor.gray.cgColor

@@ -35,7 +35,6 @@ class ApiManager: NSObject {
         task.resume()
     }
     
-    //MARK:- Cells
     func fetchCells(completionHandler: @escaping ([Cell]) -> Void){
         var cells = [Cell]()
         makeHTTPGetRequest(path: url.cells, onCompletion: { json, err in
@@ -63,8 +62,19 @@ class ApiManager: NSObject {
             }
             completionHandler(cells)
         })
+    }
+    
+    
+    func fetchInvestimento(completionHandler: @escaping ([Cell]) -> Void){
+        var investimento = [InvestimentoModels.Investimento.ViewModel.Investimento]()
+        makeHTTPGetRequest(path: url.investimentos, onCompletion: { json, err in}
+        var screenSub = ["title","fundName","whatIs","definition","riskTitle", "risk","infoTitle","moreInfo","info","downInfo"]
         
-        
+        for (_,screen) in json["screen"]{
+            for (_, data) in screen[screenSub.popLast()]{
+                
+            }
+        })
     }
 }
 

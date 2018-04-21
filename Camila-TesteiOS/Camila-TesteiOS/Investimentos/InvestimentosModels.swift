@@ -12,20 +12,47 @@
 
 import UIKit
 
-enum Investimentos
-{
+enum InvestimentoModels{
   // MARK: Use cases
   
-  enum Something
-  {
-    struct Request
-    {
-    }
-    struct Response
-    {
-    }
-    struct ViewModel
-    {
+  enum Investimento{
+    struct Request{}
+    struct Response{}
+    struct ViewModel{
+        typealias data = (found: Float, CDI: Float)
+        struct MoreInfo {
+            var time: String
+            var data: data
+        }
+        
+        struct Info {
+            var name: String
+            var data: String
+        }
+        
+        struct DownInfo {
+            var name: String
+            var data: URL?
+        }
+        
+        struct StartInfo {
+            var title: String
+            var foundName: String
+            var whatIs: String
+            var definition: String
+            var risckTitle: String
+            var rick: Int
+            var infoTitle: String
+        }
+        
+        struct Investimento {
+            var start: StartInfo
+            var more: MoreInfo
+            var info: Info
+            var down: DownInfo
+        }
+        
+        var fechedFounds: [Investimento]
     }
   }
 }

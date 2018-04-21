@@ -18,8 +18,10 @@ protocol FormDisplayLogic: class{
 
 class FormViewController: UIViewController, FormDisplayLogic{
     @IBOutlet weak var navigationBar: UINavigationBar?
-    @IBOutlet weak var tableView: UITableView?
+    @IBOutlet var tableView: UITableView?
     @IBOutlet weak var bottoMenuStack: BottomMenuStack?
+    @IBOutlet var containerViewController: UIView?
+    
     
     var interactor: FormBusinessLogic?
     var router: (NSObjectProtocol & FormRoutingLogic & FormDataPassing)?
@@ -63,6 +65,13 @@ class FormViewController: UIViewController, FormDisplayLogic{
                 router.perform(selector, with: segue)
             }
         }
+    }
+    
+    @IBAction func unwindToForm(segue: UIStoryboardSegue) {
+        AppDelegate.resetDefaults()
+        self.view.sendSubview(toBack: containerViewController!)
+        containerViewController?.isHidden = true
+        tableView?.reloadData()
     }
     
     // MARK: View lifecycle
@@ -122,8 +131,10 @@ extension FormViewController: UITableViewDelegate{
         }
         
         let hight = ((tableView.frame.height - topSpacingAll) / CGFloat(visible)) + CGFloat(cell.topSpacing)
-        let minimum = 50 + CGFloat(cell.topSpacing)
-        return hight < minimum ? minimum : hight
+        let min = 50 + CGFloat(cell.topSpacing)
+        let max = 65 + CGFloat(cell.topSpacing)
+        let h = CGFloat.minimum(max, hight)
+        return CGFloat.maximum(h, min)
     }
     
     //MARK:- userfull functions
@@ -183,6 +194,33 @@ extension FormViewController: UITableViewDataSource{
         
         case .send:
             nibCell =  UINib(nibName: "SendTableViewCell", bundle: nil).instantiate(withOwner: self, options: nil).first as? CellProtocol & UITableViewCell
+            (nibCell as? SendTableViewCell)?.action = {
+                if let cells = self.tableView?.visibleCells{
+                    for c in cells{
+                        if let cell = (c as? FieldTableViewCell){ //celula é Field
+                            if let ce = cell.cell{ //cell nela é !nil
+                                if ce.required && !ce.hidden {//Ela é necessaria
+                                    if !cell.valid {
+                                        //ta errado e n deve passar de view
+                                        let alert = UIAlertController(title: nil, message: "Preencha todos os campos corretamente", preferredStyle: UIAlertControllerStyle.alert)
+                                        
+                                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                        
+                                        self.present(alert, animated: true)
+                                        
+                                        return
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    //Pass on some date to somwhere, and present success view
+                    self.view.bringSubview(toFront: self.containerViewController!)
+                    self.containerViewController?.isHidden = false
+                    
+                }
+            }
         
         case .checkbox:
             nibCell =  UINib(nibName: "CheckboxTableViewCell", bundle: nil).instantiate(withOwner: self, options: nil).first as? CellProtocol & UITableViewCell
@@ -190,7 +228,6 @@ extension FormViewController: UITableViewDataSource{
             (nibCell as? CheckboxTableViewCell)?.checkBoxChanged = {selected in
                 self.showCell(selected, withId: cellConfig.show)
                 //save state
-                
             }
         
         default:

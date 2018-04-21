@@ -16,6 +16,7 @@ class SendTableViewCell: UITableViewCell, CellProtocol {
     var cell: Cell?
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var topSpacing: NSLayoutConstraint?
+    var action: (()->())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,10 +37,15 @@ class SendTableViewCell: UITableViewCell, CellProtocol {
         button.setTitle(cell.message, for: .normal)
         topSpacing?.constant = CGFloat(cell.topSpacing)
     }
-
+    
+    @IBAction func buttonClicked(_ sender: Any) {
+        action?()
+    }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         button.layer.cornerRadius = button.layer.frame.height * 0.5
     }
+    
     
 }
