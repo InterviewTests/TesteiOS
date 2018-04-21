@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var label: UILabel!
+    var test: Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -18,6 +20,26 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @IBAction func click(_ sender: Any) {
+        
+        var frame = self.label.frame
+        
+        if self.test {
+            frame.origin.y = 280
+            UIView.animate(withDuration: 0.1) {
+                self.label.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                self.label.frame = frame
+            }
+        } else {
+            frame.origin.y = 300
+            UIView.animate(withDuration: 0.1) {
+                self.label.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                self.label.frame = frame
+            }
+        }
+        
+        self.test = !self.test
     }
 }
 
