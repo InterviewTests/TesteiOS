@@ -43,7 +43,21 @@ class FormCellBuilder: TableViewCellBuilder {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "InputTextCell") as? InputTextCell else {
                 fatalError("Must be provide a InputTextCell")
             }
-            cell.setup(topSpacing: CGFloat(item.topSpacing))
+            
+            var type = TextFieldType.text
+            
+            if let typeField = item.typefield {
+                switch typeField {
+                case .telNumber:
+                    type = .telephone
+                case .email:
+                    type = .email
+                case .text:
+                    type = .text
+                }
+            }
+            
+            cell.setup(topSpacing: CGFloat(item.topSpacing), title: item.message, textType: type)
             return cell
         default:
             break

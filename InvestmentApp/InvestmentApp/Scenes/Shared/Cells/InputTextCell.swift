@@ -47,8 +47,10 @@ class InputTextCell: UITableViewCell {
 }
 
 extension InputTextCell: ViewConfigurationProtocol {
-    func setup(topSpacing: CGFloat) {
+    func setup(topSpacing: CGFloat, title: String, textType: TextFieldType) {
         self.topSpacing = topSpacing
+        self.titleLabel.text = title
+        self.textField.type = textType
         setupView()
     }
     

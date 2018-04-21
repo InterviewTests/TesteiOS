@@ -31,4 +31,45 @@ extension String {
         }
         return ""
     }
+    
+    func telephoneMask() -> String {
+        let regexMap = [
+            "(\\d{0})",
+            "(\\d{1})",
+            "(\\d{2})",
+            "(\\d{2}) (\\d{1})",
+            "(\\d{2}) (\\d{2})",
+            "(\\d{2}) (\\d{3})",
+            "(\\d{2}) (\\d{4})",
+            "(\\d{2}) (\\d{5})",
+            "(\\d{2}) (\\d{6})",
+            "(\\d{2}) (\\d{7})",
+            "(\\d{2}) (\\d{8})",
+            "(\\d{2}) (\\d{5})-(\\d{4})"
+        ]
+        var text = self.onlyNumbers().trunc(length: 11)
+        
+        let regexIndex = text.count
+        if text.count > 1 {
+            let regexUsed = regexMap[regexIndex]
+            text = NSStringMask.maskString(text, withPattern: regexUsed)
+        }
+        return text
+    }
+    
+    func onlyNumbers() -> String {
+        let stringArray = self.components(
+            separatedBy: NSCharacterSet.decimalDigits.inverted)
+        let newString = stringArray.joined(separator: "")
+        
+        return newString
+    }
+    
+    func trunc(length: Int) -> String {
+        if self.count > length {
+            let index = self.index(self.startIndex, offsetBy: length)
+            return String(self[..<index])
+        }
+        return self
+    }
 }

@@ -127,19 +127,7 @@ extension TextField {
     @objc
     fileprivate func applyMask() {
         if type == .telephone {
-            let regexMap = [
-                "(\\d{0})",
-                "(\\d{1})",
-                "(\\d{2})",
-                "((\\d{2}))",
-                "((\\d{2})) "
-            ]
-            
-            if let regexIndex = text?.count {
-                let regexUsed = regexMap[regexIndex]
-                text = NSStringMask.maskString(text, withRegex: regexUsed)
-            }
-            
+            self.text = self.text?.telephoneMask()
         }
     }
 }
