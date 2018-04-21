@@ -78,8 +78,8 @@ class FieldTableViewCell: UITableViewCell, CellProtocol {
 
     static var input: String?
     @IBAction func editDidChange(_ sender: UITextField) {
-        validateField()
         formatField()
+        validateField()
         
         lastState = sender.text
     }
