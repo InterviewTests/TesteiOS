@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SendTableViewCell: UITableViewCell, CellProtocol {
+class SendTableViewCell: CusomTableViewCell, CellProtocol {
     var uniqueKey: String{
         return "Send\(cell?.id ?? 0)"
     }

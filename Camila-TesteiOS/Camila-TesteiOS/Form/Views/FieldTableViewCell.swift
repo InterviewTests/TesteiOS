@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FieldTableViewCell: UITableViewCell, CellProtocol {
+class FieldTableViewCell: CusomTableViewCell, CellProtocol {
     var uniqueKey: String{
         return "Field\(cell?.id ?? 0)"
     }

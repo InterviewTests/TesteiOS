@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoreInfoTableViewCell: UITableViewCell {
+class MoreInfoTableViewCell: CusomTableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var cid: UILabel!
     @IBOutlet weak var fund: UILabel!

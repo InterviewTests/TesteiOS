@@ -88,11 +88,13 @@ class FundViewController: UIViewController, FundDisplayLogic{
     }
     
     @IBAction func btnShareClicked() {
-        let bounds = UIScreen.main.bounds
-        UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0.0)
-        self.view.drawHierarchy(in: bounds, afterScreenUpdates: false)
-        let img = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+//        let bounds = UIScreen.main.bounds
+//        UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0.0)
+//        self.view.drawHierarchy(in: bounds, afterScreenUpdates: false)
+//        let img = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+
+        let img = tableView.createImage()
         
         let objectsToShare = [img as Any]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
@@ -228,14 +230,12 @@ extension FundViewController: UITableViewDataSource, UITableViewDelegate{
             let separatorView = UIView()
             separatorView.backgroundColor = UIColor.lightGray
             cell.contentView.addSubview(separatorView)
-                
             
             separatorView.translatesAutoresizingMaskIntoConstraints = false
             separatorView.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor).isActive = true
             separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
             separatorView.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -16).isActive = true
             separatorView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16).isActive = true
-            
             
         default:
             break

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DowninfoTableViewCell: UITableViewCell {
+class DowninfoTableViewCell: CusomTableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var baixarButtonText: UIButton!
     @IBOutlet weak var baixarButtonImage: UIButton!

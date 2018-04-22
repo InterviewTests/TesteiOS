@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CheckboxTableViewCell: UITableViewCell, CellProtocol {
+class CheckboxTableViewCell: CusomTableViewCell, CellProtocol {
     var cell: Cell?
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var checkbox: UIButton!
