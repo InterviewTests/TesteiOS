@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Medium.otf">
+            <string>DINPro-Medium</string>
+        </array>
+        <array key="DINPro-Regular.otf">
+            <string>DINPro-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomTextField" customModule="Santander" customModuleProvider="target">
+            <connections>
+                <outlet property="clearButton" destination="bo5-PT-aZE" id="gXp-Pf-asP"/>
+                <outlet property="label" destination="0Ra-Zz-D9N" id="jV3-3f-DeJ"/>
+                <outlet property="statusBar" destination="z7B-pq-3nX" id="Dam-WS-Le4"/>
+                <outlet property="textField" destination="GFZ-SP-uBq" id="rHa-kB-8cL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="350" height="56"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="testando a batatina" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ra-Zz-D9N">
+                    <rect key="frame" x="0.0" y="30" width="350" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="pLN-JO-Hsp"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                    <color key="textColor" red="0.67450980392156867" green="0.67450980392156867" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7B-pq-3nX">
+                    <rect key="frame" x="0.0" y="55" width="350" height="1"/>
+                    <color key="backgroundColor" red="0.93725490196078431" green="0.93333333333333335" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="lmy-5H-WR5"/>
+                    </constraints>
+                </view>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GFZ-SP-uBq">
+                    <rect key="frame" x="0.0" y="24" width="350" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="xrs-NP-dp2"/>
+                    </constraints>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="18"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bo5-PT-aZE">
+                    <rect key="frame" x="327" y="7" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="csp-q5-CRU"/>
+                        <constraint firstAttribute="width" constant="20" id="q9k-Ej-YHl"/>
+                    </constraints>
+                    <state key="normal" image="clear_field_icon"/>
+                    <connections>
+                        <action selector="clearClick:" destination="-1" eventType="touchUpInside" id="jl4-Lt-gwt"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bo5-PT-aZE" secondAttribute="trailing" constant="3" id="7sX-Jo-3NZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="GFZ-SP-uBq" secondAttribute="trailing" id="9m5-k4-i7V"/>
+                <constraint firstItem="0Ra-Zz-D9N" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="MSh-mw-osb"/>
+                <constraint firstItem="GFZ-SP-uBq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Rg8-8w-UMt"/>
+                <constraint firstItem="0Ra-Zz-D9N" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="aki-VS-dha"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0Ra-Zz-D9N" secondAttribute="trailing" id="bJR-Xz-AZp"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="z7B-pq-3nX" secondAttribute="trailing" id="hhk-US-KPo"/>
+                <constraint firstItem="bo5-PT-aZE" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="7" id="uje-M2-58v"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="z7B-pq-3nX" secondAttribute="bottom" id="xTx-rN-h4h"/>
+                <constraint firstItem="z7B-pq-3nX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="xoP-aG-oil"/>
+                <constraint firstItem="GFZ-SP-uBq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="24" id="xpg-iN-Pha"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="17" y="-35"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="clear_field_icon" width="20" height="20"/>
+    </resources>
+</document>
