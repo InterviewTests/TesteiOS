@@ -12,30 +12,28 @@
 
 import UIKit
 
-protocol InvestimentosBusinessLogic
-{
-  func doSomething(request: Investimentos.Something.Request)
+protocol InvestimentosBusinessLogic{
+    func fetchInvestimento(request: Investimentos.Something.Request)
 }
 
-protocol InvestimentosDataStore
-{
-  //var name: String { get set }
+protocol InvestimentosDataStore{
+    //var name: String { get set }
 }
 
-class InvestimentosInteractor: InvestimentosBusinessLogic, InvestimentosDataStore
-{
-  var presenter: InvestimentosPresentationLogic?
-  var worker: InvestimentosWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Investimentos.Something.Request)
-  {
-    worker = InvestimentosWorker()
-    worker?.doSomeWork()
+class InvestimentosInteractor: InvestimentosBusinessLogic, InvestimentosDataStore{
+    var presenter: InvestimentosPresentationLogic?
+    var worker: InvestimentosWorker?
+    //var name: String = ""
     
-    let response = Investimentos.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    // MARK: Do something
+    
+    func fetchInvestimento(request: Investimentos.Something.Request){
+        worker = InvestimentosWorker()
+        worker?.fetchInvestimento(onCompletion: { invest in
+            let response = Investimentos.Something.Response(investimentos: invest)
+            self.presenter?.presentInvestimentos(response: response)
+        })
+        
+        
+    }
 }

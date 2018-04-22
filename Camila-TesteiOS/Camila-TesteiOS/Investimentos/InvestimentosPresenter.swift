@@ -12,20 +12,16 @@
 
 import UIKit
 
-protocol InvestimentosPresentationLogic
-{
-  func presentSomething(response: Investimentos.Something.Response)
+protocol InvestimentosPresentationLogic{
+    func presentInvestimentos(response: Investimentos.Something.Response)
 }
 
-class InvestimentosPresenter: InvestimentosPresentationLogic
-{
-  weak var viewController: InvestimentosDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: Investimentos.Something.Response)
-  {
-    let viewModel = Investimentos.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+class InvestimentosPresenter: InvestimentosPresentationLogic{
+    weak var viewController: InvestimentosDisplayLogic?
+    // MARK: Do something
+    
+    func presentInvestimentos(response: Investimentos.Something.Response){
+        let viewModel = Investimentos.Something.ViewModel(investimentos: response.investimentos)
+        viewController?.displayInvestimentos(viewModel: viewModel)
+    }
 }

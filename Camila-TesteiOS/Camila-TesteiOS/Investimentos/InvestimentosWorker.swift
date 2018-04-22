@@ -12,9 +12,12 @@
 
 import UIKit
 
-class InvestimentosWorker
-{
-  func doSomeWork()
-  {
-  }
+class InvestimentosWorker{
+    func fetchInvestimento(onCompletion: @escaping ([Investimento]) -> Void){
+        ApiManager().fetchInvestimento { investimentos in
+            DispatchQueue.main.async{
+                onCompletion(investimentos)
+            }
+        }
+    }
 }

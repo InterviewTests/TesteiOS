@@ -110,12 +110,6 @@ class FormViewController: UIViewController, FormDisplayLogic{
     }
 }
 
-extension FormViewController: UINavigationBarDelegate {
-    public func position(for bar: UIBarPositioning) -> UIBarPosition {
-        return .topAttached
-    }
-}
-
 extension FormViewController: UITableViewDelegate{
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         guard displayedCells.count > indexPath.item else{

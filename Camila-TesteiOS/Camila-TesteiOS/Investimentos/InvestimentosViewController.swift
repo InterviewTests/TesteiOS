@@ -13,16 +13,17 @@
 import UIKit
 
 protocol InvestimentosDisplayLogic: class{
-    func displaySomething(viewModel: Investimentos.Something.ViewModel)
+    func displayInvestimentos(viewModel: Investimentos.Something.ViewModel)
 }
 
 class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
     @IBOutlet weak var bottoMenuStack: BottomMenuStack?
     @IBOutlet weak var navigationBar: UINavigationBar?
     
+    @IBOutlet weak var tableView: UITableView!
     var interactor: InvestimentosBusinessLogic?
     var router: (NSObjectProtocol & InvestimentosRoutingLogic & InvestimentosDataPassing)?
-    
+    var displayedInvestimentos = [Investimento]()
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?){
@@ -68,7 +69,7 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        doSomething()
+        loadInvestimentos()
     }
     
     override func viewWillLayoutSubviews() {
@@ -81,17 +82,18 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
     
     //@IBOutlet weak var nameTextField: UITextField!
     
-    func doSomething(){
+    func loadInvestimentos(){
         let request = Investimentos.Something.Request()
-        interactor?.doSomething(request: request)
+        interactor?.fetchInvestimento(request: request)
     }
     
-    func displaySomething(viewModel: Investimentos.Something.ViewModel){
-        //nameTextField.text = viewModel.name
+    func displayInvestimentos(viewModel: Investimentos.Something.ViewModel){
+        //display all investimentos here
+        displayedInvestimentos = viewModel.investimentos
+        tableView.reloadData()
     }
     
     @IBAction func contatoButtonClicked(_ sender: Any) {
-//        bottoMenuStack?.setInvestimentoOn(false)
         router?.routeToBack(segue: nil)
     }
     
@@ -108,9 +110,33 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
         self.present(activityVC, animated: true, completion: nil)
     }
 }
-
-extension InvestimentosViewController: UINavigationBarDelegate {
-    public func position(for bar: UIBarPositioning) -> UIBarPosition {
-        return .topAttached
+//MARK: TABLEVIEW
+extension InvestimentosViewController: UITableViewDataSource, UITableViewDelegate{
+    func numberOfSections(in tableView: UITableView) -> Int{
+        return 3
     }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        switch section {
+        case 0:
+            return 7
+        case 1:
+            return 4
+        case 2:
+            if let funds = displayedInvestimentos.first{
+                return funds.downInfo.count + funds.info.count
+            }
+        default:
+            return 0
+        }
+        
+        return 0
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let cell = UITableViewCell()
+        cell.backgroundColor = UIColor.red
+        return cell
+    }
+
 }
