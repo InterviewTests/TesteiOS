@@ -1,5 +1,5 @@
 //
-//  InvestimentosWorker.swift
+//  FundWorker.swift
 //  Camila-TesteiOS
 //
 //  Created by camila oliveira on 20/04/18.
@@ -12,9 +12,9 @@
 
 import UIKit
 
-class InvestimentosWorker{
-    func fetchInvestimento(onCompletion: @escaping ([Investimento]) -> Void){
-        ApiManager().fetchInvestimento { investimentos in
+class FundWorker{
+    func fetchFunds(onCompletion: @escaping ([Fund]) -> Void){
+        ApiManager().fetchFunds { investimentos in
             DispatchQueue.main.async{
                 onCompletion(investimentos)
             }

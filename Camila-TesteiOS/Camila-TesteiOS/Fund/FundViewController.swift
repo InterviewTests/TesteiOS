@@ -1,5 +1,5 @@
 //
-//  InvestimentosViewController.swift
+//  FundViewController.swift
 //  Camila-TesteiOS
 //
 //  Created by camila oliveira on 20/04/18.
@@ -12,18 +12,19 @@
 
 import UIKit
 
-protocol InvestimentosDisplayLogic: class{
-    func displayInvestimentos(viewModel: Investimentos.Something.ViewModel)
+protocol FundDisplayLogic: class{
+    func displayFunds(viewModel: FundModel.Screen.ViewModel)
 }
 
-class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
+class FundViewController: UIViewController, FundDisplayLogic{
+    var interactor: FundBusinessLogic?
+    var router: (NSObjectProtocol & FundRoutingLogic & FundDataPassing)?
+    var displayedFunds: [Fund] = []
     @IBOutlet weak var bottoMenuStack: BottomMenuStack?
     @IBOutlet weak var navigationBar: UINavigationBar?
     
     @IBOutlet weak var tableView: UITableView!
-    var interactor: InvestimentosBusinessLogic?
-    var router: (NSObjectProtocol & InvestimentosRoutingLogic & InvestimentosDataPassing)?
-    var displayedInvestimentos = [Investimento]()
+    
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?){
@@ -36,15 +37,13 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
         setup()
     }
     
-
-    
     // MARK: Setup
     
     private func setup(){
         let viewController = self
-        let interactor = InvestimentosInteractor()
-        let presenter = InvestimentosPresenter()
-        let router = InvestimentosRouter()
+        let interactor = FundInteractor()
+        let presenter = FundPresenter()
+        let router = FundRouter()
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
@@ -55,8 +54,7 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
     
     // MARK: Routing
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if let scene = segue.identifier {
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
             if let router = router, router.responds(to: selector) {
@@ -69,32 +67,24 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        loadInvestimentos()
+        fechFunds()
     }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        //layout
-        bottoMenuStack?.setInvestimentoOn(true)
-    }
-    
-    // MARK: Do something
     
     //@IBOutlet weak var nameTextField: UITextField!
     
-    func loadInvestimentos(){
-        let request = Investimentos.Something.Request()
-        interactor?.fetchInvestimento(request: request)
+    func fechFunds(){
+        let request = FundModel.Screen.Request()
+        interactor?.fechFunds(request: request)
     }
     
-    func displayInvestimentos(viewModel: Investimentos.Something.ViewModel){
-        //display all investimentos here
-        displayedInvestimentos = viewModel.investimentos
+    func displayFunds(viewModel: FundModel.Screen.ViewModel){
+        displayedFunds = viewModel.funds
         tableView.reloadData()
     }
     
+    //MARK:- IBActions
     @IBAction func contatoButtonClicked(_ sender: Any) {
-        router?.routeToBack(segue: nil)
+        router?.routeBack()
     }
     
     @IBAction func btnShareClicked() {
@@ -109,34 +99,30 @@ class InvestimentosViewController: UIViewController, InvestimentosDisplayLogic{
         activityVC.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.addToReadingList]
         self.present(activityVC, animated: true, completion: nil)
     }
+    
 }
-//MARK: TABLEVIEW
-extension InvestimentosViewController: UITableViewDataSource, UITableViewDelegate{
-    func numberOfSections(in tableView: UITableView) -> Int{
-        return 3
+
+extension FundViewController: UITableViewDataSource, UITableViewDelegate{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        switch section {
-        case 0:
-            return 7
-        case 1:
-            return 4
-        case 2:
-            if let funds = displayedInvestimentos.first{
-                return funds.downInfo.count + funds.info.count
-            }
-        default:
-            return 0
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    //MARK:- Table view config
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        
+        
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        if cell == nil {
+            cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
         }
         
-        return 0
+        cell!.textLabel?.text = "TESTE1\(indexPath.item)"
+        return cell!
+        
+        
     }
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        let cell = UITableViewCell()
-        cell.backgroundColor = UIColor.red
-        return cell
-    }
-
 }

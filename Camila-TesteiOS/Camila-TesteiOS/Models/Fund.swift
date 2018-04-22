@@ -1,5 +1,5 @@
 //
-//  Investimento.swift
+//  Fund.swift
 //  Camila-TesteiOS
 //
 //  Created by camila oliveira on 21/04/18.
@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class Investimento: NSObject {
+class Fund: NSObject {
     var title: String
     var fundName: String
     var whatIs: String
@@ -17,9 +17,10 @@ class Investimento: NSObject {
     var riskTitle: String
     var risk: Int
     var infoTitle: String
+    
     var moreInfo: MoreInfo
-    var info:  [InfoData]!
-    var downInfo: [DownInfoData]!
+    var info:  [InfoData] = []
+    var downInfo: [DownInfoData] = []
     
     
     
@@ -50,6 +51,7 @@ class Investimento: NSObject {
             months12 = MoreInfoData(json["12months"])
         }
     }
+    
     struct MoreInfoData {
         var found: Float
         var CDI: Float

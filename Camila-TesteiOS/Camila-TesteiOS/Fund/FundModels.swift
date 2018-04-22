@@ -1,5 +1,5 @@
 //
-//  InvestimentosModels.swift
+//  FundModels.swift
 //  Camila-TesteiOS
 //
 //  Created by camila oliveira on 20/04/18.
@@ -12,19 +12,16 @@
 
 import UIKit
 
-
-// MARK: Use cases
-
-enum Investimentos{
-    //Investimentos.Something.Request
-    enum Something {
+enum FundModel{
+    // MARK: Use cases
+    
+    enum Screen{
         struct Request{}
         struct Response{
-            var investimentos: [Investimento]
+            var funds: [Fund]
         }
         struct ViewModel{
-            var investimentos: [Investimento]
+            var funds: [Fund]
         }
     }
 }
-

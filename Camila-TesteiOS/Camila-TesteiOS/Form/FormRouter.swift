@@ -28,12 +28,12 @@ class FormRouter: NSObject, FormRoutingLogic, FormDataPassing{
     
     func routeToInvestimentos(segue: UIStoryboardSegue?){
         if let segue = segue {
-            let destinationVC = segue.destination as! InvestimentosViewController
+            let destinationVC = segue.destination as! FundViewController
             var destinationDS = destinationVC.router!.dataStore!
             passDataToInvestimentos(source: dataStore!, destination: &destinationDS)
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let destinationVC = storyboard.instantiateViewController(withIdentifier: "InvestimentosViewController") as! InvestimentosViewController
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: "FundViewController") as! FundViewController
 //            let destinationDS = destinationVC.router!.dataStore!
 //            passDataToInvestimentos(source: dataStore!, destination: &destinationDS)
             navigateToInvestimentos(source: viewController!, destination: destinationVC)
@@ -42,7 +42,7 @@ class FormRouter: NSObject, FormRoutingLogic, FormDataPassing{
     
     //MARK: Navigation
     
-    func navigateToInvestimentos(source: FormViewController, destination: InvestimentosViewController){
+    func navigateToInvestimentos(source: FormViewController, destination: FundViewController){
 //        source.show(destination, sender: nil)
         source.present(destination, animated: false, completion: nil)
 //        source.showDetailViewController(destination, sender: nil)"
@@ -50,7 +50,7 @@ class FormRouter: NSObject, FormRoutingLogic, FormDataPassing{
     
     //MARK: Passing data
     
-    func passDataToInvestimentos(source: FormDataStore, destination: inout InvestimentosDataStore){
+    func passDataToInvestimentos(source: FormDataStore, destination: inout FundDataStore){
         
     }
 }

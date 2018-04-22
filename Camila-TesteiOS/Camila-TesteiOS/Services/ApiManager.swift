@@ -65,11 +65,11 @@ class ApiManager: NSObject {
     }
     
     
-    func fetchInvestimento(completionHandler: @escaping ([Investimento]) -> Void){
+    func fetchFunds(completionHandler: @escaping ([Fund]) -> Void){
         makeHTTPGetRequest(path: url.investimentos, onCompletion: { json, err in
-            var arr = [Investimento]()
+            var arr = [Fund]()
             for (_, data) in json{
-                arr.append(Investimento(json: data))
+                arr.append(Fund(json: data))
             }
             completionHandler(arr)
         })
