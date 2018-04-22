@@ -17,7 +17,7 @@ class FieldTableViewCell: CusomTableViewCell, CellProtocol {
     @IBOutlet weak var label: UILabel?
     @IBOutlet weak var textField: UITextField?
     @IBOutlet weak var topSpacing: NSLayoutConstraint?
-    fileprivate var line: CAShapeLayer?
+    fileprivate var line: UIView?
     public var valid: Bool = false
     
     var fieldChanged: ((Bool)->())?
@@ -55,29 +55,27 @@ class FieldTableViewCell: CusomTableViewCell, CellProtocol {
         textField?.keyboardType = cell.typeField.keyboardType
         textField?.text = lastState as? String
         textField?.font = AppFont.defaultFonts.text
+        
+        createLine()
     }
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         //line
-        guard let y = textField?.frame.origin.y, let x = textField?.frame.origin.x, let width = textField?.frame.size.width, let hight = textField?.frame.size.height else {
-            return
-        }
-        line = createLine(fromPoint: CGPoint(x: x, y: y + hight + 3), toPoint: CGPoint(x: x + width, y: y + hight + 3))
-        self.layer.addSublayer(line!)
         validateField()
     }
     
-    func createLine(fromPoint start: CGPoint, toPoint end:CGPoint) -> CAShapeLayer{
-        let line = CAShapeLayer()
-        let linePath = UIBezierPath()
-        linePath.move(to: start)
-        linePath.addLine(to: end)
-        line.path = linePath.cgPath
-        line.strokeColor = UIColor.gray.cgColor
-        line.lineWidth = 1
-        line.lineJoin = kCALineJoinRound
-        return line
+    func createLine(){
+        let separatorView = UIView()
+        separatorView.backgroundColor = UIColor.lightGray
+        contentView.addSubview(separatorView)
+        line = separatorView
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        
+        separatorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        separatorView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        separatorView.widthAnchor.constraint(equalTo: (textField?.widthAnchor)!).isActive = true
     }
 
     static var input: String?
@@ -96,11 +94,11 @@ class FieldTableViewCell: CusomTableViewCell, CellProtocol {
         valid = TypefieldValidator(cell?.typeField).validate(txt)
         
         if txt.isEmpty  {
-            line?.strokeColor = UIColor.gray.cgColor
+            line?.backgroundColor = UIColor.gray
         }else if valid {
-            line?.strokeColor = UIColor.app.CorrectInput.cgColor
+            line?.backgroundColor = UIColor.app.CorrectInput
         }else{
-            line?.strokeColor = UIColor.app.MainColor.cgColor
+            line?.backgroundColor = UIColor.app.MainColor
         }
         
         fieldChanged?(valid)

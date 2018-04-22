@@ -20,7 +20,7 @@ class ApiManager: NSObject {
         static let investimentos = host + "fund.json"
     }
     
-    fileprivate func makeHTTPGetRequest(path: String, onCompletion: @escaping ServiceResponse){
+    private func makeHTTPGetRequest(path: String, onCompletion: @escaping ServiceResponse){
         let request = NSMutableURLRequest(url: URL.init(string: path)!)
         let session = URLSession.shared
         
