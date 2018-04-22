@@ -27,4 +27,15 @@ class RoundedButton: UIButton {
         self.titleLabel?.font = font
         self.setTitleColor(Color.white, for: .normal)
     }
+    
+    func enableButton(enable: Bool) {
+        
+        if enable {
+            self.backgroundColor = Color.red
+            self.isUserInteractionEnabled = true
+        } else {
+            self.backgroundColor = Color.inactiveRed
+            self.isUserInteractionEnabled = false
+        }
+    }
 }

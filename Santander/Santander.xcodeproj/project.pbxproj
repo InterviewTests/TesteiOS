@@ -11,7 +11,6 @@
 		86AEC1944431F702E2D09C38 /* Pods_SantanderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1DC6F250FD7828E1A26055C /* Pods_SantanderUITests.framework */; };
 		C043BEF6208BBED000C6231F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C043BEF5208BBED000C6231F /* AppDelegate.swift */; };
 		C043BEF8208BBED000C6231F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C043BEF7208BBED000C6231F /* ViewController.swift */; };
-		C043BEFB208BBED000C6231F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C043BEF9208BBED000C6231F /* Main.storyboard */; };
 		C043BEFD208BBED000C6231F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C043BEFC208BBED000C6231F /* Assets.xcassets */; };
 		C043BF00208BBED000C6231F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C043BEFE208BBED000C6231F /* LaunchScreen.storyboard */; };
 		C043BF0B208BBED100C6231F /* SantanderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C043BF0A208BBED100C6231F /* SantanderTests.swift */; };
@@ -38,6 +37,7 @@
 		C0DCC38E208CFC4B009CF4DD /* CustomSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCC38D208CFC4B009CF4DD /* CustomSeparator.swift */; };
 		C0DCC392208CFEFA009CF4DD /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCC390208CFEFA009CF4DD /* CustomTabBarController.swift */; };
 		C0DCC393208CFEFA009CF4DD /* CustomTabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0DCC391208CFEFA009CF4DD /* CustomTabBarController.xib */; };
+		C0DCC39A208D082B009CF4DD /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCC398208D082B009CF4DD /* APIClient.swift */; };
 		D511BE9D9E64A296B7A05F15 /* Pods_SantanderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 623E4816754ED03CB607DA88 /* Pods_SantanderTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,7 +68,6 @@
 		C043BEF2208BBED000C6231F /* Santander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Santander.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C043BEF5208BBED000C6231F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C043BEF7208BBED000C6231F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C043BEFA208BBED000C6231F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C043BEFC208BBED000C6231F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C043BEFF208BBED000C6231F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C043BF01208BBED000C6231F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,6 +99,7 @@
 		C0DCC38D208CFC4B009CF4DD /* CustomSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSeparator.swift; sourceTree = "<group>"; };
 		C0DCC390208CFEFA009CF4DD /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		C0DCC391208CFEFA009CF4DD /* CustomTabBarController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTabBarController.xib; sourceTree = "<group>"; };
+		C0DCC398208D082B009CF4DD /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		D1DC6F250FD7828E1A26055C /* Pods_SantanderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D30A384A5C1AF0352E3B8D85 /* Pods-Santander.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Santander.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Santander/Pods-Santander.debug.xcconfig"; sourceTree = "<group>"; };
 		D4FF08896544DEE9DADCFDD7 /* Pods-SantanderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderUITests/Pods-SantanderUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -181,17 +181,13 @@
 		C043BEF4208BBED000C6231F /* Santander */ = {
 			isa = PBXGroup;
 			children = (
-				C0DCC38F208CFEE1009CF4DD /* CustomTabBarController */,
-				C043BF38208BF32A00C6231F /* Components */,
-				C043BF25208BEDDA00C6231F /* Fonts */,
+				C0DCC397208D0800009CF4DD /* APIClient */,
 				C043BEF5208BBED000C6231F /* AppDelegate.swift */,
-				C0DCC377208C0800009CF4DD /* BaseViewController.swift */,
+				C0DCC396208D0740009CF4DD /* Constants */,
+				C0DCC395208D070F009CF4DD /* Asset */,
+				C043BF38208BF32A00C6231F /* UIComponents */,
+				C0DCC394208D06DB009CF4DD /* Scenes */,
 				C043BEF7208BBED000C6231F /* ViewController.swift */,
-				C0DCC37B208CC881009CF4DD /* Font.swift */,
-				C043BF23208BEA3900C6231F /* Colors.swift */,
-				C043BEF9208BBED000C6231F /* Main.storyboard */,
-				C043BEFC208BBED000C6231F /* Assets.xcassets */,
-				C043BEFE208BBED000C6231F /* LaunchScreen.storyboard */,
 				C043BF01208BBED000C6231F /* Info.plist */,
 			);
 			path = Santander;
@@ -231,7 +227,7 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		C043BF38208BF32A00C6231F /* Components */ = {
+		C043BF38208BF32A00C6231F /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
 				C0DCC38C208CFC26009CF4DD /* CustomSeparator */,
@@ -241,7 +237,7 @@
 				C0DCC382208CDD2A009CF4DD /* CustomCheckBox */,
 				C0DCC381208CCCA1009CF4DD /* CustomTextField */,
 			);
-			path = Components;
+			path = UIComponents;
 			sourceTree = "<group>";
 		};
 		C0DCC381208CCCA1009CF4DD /* CustomTextField */ = {
@@ -301,6 +297,42 @@
 				C0DCC391208CFEFA009CF4DD /* CustomTabBarController.xib */,
 			);
 			path = CustomTabBarController;
+			sourceTree = "<group>";
+		};
+		C0DCC394208D06DB009CF4DD /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				C0DCC377208C0800009CF4DD /* BaseViewController.swift */,
+				C0DCC38F208CFEE1009CF4DD /* CustomTabBarController */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		C0DCC395208D070F009CF4DD /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				C043BEFC208BBED000C6231F /* Assets.xcassets */,
+				C043BEFE208BBED000C6231F /* LaunchScreen.storyboard */,
+				C043BF25208BEDDA00C6231F /* Fonts */,
+			);
+			path = Asset;
+			sourceTree = "<group>";
+		};
+		C0DCC396208D0740009CF4DD /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				C0DCC37B208CC881009CF4DD /* Font.swift */,
+				C043BF23208BEA3900C6231F /* Colors.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		C0DCC397208D0800009CF4DD /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				C0DCC398208D082B009CF4DD /* APIClient.swift */,
+			);
+			path = APIClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,7 +459,6 @@
 				C043BF00208BBED000C6231F /* LaunchScreen.storyboard in Resources */,
 				C043BF37208BEE4A00C6231F /* DINPro-Bold.otf in Resources */,
 				C043BEFD208BBED000C6231F /* Assets.xcassets in Resources */,
-				C043BEFB208BBED000C6231F /* Main.storyboard in Resources */,
 				C043BF31208BEE4A00C6231F /* DINMittelschriftStd.otf in Resources */,
 				C0DCC380208CCC99009CF4DD /* CustomTextField.xib in Resources */,
 				C043BF35208BEE4A00C6231F /* DINEngschriftStd.otf in Resources */,
@@ -491,11 +522,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Santander/Pods-Santander-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -617,6 +652,7 @@
 				C0DCC38B208CF049009CF4DD /* RiskBar.swift in Sources */,
 				C0DCC37E208CCB52009CF4DD /* CustomTextField.swift in Sources */,
 				C043BF24208BEA3900C6231F /* Colors.swift in Sources */,
+				C0DCC39A208D082B009CF4DD /* APIClient.swift in Sources */,
 				C043BEF6208BBED000C6231F /* AppDelegate.swift in Sources */,
 				C043BF3A208BF34700C6231F /* RoundedButton.swift in Sources */,
 				C0DCC384208CDD87009CF4DD /* CustomCheckBox.swift in Sources */,
@@ -655,14 +691,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C043BEF9208BBED000C6231F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C043BEFA208BBED000C6231F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C043BEFE208BBED000C6231F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
