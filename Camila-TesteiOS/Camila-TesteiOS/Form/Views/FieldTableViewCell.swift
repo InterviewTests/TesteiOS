@@ -54,6 +54,7 @@ class FieldTableViewCell: CusomTableViewCell, CellProtocol {
         textField?.textContentType = cell.typeField.textContentType
         textField?.keyboardType = cell.typeField.keyboardType
         textField?.text = lastState as? String
+        textField?.font = AppFont.defaultFonts.text
     }
     
     override func draw(_ rect: CGRect) {

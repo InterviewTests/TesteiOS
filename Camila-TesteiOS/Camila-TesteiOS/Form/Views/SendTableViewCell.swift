@@ -36,6 +36,7 @@ class SendTableViewCell: CusomTableViewCell, CellProtocol {
         }
         button.setTitle(cell.message, for: .normal)
         topSpacing?.constant = CGFloat(cell.topSpacing)
+        button.titleLabel?.font = AppFont.defaultFonts.text
     }
     
     @IBAction func buttonClicked(_ sender: Any) {

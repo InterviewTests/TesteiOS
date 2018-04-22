@@ -24,5 +24,9 @@ class DowninfoTableViewCell: CusomTableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    @IBAction func openLink(sender: Any){
+        UIApplication.shared.open(URL(string : "http://google.com")!, options: [:], completionHandler: { (status) in})
+    }
 
 }

@@ -253,18 +253,18 @@ extension FundViewController: UITableViewDataSource, UITableViewDelegate{
         switch item {
         case 0:
             label.text = screen.title
-            label.textColor = UIColor.gray
+            label.textColor = UIColor.lightGray
             label.font = AppFont.defaultFonts.titleSmall
         case 1:
             label.text = screen.fundName
-            label.textColor = UIColor.black
+            label.textColor = UIColor.darkGray
             label.font = AppFont.defaultFonts.titleBig
             label.lineBreakMode = NSLineBreakMode.byWordWrapping
             label.numberOfLines = 3
         case 2:
             let label = UILabel()
             label.text = screen.whatIs
-            label.textColor = UIColor.darkGray
+            label.textColor = UIColor.gray
             label.font = AppFont.defaultFonts.titleSmall
             label.numberOfLines = 0
             label.sizeToFit()
@@ -274,14 +274,14 @@ extension FundViewController: UITableViewDataSource, UITableViewDelegate{
             label.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor).isActive = true
         case 3:
             label.text = screen.definition
-            label.textColor = UIColor.gray
+            label.textColor = UIColor.lightGray
             label.font = AppFont.defaultFonts.textBig
             label.lineBreakMode = NSLineBreakMode.byWordWrapping
             label.numberOfLines = 5
         case 4:
             let label = UILabel()
             label.text = screen.riskTitle
-            label.textColor = UIColor.darkGray
+            label.textColor = UIColor.gray
             label.font = AppFont.defaultFonts.titleSmall
             label.numberOfLines = 0
             label.sizeToFit()
@@ -301,7 +301,7 @@ extension FundViewController: UITableViewDataSource, UITableViewDelegate{
             imgview.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor).isActive = true
         case 6:
             label.text = screen.infoTitle
-            label.textColor = UIColor.darkGray
+            label.textColor = UIColor.gray
             label.font = AppFont.defaultFonts.titleSmall
         default:
             return cell

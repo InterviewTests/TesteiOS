@@ -28,10 +28,10 @@ enum AppFont {
     
     struct defaultFonts {
         static var text: UIFont{
-            return loadFont(withName: available.DINNeuzeitGrotesk.Light, size: 15)
+            return loadFont(withName: available.DINPro.Light, size: 15)
         }
         static var textBig: UIFont{
-            return loadFont(withName: available.DINNeuzeitGrotesk.Light, size: 16)
+            return loadFont(withName: available.DINMittelschriftStd, size: 17)
         }
         static var titleRegular: UIFont{
             return loadFont(withName: available.DINPro.Black, size: 16)
@@ -40,15 +40,12 @@ enum AppFont {
             return loadFont(withName: available.DINPro.Black, size: 16)
         }
         static var titleBig: UIFont{
-            return loadFont(withName: available.DINPro.Black, size: 30)
+            return loadFont(withName: available.DINPro.Bold, size: 30)
         }
     }
     
-    static func loadFont (withName name: String, size : CGFloat) -> UIFont{
-        guard let font = UIFont(name: name, size: size) else{
-            return UIFont.systemFont(ofSize: size)
-        }
-        return font
+    static func loadFont (withName fontName: String, size : CGFloat) -> UIFont{
+        return UIFont(name: fontName, size: size) ?? UIFont.systemFont(ofSize: size)
     }
     
     

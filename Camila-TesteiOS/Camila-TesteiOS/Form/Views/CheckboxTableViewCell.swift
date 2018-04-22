@@ -37,6 +37,7 @@ class CheckboxTableViewCell: CusomTableViewCell, CellProtocol {
         topSpacing?.constant = CGFloat(cell.topSpacing)
         
         setCheckBoxState(to: lastState as? Bool)
+        label.font = AppFont.defaultFonts.text
     }
     
     

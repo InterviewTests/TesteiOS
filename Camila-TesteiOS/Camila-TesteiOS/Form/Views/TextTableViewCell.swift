@@ -35,6 +35,7 @@ class TextTableViewCell: CusomTableViewCell, CellProtocol {
         }
         label.text = cell.message
         topSpacing?.constant = CGFloat(cell.topSpacing)
+        label.font = AppFont.defaultFonts.textBig
     }
     
 }
