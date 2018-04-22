@@ -11,16 +11,22 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol InvestmentDisplayLogic: class
 {
-  func displaySomething(viewModel: Investment.Something.ViewModel)
+  func displayFundDetail(viewModel: Investment.FetchFund.ViewModel)
 }
 
-class InvestmentViewController: UIViewController, InvestmentDisplayLogic
+class InvestmentViewController: BaseViewController, InvestmentDisplayLogic
 {
   var interactor: InvestmentBusinessLogic?
   var router: (NSObjectProtocol & InvestmentRoutingLogic & InvestmentDataPassing)?
+  var scrollView: UIScrollView = UIScrollView()
+    var fundNameLabel: UILabel = UILabel()
+    var descFundLabel: UILabel = UILabel()
+    var scrollContainerView: UIView = UIView()
+    var riskBar: RiskBar?
 
   // MARK: Object lifecycle
   
@@ -69,21 +75,152 @@ class InvestmentViewController: UIViewController, InvestmentDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    doSomething()
+    self.fetchFund()
   }
   
+    private func configUI(viewModel: Investment.FetchFund.ViewModel) {
+        
+        self.view.addSubview(self.scrollView)
+        self.scrollView.snp.makeConstraints({ (make) in
+            make.left.right.top.bottom.equalTo(0)
+        })
+        
+        self.scrollView.addSubview(self.scrollContainerView)
+        
+        self.scrollContainerView.snp.makeConstraints { (make) in
+            make.left.right.top.bottom.equalTo(0)
+            make.width.equalTo(self.view)
+            make.height.equalTo(1500)
+        }
+
+        let screenTitleLabel = UILabel()
+        screenTitleLabel.font = UIFont.DINPro_Medium(ofSize: 16)
+        screenTitleLabel.textColor = Color.black
+        screenTitleLabel.text = "Investimento"
+
+        self.self.scrollContainerView.addSubview(screenTitleLabel)
+        screenTitleLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.scrollContainerView)
+            make.height.equalTo(22)
+            make.top.equalTo(self.scrollContainerView).offset(24)
+        }
+
+
+        let shareIconImage = UIImageView(image: UIImage(named: "share_icon")!)
+
+        self.scrollContainerView.addSubview(shareIconImage)
+        shareIconImage.snp.makeConstraints { (make) in
+            make.width.equalTo(19)
+            make.height.equalTo(24)
+            make.top.equalTo(20)
+            make.right.equalTo(-25)
+        }
+
+
+        let secondTitleLabel = UILabel()
+        secondTitleLabel.font = UIFont.DINPro_Medium(ofSize: 14)
+        secondTitleLabel.textColor = Color.secondaryGray
+        secondTitleLabel.text = "Fundos de investimento"
+
+        self.scrollContainerView.addSubview(secondTitleLabel)
+        secondTitleLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.scrollContainerView)
+            make.height.equalTo(22)
+            make.top.equalTo(screenTitleLabel.snp.bottom).offset(24)
+        }
+
+
+        self.fundNameLabel.font = UIFont.DINPro_Medium(ofSize: 28)
+        self.fundNameLabel.textColor = Color.black
+        self.fundNameLabel.text = viewModel.screen.fundName ?? ""
+        self.fundNameLabel.numberOfLines = 0
+        self.fundNameLabel.textAlignment = .center
+
+        self.scrollContainerView.addSubview(self.fundNameLabel)
+        self.fundNameLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.scrollContainerView)
+            make.width.equalTo(self.scrollContainerView).multipliedBy(0.85)
+            make.height.equalTo(80)
+            make.top.equalTo(secondTitleLabel.snp.bottom).offset(0)
+        }
+
+        let separator = CustomSeparator(frame: CGRect.zero, color: Color.lightGray)
+
+        self.scrollContainerView.addSubview(separator)
+        separator.snp.makeConstraints { (make) in
+            make.top.equalTo(self.fundNameLabel.snp.bottom).offset(5)
+            make.height.equalTo(20)
+            make.left.equalTo(30)
+            make.right.equalTo(-30)
+        }
+        
+        
+        let descTitleLabel = UILabel()
+        descTitleLabel.font = UIFont.DINPro_Medium(ofSize: 16)
+        descTitleLabel.textColor = Color.secondaryGray
+        descTitleLabel.text = "O que é?"
+        
+        self.scrollContainerView.addSubview(descTitleLabel)
+        descTitleLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.scrollContainerView)
+            make.height.equalTo(22)
+            make.top.equalTo(separator.snp.bottom).offset(14)
+        }
+        
+        
+        self.descFundLabel.font = UIFont.DINPro_Light(ofSize: 16)
+        self.descFundLabel.textColor = Color.secondaryGray
+        self.descFundLabel.text = viewModel.screen.definition ?? ""
+        self.descFundLabel.numberOfLines = 0
+        self.descFundLabel.textAlignment = .center
+        
+        self.scrollContainerView.addSubview(self.descFundLabel)
+        self.descFundLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.scrollContainerView)
+            make.width.equalTo(self.scrollContainerView).multipliedBy(0.85)
+            make.height.equalTo(70)
+            make.top.equalTo(descTitleLabel.snp.bottom).offset(0)
+        }
+        
+        
+        let risklabel = UILabel()
+        risklabel.font = UIFont.DINPro_Medium(ofSize: 16)
+        risklabel.textColor = Color.secondaryGray
+        risklabel.text = "Grau de risco do investimento"
+        
+        self.scrollContainerView.addSubview(risklabel)
+        risklabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.scrollContainerView)
+            make.height.equalTo(22)
+            make.top.equalTo(self.descFundLabel.snp.bottom).offset(35)
+        }
+
+        let risk = RiskType.init(rawValue: viewModel.screen.risk ?? 2)!
+        self.riskBar = RiskBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width * 0.85, height: 20), selectedRisk: risk)
+        self.scrollContainerView.addSubview(self.riskBar!)
+        self.riskBar!.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.scrollContainerView)
+            make.top.equalTo(risklabel.snp.bottom).offset(35)
+            make.height.equalTo(20)
+            make.width.equalTo(self.scrollContainerView).multipliedBy(0.85)
+        }
+    }
+    
   // MARK: Do something
   
   //@IBOutlet weak var nameTextField: UITextField!
   
-  func doSomething()
+  func fetchFund()
   {
-    let request = Investment.Something.Request()
-    interactor?.doSomething(request: request)
+    self.showLoader()
+    let request = Investment.FetchFund.Request()
+    interactor?.fetchFund(request: request)
   }
   
-  func displaySomething(viewModel: Investment.Something.ViewModel)
+  func displayFundDetail(viewModel: Investment.FetchFund.ViewModel)
   {
+    self.hideLoader()
+    self.configUI(viewModel: viewModel)
     //nameTextField.text = viewModel.name
   }
 }

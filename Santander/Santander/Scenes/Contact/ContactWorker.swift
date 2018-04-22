@@ -1,5 +1,5 @@
 //
-//  InvestmentModels.swift
+//  ContactWorker.swift
 //  Santander
 //
 //  Created by Gabriel vieira on 4/22/18.
@@ -12,22 +12,9 @@
 
 import UIKit
 
-enum Investment
+class ContactWorker
 {
-  // MARK: Use cases
-  
-  enum FetchFund
+  func doSomeWork()
   {
-    struct Request
-    {
-    }
-    struct Response
-    {
-        var fund: Fund
-    }
-    struct ViewModel
-    {
-        var screen: Screen
-    }
   }
 }

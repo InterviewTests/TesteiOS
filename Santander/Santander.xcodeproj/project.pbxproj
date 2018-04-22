@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		4242236096C2286191BE8CB6 /* Pods_Santander.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2623A5855A64E4AF2780804B /* Pods_Santander.framework */; };
 		86AEC1944431F702E2D09C38 /* Pods_SantanderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1DC6F250FD7828E1A26055C /* Pods_SantanderUITests.framework */; };
+		C03BF71D208D4A7000BD009B /* ContactPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF717208D4A7000BD009B /* ContactPresenter.swift */; };
+		C03BF71E208D4A7000BD009B /* ContactWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF718208D4A7000BD009B /* ContactWorker.swift */; };
+		C03BF71F208D4A7000BD009B /* ContactRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF719208D4A7000BD009B /* ContactRouter.swift */; };
+		C03BF720208D4A7000BD009B /* ContactModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF71A208D4A7000BD009B /* ContactModels.swift */; };
+		C03BF721208D4A7000BD009B /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF71B208D4A7000BD009B /* ContactViewController.swift */; };
+		C03BF722208D4A7000BD009B /* ContactInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF71C208D4A7000BD009B /* ContactInteractor.swift */; };
 		C043BEF6208BBED000C6231F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C043BEF5208BBED000C6231F /* AppDelegate.swift */; };
 		C043BEFD208BBED000C6231F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C043BEFC208BBED000C6231F /* Assets.xcassets */; };
 		C043BF00208BBED000C6231F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C043BEFE208BBED000C6231F /* LaunchScreen.storyboard */; };
@@ -82,6 +88,12 @@
 		75E9A9FF2AF7B5C704C1DCEE /* Pods-SantanderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderUITests/Pods-SantanderUITests.release.xcconfig"; sourceTree = "<group>"; };
 		84CA5B35F13DD34BFBF02616 /* Pods-Santander.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Santander.release.xcconfig"; path = "Pods/Target Support Files/Pods-Santander/Pods-Santander.release.xcconfig"; sourceTree = "<group>"; };
 		8AACD4208351DFDC50BA6EEF /* Pods-SantanderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderTests/Pods-SantanderTests.release.xcconfig"; sourceTree = "<group>"; };
+		C03BF717208D4A7000BD009B /* ContactPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPresenter.swift; sourceTree = "<group>"; };
+		C03BF718208D4A7000BD009B /* ContactWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactWorker.swift; sourceTree = "<group>"; };
+		C03BF719208D4A7000BD009B /* ContactRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRouter.swift; sourceTree = "<group>"; };
+		C03BF71A208D4A7000BD009B /* ContactModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModels.swift; sourceTree = "<group>"; };
+		C03BF71B208D4A7000BD009B /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		C03BF71C208D4A7000BD009B /* ContactInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInteractor.swift; sourceTree = "<group>"; };
 		C043BEF2208BBED000C6231F /* Santander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Santander.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C043BEF5208BBED000C6231F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C043BEFC208BBED000C6231F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -216,9 +228,9 @@
 			isa = PBXGroup;
 			children = (
 				C043BEF5208BBED000C6231F /* AppDelegate.swift */,
+				C0DCC395208D070F009CF4DD /* Asset */,
 				C0DCC397208D0800009CF4DD /* APIClient */,
 				C0DCC396208D0740009CF4DD /* Constants */,
-				C0DCC395208D070F009CF4DD /* Asset */,
 				C043BF38208BF32A00C6231F /* UIComponents */,
 				C0DCC394208D06DB009CF4DD /* Scenes */,
 				C043BF01208BBED000C6231F /* Info.plist */,
@@ -336,9 +348,9 @@
 			isa = PBXGroup;
 			children = (
 				C0DCC377208C0800009CF4DD /* BaseViewController.swift */,
+				C0DCC38F208CFEE1009CF4DD /* CustomTabBarController */,
 				C0DCF346208D0BB00021F6C9 /* Investment */,
 				C0DCF347208D0BB90021F6C9 /* Contact */,
-				C0DCC38F208CFEE1009CF4DD /* CustomTabBarController */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -389,6 +401,12 @@
 		C0DCF347208D0BB90021F6C9 /* Contact */ = {
 			isa = PBXGroup;
 			children = (
+				C03BF717208D4A7000BD009B /* ContactPresenter.swift */,
+				C03BF718208D4A7000BD009B /* ContactWorker.swift */,
+				C03BF719208D4A7000BD009B /* ContactRouter.swift */,
+				C03BF71A208D4A7000BD009B /* ContactModels.swift */,
+				C03BF71B208D4A7000BD009B /* ContactViewController.swift */,
+				C03BF71C208D4A7000BD009B /* ContactInteractor.swift */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -616,12 +634,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -751,18 +771,24 @@
 				C0DCC37A208C081C009CF4DD /* Loader.swift in Sources */,
 				C0EA58AB208D11150015A6FE /* Screen.swift in Sources */,
 				C0DCC38B208CF049009CF4DD /* RiskBar.swift in Sources */,
+				C03BF722208D4A7000BD009B /* ContactInteractor.swift in Sources */,
 				C0EA58A0208D110C0015A6FE /* Cells.swift in Sources */,
 				C0DCC37E208CCB52009CF4DD /* CustomTextField.swift in Sources */,
 				C0DCC39A208D082B009CF4DD /* BaseAPIClient.swift in Sources */,
+				C03BF71E208D4A7000BD009B /* ContactWorker.swift in Sources */,
+				C03BF71D208D4A7000BD009B /* ContactPresenter.swift in Sources */,
 				C043BEF6208BBED000C6231F /* AppDelegate.swift in Sources */,
 				C043BF3A208BF34700C6231F /* RoundedButton.swift in Sources */,
+				C03BF71F208D4A7000BD009B /* ContactRouter.swift in Sources */,
 				C0DCC384208CDD87009CF4DD /* CustomCheckBox.swift in Sources */,
 				C0EA58B7208D18230015A6FE /* APIClient.swift in Sources */,
 				C0EA58A1208D110C0015A6FE /* FormCells.swift in Sources */,
 				C0EA5894208D0DD70015A6FE /* InvestmentWorker.swift in Sources */,
+				C03BF721208D4A7000BD009B /* ContactViewController.swift in Sources */,
 				C0EA58AD208D11150015A6FE /* DownInfo.swift in Sources */,
 				C0EA5897208D0DD70015A6FE /* InvestmentViewController.swift in Sources */,
 				C0EA5893208D0DD70015A6FE /* InvestmentPresenter.swift in Sources */,
+				C03BF720208D4A7000BD009B /* ContactModels.swift in Sources */,
 				C0EA5895208D0DD70015A6FE /* InvestmentRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

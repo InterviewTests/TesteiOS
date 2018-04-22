@@ -14,7 +14,12 @@ import UIKit
 
 class InvestmentWorker
 {
-  func doSomeWork()
-  {
-  }
+    var apiClient: APIClient = APIClient()
+    
+    func fetchFund(completionHandler: @escaping (Fund?, Error?) -> Void)
+    {
+        self.apiClient.fetchFund { (fund, error) in
+            completionHandler(fund,error)
+        }
+    }
 }

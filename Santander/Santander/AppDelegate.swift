@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let homeViewController = CustomTabBarController()
+//        let homeViewController = InvestmentViewController()
         self.window!.rootViewController = homeViewController
         self.window!.makeKeyAndVisible()
         // Override point for customization after application launch.

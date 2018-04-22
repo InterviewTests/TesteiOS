@@ -1,5 +1,5 @@
 //
-//  InvestmentModels.swift
+//  ContactModels.swift
 //  Santander
 //
 //  Created by Gabriel vieira on 4/22/18.
@@ -12,22 +12,20 @@
 
 import UIKit
 
-enum Investment
+enum Contact
 {
   // MARK: Use cases
   
-  enum FetchFund
+  enum Something
   {
     struct Request
     {
     }
     struct Response
     {
-        var fund: Fund
     }
     struct ViewModel
     {
-        var screen: Screen
     }
   }
 }

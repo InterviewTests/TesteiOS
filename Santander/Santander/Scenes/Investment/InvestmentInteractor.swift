@@ -14,7 +14,7 @@ import UIKit
 
 protocol InvestmentBusinessLogic
 {
-  func doSomething(request: Investment.Something.Request)
+  func fetchFund(request: Investment.FetchFund.Request)
 }
 
 protocol InvestmentDataStore
@@ -25,17 +25,21 @@ protocol InvestmentDataStore
 class InvestmentInteractor: InvestmentBusinessLogic, InvestmentDataStore
 {
   var presenter: InvestmentPresentationLogic?
-  var worker: InvestmentWorker?
+  var worker: InvestmentWorker = InvestmentWorker()
   //var name: String = ""
   
   // MARK: Do something
   
-  func doSomething(request: Investment.Something.Request)
+  func fetchFund(request: Investment.FetchFund.Request)
   {
-    worker = InvestmentWorker()
-    worker?.doSomeWork()
-    
-    let response = Investment.Something.Response()
-    presenter?.presentSomething(response: response)
+    worker.fetchFund { (fund, error) in
+        guard let _fund = fund else {
+            //handle error
+            //presenter show error
+            return
+        }
+        let response = Investment.FetchFund.Response(fund: _fund)
+        self.presenter?.presentFundDetail(response: response)
+    }
   }
 }
