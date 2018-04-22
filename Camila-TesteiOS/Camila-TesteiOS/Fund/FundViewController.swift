@@ -117,7 +117,7 @@ extension FundViewController: UITableViewDataSource, UITableViewDelegate{
             default: return 30
             }
         default:
-            return 35
+            return 45
         }
     }
     
@@ -153,18 +153,49 @@ extension FundViewController: UITableViewDataSource, UITableViewDelegate{
             }
         case 1: //More Info
             if let cell = tableView.dequeueReusableCell(withIdentifier: "moreInfo") as? MoreInfoTableViewCell{
-                return moreInfoSectionCell(item: indexPath.row, screen: screen, cell: cell)
+                return moreInfoSectionCell(item: indexPath.row, data: screen.moreInfo, cell: cell)
+            }
+        case 2: //Info
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "info"){
+                return infoSectionCell(item: indexPath.row, data: screen.info, cell: cell)
+            }
+        case 3: //D Info
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "downInfo") as? DowninfoTableViewCell{
+                return downInfoSectionCell(item: indexPath.row, data: screen.downInfo, cell: cell)
             }
         default:
             break
         }
         
         return UITableViewCell()
-
+        
     }
-    
+    func downInfoSectionCell(item: Int, data: [Fund.DownInfoData], cell: DowninfoTableViewCell) -> DowninfoTableViewCell{
+        guard let title = cell.title , data.count > item else {
+            return cell
+        }
+        
+        title.text = data[item].name
+        title.font = AppFont.defaultFonts.text
+        
+        return cell
+        
+    }
     //SECTIONS
-    func moreInfoSectionCell(item: Int, screen: Fund, cell: MoreInfoTableViewCell)-> UITableViewCell{
+    func infoSectionCell(item: Int, data: [Fund.InfoData], cell: UITableViewCell)->UITableViewCell{
+        guard let title = cell.textLabel, let detail = cell.detailTextLabel, data.count > item else {
+            return cell
+        }
+        
+        title.text = data[item].name
+        title.font = AppFont.defaultFonts.text
+        
+        detail.text = data[item].data
+        detail.font = AppFont.defaultFonts.text
+        
+        return cell
+    }
+    func moreInfoSectionCell(item: Int, data: Fund.MoreInfo, cell: MoreInfoTableViewCell)-> UITableViewCell{
         
         cell.fund.font = AppFont.defaultFonts.text
         cell.cid.font = AppFont.defaultFonts.text
@@ -179,29 +210,33 @@ extension FundViewController: UITableViewDataSource, UITableViewDelegate{
             cell.fund.textColor = UIColor.lightGray
         case 1:
             cell.title.text = "No Mês"
-            cell.cid.text = "\(screen.moreInfo.month.CDI)%"
-            cell.fund.text = "\(screen.moreInfo.month.found)%"
+            cell.cid.text = "\(data.month.CDI)%"
+            cell.fund.text = "\(data.month.found)%"
         case 2:
             cell.title.text = "No Ano"
-            cell.cid.text = "\(screen.moreInfo.year.CDI)%"
-            cell.fund.text = "\(screen.moreInfo.year.found)%"
+            cell.cid.text = "\(data.year.CDI)%"
+            cell.fund.text = "\(data.year.found)%"
         case 3:
             cell.title.text = "12 meses"
-            cell.cid.text = "\(screen.moreInfo.months12.CDI)%"
-            cell.fund.text = "\(screen.moreInfo.months12.found)%"
+            cell.cid.text = "\(data.months12.CDI)%"
+            cell.fund.text = "\(data.months12.found)%"
         case 4:
             cell.title.text = ""
             cell.cid.text = ""
             cell.fund.text = ""
-
-            let separatorView = UIView(frame:
-                CGRect(x: tableView.separatorInset.left,
-                       y: 10,
-                       width: cell.frame.width,
-                       height: 1))
+            
+            let separatorView = UIView()
             separatorView.backgroundColor = UIColor.lightGray
             cell.contentView.addSubview(separatorView)
-
+                
+            
+            separatorView.translatesAutoresizingMaskIntoConstraints = false
+            separatorView.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor).isActive = true
+            separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+            separatorView.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -16).isActive = true
+            separatorView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16).isActive = true
+            
+            
         default:
             break
         }
@@ -259,21 +294,15 @@ extension FundViewController: UITableViewDataSource, UITableViewDelegate{
             let img = UIImage(named: imgName)
             let imgview = UIImageView(image: img)
             imgview.contentMode = UIViewContentMode.scaleAspectFit
+            
             cell.contentView.addSubview(imgview)
             imgview.translatesAutoresizingMaskIntoConstraints = false
             imgview.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor).isActive = true
             imgview.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor).isActive = true
         case 6:
-//            let label = UILabel()
             label.text = screen.infoTitle
             label.textColor = UIColor.darkGray
             label.font = AppFont.defaultFonts.titleSmall
-//            label.numberOfLines = 0
-//            label.sizeToFit()
-//            cell.contentView.addSubview(label)
-//            label.translatesAutoresizingMaskIntoConstraints = false
-//            label.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor).isActive = true
-//            label.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor, constant: 5).isActive = true
         default:
             return cell
         }
