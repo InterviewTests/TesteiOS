@@ -45,43 +45,6 @@ class NetworkManager {
                         do {
                             let apiResponse = try JSONDecoder().decode(T.self, from: responseData)
                             success(apiResponse)
-                        }catch {
-                            failure(NetworkResponse.unableToDecode)
-                        }
-                    case .failure(let error):
-                        failure(error)
-                    }
-                } else {
-                    failure(NetworkResponse.failed)
-                }
-            } else {
-                failure(NetworkResponse.noInternetConnection)
-            }
-        }
-    }
-    
-    func request(request: InvestmentAPI,
-                 success: @escaping (_ result: String) -> (),
-                 failure: @escaping (_ error: NetworkResponse) -> ()) {
-        router.request(request) { (data, response, error) in
-            if error == nil {
-                if let response = response as? HTTPURLResponse {
-                    let result = self.handleNetworkResponse(response)
-                    
-                    switch result {
-                    case .success:
-                        guard let responseData = data else {
-                            failure(NetworkResponse.noData)
-                            return
-                        }
-                        do {
-                            let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
-                            if let dict = jsonData as? [String: String], let status = dict["status"] {
-                                success(status)
-                            } else {
-                                failure(NetworkResponse.unableToDecode)
-                            }
-                            
                         } catch {
                             failure(NetworkResponse.unableToDecode)
                         }

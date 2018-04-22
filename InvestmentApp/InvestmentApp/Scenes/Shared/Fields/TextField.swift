@@ -31,6 +31,7 @@ class TextField: UITextField {
     override open var text: String? {
         didSet{
             handleCleanButton()
+            validateFields()
         }
     }
     

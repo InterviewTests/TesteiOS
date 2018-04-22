@@ -24,15 +24,4 @@ class NetworkManagerMock<T>: NetworkManager {
             failure(error)
         }
     }
-    
-    override func request(request: InvestmentAPI,
-                          success: @escaping (_ result: String) -> (),
-                          failure: @escaping (_ error: NetworkResponse) -> ()) {
-        switch(shouldReturn){
-        case .success:
-            success("Ok")
-        case .failure(let error):
-            failure(error)
-        }
-    }
 }

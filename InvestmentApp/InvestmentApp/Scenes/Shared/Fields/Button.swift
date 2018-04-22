@@ -11,7 +11,7 @@ import UIKit
 class Button: UIButton {
     override open var isHighlighted: Bool {
         didSet {
-            backgroundColor = isHighlighted ? UIColor.buttonBackgroundRed : UIColor.buttonBackgroundLightRed
+            backgroundColor = isHighlighted ? UIColor.buttonBackgroundLightRed : UIColor.buttonBackgroundRed
         }
     }
     

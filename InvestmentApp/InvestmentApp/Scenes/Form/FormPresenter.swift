@@ -12,21 +12,22 @@ class FormPresenter {
     weak var viewController: FormViewControllerInput?
     
     func presentForm(cells: [CellModel]) {
-        let viewModel = FormViewModel(cells: cells)
-        self.viewController?.displayForm(viewModel: viewModel)
+        DispatchQueue.main.async {
+            let viewModel = FormViewModel(cells: cells)
+            self.viewController?.displayForm(viewModel: viewModel)
+        }
     }
     
     func presentError(error: NetworkResponse) {
         switch error{
         case .noInternetConnection:
-            self.viewController?.displayError(status: ViewStatus.internetError({
-                //self.fetchForm()
-            }))
-            
+            DispatchQueue.main.async {
+                self.viewController?.displayError(status: ViewStatus.internetError({}))
+            }
         default:
-            self.viewController?.displayError(status: ViewStatus.requestError({
-                //self.fetchForm()
-            }))
+            DispatchQueue.main.async {
+                self.viewController?.displayError(status: ViewStatus.requestError({}))
+            }
         }
     }
 }
