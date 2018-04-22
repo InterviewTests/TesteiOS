@@ -22,8 +22,6 @@ class Fund: NSObject {
     var info:  [InfoData] = []
     var downInfo: [DownInfoData] = []
     
-    
-    
     init(json: JSON) {
         title = json["title"].stringValue
         fundName = json["fundName"].stringValue
@@ -57,7 +55,7 @@ class Fund: NSObject {
         var CDI: Float
         
         init(_ json: JSON) {
-            found = json["found"].floatValue
+            found = json["fund"].floatValue
             CDI = json["CDI"].floatValue
         }
     }

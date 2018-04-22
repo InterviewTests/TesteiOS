@@ -104,25 +104,180 @@ class FundViewController: UIViewController, FundDisplayLogic{
 
 extension FundViewController: UITableViewDataSource, UITableViewDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0,6: return 40
+            case 1,3: return 80
+            case 2,4,5: return 60
+            default: return 30
+            }
+        default:
+            return 35
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        guard let screen = displayedFunds.first else{
+            return 0
+        }
+        
+        switch section  {
+        case 0:
+            return 7
+        case 1:
+            return 5
+        case 2:
+            return screen.info.count
+        case 3:
+            return screen.downInfo.count
+        default:
+            return 0
+        }
     }
     
     //MARK:- Table view config
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        
-        
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        if cell == nil {
-            cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
+        guard let screen = displayedFunds.first else{
+            return UITableViewCell()
         }
         
-        cell!.textLabel?.text = "TESTE1\(indexPath.item)"
-        return cell!
+        switch indexPath.section {
+        case 0: //Titles only
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "cell"){
+                return firstSectionCell(item: indexPath.row, screen: screen, cell: cell)
+            }
+        case 1: //More Info
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "moreInfo") as? MoreInfoTableViewCell{
+                return moreInfoSectionCell(item: indexPath.row, screen: screen, cell: cell)
+            }
+        default:
+            break
+        }
         
+        return UITableViewCell()
+
+    }
+    
+    //SECTIONS
+    func moreInfoSectionCell(item: Int, screen: Fund, cell: MoreInfoTableViewCell)-> UITableViewCell{
         
+        cell.fund.font = AppFont.defaultFonts.text
+        cell.cid.font = AppFont.defaultFonts.text
+        cell.title.font = AppFont.defaultFonts.text
+        
+        switch item {
+        case 0:
+            cell.title.text = nil
+            cell.cid.text = "CDI"
+            cell.cid.textColor = UIColor.lightGray
+            cell.fund.text = "Fund"
+            cell.fund.textColor = UIColor.lightGray
+        case 1:
+            cell.title.text = "No Mês"
+            cell.cid.text = "\(screen.moreInfo.month.CDI)%"
+            cell.fund.text = "\(screen.moreInfo.month.found)%"
+        case 2:
+            cell.title.text = "No Ano"
+            cell.cid.text = "\(screen.moreInfo.year.CDI)%"
+            cell.fund.text = "\(screen.moreInfo.year.found)%"
+        case 3:
+            cell.title.text = "12 meses"
+            cell.cid.text = "\(screen.moreInfo.months12.CDI)%"
+            cell.fund.text = "\(screen.moreInfo.months12.found)%"
+        case 4:
+            cell.title.text = ""
+            cell.cid.text = ""
+            cell.fund.text = ""
+
+            let separatorView = UIView(frame:
+                CGRect(x: tableView.separatorInset.left,
+                       y: 10,
+                       width: cell.frame.width,
+                       height: 1))
+            separatorView.backgroundColor = UIColor.lightGray
+            cell.contentView.addSubview(separatorView)
+
+        default:
+            break
+        }
+        return cell
+    }
+    
+    func firstSectionCell(item: Int, screen: Fund, cell: UITableViewCell)-> UITableViewCell{
+        guard let label = cell.textLabel else {
+            return cell
+        }
+        
+        label.textAlignment = NSTextAlignment.center
+        
+        switch item {
+        case 0:
+            label.text = screen.title
+            label.textColor = UIColor.gray
+            label.font = AppFont.defaultFonts.titleSmall
+        case 1:
+            label.text = screen.fundName
+            label.textColor = UIColor.black
+            label.font = AppFont.defaultFonts.titleBig
+            label.lineBreakMode = NSLineBreakMode.byWordWrapping
+            label.numberOfLines = 3
+        case 2:
+            let label = UILabel()
+            label.text = screen.whatIs
+            label.textColor = UIColor.darkGray
+            label.font = AppFont.defaultFonts.titleSmall
+            label.numberOfLines = 0
+            label.sizeToFit()
+            cell.contentView.addSubview(label)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor).isActive = true
+            label.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor).isActive = true
+        case 3:
+            label.text = screen.definition
+            label.textColor = UIColor.gray
+            label.font = AppFont.defaultFonts.textBig
+            label.lineBreakMode = NSLineBreakMode.byWordWrapping
+            label.numberOfLines = 5
+        case 4:
+            let label = UILabel()
+            label.text = screen.riskTitle
+            label.textColor = UIColor.darkGray
+            label.font = AppFont.defaultFonts.titleSmall
+            label.numberOfLines = 0
+            label.sizeToFit()
+            cell.contentView.addSubview(label)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor).isActive = true
+            label.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor).isActive = true
+        case 5:
+            let imgName = "InvestimentoLvl-\(screen.risk)"
+            let img = UIImage(named: imgName)
+            let imgview = UIImageView(image: img)
+            imgview.contentMode = UIViewContentMode.scaleAspectFit
+            cell.contentView.addSubview(imgview)
+            imgview.translatesAutoresizingMaskIntoConstraints = false
+            imgview.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor).isActive = true
+            imgview.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor).isActive = true
+        case 6:
+//            let label = UILabel()
+            label.text = screen.infoTitle
+            label.textColor = UIColor.darkGray
+            label.font = AppFont.defaultFonts.titleSmall
+//            label.numberOfLines = 0
+//            label.sizeToFit()
+//            cell.contentView.addSubview(label)
+//            label.translatesAutoresizingMaskIntoConstraints = false
+//            label.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor).isActive = true
+//            label.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor, constant: 5).isActive = true
+        default:
+            return cell
+        }
+        
+        return cell
     }
 }
