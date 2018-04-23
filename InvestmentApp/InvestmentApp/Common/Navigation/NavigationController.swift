@@ -17,5 +17,7 @@ class NavigationController: UINavigationController {
         self.navigationBar.barTintColor = UIColor.white
         
         navigationBar.backItem?.title = ""
+        navigationBar.shadowImage = UIImage()
+        
     }
 }

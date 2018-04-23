@@ -62,6 +62,9 @@ class FormViewController: UIViewController {
         fetchForm()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -72,6 +75,7 @@ class FormViewController: UIViewController {
     }
     
     private func setupNavigationController() {
+        self.navigationItem.title = " "
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
