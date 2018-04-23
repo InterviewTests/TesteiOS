@@ -91,8 +91,7 @@ class MainView: UIView, ViewConfigurationProtocol {
         let tableView = UITableView()
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.white
-        tableView.estimatedRowHeight = 56.0
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.isScrollEnabled = false
         return tableView
     }()
     
@@ -210,7 +209,6 @@ extension MainView {
             make.top.equalTo(infoTitleLabel.snp.bottom).offset(32)
             make.left.equalTo(16)
             make.right.equalTo(-16)
-            make.height.equalTo(600)
         }
         
         investirButton.snp.makeConstraints { (make) in
@@ -219,6 +217,12 @@ extension MainView {
             make.right.equalTo(-16)
             make.height.equalTo(50)
             make.bottom.equalTo(containerView.snp.bottom).offset(-20)
+        }
+    }
+    
+    func updateTable() {
+        tableView.snp.makeConstraints { (make) in
+            make.height.equalTo(tableView.contentSize.height)
         }
     }
 }

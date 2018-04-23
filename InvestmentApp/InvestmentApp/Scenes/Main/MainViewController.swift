@@ -95,6 +95,8 @@ class MainViewController: UIViewController {
         mainView?.tableView.delegate = datasource
         mainView?.tableView.dataSource = datasource
         mainView?.tableView.reloadData()
+        
+        mainView?.updateTable()
     }
     
     func fetchForm() {
