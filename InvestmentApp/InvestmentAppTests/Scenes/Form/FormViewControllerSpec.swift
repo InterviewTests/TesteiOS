@@ -48,11 +48,12 @@ final class FormViewControllerSpec: QuickSpec {
                     let mockable = Mockable()
                     let worker = FormWorker(manager: api)
                     let cellsModel = mockable.mock(type: CellsModel.self, jsonFile: "cells")
+                    router = FormRouterMock()
                     cellsMock = cellsModel.cells
                     api.shouldReturn = .success
                     api.expectedAnswer = cellsModel
                     
-                    sut = FormViewController(interactor: FormInteractor(worker: worker))
+                    sut = FormViewController(interactor: FormInteractor(worker: worker), router: router)
                     sut.loadView()
                     
                     UIWindow.showTestWindow(controller: sut)
@@ -88,7 +89,7 @@ final class FormViewControllerSpec: QuickSpec {
                 
                 it("should call routerToMain") {
                     sut.didClickOnButton()
-                    expect(router).to(beTruthy())
+                    expect(router.routerToMainCalled).to(beTruthy())
                 }
             }
             

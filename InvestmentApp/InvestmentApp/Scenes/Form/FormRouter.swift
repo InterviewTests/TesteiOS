@@ -13,14 +13,10 @@ protocol FormRouterLogic: class {
 }
 
 class FormRouter: FormRouterLogic {
-    var viewController: FormViewController
-    
-    init(viewController: FormViewController) {
-        self.viewController = viewController
-    }
+    var viewController: FormViewController?
     
     func routerToMain() {
         let mainViewController = MainViewController()
-        viewController.navigationController?.pushViewController(mainViewController, animated: true)
+        viewController?.navigationController?.pushViewController(mainViewController, animated: true)
     }
 }
