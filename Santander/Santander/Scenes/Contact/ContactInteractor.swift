@@ -14,7 +14,7 @@ import UIKit
 
 protocol ContactBusinessLogic
 {
-  func doSomething(request: Contact.Something.Request)
+    func fetchFormCells(request: Contact.fetchFormCells.Request)
 }
 
 protocol ContactDataStore
@@ -25,17 +25,22 @@ protocol ContactDataStore
 class ContactInteractor: ContactBusinessLogic, ContactDataStore
 {
   var presenter: ContactPresentationLogic?
-  var worker: ContactWorker?
+  var worker: ContactWorker = ContactWorker()
   //var name: String = ""
   
   // MARK: Do something
   
-  func doSomething(request: Contact.Something.Request)
-  {
-    worker = ContactWorker()
-    worker?.doSomeWork()
-    
-    let response = Contact.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    func fetchFormCells(request: Contact.fetchFormCells.Request)
+    {
+        self.worker.fetchFormCells { (formCells, error) in
+
+            guard let _formCells = formCells?.cells else {
+                //handle error
+                //presenter show error
+                return
+            }
+            let response = Contact.fetchFormCells.Response(cells: _formCells)
+            self.presenter?.presentForm(response: response)
+        }
+    }
 }

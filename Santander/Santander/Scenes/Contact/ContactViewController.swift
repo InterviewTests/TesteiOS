@@ -14,7 +14,7 @@ import UIKit
 
 protocol ContactDisplayLogic: class
 {
-  func displaySomething(viewModel: Contact.Something.ViewModel)
+  func displayForm(viewModel: Contact.fetchFormCells.ViewModel)
 }
 
 class ContactViewController: BaseViewController, ContactDisplayLogic
@@ -23,6 +23,8 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
   var router: (NSObjectProtocol & ContactRoutingLogic & ContactDataPassing)?
     var scrollView: UIScrollView = UIScrollView()
     var scrollContainerView: UIView = UIView()
+    var sendButton: RoundedButton = RoundedButton(frame: CGRect.zero)
+    var fieldList: [CustomTextField] = []
   // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -70,47 +72,175 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    doSomething()
-//    self.view.backgroundColor = .green
-    
-    self.view.addSubview(self.scrollView)
-    self.scrollView.snp.makeConstraints({ (make) in
-        make.left.right.top.bottom.equalTo(0)
-    })
-    
-    self.scrollView.addSubview(self.scrollContainerView)
-    
-    self.scrollContainerView.snp.makeConstraints { (make) in
-        make.left.right.top.bottom.equalTo(0)
-        make.width.equalTo(self.view)
-        make.height.equalTo(1500)
-    }
-    
-    let screenTitleLabel = UILabel()
-    screenTitleLabel.font = UIFont.DINPro_Medium(ofSize: 16)
-    screenTitleLabel.textColor = Color.black
-    screenTitleLabel.text = "Contato"
-    
-    self.scrollContainerView.addSubview(screenTitleLabel)
-    screenTitleLabel.snp.makeConstraints { (make) in
-        make.centerX.equalTo(self.scrollContainerView)
-        make.height.equalTo(22)
-        make.top.equalTo(self.scrollContainerView).offset(24)
-    }
+    fetchFormCells()
   }
   
   // MARK: Do something
   
+    func configUI(viewModel: Contact.fetchFormCells.ViewModel) {
+        
+        self.view.addSubview(self.scrollView)
+        self.scrollView.snp.makeConstraints({ (make) in
+            make.left.right.top.bottom.equalTo(0)
+        })
+        
+        self.scrollView.bounces = false
+        self.scrollView.addSubview(self.scrollContainerView)
+        
+        self.scrollContainerView.snp.makeConstraints { (make) in
+            make.left.right.top.bottom.equalTo(0)
+            make.width.equalTo(self.view)
+            make.height.equalTo(self.view)
+        }
+        
+        let screenTitleLabel = UILabel()
+        screenTitleLabel.font = UIFont.DINPro_Medium(ofSize: 16)
+        screenTitleLabel.textColor = Color.black
+        screenTitleLabel.text = "Contato"
+        
+        self.scrollContainerView.addSubview(screenTitleLabel)
+        screenTitleLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.scrollContainerView)
+            make.height.equalTo(22)
+            make.top.equalTo(self.scrollContainerView).offset(24)
+        }
+        
+        var lastItemReference: UIView = screenTitleLabel
+        
+        for item in viewModel.displayCells {
+//            item.topSpacing = 35
+            let topSpacing = 20
+            
+            let type = FieldType.init(rawValue: item.type)!
+            
+            if type == .text {
+                let field = UILabel()
+                field.font = UIFont.DINPro_Medium(ofSize: 16)
+                field.textColor = Color.gray
+                field.text = item.message
+                field.adjustsFontSizeToFitWidth = true
+                field.minimumScaleFactor = 0.5
+                
+                self.scrollContainerView.addSubview(field)
+                field.snp.makeConstraints { (make) in
+                    make.top.equalTo(lastItemReference.snp.bottom).offset(topSpacing)
+                    make.height.equalTo(20)
+                    make.left.equalTo(25)
+                    make.right.equalTo(-25)
+                }
+                
+                lastItemReference = field
+            }
+            
+            if type == .field {
+                
+                var field = CustomTextField(frame: CGRect.zero)
+                let textFieldType = TextFieldType(rawValue: item.typefield)!
+                
+                if textFieldType == .email {
+                    field = EmailTextField(frame: CGRect.zero)
+                }
+                
+                //fix api error
+                if textFieldType == .telNumber || item.id == 6 {
+                    field = PhoneTextField(frame: CGRect.zero)
+                }
+
+                field.setLabelText(text: item.message)
+                
+                self.scrollContainerView.addSubview(field)
+                field.snp.makeConstraints { (make) in
+                    make.top.equalTo(lastItemReference.snp.bottom).offset(topSpacing)
+                    make.height.equalTo(56)
+                    make.left.equalTo(25)
+                    make.right.equalTo(-25)
+                }
+            
+                lastItemReference = field
+                field.delegate = self
+                self.fieldList.append(field)
+            }
+            
+            if type == .checkbox {
+                
+                let field = CustomCheckBox(frame: CGRect.zero)
+                field.setText(text: item.message)
+                
+                self.scrollContainerView.addSubview(field)
+                field.snp.makeConstraints { (make) in
+                    make.top.equalTo(lastItemReference.snp.bottom).offset(47)
+                    make.height.equalTo(20)
+                    make.left.equalTo(25)
+                    make.right.equalTo(-25)
+                }
+                
+                lastItemReference = field
+            }
+            
+            if type == .send {
+                
+                let field = RoundedButton(frame: CGRect.zero)
+                field.setTitle(item.message, for: .normal)
+                
+                self.scrollContainerView.addSubview(field)
+                field.snp.makeConstraints { (make) in
+                    make.top.equalTo(lastItemReference.snp.bottom).offset(38)
+                    make.height.equalTo(50)
+                    make.left.equalTo(25)
+                    make.right.equalTo(-25)
+                }
+                
+                lastItemReference = field
+                self.sendButton = field
+            }
+        }
+        
+        self.sendButton.enableButton(enable: false)
+        self.sendButton.addTarget(self, action: #selector(sendClick), for: .touchUpInside)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.scrollContainerView.addGestureRecognizer(tap)
+    }
   //@IBOutlet weak var nameTextField: UITextField!
   
-  func doSomething()
+  func fetchFormCells()
   {
-    let request = Contact.Something.Request()
-    interactor?.doSomething(request: request)
+    self.showLoader()
+    let request = Contact.fetchFormCells.Request()
+    interactor?.fetchFormCells(request: request)
   }
   
-  func displaySomething(viewModel: Contact.Something.ViewModel)
+  func displayForm(viewModel: Contact.fetchFormCells.ViewModel)
   {
+    self.hideLoader()
+    self.configUI(viewModel: viewModel)
     //nameTextField.text = viewModel.name
   }
+    
+    @objc func sendClick() {
+        self.router?.showSuccessView(source: self)
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+}
+
+extension ContactViewController: CustomTextFieldDelegate {
+    
+    func returnTaped() {
+        self.view.endEditing(true)
+    }
+    
+    func validationChanged() {
+        
+        for field in self.fieldList {
+            if !field.fieldIsValid {
+                self.sendButton.enableButton(enable: false)
+                return
+            }
+        }
+        
+        self.sendButton.enableButton(enable: true)
+    }
 }

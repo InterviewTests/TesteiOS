@@ -2,7 +2,7 @@
 //  DiscoveryRouter.swift
 //  iOS-Test
 //
-//  Created by BTG-Mobile on 22/03/18.
+//  Created by Gabriel Vieira on 22/03/18.
 //  Copyright © 2018 Gabriel Vieira. All rights reserved.
 //
 

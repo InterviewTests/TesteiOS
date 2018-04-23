@@ -17,17 +17,24 @@ enum FieldType: Int {
 }
 
 enum TextFieldType: Int {
+    case unknown = 0
     case text = 1
     case telNumber = 2
     case email = 3
 }
 
+protocol CustomTextFieldDelegate: class {
+    func returnTaped()
+    func validationChanged()
+}
+
 class CustomTextField: UIView {
     
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textField: JMMaskTextField!
     @IBOutlet weak var statusBar: UIView!
     @IBOutlet weak var clearButton: UIButton!
+    weak var delegate: CustomTextFieldDelegate?
     var fieldIsValid: Bool = false
     
     // MARK: - Initializers
@@ -49,17 +56,26 @@ class CustomTextField: UIView {
             UIViewAutoresizing.flexibleHeight
         ]
         addSubview(view)
-        self.textField.delegate = self
-        self.textField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
-        self.textField.returnKeyType = .done
-        self.hideClearButton(true)
+        self.config()
     }
     
     fileprivate func viewFromNibForClass() -> UIView {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
+        let nib = UINib(nibName: "CustomTextField", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
+    }
+    
+    func config() {
+        self.textField.delegate = self
+        self.textField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        self.textField.returnKeyType = .done
+        self.hideClearButton(true)
+        self.textField.autocorrectionType = .no
+    }
+    
+    func setLabelText(text: String) {
+        self.label.text = text
     }
     
     @IBAction func clearClick(_ sender: Any) {
@@ -71,19 +87,25 @@ class CustomTextField: UIView {
             self.animateLabel(state: false)
         }
         
+        self.setStatusBarColor(Color.gray)
         self.hideClearButton(true)
     }
     
-    private func hideClearButton(_ hide: Bool) {
+    func hideClearButton(_ hide: Bool) {
         self.clearButton.isHidden = hide
     }
     
     func validateField() {
         self.fieldIsValid = true
-        self.statusBarColor(Color.riskLightGreen)
+        if self.textField.text == "" {
+            self.setStatusBarColor(Color.gray)
+        } else {
+            self.setStatusBarColor(Color.riskLightGreen)
+        }
+        self.delegate?.validationChanged()
     }
     
-    private func statusBarColor(_ color: UIColor) {
+    func setStatusBarColor(_ color: UIColor) {
         self.statusBar.backgroundColor = color
     }
     
@@ -111,6 +133,7 @@ class CustomTextField: UIView {
 extension CustomTextField: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.delegate?.returnTaped()
         return true
     }
     
@@ -122,11 +145,6 @@ extension CustomTextField: UITextFieldDelegate {
         if textField.text == "" {
             self.animateLabel(state: false)
         }
-        
-        return true
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         return true
     }

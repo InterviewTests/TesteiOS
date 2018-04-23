@@ -14,7 +14,7 @@ import UIKit
 
 protocol ContactPresentationLogic
 {
-  func presentSomething(response: Contact.Something.Response)
+  func presentForm(response: Contact.fetchFormCells.Response)
 }
 
 class ContactPresenter: ContactPresentationLogic
@@ -23,9 +23,18 @@ class ContactPresenter: ContactPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: Contact.Something.Response)
+  func presentForm(response: Contact.fetchFormCells.Response)
   {
-    let viewModel = Contact.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+    let viewModel = Contact.fetchFormCells.ViewModel(displayCells: prepareViewModel(response.cells))
+    viewController?.displayForm(viewModel: viewModel)
   }
+    
+    func prepareViewModel(_ cells: [Cells]) -> [Contact.fetchFormCells.ViewModel.DisplayCells] {
+        
+        let list = cells.map {
+            Contact.fetchFormCells.ViewModel.DisplayCells(hidden: $0.hidden ?? true, id: $0.id ?? 0, topSpacing: $0.topSpacing ?? 0, typefield: $0.typefield ?? 0, required: $0.required ?? false, message: $0.message ?? "", type: $0.type ?? 0, show: $0.show ?? 0)
+        }
+        
+        return list
+    }
 }
