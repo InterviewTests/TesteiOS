@@ -61,4 +61,28 @@ extension UIColor {
     static var buttonBackgroundLightRed: UIColor {
         return #colorLiteral(red: 0.9215686275, green: 0.462745098, blue: 0.462745098, alpha: 1)
     }
+    
+    static var mainLightGray: UIColor {
+        return #colorLiteral(red: 0.4941176471, green: 0.4941176471, blue: 0.4941176471, alpha: 1)
+    }
+    
+    static var riskGreen: UIColor {
+        return #colorLiteral(red: 0.4549019608, green: 0.8549019608, blue: 0.3803921569, alpha: 1)
+    }
+    
+    static var riskDarkGreen: UIColor {
+        return #colorLiteral(red: 0.2901960784, green: 0.7568627451, blue: 0.4235294118, alpha: 1)
+    }
+    
+    static var riskYellow: UIColor {
+        return #colorLiteral(red: 1, green: 0.7529411765, blue: 0.06666666667, alpha: 1)
+    }
+    
+    static var riskOrange: UIColor {
+        return #colorLiteral(red: 1, green: 0.4549019608, blue: 0.1725490196, alpha: 1)
+    }
+    
+    static var riskRed: UIColor {
+        return #colorLiteral(red: 1, green: 0.2117647059, blue: 0.2039215686, alpha: 1)
+    }
 }

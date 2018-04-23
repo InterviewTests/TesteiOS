@@ -16,7 +16,6 @@ class MainViewController: UIViewController {
     var datasource: TableViewSectionableDataSourceDelegate?
     
     init(interactor: MainInteractor = MainInteractor(), presenter: MainPresenter = MainPresenter()) {
-        self.mainView = MainView()
         super.init(nibName: nil, bundle: nil)
         
         let viewController = self
@@ -58,7 +57,7 @@ class MainViewController: UIViewController {
     }
     
     override func loadView() {
-        self.view = mainView
+        self.view = MainView()
     }
     
     private func setupNavigationController() {
