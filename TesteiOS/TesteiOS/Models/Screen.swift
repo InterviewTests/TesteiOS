@@ -9,7 +9,8 @@ public struct Screen: Codable {
   public let riskTitle: String?
   public let risk: Int?
   public let infoTitle: String?
-  
+  public let moreInfo: MoreInfo
+  public let info: [Info]
   
   enum CodingKeys: String, CodingKey {
     case title
@@ -19,5 +20,7 @@ public struct Screen: Codable {
     case riskTitle
     case risk
     case infoTitle
+    case moreInfo
+    case info
   }
 }

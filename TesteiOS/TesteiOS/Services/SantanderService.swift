@@ -12,6 +12,7 @@ enum SantanderService {
   case showAccounts
 }
 
+
 // MARK: - TargetType Protocol Implementation
 extension SantanderService: TargetType {
   var baseURL: URL { return URL(string: "https://floating-mountain-50292.herokuapp.com")! }
