@@ -5,6 +5,8 @@ Para executar o projeto é apenas necessário executar o pod install na pasta Sa
 
 O projeto alem de utilizar o clean swift, foi construído com base em componentes que estão localizados na pasta UIComponents
 
+Como padrão para as branchs foi utilizado o git-flow
+
 ### # DESAFIO:
 
 Em uma tela terá um formulário dinâmico com alguns campos predefinidos, conforme o arquivo JSON disponível no link ([https://floating-mountain-50292.herokuapp.com/cells.json](https://floating-mountain-50292.herokuapp.com/cells.json)) que deverá
