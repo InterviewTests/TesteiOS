@@ -9,20 +9,20 @@
 import Foundation
 
 class MainInteractor {
-//    var worker: FormWorker
-//    var presenter: FormPresenter?
-//    
-//    init(worker: FormWorker = FormWorker(), presenter: FormPresenter = FormPresenter()) {
-//        self.worker = worker
-//        self.presenter = presenter
-//    }
-//    
-//    func fetchForm() {
-//        worker.getForm(success: { (cells) in
-//            self.presenter?.presentForm(cells: cells)
-//        }) { (error) in
-//            self.presenter?.presentError(error: error)
-//        }
-//    }
+    var worker: MainWorker
+    var presenter: MainPresenter?
+    
+    init(worker: MainWorker = MainWorker(), presenter: MainPresenter = MainPresenter()) {
+        self.worker = worker
+        self.presenter = presenter
+    }
+    
+    func fetchFund() {
+        worker.getFund(success: { (fund) in
+            self.presenter?.presentFund(fund: fund)
+        }) { (error) in
+            self.presenter?.presentError(error: error)
+        }
+    }
 }
 

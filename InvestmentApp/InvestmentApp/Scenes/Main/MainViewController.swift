@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol MainViewControllerInput: class {
+    func displayFunds(viewModel: MainViewModel)
+    func displayError(status: ViewStatus<ButtonAction>)
+}
+
 class MainViewController: UIViewController {
     var mainView: MainView?
     var cellsBuilder: FormCellBuilder?
@@ -16,16 +21,17 @@ class MainViewController: UIViewController {
     var datasource: TableViewSectionableDataSourceDelegate?
     
     init(interactor: MainInteractor = MainInteractor(), presenter: MainPresenter = MainPresenter()) {
+        self.mainView = MainView()
         super.init(nibName: nil, bundle: nil)
         
         let viewController = self
         self.interactor = interactor
         let presenter = presenter
         //let router = ListOrdersRouter()
-        //viewController.interactor = interactor
+        viewController.interactor = interactor
         //viewController.router = router
-        //interactor.presenter = presenter
-        //presenter.viewController = viewController
+        interactor.presenter = presenter
+        presenter.viewController = viewController
         //router.viewController = viewController
         //router.dataStore = interactor
     }
@@ -57,7 +63,7 @@ class MainViewController: UIViewController {
     }
     
     override func loadView() {
-        self.view = MainView()
+        self.view = self.mainView
     }
     
     private func setupNavigationController() {
@@ -76,7 +82,34 @@ class MainViewController: UIViewController {
     }
     
     func fetchForm() {
-//        ProgressView.shared.showProgressView(self.view)
-//        interactor?.fetchForm()
+        ProgressView.shared.showProgressView(self.view)
+        interactor?.fetchFund()
+    }
+}
+
+extension MainViewController: MainViewControllerInput {
+    func displayError(status: ViewStatus<ButtonAction>) {
+        ProgressView.shared.hideProgressView()
+        switch status {
+        case .internetError(_):
+            self.view = ErrorView(errorMessage: "Você näo está conectado a internet, por favor conecte-se e tente novamente mais tarde.", buttonAction: {
+                self.fetchForm()
+            })
+        default:
+            self.view = ErrorView(errorMessage: "Ocorreu um erro na sua requisição, por favor tente novamente.", buttonAction: {
+                self.fetchForm()
+            })
+        }
+    }
+    
+    func displayFunds(viewModel: MainViewModel) {
+        ProgressView.shared.hideProgressView()
+        self.mainView?.setup(littleTitle: viewModel.fund.title, title: viewModel.fund.fundName, descriptionTitle: viewModel.fund.whatIs, descriptionText: viewModel.fund.definition, risk: viewModel.fund.riskTitle, riskSelected: viewModel.fund.risk, info: viewModel.fund.infoTitle)
+//        guard let tableView = self.mainView?.tableView else {
+//            fatalError("Cells and tableView must be provided")
+//        }
+//        self.cellsBuilder = FormCellBuilder(items: viewModel.cells, tableView: tableView)
+//        self.cellsBuilder?.delegate = self
+//        self.setupDatasource()
     }
 }

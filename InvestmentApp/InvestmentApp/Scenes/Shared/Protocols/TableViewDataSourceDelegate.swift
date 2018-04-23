@@ -49,6 +49,34 @@ class BaseSection: TableSectionable {
     }
 }
 
+class SectionWithFooter: TableSectionable {
+    let cellBuilder: TableViewCellBuilder
+    
+    required init(cellBuilder: TableViewCellBuilder, in tableView: UITableView) {
+        self.cellBuilder = cellBuilder
+    }
+    
+    func numberOfRows() -> Int {
+        return cellBuilder.numberOfItems()
+    }
+    
+    func cellForIndexPath(_ indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
+        return cellBuilder.cellAt(indexPath: indexPath, in: tableView)
+    }
+    
+    func cellHeightForIndexPath(_ indexPath: IndexPath, in tableView: UITableView) -> CGFloat {
+        return cellBuilder.estimatedCellHeight(indexPath: indexPath)
+    }
+    
+    func headerView() -> UIView? {
+        return nil
+    }
+    
+    func headerViewHeight() -> CGFloat {
+        return 0
+    }
+}
+
 protocol TableViewSectionableDelegate: class {
     func didSelectRowAt(indexPath: IndexPath)
 }

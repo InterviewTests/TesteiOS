@@ -24,7 +24,6 @@ class MainView: UIView, ViewConfigurationProtocol {
         let label = UILabel()
         label.textColor = UIColor.mainLightGray
         label.font = UIFont.regularFont(of: 14.0)
-        label.text = "Fundos de Investimento"
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -34,7 +33,6 @@ class MainView: UIView, ViewConfigurationProtocol {
         let label = UILabel()
         label.textColor = UIColor.black
         label.font = UIFont.regularFont(of: 28.0)
-        label.text = "Vinci Valorem FIMultimercado"
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -43,6 +41,7 @@ class MainView: UIView, ViewConfigurationProtocol {
     lazy var separatorImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "separator")
+        imageView.isHidden = true
         return imageView
     }()
     
@@ -50,7 +49,6 @@ class MainView: UIView, ViewConfigurationProtocol {
         let label = UILabel()
         label.textColor = UIColor.mainLightGray
         label.font = UIFont.regularFont(of: 16.0)
-        label.text = "O que é?"
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -60,7 +58,6 @@ class MainView: UIView, ViewConfigurationProtocol {
         let label = UILabel()
         label.textColor = UIColor.mainLightGray
         label.font = UIFont.regularFont(of: 16.0)
-        label.text = "O Fundo tem por objetivo proporcionar aos seus cotistas rentabilidade no longo prazo através de investimentos."
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -70,7 +67,6 @@ class MainView: UIView, ViewConfigurationProtocol {
         let label = UILabel()
         label.textColor = UIColor.mainLightGray
         label.font = UIFont.regularFont(of: 16.0)
-        label.text = "Grau de risco do investimento"
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -78,6 +74,7 @@ class MainView: UIView, ViewConfigurationProtocol {
     
     lazy var riskView: RiskView = {
         let riskView = RiskView(numberOfItems: 5, selectedItem: 4, colorOfItems: [UIColor.riskGreen, UIColor.riskDarkGreen, UIColor.riskYellow, UIColor.riskOrange, UIColor.riskRed])
+        riskView.isHidden = true
         return riskView
     }()
     
@@ -85,7 +82,6 @@ class MainView: UIView, ViewConfigurationProtocol {
         let label = UILabel()
         label.textColor = UIColor.mainLightGray
         label.font = UIFont.regularFont(of: 16.0)
-        label.text = "Mais informações sobre o investimento"
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -116,6 +112,18 @@ class MainView: UIView, ViewConfigurationProtocol {
 }
 
 extension MainView {
+    func setup(littleTitle: String, title: String, descriptionTitle: String, descriptionText: String, risk: String, riskSelected: Int, info: String) {
+        littleTitleLabel.text = littleTitle
+        titleLabel.text = title
+        descriptionTitleLabel.text = descriptionTitle
+        descriptionTextLabel.text = descriptionText
+        riskTitleLabel.text = risk
+        infoTitleLabel.text = info
+        updateRisk(selectedItem: riskSelected)
+        separatorImageView.isHidden = false
+        setupView()
+    }
+    
     func setupItems() {
         self.backgroundColor = UIColor.white
         
@@ -129,6 +137,7 @@ extension MainView {
         containerView.addSubview(riskTitleLabel)
         containerView.addSubview(riskView)
         containerView.addSubview(infoTitleLabel)
+        containerView.addSubview(tableView)
     }
     
     func setupLayout() {
@@ -179,16 +188,31 @@ extension MainView {
         }
         
         riskView.snp.makeConstraints { (make) in
-            make.top.equalTo(riskTitleLabel).offset(40)
+            make.top.equalTo(riskTitleLabel.snp.bottom).offset(32)
             make.left.equalTo(8)
             make.right.equalTo(-8)
         }
         
         infoTitleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(riskView.snp.bottom).offset(64)
+            make.top.equalTo(riskView.snp.bottom).offset(72)
             make.left.equalTo(16)
             make.right.equalTo(-16)
         }
+        
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(infoTitleLabel.snp.bottom).offset(32)
+            make.left.equalTo(16)
+            make.right.equalTo(-16)
+            make.height.equalTo(600)
+            make.bottom.equalTo(containerView.snp.bottom).offset(-20)
+        }
+    }
+}
+
+extension MainView {
+    func updateRisk(selectedItem: Int) {
+        self.riskView = RiskView(numberOfItems: 5, selectedItem: selectedItem, colorOfItems: [UIColor.riskGreen, UIColor.riskDarkGreen, UIColor.riskYellow, UIColor.riskOrange, UIColor.riskRed])
+        self.riskView.isHidden = false
     }
 }
 

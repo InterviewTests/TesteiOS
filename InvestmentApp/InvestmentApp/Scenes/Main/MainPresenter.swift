@@ -9,25 +9,25 @@
 import Foundation
 
 class MainPresenter {
-    weak var viewController: FormViewControllerInput?
+    weak var viewController: MainViewControllerInput?
     
-//    func presentForm(cells: [CellModel]) {
-//        DispatchQueue.main.async {
-//            let viewModel = FormViewModel(cells: cells)
-//            self.viewController?.displayForm(viewModel: viewModel)
-//        }
-//    }
-//    
-//    func presentError(error: NetworkResponse) {
-//        switch error{
-//        case .noInternetConnection:
-//            DispatchQueue.main.async {
-//                self.viewController?.displayError(status: ViewStatus.internetError({}))
-//            }
-//        default:
-//            DispatchQueue.main.async {
-//                self.viewController?.displayError(status: ViewStatus.requestError({}))
-//            }
-//        }
-//    }
+    func presentFund(fund: FundModel) {
+        DispatchQueue.main.async {
+            let viewModel = MainViewModel(fund: fund)
+            self.viewController?.displayFunds(viewModel: viewModel)
+        }
+    }
+    
+    func presentError(error: NetworkResponse) {
+        switch error{
+        case .noInternetConnection:
+            DispatchQueue.main.async {
+                self.viewController?.displayError(status: ViewStatus.internetError({}))
+            }
+        default:
+            DispatchQueue.main.async {
+                self.viewController?.displayError(status: ViewStatus.requestError({}))
+            }
+        }
+    }
 }
