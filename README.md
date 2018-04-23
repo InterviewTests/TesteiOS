@@ -1,3 +1,14 @@
+
+# Procedimentos para executar o projeto
+- Navegue até a pasta Camila-TesteiOS/Camila-TesteiOS
+- Abra o projeto xCode Camila-TesteiOS.xcworkspace
+- Selectione o simular/device desejado para executar o projeto 
+- Execute o projeto
+
+![clique no seletor](SelectRunTarget.png)
+![selecione o target](RunTarget.png)
+![Execute o projeto](RunProject.png)
+----
 # Show me the code
 
 ### # DESAFIO:
