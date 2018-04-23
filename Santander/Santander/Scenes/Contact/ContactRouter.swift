@@ -14,7 +14,7 @@ import UIKit
 
 @objc protocol ContactRoutingLogic
 {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func showSuccessView(source: ContactViewController)
 }
 
 protocol ContactDataPassing
@@ -57,4 +57,8 @@ class ContactRouter: NSObject, ContactRoutingLogic, ContactDataPassing
   //{
   //  destination.name = source.name
   //}
+    func showSuccessView(source: ContactViewController) {
+        let viewController = SuccessViewController()
+        source.rootController?.present(viewController, animated: true, completion: nil)
+    }
 }

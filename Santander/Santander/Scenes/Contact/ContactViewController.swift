@@ -217,7 +217,7 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
   }
     
     @objc func sendClick() {
-        
+        self.router?.showSuccessView(source: self)
     }
     
     @objc func dismissKeyboard() {
