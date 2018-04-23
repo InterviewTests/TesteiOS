@@ -52,8 +52,8 @@ class InvestmentPresenter: InvestmentPresentationLogic
 
     private func formatToPercent(_ num: Double?) -> String {
         
-        var c:String = String(format:"%.1f", num ?? 0.0)
-        let replaceDot = c.replacingOccurrences(of: ".", with: ",")
+        var formated:String = String(format:"%.1f", num ?? 0.0)
+        let replaceDot = formated.replacingOccurrences(of: ".", with: ",")
         return "\(replaceDot)%"
     }
 }

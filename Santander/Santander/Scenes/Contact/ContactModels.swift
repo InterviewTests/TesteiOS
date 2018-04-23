@@ -16,16 +16,30 @@ enum Contact
 {
   // MARK: Use cases
   
-  enum Something
+  enum fetchFormCells
   {
     struct Request
     {
+        
     }
     struct Response
     {
+        var cells: [Cells]
     }
     struct ViewModel
     {
+        struct DisplayCells {
+            var hidden: Bool
+            var id: Int
+            var topSpacing: Int
+            var typefield: String
+            var required: Bool
+            var message: String
+            var type: Int
+            var show: Int
+        }
+        
+        var displayCells: [DisplayCells]
     }
   }
 }

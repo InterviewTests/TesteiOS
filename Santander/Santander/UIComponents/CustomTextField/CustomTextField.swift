@@ -53,6 +53,7 @@ class CustomTextField: UIView {
         self.textField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
         self.textField.returnKeyType = .done
         self.hideClearButton(true)
+        self.textField.autocorrectionType = .no
     }
     
     fileprivate func viewFromNibForClass() -> UIView {
@@ -60,6 +61,10 @@ class CustomTextField: UIView {
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
+    }
+    
+    func setLabelText(text: String) {
+        self.label.text = text
     }
     
     @IBAction func clearClick(_ sender: Any) {

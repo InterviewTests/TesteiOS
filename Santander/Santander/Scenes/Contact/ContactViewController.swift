@@ -14,7 +14,7 @@ import UIKit
 
 protocol ContactDisplayLogic: class
 {
-  func displaySomething(viewModel: Contact.Something.ViewModel)
+  func displayForm(viewModel: Contact.fetchFormCells.ViewModel)
 }
 
 class ContactViewController: BaseViewController, ContactDisplayLogic
@@ -70,47 +70,128 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    doSomething()
+    fetchFormCells()
 //    self.view.backgroundColor = .green
-    
-    self.view.addSubview(self.scrollView)
-    self.scrollView.snp.makeConstraints({ (make) in
-        make.left.right.top.bottom.equalTo(0)
-    })
-    
-    self.scrollView.addSubview(self.scrollContainerView)
-    
-    self.scrollContainerView.snp.makeConstraints { (make) in
-        make.left.right.top.bottom.equalTo(0)
-        make.width.equalTo(self.view)
-        make.height.equalTo(1500)
-    }
-    
-    let screenTitleLabel = UILabel()
-    screenTitleLabel.font = UIFont.DINPro_Medium(ofSize: 16)
-    screenTitleLabel.textColor = Color.black
-    screenTitleLabel.text = "Contato"
-    
-    self.scrollContainerView.addSubview(screenTitleLabel)
-    screenTitleLabel.snp.makeConstraints { (make) in
-        make.centerX.equalTo(self.scrollContainerView)
-        make.height.equalTo(22)
-        make.top.equalTo(self.scrollContainerView).offset(24)
-    }
   }
   
   // MARK: Do something
   
+    func configUI(viewModel: Contact.fetchFormCells.ViewModel) {
+        
+        self.view.addSubview(self.scrollView)
+        self.scrollView.snp.makeConstraints({ (make) in
+            make.left.right.top.bottom.equalTo(0)
+        })
+        
+        self.scrollView.addSubview(self.scrollContainerView)
+        
+        self.scrollContainerView.snp.makeConstraints { (make) in
+            make.left.right.top.bottom.equalTo(0)
+            make.width.equalTo(self.view)
+            make.height.equalTo(1500)
+        }
+        
+        let screenTitleLabel = UILabel()
+        screenTitleLabel.font = UIFont.DINPro_Medium(ofSize: 16)
+        screenTitleLabel.textColor = Color.black
+        screenTitleLabel.text = "Contato"
+        
+        self.scrollContainerView.addSubview(screenTitleLabel)
+        screenTitleLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.scrollContainerView)
+            make.height.equalTo(22)
+            make.top.equalTo(self.scrollContainerView).offset(24)
+        }
+        
+        var lastItemReference: UIView = screenTitleLabel
+        
+        for item in viewModel.displayCells {
+            
+//            item.topSpacing = 35
+            let topSpacing = 20
+            
+            let type = FieldType.init(rawValue: item.type)!
+            
+            if type == .text {
+                let field = UILabel()
+                field.font = UIFont.DINPro_Medium(ofSize: 16)
+                field.textColor = Color.gray
+                field.text = item.message
+                field.adjustsFontSizeToFitWidth = true
+                field.minimumScaleFactor = 0.5
+                
+                self.scrollContainerView.addSubview(field)
+                field.snp.makeConstraints { (make) in
+                    make.top.equalTo(lastItemReference.snp.bottom).offset(topSpacing)
+                    make.height.equalTo(20)
+                    make.left.equalTo(25)
+                    make.right.equalTo(-25)
+                }
+                
+                lastItemReference = field
+            }
+            
+            if type == .field {
+                let field = CustomTextField(frame: CGRect.zero)
+                field.setLabelText(text: item.message)
+                
+                self.scrollContainerView.addSubview(field)
+                field.snp.makeConstraints { (make) in
+                    make.top.equalTo(lastItemReference.snp.bottom).offset(topSpacing)
+                    make.height.equalTo(56)
+                    make.left.equalTo(25)
+                    make.right.equalTo(-25)
+                }
+            
+                lastItemReference = field
+            }
+            
+            if type == .checkbox {
+                
+                let field = CustomCheckBox(frame: CGRect.zero)
+                field.setText(text: item.message)
+                
+                self.scrollContainerView.addSubview(field)
+                field.snp.makeConstraints { (make) in
+                    make.top.equalTo(lastItemReference.snp.bottom).offset(47)
+                    make.height.equalTo(20)
+                    make.left.equalTo(25)
+                    make.right.equalTo(-25)
+                }
+                
+                lastItemReference = field
+            }
+            
+            if type == .send {
+                
+                let field = RoundedButton(frame: CGRect.zero)
+                field.setTitle(item.message, for: .normal)
+                
+                self.scrollContainerView.addSubview(field)
+                field.snp.makeConstraints { (make) in
+                    make.top.equalTo(lastItemReference.snp.bottom).offset(38)
+                    make.height.equalTo(50)
+                    make.left.equalTo(25)
+                    make.right.equalTo(-25)
+                }
+                
+                lastItemReference = field
+            }
+        }
+    }
   //@IBOutlet weak var nameTextField: UITextField!
   
-  func doSomething()
+  func fetchFormCells()
   {
-    let request = Contact.Something.Request()
-    interactor?.doSomething(request: request)
+    self.showLoader()
+    let request = Contact.fetchFormCells.Request()
+    interactor?.fetchFormCells(request: request)
   }
   
-  func displaySomething(viewModel: Contact.Something.ViewModel)
+  func displayForm(viewModel: Contact.fetchFormCells.ViewModel)
   {
+    self.hideLoader()
+    self.configUI(viewModel: viewModel)
     //nameTextField.text = viewModel.name
   }
 }

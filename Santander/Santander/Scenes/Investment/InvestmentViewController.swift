@@ -124,7 +124,7 @@ class InvestmentViewController: BaseViewController, InvestmentDisplayLogic
         let secondTitleLabel = UILabel()
         secondTitleLabel.font = UIFont.DINPro_Medium(ofSize: 14)
         secondTitleLabel.textColor = Color.secondaryGray
-        secondTitleLabel.text = "Fundos de investimento"
+        secondTitleLabel.text = viewModel.screen.title ?? ""
 
         self.scrollContainerView.addSubview(secondTitleLabel)
         secondTitleLabel.snp.makeConstraints { (make) in
@@ -162,7 +162,7 @@ class InvestmentViewController: BaseViewController, InvestmentDisplayLogic
         let descTitleLabel = UILabel()
         descTitleLabel.font = UIFont.DINPro_Medium(ofSize: 16)
         descTitleLabel.textColor = Color.secondaryGray
-        descTitleLabel.text = "O que é?"
+        descTitleLabel.text = viewModel.screen.whatIs ?? ""
         
         self.scrollContainerView.addSubview(descTitleLabel)
         descTitleLabel.snp.makeConstraints { (make) in
@@ -190,7 +190,7 @@ class InvestmentViewController: BaseViewController, InvestmentDisplayLogic
         let risklabel = UILabel()
         risklabel.font = UIFont.DINPro_Medium(ofSize: 16)
         risklabel.textColor = Color.secondaryGray
-        risklabel.text = "Grau de risco do investimento"
+        risklabel.text = viewModel.screen.riskTitle ?? ""
         
         self.scrollContainerView.addSubview(risklabel)
         risklabel.snp.makeConstraints { (make) in
@@ -212,7 +212,7 @@ class InvestmentViewController: BaseViewController, InvestmentDisplayLogic
         let moreInfoLabel = UILabel()
         moreInfoLabel.font = UIFont.DINPro_Medium(ofSize: 16)
         moreInfoLabel.textColor = Color.secondaryGray
-        moreInfoLabel.text = "Mais informações sobre o investimento"
+        moreInfoLabel.text = viewModel.screen.infoTitle ?? ""
 
         self.scrollContainerView.addSubview(moreInfoLabel)
         moreInfoLabel.snp.makeConstraints { (make) in
