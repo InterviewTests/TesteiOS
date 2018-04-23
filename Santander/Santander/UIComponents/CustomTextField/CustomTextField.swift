@@ -17,6 +17,7 @@ enum FieldType: Int {
 }
 
 enum TextFieldType: Int {
+    case unknown = 0
     case text = 1
     case telNumber = 2
     case email = 3
@@ -25,7 +26,7 @@ enum TextFieldType: Int {
 class CustomTextField: UIView {
     
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textField: JMMaskTextField!
     @IBOutlet weak var statusBar: UIView!
     @IBOutlet weak var clearButton: UIButton!
     var fieldIsValid: Bool = false
@@ -49,18 +50,22 @@ class CustomTextField: UIView {
             UIViewAutoresizing.flexibleHeight
         ]
         addSubview(view)
+        self.config()
+    }
+    
+    fileprivate func viewFromNibForClass() -> UIView {
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: "CustomTextField", bundle: bundle)
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
+        return view
+    }
+    
+    func config() {
         self.textField.delegate = self
         self.textField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
         self.textField.returnKeyType = .done
         self.hideClearButton(true)
         self.textField.autocorrectionType = .no
-    }
-    
-    fileprivate func viewFromNibForClass() -> UIView {
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-        return view
     }
     
     func setLabelText(text: String) {
@@ -79,16 +84,23 @@ class CustomTextField: UIView {
         self.hideClearButton(true)
     }
     
-    private func hideClearButton(_ hide: Bool) {
+    func hideClearButton(_ hide: Bool) {
         self.clearButton.isHidden = hide
     }
     
     func validateField() {
         self.fieldIsValid = true
-        self.statusBarColor(Color.riskLightGreen)
+        
+        if self.textField.text == "" {
+            self.setStatusBarColor(Color.gray)
+        } else {
+            self.setStatusBarColor(Color.riskLightGreen)
+        }
+        
+        
     }
     
-    private func statusBarColor(_ color: UIColor) {
+    func setStatusBarColor(_ color: UIColor) {
         self.statusBar.backgroundColor = color
     }
     
@@ -127,11 +139,6 @@ extension CustomTextField: UITextFieldDelegate {
         if textField.text == "" {
             self.animateLabel(state: false)
         }
-        
-        return true
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         return true
     }

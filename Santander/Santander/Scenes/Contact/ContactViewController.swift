@@ -23,6 +23,8 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
   var router: (NSObjectProtocol & ContactRoutingLogic & ContactDataPassing)?
     var scrollView: UIScrollView = UIScrollView()
     var scrollContainerView: UIView = UIView()
+    var sendButton: RoundedButton = RoundedButton(frame: CGRect.zero)
+    var fieldList: [CustomTextField] = []
   // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -71,7 +73,6 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
   {
     super.viewDidLoad()
     fetchFormCells()
-//    self.view.backgroundColor = .green
   }
   
   // MARK: Do something
@@ -83,6 +84,7 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
             make.left.right.top.bottom.equalTo(0)
         })
         
+        self.scrollView.bounces = false
         self.scrollView.addSubview(self.scrollContainerView)
         
         self.scrollContainerView.snp.makeConstraints { (make) in
@@ -106,7 +108,6 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
         var lastItemReference: UIView = screenTitleLabel
         
         for item in viewModel.displayCells {
-            
 //            item.topSpacing = 35
             let topSpacing = 20
             
@@ -132,7 +133,19 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
             }
             
             if type == .field {
-                let field = CustomTextField(frame: CGRect.zero)
+                
+                var field = CustomTextField(frame: CGRect.zero)
+                let textFieldType = TextFieldType(rawValue: item.typefield)!
+                
+                if textFieldType == .email {
+                    field = EmailTextField(frame: CGRect.zero)
+                }
+                
+                //fix api error
+                if textFieldType == .telNumber || item.id == 6 {
+                    field = PhoneTextField(frame: CGRect.zero)
+                }
+
                 field.setLabelText(text: item.message)
                 
                 self.scrollContainerView.addSubview(field)
@@ -144,6 +157,7 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
                 }
             
                 lastItemReference = field
+                self.fieldList.append(field)
             }
             
             if type == .checkbox {
@@ -176,8 +190,12 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
                 }
                 
                 lastItemReference = field
+                self.sendButton = field
             }
         }
+        
+        self.sendButton.enableButton(enable: false)
+        self.sendButton.addTarget(self, action: #selector(sendClick), for: .touchUpInside)
     }
   //@IBOutlet weak var nameTextField: UITextField!
   
@@ -194,4 +212,8 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
     self.configUI(viewModel: viewModel)
     //nameTextField.text = viewModel.name
   }
+    
+    @objc func sendClick() {
+        
+    }
 }

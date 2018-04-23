@@ -32,7 +32,7 @@ enum Contact
             var hidden: Bool
             var id: Int
             var topSpacing: Int
-            var typefield: String
+            var typefield: Int
             var required: Bool
             var message: String
             var type: Int

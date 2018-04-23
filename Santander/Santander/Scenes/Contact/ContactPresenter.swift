@@ -32,7 +32,7 @@ class ContactPresenter: ContactPresentationLogic
     func prepareViewModel(_ cells: [Cells]) -> [Contact.fetchFormCells.ViewModel.DisplayCells] {
         
         let list = cells.map {
-            Contact.fetchFormCells.ViewModel.DisplayCells(hidden: $0.hidden ?? true, id: $0.id ?? 0, topSpacing: $0.topSpacing ?? 0, typefield: $0.typefield ?? "", required: $0.required ?? false, message: $0.message ?? "", type: $0.type ?? 0, show: $0.show ?? 0)
+            Contact.fetchFormCells.ViewModel.DisplayCells(hidden: $0.hidden ?? true, id: $0.id ?? 0, topSpacing: $0.topSpacing ?? 0, typefield: $0.typefield ?? 0, required: $0.required ?? false, message: $0.message ?? "", type: $0.type ?? 0, show: $0.show ?? 0)
         }
         
         return list

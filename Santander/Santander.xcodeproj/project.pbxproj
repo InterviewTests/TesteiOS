@@ -17,6 +17,8 @@
 		C03BF722208D4A7000BD009B /* ContactInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF71C208D4A7000BD009B /* ContactInteractor.swift */; };
 		C03BF724208D7F2400BD009B /* EmailTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF723208D7F2400BD009B /* EmailTextField.swift */; };
 		C03BF726208D7F4600BD009B /* PhoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF725208D7F4600BD009B /* PhoneTextField.swift */; };
+		C03BF72A208DB56500BD009B /* JMStringMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF728208DB56500BD009B /* JMStringMask.swift */; };
+		C03BF72B208DB56500BD009B /* JMMaskTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF729208DB56500BD009B /* JMMaskTextField.swift */; };
 		C043BEF6208BBED000C6231F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C043BEF5208BBED000C6231F /* AppDelegate.swift */; };
 		C043BEFD208BBED000C6231F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C043BEFC208BBED000C6231F /* Assets.xcassets */; };
 		C043BF00208BBED000C6231F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C043BEFE208BBED000C6231F /* LaunchScreen.storyboard */; };
@@ -98,6 +100,8 @@
 		C03BF71C208D4A7000BD009B /* ContactInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInteractor.swift; sourceTree = "<group>"; };
 		C03BF723208D7F2400BD009B /* EmailTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextField.swift; sourceTree = "<group>"; };
 		C03BF725208D7F4600BD009B /* PhoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextField.swift; sourceTree = "<group>"; };
+		C03BF728208DB56500BD009B /* JMStringMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMStringMask.swift; sourceTree = "<group>"; };
+		C03BF729208DB56500BD009B /* JMMaskTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMMaskTextField.swift; sourceTree = "<group>"; };
 		C043BEF2208BBED000C6231F /* Santander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Santander.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C043BEF5208BBED000C6231F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C043BEFC208BBED000C6231F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -206,6 +210,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C03BF727208DB52A00BD009B /* Mask */ = {
+			isa = PBXGroup;
+			children = (
+				C03BF729208DB56500BD009B /* JMMaskTextField.swift */,
+				C03BF728208DB56500BD009B /* JMStringMask.swift */,
+			);
+			path = Mask;
+			sourceTree = "<group>";
+		};
 		C043BEE9208BBED000C6231F = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +305,7 @@
 		C0DCC381208CCCA1009CF4DD /* CustomTextField */ = {
 			isa = PBXGroup;
 			children = (
+				C03BF727208DB52A00BD009B /* Mask */,
 				C0DCC37D208CCB52009CF4DD /* CustomTextField.swift */,
 				C0DCC37F208CCC99009CF4DD /* CustomTextField.xib */,
 				C03BF723208D7F2400BD009B /* EmailTextField.swift */,
@@ -760,6 +774,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C03BF72A208DB56500BD009B /* JMStringMask.swift in Sources */,
 				C0EA58AA208D11150015A6FE /* Year.swift in Sources */,
 				C0EA58B3208D11240015A6FE /* APIRouter.swift in Sources */,
 				C0EA5896208D0DD70015A6FE /* InvestmentModels.swift in Sources */,
@@ -795,6 +810,7 @@
 				C03BF721208D4A7000BD009B /* ContactViewController.swift in Sources */,
 				C0EA58AD208D11150015A6FE /* DownInfo.swift in Sources */,
 				C0EA5897208D0DD70015A6FE /* InvestmentViewController.swift in Sources */,
+				C03BF72B208DB56500BD009B /* JMMaskTextField.swift in Sources */,
 				C0EA5893208D0DD70015A6FE /* InvestmentPresenter.swift in Sources */,
 				C03BF720208D4A7000BD009B /* ContactModels.swift in Sources */,
 				C0EA5895208D0DD70015A6FE /* InvestmentRouter.swift in Sources */,
