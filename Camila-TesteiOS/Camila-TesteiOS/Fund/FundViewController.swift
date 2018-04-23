@@ -106,7 +106,7 @@ class FundViewController: UIViewController, FundDisplayLogic{
 
 extension FundViewController: UITableViewDataSource, UITableViewDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -118,8 +118,8 @@ extension FundViewController: UITableViewDataSource, UITableViewDelegate{
             case 2,4,5: return 60
             default: return 30
             }
-        default:
-            return 45
+        case 4: return 100
+        default: return 45
         }
     }
     
@@ -137,6 +137,8 @@ extension FundViewController: UITableViewDataSource, UITableViewDelegate{
             return screen.info.count
         case 3:
             return screen.downInfo.count
+        case 4:
+            return 1
         default:
             return 0
         }
@@ -164,6 +166,22 @@ extension FundViewController: UITableViewDataSource, UITableViewDelegate{
         case 3: //D Info
             if let cell = tableView.dequeueReusableCell(withIdentifier: "downInfo") as? DowninfoTableViewCell{
                 return downInfoSectionCell(item: indexPath.row, data: screen.downInfo, cell: cell)
+            }
+        case 4: //Button
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "cell"){
+                let button = CustomButton()
+                button.setTitle("Investir", for: .normal)
+                cell.textLabel?.text = ""
+                button.backgroundColor = UIColor.app.MainColor
+                cell.contentView.addSubview(button)
+
+                button.translatesAutoresizingMaskIntoConstraints = false
+                button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+                button.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor).isActive = true
+                button.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16).isActive = true
+                button.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -16).isActive = true
+                button.layer.cornerRadius = 25
+                return cell
             }
         default:
             break
