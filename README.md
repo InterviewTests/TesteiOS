@@ -1,4 +1,9 @@
+
 # Show me the code
+
+Para executar o projeto é apenas necessário executar o pod install na pasta Santander e executar o arquivo .xcworkspace.
+
+O projeto alem de utilizar o clean swift, foi construído com base em componentes que estão localizados na pasta UIComponents
 
 ### # DESAFIO:
 
