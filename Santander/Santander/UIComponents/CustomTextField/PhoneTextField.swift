@@ -19,9 +19,11 @@ class PhoneTextField: CustomTextField {
     
     func validateField(text: String) {
         
-        if self.textField.text == "" {
+        if text == "" {
             self.setStatusBarColor(Color.gray)
+            self.hideClearButton(true)
         } else {
+            self.hideClearButton(false)
             self.fieldIsValid = text.count >= 14
             if self.fieldIsValid {
                 self.setStatusBarColor(Color.riskLightGreen)

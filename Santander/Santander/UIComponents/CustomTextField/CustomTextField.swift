@@ -81,6 +81,7 @@ class CustomTextField: UIView {
             self.animateLabel(state: false)
         }
         
+        self.setStatusBarColor(Color.gray)
         self.hideClearButton(true)
     }
     
@@ -96,8 +97,6 @@ class CustomTextField: UIView {
         } else {
             self.setStatusBarColor(Color.riskLightGreen)
         }
-        
-        
     }
     
     func setStatusBarColor(_ color: UIColor) {
