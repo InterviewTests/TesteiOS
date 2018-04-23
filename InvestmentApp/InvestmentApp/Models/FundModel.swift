@@ -38,6 +38,7 @@ struct MoreInfoModel: Codable {
 }
 
 struct InfoDetailModel: Codable {
+    var title: String?
     var fund: Float
     var CDI: Float
 }

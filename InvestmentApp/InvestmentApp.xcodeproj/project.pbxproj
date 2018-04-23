@@ -22,6 +22,14 @@
 		239C0C42208D6C0B004C1B24 /* FundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C41208D6C0B004C1B24 /* FundModel.swift */; };
 		239C0C44208D6D94004C1B24 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C43208D6D94004C1B24 /* MainViewModel.swift */; };
 		239C0C46208D748C004C1B24 /* MainCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C45208D748C004C1B24 /* MainCellBuilder.swift */; };
+		239C0C48208D763A004C1B24 /* FirstYieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C47208D7639004C1B24 /* FirstYieldCell.swift */; };
+		239C0C4A208D76E6004C1B24 /* YieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C49208D76E6004C1B24 /* YieldCell.swift */; };
+		239C0C4C208D7BC6004C1B24 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C4B208D7BC6004C1B24 /* DescriptionCell.swift */; };
+		239C0C4E208D8052004C1B24 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C4D208D8052004C1B24 /* MainRouter.swift */; };
+		239C0C51208D8407004C1B24 /* MainViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C50208D8407004C1B24 /* MainViewControllerSpec.swift */; };
+		239C0C53208D8428004C1B24 /* fund.json in Resources */ = {isa = PBXBuildFile; fileRef = 239C0C52208D8428004C1B24 /* fund.json */; };
+		239C0C54208D8502004C1B24 /* fund.json in Resources */ = {isa = PBXBuildFile; fileRef = 239C0C52208D8428004C1B24 /* fund.json */; };
+		239C0C55208D8503004C1B24 /* fund.json in Resources */ = {isa = PBXBuildFile; fileRef = 239C0C52208D8428004C1B24 /* fund.json */; };
 		23A16E69208BEB8600DB247D /* FormViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A16E68208BEB8600DB247D /* FormViewControllerSpec.swift */; };
 		23A16E6C208BEC0600DB247D /* Mockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A16E6B208BEC0600DB247D /* Mockable.swift */; };
 		23A16E6F208BEC3800DB247D /* cells.json in Resources */ = {isa = PBXBuildFile; fileRef = 23A16E6E208BEC3800DB247D /* cells.json */; };
@@ -105,6 +113,12 @@
 		239C0C41208D6C0B004C1B24 /* FundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundModel.swift; sourceTree = "<group>"; };
 		239C0C43208D6D94004C1B24 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		239C0C45208D748C004C1B24 /* MainCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellBuilder.swift; sourceTree = "<group>"; };
+		239C0C47208D7639004C1B24 /* FirstYieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstYieldCell.swift; sourceTree = "<group>"; };
+		239C0C49208D76E6004C1B24 /* YieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YieldCell.swift; sourceTree = "<group>"; };
+		239C0C4B208D7BC6004C1B24 /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
+		239C0C4D208D8052004C1B24 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		239C0C50208D8407004C1B24 /* MainViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerSpec.swift; sourceTree = "<group>"; };
+		239C0C52208D8428004C1B24 /* fund.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fund.json; sourceTree = "<group>"; };
 		23A16E68208BEB8600DB247D /* FormViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewControllerSpec.swift; sourceTree = "<group>"; };
 		23A16E6B208BEC0600DB247D /* Mockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mockable.swift; sourceTree = "<group>"; };
 		23A16E6E208BEC3800DB247D /* cells.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cells.json; sourceTree = "<group>"; };
@@ -224,6 +238,7 @@
 				239C0C3F208D6BB3004C1B24 /* MainWorker.swift */,
 				239C0C43208D6D94004C1B24 /* MainViewModel.swift */,
 				239C0C45208D748C004C1B24 /* MainCellBuilder.swift */,
+				239C0C4D208D8052004C1B24 /* MainRouter.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -236,11 +251,20 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		239C0C4F208D83F4004C1B24 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				239C0C50208D8407004C1B24 /* MainViewControllerSpec.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		23A16E66208BEB6E00DB247D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				23D93722208CEE8400C9A204 /* Common */,
 				23A16E67208BEB7800DB247D /* Form */,
+				239C0C4F208D83F4004C1B24 /* Main */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -266,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				23A16E6E208BEC3800DB247D /* cells.json */,
+				239C0C52208D8428004C1B24 /* fund.json */,
 			);
 			path = jsonFiles;
 			sourceTree = "<group>";
@@ -285,6 +310,9 @@
 				23AEFDB1208A6CB100F7C568 /* TextCell.swift */,
 				23585112208BBC7A0038EE1B /* CheckboxCell.swift */,
 				23EF723A208BC1EE00DEE638 /* ButtonCell.swift */,
+				239C0C47208D7639004C1B24 /* FirstYieldCell.swift */,
+				239C0C49208D76E6004C1B24 /* YieldCell.swift */,
+				239C0C4B208D7BC6004C1B24 /* DescriptionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -661,6 +689,7 @@
 			files = (
 				23C63FE6208967590064BD1B /* LaunchScreen.storyboard in Resources */,
 				23C63FE3208967590064BD1B /* Assets.xcassets in Resources */,
+				239C0C54208D8502004C1B24 /* fund.json in Resources */,
 				23A16E70208BEE1300DB247D /* cells.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -669,6 +698,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				239C0C53208D8428004C1B24 /* fund.json in Resources */,
 				23A16E6F208BEC3800DB247D /* cells.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -677,6 +707,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				239C0C55208D8503004C1B24 /* fund.json in Resources */,
 				23A16E71208BEE1300DB247D /* cells.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -854,8 +885,10 @@
 			files = (
 				239C0C44208D6D94004C1B24 /* MainViewModel.swift in Sources */,
 				23AEFDAC208A63D500F7C568 /* UIFont+Ext.swift in Sources */,
+				239C0C4C208D7BC6004C1B24 /* DescriptionCell.swift in Sources */,
 				239C0C33208D5B2E004C1B24 /* MainView.swift in Sources */,
 				23EF724E208BC59600DEE638 /* ParameterEnconding.swift in Sources */,
+				239C0C4E208D8052004C1B24 /* MainRouter.swift in Sources */,
 				239C0C3C208D5D95004C1B24 /* NavigationController.swift in Sources */,
 				23EF7239208BC0D700DEE638 /* Button.swift in Sources */,
 				239C0C3E208D6434004C1B24 /* RiskView.swift in Sources */,
@@ -884,8 +917,10 @@
 				23C640142089686E0064BD1B /* UIColor+Ext.swift in Sources */,
 				239C0C35208D5B5E004C1B24 /* MainInteractor.swift in Sources */,
 				23C6402C208975360064BD1B /* ErrorView.swift in Sources */,
+				239C0C48208D763A004C1B24 /* FirstYieldCell.swift in Sources */,
 				23EF7256208BC59600DEE638 /* Router.swift in Sources */,
 				23AEFDB0208A694300F7C568 /* FormCellBuilder.swift in Sources */,
+				239C0C4A208D76E6004C1B24 /* YieldCell.swift in Sources */,
 				23C640132089686E0064BD1B /* String+Ext.swift in Sources */,
 				23EF725D208BC89C00DEE638 /* FormViewModel.swift in Sources */,
 				23EF7250208BC59600DEE638 /* URLParameterEnconding.swift in Sources */,
@@ -908,6 +943,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23A16E6C208BEC0600DB247D /* Mockable.swift in Sources */,
+				239C0C51208D8407004C1B24 /* MainViewControllerSpec.swift in Sources */,
 				23D93724208CEE9300C9A204 /* ExtraTestsSpec.swift in Sources */,
 				23A16E74208BEEA900DB247D /* UIWindowsTestHelper.swift in Sources */,
 				23A16E69208BEB8600DB247D /* FormViewControllerSpec.swift in Sources */,

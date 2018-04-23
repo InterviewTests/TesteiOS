@@ -18,6 +18,5 @@ class NavigationController: UINavigationController {
         
         navigationBar.backItem?.title = ""
         navigationBar.shadowImage = UIImage()
-        
     }
 }

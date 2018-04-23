@@ -13,27 +13,41 @@ protocol MainViewControllerInput: class {
     func displayError(status: ViewStatus<ButtonAction>)
 }
 
+protocol MainInfoProtocol {
+    func sections() -> [TableSectionable]
+    func itemsInfoSections() -> [TableSectionable]
+}
+
+extension MainInfoProtocol {
+    func sections() -> [TableSectionable] {
+        var sections: [TableSectionable] = []
+        sections.append(contentsOf: itemsInfoSections())
+        return sections
+    }
+}
+
 class MainViewController: UIViewController {
     var mainView: MainView?
-    var cellsBuilder: FormCellBuilder?
+    var yieldBuilder: MainCellBuilder?
+    var descriptionItemsBuilder: MainCellBuilder?
+    var descriptionWithDownloadItemsBuilder: MainCellBuilder?
     var interactor: MainInteractor?
+    var router: MainRouter?
     
     var datasource: TableViewSectionableDataSourceDelegate?
     
-    init(interactor: MainInteractor = MainInteractor(), presenter: MainPresenter = MainPresenter()) {
+    init(interactor: MainInteractor = MainInteractor(), presenter: MainPresenter = MainPresenter(), router: MainRouter = MainRouter()) {
         self.mainView = MainView()
         super.init(nibName: nil, bundle: nil)
         
         let viewController = self
         self.interactor = interactor
         let presenter = presenter
-        //let router = ListOrdersRouter()
+        self.router = router
+        self.router?.viewController = viewController
         viewController.interactor = interactor
-        //viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
-        //router.viewController = viewController
-        //router.dataStore = interactor
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -52,9 +66,13 @@ class MainViewController: UIViewController {
         fetchForm()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,13 +90,11 @@ class MainViewController: UIViewController {
     }
     
     private func setupDatasource() {
-//        self.view = mainView
-//        cellsBuilder?.registerCell()
-//        datasource = TableViewSectionableDataSourceDelegate(sections: sections())
-//        datasource?.delegate = self
-//        mainView?.tableView.delegate = datasource
-//        mainView?.tableView.dataSource = datasource
-//        mainView?.tableView.reloadData()
+        yieldBuilder?.registerCell()
+        datasource = TableViewSectionableDataSourceDelegate(sections: sections())
+        mainView?.tableView.delegate = datasource
+        mainView?.tableView.dataSource = datasource
+        mainView?.tableView.reloadData()
     }
     
     func fetchForm() {
@@ -105,11 +121,30 @@ extension MainViewController: MainViewControllerInput {
     func displayFunds(viewModel: MainViewModel) {
         ProgressView.shared.hideProgressView()
         self.mainView?.setup(littleTitle: viewModel.fund.title, title: viewModel.fund.fundName, descriptionTitle: viewModel.fund.whatIs, descriptionText: viewModel.fund.definition, risk: viewModel.fund.riskTitle, riskSelected: viewModel.fund.risk, info: viewModel.fund.infoTitle)
-//        guard let tableView = self.mainView?.tableView else {
-//            fatalError("Cells and tableView must be provided")
-//        }
-//        self.cellsBuilder = FormCellBuilder(items: viewModel.cells, tableView: tableView)
-//        self.cellsBuilder?.delegate = self
-//        self.setupDatasource()
+        guard let tableView = self.mainView?.tableView else {
+            fatalError("Cells and tableView must be provided")
+        }
+        
+        self.yieldBuilder = MainCellBuilder(infoDetailItems: viewModel.getMoreInfoDetails(), items: [], type: BuilderType.yield, tableView: tableView)
+        self.descriptionItemsBuilder = MainCellBuilder(infoDetailItems: [], items: viewModel.fund.info, type: BuilderType.details, tableView: tableView)
+        self.descriptionWithDownloadItemsBuilder = MainCellBuilder(infoDetailItems: [], items: viewModel.fund.downInfo, type: BuilderType.detailWithDownload, tableView: tableView)
+        
+        self.descriptionWithDownloadItemsBuilder?.delegate = self
+        self.setupDatasource()
+    }
+}
+
+extension MainViewController: FormInfoProtocol {
+    func itemsInfoSections() -> [TableSectionable] {
+        guard let yieldBuilder = self.yieldBuilder, let descriptionItemsBuilder = self.descriptionItemsBuilder, let descriptionWithDownloadItemsBuilder = self.descriptionWithDownloadItemsBuilder else {
+            fatalError("YieldBuilder, DescriptionItemsBuilder amd DescriptionWithDownloadItemsBuilder must be provided")
+        }
+        return [yieldBuilder.build(), descriptionItemsBuilder.build(), descriptionWithDownloadItemsBuilder.build()]
+    }
+}
+
+extension MainViewController: MainCellBuilderProtocol {
+    func didClickOnButton() {
+        router?.routerToSafari()
     }
 }

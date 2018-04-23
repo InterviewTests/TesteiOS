@@ -34,14 +34,15 @@ class FormViewController: UIViewController {
     
     var datasource: TableViewSectionableDataSourceDelegate?
     
-    init(interactor: FormInteractor = FormInteractor(), presenter: FormPresenter = FormPresenter()) {
+    init(interactor: FormInteractor = FormInteractor(), presenter: FormPresenter = FormPresenter(), router: FormRouter = FormRouter()) {
         self.mainView = FormView()
         super.init(nibName: nil, bundle: nil)
         
         let viewController = self
         self.interactor = interactor
         let presenter = presenter
-        self.router = FormRouter(viewController: viewController)
+        self.router = router
+        router.viewController = viewController
         interactor.presenter = presenter
         presenter.viewController = viewController
     }
@@ -53,13 +54,17 @@ class FormViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationController()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         fetchForm()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationController()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

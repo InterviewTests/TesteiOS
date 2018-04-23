@@ -96,6 +96,12 @@ class MainView: UIView, ViewConfigurationProtocol {
         return tableView
     }()
     
+    lazy var investirButton: Button = {
+        let button = Button()
+        button.setTitle("Investir", for: .normal)
+        return button
+    }()
+    
     init() {
         super.init(frame: CGRect.zero)
         setupView()
@@ -138,6 +144,7 @@ extension MainView {
         containerView.addSubview(riskView)
         containerView.addSubview(infoTitleLabel)
         containerView.addSubview(tableView)
+        containerView.addSubview(investirButton)
     }
     
     func setupLayout() {
@@ -204,6 +211,13 @@ extension MainView {
             make.left.equalTo(16)
             make.right.equalTo(-16)
             make.height.equalTo(600)
+        }
+        
+        investirButton.snp.makeConstraints { (make) in
+            make.top.equalTo(tableView.snp.bottom).offset(32)
+            make.left.equalTo(16)
+            make.right.equalTo(-16)
+            make.height.equalTo(50)
             make.bottom.equalTo(containerView.snp.bottom).offset(-20)
         }
     }

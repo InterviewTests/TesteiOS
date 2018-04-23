@@ -1,8 +1,8 @@
 //
-//  FormViewControllerSpec.swift
+//  MainViewControllerSpec.swift
 //  InvestmentAppTests
 //
-//  Created by Matheus Weber on 21/04/18.
+//  Created by Matheus Weber on 23/04/18.
 //  Copyright © 2018 Matheus Weber. All rights reserved.
 //
 
@@ -12,8 +12,8 @@ import Nimble_Snapshots
 
 @testable import InvestmentApp
 
-final class FormViewControllerSpec: QuickSpec {
-    class FormPresenterMock: FormPresenter {
+final class MainViewControllerSpec: QuickSpec {
+    class MainPresenterMock: MainPresenter {
         var presentErrorCalled = false
         
         override func presentError(error: NetworkResponse) {
@@ -22,37 +22,39 @@ final class FormViewControllerSpec: QuickSpec {
         }
     }
     
-    class FormRouterMock: FormRouter {
-        var routerToMainCalled = false
+    class MainRouterMock: MainRouter {
+        var routerToSafariCalled = false
         
-        override func routerToMain() {
-            super.routerToMain()
-            routerToMainCalled = true
+        override func routerToSafari() {
+            super.routerToSafari()
+            routerToSafariCalled = true
         }
     }
     
     override func spec() {
-        var sut: FormViewController!
+        var sut: MainViewController!
         var api: NetworkManagerMock<Any>!
-        var cellsMock: [CellModel] = [CellModel]()
-        var presenter: FormPresenterMock!
-        var router: FormRouterMock!
-
-        describe("given FormViewController") {
+        var presenter: MainPresenterMock!
+        var router: MainRouterMock!
+        var fundMock: FundModel!
+        
+        describe("given MainViewController") {
             beforeEach {
                 api = NetworkManagerMock()
             }
             
-            context("when initializing FormViewController with mocked API for success") {
+            context("when initializing MainViewController with mocked API for success") {
                 beforeEach {
                     let mockable = Mockable()
-                    let worker = FormWorker(manager: api)
-                    let cellsModel = mockable.mock(type: CellsModel.self, jsonFile: "cells")
-                    cellsMock = cellsModel.cells
-                    api.shouldReturn = .success
-                    api.expectedAnswer = cellsModel
+                    let worker = MainWorker(manager: api)
+                    let screenModel = mockable.mock(type: ScreenModel.self, jsonFile: "fund")
                     
-                    sut = FormViewController(interactor: FormInteractor(worker: worker))
+                    router = MainRouterMock()
+                    fundMock = screenModel.screen
+                    api.shouldReturn = .success
+                    api.expectedAnswer = screenModel
+                    
+                    sut = MainViewController(interactor: MainInteractor(worker: worker), router: router)
                     sut.loadView()
                     
                     UIWindow.showTestWindow(controller: sut)
@@ -72,7 +74,7 @@ final class FormViewControllerSpec: QuickSpec {
                 }
                 
                 it("should have the expected layout when success") {
-                    sut.displayForm(viewModel: FormViewModel(cells: cellsMock))
+                    sut.displayFunds(viewModel: MainViewModel(fund: fundMock))
                     expect(UIWindow.testWindow) == snapshot("test_view_for_success")
                 }
                 
@@ -86,23 +88,23 @@ final class FormViewControllerSpec: QuickSpec {
                     expect(UIWindow.testWindow) == snapshot("test_view_for_request_error")
                 }
                 
-                it("should call routerToMain") {
+                it("should call routerToSafari") {
                     sut.didClickOnButton()
-                    expect(router).to(beTruthy())
+                    expect(router.routerToSafariCalled).to(beTruthy())
                 }
             }
             
             context("when initializing FormViewController with mocked API for internet error") {
                 beforeEach {
                     let mockable = Mockable()
-                    let worker = FormWorker(manager: api)
-                    presenter = FormPresenterMock()
+                    let worker = MainWorker(manager: api)
+                    presenter = MainPresenterMock()
                     
-                    let cellsModel = mockable.mock(type: CellsModel.self, jsonFile: "cells")
+                    let cellsModel = mockable.mock(type: ScreenModel.self, jsonFile: "fund")
                     api.shouldReturn = .failure(NetworkResponse.noInternetConnection)
                     api.expectedAnswer = cellsModel
                     
-                    sut = FormViewController(interactor: FormInteractor(worker: worker), presenter: presenter)
+                    sut = MainViewController(interactor: MainInteractor(worker: worker), presenter: presenter)
                     sut.loadView()
                     
                     UIWindow.showTestWindow(controller: sut)
@@ -128,3 +130,4 @@ final class FormViewControllerSpec: QuickSpec {
         }
     }
 }
+
