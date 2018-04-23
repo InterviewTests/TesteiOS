@@ -23,12 +23,18 @@ enum TextFieldType: Int {
     case email = 3
 }
 
+protocol CustomTextFieldDelegate: class {
+    func returnTaped()
+    func validationChanged()
+}
+
 class CustomTextField: UIView {
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: JMMaskTextField!
     @IBOutlet weak var statusBar: UIView!
     @IBOutlet weak var clearButton: UIButton!
+    weak var delegate: CustomTextFieldDelegate?
     var fieldIsValid: Bool = false
     
     // MARK: - Initializers
@@ -91,12 +97,12 @@ class CustomTextField: UIView {
     
     func validateField() {
         self.fieldIsValid = true
-        
         if self.textField.text == "" {
             self.setStatusBarColor(Color.gray)
         } else {
             self.setStatusBarColor(Color.riskLightGreen)
         }
+        self.delegate?.validationChanged()
     }
     
     func setStatusBarColor(_ color: UIColor) {
@@ -127,6 +133,7 @@ class CustomTextField: UIView {
 extension CustomTextField: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.delegate?.returnTaped()
         return true
     }
     

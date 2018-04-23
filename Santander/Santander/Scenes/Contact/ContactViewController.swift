@@ -90,7 +90,7 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
         self.scrollContainerView.snp.makeConstraints { (make) in
             make.left.right.top.bottom.equalTo(0)
             make.width.equalTo(self.view)
-            make.height.equalTo(1500)
+            make.height.equalTo(self.view)
         }
         
         let screenTitleLabel = UILabel()
@@ -157,6 +157,7 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
                 }
             
                 lastItemReference = field
+                field.delegate = self
                 self.fieldList.append(field)
             }
             
@@ -196,6 +197,8 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
         
         self.sendButton.enableButton(enable: false)
         self.sendButton.addTarget(self, action: #selector(sendClick), for: .touchUpInside)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.scrollContainerView.addGestureRecognizer(tap)
     }
   //@IBOutlet weak var nameTextField: UITextField!
   
@@ -215,5 +218,29 @@ class ContactViewController: BaseViewController, ContactDisplayLogic
     
     @objc func sendClick() {
         
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+}
+
+extension ContactViewController: CustomTextFieldDelegate {
+    
+    func returnTaped() {
+        self.view.endEditing(true)
+    }
+    
+    func validationChanged() {
+        
+        for field in self.fieldList {
+            if !field.fieldIsValid {
+                self.sendButton.enableButton(enable: false)
+                return
+            }
+        }
+        
+        self.sendButton.enableButton(enable: true)
     }
 }

@@ -27,6 +27,8 @@ class EmailTextField: CustomTextField {
                 self.setStatusBarColor(Color.lineRed)
             }
         }
+        
+        self.delegate?.validationChanged()
     }
     
     private func isValidEmail(testStr:String) -> Bool {
