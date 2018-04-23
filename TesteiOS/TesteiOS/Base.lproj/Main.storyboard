@@ -492,20 +492,96 @@
         <!--Contato-->
         <scene sceneID="Hd2-d2-EY4">
             <objects>
-                <viewController id="62v-6y-kj0" sceneMemberID="viewController">
+                <viewController id="62v-6y-kj0" customClass="ContactViewController" customModule="TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eIN-J4-s9s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Ri-Ig-BhO" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                <rect key="frame" x="20" y="102" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Flh-q6-Fij"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qmw-Oj-xQ8" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                <rect key="frame" x="20" y="162" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Jmd-IX-I36"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="INT-h5-yRQ" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                <rect key="frame" x="20" y="222" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fbG-io-is2"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOy-KJ-bWC">
+                                <rect key="frame" x="20" y="528" width="335" height="50"/>
+                                <color key="backgroundColor" red="0.85490196080000003" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Jfj-6H-4ps"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="21"/>
+                                <state key="normal" title="Enviar">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdR-VO-cb5">
+                                <rect key="frame" x="45" y="322" width="285" height="22"/>
+                                <state key="normal" title=" Gostaria de cadastrar meu email" image="btn-2-diselected">
+                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="selected" title=" Gostaria de cadastrar meu email" image="btn-2-selected"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contato" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVd-Wc-OOK">
+                                <rect key="frame" x="157" y="30" width="60" height="22"/>
+                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="NdR-VO-cb5" firstAttribute="centerX" secondItem="INT-h5-yRQ" secondAttribute="centerX" id="5Dw-Da-JhB"/>
+                            <constraint firstItem="TVd-Wc-OOK" firstAttribute="top" secondItem="kZx-rN-ngu" secondAttribute="top" constant="10" id="9bq-l2-ckN"/>
+                            <constraint firstItem="qOy-KJ-bWC" firstAttribute="leading" secondItem="kZx-rN-ngu" secondAttribute="leading" constant="20" id="CYZ-1s-9zq"/>
+                            <constraint firstItem="INT-h5-yRQ" firstAttribute="top" secondItem="Qmw-Oj-xQ8" secondAttribute="bottom" constant="20" id="HYF-YE-DHK"/>
+                            <constraint firstItem="6Ri-Ig-BhO" firstAttribute="leading" secondItem="kZx-rN-ngu" secondAttribute="leading" constant="20" id="MdB-Lv-poZ"/>
+                            <constraint firstItem="6Ri-Ig-BhO" firstAttribute="top" secondItem="TVd-Wc-OOK" secondAttribute="bottom" constant="50" id="Xnr-Sj-tS7"/>
+                            <constraint firstItem="kZx-rN-ngu" firstAttribute="trailing" secondItem="INT-h5-yRQ" secondAttribute="trailing" constant="20" id="b7H-y7-eID"/>
+                            <constraint firstItem="kZx-rN-ngu" firstAttribute="bottom" secondItem="qOy-KJ-bWC" secondAttribute="bottom" constant="40" id="ct9-xq-cQQ"/>
+                            <constraint firstItem="NdR-VO-cb5" firstAttribute="top" secondItem="INT-h5-yRQ" secondAttribute="bottom" constant="60" id="eZs-zm-8xt"/>
+                            <constraint firstItem="kZx-rN-ngu" firstAttribute="trailing" secondItem="Qmw-Oj-xQ8" secondAttribute="trailing" constant="20" id="heu-CJ-1Ke"/>
+                            <constraint firstItem="Qmw-Oj-xQ8" firstAttribute="top" secondItem="6Ri-Ig-BhO" secondAttribute="bottom" constant="20" id="j9Q-Od-4KZ"/>
+                            <constraint firstItem="INT-h5-yRQ" firstAttribute="leading" secondItem="kZx-rN-ngu" secondAttribute="leading" constant="20" id="mWL-Xq-Hlf"/>
+                            <constraint firstItem="kZx-rN-ngu" firstAttribute="trailing" secondItem="6Ri-Ig-BhO" secondAttribute="trailing" constant="20" id="onj-mI-lwE"/>
+                            <constraint firstItem="Qmw-Oj-xQ8" firstAttribute="leading" secondItem="kZx-rN-ngu" secondAttribute="leading" constant="20" id="srd-JO-LJe"/>
+                            <constraint firstItem="TVd-Wc-OOK" firstAttribute="centerX" secondItem="eIN-J4-s9s" secondAttribute="centerX" id="wLH-Pf-Pvu"/>
+                            <constraint firstItem="kZx-rN-ngu" firstAttribute="trailing" secondItem="qOy-KJ-bWC" secondAttribute="trailing" constant="20" id="zvo-nO-abP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="kZx-rN-ngu"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Contato" id="WVz-IL-q0V">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-16"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="emailTextField" destination="Qmw-Oj-xQ8" id="PSj-tg-OBO"/>
+                        <outlet property="nameTextField" destination="6Ri-Ig-BhO" id="aym-hJ-yHg"/>
+                        <outlet property="phoneTextField" destination="INT-h5-yRQ" id="XkA-iY-ctV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pim-4c-Ldd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="577" y="875"/>
+            <point key="canvasLocation" x="576.79999999999995" y="874.81259370314854"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mpj-6J-2pX">
@@ -534,6 +610,8 @@
         <image name="Risk5-A" width="59" height="6"/>
         <image name="Spearador" width="315" height="7"/>
         <image name="btn-1" width="51" height="13"/>
+        <image name="btn-2-diselected" width="19" height="19"/>
+        <image name="btn-2-selected" width="19" height="19"/>
         <image name="icon-1" width="19" height="24"/>
     </resources>
 </document>

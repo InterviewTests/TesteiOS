@@ -1,14 +1,14 @@
 import Moya
 import RxSwift
 
-public class FundManager {
+public class CellManager {
   
   static let provider = MoyaProvider<SantanderService>()
-
-  public static func getFund() -> Observable<Fund>{
-    return self.provider.rx.request(.fund)
+  
+  public static func getCells() -> Observable<Cells>{
+    return self.provider.rx.request(.cells)
       .asObservable()
       .filterSuccessfulStatusCodes()
-      .map(Fund.self)
+      .map(Cells.self)
   }
 }
