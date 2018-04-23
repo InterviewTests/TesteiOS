@@ -20,7 +20,18 @@ class CustomSeparator: UIView {
         self.setupView()
     }
     
+    override func draw(_ rect: CGRect) {
+        self.drawLine()
+    }
+    
     func setupView() {
+        self.backgroundColor = .clear
+         self.clipsToBounds = true
+    }
+    
+    func drawLine() {
+        
+       
         let path = UIBezierPath()
         
         let defaultYPosition = ((self.frame.height/2) - 0.5)

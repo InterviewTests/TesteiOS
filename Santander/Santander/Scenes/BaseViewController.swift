@@ -10,18 +10,18 @@ import UIKit
 
 class BaseViewController: UIViewController {
 
-    var spinner: LoaderView?
+    
+    var rootController: CustomTabBarController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.spinner = LoaderView.init(currentView: self.view)
     }
     
     func showLoader() {
-        self.spinner?.startAnimation()
+        self.rootController?.showLoader()
     }
     
     func hideLoader() {
-        self.spinner?.stopAnimating()
+        self.rootController?.hideLoader()
     }
 }

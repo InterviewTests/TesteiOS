@@ -23,7 +23,7 @@ class LoaderView: UIView {
         self.backgroundView.backgroundColor = Color.gray
         self.backgroundView.alpha = 0.35
         
-        self.spinner = NVActivityIndicatorView.init(frame: CGRect(x: (screenSize.width/2) - 25, y: (screenSize.height/2) - 25, width: 50, height: 50), type: .circleStrokeSpin, color: Color.red, padding: 0)
+        self.spinner = NVActivityIndicatorView.init(frame: CGRect(x: (screenSize.width/2) - 25, y: (screenSize.height/2) - 50, width: 50, height: 50), type: .circleStrokeSpin, color: Color.red, padding: 0)
         super.init(frame: screenSize)
         self.addSubview(self.backgroundView)
         self.addSubview(self.spinner)

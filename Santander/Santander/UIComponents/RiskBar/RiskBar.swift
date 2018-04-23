@@ -8,13 +8,13 @@
 
 import UIKit
 
-enum RiskType {
+enum RiskType: Int {
     
-    case conservative
-    case moderate
-    case balanced
-    case growth
-    case sophisticated
+    case conservative = 1
+    case moderate = 2
+    case balanced = 3
+    case growth = 4
+    case sophisticated = 5
     
     var color: UIColor {
         
@@ -39,19 +39,21 @@ class RiskBar: UIView {
     
     init(frame: CGRect, selectedRisk: RiskType) {
         super.init(frame: frame)
+        self.selectedRisk = selectedRisk
         self.setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.setupView()
+//        self.setupView()
     }
     
     func setSelectedRisk(selectedRisk: RiskType) {
         self.selectedRisk = selectedRisk
+        self.setupView()
     }
     
-    private func setupView() {
+    func setupView() {
         print(self.frame.width)
         
         let risks:[RiskType]  = [.conservative,.moderate,.balanced,.growth,.sophisticated]
