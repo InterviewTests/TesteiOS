@@ -9,10 +9,12 @@
 import UIKit
 
 class ButtonCell: UITableViewCell {
+    var buttonAction: ButtonAction = {}
     var topSpacing: CGFloat = 0
     
     lazy var button: Button = {
         let button = Button()
+        button.addTarget(self, action: #selector(didClickOnButton), for: .touchUpInside)
         return button
     }()
     
@@ -37,9 +39,11 @@ class ButtonCell: UITableViewCell {
 }
 
 extension ButtonCell: ViewConfigurationProtocol {
-    func setup(title: String, topSpacing: CGFloat) {
+    func setup(title: String, topSpacing: CGFloat, buttonAction: @escaping ButtonAction) {
         button.setTitle(title, for: .normal)
+        
         self.topSpacing = topSpacing
+        self.buttonAction = buttonAction
         
         setupView()
     }
@@ -57,5 +61,12 @@ extension ButtonCell: ViewConfigurationProtocol {
             make.top.equalTo(self.snp.top).offset(topSpacing)
             make.height.equalTo(50)
         }
+    }
+}
+
+extension ButtonCell {
+    @objc
+    func didClickOnButton() {
+        self.buttonAction()
     }
 }

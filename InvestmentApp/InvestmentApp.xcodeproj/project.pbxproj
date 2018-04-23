@@ -11,6 +11,12 @@
 		23582F1E208B990B0038EE1B /* NSStringMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 23582F1C208B990A0038EE1B /* NSStringMask.m */; };
 		23585113208BBC7A0038EE1B /* CheckboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23585112208BBC7A0038EE1B /* CheckboxCell.swift */; };
 		23585115208BBCC50038EE1B /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23585114208BBCC50038EE1B /* Checkbox.swift */; };
+		239C0C31208D5AD4004C1B24 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C30208D5AD3004C1B24 /* MainViewController.swift */; };
+		239C0C33208D5B2E004C1B24 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C32208D5B2E004C1B24 /* MainView.swift */; };
+		239C0C35208D5B5E004C1B24 /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C34208D5B5E004C1B24 /* MainInteractor.swift */; };
+		239C0C37208D5B91004C1B24 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C36208D5B91004C1B24 /* MainPresenter.swift */; };
+		239C0C39208D5C00004C1B24 /* FormRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C38208D5C00004C1B24 /* FormRouter.swift */; };
+		239C0C3C208D5D95004C1B24 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C3B208D5D95004C1B24 /* NavigationController.swift */; };
 		23A16E69208BEB8600DB247D /* FormViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A16E68208BEB8600DB247D /* FormViewControllerSpec.swift */; };
 		23A16E6C208BEC0600DB247D /* Mockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A16E6B208BEC0600DB247D /* Mockable.swift */; };
 		23A16E6F208BEC3800DB247D /* cells.json in Resources */ = {isa = PBXBuildFile; fileRef = 23A16E6E208BEC3800DB247D /* cells.json */; };
@@ -83,6 +89,12 @@
 		23582F1D208B990A0038EE1B /* NSStringMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringMask.h; sourceTree = "<group>"; };
 		23585112208BBC7A0038EE1B /* CheckboxCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxCell.swift; sourceTree = "<group>"; };
 		23585114208BBCC50038EE1B /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		239C0C30208D5AD3004C1B24 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		239C0C32208D5B2E004C1B24 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		239C0C34208D5B5E004C1B24 /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
+		239C0C36208D5B91004C1B24 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		239C0C38208D5C00004C1B24 /* FormRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRouter.swift; sourceTree = "<group>"; };
+		239C0C3B208D5D95004C1B24 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		23A16E68208BEB8600DB247D /* FormViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewControllerSpec.swift; sourceTree = "<group>"; };
 		23A16E6B208BEC0600DB247D /* Mockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mockable.swift; sourceTree = "<group>"; };
 		23A16E6E208BEC3800DB247D /* cells.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cells.json; sourceTree = "<group>"; };
@@ -190,6 +202,25 @@
 				69137C44BB2F9981F2816113 /* Pods_InvestmentAppUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		239C0C2F208D5A9B004C1B24 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				239C0C30208D5AD3004C1B24 /* MainViewController.swift */,
+				239C0C32208D5B2E004C1B24 /* MainView.swift */,
+				239C0C34208D5B5E004C1B24 /* MainInteractor.swift */,
+				239C0C36208D5B91004C1B24 /* MainPresenter.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		239C0C3A208D5D88004C1B24 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				239C0C3B208D5D95004C1B24 /* NavigationController.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		23A16E66208BEB6E00DB247D /* Scenes */ = {
@@ -314,6 +345,7 @@
 		23C640092089686E0064BD1B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				239C0C3A208D5D88004C1B24 /* Navigation */,
 				23C6400A2089686E0064BD1B /* Libraries */,
 				23C6400B2089686E0064BD1B /* Utils */,
 				23C6400F2089686E0064BD1B /* Style */,
@@ -363,6 +395,7 @@
 			children = (
 				23C6401F208974510064BD1B /* Shared */,
 				23C6401920896B520064BD1B /* Form */,
+				239C0C2F208D5A9B004C1B24 /* Main */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -385,6 +418,7 @@
 				23EF725A208BC7FB00DEE638 /* FormPresenter.swift */,
 				23EF725C208BC89C00DEE638 /* FormViewModel.swift */,
 				23EF725E208BC9B900DEE638 /* FormWorker.swift */,
+				239C0C38208D5C00004C1B24 /* FormRouter.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -804,10 +838,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				23AEFDAC208A63D500F7C568 /* UIFont+Ext.swift in Sources */,
+				239C0C33208D5B2E004C1B24 /* MainView.swift in Sources */,
 				23EF724E208BC59600DEE638 /* ParameterEnconding.swift in Sources */,
+				239C0C3C208D5D95004C1B24 /* NavigationController.swift in Sources */,
 				23EF7239208BC0D700DEE638 /* Button.swift in Sources */,
+				239C0C37208D5B91004C1B24 /* MainPresenter.swift in Sources */,
 				23EF724F208BC59600DEE638 /* JSONParameterEncoder.swift in Sources */,
 				23AEFDB2208A6CB100F7C568 /* TextCell.swift in Sources */,
+				239C0C31208D5AD4004C1B24 /* MainViewController.swift in Sources */,
 				23C6401C20896BEB0064BD1B /* FormViewController.swift in Sources */,
 				23585115208BBCC50038EE1B /* Checkbox.swift in Sources */,
 				23AEFDA9208A634F00F7C568 /* InputTextCell.swift in Sources */,
@@ -820,10 +858,12 @@
 				23C63FDC208967590064BD1B /* AppDelegate.swift in Sources */,
 				23AEFDAE208A658400F7C568 /* CellModel.swift in Sources */,
 				23EF7252208BC59600DEE638 /* NetworkManager.swift in Sources */,
+				239C0C39208D5C00004C1B24 /* FormRouter.swift in Sources */,
 				23AEFDB4208A6D5500F7C568 /* CardView.swift in Sources */,
 				23585113208BBC7A0038EE1B /* CheckboxCell.swift in Sources */,
 				23AEFDB9208A70F600F7C568 /* TextField.swift in Sources */,
 				23C640142089686E0064BD1B /* UIColor+Ext.swift in Sources */,
+				239C0C35208D5B5E004C1B24 /* MainInteractor.swift in Sources */,
 				23C6402C208975360064BD1B /* ErrorView.swift in Sources */,
 				23EF7256208BC59600DEE638 /* Router.swift in Sources */,
 				23AEFDB0208A694300F7C568 /* FormCellBuilder.swift in Sources */,

@@ -30,6 +30,7 @@ class FormViewController: UIViewController {
     var mainView: FormView?
     var cellsBuilder: FormCellBuilder?
     var interactor: FormInteractor?
+    var router: FormRouterLogic?
     
     var datasource: TableViewSectionableDataSourceDelegate?
     
@@ -40,13 +41,9 @@ class FormViewController: UIViewController {
         let viewController = self
         self.interactor = interactor
         let presenter = presenter
-        //let router = ListOrdersRouter()
-        //viewController.interactor = interactor
-        //viewController.router = router
+        self.router = FormRouter(viewController: viewController)
         interactor.presenter = presenter
         presenter.viewController = viewController
-        //router.viewController = viewController
-        //router.dataStore = interactor
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -115,6 +112,7 @@ extension FormViewController: FormViewControllerInput {
             fatalError("Cells and tableView must be provided")
         }
         self.cellsBuilder = FormCellBuilder(items: viewModel.cells, tableView: tableView)
+        self.cellsBuilder?.delegate = self
         self.setupDatasource()
     }
 }
@@ -122,6 +120,12 @@ extension FormViewController: FormViewControllerInput {
 extension FormViewController: TableViewSectionableDelegate {
     func didSelectRowAt(indexPath: IndexPath) {
         
+    }
+}
+
+extension FormViewController: FormCellBuilderProtocol {
+    func didClickOnButton() {
+        router?.routerToMain()
     }
 }
 

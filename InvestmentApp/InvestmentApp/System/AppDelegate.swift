@@ -48,7 +48,8 @@ extension AppDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         if let window = window {
-            window.rootViewController = FormViewController()
+            let navigationController = NavigationController(rootViewController: FormViewController())
+            window.rootViewController = navigationController
             window.makeKeyAndVisible()
         }
     }

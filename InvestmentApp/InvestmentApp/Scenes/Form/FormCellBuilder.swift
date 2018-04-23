@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol FormCellBuilderProtocol: class {
+    func didClickOnButton()
+}
+
 class FormCellBuilder: TableViewCellBuilder {
     let tableView: UITableView
     let items: [CellModel]
+    weak var delegate: FormCellBuilderProtocol?
     
     init(items: [CellModel], tableView: UITableView) {
         self.items = items
@@ -71,7 +76,10 @@ class FormCellBuilder: TableViewCellBuilder {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell") as? ButtonCell else {
                 fatalError("Must be provide a ButtonCell")
             }
-            cell.setup(title: item.message, topSpacing: CGFloat(item.topSpacing))
+            cell.setup(title: item.message, topSpacing: CGFloat(item.topSpacing), buttonAction: {
+                self.delegate?.didClickOnButton()
+            })
+            
             return cell
         default:
             break
