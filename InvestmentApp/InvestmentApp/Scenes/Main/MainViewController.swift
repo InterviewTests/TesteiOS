@@ -92,9 +92,9 @@ class MainViewController: UIViewController {
     private func setupDatasource() {
         yieldBuilder?.registerCell()
         datasource = TableViewSectionableDataSourceDelegate(sections: sections())
-        mainView?.tableView.delegate = datasource
-        mainView?.tableView.dataSource = datasource
-        mainView?.tableView.reloadData()
+        mainView?.investementView.tableView.delegate = datasource
+        mainView?.investementView.tableView.dataSource = datasource
+        mainView?.investementView.tableView.reloadData()
         
         mainView?.updateTable()
     }
@@ -123,7 +123,7 @@ extension MainViewController: MainViewControllerInput {
     func displayFunds(viewModel: MainViewModel) {
         ProgressView.shared.hideProgressView()
         self.mainView?.setup(littleTitle: viewModel.fund.title, title: viewModel.fund.fundName, descriptionTitle: viewModel.fund.whatIs, descriptionText: viewModel.fund.definition, risk: viewModel.fund.riskTitle, riskSelected: viewModel.fund.risk, info: viewModel.fund.infoTitle)
-        guard let tableView = self.mainView?.tableView else {
+        guard let tableView = self.mainView?.investementView.tableView else {
             fatalError("Cells and tableView must be provided")
         }
         
