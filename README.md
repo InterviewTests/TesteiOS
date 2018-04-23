@@ -1,4 +1,13 @@
+
 # Show me the code
+
+Para executar o projeto é apenas necessário executar o pod install na pasta Santander e executar o arquivo .xcworkspace.
+
+O projeto alem de utilizar o clean swift, foi construído com base em componentes que estão localizados na pasta UIComponents
+
+A maior parte do conteúdo dinámico foi escrito em view code com snapKit, para garantir uma maior fidelidade ao protótipo e facilitar modificações/layouts customizados
+
+Como padrão para as branchs foi utilizado o git-flow
 
 ### # DESAFIO:
 

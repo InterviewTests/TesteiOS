@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Medium.otf">
+            <string>DINPro-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomTabBarController" customModule="Santander" customModuleProvider="target">
+            <connections>
+                <outlet property="contactTab" destination="xxK-gW-hVL" id="p38-P2-dXX"/>
+                <outlet property="containerView" destination="N7B-kv-5Kd" id="QAI-W8-NN1"/>
+                <outlet property="investmentTab" destination="Run-1F-KJl" id="k7U-bY-s4o"/>
+                <outlet property="selectedContactView" destination="FmB-JP-ats" id="tP7-eV-ICz"/>
+                <outlet property="selectedInvestmentView" destination="DfQ-wH-Oxb" id="MqO-Zm-nTw"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7B-kv-5Kd" userLabel="ContainerView">
+                    <rect key="frame" x="0.0" y="20" width="375" height="590"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pNA-ee-ssw">
+                    <rect key="frame" x="0.0" y="610" width="375" height="57"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Run-1F-KJl">
+                            <rect key="frame" x="0.0" y="2" width="187.5" height="55"/>
+                            <color key="backgroundColor" red="0.85490196078431369" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="9G5-0z-31C"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
+                            <state key="normal" title="Investimento">
+                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="investmentTabClick:" destination="-1" eventType="touchUpInside" id="GJq-xe-JbI"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxK-gW-hVL">
+                            <rect key="frame" x="187" y="2" width="187.5" height="55"/>
+                            <color key="backgroundColor" red="0.85490196078431369" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="YTk-fl-UAf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
+                            <state key="normal" title="Contato">
+                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="contactTabClick:" destination="-1" eventType="touchUpInside" id="hgW-wR-4sD"/>
+                            </connections>
+                        </button>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DfQ-wH-Oxb">
+                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="2"/>
+                            <color key="backgroundColor" red="0.78431372549019607" green="0.015686274509803921" blue="0.015686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="2" id="BY9-z1-TIi"/>
+                            </constraints>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FmB-JP-ats">
+                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="2"/>
+                            <color key="backgroundColor" red="0.78431372549019607" green="0.015686274509803921" blue="0.015686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="2" id="XfD-KZ-yjq"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="DfQ-wH-Oxb" firstAttribute="leading" secondItem="pNA-ee-ssw" secondAttribute="leading" id="2XA-rV-EK3"/>
+                        <constraint firstItem="Run-1F-KJl" firstAttribute="leading" secondItem="pNA-ee-ssw" secondAttribute="leading" id="7TI-5p-4WM"/>
+                        <constraint firstItem="DfQ-wH-Oxb" firstAttribute="width" secondItem="pNA-ee-ssw" secondAttribute="width" multiplier="0.5" id="KvJ-30-KqM"/>
+                        <constraint firstItem="FmB-JP-ats" firstAttribute="width" secondItem="pNA-ee-ssw" secondAttribute="width" multiplier="0.5" id="M3d-B1-cbq"/>
+                        <constraint firstAttribute="height" constant="57" id="Pd8-vl-uo9"/>
+                        <constraint firstAttribute="trailing" secondItem="xxK-gW-hVL" secondAttribute="trailing" id="TUK-HP-yNS"/>
+                        <constraint firstItem="xxK-gW-hVL" firstAttribute="width" secondItem="pNA-ee-ssw" secondAttribute="width" multiplier="0.5" id="btL-PY-ynt"/>
+                        <constraint firstItem="FmB-JP-ats" firstAttribute="top" secondItem="pNA-ee-ssw" secondAttribute="top" id="f7M-Lk-4ub"/>
+                        <constraint firstAttribute="bottom" secondItem="xxK-gW-hVL" secondAttribute="bottom" id="gJL-eX-5v7"/>
+                        <constraint firstAttribute="trailing" secondItem="FmB-JP-ats" secondAttribute="trailing" id="h2h-UU-kgf"/>
+                        <constraint firstAttribute="bottom" secondItem="Run-1F-KJl" secondAttribute="bottom" id="h6J-vb-Mak"/>
+                        <constraint firstItem="Run-1F-KJl" firstAttribute="width" secondItem="pNA-ee-ssw" secondAttribute="width" multiplier="0.5" id="ueu-Wa-toz"/>
+                        <constraint firstItem="DfQ-wH-Oxb" firstAttribute="top" secondItem="pNA-ee-ssw" secondAttribute="top" id="ykU-mU-hLS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pNA-ee-ssw" secondAttribute="trailing" id="BqK-b9-sSV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="N7B-kv-5Kd" secondAttribute="trailing" id="Dko-LS-cPa"/>
+                <constraint firstItem="pNA-ee-ssw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Gia-Ep-Noj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="pNA-ee-ssw" secondAttribute="bottom" id="Ksl-8O-R07"/>
+                <constraint firstItem="pNA-ee-ssw" firstAttribute="top" secondItem="N7B-kv-5Kd" secondAttribute="bottom" id="gRQ-nm-cdr"/>
+                <constraint firstItem="N7B-kv-5Kd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="mWi-YL-wWG"/>
+                <constraint firstItem="N7B-kv-5Kd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="p29-gu-uEf"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="33.5" y="53.5"/>
+        </view>
+    </objects>
+</document>
