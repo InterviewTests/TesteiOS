@@ -14,7 +14,7 @@ import UIKit
 
 class ContactWorker
 {
-    var apiClient: APIClient = APIClient()
+    var apiClient: APIClientProtocol = APIClient()
     
     func fetchFormCells(completionHandler: @escaping (FormCells?, Error?) -> Void)
     {
