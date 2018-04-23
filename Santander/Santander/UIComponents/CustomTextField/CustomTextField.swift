@@ -8,6 +8,20 @@
 
 import UIKit
 
+enum FieldType: Int {
+    case field = 1
+    case text = 2
+    case image = 3
+    case checkbox = 4
+    case send = 5
+}
+
+enum TextFieldType: Int {
+    case text = 1
+    case telNumber = 2
+    case email = 3
+}
+
 class CustomTextField: UIView {
     
     @IBOutlet weak var label: UILabel!
@@ -64,8 +78,13 @@ class CustomTextField: UIView {
         self.clearButton.isHidden = hide
     }
     
-    private func validadeField() {
-        
+    func validateField() {
+        self.fieldIsValid = true
+        self.statusBarColor(Color.riskLightGreen)
+    }
+    
+    private func statusBarColor(_ color: UIColor) {
+        self.statusBar.backgroundColor = color
     }
     
     private func animateLabel(state: Bool) {
@@ -119,7 +138,7 @@ extension CustomTextField: UITextFieldDelegate {
             self.hideClearButton(false)
         }
         
-        self.validadeField()
+        self.validateField()
     }
 }
 

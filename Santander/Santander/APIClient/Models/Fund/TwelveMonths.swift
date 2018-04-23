@@ -17,8 +17,8 @@ public struct TwelveMonths: Mappable {
   }
 
   // MARK: Properties
-  public var cDI: Float?
-  public var fund: Float?
+  public var cDI: Double?
+  public var fund: Double?
 
   // MARK: ObjectMapper Initializers
   /// Map a JSON object to this class using ObjectMapper.

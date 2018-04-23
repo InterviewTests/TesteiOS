@@ -27,7 +27,13 @@ enum Investment
     }
     struct ViewModel
     {
+        struct ProfiabilityList {
+            var name: String
+            var fund: String
+            var cdi: String
+        }
         var screen: Screen
+        var profiabilityList: [ProfiabilityList]
     }
   }
 }

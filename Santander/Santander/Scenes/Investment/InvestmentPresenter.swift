@@ -26,8 +26,34 @@ class InvestmentPresenter: InvestmentPresentationLogic
   func presentFundDetail(response: Investment.FetchFund.Response)
   {
     guard let _screen  = response.fund.screen else { return }
-    //viewModel already formated by request, nothing to do here
-    let viewModel = Investment.FetchFund.ViewModel(screen: _screen)
+    let profiabiltyList = self.createProfiabilityList(fund: response.fund)
+    let viewModel = Investment.FetchFund.ViewModel(screen: _screen, profiabilityList: profiabiltyList)
     viewController?.displayFundDetail(viewModel: viewModel)
   }
+    
+    private func createProfiabilityList(fund: Fund) -> [Investment.FetchFund.ViewModel.ProfiabilityList]{
+        
+        let list = [
+            Investment.FetchFund.ViewModel.ProfiabilityList(name: "No mês",
+                                                            fund: self.formatToPercent(fund.screen?.moreInfo?.month?.fund),
+                                                            cdi: self.formatToPercent(fund.screen?.moreInfo?.month?.cDI)),
+            
+            Investment.FetchFund.ViewModel.ProfiabilityList(name: "No Ano",
+                                                            fund: self.formatToPercent(fund.screen?.moreInfo?.year?.fund),
+                                                            cdi: self.formatToPercent(fund.screen?.moreInfo?.year?.cDI)),
+            
+            Investment.FetchFund.ViewModel.ProfiabilityList(name: "12 meses",
+                                                            fund: self.formatToPercent(fund.screen?.moreInfo?.twelveMonths?.fund),
+                                                            cdi: self.formatToPercent(fund.screen?.moreInfo?.twelveMonths?.cDI))
+            
+        ]
+        return list
+    }
+
+    private func formatToPercent(_ num: Double?) -> String {
+        
+        var c:String = String(format:"%.1f", num ?? 0.0)
+        let replaceDot = c.replacingOccurrences(of: ".", with: ",")
+        return "\(replaceDot)%"
+    }
 }

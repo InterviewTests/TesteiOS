@@ -11,10 +11,12 @@
 //
 
 import UIKit
+import SafariServices
 
 @objc protocol InvestmentRoutingLogic
 {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func openSafariViewController(source: InvestmentViewController)
 }
 
 protocol InvestmentDataPassing
@@ -46,10 +48,12 @@ class InvestmentRouter: NSObject, InvestmentRoutingLogic, InvestmentDataPassing
 
   // MARK: Navigation
   
-  //func navigateToSomewhere(source: InvestmentViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
+  func openSafariViewController(source: InvestmentViewController)
+  {
+    let safariVC = SFSafariViewController(url: NSURL(string: "https://www.google.com/")! as URL)
+//    source.rootController?.present(safariVC, animated: true, completion: nil)
+    source.rootController?.show(safariVC, sender: nil)
+  }
   
   // MARK: Passing data
   

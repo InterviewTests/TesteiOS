@@ -85,12 +85,13 @@ class InvestmentViewController: BaseViewController, InvestmentDisplayLogic
             make.left.right.top.bottom.equalTo(0)
         })
         
+        self.scrollView.bounces = false
         self.scrollView.addSubview(self.scrollContainerView)
         
         self.scrollContainerView.snp.makeConstraints { (make) in
             make.left.right.top.bottom.equalTo(0)
             make.width.equalTo(self.view)
-            make.height.equalTo(1500)
+            make.height.equalTo(1140)
         }
 
         let screenTitleLabel = UILabel()
@@ -105,11 +106,14 @@ class InvestmentViewController: BaseViewController, InvestmentDisplayLogic
             make.top.equalTo(self.scrollContainerView).offset(24)
         }
 
-
-        let shareIconImage = UIImageView(image: UIImage(named: "share_icon")!)
-
-        self.scrollContainerView.addSubview(shareIconImage)
-        shareIconImage.snp.makeConstraints { (make) in
+//        shareClick
+        let shareIconImage = UIImage(named: "share_icon")!
+        let shareButton = UIButton()
+        shareButton.setBackgroundImage(shareIconImage, for: .normal)
+        shareButton.addTarget(self, action: #selector(shareClick), for: .touchUpInside)
+        
+        self.scrollContainerView.addSubview(shareButton)
+        shareButton.snp.makeConstraints { (make) in
             make.width.equalTo(19)
             make.height.equalTo(24)
             make.top.equalTo(20)
@@ -150,8 +154,8 @@ class InvestmentViewController: BaseViewController, InvestmentDisplayLogic
         separator.snp.makeConstraints { (make) in
             make.top.equalTo(self.fundNameLabel.snp.bottom).offset(5)
             make.height.equalTo(20)
-            make.left.equalTo(30)
-            make.right.equalTo(-30)
+            make.left.equalTo(25)
+            make.right.equalTo(-25)
         }
         
         
@@ -204,6 +208,215 @@ class InvestmentViewController: BaseViewController, InvestmentDisplayLogic
             make.height.equalTo(20)
             make.width.equalTo(self.scrollContainerView).multipliedBy(0.85)
         }
+        
+        let moreInfoLabel = UILabel()
+        moreInfoLabel.font = UIFont.DINPro_Medium(ofSize: 16)
+        moreInfoLabel.textColor = Color.secondaryGray
+        moreInfoLabel.text = "Mais informações sobre o investimento"
+
+        self.scrollContainerView.addSubview(moreInfoLabel)
+        moreInfoLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.scrollContainerView)
+            make.height.equalTo(22)
+            make.top.equalTo(self.riskBar!.snp.bottom).offset(35)
+        }
+        
+        //MORE INFO
+        let cdiHeaderLabel = UILabel()
+        cdiHeaderLabel.font = UIFont.DINPro_Regular(ofSize: 14)
+        cdiHeaderLabel.textColor = Color.gray
+        cdiHeaderLabel.textAlignment = .right
+        cdiHeaderLabel.text = "CDI"
+        
+        self.scrollContainerView.addSubview(cdiHeaderLabel)
+        cdiHeaderLabel.snp.makeConstraints { (make) in
+            make.width.equalTo(30)
+            make.height.equalTo(20)
+            make.right.equalTo(-25)
+            make.top.equalTo(moreInfoLabel.snp.bottom).offset(25)
+        }
+        
+        let fundHeaderLabel = UILabel()
+        fundHeaderLabel.font = UIFont.DINPro_Regular(ofSize: 14)
+        fundHeaderLabel.textColor = Color.gray
+        fundHeaderLabel.textAlignment = .right
+        fundHeaderLabel.text = "Fundo"
+        
+        self.scrollContainerView.addSubview(fundHeaderLabel)
+        fundHeaderLabel.snp.makeConstraints { (make) in
+            make.width.equalTo(45)
+            make.height.equalTo(20)
+            make.right.equalTo(cdiHeaderLabel.snp.right).offset(-90)
+            make.top.equalTo(moreInfoLabel.snp.bottom).offset(25)
+        }
+        
+        var topDistance = 0
+        //MORE INFO LIST
+        for (index,item) in viewModel.profiabilityList.enumerated() {
+            
+            if index == 0 {
+                topDistance = 10
+            } else {
+                topDistance += 30
+            }
+            
+            let firstLabel = UILabel()
+            firstLabel.font = UIFont.DINPro_Regular(ofSize: 14)
+            firstLabel.textColor = Color.black
+            firstLabel.textAlignment = .right
+            firstLabel.text = item.cdi
+            
+            self.scrollContainerView.addSubview(firstLabel)
+            firstLabel.snp.makeConstraints { (make) in
+                make.width.equalTo(45)
+                make.height.equalTo(20)
+                make.right.equalTo(-25)
+                make.top.equalTo(fundHeaderLabel.snp.bottom).offset(topDistance)
+            }
+            
+            let secontLabel = UILabel()
+            secontLabel.font = UIFont.DINPro_Regular(ofSize: 14)
+            secontLabel.textColor = Color.black
+            secontLabel.textAlignment = .right
+            secontLabel.text = item.fund
+            
+            self.scrollContainerView.addSubview(secontLabel)
+            secontLabel.snp.makeConstraints { (make) in
+                make.width.equalTo(45)
+                make.height.equalTo(20)
+                make.right.equalTo(cdiHeaderLabel.snp.right).offset(-90)
+                make.top.equalTo(fundHeaderLabel.snp.bottom).offset(topDistance)
+            }
+            
+            let thirdLabel = UILabel()
+            thirdLabel.font = UIFont.DINPro_Regular(ofSize: 14)
+            thirdLabel.textColor = Color.gray
+            thirdLabel.textAlignment = .left
+            thirdLabel.text = item.name
+            
+            self.scrollContainerView.addSubview(thirdLabel)
+            thirdLabel.snp.makeConstraints { (make) in
+                make.width.equalTo(60)
+                make.height.equalTo(20)
+                make.left.equalTo(25)
+                make.top.equalTo(fundHeaderLabel.snp.bottom).offset(topDistance)
+            }
+        }
+        
+        let div = UIView()
+        div.backgroundColor = Color.lightGray
+        self.scrollContainerView.addSubview(div)
+        div.snp.makeConstraints { (make) in
+            make.left.equalTo(25)
+            make.right.equalTo(-25)
+            make.top.equalTo(fundHeaderLabel.snp.bottom).offset(topDistance + 40)
+            make.height.equalTo(1)
+        }
+        
+        let infoList = viewModel.screen.info ?? []
+        topDistance = 0
+        //FUND INFO
+        
+        for (index,item) in infoList.enumerated() {
+            
+            if index == 0 {
+                topDistance = 20
+            } else {
+                topDistance += 30
+            }
+            
+            let firstLabel = UILabel()
+            firstLabel.font = UIFont.DINPro_Regular(ofSize: 14)
+            firstLabel.textColor = Color.black
+            firstLabel.textAlignment = .right
+            firstLabel.text = item.data ?? ""
+            firstLabel.adjustsFontSizeToFitWidth = true
+            firstLabel.minimumScaleFactor = 0.5
+            
+            self.scrollContainerView.addSubview(firstLabel)
+            firstLabel.snp.makeConstraints { (make) in
+                make.width.equalTo(self.scrollView).multipliedBy(0.3)
+                make.height.equalTo(20)
+                make.right.equalTo(-25)
+                make.top.equalTo(div.snp.bottom).offset(topDistance)
+            }
+            
+            let secontLabel = UILabel()
+            secontLabel.font = UIFont.DINPro_Regular(ofSize: 14)
+            secontLabel.textColor = Color.gray
+            secontLabel.textAlignment = .left
+            secontLabel.text = item.name ?? ""
+            secontLabel.adjustsFontSizeToFitWidth = true
+            secontLabel.minimumScaleFactor = 0.5
+            
+            self.scrollContainerView.addSubview(secontLabel)
+            secontLabel.snp.makeConstraints { (make) in
+                make.width.equalTo(self.scrollView).multipliedBy(0.5)
+                make.height.equalTo(20)
+                make.left.equalTo(25)
+                make.top.equalTo(div.snp.bottom).offset(topDistance)
+            }
+        }
+        //DOWNLOAD INFO
+        let downloadList = viewModel.screen.downInfo ?? []
+        for item in downloadList {
+            
+            topDistance += 30
+            
+            let firstLabel = UILabel()
+            firstLabel.font = UIFont.DINPro_Regular(ofSize: 14)
+            firstLabel.textColor = Color.red
+            firstLabel.textAlignment = .right
+            firstLabel.text = "Baixar"
+            firstLabel.adjustsFontSizeToFitWidth = true
+            firstLabel.minimumScaleFactor = 0.5
+            
+            self.scrollContainerView.addSubview(firstLabel)
+            firstLabel.snp.makeConstraints { (make) in
+                make.width.equalTo(60)
+                make.height.equalTo(20)
+                make.right.equalTo(-25)
+                make.top.equalTo(div.snp.bottom).offset(topDistance)
+            }
+            
+            let donwload_icon = UIImageView(image: UIImage(named: "download_arrow_icon")!)
+            
+            self.scrollContainerView.addSubview(donwload_icon)
+            donwload_icon.snp.makeConstraints { (make) in
+                make.width.equalTo(13)
+                make.height.equalTo(13)
+                make.top.equalTo(div.snp.bottom).offset(topDistance + 3)
+                make.right.equalTo(firstLabel.snp.left).offset(10)
+            }
+            
+            let secontLabel = UILabel()
+            secontLabel.font = UIFont.DINPro_Regular(ofSize: 14)
+            secontLabel.textColor = Color.gray
+            secontLabel.textAlignment = .left
+            secontLabel.text = item.name ?? ""
+            secontLabel.adjustsFontSizeToFitWidth = true
+            secontLabel.minimumScaleFactor = 0.5
+            
+            self.scrollContainerView.addSubview(secontLabel)
+            secontLabel.snp.makeConstraints { (make) in
+                make.width.equalTo(self.scrollView).multipliedBy(0.5)
+                make.height.equalTo(20)
+                make.left.equalTo(25)
+                make.top.equalTo(div.snp.bottom).offset(topDistance)
+            }
+        }
+        
+        let investButton = RoundedButton()
+        investButton.addTarget(self, action: #selector(investClick), for: .touchUpInside)
+        investButton.setTitle("Investir", for: .normal)
+        self.scrollContainerView.addSubview(investButton)
+        investButton.snp.makeConstraints { (make) in
+            make.left.equalTo(25)
+            make.right.equalTo(-25)
+            make.top.equalTo(div.snp.bottom).offset(topDistance + 70)
+            make.height.equalTo(50)
+        }
+        
     }
     
   // MARK: Do something
@@ -223,4 +436,15 @@ class InvestmentViewController: BaseViewController, InvestmentDisplayLogic
     self.configUI(viewModel: viewModel)
     //nameTextField.text = viewModel.name
   }
+    
+  @objc func investClick() {
+    self.router?.openSafariViewController(source: self)
+    }
+    
+    @objc func shareClick() {
+        //this controller not in router because is alert
+        let alert = UIAlertController(title: "Share", message: "Share Clicked", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.show(alert, sender: nil)
+    }
 }
