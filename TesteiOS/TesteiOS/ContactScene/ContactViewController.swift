@@ -4,7 +4,7 @@ import RxSwift
 import Moya
 
 protocol ContactDisplayLogic: class {
-  func displaySomething(viewModel: Contact.Something.ViewModel)
+  func displaySomething(viewModel: Contact.ViewModel)
 }
 
 class ContactViewController: UIViewController, ContactDisplayLogic {
@@ -57,21 +57,6 @@ class ContactViewController: UIViewController, ContactDisplayLogic {
     super.viewDidLoad()
     doSomething()
     
-    nameTextField.placeholder = "Nome Completo"
-    nameTextField.title = "Nome Completo"
-    emailTextField.placeholder = "Email"
-    emailTextField.title = "Email"
-    phoneTextField.placeholder = "Telefone"
-    phoneTextField.title = "Telefone"
-    
-    CellManager.getCells().subscribe(onNext: { (cells) in
-      print(cells)
-    }, onError: { (error) in
-      print(error)
-    }, onCompleted: {
-      print("Completed")
-    }).disposed(by: disposeBag)
-    
     
   }
   
@@ -81,15 +66,37 @@ class ContactViewController: UIViewController, ContactDisplayLogic {
   @IBOutlet weak var nameTextField: SkyFloatingLabelTextField!
   @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
   @IBOutlet weak var phoneTextField: SkyFloatingLabelTextField!
+  @IBOutlet weak var firsLabel: UILabel!
+  @IBOutlet weak var sendButton: UIButton!
   
-  func doSomething()
-  {
-    let request = Contact.Something.Request()
+  func doSomething() {
+    let request = Contact.Request(cells: nil)
     interactor?.doSomething(request: request)
   }
   
-  func displaySomething(viewModel: Contact.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
+  func displaySomething(viewModel: Contact.ViewModel) {
+    print(viewModel)
+    
+    self.firsLabel.text = viewModel.cells?.cells[0].message
+    
+    self.nameTextField.placeholder = viewModel.cells?.cells[1].message
+    self.nameTextField.title = viewModel.cells?.cells[1].message
+    
+    self.emailTextField.placeholder = viewModel.cells?.cells[2].message
+    self.emailTextField.title = viewModel.cells?.cells[2].message
+    
+    self.phoneTextField.placeholder = viewModel.cells?.cells[3].message
+    self.phoneTextField.title = viewModel.cells?.cells[3].message
+    
+
   }
+  
+  @IBAction func sendButtonAction(_ sender: Any) {
+    
+    
+    
+  }
+  
+  
+  
 }

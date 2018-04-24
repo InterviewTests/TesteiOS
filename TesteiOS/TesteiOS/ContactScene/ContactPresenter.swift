@@ -12,20 +12,17 @@
 
 import UIKit
 
-protocol ContactPresentationLogic
-{
-  func presentSomething(response: Contact.Something.Response)
+protocol ContactPresentationLogic {
+  func presentSomething(response: Contact.Response)
 }
 
-class ContactPresenter: ContactPresentationLogic
-{
+class ContactPresenter: ContactPresentationLogic {
   weak var viewController: ContactDisplayLogic?
   
   // MARK: Do something
   
-  func presentSomething(response: Contact.Something.Response)
-  {
-    let viewModel = Contact.Something.ViewModel()
+  func presentSomething(response: Contact.Response) {
+    let viewModel = Contact.ViewModel(cells: response.cells)
     viewController?.displaySomething(viewModel: viewModel)
   }
 }

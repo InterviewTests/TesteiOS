@@ -14,18 +14,16 @@ import UIKit
 
 enum Contact
 {
-  // MARK: Use cases
-  
-  enum Something
-  {
     struct Request
     {
+      let cells : Cells?
     }
     struct Response
     {
+      let cells : Cells?
     }
     struct ViewModel
     {
+      let cells : Cells?
     }
-  }
 }

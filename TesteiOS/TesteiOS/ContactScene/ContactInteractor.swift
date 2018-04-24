@@ -11,10 +11,11 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol ContactBusinessLogic
 {
-  func doSomething(request: Contact.Something.Request)
+  func doSomething(request: Contact.Request)
 }
 
 protocol ContactDataStore
@@ -26,16 +27,26 @@ class ContactInteractor: ContactBusinessLogic, ContactDataStore
 {
   var presenter: ContactPresentationLogic?
   var worker: ContactWorker?
+  
+  let disposeBag = DisposeBag()
   //var name: String = ""
   
   // MARK: Do something
   
-  func doSomething(request: Contact.Something.Request)
+  func doSomething(request: Contact.Request)
   {
     worker = ContactWorker()
     worker?.doSomeWork()
     
-    let response = Contact.Something.Response()
-    presenter?.presentSomething(response: response)
+    CellManager.getCells().subscribe(onNext: { (cells) in
+      let response = Contact.Response(cells: cells)
+      self.presenter?.presentSomething(response: response)
+    }, onError: { (error) in
+      print(error)
+    }, onCompleted: {
+      print("Completed")
+    }).disposed(by: disposeBag)
+    
+   
   }
 }
