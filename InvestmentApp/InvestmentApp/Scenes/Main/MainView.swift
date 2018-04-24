@@ -15,6 +15,8 @@ class MainView: UIView, ViewConfigurationProtocol {
         return investementView
     }()
     
+    var segmentedControl = SegmentedControl(items: ["Investimento", "Contato"])
+    
     init() {
         super.init(frame: CGRect.zero)
         setupView()
@@ -42,11 +44,19 @@ extension MainView {
         self.backgroundColor = UIColor.white
         
         addSubview(investementView)
+        addSubview(segmentedControl)
     }
     
     func setupLayout() {
         investementView.snp.makeConstraints { (make) in
-            make.top.left.right.bottom.equalTo(0)
+            make.top.left.right.equalTo(0)
+            make.bottom.equalTo(segmentedControl.snp.top)
+        }
+        
+        segmentedControl.snp.makeConstraints { (make) in
+            make.bottom.equalTo(0)
+            make.left.right.equalTo(0)
+            make.height.equalTo(55)
         }
     }
     
