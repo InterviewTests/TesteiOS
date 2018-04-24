@@ -36,7 +36,8 @@ extension MainView {
     func setup(littleTitle: String, title: String, descriptionTitle: String, descriptionText: String, risk: String, riskSelected: Int, info: String) {
         
         investementView.setup(littleTitle: littleTitle, title: title, descriptionTitle: descriptionTitle, descriptionText: descriptionText, risk: risk, riskSelected: riskSelected, info: info)
-    
+        
+        segmentedControl.delegate = self
         setupView()
     }
     
@@ -63,6 +64,16 @@ extension MainView {
     func updateTable() {
         investementView.tableView.snp.makeConstraints { (make) in
             make.height.equalTo(investementView.tableView.contentSize.height)
+        }
+    }
+}
+
+extension MainView: SegmentedControlDelegate {
+    func didChangeTab(index: Int) {
+        if index == 0 {
+            investementView.isHidden = false
+        } else {
+            investementView.isHidden = true
         }
     }
 }
