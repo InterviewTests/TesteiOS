@@ -15,6 +15,12 @@ class MainView: UIView, ViewConfigurationProtocol {
         return investementView
     }()
     
+    lazy var contactView: ContactView = {
+        let contactView = ContactView()
+        contactView.isHidden = true
+        return contactView
+    }()
+    
     var segmentedControl = SegmentedControl(items: ["Investimento", "Contato"])
     
     init() {
@@ -45,11 +51,17 @@ extension MainView {
         self.backgroundColor = UIColor.white
         
         addSubview(investementView)
+        addSubview(contactView)
         addSubview(segmentedControl)
     }
     
     func setupLayout() {
         investementView.snp.makeConstraints { (make) in
+            make.top.left.right.equalTo(0)
+            make.bottom.equalTo(segmentedControl.snp.top)
+        }
+        
+        contactView.snp.makeConstraints { (make) in
             make.top.left.right.equalTo(0)
             make.bottom.equalTo(segmentedControl.snp.top)
         }
@@ -65,6 +77,10 @@ extension MainView {
         investementView.tableView.snp.makeConstraints { (make) in
             make.height.equalTo(investementView.tableView.contentSize.height)
         }
+        
+        contactView.tableView.snp.makeConstraints { (make) in
+            make.height.equalTo(contactView.tableView.contentSize.height + 20)
+        }
     }
 }
 
@@ -72,8 +88,12 @@ extension MainView: SegmentedControlDelegate {
     func didChangeTab(index: Int) {
         if index == 0 {
             investementView.isHidden = false
+            contactView.isHidden = true
+            //self.title = "Investimento"
         } else {
             investementView.isHidden = true
+            contactView.isHidden = false
+            //self.title = "Contato"
         }
     }
 }

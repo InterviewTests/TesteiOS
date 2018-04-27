@@ -219,12 +219,6 @@ extension InvestmentView {
             make.bottom.equalTo(containerView.snp.bottom).offset(-20)
         }
     }
-    
-    func updateTable() {
-        tableView.snp.makeConstraints { (make) in
-            make.height.equalTo(tableView.contentSize.height)
-        }
-    }
 }
 
 extension InvestmentView {

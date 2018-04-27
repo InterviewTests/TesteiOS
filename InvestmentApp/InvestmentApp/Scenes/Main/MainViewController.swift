@@ -16,12 +16,21 @@ protocol MainViewControllerInput: class {
 protocol MainInfoProtocol {
     func sections() -> [TableSectionable]
     func itemsInfoSections() -> [TableSectionable]
+    
+    func contactSections() -> [TableSectionable]
+    func contactInfoSections() -> [TableSectionable]
 }
 
 extension MainInfoProtocol {
     func sections() -> [TableSectionable] {
         var sections: [TableSectionable] = []
         sections.append(contentsOf: itemsInfoSections())
+        return sections
+    }
+    
+    func contactSections() -> [TableSectionable] {
+        var sections: [TableSectionable] = []
+        sections.append(contentsOf: contactInfoSections())
         return sections
     }
 }
@@ -35,6 +44,7 @@ class MainViewController: UIViewController {
     var router: MainRouter?
     
     var datasource: TableViewSectionableDataSourceDelegate?
+    var contactDatasource: TableViewSectionableDataSourceDelegate?
     
     init(interactor: MainInteractor = MainInteractor(), presenter: MainPresenter = MainPresenter(), router: MainRouter = MainRouter()) {
         self.mainView = MainView()
@@ -96,6 +106,11 @@ class MainViewController: UIViewController {
         mainView?.investementView.tableView.dataSource = datasource
         mainView?.investementView.tableView.reloadData()
         
+        contactDatasource = TableViewSectionableDataSourceDelegate(sections: contactInfoSections())
+        mainView?.contactView.tableView.delegate = contactDatasource
+        mainView?.contactView.tableView.dataSource = contactDatasource
+        mainView?.contactView.tableView.reloadData()
+        
         mainView?.updateTable()
     }
     
@@ -142,6 +157,22 @@ extension MainViewController: FormInfoProtocol {
             fatalError("YieldBuilder, DescriptionItemsBuilder amd DescriptionWithDownloadItemsBuilder must be provided")
         }
         return [yieldBuilder.build(), descriptionItemsBuilder.build(), descriptionWithDownloadItemsBuilder.build()]
+    }
+    
+    func contactInfoSections() -> [TableSectionable] {
+        let cells = [
+            CellModel(id: 1, type: .field, message: "Nome Completo", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true),
+            CellModel(id: 2, type: .field, message: "Email", typefield: .email, hidden: false, topSpacing: 18.0, show: nil, required: true),
+            CellModel(id: 3, type: .field, message: "Telefone", typefield: .telNumber, hidden: false, topSpacing: 18.0, show: nil, required: true),
+            CellModel(id: 4, type: .checkbox, message: "Gostaria de cadastrar meu email", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true),
+            CellModel(id: 5, type: .send, message: "Enviar", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true)
+        ]
+        if let tableView = mainView?.contactView.tableView {
+            let cellsBuilder = FormCellBuilder(items: cells, tableView: tableView)
+            cellsBuilder.registerCell()
+            return [cellsBuilder.build()]
+        }
+        fatalError("Must implement a tableView for the builder")
     }
 }
 
