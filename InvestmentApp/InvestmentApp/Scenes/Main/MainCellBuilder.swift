@@ -47,7 +47,7 @@ class MainCellBuilder: TableViewCellBuilder {
     }
     
     func estimatedCellHeight(indexPath: IndexPath) -> CGFloat {
-        return 56.0
+        return 34.0
     }
     
     func cellAt(indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {

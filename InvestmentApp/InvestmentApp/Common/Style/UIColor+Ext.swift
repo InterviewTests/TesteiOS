@@ -85,4 +85,13 @@ extension UIColor {
     static var riskRed: UIColor {
         return #colorLiteral(red: 1, green: 0.2117647059, blue: 0.2039215686, alpha: 1)
     }
+    
+    static var tableSeparatorGray: UIColor {
+        return #colorLiteral(red: 0.6862745098, green: 0.662745098, blue: 0.6392156863, alpha: 1)
+    }
+    
+    static var segmentedRed: UIColor {
+        return #colorLiteral(red: 0.8549019608, green: 0.003921568627, blue: 0.003921568627, alpha: 1)
+    }
+    
 }

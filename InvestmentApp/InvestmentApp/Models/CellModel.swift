@@ -50,4 +50,15 @@ struct CellModel: Codable {
         show = try values.decode(Int?.self, forKey: .show)
         required = try values.decode(Bool.self, forKey: .required)
     }
+    
+    init(id: Int, type: CellType, message: String, typefield: TypeField?, hidden: Bool, topSpacing: Float, show: Int?, required: Bool) {
+        self.id = id
+        self.type = type
+        self.message = message
+        self.typefield = typefield
+        self.hidden = hidden
+        self.topSpacing = topSpacing
+        self.show = show
+        self.required = required
+    }
 }

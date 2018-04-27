@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum ScreenType {
+    case contact
+    case investiment
+}
+
 protocol MainViewControllerInput: class {
     func displayFunds(viewModel: MainViewModel)
     func displayError(status: ViewStatus<ButtonAction>)
@@ -16,12 +21,21 @@ protocol MainViewControllerInput: class {
 protocol MainInfoProtocol {
     func sections() -> [TableSectionable]
     func itemsInfoSections() -> [TableSectionable]
+    
+    func contactSections() -> [TableSectionable]
+    func contactInfoSections() -> [TableSectionable]
 }
 
 extension MainInfoProtocol {
     func sections() -> [TableSectionable] {
         var sections: [TableSectionable] = []
         sections.append(contentsOf: itemsInfoSections())
+        return sections
+    }
+    
+    func contactSections() -> [TableSectionable] {
+        var sections: [TableSectionable] = []
+        sections.append(contentsOf: contactInfoSections())
         return sections
     }
 }
@@ -35,6 +49,7 @@ class MainViewController: UIViewController {
     var router: MainRouter?
     
     var datasource: TableViewSectionableDataSourceDelegate?
+    var contactDatasource: TableViewSectionableDataSourceDelegate?
     
     init(interactor: MainInteractor = MainInteractor(), presenter: MainPresenter = MainPresenter(), router: MainRouter = MainRouter()) {
         self.mainView = MainView()
@@ -48,6 +63,7 @@ class MainViewController: UIViewController {
         viewController.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = viewController
+        self.mainView?.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -92,9 +108,16 @@ class MainViewController: UIViewController {
     private func setupDatasource() {
         yieldBuilder?.registerCell()
         datasource = TableViewSectionableDataSourceDelegate(sections: sections())
-        mainView?.tableView.delegate = datasource
-        mainView?.tableView.dataSource = datasource
-        mainView?.tableView.reloadData()
+        mainView?.investementView.tableView.delegate = datasource
+        mainView?.investementView.tableView.dataSource = datasource
+        mainView?.investementView.tableView.reloadData()
+        
+        contactDatasource = TableViewSectionableDataSourceDelegate(sections: contactInfoSections())
+        mainView?.contactView.tableView.delegate = contactDatasource
+        mainView?.contactView.tableView.dataSource = contactDatasource
+        mainView?.contactView.tableView.reloadData()
+        
+        mainView?.updateTable()
     }
     
     func fetchForm() {
@@ -121,7 +144,7 @@ extension MainViewController: MainViewControllerInput {
     func displayFunds(viewModel: MainViewModel) {
         ProgressView.shared.hideProgressView()
         self.mainView?.setup(littleTitle: viewModel.fund.title, title: viewModel.fund.fundName, descriptionTitle: viewModel.fund.whatIs, descriptionText: viewModel.fund.definition, risk: viewModel.fund.riskTitle, riskSelected: viewModel.fund.risk, info: viewModel.fund.infoTitle)
-        guard let tableView = self.mainView?.tableView else {
+        guard let tableView = self.mainView?.investementView.tableView else {
             fatalError("Cells and tableView must be provided")
         }
         
@@ -141,10 +164,43 @@ extension MainViewController: FormInfoProtocol {
         }
         return [yieldBuilder.build(), descriptionItemsBuilder.build(), descriptionWithDownloadItemsBuilder.build()]
     }
+    
+    func contactInfoSections() -> [TableSectionable] {
+        let cells = [
+            CellModel(id: 1, type: .field, message: "Nome Completo", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true),
+            CellModel(id: 2, type: .field, message: "Email", typefield: .email, hidden: false, topSpacing: 18.0, show: nil, required: true),
+            CellModel(id: 3, type: .field, message: "Telefone", typefield: .telNumber, hidden: false, topSpacing: 18.0, show: nil, required: true),
+            CellModel(id: 4, type: .checkbox, message: "Gostaria de cadastrar meu email", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true),
+            CellModel(id: 5, type: .send, message: "Enviar", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true)
+        ]
+        if let tableView = mainView?.contactView.tableView {
+            let cellsBuilder = FormCellBuilder(items: cells, tableView: tableView)
+            cellsBuilder.registerCell()
+            cellsBuilder.delegate = self
+            return [cellsBuilder.build()]
+        }
+        fatalError("Must implement a tableView for the builder")
+    }
 }
 
 extension MainViewController: MainCellBuilderProtocol {
     func didClickOnButton() {
         router?.routerToSafari()
+    }
+}
+
+extension MainViewController: FormCellBuilderProtocol {
+    func didClickButton() {
+        self.mainView?.contactView.setupStatus(status: .success)
+    }
+}
+
+extension MainViewController: MainViewProtocol {
+    func didChangeTab(type: ScreenType) {
+        if type == .contact {
+            self.title = "Contato"
+        } else {
+            self.title = "Investimento"
+        }
     }
 }

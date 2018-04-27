@@ -88,6 +88,19 @@ final class MainViewControllerSpec: QuickSpec {
                     expect(UIWindow.testWindow) == snapshot("test_view_for_request_error")
                 }
                 
+                it("should have the expected layout when is in contact") {
+                    sut.displayFunds(viewModel: MainViewModel(fund: fundMock))
+                    sut.mainView?.didChangeTab(index: 1)
+                    expect(UIWindow.testWindow) == snapshot("test_view_for_contact")
+                }
+                
+                it("should have the expected layout when is in contact and send a message") {
+                    sut.displayFunds(viewModel: MainViewModel(fund: fundMock))
+                    sut.mainView?.didChangeTab(index: 1)
+                    sut.didClickButton()
+                    expect(UIWindow.testWindow) == snapshot("test_view_for_contact_send_message")
+                }
+                
                 it("should call routerToSafari") {
                     sut.didClickOnButton()
                     expect(router.routerToSafariCalled).to(beTruthy())

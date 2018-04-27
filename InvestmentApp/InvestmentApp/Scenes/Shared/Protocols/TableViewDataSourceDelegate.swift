@@ -19,6 +19,9 @@ protocol TableSectionable {
                           in tableView: UITableView) -> UITableViewCell
     func headerView() -> UIView?
     func headerViewHeight() -> CGFloat
+    
+    func footerView() -> UIView?
+    func footerViewHeight() -> CGFloat
 }
 
 class BaseSection: TableSectionable {
@@ -47,6 +50,14 @@ class BaseSection: TableSectionable {
     func headerViewHeight() -> CGFloat {
         return 0
     }
+    
+    func footerView() -> UIView? {
+        return nil
+    }
+    
+    func footerViewHeight() -> CGFloat {
+        return 0.0
+    }
 }
 
 class SectionWithFooter: TableSectionable {
@@ -74,6 +85,16 @@ class SectionWithFooter: TableSectionable {
     
     func headerViewHeight() -> CGFloat {
         return 0
+    }
+    
+    func footerView() -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 1))
+        view.backgroundColor = UIColor.tableSeparatorGray
+        return view
+    }
+    
+    func footerViewHeight() -> CGFloat {
+        return 1.0
     }
 }
 
@@ -121,5 +142,15 @@ class TableViewSectionableDataSourceDelegate: NSObject, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didSelectRowAt(indexPath: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let sectionObj = sections[section]
+        return sectionObj.footerView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        let sectionObj = sections[section]
+        return sectionObj.footerViewHeight()
     }
 }

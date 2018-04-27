@@ -9,98 +9,25 @@
 import UIKit
 import SnapKit
 
+protocol MainViewProtocol: class {
+    func didChangeTab(type: ScreenType)
+}
+
 class MainView: UIView, ViewConfigurationProtocol {
-    lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        return scrollView
+    weak var delegate: MainViewProtocol?
+    
+    lazy var investementView: InvestmentView = {
+        let investementView = InvestmentView()
+        return investementView
     }()
     
-    lazy var containerView: UIView = {
-        let view = UIView()
-        return view
+    lazy var contactView: ContactView = {
+        let contactView = ContactView()
+        contactView.isHidden = true
+        return contactView
     }()
     
-    lazy var littleTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.mainLightGray
-        label.font = UIFont.regularFont(of: 14.0)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
-    }()
-    
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.black
-        label.font = UIFont.regularFont(of: 28.0)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
-    }()
-    
-    lazy var separatorImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "separator")
-        imageView.isHidden = true
-        return imageView
-    }()
-    
-    lazy var descriptionTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.mainLightGray
-        label.font = UIFont.regularFont(of: 16.0)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
-    }()
-    
-    lazy var descriptionTextLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.mainLightGray
-        label.font = UIFont.regularFont(of: 16.0)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
-    }()
-    
-    lazy var riskTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.mainLightGray
-        label.font = UIFont.regularFont(of: 16.0)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
-    }()
-    
-    lazy var riskView: RiskView = {
-        let riskView = RiskView(numberOfItems: 5, selectedItem: 4, colorOfItems: [UIColor.riskGreen, UIColor.riskDarkGreen, UIColor.riskYellow, UIColor.riskOrange, UIColor.riskRed])
-        riskView.isHidden = true
-        return riskView
-    }()
-    
-    lazy var infoTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.mainLightGray
-        label.font = UIFont.regularFont(of: 16.0)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
-    }()
-    
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor.white
-        tableView.estimatedRowHeight = 56.0
-        tableView.rowHeight = UITableViewAutomaticDimension
-        return tableView
-    }()
-    
-    lazy var investirButton: Button = {
-        let button = Button()
-        button.setTitle("Investir", for: .normal)
-        return button
-    }()
+    var segmentedControl = SegmentedControl(items: ["Investimento", "Contato"])
     
     init() {
         super.init(frame: CGRect.zero)
@@ -119,114 +46,60 @@ class MainView: UIView, ViewConfigurationProtocol {
 
 extension MainView {
     func setup(littleTitle: String, title: String, descriptionTitle: String, descriptionText: String, risk: String, riskSelected: Int, info: String) {
-        littleTitleLabel.text = littleTitle
-        titleLabel.text = title
-        descriptionTitleLabel.text = descriptionTitle
-        descriptionTextLabel.text = descriptionText
-        riskTitleLabel.text = risk
-        infoTitleLabel.text = info
-        updateRisk(selectedItem: riskSelected)
-        separatorImageView.isHidden = false
+        
+        investementView.setup(littleTitle: littleTitle, title: title, descriptionTitle: descriptionTitle, descriptionText: descriptionText, risk: risk, riskSelected: riskSelected, info: info)
+        
+        segmentedControl.delegate = self
         setupView()
     }
     
     func setupItems() {
         self.backgroundColor = UIColor.white
         
-        addSubview(scrollView)
-        scrollView.addSubview(containerView)
-        containerView.addSubview(littleTitleLabel)
-        containerView.addSubview(titleLabel)
-        containerView.addSubview(separatorImageView)
-        containerView.addSubview(descriptionTitleLabel)
-        containerView.addSubview(descriptionTextLabel)
-        containerView.addSubview(riskTitleLabel)
-        containerView.addSubview(riskView)
-        containerView.addSubview(infoTitleLabel)
-        containerView.addSubview(tableView)
-        containerView.addSubview(investirButton)
+        addSubview(investementView)
+        addSubview(contactView)
+        addSubview(segmentedControl)
     }
     
     func setupLayout() {
-        scrollView.snp.makeConstraints { (make) in
-            make.top.left.right.bottom.equalTo(0)
+        investementView.snp.makeConstraints { (make) in
+            make.top.left.right.equalTo(0)
+            make.bottom.equalTo(segmentedControl.snp.top)
         }
         
-        containerView.snp.makeConstraints { (make) in
-            make.edges.equalTo(scrollView)
-            make.width.equalTo(scrollView.snp.width)
-            make.height.equalTo(scrollView.snp.height).priority(250)
+        contactView.snp.makeConstraints { (make) in
+            make.top.left.right.equalTo(0)
+            make.bottom.equalTo(segmentedControl.snp.top)
         }
         
-        littleTitleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(containerView.snp.top).offset(16)
-            make.left.equalTo(16)
-            make.right.equalTo(-16)
+        segmentedControl.snp.makeConstraints { (make) in
+            make.bottom.equalTo(0)
+            make.left.right.equalTo(0)
+            make.height.equalTo(55)
+        }
+    }
+    
+    func updateTable() {
+        investementView.tableView.snp.makeConstraints { (make) in
+            make.height.equalTo(investementView.tableView.contentSize.height)
         }
         
-        titleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(littleTitleLabel.snp.bottom).offset(8)
-            make.left.equalTo(16)
-            make.right.equalTo(-16)
-        }
-        
-        separatorImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(titleLabel.snp.bottom).offset(16)
-            make.left.equalTo(16)
-            make.right.equalTo(-16)
-        }
-        
-        descriptionTitleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(separatorImageView.snp.bottom).offset(8)
-            make.left.equalTo(16)
-            make.right.equalTo(-16)
-        }
-        
-        descriptionTextLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(descriptionTitleLabel.snp.bottom).offset(4)
-            make.left.equalTo(16)
-            make.right.equalTo(-16)
-        }
-        
-        riskTitleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(descriptionTextLabel.snp.bottom).offset(32)
-            make.left.equalTo(16)
-            make.right.equalTo(-16)
-        }
-        
-        riskView.snp.makeConstraints { (make) in
-            make.top.equalTo(riskTitleLabel.snp.bottom).offset(32)
-            make.left.equalTo(8)
-            make.right.equalTo(-8)
-        }
-        
-        infoTitleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(riskView.snp.bottom).offset(72)
-            make.left.equalTo(16)
-            make.right.equalTo(-16)
-        }
-        
-        tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(infoTitleLabel.snp.bottom).offset(32)
-            make.left.equalTo(16)
-            make.right.equalTo(-16)
-            make.height.equalTo(600)
-        }
-        
-        investirButton.snp.makeConstraints { (make) in
-            make.top.equalTo(tableView.snp.bottom).offset(32)
-            make.left.equalTo(16)
-            make.right.equalTo(-16)
-            make.height.equalTo(50)
-            make.bottom.equalTo(containerView.snp.bottom).offset(-20)
+        contactView.tableView.snp.makeConstraints { (make) in
+            make.height.equalTo(contactView.tableView.contentSize.height + 40)
         }
     }
 }
 
-extension MainView {
-    func updateRisk(selectedItem: Int) {
-        self.riskView = RiskView(numberOfItems: 5, selectedItem: selectedItem, colorOfItems: [UIColor.riskGreen, UIColor.riskDarkGreen, UIColor.riskYellow, UIColor.riskOrange, UIColor.riskRed])
-        self.riskView.isHidden = false
+extension MainView: SegmentedControlDelegate {
+    func didChangeTab(index: Int) {
+        if index == 0 {
+            investementView.isHidden = false
+            contactView.isHidden = true
+            delegate?.didChangeTab(type: .investiment)
+        } else {
+            investementView.isHidden = true
+            contactView.isHidden = false
+            delegate?.didChangeTab(type: .contact)
+        }
     }
 }
-

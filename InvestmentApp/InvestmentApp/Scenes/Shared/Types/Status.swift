@@ -13,4 +13,5 @@ enum ViewStatus<ButtonAction> {
     case success
     case requestError(ButtonAction)
     case loading
+    case ready
 }
