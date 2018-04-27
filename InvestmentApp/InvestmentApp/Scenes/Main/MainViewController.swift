@@ -176,6 +176,7 @@ extension MainViewController: FormInfoProtocol {
         if let tableView = mainView?.contactView.tableView {
             let cellsBuilder = FormCellBuilder(items: cells, tableView: tableView)
             cellsBuilder.registerCell()
+            cellsBuilder.delegate = self
             return [cellsBuilder.build()]
         }
         fatalError("Must implement a tableView for the builder")
@@ -185,6 +186,12 @@ extension MainViewController: FormInfoProtocol {
 extension MainViewController: MainCellBuilderProtocol {
     func didClickOnButton() {
         router?.routerToSafari()
+    }
+}
+
+extension MainViewController: FormCellBuilderProtocol {
+    func didClickButton() {
+        self.mainView?.contactView.setupStatus(status: .success)
     }
 }
 

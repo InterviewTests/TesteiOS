@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FormCellBuilderProtocol: class {
-    func didClickOnButton()
+    func didClickButton()
 }
 
 class FormCellBuilder: TableViewCellBuilder {
@@ -77,7 +77,7 @@ class FormCellBuilder: TableViewCellBuilder {
                 fatalError("Must be provide a ButtonCell")
             }
             cell.setup(title: item.message, topSpacing: CGFloat(item.topSpacing), buttonAction: {
-                self.delegate?.didClickOnButton()
+                self.delegate?.didClickButton()
             })
             
             return cell

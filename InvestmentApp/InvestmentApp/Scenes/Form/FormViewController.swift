@@ -133,7 +133,7 @@ extension FormViewController: TableViewSectionableDelegate {
 }
 
 extension FormViewController: FormCellBuilderProtocol {
-    func didClickOnButton() {
+    func didClickButton() {
         router?.routerToMain()
     }
 }

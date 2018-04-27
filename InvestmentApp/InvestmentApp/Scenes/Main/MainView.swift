@@ -85,7 +85,7 @@ extension MainView {
         }
         
         contactView.tableView.snp.makeConstraints { (make) in
-            make.height.equalTo(contactView.tableView.contentSize.height + 20)
+            make.height.equalTo(contactView.tableView.contentSize.height + 40)
         }
     }
 }

@@ -88,7 +88,7 @@ final class FormViewControllerSpec: QuickSpec {
                 }
                 
                 it("should call routerToMain") {
-                    sut.didClickOnButton()
+                    sut.didClickButton()
                     expect(router.routerToMainCalled).to(beTruthy())
                 }
             }
