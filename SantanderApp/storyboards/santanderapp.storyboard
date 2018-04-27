@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Santander Customer View Controller-->
+        <scene sceneID="UEb-in-LAA">
+            <objects>
+                <viewController storyboardIdentifier="SantanderCustomerViewController" id="dCJ-Lh-dRA" customClass="SantanderCustomerViewController" customModule="SantanderApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="L0f-bl-0Lm" customClass="SantanderSignupView" customModule="SantanderApp" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CTB-pr-T40">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ujj-fH-Rj1" customClass="SantanderSignupStackView" customModule="SantanderApp" customModuleProvider="target">
+                                        <rect key="frame" x="54" y="92" width="267" height="321"/>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUK-dC-6vd">
+                                        <rect key="frame" x="27" y="543" width="321" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="328" id="HeH-dv-vH4"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="aJ4-ED-WMx"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="Botão send"/>
+                                        <connections>
+                                            <action selector="sendButton:" destination="1In-4X-2UV" eventType="touchUpInside" id="RsX-Vc-R1P"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZ9-rv-NCN">
+                                        <rect key="frame" x="42" y="497" width="21" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="21" id="JmK-ZM-G4n"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="signup"/>
+                                        <connections>
+                                            <action selector="didTouchSignup:" destination="L0f-bl-0Lm" eventType="touchUpInside" id="5l3-aK-hkm"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Bq-Xy-LpW">
+                                        <rect key="frame" x="71" y="497" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="AUK-dC-6vd" secondAttribute="trailing" constant="27" id="0Yd-1d-ixl"/>
+                                    <constraint firstAttribute="bottom" secondItem="AUK-dC-6vd" secondAttribute="bottom" constant="74" id="BPH-20-CdC"/>
+                                    <constraint firstItem="ujj-fH-Rj1" firstAttribute="centerX" secondItem="AUK-dC-6vd" secondAttribute="centerX" id="MbC-1D-sZY"/>
+                                    <constraint firstItem="8Bq-Xy-LpW" firstAttribute="leading" secondItem="wZ9-rv-NCN" secondAttribute="trailing" constant="8" id="P04-Kx-Vc9"/>
+                                    <constraint firstItem="ujj-fH-Rj1" firstAttribute="top" secondItem="CTB-pr-T40" secondAttribute="top" constant="92" id="Pu1-Im-1Sq"/>
+                                    <constraint firstItem="wZ9-rv-NCN" firstAttribute="leading" secondItem="CTB-pr-T40" secondAttribute="leading" constant="42" id="RRe-uY-kDZ"/>
+                                    <constraint firstItem="wZ9-rv-NCN" firstAttribute="top" secondItem="ujj-fH-Rj1" secondAttribute="bottom" constant="84" id="RVC-Z1-Z1Z"/>
+                                    <constraint firstItem="AUK-dC-6vd" firstAttribute="top" secondItem="8Bq-Xy-LpW" secondAttribute="bottom" constant="25" id="SLS-PR-qDz"/>
+                                    <constraint firstItem="wZ9-rv-NCN" firstAttribute="top" secondItem="8Bq-Xy-LpW" secondAttribute="top" id="SWu-aj-wBM"/>
+                                    <constraint firstItem="AUK-dC-6vd" firstAttribute="leading" secondItem="CTB-pr-T40" secondAttribute="leading" constant="27" id="Upz-GY-vTy"/>
+                                    <constraint firstItem="ujj-fH-Rj1" firstAttribute="leading" secondItem="CTB-pr-T40" secondAttribute="leading" constant="54" id="l1a-A2-4aQ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CTB-pr-T40" firstAttribute="top" secondItem="L0f-bl-0Lm" secondAttribute="top" id="0Sq-2e-H1h"/>
+                            <constraint firstAttribute="trailing" secondItem="CTB-pr-T40" secondAttribute="trailing" id="MLs-AQ-hm5"/>
+                            <constraint firstItem="CTB-pr-T40" firstAttribute="bottom" secondItem="xQj-4d-eWM" secondAttribute="bottom" id="SdZ-c2-YnV"/>
+                            <constraint firstItem="CTB-pr-T40" firstAttribute="leading" secondItem="L0f-bl-0Lm" secondAttribute="leading" id="lZ5-7l-NqT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xQj-4d-eWM"/>
+                        <connections>
+                            <outlet property="signupButton" destination="wZ9-rv-NCN" id="RxP-KV-SGf"/>
+                            <outlet property="signupMessage" destination="8Bq-Xy-LpW" id="k1Q-rd-Wmv"/>
+                            <outlet property="stackView" destination="ujj-fH-Rj1" id="iz7-wa-tLc"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="stSignView" destination="L0f-bl-0Lm" id="ekh-1Z-wPr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SeV-Uq-tui" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="1In-4X-2UV" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-28" y="48.125937031484263"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Botão send" width="315" height="50"/>
+        <image name="signup" width="19" height="19"/>
+    </resources>
+</document>
