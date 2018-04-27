@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum ScreenType {
+    case contact
+    case investiment
+}
+
 protocol MainViewControllerInput: class {
     func displayFunds(viewModel: MainViewModel)
     func displayError(status: ViewStatus<ButtonAction>)
@@ -58,6 +63,7 @@ class MainViewController: UIViewController {
         viewController.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = viewController
+        self.mainView?.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -179,5 +185,15 @@ extension MainViewController: FormInfoProtocol {
 extension MainViewController: MainCellBuilderProtocol {
     func didClickOnButton() {
         router?.routerToSafari()
+    }
+}
+
+extension MainViewController: MainViewProtocol {
+    func didChangeTab(type: ScreenType) {
+        if type == .contact {
+            self.title = "Contato"
+        } else {
+            self.title = "Investimento"
+        }
     }
 }

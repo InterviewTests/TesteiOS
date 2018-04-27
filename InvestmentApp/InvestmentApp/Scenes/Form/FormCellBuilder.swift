@@ -96,6 +96,6 @@ class FormCellBuilder: TableViewCellBuilder {
     }
     
     func didSelectItemAt(indexPath: IndexPath) {
-        //delegate?.didSelectItemAt(indexPath)
+
     }
 }

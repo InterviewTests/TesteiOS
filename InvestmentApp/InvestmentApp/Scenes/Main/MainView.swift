@@ -9,7 +9,13 @@
 import UIKit
 import SnapKit
 
+protocol MainViewProtocol: class {
+    func didChangeTab(type: ScreenType)
+}
+
 class MainView: UIView, ViewConfigurationProtocol {
+    weak var delegate: MainViewProtocol?
+    
     lazy var investementView: InvestmentView = {
         let investementView = InvestmentView()
         return investementView
@@ -89,11 +95,11 @@ extension MainView: SegmentedControlDelegate {
         if index == 0 {
             investementView.isHidden = false
             contactView.isHidden = true
-            //self.title = "Investimento"
+            delegate?.didChangeTab(type: .investiment)
         } else {
             investementView.isHidden = true
             contactView.isHidden = false
-            //self.title = "Contato"
+            delegate?.didChangeTab(type: .contact)
         }
     }
 }
