@@ -16,6 +16,7 @@ class SantanderSignupView: UIView {
     
     @IBOutlet weak var signupMessage: UILabel!
     
+    @IBOutlet weak var buttonSend: UIButton!
     var signed : Bool = false
 
     func stackViewAdd(uiView: UIView){
