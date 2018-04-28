@@ -10,6 +10,7 @@ target 'SantanderApp' do
   pod 'Gloss', '~> 2.0'
   pod 'ObjectMapper'
   pod 'SwiftyJSON'
+  pod 'SnapKit'
   pod 'SwiftValidators'
   target 'SantanderAppTests' do
     inherit! :search_paths
