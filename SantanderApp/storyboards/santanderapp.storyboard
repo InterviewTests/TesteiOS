@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -53,19 +54,50 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3n-1p-aDb">
+                                        <rect key="frame" x="0.0" y="610" width="375" height="57"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4z-ZE-IFI">
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="57"/>
+                                                <state key="normal" title="Investimento" backgroundImage="Rectangle-1"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yJp-KU-Uzc">
+                                                <rect key="frame" x="187" y="0.0" width="187.5" height="57"/>
+                                                <state key="normal" title="Contato" backgroundImage="Rectangle-1"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="c4z-ZE-IFI" firstAttribute="leading" secondItem="q3n-1p-aDb" secondAttribute="leading" id="6Om-XZ-7ol"/>
+                                            <constraint firstItem="yJp-KU-Uzc" firstAttribute="top" secondItem="q3n-1p-aDb" secondAttribute="top" id="E4P-OG-x6M"/>
+                                            <constraint firstAttribute="trailing" secondItem="yJp-KU-Uzc" secondAttribute="trailing" id="K8T-nW-Sa3"/>
+                                            <constraint firstItem="c4z-ZE-IFI" firstAttribute="top" secondItem="q3n-1p-aDb" secondAttribute="top" id="KBi-M2-knB"/>
+                                            <constraint firstAttribute="bottom" secondItem="yJp-KU-Uzc" secondAttribute="bottom" id="Tky-ib-3sx"/>
+                                            <constraint firstItem="yJp-KU-Uzc" firstAttribute="width" secondItem="q3n-1p-aDb" secondAttribute="width" multiplier="0.5" id="WKr-tQ-McN"/>
+                                            <constraint firstItem="c4z-ZE-IFI" firstAttribute="width" secondItem="q3n-1p-aDb" secondAttribute="width" multiplier="0.5" id="XbO-9u-DAD"/>
+                                            <constraint firstAttribute="bottom" secondItem="c4z-ZE-IFI" secondAttribute="bottom" id="fwP-Ch-gAK"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="q3n-1p-aDb" firstAttribute="leading" secondItem="CTB-pr-T40" secondAttribute="leading" id="1AG-l6-sBb"/>
+                                    <constraint firstItem="q3n-1p-aDb" firstAttribute="top" secondItem="AUK-dC-6vd" secondAttribute="bottom" constant="17" id="AV6-nN-03p"/>
                                     <constraint firstItem="wZ9-rv-NCN" firstAttribute="leading" secondItem="CTB-pr-T40" secondAttribute="leading" constant="49" id="Bdf-cC-7pf"/>
+                                    <constraint firstItem="q3n-1p-aDb" firstAttribute="leading" secondItem="CTB-pr-T40" secondAttribute="leading" id="Dj9-cA-8hN"/>
                                     <constraint firstAttribute="trailing" secondItem="AUK-dC-6vd" secondAttribute="trailing" constant="27" id="GZH-dn-xuZ"/>
                                     <constraint firstItem="AUK-dC-6vd" firstAttribute="centerX" secondItem="CTB-pr-T40" secondAttribute="centerX" id="Jsd-dn-OMM"/>
                                     <constraint firstItem="8Bq-Xy-LpW" firstAttribute="bottom" secondItem="wZ9-rv-NCN" secondAttribute="bottom" id="Kho-Kr-7ic"/>
+                                    <constraint firstAttribute="bottom" secondItem="q3n-1p-aDb" secondAttribute="bottom" id="WBZ-py-t6l"/>
+                                    <constraint firstAttribute="trailing" secondItem="q3n-1p-aDb" secondAttribute="trailing" id="Ww1-Mc-jQW"/>
                                     <constraint firstItem="AUK-dC-6vd" firstAttribute="top" secondItem="wZ9-rv-NCN" secondAttribute="bottom" constant="23" id="XVD-l9-1Dq"/>
                                     <constraint firstItem="ujj-fH-Rj1" firstAttribute="leading" secondItem="CTB-pr-T40" secondAttribute="leading" constant="54" id="YhN-Nv-7Em"/>
                                     <constraint firstItem="ujj-fH-Rj1" firstAttribute="centerX" secondItem="CTB-pr-T40" secondAttribute="centerX" id="blD-KF-qJS"/>
+                                    <constraint firstAttribute="bottom" secondItem="q3n-1p-aDb" secondAttribute="bottom" id="kg0-rt-Z1r"/>
                                     <constraint firstItem="8Bq-Xy-LpW" firstAttribute="leading" secondItem="wZ9-rv-NCN" secondAttribute="trailing" constant="8" symbolic="YES" id="leU-To-J15"/>
                                     <constraint firstAttribute="bottom" secondItem="AUK-dC-6vd" secondAttribute="bottom" constant="74" id="pc6-03-XhO"/>
                                     <constraint firstItem="ujj-fH-Rj1" firstAttribute="centerY" secondItem="CTB-pr-T40" secondAttribute="centerY" constant="-116.5" id="rXb-bu-9vB"/>
+                                    <constraint firstAttribute="trailing" secondItem="q3n-1p-aDb" secondAttribute="trailing" id="uLo-Zn-RjY"/>
                                     <constraint firstItem="AUK-dC-6vd" firstAttribute="leading" secondItem="CTB-pr-T40" secondAttribute="leading" constant="27" id="vSo-08-NyM"/>
                                     <constraint firstAttribute="trailing" secondItem="ujj-fH-Rj1" secondAttribute="trailing" constant="54" id="xSG-Wr-OPJ"/>
                                     <constraint firstItem="ujj-fH-Rj1" firstAttribute="top" secondItem="CTB-pr-T40" secondAttribute="top" constant="92" id="yBK-GO-L3h"/>
@@ -75,9 +107,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="CTB-pr-T40" firstAttribute="top" secondItem="L0f-bl-0Lm" secondAttribute="top" id="0Sq-2e-H1h"/>
+                            <constraint firstItem="xQj-4d-eWM" firstAttribute="trailing" secondItem="CTB-pr-T40" secondAttribute="trailing" id="D6R-AI-01c"/>
                             <constraint firstAttribute="trailing" secondItem="CTB-pr-T40" secondAttribute="trailing" id="MLs-AQ-hm5"/>
                             <constraint firstItem="CTB-pr-T40" firstAttribute="bottom" secondItem="xQj-4d-eWM" secondAttribute="bottom" id="SdZ-c2-YnV"/>
+                            <constraint firstItem="CTB-pr-T40" firstAttribute="leading" secondItem="xQj-4d-eWM" secondAttribute="leading" id="ULi-77-ZJq"/>
+                            <constraint firstItem="CTB-pr-T40" firstAttribute="bottom" secondItem="xQj-4d-eWM" secondAttribute="bottom" id="WJ3-0c-azj"/>
+                            <constraint firstItem="CTB-pr-T40" firstAttribute="trailing" secondItem="xQj-4d-eWM" secondAttribute="trailing" id="aZT-aT-Udy"/>
                             <constraint firstItem="CTB-pr-T40" firstAttribute="leading" secondItem="L0f-bl-0Lm" secondAttribute="leading" id="lZ5-7l-NqT"/>
+                            <constraint firstItem="CTB-pr-T40" firstAttribute="leading" secondItem="xQj-4d-eWM" secondAttribute="leading" id="obn-6U-kkH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xQj-4d-eWM"/>
                         <connections>
@@ -99,6 +136,7 @@
     </scenes>
     <resources>
         <image name="Botão send" width="315" height="50"/>
+        <image name="Rectangle-1" width="375" height="55"/>
         <image name="signup" width="19" height="19"/>
     </resources>
 </document>
