@@ -30,27 +30,6 @@ class SantanderCustomerViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-   
-    func createPhoneForm(formCell: CellEntity){
-        let santViewCell = SantanderRoute.instanceSantanderPhoneTypeFieldFromNib()
-        santViewCell.label.text = formCell.message! as String
-       self.stSignView.stackViewAdd(uiView: santViewCell) 
-    }
-    
-    func createTextForm(formCell: CellEntity){
-        let santViewCell = SantanderRoute.instanceSantanderTextTypeFieldFromNib()
-        santViewCell.nameLabel.text = formCell.message!
-       self.stSignView.stackViewAdd(uiView: santViewCell)
-    }
-    func createEmailForm(formCell: CellEntity){
-        let santViewCell = SantanderRoute.instanceSantanderEmailTypeFieldFromNib()
-
-        santViewCell.label.text = formCell.message!
-       self.stSignView.stackViewAdd(uiView: santViewCell)
-    }
-    func createCheckBox(checkCell: CellEntity){
-        self.stSignView.signupMessage.text = checkCell.message!
-    }
     
     private func startCellType(){
         let data = (self.cells?.data)!

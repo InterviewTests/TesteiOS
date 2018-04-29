@@ -14,13 +14,6 @@ class SantanderPhoneTextField: UIView {
     @IBOutlet weak var lineStatus: UIImageView!
     @IBOutlet weak var foneTextField: UITextField!
     @IBOutlet weak var label: UILabel!
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
     
     public override func awakeFromNib() {
         self.foneTextField.delegate = self
