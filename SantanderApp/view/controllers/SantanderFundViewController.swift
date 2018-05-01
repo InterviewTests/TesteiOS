@@ -79,8 +79,6 @@ extension SantanderFundViewController: BuilderFundView{
 
 extension SantanderFundViewController: UITableViewDelegate, UITableViewDataSource{
     
-    override func viewDidAppear(_ animated: Bool) {
-    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -105,7 +103,7 @@ extension SantanderFundViewController: UITableViewDelegate, UITableViewDataSourc
         if let dataValue = self.downInfo![indexPath.row].data {
             cell.data.text = dataValue
         }
-        
+        self.santanderFundView.tableViewHeightConstraint.constant += cell.frame.height
         return cell
         
     }

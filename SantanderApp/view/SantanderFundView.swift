@@ -29,6 +29,7 @@ class SantanderFundView: UIView {
     @IBOutlet weak var twelveMonthsCDI: UILabel!
     
     
+    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     
     func startFundView(subtitle: String, fundName: String, whatIs: String, riskTitle: String, definitionLabel: String, moreInfo: String){
         self.topTitle.text = "Investimento"
