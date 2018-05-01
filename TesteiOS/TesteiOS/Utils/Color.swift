@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 
 extension UIColor {
+    
+    open class var fieldGray: UIColor {
+        return UIColor(red: 169/255.0, green: 169/255.0, blue: 169/255.0, alpha: 1.0)
+    }
+    
     open class var lightGray: UIColor {
         return UIColor(red: 239/255.0, green: 238/255.0, blue: 237/255.0, alpha: 1.0)
     }
