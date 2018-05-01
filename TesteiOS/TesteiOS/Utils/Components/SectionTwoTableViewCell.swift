@@ -12,16 +12,27 @@ class SectionTwoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var fieldOne: UILabel!
     @IBOutlet weak var fieldTwo: UILabel!
+    @IBOutlet weak var vDownload: UIView!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        fieldTwo.isHidden = false
+        vDownload.isHidden = true
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func showDownloadView() {
+        fieldTwo.isHidden = true
+        vDownload.isHidden = false
     }
 
 }
