@@ -23,7 +23,9 @@ class SantanderFundViewController: UIViewController {
     var downInfo: [DownInfo]?
     
     override func viewDidLoad() {
-        
+        self.fundTableView.delegate = self
+        self.fundTableView.dataSource = self
+
         self.registerTableViewCell()
         
         SantanderPresenter.sharedManager.fetchedFundScreen(completion: { (screen, error) in
@@ -78,8 +80,6 @@ extension SantanderFundViewController: BuilderFundView{
 extension SantanderFundViewController: UITableViewDelegate, UITableViewDataSource{
     
     override func viewDidAppear(_ animated: Bool) {
-        self.fundTableView.delegate = self
-        self.fundTableView.dataSource = self
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
