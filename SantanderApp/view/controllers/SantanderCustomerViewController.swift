@@ -27,10 +27,6 @@ class SantanderCustomerViewController: UIViewController {
             self.startCellType()
         })
         
-        SantanderPresenter.sharedManager.fetchedFundScreen(completion: { (screen, error) in
-            print(screen)
-        })
-        
     }
     
     private func startCellType(){
@@ -51,6 +47,14 @@ class SantanderCustomerViewController: UIViewController {
             self.createView(formCell: cell)
             
         }
+    }
+    
+    
+    @IBAction func didTouchInvestment(_ sender: Any) {
+        
+        let fundViewController = SantanderRoute.instanceSantanderFundViewController()
+        
+        self.present(fundViewController, animated: false, completion: nil)
     }
     
 }

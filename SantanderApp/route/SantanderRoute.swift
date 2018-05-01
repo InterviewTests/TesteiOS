@@ -23,4 +23,10 @@ class SantanderRoute: NSObject {
         
         return UINib(nibName: "SantanderPhoneTextField", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! SantanderPhoneTextField
     }
+    
+    class func instanceSantanderFundViewController() -> SantanderFundViewController{
+        let storyboard = UIStoryboard(name: "santanderapp", bundle: nil)
+        let fundViewController = storyboard.instantiateViewController(withIdentifier: "SantanderFundViewController") as! SantanderFundViewController
+        return fundViewController
+    }
 }
