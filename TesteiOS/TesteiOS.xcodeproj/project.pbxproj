@@ -25,6 +25,12 @@
 		0F49A1A520980CFE002D537D /* SectionOneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F49A1A420980CFD002D537D /* SectionOneTableViewCell.swift */; };
 		0F49A1A720980D09002D537D /* SectionTwoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F49A1A620980D09002D537D /* SectionTwoTableViewCell.swift */; };
 		0F49A1A920980FA8002D537D /* InvestmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F49A1A820980FA8002D537D /* InvestmentViewController.swift */; };
+		0F49A1AC209819C9002D537D /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F49A1AB209819C9002D537D /* RestAPI.swift */; };
+		0F49A1B220981E5F002D537D /* InvestmentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F49A1B120981E5F002D537D /* InvestmentModels.swift */; };
+		0F49A1B42098DCDD002D537D /* InvestmentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F49A1B32098DCDD002D537D /* InvestmentPresenter.swift */; };
+		0F49A1B62098DCEB002D537D /* InvestmentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F49A1B52098DCEB002D537D /* InvestmentInteractor.swift */; };
+		0F49A1B82098DCFF002D537D /* InvestmentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F49A1B72098DCFF002D537D /* InvestmentRouter.swift */; };
+		0F49A1BA2098DD09002D537D /* InvestmentWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F49A1B92098DD09002D537D /* InvestmentWorker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +75,12 @@
 		0F49A1A420980CFD002D537D /* SectionOneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOneTableViewCell.swift; sourceTree = "<group>"; };
 		0F49A1A620980D09002D537D /* SectionTwoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTwoTableViewCell.swift; sourceTree = "<group>"; };
 		0F49A1A820980FA8002D537D /* InvestmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentViewController.swift; sourceTree = "<group>"; };
+		0F49A1AB209819C9002D537D /* RestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPI.swift; sourceTree = "<group>"; };
+		0F49A1B120981E5F002D537D /* InvestmentModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentModels.swift; sourceTree = "<group>"; };
+		0F49A1B32098DCDD002D537D /* InvestmentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentPresenter.swift; sourceTree = "<group>"; };
+		0F49A1B52098DCEB002D537D /* InvestmentInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentInteractor.swift; sourceTree = "<group>"; };
+		0F49A1B72098DCFF002D537D /* InvestmentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentRouter.swift; sourceTree = "<group>"; };
+		0F49A1B92098DD09002D537D /* InvestmentWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentWorker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +133,7 @@
 			children = (
 				0F49A16020966178002D537D /* AppDelegate.swift */,
 				0F49A1692096617A002D537D /* LaunchScreen.storyboard */,
+				0F49A1AA209819B2002D537D /* Services */,
 				0F49A18F20966AA7002D537D /* Scenes */,
 				0F49A18E20966A88002D537D /* Utils */,
 			);
@@ -181,6 +194,11 @@
 			children = (
 				0F49A1952096770E002D537D /* Investment.storyboard */,
 				0F49A1A820980FA8002D537D /* InvestmentViewController.swift */,
+				0F49A1B32098DCDD002D537D /* InvestmentPresenter.swift */,
+				0F49A1B52098DCEB002D537D /* InvestmentInteractor.swift */,
+				0F49A1B72098DCFF002D537D /* InvestmentRouter.swift */,
+				0F49A1B92098DD09002D537D /* InvestmentWorker.swift */,
+				0F49A1B120981E5F002D537D /* InvestmentModels.swift */,
 			);
 			path = Investment;
 			sourceTree = "<group>";
@@ -204,6 +222,14 @@
 				0F49A1A620980D09002D537D /* SectionTwoTableViewCell.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		0F49A1AA209819B2002D537D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0F49A1AB209819C9002D537D /* RestAPI.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F49A1AC209819C9002D537D /* RestAPI.swift in Sources */,
 				0F49A16320966178002D537D /* MainViewController.swift in Sources */,
 				0F49A1A32097B1B1002D537D /* ContactViewController.swift in Sources */,
 				0F49A1A520980CFE002D537D /* SectionOneTableViewCell.swift in Sources */,
@@ -348,8 +375,13 @@
 				0F49A1A720980D09002D537D /* SectionTwoTableViewCell.swift in Sources */,
 				0F49A1A12097B12D002D537D /* CustomButton.swift in Sources */,
 				0F49A19B20978E40002D537D /* Extension.swift in Sources */,
+				0F49A1B62098DCEB002D537D /* InvestmentInteractor.swift in Sources */,
+				0F49A1B220981E5F002D537D /* InvestmentModels.swift in Sources */,
 				0F49A1A920980FA8002D537D /* InvestmentViewController.swift in Sources */,
 				0F49A19F2097AC1A002D537D /* MessageSentViewController.swift in Sources */,
+				0F49A1B42098DCDD002D537D /* InvestmentPresenter.swift in Sources */,
+				0F49A1B82098DCFF002D537D /* InvestmentRouter.swift in Sources */,
+				0F49A1BA2098DD09002D537D /* InvestmentWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
