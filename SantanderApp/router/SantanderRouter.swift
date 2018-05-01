@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SantanderRoute: NSObject {
+class SantanderRouter: NSObject {
 
     class func instanceSantanderEmailTypeFieldFromNib() -> SantanderEmailTypeField {
         

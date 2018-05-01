@@ -12,7 +12,7 @@ class SantanderTextViewBuilder: BuilderInterface {
     static let sharedInstance = SantanderTextViewBuilder()
     
     func buildView(formCell: CellEntity, signUpView: SantanderSignupView) {
-        let santViewCell = SantanderRoute.instanceSantanderTextTypeFieldFromNib()
+        let santViewCell = SantanderRouter.instanceSantanderTextTypeFieldFromNib()
         santViewCell.nameLabel.text = formCell.message!
         santViewCell.tag = formCell.id!
         signUpView.stackViewAdd(uiView: santViewCell)

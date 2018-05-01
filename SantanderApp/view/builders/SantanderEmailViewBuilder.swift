@@ -12,7 +12,7 @@ class SantanderEmailViewBuilder: BuilderInterface {
     static let sharedInstance = SantanderEmailViewBuilder()
     
     func buildView(formCell: CellEntity, signUpView: SantanderSignupView) {
-        let santViewCell = SantanderRoute.instanceSantanderEmailTypeFieldFromNib()
+        let santViewCell = SantanderRouter.instanceSantanderEmailTypeFieldFromNib()
         santViewCell.label.text = formCell.message! as String
         
         if formCell.hidden! {

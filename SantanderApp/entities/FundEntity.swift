@@ -31,8 +31,8 @@ class ScreenInfo: Mappable{
     var infoTitle: String?
     var moreInfo: MoreInfoScreen?
     
-    var info: [String:String]?
-    var downinfo: [String:String]?
+    var info: [Info]?
+    var downinfo: [DownInfo]?
     
     required init?(map: Map) {
         
@@ -48,6 +48,8 @@ class ScreenInfo: Mappable{
         self.risk <- map["risk"]
         self.infoTitle <- map["infoTitle"]
         self.moreInfo <- map["moreInfo"]
+        self.info <- map["info"]
+        self.downinfo <- map["downInfo"]
     }
 }
 
@@ -70,3 +72,33 @@ class MoreInfoScreen: Mappable{
     }
 }
 
+class Info: Mappable{
+    var name: String?
+    var data: String?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    // Mappable
+    func mapping(map: Map) {
+        self.name <- map["name"]
+        self.data <- map["data"]
+    }
+}
+
+class DownInfo: Mappable{
+    
+    var name: String?
+    var data: String?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    // Mappable
+    func mapping(map: Map) {
+        self.name <- map["name"]
+        self.data <- map["data"]
+    }
+}

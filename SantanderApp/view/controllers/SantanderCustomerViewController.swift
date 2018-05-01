@@ -52,7 +52,7 @@ class SantanderCustomerViewController: UIViewController {
     
     @IBAction func didTouchInvestment(_ sender: Any) {
         
-        let fundViewController = SantanderRoute.instanceSantanderFundViewController()
+        let fundViewController = SantanderRouter.instanceSantanderFundViewController()
         
         self.present(fundViewController, animated: false, completion: nil)
     }
