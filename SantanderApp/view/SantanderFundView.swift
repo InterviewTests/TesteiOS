@@ -20,6 +20,16 @@ class SantanderFundView: UIView {
     
     @IBOutlet weak var moreInfoLabel: UILabel!
     
+    @IBOutlet weak var monthlyFund: UILabel!
+    @IBOutlet weak var annuallyFund: UILabel!
+    @IBOutlet weak var twelveMonthsFund: UILabel!
+    
+    @IBOutlet weak var monthlyCDI: UILabel!
+    @IBOutlet weak var annuallyCDI: UILabel!
+    @IBOutlet weak var twelveMonthsCDI: UILabel!
+    
+    
+    
     func startFundView(subtitle: String, fundName: String, whatIs: String, riskTitle: String, definitionLabel: String, moreInfo: String){
         self.topTitle.text = "Investimento"
         self.subtitle.text = subtitle
@@ -28,6 +38,18 @@ class SantanderFundView: UIView {
         self.investmentLevel.text = riskTitle
         self.definitionLabel.text = definitionLabel
         self.moreInfoLabel.text = moreInfo
+    }
+    
+    func startFundStats(monthlyFund : String, annuallyFund: String, twelveMonthsFund: String){
+        self.monthlyFund.text = monthlyFund
+        self.annuallyFund.text = annuallyFund
+        self.twelveMonthsFund.text = twelveMonthsFund
+    }
+    
+    func startCDIStats(monthlyCDI: String, annuallyCDI: String, twelveMonthsCDI: String){
+        self.monthlyCDI.text = monthlyCDI
+        self.annuallyCDI.text = annuallyCDI
+        self.twelveMonthsCDI.text = twelveMonthsCDI
     }
     
     
