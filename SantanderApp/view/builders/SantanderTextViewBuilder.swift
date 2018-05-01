@@ -16,7 +16,5 @@ class SantanderTextViewBuilder: BuilderInterface {
         santViewCell.nameLabel.text = formCell.message!
         santViewCell.tag = formCell.id!
         signUpView.stackViewAdd(uiView: santViewCell)
-        
-        
     }
 }

@@ -17,6 +17,7 @@ class SantanderEmailViewBuilder: BuilderInterface {
         
         if formCell.hidden! {
             santViewCell.isUserInteractionEnabled = false
+//            santViewCell.label.textColor = UIColor.cy
         }
         santViewCell.tag = formCell.id!
         signUpView.stackViewAdd(uiView: santViewCell)

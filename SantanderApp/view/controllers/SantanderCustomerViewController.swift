@@ -19,16 +19,18 @@ class SantanderCustomerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = SantanderPresenter()
-        
-        presenter?.fetchedCells(completion: { (cells, error) in
+    
+        SantanderPresenter.sharedManager.fetchedCells(completion: { (cells, error) in
             self.cells = cells
             
             self.startStackFormView()
             self.startCellType()
         })
         
-        // Do any additional setup after loading the view.
+        SantanderPresenter.sharedManager.fetchedFundScreen(completion: { (screen, error) in
+            print(screen)
+        })
+        
     }
     
     private func startCellType(){
@@ -39,16 +41,14 @@ class SantanderCustomerViewController: UIViewController {
             }
         }
     }
+    
     private func startStackFormView(){
+        
+        
         let data = (self.cells?.data)!
         for cell in data{
-            if(cell.typefield == "telnumber"){
-                createPhoneForm(formCell: cell)
-            }else if(cell.typeFieldNumber == 1){
-                createTextForm(formCell: cell)
-            }else if(cell.typeFieldNumber == 3){
-                createEmailForm(formCell: cell)
-            }
+        
+            self.createView(formCell: cell)
             
         }
     }

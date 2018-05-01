@@ -7,9 +7,7 @@
 //
 
 import Foundation
-protocol SantanderDelegate {
-    func createView(formCell: CellEntity)
-}
+
 extension SantanderCustomerViewController{
     func createView(formCell: CellEntity){
         switch formCell.id!{
@@ -44,7 +42,6 @@ extension SantanderCustomerViewController{
     func createCheckBox(checkCell: CellEntity){
         let santanderCheckBoxBuilder = SantanderCheckButtonViewBuilder.sharedInstance
         santanderCheckBoxBuilder.buildView(formCell: checkCell, signUpView: self.stSignView)
-//        self.stSignView.signupMessage.text = checkCell.message!
     }
     
     func unHidePhoneForm(){
