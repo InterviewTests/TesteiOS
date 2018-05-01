@@ -8,6 +8,26 @@
 
 import UIKit
 
+// MARK: - JSONCodable
+extension JSONCodable where Self: Codable {
+    // An encoder and decoder for our convenience methods to use.
+    // These are static variables to be used by the types
+    // themselves instead of instances.
+    static var encoder: JSONEncoder { return JSONEncoder() }
+    static var decoder: JSONDecoder { return JSONDecoder() }
+    // A convenience method to return instances as JSON Data.
+    func jsonData() -> Data? {
+        return try? Self.encoder.encode(self)
+    }
+    // An convenience init method to create instances of our type from JSON Data.
+    init?(jsonData: Data?) {
+        guard let data = jsonData,
+            let anInstance = try? Self.decoder.decode(Self.self, from: data)
+            else { return nil }
+        self = anInstance
+    }
+}
+
 // MARK - UIView
 extension UIView {
     @IBInspectable var cornerRadius: CGFloat {
