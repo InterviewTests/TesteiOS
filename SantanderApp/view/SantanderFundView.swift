@@ -18,12 +18,17 @@ class SantanderFundView: UIView {
     @IBOutlet weak var investmentLevel: UILabel!
     @IBOutlet weak var definitionLabel: UILabel!
     
-    func startFundView(subtitle: String, fundName: String, whatIs: String, riskTitle: String, definitionLabel: String){
+    @IBOutlet weak var moreInfoLabel: UILabel!
+    
+    func startFundView(subtitle: String, fundName: String, whatIs: String, riskTitle: String, definitionLabel: String, moreInfo: String){
         self.topTitle.text = "Investimento"
         self.subtitle.text = subtitle
         self.fundName.text = fundName
         self.whatIsLabel.text = whatIs
         self.investmentLevel.text = riskTitle
         self.definitionLabel.text = definitionLabel
+        self.moreInfoLabel.text = moreInfo
     }
+    
+    
 }

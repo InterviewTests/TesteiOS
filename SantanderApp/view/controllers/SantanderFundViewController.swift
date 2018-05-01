@@ -24,8 +24,8 @@ class SantanderFundViewController: UIViewController {
             let definition = (screenInfo?.definition)!
             let riskTitle = (screenInfo?.riskTitle)!
             let whatIs = (screenInfo?.whatIs)!
-            
-            self.santanderFundView.startFundView(subtitle: topTitle, fundName: fundName, whatIs: whatIs, riskTitle: riskTitle, definitionLabel: definition)
+            let moreInfo = (screenInfo?.infoTitle)!
+            self.santanderFundView.startFundView(subtitle: topTitle, fundName: fundName, whatIs: whatIs, riskTitle: riskTitle, definitionLabel: definition, moreInfo: moreInfo)
         })
     }
 }
