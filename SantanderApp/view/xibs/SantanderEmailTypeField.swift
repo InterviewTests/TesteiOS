@@ -10,6 +10,7 @@ public class SantanderEmailTypeField: UIView{
     
     @IBOutlet weak var lineStatus: UIImageView!
     
+    var isValid: Bool? = false
     public override func awakeFromNib() {
         self.placeholdertext.delegate = self
     }
@@ -27,6 +28,7 @@ extension SantanderEmailTypeField: UITextFieldDelegate{
         let validator = Validator.isEmail()
         if(validator.apply(textField.text)){
             self.lineStatus.image = UIImage(named: "line_green")
+            self.isValid = true
             return true
         }
         self.lineStatus.image = UIImage(named: "line_red")

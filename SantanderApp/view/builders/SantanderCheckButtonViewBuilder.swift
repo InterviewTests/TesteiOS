@@ -12,9 +12,9 @@ class SantanderCheckButtonViewBuilder: BuilderInterface {
 
     static let sharedInstance = SantanderCheckButtonViewBuilder()
     
-    func buildView(formCell: CellEntity, signUpView: SantanderSignupView) {
+    func buildView(formCell: CellEntity, signUpView: SantanderSignupView) -> UIView{
         
         signUpView.signupMessage.text = formCell.message   
-        
+        return UIView()
     }
 }

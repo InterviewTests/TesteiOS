@@ -17,6 +17,10 @@ class SantanderCustomerViewController: UIViewController {
     var cells: Cells?
     var presenter: SantanderPresenter?
     
+    var phoneView : SantanderPhoneTextField?
+    var mailView: SantanderEmailTypeField?
+    var textView: SantanderNameTextField?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -25,15 +29,6 @@ class SantanderCustomerViewController: UIViewController {
             self.startStackFormView()
         })
         
-    }
-    
-    private func startCellType(){
-        let data = (self.cells?.data)!
-        for cell in data{
-            if(cell.type == 4){
-                createCheckBox(checkCell: cell)
-            }
-        }
     }
     
     private func startStackFormView(){
@@ -64,6 +59,22 @@ class SantanderCustomerViewController: UIViewController {
         }
     }
     
+    @IBAction func didTouchSend(_ sender: Any) {
+        
+        if(self.isValid()){
+            let finished = SantanderRouter.instanceFinishedViewController()
+            self.present(finished, animated: false, completion: nil)
+        }else{
+            
+        }
+    }
+    
+    private func isValid()->Bool{
+        if((self.phoneView?.isValid)! && (self.textView?.isValid)!){
+            return true
+        }
+        return false
+    }
     @IBAction func didTouchInvestment(_ sender: Any) {
         
         let fundViewController = SantanderRouter.instanceSantanderFundViewController()

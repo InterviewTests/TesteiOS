@@ -11,15 +11,12 @@ import UIKit
 class SantanderEmailViewBuilder: BuilderInterface {
     static let sharedInstance = SantanderEmailViewBuilder()
     
-    func buildView(formCell: CellEntity, signUpView: SantanderSignupView) {
+    func buildView(formCell: CellEntity, signUpView: SantanderSignupView) -> UIView{
         let santViewCell = SantanderRouter.instanceSantanderEmailTypeFieldFromNib()
         santViewCell.label.text = formCell.message! as String
-        
-//        if formCell.hidden! {
-//            santViewCell.isUserInteractionEnabled = false
-//        }
+
         santViewCell.tag = formCell.id!
         signUpView.stackViewAdd(uiView: santViewCell)
-        
+        return santViewCell
     }
 }

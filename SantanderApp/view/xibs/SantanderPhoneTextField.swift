@@ -15,6 +15,7 @@ class SantanderPhoneTextField: UIView {
     @IBOutlet weak var foneTextField: UITextField!
     @IBOutlet weak var label: UILabel!
     
+    var isValid: Bool? = false
     public override func awakeFromNib() {
         self.foneTextField.delegate = self
     }
@@ -32,7 +33,7 @@ extension SantanderPhoneTextField: UITextFieldDelegate{
         let validator = Validator.isPhone(.pt_BR)
         if(validator.apply(textField.text)){
             self.lineStatus.image = UIImage(named: "line_green")
-
+            self.isValid = true
             return true
         }
         self.lineStatus.image = UIImage(named: "line_red")

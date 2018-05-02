@@ -11,7 +11,7 @@ import UIKit
 
 protocol BuilderInterface{
     
-    func buildView(formCell: CellEntity, signUpView: SantanderSignupView)
+    func buildView(formCell: CellEntity, signUpView: SantanderSignupView) -> UIView
     
 }
 

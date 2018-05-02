@@ -15,6 +15,7 @@ class SantanderNameTextField: UIView {
     
     @IBOutlet weak var nameField: UITextField!
 
+    var isValid: Bool? = false
     public override func awakeFromNib() {
         self.nameField.delegate = self
     }
@@ -34,7 +35,7 @@ extension SantanderNameTextField: UITextFieldDelegate{
             return false
         }
         self.lineStatus.image = UIImage(named: "line_green")
-
+        self.isValid = true
         return true
     }
     

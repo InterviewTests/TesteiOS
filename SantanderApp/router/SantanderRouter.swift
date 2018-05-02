@@ -29,4 +29,10 @@ class SantanderRouter: NSObject {
         let fundViewController = storyboard.instantiateViewController(withIdentifier: "SantanderFundViewController") as! SantanderFundViewController
         return fundViewController
     }
+    
+    class func instanceFinishedViewController() -> UIViewController{
+        let storyboard = UIStoryboard(name: "santanderapp", bundle: nil)
+        let finished = storyboard.instantiateViewController(withIdentifier: "FinishedID")
+        return finished
+    }
 }
