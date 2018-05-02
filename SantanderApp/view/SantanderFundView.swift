@@ -31,6 +31,10 @@ class SantanderFundView: UIView {
     
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var scrollViewConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var tableToInvestButtonConstraint: UIScrollView!
+    
     func startFundView(subtitle: String, fundName: String, whatIs: String, riskTitle: String, definitionLabel: String, moreInfo: String){
         self.topTitle.text = "Investimento"
         self.subtitle.text = subtitle

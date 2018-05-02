@@ -21,11 +21,11 @@ class SantanderFundViewController: UIViewController {
     
     @IBOutlet var santanderFundView: SantanderFundView!
     var downInfo: [DownInfo]?
-    
+    var info: [Info]?
     override func viewDidLoad() {
         self.fundTableView.delegate = self
         self.fundTableView.dataSource = self
-
+        
         self.registerTableViewCell()
         
         SantanderPresenter.sharedManager.fetchedFundScreen(completion: { (screen, error) in
@@ -37,6 +37,7 @@ class SantanderFundViewController: UIViewController {
             self.buildFundStatsView(moreInfoMonth: moreInfoMonth)
             self.buildCDIStatsView(moreInfoMonth: moreInfoMonth)
             self.downInfo = screenInfo?.downinfo
+            self.info = screenInfo?.info
             self.fundTableView.reloadData()
             
         })
@@ -84,26 +85,46 @@ extension SantanderFundViewController: UITableViewDelegate, UITableViewDataSourc
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if(self.downInfo == nil){
+        if(self.downInfo == nil && self.info == nil){
             return 0
         }
-        return (self.downInfo?.count)!
+        return (self.downInfo?.count)! + (self.info?.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if(self.downInfo == nil){
+        if(self.downInfo == nil && self.info == nil){
             return SantanderFundTableViewCell()
         }
+        
         let cell = fundTableView.dequeueReusableCell(withIdentifier: "SantanderFundTableViewCell", for: indexPath) as! SantanderFundTableViewCell
         
-        if let nameValue = self.downInfo![indexPath.row].name {
-            cell.name.text = nameValue
+        if(indexPath.row < (self.info?.count)!){
+            let index = indexPath.row
+            if let nameValue = self.info![index].name {
+                cell.name.text = nameValue
+            }
+            if let dataValue = self.info![index].data {
+                cell.data.text = dataValue
+            }else{
+                cell.data.text = "Baixar"
+            }
+        }else{
+            let index = indexPath.row - (self.info?.count)!
+            if let nameValue = self.downInfo![index].name {
+                cell.name.text = nameValue
+            }
+            if let dataValue = self.downInfo![index].data {
+                cell.data.text = dataValue
+            }else{
+                cell.data.text = "Baixar"
+            }
         }
-        if let dataValue = self.downInfo![indexPath.row].data {
-            cell.data.text = dataValue
-        }
+        
+        
         self.santanderFundView.tableViewHeightConstraint.constant += cell.frame.height
+        self.santanderFundView.scrollViewConstraint.constant += cell.frame.height
+//        self.santanderFundView.tableToInvestButtonConstraint.contentSize.height += cell.frame.height
         return cell
         
     }

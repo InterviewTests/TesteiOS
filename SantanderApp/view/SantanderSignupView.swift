@@ -19,7 +19,11 @@ class SantanderSignupView: UIView {
     @IBOutlet weak var buttonSend: UIButton!
     var signed : Bool = false
 
+    @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
+    
     func stackViewAdd(uiView: UIView){
+        self.stackViewHeight.constant += uiView.frame.height
+        uiView.heightAnchor.constraint(equalToConstant: 76).isActive = true
         self.stackView.addArrangedSubview(uiView)
     }
     @IBAction func didTouchSignup(_ sender: Any) {
