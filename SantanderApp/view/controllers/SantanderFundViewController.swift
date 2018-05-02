@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol BuilderFundView{
     func buildFundMainView(screenInfo: ScreenInfo)
@@ -57,21 +58,22 @@ extension SantanderFundViewController: BuilderFundView{
         let riskTitle = (screenInfo.riskTitle)!
         let whatIs = (screenInfo.whatIs)!
         let moreInfo = (screenInfo.infoTitle)!
-        self.santanderFundView.startFundView(subtitle: topTitle, fundName: fundName, whatIs: whatIs, riskTitle: riskTitle, definitionLabel: definition, moreInfo: moreInfo)
+        let risk = (screenInfo.risk)!
+        self.santanderFundView.startFundView(subtitle: topTitle, fundName: fundName, whatIs: whatIs, riskTitle: riskTitle, definitionLabel: definition, moreInfo: moreInfo, risk: risk)
     }
     
     func buildFundStatsView(moreInfoMonth: MoreInfoScreen){
-        let monthlyFund = String(format:"%.1f", (moreInfoMonth.month!["fund"]!))
-        let annuallyFund = String(format:"%.1f", (moreInfoMonth.year!["fund"]!))
-        let twelveMonthsFund = String(format:"%.1f", (moreInfoMonth.twelvemonths!["fund"]!))
+        let monthlyFund = String(format:"%.1f", (moreInfoMonth.month!["fund"]!)) + "%"
+        let annuallyFund = String(format:"%.1f", (moreInfoMonth.year!["fund"]!)) + "%"
+        let twelveMonthsFund = String(format:"%.1f", (moreInfoMonth.twelvemonths!["fund"]!)) + "%"
         
         self.santanderFundView.startFundStats(monthlyFund: monthlyFund, annuallyFund: annuallyFund, twelveMonthsFund: twelveMonthsFund)
     }
     
     func buildCDIStatsView(moreInfoMonth: MoreInfoScreen){
-        let monthlyCDI = String(format:"%.1f", (moreInfoMonth.month!["CDI"]!))
-        let annuallyCDI = String(format:"%.1f", (moreInfoMonth.year!["CDI"]!))
-        let twelveMonthsCDI = String(format:"%.1f", (moreInfoMonth.twelvemonths!["CDI"]!))
+        let monthlyCDI = String(format:"%.1f", (moreInfoMonth.month!["CDI"]!)) + "%"
+        let annuallyCDI = String(format:"%.1f", (moreInfoMonth.year!["CDI"]!)) + "%"
+        let twelveMonthsCDI = String(format:"%.1f", (moreInfoMonth.twelvemonths!["CDI"]!)) + "%"
         
         self.santanderFundView.startCDIStats(monthlyCDI: monthlyCDI, annuallyCDI: annuallyCDI, twelveMonthsCDI: twelveMonthsCDI)
     }
@@ -118,6 +120,7 @@ extension SantanderFundViewController: UITableViewDelegate, UITableViewDataSourc
                 cell.data.text = dataValue
             }else{
                 cell.data.text = "Baixar"
+                self.unHideDownloadIcon(cell: cell)
             }
         }
         
@@ -128,7 +131,9 @@ extension SantanderFundViewController: UITableViewDelegate, UITableViewDataSourc
         
     }
     
-    
+    func unHideDownloadIcon(cell: SantanderFundTableViewCell){
+        cell.downloadIcon.isHidden = false
+    }
     
 }
 
