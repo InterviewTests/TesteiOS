@@ -9,6 +9,8 @@
 import UIKit
 import SnapKit
 import SwiftValidators
+import Toast_Swift
+    
 
 class SantanderCustomerViewController: UIViewController {
     
@@ -65,12 +67,19 @@ class SantanderCustomerViewController: UIViewController {
             let finished = SantanderRouter.instanceFinishedViewController()
             self.present(finished, animated: false, completion: nil)
         }else{
+            var style = ToastStyle()
             
+            // this is just one of many style options
+            style.messageColor = .red
+            style.backgroundColor = .white
+            self.stSignView.makeToast("Preencha os campos Nome e telefone antes de enviar", duration: 3.0, position: .top, style: style)
+
         }
     }
     
     private func isValid()->Bool{
         if((self.phoneView?.isValid)! && (self.textView?.isValid)!){
+            
             return true
         }
         return false
