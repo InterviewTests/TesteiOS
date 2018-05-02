@@ -44,6 +44,12 @@ class RiskLevelView: UIView {
         mainView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(mainView)
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        lightGreenFactor.layer.cornerRadius = constrLightGreenHeight.constant/2
+        redFactor.layer.cornerRadius = constrRedHeight.constant/2
+    }
 
     func setRisk(_ level: Int) {
         let riskSize = self.frame.size.width / 5
