@@ -35,4 +35,7 @@ class SectionTwoTableViewCell: UITableViewCell {
         vDownload.isHidden = false
     }
 
+    @IBAction func downloadPressed(_ sender: Any) {
+        UIApplication.shared.open(URL(string: "http://www.google.com")!, options: [:], completionHandler: nil)
+    }
 }
