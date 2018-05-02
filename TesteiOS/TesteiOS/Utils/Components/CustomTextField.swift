@@ -96,6 +96,12 @@ extension CustomTextField: UITextFieldDelegate {
         }
         
         switch inputType {
+        case .default:
+            if textString.isEmpty {
+               setState(.selected)
+            } else {
+                setState(.available)
+            }
         case .email:
             if !textString.isEmailFormat() {
                 setState(.error)
