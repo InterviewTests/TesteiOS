@@ -18,22 +18,48 @@ class SantanderSignupView: UIView {
     
     @IBOutlet weak var buttonSend: UIButton!
     var signed : Bool = false
-
+    var signedIcon : Bool = false
     @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     
+    override func awakeFromNib() {
+        self.signed = false
+        self.signedIcon = false
+    }
     func stackViewAdd(uiView: UIView){
         self.stackViewHeight.constant += uiView.frame.height
+        
+        if(uiView.tag == 4){
+            signed = true
+            self.stackView.insertArrangedSubview(uiView, at: 1)
+
+        }else{
+            self.stackView.addArrangedSubview(uiView)
+        }
         uiView.heightAnchor.constraint(equalToConstant: 76).isActive = true
-        self.stackView.addArrangedSubview(uiView)
+        self.stackView.layoutIfNeeded()
+
+    }
+    
+    func stackViewRemove(tag: Int){
+        let uiView = self.stackView.viewWithTag(tag)
+        if(tag == 4){
+            signed = false
+        }
+        self.stackViewHeight.constant -= uiView!.frame.height
+
+        self.stackView.removeArrangedSubview(uiView!)
+        self.stackView.layoutIfNeeded()
+        self.stackView.layoutSubviews()
+        uiView!.removeFromSuperview()
     }
     @IBAction func didTouchSignup(_ sender: Any) {
         
-        if(!self.signed){
+        if(!self.signedIcon){
             let signed = UIImage(named: "signup_clicked")
-            self.signed = true
+            self.signedIcon = true
             self.signupButton.setImage(signed, for: .normal)
         }else{
-            self.signed = false
+            self.signedIcon = false
             let signed = UIImage(named: "signup")
             self.signupButton.setImage(signed, for: .normal)
         }

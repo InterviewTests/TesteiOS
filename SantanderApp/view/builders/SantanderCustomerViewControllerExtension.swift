@@ -12,7 +12,7 @@ extension SantanderCustomerViewController{
     func createView(formCell: CellEntity){
         switch formCell.id!{
             case 2: createTextForm(formCell: formCell)
-            case 4: createEmailForm(formCell: formCell)
+//            case 4: createEmailForm(formCell: formCell)
             case 6: createPhoneForm(formCell: formCell)
             case 3: createCheckBox(checkCell: formCell)
             default: break

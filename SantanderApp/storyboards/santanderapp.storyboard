@@ -43,6 +43,7 @@
                                         <state key="normal" title="Button" image="signup"/>
                                         <connections>
                                             <action selector="didTouchSignup:" destination="L0f-bl-0Lm" eventType="touchUpInside" id="5l3-aK-hkm"/>
+                                            <action selector="didTouchSignupEmail:" destination="dCJ-Lh-dRA" eventType="touchUpInside" id="JuA-M4-6vC"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Bq-Xy-LpW">
@@ -138,7 +139,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SeV-Uq-tui" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="1In-4X-2UV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-28" y="48.125937031484263"/>
+            <point key="canvasLocation" x="1807" y="56"/>
         </scene>
         <!--Santander Fund View Controller-->
         <scene sceneID="YDv-P3-BUk">
@@ -381,6 +382,11 @@
                                             <constraint firstAttribute="height" constant="55" id="Ynu-ZC-oHq"/>
                                         </constraints>
                                         <state key="normal" title="Contato" backgroundImage="Rectangle-1"/>
+                                        <connections>
+                                            <segue destination="dCJ-Lh-dRA" kind="popoverPresentation" popoverAnchorView="Ssh-lg-lZR" id="CG8-ck-cnv">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkr-bS-JsL">
                                         <rect key="frame" x="35" y="781" width="301" height="54"/>

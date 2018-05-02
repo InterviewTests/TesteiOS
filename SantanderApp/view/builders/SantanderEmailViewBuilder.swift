@@ -15,10 +15,9 @@ class SantanderEmailViewBuilder: BuilderInterface {
         let santViewCell = SantanderRouter.instanceSantanderEmailTypeFieldFromNib()
         santViewCell.label.text = formCell.message! as String
         
-        if formCell.hidden! {
-            santViewCell.isUserInteractionEnabled = false
-//            santViewCell.label.textColor = UIColor.cy
-        }
+//        if formCell.hidden! {
+//            santViewCell.isUserInteractionEnabled = false
+//        }
         santViewCell.tag = formCell.id!
         signUpView.stackViewAdd(uiView: santViewCell)
         

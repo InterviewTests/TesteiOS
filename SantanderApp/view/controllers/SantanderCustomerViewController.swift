@@ -1,4 +1,4 @@
-//
+    //
 //  SantanderCustomerViewController.swift
 //  SantanderApp
 //
@@ -22,9 +22,7 @@ class SantanderCustomerViewController: UIViewController {
     
         SantanderPresenter.sharedManager.fetchedCells(completion: { (cells, error) in
             self.cells = cells
-            
             self.startStackFormView()
-            self.startCellType()
         })
         
     }
@@ -49,6 +47,22 @@ class SantanderCustomerViewController: UIViewController {
         }
     }
     
+    @IBAction func didTouchSignupEmail(_ sender: Any) {
+       
+        if (self.stSignView.signed){
+            self.stSignView.stackViewRemove(tag: 4)
+            return
+        }
+        
+        let data = (self.cells?.data)!
+        
+        for cell in data{
+            if(cell.id == 4){
+                self.createEmailForm(formCell: cell)
+                break;
+            }
+        }
+    }
     
     @IBAction func didTouchInvestment(_ sender: Any) {
         
