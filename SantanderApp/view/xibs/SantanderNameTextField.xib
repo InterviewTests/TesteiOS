@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="FnF-3U-iI3" customClass="SantanderNameTextField" customModule="SantanderApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="387" height="76"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8E-lN-jrG">
+                    <rect key="frame" x="20" y="10" width="46" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="I0c-6n-KBN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2DU-dg-8GM">
+                    <rect key="frame" x="20" y="39" width="357" height="17"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Linha numero da conta" translatesAutoresizingMaskIntoConstraints="NO" id="JLV-7S-blr">
+                    <rect key="frame" x="20" y="64" width="357" height="2"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="fVN-x0-tlI" firstAttribute="trailing" secondItem="2DU-dg-8GM" secondAttribute="trailing" constant="10" id="C1p-Qa-kKY"/>
+                <constraint firstItem="M8E-lN-jrG" firstAttribute="top" secondItem="fVN-x0-tlI" secondAttribute="top" constant="10" id="CUP-nz-iwc"/>
+                <constraint firstItem="JLV-7S-blr" firstAttribute="leading" secondItem="M8E-lN-jrG" secondAttribute="leading" id="Daf-An-kL3"/>
+                <constraint firstItem="JLV-7S-blr" firstAttribute="leading" secondItem="FnF-3U-iI3" secondAttribute="leading" constant="20" id="Ghy-M0-7tA"/>
+                <constraint firstItem="2DU-dg-8GM" firstAttribute="top" secondItem="M8E-lN-jrG" secondAttribute="bottom" constant="8" symbolic="YES" id="MZc-vn-jgS"/>
+                <constraint firstItem="fVN-x0-tlI" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="M8E-lN-jrG" secondAttribute="trailing" priority="999" constant="321" id="Tjw-Fk-e0r"/>
+                <constraint firstItem="JLV-7S-blr" firstAttribute="top" secondItem="2DU-dg-8GM" secondAttribute="bottom" constant="8" symbolic="YES" id="Vw6-y8-COB"/>
+                <constraint firstItem="M8E-lN-jrG" firstAttribute="leading" secondItem="fVN-x0-tlI" secondAttribute="leading" constant="20" id="bRP-8X-yHC"/>
+                <constraint firstAttribute="trailing" secondItem="JLV-7S-blr" secondAttribute="trailing" constant="10" id="c0R-U7-BkT"/>
+                <constraint firstItem="2DU-dg-8GM" firstAttribute="leading" secondItem="fVN-x0-tlI" secondAttribute="leading" constant="20" id="dnp-d7-j8A"/>
+                <constraint firstItem="fVN-x0-tlI" firstAttribute="bottom" secondItem="JLV-7S-blr" secondAttribute="bottom" constant="10" id="s3K-aQ-20j"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fVN-x0-tlI"/>
+            <connections>
+                <outlet property="lineStatus" destination="JLV-7S-blr" id="trO-5s-1EN"/>
+                <outlet property="nameField" destination="2DU-dg-8GM" id="1j9-nY-hBb"/>
+                <outlet property="nameLabel" destination="M8E-lN-jrG" id="VFS-ae-bnf"/>
+            </connections>
+            <point key="canvasLocation" x="-3" y="183.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Linha numero da conta" width="297" height="2"/>
+    </resources>
+</document>

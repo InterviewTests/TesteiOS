@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="JOI-wX-8aa" customClass="SantanderEmailTypeField" customModule="SantanderApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="387" height="76"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lw8-Dk-333">
+                    <rect key="frame" x="20" y="47" width="357" height="17"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Linha numero da conta" translatesAutoresizingMaskIntoConstraints="NO" id="mKU-Hp-AR0">
+                    <rect key="frame" x="20" y="72" width="357" height="2"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5D-sH-IxG">
+                    <rect key="frame" x="20" y="10" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="jzq-F1-Ana"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="mKU-Hp-AR0" firstAttribute="top" secondItem="lw8-Dk-333" secondAttribute="bottom" constant="8" id="12T-Vg-Jqg"/>
+                <constraint firstItem="mKU-Hp-AR0" firstAttribute="leading" secondItem="JOI-wX-8aa" secondAttribute="leading" constant="20" id="9ic-2J-8Lh"/>
+                <constraint firstItem="p5D-sH-IxG" firstAttribute="leading" secondItem="i3Q-Kr-I5U" secondAttribute="leading" constant="20" id="ZL3-8z-f3K"/>
+                <constraint firstItem="i3Q-Kr-I5U" firstAttribute="bottom" secondItem="mKU-Hp-AR0" secondAttribute="bottom" constant="2" id="kMc-T3-8oC"/>
+                <constraint firstItem="lw8-Dk-333" firstAttribute="leading" secondItem="i3Q-Kr-I5U" secondAttribute="leading" constant="20" id="kVa-L8-oXu"/>
+                <constraint firstItem="i3Q-Kr-I5U" firstAttribute="trailing" secondItem="lw8-Dk-333" secondAttribute="trailing" constant="10" id="o0x-Us-dTy"/>
+                <constraint firstItem="p5D-sH-IxG" firstAttribute="top" secondItem="i3Q-Kr-I5U" secondAttribute="top" constant="10" id="wO6-xJ-sbw"/>
+                <constraint firstAttribute="trailing" secondItem="mKU-Hp-AR0" secondAttribute="trailing" constant="10" id="y7g-ab-ZEq"/>
+                <constraint firstItem="mKU-Hp-AR0" firstAttribute="leading" secondItem="JOI-wX-8aa" secondAttribute="leading" constant="20" id="yEh-dO-6f6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="i3Q-Kr-I5U"/>
+            <connections>
+                <outlet property="label" destination="p5D-sH-IxG" id="QpC-zK-6k1"/>
+                <outlet property="lineStatus" destination="mKU-Hp-AR0" id="MTf-PW-qkP"/>
+                <outlet property="placeholdertext" destination="lw8-Dk-333" id="C0Q-rb-FiH"/>
+            </connections>
+            <point key="canvasLocation" x="-39" y="152.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Linha numero da conta" width="297" height="2"/>
+    </resources>
+</document>
