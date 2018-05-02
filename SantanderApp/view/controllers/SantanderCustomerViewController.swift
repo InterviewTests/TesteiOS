@@ -35,7 +35,6 @@ class SantanderCustomerViewController: UIViewController {
     
     private func startStackFormView(){
         
-        
         let data = (self.cells?.data)!
         for cell in data{
         
