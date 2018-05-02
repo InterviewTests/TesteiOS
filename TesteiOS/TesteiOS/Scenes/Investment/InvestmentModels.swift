@@ -25,6 +25,7 @@ enum Investment {
             let yearInfo = ("No Ano", screen.moreInfo.year.fund, screen.moreInfo.year.CDI)
             let twelveMonthsInfo = ("12 meses", screen.moreInfo.twelveMonths.fund, screen.moreInfo.twelveMonths.CDI)
             
+            moreInfo.append(("", 0, 0))
             moreInfo.append(monthInfo)
             moreInfo.append(yearInfo)
             moreInfo.append(twelveMonthsInfo)

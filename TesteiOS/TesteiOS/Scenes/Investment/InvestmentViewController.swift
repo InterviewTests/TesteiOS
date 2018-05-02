@@ -16,9 +16,16 @@ class InvestmentViewController: UIViewController {
 
     var interactor: InvestmentBusinessLogic?
     var fundEntity: Investment.FundsEntity?
-    let moreInfoFields: [String] = ["No mês", "No Ano", "12 meses"]
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var lblScreenTitle: UILabel!
+    @IBOutlet weak var lblFundName: UILabel!
+    @IBOutlet weak var lblWhatIs: UILabel!
+    @IBOutlet weak var lblDefinition: UILabel!
+    @IBOutlet weak var lblRiskTitle: UILabel!
+    @IBOutlet weak var lblInfoTitle: UILabel!
+    @IBOutlet weak var riskLevel: RiskLevelView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,15 +41,9 @@ class InvestmentViewController: UIViewController {
     func config() {
         let interactor = InvestmentInteractor()
         let presenter = InvestmentPresenter()
-        //let router = InvestmentRouter()
-        //let worker = InvestmentWorker()
-        
-        //self.router = router
         presenter.viewController = self
         interactor.presenter = presenter
         self.interactor = interactor
-        //router.viewController = self
-        //router.dataStore = interactor
     }
     
     func setupLayout() {
@@ -69,8 +70,8 @@ extension InvestmentViewController: UITableViewDelegate, UITableViewDataSource {
             guard indexPath.row > 0 else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SectionOneCellId", for: indexPath) as! SectionOneTableViewCell
                 
-                cell.fieldTwo.textColor = UIColor.fieldGray
-                cell.fieldThree.textColor = UIColor.fieldGray
+                cell.fieldTwo.textColor = UIColor.selectedGray
+                cell.fieldThree.textColor = UIColor.selectedGray
                 
                 cell.fieldOne.text = ""
                 cell.fieldTwo.text = "Fundo"
@@ -118,5 +119,12 @@ extension InvestmentViewController: InvestmentDisplayLogic {
     func displayFund(viewModel: Investment.FundsEntity) {
         self.fundEntity = viewModel
         self.tableView.reloadData()
+        lblScreenTitle.text = viewModel.screen.title
+        lblFundName.text = viewModel.screen.fundName
+        lblWhatIs.text = viewModel.screen.whatIs
+        lblDefinition.text = viewModel.screen.definition
+        lblRiskTitle.text = viewModel.screen.riskTitle
+        riskLevel.setRisk(viewModel.screen.risk)
+        lblInfoTitle.text = viewModel.screen.infoTitle
     }
 }
