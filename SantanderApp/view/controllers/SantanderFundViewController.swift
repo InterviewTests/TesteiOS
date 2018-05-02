@@ -48,6 +48,10 @@ class SantanderFundViewController: UIViewController {
         self.fundTableView.register(UINib(nibName: "SantanderFundTableViewCell", bundle: nil), forCellReuseIdentifier: "SantanderFundTableViewCell")
         
     }
+    
+    @objc func clickedDownloadButton(){
+        self.startWebView(url: "https://www.google.com")
+    }
 }
 
 extension SantanderFundViewController: BuilderFundView{
@@ -77,6 +81,7 @@ extension SantanderFundViewController: BuilderFundView{
         
         self.santanderFundView.startCDIStats(monthlyCDI: monthlyCDI, annuallyCDI: annuallyCDI, twelveMonthsCDI: twelveMonthsCDI)
     }
+    
     
 }
 
@@ -120,6 +125,7 @@ extension SantanderFundViewController: UITableViewDelegate, UITableViewDataSourc
                 cell.data.text = dataValue
             }else{
                 cell.data.text = "Baixar"
+            
                 self.unHideDownloadIcon(cell: cell)
             }
         }
@@ -133,7 +139,23 @@ extension SantanderFundViewController: UITableViewDelegate, UITableViewDataSourc
     
     func unHideDownloadIcon(cell: SantanderFundTableViewCell){
         cell.downloadIcon.isHidden = false
+        cell.downloadIcon.addTarget(self, action: #selector(clickedDownloadButton), for: UIControlEvents.touchUpInside)
     }
     
+}
+
+extension SantanderFundViewController: UIWebViewDelegate{
+    
+    func startWebView(url: String){
+        let myWebView:UIWebView = UIWebView(frame: CGRect(x:0, y:0, width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height))
+    
+        self.view.addSubview(myWebView)
+    
+        myWebView.delegate = self
+    
+        let myURL = URL(string: url)
+        let myURLRequest:URLRequest = URLRequest(url: myURL!)
+        myWebView.loadRequest(myURLRequest)
+    }
 }
 

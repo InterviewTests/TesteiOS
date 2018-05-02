@@ -12,7 +12,8 @@ class SantanderFundTableViewCell: UITableViewCell {
 
     @IBOutlet weak var data: UILabel!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var downloadIcon: UIImageView!
+    
+    @IBOutlet weak var downloadIcon: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
