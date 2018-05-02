@@ -7,7 +7,7 @@ This is an example of iOS API using swift.
 iOS project has the following configuration:
 
 * Targets
-  * GameApp Production Target.
+  * Santander project Production Target.
 
 * Project Configuration
   * Swift language.
