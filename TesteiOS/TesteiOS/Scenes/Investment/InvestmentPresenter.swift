@@ -10,12 +10,18 @@ import UIKit
 
 protocol InvestmentPresentationLogic: class {
     func presentFunds(response: Investment.FundsEntity)
+    func displayFunds()
 }
 
 class InvestmentPresenter: NSObject, InvestmentPresentationLogic {
     weak var viewController: InvestmentDisplayLogic?
     
     func presentFunds(response: Investment.FundsEntity) {
-        viewController?.displayFund(viewModel: response)
+        displayFunds()
+        viewController?.setData(viewModel: response)
+    }
+    
+    func displayFunds() {
+        viewController?.displayFunds()
     }
 }

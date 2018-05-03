@@ -9,7 +9,8 @@
 import UIKit
 
 protocol InvestmentDisplayLogic: class {
-    func displayFund(viewModel: Investment.FundsEntity)
+    func displayFunds()
+    func setData(viewModel: Investment.FundsEntity)
 }
 
 class InvestmentViewController: UIViewController {
@@ -116,7 +117,13 @@ extension InvestmentViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension InvestmentViewController: InvestmentDisplayLogic {
-    func displayFund(viewModel: Investment.FundsEntity) {
+    func displayFunds() {
+        UIView.animate(withDuration: 0.5) {
+            self.scrollView.alpha = 1.0
+        }
+    }
+    
+    func setData(viewModel: Investment.FundsEntity) {
         self.fundEntity = viewModel
         self.tableView.reloadData()
         lblScreenTitle.text = viewModel.screen.title

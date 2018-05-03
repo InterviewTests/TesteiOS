@@ -41,6 +41,9 @@
 		0F49A1E620993981002D537D /* DINPro-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0F49A1DD20993981002D537D /* DINPro-Black.otf */; };
 		0F49A1E720993981002D537D /* DINNeuzeitGroteskStd-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0F49A1DE20993981002D537D /* DINNeuzeitGroteskStd-Light.otf */; };
 		0F49A1E820993981002D537D /* DINEngschriftStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0F49A1DF20993981002D537D /* DINEngschriftStd.otf */; };
+		0F49A1EB209B3F84002D537D /* JMMaskTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F49A1E9209B3F83002D537D /* JMMaskTextField.swift */; };
+		0F49A1EC209B3F84002D537D /* JMStringMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F49A1EA209B3F83002D537D /* JMStringMask.swift */; };
+		0F49A1EE209B447A002D537D /* PhoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F49A1ED209B447A002D537D /* PhoneTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +104,9 @@
 		0F49A1DD20993981002D537D /* DINPro-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Black.otf"; sourceTree = "<group>"; };
 		0F49A1DE20993981002D537D /* DINNeuzeitGroteskStd-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINNeuzeitGroteskStd-Light.otf"; sourceTree = "<group>"; };
 		0F49A1DF20993981002D537D /* DINEngschriftStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINEngschriftStd.otf; sourceTree = "<group>"; };
+		0F49A1E9209B3F83002D537D /* JMMaskTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMMaskTextField.swift; sourceTree = "<group>"; };
+		0F49A1EA209B3F83002D537D /* JMStringMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMStringMask.swift; sourceTree = "<group>"; };
+		0F49A1ED209B447A002D537D /* PhoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,8 +241,8 @@
 		0F49A19720978AB9002D537D /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0F49A1EF209B4480002D537D /* TextField */,
 				0F49A1BF20993231002D537D /* Checkbox.swift */,
-				0F49A19820978AD5002D537D /* CustomTextField.swift */,
 				0F49A1A02097B12D002D537D /* CustomButton.swift */,
 				0F49A1A420980CFD002D537D /* SectionOneTableViewCell.swift */,
 				0F49A1A620980D09002D537D /* SectionTwoTableViewCell.swift */,
@@ -268,6 +274,25 @@
 				0F49A1DC20993981002D537D /* DINPro-Regular.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		0F49A1EF209B4480002D537D /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				0F49A1F0209B448B002D537D /* JMMaskTextField */,
+				0F49A19820978AD5002D537D /* CustomTextField.swift */,
+				0F49A1ED209B447A002D537D /* PhoneTextField.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		0F49A1F0209B448B002D537D /* JMMaskTextField */ = {
+			isa = PBXGroup;
+			children = (
+				0F49A1E9209B3F83002D537D /* JMMaskTextField.swift */,
+				0F49A1EA209B3F83002D537D /* JMStringMask.swift */,
+			);
+			path = JMMaskTextField;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,6 +440,7 @@
 			files = (
 				0F49A1AC209819C9002D537D /* RestAPI.swift in Sources */,
 				0F49A16320966178002D537D /* MainViewController.swift in Sources */,
+				0F49A1EB209B3F84002D537D /* JMMaskTextField.swift in Sources */,
 				0F49A1A32097B1B1002D537D /* ContactViewController.swift in Sources */,
 				0F49A1A520980CFE002D537D /* SectionOneTableViewCell.swift in Sources */,
 				0F49A16120966178002D537D /* AppDelegate.swift in Sources */,
@@ -429,6 +455,8 @@
 				0F49A1A920980FA8002D537D /* InvestmentViewController.swift in Sources */,
 				0F49A19F2097AC1A002D537D /* MessageSentViewController.swift in Sources */,
 				0F49A1B42098DCDD002D537D /* InvestmentPresenter.swift in Sources */,
+				0F49A1EC209B3F84002D537D /* JMStringMask.swift in Sources */,
+				0F49A1EE209B447A002D537D /* PhoneTextField.swift in Sources */,
 				0F49A1BC20991D91002D537D /* RiskLevelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

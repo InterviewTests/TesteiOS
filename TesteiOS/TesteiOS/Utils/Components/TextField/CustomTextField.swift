@@ -10,9 +10,10 @@ import UIKit
 
 class CustomTextField: UITextField {
     
-    enum InputType { case `default`, email, mobileNumber }
+    enum InputType { case `default`, email }
     enum State { case normal, selected, available, error }
     
+    var validationState: State  = .selected
     var inputType: InputType = .default
     private var bottomBorder = UIView()
     
@@ -57,7 +58,7 @@ class CustomTextField: UITextField {
     
     func setState(_ state: State) {
         self.rightView?.isHidden = (state == .normal) ? true : false
-
+        
         switch state {
         case .normal:
             self.bottomBorder.backgroundColor = UIColor.lightGray
@@ -98,18 +99,20 @@ extension CustomTextField: UITextFieldDelegate {
         switch inputType {
         case .default:
             if textString.isEmpty {
-               setState(.selected)
+                setState(.selected)
+                validationState = .error
             } else {
                 setState(.available)
+                validationState = .available
             }
         case .email:
             if !textString.isEmailFormat() {
                 setState(.error)
+                validationState = .error
             } else {
                 setState(.available)
+                validationState = .available
             }
-        default:
-            break
         }
         
         return true
