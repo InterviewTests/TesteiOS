@@ -25,8 +25,13 @@ class FormAPI: NSObject
         
         // faz o fetch do form
         URLSession.shared.dataTask(with: (url as URL?)!, completionHandler: {(data, response, error) -> Void in
-            if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary {
-                
+            // se houve erro (timeout ou qualquer outro tipo de falha na obtenção do JSON)
+            if error != nil
+            {
+                completionHandler(false, (error?.localizedDescription)!, nil)
+            }
+            else if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary
+            {
                 // obtém os elementos JSON e converte num array do objeto FormModel
                 if let cellArray = jsonObj!.value(forKey: "cells") as? NSArray {
                     // loop através de todos os elementos

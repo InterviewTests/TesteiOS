@@ -25,7 +25,12 @@ class FundAPI: NSObject
         
         // faz o fetch do form
         URLSession.shared.dataTask(with: (url as URL?)!, completionHandler: {(data, response, error) -> Void in
-            if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+            // se houve erro (timeout ou qualquer outro tipo de falha na obtenção do JSON)
+            if error != nil
+            {
+                completionHandler(false, (error?.localizedDescription)!, nil)
+            }
+            else if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
             {
                 if let dictionary = jsonObj as? [String: Any] {
                     if let nestedDictionary = dictionary["screen"] as? [String: Any] {

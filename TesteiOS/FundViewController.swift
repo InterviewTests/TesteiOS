@@ -49,7 +49,7 @@ class FundViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if !resultado
                 {
                     DispatchQueue.main.async {
-                        self.showAlert(title: "Erro", body: "Não foi possível carregar o JSON do form de contato.", buttonText: "OK")
+                        self.showAlert(title: "Erro", body: "Não foi possível carregar o JSON do fundo de investimento.", buttonText: "OK")
                     }
                 }
             })

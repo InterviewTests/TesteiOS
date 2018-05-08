@@ -14,7 +14,7 @@ class GeneralFunctions: NSObject {
     // a função é acionada a cada caracter digitado e retorna TRUE quando é um caracter válido e FALSE quanddo é um caracter inválido
     // a função também retorna FALSE quando o primeiro caracter é um @ e também limita o tamanho máximo de endereço de emai a 40 caracteres
     func handleEmailField(text: String, withRange range: NSRange, withReplacementString replacementString: String) -> Bool {
-        var illegalCharactersSet = CharacterSet.init(charactersIn: "!?><,\\/|`~\'\"[]{}±#$%^&*()=+")
+        var illegalCharactersSet = CharacterSet.init(charactersIn: " !?><,\\/|`~\'\"[]{}±#$%^&*()=+")
         
         let currentString = text as NSString
         
@@ -25,7 +25,7 @@ class GeneralFunctions: NSObject {
         }
         
         if currentString.contains("@") {
-            illegalCharactersSet = CharacterSet.init(charactersIn: "!?><,\\/|`~\'\"[]{}±#$%^&*()=+@")
+            illegalCharactersSet = CharacterSet.init(charactersIn: " !?><,\\/|`~\'\"[]{}±#$%^&*()=+@")
         }
         
         let components = replacementString.components(separatedBy: illegalCharactersSet)
