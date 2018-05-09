@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import NVActivityIndicatorView
+import SVProgressHUD
 protocol BaseView {
-    var activityData:ActivityData {get}
+   // var activityData:ActivityData {get}
     
     func showLoading()
     func hideLoading()
@@ -21,17 +21,22 @@ protocol BaseView {
 
 extension UIViewController:BaseView{
     
-    var activityData: ActivityData {
-        return ActivityData()
-    }
+//    var activityData: ActivityData {
+//        NVActivityIndicatorView.DEFAULT_TYPE = .ballClipRotatePulse
+//        return ActivityData()
+//
+//    }
     
     func showLoading(){
-        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+        SVProgressHUD.show()
+
+//        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
         
     }
     
     func hideLoading(){
-        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+        SVProgressHUD.dismiss()
+//        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
     }
     
     func showDefaultError(){

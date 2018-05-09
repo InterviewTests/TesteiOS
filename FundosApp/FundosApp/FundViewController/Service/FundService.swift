@@ -9,7 +9,7 @@
 import Foundation
 
 protocol FundService {
-    typealias FundServiceCompletionHandler = (ResultHelper<Funds>) -> Void
+    typealias FundServiceCompletionHandler = (ResultHelper<Screen>) -> Void
     func load(completionHandler:@escaping FundServiceCompletionHandler)
 }
 class FundServiceImp:FundService{
@@ -23,20 +23,20 @@ class FundServiceImp:FundService{
                 print("Status code:\(statusCode)")
                 dump(data)
                 let decoder = JSONDecoder()
-                guard let funds = try? decoder.decode(Funds.self, from: data)else{
-                    completionHandler(ResultHelper<Funds>.error(ErrorService.invalidJSON))
+                guard let screen = try? decoder.decode(Screen.self, from: data)else{
+                    completionHandler(ResultHelper<Screen>.error(ErrorService.invalidJSON))
                     
                     return
                     
                 }
-                dump(funds)
-                completionHandler(ResultHelper<Funds>.success(statusCode,funds))
+                dump(screen)
+                completionHandler(ResultHelper<Screen>.success(statusCode,screen))
 
       
                 
             case .error(let error):
                 print(error)
-                completionHandler(ResultHelper<Funds>.error(ErrorService.custon(error: "Bad Request")))
+                completionHandler(ResultHelper<Screen>.error(ErrorService.custon(error: "Bad Request")))
 
              
                 

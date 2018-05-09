@@ -15,8 +15,6 @@ enum ErrorService:Error {
 protocol FormService {
     typealias FormServiceCompletionHandler = (ResultHelper<Cells>) -> Void
     func load(completionHandler:@escaping FormServiceCompletionHandler)
-
-
 }
 class FormServiceImp:FormService{
     let api = NetworkManager(url: Routes.cells.endpoint, method: .get)

@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let test = NetworkManager(url: Routes.cells.endpoint, method: .get)
+        let test = NetworkManager(url: Routes.fund.endpoint, method: .get)
         test.response { (resultHelper) in
             switch resultHelper{
             case .success(let statusCode,let data):
