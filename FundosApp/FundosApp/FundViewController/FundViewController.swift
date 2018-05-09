@@ -33,6 +33,11 @@ class FundViewController: UIViewController {
     }
     
     
+    @IBAction func formButtonTapped(_ sender: CustomButton) {
+        performSegue(withIdentifier: "goToFormController", sender: nil)
+    }
+    
+    
 }
 
 extension FundViewController:UITableViewDataSource{

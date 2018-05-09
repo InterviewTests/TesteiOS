@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,11 +25,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hYE-1x-Beq">
-                                <rect key="frame" x="0.0" y="64" width="375" height="529"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="469"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kZ-MP-L09" customClass="CustomButton" customModule="FundosApp" customModuleProvider="target">
-                                <rect key="frame" x="12" y="605" width="351" height="50"/>
+                                <rect key="frame" x="12" y="545" width="351" height="50"/>
                                 <color key="backgroundColor" red="0.85490196080000003" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="tF3-0q-dY9"/>
@@ -46,6 +47,33 @@
                                     <action selector="investButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PqS-rg-HGa"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="MQW-OY-ebO" customClass="BottomMenuStack" customModule="FundosApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wm6-bV-ulv" customClass="CustomButton" customModule="FundosApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="60"/>
+                                        <color key="backgroundColor" name="SelectedTab"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="tYL-Gt-v62"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Investimento"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYm-X4-vwx" customClass="CustomButton" customModule="FundosApp" customModuleProvider="target">
+                                        <rect key="frame" x="187.5" y="4" width="187.5" height="56"/>
+                                        <color key="backgroundColor" name="MainColor"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Contato"/>
+                                        <connections>
+                                            <action selector="formButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yhY-Ka-3Q4"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="MainColor"/>
+                                <constraints>
+                                    <constraint firstItem="CYm-X4-vwx" firstAttribute="height" secondItem="Wm6-bV-ulv" secondAttribute="height" constant="-4" id="Z8b-ff-yBz"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -53,9 +81,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6kZ-MP-L09" secondAttribute="trailing" constant="12" id="9wr-eh-xx9"/>
                             <constraint firstItem="hYE-1x-Beq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="INS-9i-PRu"/>
                             <constraint firstItem="hYE-1x-Beq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="JtX-Y6-uXZ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6kZ-MP-L09" secondAttribute="bottom" constant="12" id="X7s-1v-F51"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MQW-OY-ebO" secondAttribute="trailing" id="L2e-cU-73T"/>
+                            <constraint firstItem="MQW-OY-ebO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Rht-wV-3YH"/>
                             <constraint firstItem="6kZ-MP-L09" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="bkx-2X-1sK"/>
+                            <constraint firstItem="MQW-OY-ebO" firstAttribute="top" secondItem="6kZ-MP-L09" secondAttribute="bottom" constant="12" id="eaN-81-7rI"/>
                             <constraint firstItem="6kZ-MP-L09" firstAttribute="top" secondItem="hYE-1x-Beq" secondAttribute="bottom" constant="12" id="hIz-fU-YIY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MQW-OY-ebO" secondAttribute="bottom" id="k4j-KD-Axq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -66,6 +97,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableViewFund" destination="hYE-1x-Beq" id="epd-k0-8Wd"/>
+                        <segue destination="u2p-Sj-dzj" kind="presentation" identifier="goToFormController" modalPresentationStyle="formSheet" modalTransitionStyle="crossDissolve" id="573-47-xDd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -90,5 +122,83 @@
             </objects>
             <point key="canvasLocation" x="181.59999999999999" y="792.95352323838085"/>
         </scene>
+        <!--Form View Controller-->
+        <scene sceneID="1bx-kL-jb2">
+            <objects>
+                <viewController id="u2p-Sj-dzj" customClass="FormViewController" customModule="FundosApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="V9v-Ea-RE1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="owY-sV-0ji" customClass="BottomMenuStack" customModule="FundosApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8s0-Qu-34H" customClass="CustomButton" customModule="FundosApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="4" width="187.5" height="56"/>
+                                        <color key="backgroundColor" name="MainColor"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Investimento"/>
+                                        <connections>
+                                            <action selector="formButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Iol-4k-AaV"/>
+                                            <action selector="investimentButtonTapped:" destination="u2p-Sj-dzj" eventType="touchUpInside" id="rQp-RE-ZEy"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdU-av-6RN" customClass="CustomButton" customModule="FundosApp" customModuleProvider="target">
+                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="60"/>
+                                        <color key="backgroundColor" name="SelectedTab"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="HL9-c9-hsc"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Contato"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="MainColor"/>
+                                <constraints>
+                                    <constraint firstItem="8s0-Qu-34H" firstAttribute="height" secondItem="hdU-av-6RN" secondAttribute="height" constant="-4" id="U6X-Yg-5Qy"/>
+                                    <constraint firstAttribute="height" constant="60" id="pwi-t4-wGs"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contato" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVQ-Fe-jg7">
+                                <rect key="frame" x="158" y="44" width="59.5" height="22"/>
+                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8FT-B7-uAw">
+                                <rect key="frame" x="0.0" y="32" width="375" height="545"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8FT-B7-uAw" firstAttribute="top" secondItem="8qy-pO-WDT" secondAttribute="top" constant="12" id="1UF-Bi-woB"/>
+                            <constraint firstItem="8qy-pO-WDT" firstAttribute="trailing" secondItem="owY-sV-0ji" secondAttribute="trailing" id="1gc-uy-mjl"/>
+                            <constraint firstItem="8qy-pO-WDT" firstAttribute="trailing" secondItem="8FT-B7-uAw" secondAttribute="trailing" id="1tv-bc-olA"/>
+                            <constraint firstItem="aVQ-Fe-jg7" firstAttribute="top" secondItem="8qy-pO-WDT" secondAttribute="top" constant="24" id="7aI-1C-du4"/>
+                            <constraint firstItem="8qy-pO-WDT" firstAttribute="bottom" secondItem="owY-sV-0ji" secondAttribute="bottom" id="EvH-vg-obi"/>
+                            <constraint firstItem="owY-sV-0ji" firstAttribute="leading" secondItem="V9v-Ea-RE1" secondAttribute="leading" id="I7h-mP-6dD"/>
+                            <constraint firstItem="8FT-B7-uAw" firstAttribute="leading" secondItem="V9v-Ea-RE1" secondAttribute="leading" id="O3z-9a-Xyg"/>
+                            <constraint firstItem="aVQ-Fe-jg7" firstAttribute="centerX" secondItem="V9v-Ea-RE1" secondAttribute="centerX" id="cdC-8Q-CJo"/>
+                            <constraint firstItem="owY-sV-0ji" firstAttribute="top" secondItem="8FT-B7-uAw" secondAttribute="bottom" constant="30" id="vkI-O9-6a7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8qy-pO-WDT"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableViewForm" destination="8FT-B7-uAw" id="PNg-FH-HEs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iGF-oQ-azs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="886"/>
+        </scene>
     </scenes>
+    <resources>
+        <namedColor name="MainColor">
+            <color red="0.85500001910000001" green="0.0040000001900000002" blue="0.0040000001900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SelectedTab">
+            <color red="0.67799997329999995" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
