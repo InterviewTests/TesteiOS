@@ -10,7 +10,7 @@ import UIKit
 
 class FormAPI: NSObject
 {
-    func fetchFormData( URL: String, completionHandler: @escaping (Bool, String, FormModel?) -> Void)
+    func fetchFormData( URL: String, completionHandler: @escaping (Bool, String?, FormModel?) -> Void)
     {
         let formModelToReturn = FormModel()
         
@@ -103,7 +103,7 @@ class FormAPI: NSObject
                         }
                     }
                     
-                    completionHandler(true, "", formModelToReturn)
+                    completionHandler(true, nil, formModelToReturn)
                     return
                 }
                 else

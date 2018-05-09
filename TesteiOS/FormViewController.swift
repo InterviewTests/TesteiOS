@@ -266,7 +266,7 @@ class FormViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             else
             {
-                completionHandler(false, mensagem)
+                completionHandler(false, mensagem!)
             }
         }
     }

@@ -10,7 +10,7 @@ import UIKit
 
 class FundAPI: NSObject
 {
-    func fetchFundData( URL: String, completionHandler: @escaping (Bool, String, FundModel?) -> Void)
+    func fetchFundData( URL: String, completionHandler: @escaping (Bool, String?, FundModel?) -> Void)
     {
         let fundModelToReturn = FundModel()
 
@@ -167,7 +167,7 @@ class FundAPI: NSObject
                             }
                         }
 
-                        completionHandler(true, "", fundModelToReturn)
+                        completionHandler(true, nil, fundModelToReturn)
                         return
                     }
                     else
