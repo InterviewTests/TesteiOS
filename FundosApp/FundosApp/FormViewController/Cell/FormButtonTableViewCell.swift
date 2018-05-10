@@ -8,8 +8,12 @@
 
 import UIKit
 
-class FormButtonTableViewCell: UITableViewCell {
+protocol DelegateSegue {
+    func performSegue(value:String)
+}
 
+class FormButtonTableViewCell: UITableViewCell {
+    var delegate:DelegateSegue!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,6 +28,10 @@ class FormButtonTableViewCell: UITableViewCell {
     static func register(to tableView:UITableView) {
         let nib = UINib(nibName: "FormButtonTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "FormButtonTableViewCell")
+    }
+    
+    @IBAction func sendButtonTapped(_ sender: Any) {
+        delegate.performSegue(value: "goToMessageSent")
     }
     
 }

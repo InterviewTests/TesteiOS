@@ -21,7 +21,7 @@ struct Cell:Codable{
     var id: Int
     var type: Type
     var message: String
-    var typeField: TypeField?
+    var typeField: TypeField? 
     var hidden: Bool
     var topSpacing: Float
     var show: Int?

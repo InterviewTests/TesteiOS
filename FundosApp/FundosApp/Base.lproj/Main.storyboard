@@ -160,7 +160,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contato" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVQ-Fe-jg7">
-                                <rect key="frame" x="158" y="44" width="59.5" height="22"/>
+                                <rect key="frame" x="157" y="44" width="61.5" height="20"/>
                                 <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -186,14 +186,77 @@
                     </view>
                     <connections>
                         <outlet property="tableViewForm" destination="8FT-B7-uAw" id="PNg-FH-HEs"/>
+                        <segue destination="K6i-Eq-l0r" kind="show" identifier="goToMessageSent" id="PNL-dH-d30"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGF-oQ-azs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="886"/>
         </scene>
+        <!--Send Message View Controller-->
+        <scene sceneID="N1x-Bx-Ixd">
+            <objects>
+                <viewController id="K6i-Eq-l0r" customClass="SendMessageViewController" customModule="FundosApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6QG-nf-bpB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecU-jq-iYf">
+                                <rect key="frame" x="106.5" y="607" width="162" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Enviar nova mensagem">
+                                    <color key="titleColor" name="MainColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="returnButtonTapped:" destination="K6i-Eq-l0r" eventType="touchUpInside" id="Okd-7H-pJM"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="center" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uc2-gT-5Lc">
+                                <rect key="frame" x="12" y="280" width="351" height="107"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7y-zu-QBn">
+                                        <rect key="frame" x="137.5" y="0.0" width="76.5" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" text="Mensagem enviada com sucesso :)" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="A9T-gh-8LQ">
+                                        <rect key="frame" x="0.0" y="31" width="351" height="76"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="lig-I0-ckS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="A9T-gh-8LQ" firstAttribute="leading" secondItem="uc2-gT-5Lc" secondAttribute="leading" id="JH5-Ng-PB1"/>
+                                    <constraint firstAttribute="trailing" secondItem="A9T-gh-8LQ" secondAttribute="trailing" id="fH6-ZQ-3I3"/>
+                                    <constraint firstAttribute="bottom" secondItem="A9T-gh-8LQ" secondAttribute="bottom" id="hMh-No-vhR"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="uc2-gT-5Lc" secondAttribute="trailing" constant="12" id="6Mv-bs-Y9n"/>
+                            <constraint firstItem="uc2-gT-5Lc" firstAttribute="centerX" secondItem="6QG-nf-bpB" secondAttribute="centerX" id="F3z-iT-bi3"/>
+                            <constraint firstItem="uc2-gT-5Lc" firstAttribute="centerY" secondItem="6QG-nf-bpB" secondAttribute="centerY" id="doE-Ik-XLT"/>
+                            <constraint firstItem="ecU-jq-iYf" firstAttribute="centerX" secondItem="6QG-nf-bpB" secondAttribute="centerX" id="eGV-eL-LHR"/>
+                            <constraint firstItem="uc2-gT-5Lc" firstAttribute="leading" secondItem="Kn1-jz-TfQ" secondAttribute="leading" constant="12" id="fdd-IR-xfP"/>
+                            <constraint firstItem="Kn1-jz-TfQ" firstAttribute="bottom" secondItem="ecU-jq-iYf" secondAttribute="bottom" constant="30" id="hKJ-SV-DNo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Kn1-jz-TfQ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aXA-3Z-soV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1924" y="886"/>
+        </scene>
     </scenes>
     <resources>
+        <namedColor name="MainColor">
+            <color red="0.85500001910000001" green="0.0040000001900000002" blue="0.0040000001900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="MainColor">
             <color red="0.85500001910000001" green="0.0040000001900000002" blue="0.0040000001900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

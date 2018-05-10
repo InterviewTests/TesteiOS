@@ -54,7 +54,7 @@ extension FormViewController:UITableViewDataSource{
                 fatalError("Erro ao criar celula FormFieldTableViewCell")
                 
             }
-            formFieldTableViewCell.setup(with: TitleTableDataViewCell(with: cellForm))
+            formFieldTableViewCell.setup(with: FormTableDataViewCell(with: cellForm))
             return formFieldTableViewCell
             
         case .checkbox:
@@ -69,6 +69,7 @@ extension FormViewController:UITableViewDataSource{
                 fatalError("Erro ao criar celula FormButtonTableViewCell")
                 
             }
+            formButtonTableViewCell.delegate = self
 
             return formButtonTableViewCell
             
@@ -100,8 +101,11 @@ extension FormViewController:UITableViewDataSource{
     }
 }
 
-extension FormViewController:UITableViewDelegate{
-    
+extension FormViewController:UITableViewDelegate,DelegateSegue{
+    func performSegue(value: String) {
+        performSegue(withIdentifier: value, sender: nil)
+
+    }
 }
 
 extension FormViewController:FormProtocol{
