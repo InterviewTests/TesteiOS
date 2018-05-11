@@ -16,7 +16,8 @@ class FundViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - SETUP DE VARIÁVEIS LOCAIS
     //
     var fundFields = FundModel()
-    let URL_Fund = "https://floating-mountain-50292.herokuapp.com/fund.json"
+    var URL_Fund = String()
+    var shareURL = String()
     var titulo = ""
     var tableRowsSum = 0
 
@@ -220,7 +221,7 @@ class FundViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func OpenSafari(_ sender: Any) {
-        let svc = SFSafariViewController(url: URL(string: "https://www.google.com")!)
+        let svc = SFSafariViewController(url: URL(string: shareURL)!)
         self.present(svc, animated: true, completion: nil)
     }
     /*

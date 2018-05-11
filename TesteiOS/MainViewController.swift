@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
     var Label_Selected = UILabel()
     var Gesture_Button_Investimentos: UITapGestureRecognizer!
     var Gesture_Button_Contato: UITapGestureRecognizer!
+    let vermelhoSantander = "DA0101"
     
     //
     // MARK: - GANCHO PARA O CONTAINERVIEWCONTROLLER
@@ -80,6 +81,8 @@ class MainViewController: UIViewController {
     func tapButtonContato(_ sender: UITapGestureRecognizer)
     {
         setSelectedButton(button: Label_Button_Contato)
+        formViewController?.titulo = "Contato"
+        formViewController?.URL_Form_Contato = "https://floating-mountain-50292.herokuapp.com/cells.json"
         activeViewController = formViewController
     }
 
@@ -87,12 +90,19 @@ class MainViewController: UIViewController {
     func tapButtonInvestimentos(_ sender: UITapGestureRecognizer)
     {
         setSelectedButton(button: Label_Button_Investimentos)
+        fundViewController?.titulo = "Investimentos"
+        fundViewController?.URL_Fund = "https://floating-mountain-50292.herokuapp.com/fund.json"
+        fundViewController?.shareURL = "https://www.google.com"
         activeViewController = fundViewController
     }
 
     // mostra view de confirmação de envio de formulário de contato
     func showConfirmationView()
     {
+        confirmationScreenViewController?.titulo = "Contato"
+        confirmationScreenViewController?.mensagem_secundaria = "Obrigado!"
+        confirmationScreenViewController?.mensagem_principal = "Mensagem enviada com sucesso :-)"
+        confirmationScreenViewController?.label_botao_call_to_action = "Enviar nova mensagem"
         activeViewController = confirmationScreenViewController
     }
     
@@ -110,8 +120,8 @@ class MainViewController: UIViewController {
     func setupNavigationButtons()
     {
         // ajusta a cor de background de cada botão de navegação
-        Label_Button_Contato.backgroundColor = UIColor.init(hex: "DA0101")
-        Label_Button_Investimentos.backgroundColor = UIColor.init(hex: "DA0101")
+        Label_Button_Contato.backgroundColor = UIColor.init(hex: vermelhoSantander)
+        Label_Button_Investimentos.backgroundColor = UIColor.init(hex: vermelhoSantander)
         
         // define parâmetros específicos das labels de cada botão de navegação
         Label_Button_Contato.textColor = UIColor.white
@@ -135,18 +145,12 @@ class MainViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
         formViewController = storyboard.instantiateViewController(withIdentifier: "FormViewController") as? FormViewController
-        formViewController?.titulo = "Contato"
         self.addChildViewController(formViewController!)
         
         fundViewController = storyboard.instantiateViewController(withIdentifier: "FundViewController") as? FundViewController
-        fundViewController?.titulo = "Investimentos"
         self.addChildViewController(fundViewController!)
         
         confirmationScreenViewController = storyboard.instantiateViewController(withIdentifier: "ConfirmationScreenViewController") as? ConfirmationScreenViewController
-        confirmationScreenViewController?.titulo = "Contato"
-        confirmationScreenViewController?.mensagem_secundaria = "Obrigado!"
-        confirmationScreenViewController?.mensagem_principal = "Mensagem enviada com sucesso :-)"
-        confirmationScreenViewController?.label_botao_call_to_action = "Enviar nova mensagem"
         self.addChildViewController(confirmationScreenViewController!)
 
     }

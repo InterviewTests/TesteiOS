@@ -16,7 +16,7 @@ class FormViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - SETUP DE VARIÁVEIS LOCAIS
     //
     var formFields = FormModel()
-    let URL_Form_Contato = "https://floating-mountain-50292.herokuapp.com/cells.json"
+    var URL_Form_Contato = String()
     var titulo = ""
 
     //
@@ -41,7 +41,6 @@ class FormViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // ajusta o estilo do SVProgressHUD para dark
         SVProgressHUD.setDefaultStyle(.dark)
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
