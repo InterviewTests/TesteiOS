@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gdb-Cc-J8m">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Medium.otf">
+            <string>DINPro-Medium</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="VKd-uu-OXZ">
+            <objects>
+                <viewController id="Gdb-Cc-J8m" customClass="HomeViewController" customModule="SantanderExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nIC-a0-cz0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dbl-5K-VKb" customClass="ButtonBarView" customModule="XLPagerTabStrip">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="BXY-rU-yb8">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVh-P2-NhZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="60"/>
+                                                <color key="backgroundColor" red="0.85490196080000003" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="18"/>
+                                                <state key="normal" title="Investimento">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="investmentButtonTouchUpInside:" destination="Gdb-Cc-J8m" eventType="touchUpInside" id="LPw-3w-tqJ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1J-nd-azd">
+                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="60"/>
+                                                <color key="backgroundColor" red="0.85490196080000003" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="18"/>
+                                                <state key="normal" title="Contato">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="contactButtonTouchUpInside:" destination="Gdb-Cc-J8m" eventType="touchUpInside" id="Om7-zQ-KDZ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="6kN-sh-AZ0"/>
+                                    <constraint firstItem="BXY-rU-yb8" firstAttribute="top" secondItem="Dbl-5K-VKb" secondAttribute="top" id="Pru-XH-2li"/>
+                                    <constraint firstAttribute="trailing" secondItem="BXY-rU-yb8" secondAttribute="trailing" id="fIc-2J-bPz"/>
+                                    <constraint firstAttribute="bottom" secondItem="BXY-rU-yb8" secondAttribute="bottom" id="tuR-hx-fKJ"/>
+                                    <constraint firstItem="BXY-rU-yb8" firstAttribute="leading" secondItem="Dbl-5K-VKb" secondAttribute="leading" id="wNL-nb-xuW"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTt-1f-tlr">
+                                <rect key="frame" x="0.0" y="20" width="375" height="587"/>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Dbl-5K-VKb" firstAttribute="bottom" secondItem="FQX-Nd-ewK" secondAttribute="bottom" id="7aQ-CW-ckc"/>
+                            <constraint firstItem="Dbl-5K-VKb" firstAttribute="top" secondItem="aTt-1f-tlr" secondAttribute="bottom" id="Hee-nZ-T17"/>
+                            <constraint firstItem="aTt-1f-tlr" firstAttribute="top" secondItem="FQX-Nd-ewK" secondAttribute="top" id="QEF-lg-3Gm"/>
+                            <constraint firstItem="Dbl-5K-VKb" firstAttribute="leading" secondItem="FQX-Nd-ewK" secondAttribute="leading" id="UgR-c7-GPk"/>
+                            <constraint firstItem="aTt-1f-tlr" firstAttribute="leading" secondItem="FQX-Nd-ewK" secondAttribute="leading" id="Yj7-Fe-AFa"/>
+                            <constraint firstItem="FQX-Nd-ewK" firstAttribute="trailing" secondItem="Dbl-5K-VKb" secondAttribute="trailing" id="kZw-Pa-kru"/>
+                            <constraint firstItem="FQX-Nd-ewK" firstAttribute="trailing" secondItem="aTt-1f-tlr" secondAttribute="trailing" id="nQa-Md-5Q2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FQX-Nd-ewK"/>
+                    </view>
+                    <connections>
+                        <outlet property="contactButton" destination="H1J-nd-azd" id="jqX-tQ-ssI"/>
+                        <outlet property="containerView" destination="aTt-1f-tlr" id="KJL-lJ-jyg"/>
+                        <outlet property="investmentButton" destination="zVh-P2-NhZ" id="J91-UL-UeN"/>
+                        <segue destination="gFE-dN-rYs" kind="show" identifier="sgContact" id="EwF-nn-bzR"/>
+                        <segue destination="cgf-kT-qdF" kind="show" id="hW9-xJ-IVm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FgE-Q0-ZWv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="276" y="-167"/>
+        </scene>
+        <!--Investment-->
+        <scene sceneID="cI9-FA-KsL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Investment" id="cgf-kT-qdF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="35F-32-V2B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1079" y="-434"/>
+        </scene>
+        <!--Contact-->
+        <scene sceneID="ZJY-KW-ahJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Contact" id="gFE-dN-rYs" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eOa-F2-xYX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="11"/>
+        </scene>
+    </scenes>
+</document>
