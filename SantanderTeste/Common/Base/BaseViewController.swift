@@ -34,7 +34,7 @@ class BaseViewController: UIViewController {
     }
     
     func error(_ title: String?, _ error: String) {
-        if banner == nil || banner?.bannerQueue.numberOfBanners == 0 { return }
+        guard banner == nil || banner?.bannerQueue.numberOfBanners == 0 else { return }
         
         banner = NotificationBanner(title: title ?? "", subtitle: error, style: .danger)
         banner?.duration = 2
