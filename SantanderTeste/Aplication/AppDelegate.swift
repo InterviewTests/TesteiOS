@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         let vc = CustomTabBarRouter.instantiate()
-        vc.viewControllers = [InvestmentRouter.instantiate()]
+        vc.viewControllers = [InvestmentRouter.instantiate(),
+                            ContactFormRouter.instantiate()]
         
         BaseRouter.setRoot(controller: vc)
         
