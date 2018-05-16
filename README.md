@@ -3,7 +3,6 @@
 Informações sobre o teste:
 
 - Swift 4;
-- 
 - Ele foi feito usando VIPER (uma clean arquitecture, similar ao Swift Clean (na veradeda são quaaase a mesma coisa, em essência muda os nomes dos modulos)), utilizando um projeto pessoal como base para a arquitetura;
 - Não deu tempo de contruir os testes unitários, essa arquitetura consome um bom tempo na base de sua implementação, porém depois de pronta não levaria tanto tempo para contruir os testes;
 - O módulo de investimento foi feito utilizando um TableView para construir o formulário dinamico;
