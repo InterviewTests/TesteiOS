@@ -13,7 +13,6 @@ class WebViewController: UIViewController
 {
     //Outlets
     @IBOutlet weak var webView: WKWebView!
-    @IBOutlet weak var btSingout: Button!
     
     //Properties
     var pageUrl = ""
