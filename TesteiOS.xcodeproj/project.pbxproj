@@ -29,9 +29,11 @@
 		1FD899AC20AB6C6F00256FEA /* Investment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD899AB20AB6C6F00256FEA /* Investment.swift */; };
 		1FD899AE20AB732B00256FEA /* InvestmentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD899AD20AB732B00256FEA /* InvestmentRequest.swift */; };
 		1FD899B020AB738700256FEA /* ServerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD899AF20AB738700256FEA /* ServerData.swift */; };
+		59497073269701B71AC92F2E /* Pods_TesteiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0689C19D1F98F42076CF0571 /* Pods_TesteiOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0689C19D1F98F42076CF0571 /* Pods_TesteiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TesteiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB4E1BE20ADFC060068F91C /* Label+spaceLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label+spaceLine.swift"; sourceTree = "<group>"; };
 		1FB4E1C020AE03D10068F91C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		1FD8997520AB094A00256FEA /* TesteiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TesteiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +58,8 @@
 		1FD899AB20AB6C6F00256FEA /* Investment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Investment.swift; path = ../../../Investment.swift; sourceTree = "<group>"; };
 		1FD899AD20AB732B00256FEA /* InvestmentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InvestmentRequest.swift; path = ../../../InvestmentRequest.swift; sourceTree = "<group>"; };
 		1FD899AF20AB738700256FEA /* ServerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServerData.swift; path = ../../../ServerData.swift; sourceTree = "<group>"; };
+		79C77469C8251799E708BCA3 /* Pods-TesteiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesteiOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TesteiOS/Pods-TesteiOS.release.xcconfig"; sourceTree = "<group>"; };
+		EED26228EEFDAD5836BA922D /* Pods-TesteiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesteiOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TesteiOS/Pods-TesteiOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59497073269701B71AC92F2E /* Pods_TesteiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +79,8 @@
 			children = (
 				1FD8997720AB094A00256FEA /* TesteiOS */,
 				1FD8997620AB094A00256FEA /* Products */,
+				D0274207DB1A95508D4DDFD7 /* Pods */,
+				42BCF41C06FCB7B6D766EE27 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +154,23 @@
 			path = Files;
 			sourceTree = "<group>";
 		};
+		42BCF41C06FCB7B6D766EE27 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0689C19D1F98F42076CF0571 /* Pods_TesteiOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0274207DB1A95508D4DDFD7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EED26228EEFDAD5836BA922D /* Pods-TesteiOS.debug.xcconfig */,
+				79C77469C8251799E708BCA3 /* Pods-TesteiOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -154,9 +178,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1FD8998720AB094C00256FEA /* Build configuration list for PBXNativeTarget "TesteiOS" */;
 			buildPhases = (
+				2C9D8C37C8C3ADEBD88BE821 /* [CP] Check Pods Manifest.lock */,
 				1FD8997120AB094A00256FEA /* Sources */,
 				1FD8997220AB094A00256FEA /* Frameworks */,
 				1FD8997320AB094A00256FEA /* Resources */,
+				939AB8CAF642270DCE27C757 /* [CP] Embed Pods Frameworks */,
+				1B3A44BCC7359C7C9C466FE3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -221,6 +248,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B3A44BCC7359C7C9C466FE3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TesteiOS/Pods-TesteiOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C9D8C37C8C3ADEBD88BE821 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TesteiOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		939AB8CAF642270DCE27C757 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TesteiOS/Pods-TesteiOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TesteiOS/Pods-TesteiOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1FD8997120AB094A00256FEA /* Sources */ = {
@@ -378,15 +461,13 @@
 		};
 		1FD8998820AB094C00256FEA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EED26228EEFDAD5836BA922D /* Pods-TesteiOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 67466Z8U9C;
 				INFOPLIST_FILE = TesteiOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Luan-Orlando.TesteiOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -396,15 +477,13 @@
 		};
 		1FD8998920AB094C00256FEA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79C77469C8251799E708BCA3 /* Pods-TesteiOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 67466Z8U9C;
 				INFOPLIST_FILE = TesteiOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Luan-Orlando.TesteiOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
