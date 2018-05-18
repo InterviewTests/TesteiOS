@@ -26,6 +26,11 @@ class ContactViewController: UIViewController
     //Properties
     var isInterested = false
     
+    let defaultColor = #colorLiteral(red: 0.8374213576, green: 0.8374213576, blue: 0.8374213576, alpha: 1)
+    let grayColor = #colorLiteral(red: 0.6642242074, green: 0.6642400622, blue: 0.6642315388, alpha: 1)
+    let redColor = #colorLiteral(red: 0.968627451, green: 0.2901960784, blue: 0.2823529412, alpha: 1)
+    let greenColor = #colorLiteral(red: 0.4980392157, green: 0.7921568627, blue: 0.3254901961, alpha: 1)
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -33,7 +38,23 @@ class ContactViewController: UIViewController
         self.checkBox.boxType = .square
         self.checkBox.animationDuration = 0.2
         self.checkBox.delegate = self
+        
+        self.textFieldName.delegate = self
+        self.textFieldEmail.delegate = self
+        self.textFieldPhone.delegate = self
+        
+        self.viewName.backgroundColor = self.defaultColor
+        self.viewEmail.backgroundColor = self.defaultColor
+        self.viewPhone.backgroundColor = self.defaultColor
+      
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        print("touchesBegan")
+        self.view.endEditing(true)
+    }
+    
     
     //MARK: - Actions
     @IBAction func sendContact(_ sender: Button)
@@ -47,7 +68,6 @@ class ContactViewController: UIViewController
             print("mostar alerta")
         }
     }
-    
 }
 
 //MARK: - BEMCheckBoxDelegate
@@ -64,6 +84,64 @@ extension  ContactViewController: BEMCheckBoxDelegate
         {
             print("Não selecionou para cadastrar email")
             self.isInterested = false
+        }
+    }
+}
+
+//MARK: - UITextFieldDelegate
+extension ContactViewController: UITextFieldDelegate
+{
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+        switch textField
+        {
+            case self.textFieldName:
+                print("name")
+                self.viewName.backgroundColor = self.grayColor
+            case self.textFieldEmail:
+                print("email")
+                self.viewEmail.backgroundColor = self.redColor
+            default:
+                print("phone")
+                self.viewPhone.backgroundColor = self.greenColor
+            
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
+        switch textField
+        {
+            case self.textFieldName:
+                print("nameEnd")
+                if self.textFieldName.text != ""
+                {
+                    self.viewName.backgroundColor = self.grayColor
+                }
+                else
+                {
+                    self.viewName.backgroundColor = self.defaultColor
+                }
+            case self.textFieldEmail:
+                print("emailEnd")
+                if self.textFieldEmail.text != ""
+                {
+                    self.viewEmail.backgroundColor = self.redColor
+                }
+                else
+                {
+                    self.viewEmail.backgroundColor = self.defaultColor
+                }
+            default:
+                print("phoneEnd")
+                if self.textFieldPhone.text != ""
+                {
+                    self.viewPhone.backgroundColor = self.greenColor
+                }
+                else
+                {
+                    self.viewPhone.backgroundColor = self.defaultColor
+                }
         }
     }
 }
