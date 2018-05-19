@@ -13,21 +13,181 @@ struct R: Rswift.Validatable {
   fileprivate static let hostingBundle = Bundle(for: R.Class.self)
   
   static func validate() throws {
+    try font.validate()
     try intern.validate()
   }
   
-  /// This `R.color` struct is generated, and contains static references to 0 colors.
+  /// This `R.color` struct is generated, and contains static references to 1 colors.
   struct color {
+    /// Color `Testando`.
+    static let testando = Rswift.ColorResource(bundle: R.hostingBundle, name: "Testando")
+    
+    /// `UIColor(named: "Testando", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func testando(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.testando, compatibleWith: traitCollection)
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 0 files.
+  /// This `R.file` struct is generated, and contains static references to 9 files.
   struct file {
+    /// Resource file `DINEngschriftStd.otf`.
+    static let dinEngschriftStdOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "DINEngschriftStd", pathExtension: "otf")
+    /// Resource file `DINMittelschriftStd.otf`.
+    static let dinMittelschriftStdOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "DINMittelschriftStd", pathExtension: "otf")
+    /// Resource file `DINNeuzeitGroteskStd-BdCond.otf`.
+    static let dinNeuzeitGroteskStdBdCondOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "DINNeuzeitGroteskStd-BdCond", pathExtension: "otf")
+    /// Resource file `DINNeuzeitGroteskStd-Light.otf`.
+    static let dinNeuzeitGroteskStdLightOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "DINNeuzeitGroteskStd-Light", pathExtension: "otf")
+    /// Resource file `DINPro-Black.otf`.
+    static let dinProBlackOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "DINPro-Black", pathExtension: "otf")
+    /// Resource file `DINPro-Bold.otf`.
+    static let dinProBoldOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "DINPro-Bold", pathExtension: "otf")
+    /// Resource file `DINPro-Light.otf`.
+    static let dinProLightOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "DINPro-Light", pathExtension: "otf")
+    /// Resource file `DINPro-Medium.otf`.
+    static let dinProMediumOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "DINPro-Medium", pathExtension: "otf")
+    /// Resource file `DINPro-Regular.otf`.
+    static let dinProRegularOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "DINPro-Regular", pathExtension: "otf")
+    
+    /// `bundle.url(forResource: "DINEngschriftStd", withExtension: "otf")`
+    static func dinEngschriftStdOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.dinEngschriftStdOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "DINMittelschriftStd", withExtension: "otf")`
+    static func dinMittelschriftStdOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.dinMittelschriftStdOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "DINNeuzeitGroteskStd-BdCond", withExtension: "otf")`
+    static func dinNeuzeitGroteskStdBdCondOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.dinNeuzeitGroteskStdBdCondOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "DINNeuzeitGroteskStd-Light", withExtension: "otf")`
+    static func dinNeuzeitGroteskStdLightOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.dinNeuzeitGroteskStdLightOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "DINPro-Black", withExtension: "otf")`
+    static func dinProBlackOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.dinProBlackOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "DINPro-Bold", withExtension: "otf")`
+    static func dinProBoldOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.dinProBoldOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "DINPro-Light", withExtension: "otf")`
+    static func dinProLightOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.dinProLightOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "DINPro-Medium", withExtension: "otf")`
+    static func dinProMediumOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.dinProMediumOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "DINPro-Regular", withExtension: "otf")`
+    static func dinProRegularOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.dinProRegularOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.font` struct is generated, and contains static references to 0 fonts.
-  struct font {
+  /// This `R.font` struct is generated, and contains static references to 9 fonts.
+  struct font: Rswift.Validatable {
+    /// Font `DINEngschriftStd`.
+    static let dinEngschriftStd = Rswift.FontResource(fontName: "DINEngschriftStd")
+    /// Font `DINMittelschriftStd`.
+    static let dinMittelschriftStd = Rswift.FontResource(fontName: "DINMittelschriftStd")
+    /// Font `DINNeuzeitGroteskStd-BdCond`.
+    static let dinNeuzeitGroteskStdBdCond = Rswift.FontResource(fontName: "DINNeuzeitGroteskStd-BdCond")
+    /// Font `DINNeuzeitGroteskStd-Light`.
+    static let dinNeuzeitGroteskStdLight = Rswift.FontResource(fontName: "DINNeuzeitGroteskStd-Light")
+    /// Font `DINPro-Black`.
+    static let dinProBlack = Rswift.FontResource(fontName: "DINPro-Black")
+    /// Font `DINPro-Bold`.
+    static let dinProBold = Rswift.FontResource(fontName: "DINPro-Bold")
+    /// Font `DINPro-Light`.
+    static let dinProLight = Rswift.FontResource(fontName: "DINPro-Light")
+    /// Font `DINPro-Medium`.
+    static let dinProMedium = Rswift.FontResource(fontName: "DINPro-Medium")
+    /// Font `DINPro-Regular`.
+    static let dinProRegular = Rswift.FontResource(fontName: "DINPro-Regular")
+    
+    /// `UIFont(name: "DINEngschriftStd", size: ...)`
+    static func dinEngschriftStd(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: dinEngschriftStd, size: size)
+    }
+    
+    /// `UIFont(name: "DINMittelschriftStd", size: ...)`
+    static func dinMittelschriftStd(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: dinMittelschriftStd, size: size)
+    }
+    
+    /// `UIFont(name: "DINNeuzeitGroteskStd-BdCond", size: ...)`
+    static func dinNeuzeitGroteskStdBdCond(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: dinNeuzeitGroteskStdBdCond, size: size)
+    }
+    
+    /// `UIFont(name: "DINNeuzeitGroteskStd-Light", size: ...)`
+    static func dinNeuzeitGroteskStdLight(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: dinNeuzeitGroteskStdLight, size: size)
+    }
+    
+    /// `UIFont(name: "DINPro-Black", size: ...)`
+    static func dinProBlack(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: dinProBlack, size: size)
+    }
+    
+    /// `UIFont(name: "DINPro-Bold", size: ...)`
+    static func dinProBold(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: dinProBold, size: size)
+    }
+    
+    /// `UIFont(name: "DINPro-Light", size: ...)`
+    static func dinProLight(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: dinProLight, size: size)
+    }
+    
+    /// `UIFont(name: "DINPro-Medium", size: ...)`
+    static func dinProMedium(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: dinProMedium, size: size)
+    }
+    
+    /// `UIFont(name: "DINPro-Regular", size: ...)`
+    static func dinProRegular(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: dinProRegular, size: size)
+    }
+    
+    static func validate() throws {
+      if R.font.dinProRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'DINPro-Regular' could not be loaded, is 'DINPro-Regular.otf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.dinMittelschriftStd(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'DINMittelschriftStd' could not be loaded, is 'DINMittelschriftStd.otf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.dinProBlack(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'DINPro-Black' could not be loaded, is 'DINPro-Black.otf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.dinProMedium(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'DINPro-Medium' could not be loaded, is 'DINPro-Medium.otf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.dinEngschriftStd(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'DINEngschriftStd' could not be loaded, is 'DINEngschriftStd.otf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.dinProBold(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'DINPro-Bold' could not be loaded, is 'DINPro-Bold.otf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.dinNeuzeitGroteskStdBdCond(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'DINNeuzeitGroteskStd-BdCond' could not be loaded, is 'DINNeuzeitGroteskStd-BdCond.otf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.dinNeuzeitGroteskStdLight(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'DINNeuzeitGroteskStd-Light' could not be loaded, is 'DINNeuzeitGroteskStd-Light.otf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.dinProLight(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'DINPro-Light' could not be loaded, is 'DINPro-Light.otf' added to the UIAppFonts array in this targets Info.plist?") }
+    }
+    
     fileprivate init() {}
   }
   
@@ -36,8 +196,16 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 0 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
   struct nib {
+    /// Nib `TextField`.
+    static let textField = _R.nib._TextField()
+    
+    /// `UINib(name: "TextField", in: bundle)`
+    static func textField(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.textField)
+    }
+    
     fileprivate init() {}
   }
   
@@ -91,6 +259,17 @@ struct R: Rswift.Validatable {
 
 struct _R {
   struct nib {
+    struct _TextField: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "TextField"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      fileprivate init() {}
+    }
+    
     fileprivate init() {}
   }
   
