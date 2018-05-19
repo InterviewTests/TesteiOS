@@ -14,6 +14,9 @@
 		3510677620AF8F640068EE88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3510677420AF8F640068EE88 /* LaunchScreen.storyboard */; };
 		3510678120AF8F640068EE88 /* SantanderTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3510678020AF8F640068EE88 /* SantanderTestAppTests.swift */; };
 		3510678C20AF8F640068EE88 /* SantanderTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3510678B20AF8F640068EE88 /* SantanderTestAppUITests.swift */; };
+		358EE28920B0682E009F4134 /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358EE28820B0682E009F4134 /* Rswift.framework */; };
+		358EE28A20B0682E009F4134 /* Rswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 358EE28820B0682E009F4134 /* Rswift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		358EE29120B069F4009F4134 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE29020B069F4009F4134 /* R.generated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +36,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		358EE28B20B0682E009F4134 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				358EE28A20B0682E009F4134 /* Rswift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3510676820AF8F620068EE88 /* SantanderTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SantanderTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3510676B20AF8F620068EE88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +64,8 @@
 		3510678720AF8F640068EE88 /* SantanderTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SantanderTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3510678B20AF8F640068EE88 /* SantanderTestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderTestAppUITests.swift; sourceTree = "<group>"; };
 		3510678D20AF8F640068EE88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		358EE28820B0682E009F4134 /* Rswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rswift.framework; path = Carthage/Build/iOS/Rswift.framework; sourceTree = "<group>"; };
+		358EE29020B069F4009F4134 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				358EE28920B0682E009F4134 /* Rswift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +97,7 @@
 		3510675F20AF8F610068EE88 = {
 			isa = PBXGroup;
 			children = (
+				358EE28820B0682E009F4134 /* Rswift.framework */,
 				3510676A20AF8F620068EE88 /* SantanderTestApp */,
 				3510677F20AF8F640068EE88 /* SantanderTestAppTests */,
 				3510678A20AF8F640068EE88 /* SantanderTestAppUITests */,
@@ -98,11 +119,10 @@
 			isa = PBXGroup;
 			children = (
 				3510676B20AF8F620068EE88 /* AppDelegate.swift */,
+				358EE28F20B069EA009F4134 /* Resources */,
 				3510676D20AF8F620068EE88 /* ViewController.swift */,
 				3510676F20AF8F620068EE88 /* Main.storyboard */,
-				3510677220AF8F640068EE88 /* Assets.xcassets */,
 				3510677420AF8F640068EE88 /* LaunchScreen.storyboard */,
-				3510677720AF8F640068EE88 /* Info.plist */,
 			);
 			path = SantanderTestApp;
 			sourceTree = "<group>";
@@ -125,6 +145,16 @@
 			path = SantanderTestAppUITests;
 			sourceTree = "<group>";
 		};
+		358EE28F20B069EA009F4134 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3510677720AF8F640068EE88 /* Info.plist */,
+				3510677220AF8F640068EE88 /* Assets.xcassets */,
+				358EE29020B069F4009F4134 /* R.generated.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +162,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3510679020AF8F640068EE88 /* Build configuration list for PBXNativeTarget "SantanderTestApp" */;
 			buildPhases = (
+				358EE28E20B069C0009F4134 /* R.swift Script */,
 				3510676420AF8F620068EE88 /* Sources */,
 				3510676520AF8F620068EE88 /* Frameworks */,
 				3510676620AF8F620068EE88 /* Resources */,
+				358EE28B20B0682E009F4134 /* Embed Frameworks */,
+				358EE28C20B06834009F4134 /* Carthage Diff Script */,
+				358EE28D20B068E9009F4134 /* Carthage Warn Outdated Dependencies Script */,
 			);
 			buildRules = (
 			);
@@ -251,6 +285,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		358EE28C20B06834009F4134 /* Carthage Diff Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Rswift.framework",
+			);
+			name = "Carthage Diff Script";
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Rswift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		358EE28D20B068E9009F4134 /* Carthage Warn Outdated Dependencies Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Carthage Warn Outdated Dependencies Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage outdated --xcode-warnings";
+		};
+		358EE28E20B069C0009F4134 /* R.swift Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "R.swift Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT/rswift\" generate \"$SRCROOT\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3510676420AF8F620068EE88 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -258,6 +339,7 @@
 			files = (
 				3510676E20AF8F620068EE88 /* ViewController.swift in Sources */,
 				3510676C20AF8F620068EE88 /* AppDelegate.swift in Sources */,
+				358EE29120B069F4009F4134 /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,7 +513,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SantanderTestApp/Info.plist;
+				DEVELOPMENT_TEAM = NNE38JQP9A;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = SantanderTestApp/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -448,7 +535,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SantanderTestApp/Info.plist;
+				DEVELOPMENT_TEAM = NNE38JQP9A;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = SantanderTestApp/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
