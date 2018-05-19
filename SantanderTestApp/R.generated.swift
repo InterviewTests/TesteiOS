@@ -17,18 +17,8 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.color` struct is generated, and contains static references to 1 colors.
+  /// This `R.color` struct is generated, and contains static references to 0 colors.
   struct color {
-    /// Color `Testando`.
-    static let testando = Rswift.ColorResource(bundle: R.hostingBundle, name: "Testando")
-    
-    /// `UIColor(named: "Testando", bundle: ..., traitCollection: ...)`
-    @available(tvOS 11.0, *)
-    @available(iOS 11.0, *)
-    static func testando(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.testando, compatibleWith: traitCollection)
-    }
-    
     fileprivate init() {}
   }
   
@@ -191,8 +181,16 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 0 images.
+  /// This `R.image` struct is generated, and contains static references to 1 images.
   struct image {
+    /// Image `Limpar`.
+    static let limpar = Rswift.ImageResource(bundle: R.hostingBundle, name: "Limpar")
+    
+    /// `UIImage(named: "Limpar", bundle: ..., traitCollection: ...)`
+    static func limpar(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.limpar, compatibleWith: traitCollection)
+    }
+    
     fileprivate init() {}
   }
   
@@ -246,7 +244,7 @@ struct R: Rswift.Validatable {
   
   fileprivate struct intern: Rswift.Validatable {
     fileprivate static func validate() throws {
-      // There are no resources to validate
+      try _R.validate()
     }
     
     fileprivate init() {}
@@ -257,14 +255,26 @@ struct R: Rswift.Validatable {
   fileprivate init() {}
 }
 
-struct _R {
-  struct nib {
-    struct _TextField: Rswift.NibResourceType {
+struct _R: Rswift.Validatable {
+  static func validate() throws {
+    try nib.validate()
+  }
+  
+  struct nib: Rswift.Validatable {
+    static func validate() throws {
+      try _TextField.validate()
+    }
+    
+    struct _TextField: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "TextField"
       
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> TextField? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TextField
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "Limpar", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Limpar' is used in nib 'TextField', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
