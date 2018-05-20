@@ -9,16 +9,6 @@
 import Foundation
 import UIKit
 
-//protocol TextFieldAppearance {
-//
-//    var titleText: UIColor { get }
-//    var providedText: UIColor { get }
-//    var normalLine: UIColor { get }
-//    var errorLine: UIColor { get }
-//    var validLine: UIColor { get }
-//    var carrier: UIColor { get }
-//}
-
 struct TextFieldAppearance {
     
     var titleTextColor: UIColor
@@ -32,26 +22,6 @@ struct TextFieldAppearance {
     var errorLineColor: UIColor
     var validLineColor: UIColor
 }
-
-//protocol ViewAppearance {
-//    associatedtype AppearanceType
-//
-//    static var classAppearance: AppearanceType { get set }
-//    var myAppearance: AppearanceType? { get set }
-//
-//    func getAppearance() -> AppearanceType
-//}
-//
-//extension ViewAppearance {
-//
-//    func getAppearance() -> AppearanceType {
-//        if let my = myAppearance {
-//            return my
-//        } else {
-//            return ViewAppearance.classAppearance
-//        }
-//    }
-//}
 
 // MARK: - Input
 
@@ -196,7 +166,6 @@ extension TextFieldValidator {
     }
     
     override func prepareForInterfaceBuilder() {
-        
         updateAppearance()
         
         super.prepareForInterfaceBuilder()
