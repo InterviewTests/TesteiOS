@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BEMCheckBox
 
 class ContactViewController: UIViewController
 {
@@ -88,16 +89,20 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate
                 
                 fieldsCell.topConstraint.constant = CGFloat(cell.topSpacing)
                 fieldsCell.labelFieldName.text = cell.message
+                fieldsCell.idCell = FieldsTableViewCell.LabelType(rawValue: cell.id)
                 
                 return fieldsCell
             case .checkBox?:
                 let cellCheckBox = tableView.dequeueReusableCell(withIdentifier: "checkCell", for: indexPath) as! ChangeRegisterTableViewCell
                 
+                cellCheckBox.checkBox.delegate = self
                 cellCheckBox.topConstraint.constant = CGFloat(cell.topSpacing)
                 
                 return cellCheckBox
             case .button?:
                 let buttonCell = tableView.dequeueReusableCell(withIdentifier: "buttonCell", for: indexPath) as! SendTableViewCell
+                
+                buttonCell.buttonSend.setTitle(cell.message, for: .normal)
                 
                 buttonCell.topConstraint.constant = CGFloat(cell.topSpacing)
                 
@@ -121,3 +126,22 @@ extension ContactViewController: CellRequestDelegate
     }
     
 }
+
+//MARK: - BEMCheckBoxDelegate
+extension  ContactViewController: BEMCheckBoxDelegate
+{
+    func didTap(_ checkBox: BEMCheckBox)
+    {
+        if checkBox.on
+        {
+            print("Selecionou para cadastrar email")
+            //self.isInterested = true
+        }
+        else
+        {
+            print("Não selecionou para cadastrar email")
+            //self.isInterested = false
+        }
+    }
+}
+
