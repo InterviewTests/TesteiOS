@@ -2,146 +2,122 @@
 //  ContactViewController.swift
 //  TesteiOS
 //
-//  Created by Naville Brasil on 17/05/18.
+//  Created by Naville Brasil on 18/05/18.
 //  Copyright © 2018 Luan Orlando. All rights reserved.
 //
 
 import UIKit
-import BEMCheckBox
 
 class ContactViewController: UIViewController
 {
-    //Outlets
-    @IBOutlet weak var labelName: UILabel!
-    @IBOutlet weak var textFieldName: UITextField!
-    @IBOutlet weak var viewName: UIView!
-    @IBOutlet weak var labelEmail: UILabel!
-    @IBOutlet weak var textFieldEmail: UITextField!
-    @IBOutlet weak var viewEmail: UIView!
-    @IBOutlet weak var labelPhone: UILabel!
-    @IBOutlet weak var textFieldPhone: UITextField!
-    @IBOutlet weak var viewPhone: UIView!
-    @IBOutlet weak var checkBox: BEMCheckBox!
+    enum CellType: Int
+    {
+        case introduce = 2
+        case fields = 1
+        case checkBox = 4
+        case button = 5
+    }
+    
+    enum TypeField
+    {
+        case text(Int)
+        case tellNumber(String)
+        case email(Int)
+    }
+    
+    //Outlet
+    @IBOutlet weak var tableView: UITableView!
     
     //Properties
-    var isInterested = false
-    
-    let defaultColor = #colorLiteral(red: 0.8374213576, green: 0.8374213576, blue: 0.8374213576, alpha: 1)
-    let grayColor = #colorLiteral(red: 0.6642242074, green: 0.6642400622, blue: 0.6642315388, alpha: 1)
-    let redColor = #colorLiteral(red: 0.968627451, green: 0.2901960784, blue: 0.2823529412, alpha: 1)
-    let greenColor = #colorLiteral(red: 0.4980392157, green: 0.7921568627, blue: 0.3254901961, alpha: 1)
+    var arrayCell: [Cell] = []
+    var idCell: Int?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
-        self.checkBox.boxType = .square
-        self.checkBox.animationDuration = 0.2
-        self.checkBox.delegate = self
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
-        self.textFieldName.delegate = self
-        self.textFieldEmail.delegate = self
-        self.textFieldPhone.delegate = self
+        registerCell()
         
-        self.viewName.backgroundColor = self.defaultColor
-        self.viewEmail.backgroundColor = self.defaultColor
-        self.viewPhone.backgroundColor = self.defaultColor
-      
+        CellRequest.shared.request()
+        CellRequest.shared.delegate = self
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        print("touchesBegan")
         self.view.endEditing(true)
     }
     
-    
-    //MARK: - Actions
-    @IBAction func sendContact(_ sender: Button)
+    //MARK: - Methods
+    func registerCell()
     {
-        if isInterested
+        self.tableView.register(UINib(nibName: "IntroduceTableViewCell", bundle: nil), forCellReuseIdentifier: "introduceCell")
+        self.tableView.register(UINib(nibName: "FieldsTableViewCell", bundle: nil), forCellReuseIdentifier: "fieldsCell")
+        self.tableView.register(UINib(nibName: "ChangeRegisterTableViewCell", bundle: nil), forCellReuseIdentifier: "checkCell")
+        self.tableView.register(UINib(nibName: "SendTableViewCell", bundle: nil), forCellReuseIdentifier: "buttonCell")
+    }
+    
+}
+
+//MARK: - UITableViewDataSource, UITableViewDelegate
+extension ContactViewController: UITableViewDataSource, UITableViewDelegate
+{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return self.arrayCell.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = self.arrayCell[indexPath.row]
+        
+        switch CellType(rawValue: cell.type)
         {
-            print("Mostrar view successo")
-        }
-        else
-        {
-            print("mostar alerta")
+            case .introduce?:
+                let introduceCell = tableView.dequeueReusableCell(withIdentifier: "introduceCell", for: indexPath) as! IntroduceTableViewCell
+                
+                introduceCell.topConstraint.constant = CGFloat(cell.topSpacing)
+                introduceCell.labelIndroduce.text = cell.message
+                
+                return introduceCell
+            case .fields?:
+                let fieldsCell = tableView.dequeueReusableCell(withIdentifier: "fieldsCell", for: indexPath) as! FieldsTableViewCell
+                
+                fieldsCell.topConstraint.constant = CGFloat(cell.topSpacing)
+                fieldsCell.labelFieldName.text = cell.message
+                
+                return fieldsCell
+            case .checkBox?:
+                let cellCheckBox = tableView.dequeueReusableCell(withIdentifier: "checkCell", for: indexPath) as! ChangeRegisterTableViewCell
+                
+                cellCheckBox.topConstraint.constant = CGFloat(cell.topSpacing)
+                
+                return cellCheckBox
+            case .button?:
+                let buttonCell = tableView.dequeueReusableCell(withIdentifier: "buttonCell", for: indexPath) as! SendTableViewCell
+                
+                buttonCell.topConstraint.constant = CGFloat(cell.topSpacing)
+                
+                return buttonCell
+            case .none:
+                let cell = UITableViewCell()
+                
+                return cell
         }
     }
 }
 
-//MARK: - BEMCheckBoxDelegate
-extension  ContactViewController: BEMCheckBoxDelegate
+//MARK: CellRequestDelegate
+extension ContactViewController: CellRequestDelegate
 {
-    func didTap(_ checkBox: BEMCheckBox)
+    func getValuesOfCell(withArrayValues array: [Cell])
     {
-        if checkBox.on
-        {
-            print("Selecionou para cadastrar email")
-            self.isInterested = true
-        }
-        else
-        {
-            print("Não selecionou para cadastrar email")
-            self.isInterested = false
-        }
-    }
-}
-
-//MARK: - UITextFieldDelegate
-extension ContactViewController: UITextFieldDelegate
-{
-    func textFieldDidBeginEditing(_ textField: UITextField)
-    {
-        switch textField
-        {
-            case self.textFieldName:
-                print("name")
-                self.viewName.backgroundColor = self.grayColor
-            case self.textFieldEmail:
-                print("email")
-                self.viewEmail.backgroundColor = self.redColor
-            default:
-                print("phone")
-                self.viewPhone.backgroundColor = self.greenColor
-            
-        }
+        print("CellRequestDelegate")
+        self.arrayCell = array
+        self.tableView.reloadData()
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField)
-    {
-        switch textField
-        {
-            case self.textFieldName:
-                print("nameEnd")
-                if self.textFieldName.text != ""
-                {
-                    self.viewName.backgroundColor = self.grayColor
-                }
-                else
-                {
-                    self.viewName.backgroundColor = self.defaultColor
-                }
-            case self.textFieldEmail:
-                print("emailEnd")
-                if self.textFieldEmail.text != ""
-                {
-                    self.viewEmail.backgroundColor = self.redColor
-                }
-                else
-                {
-                    self.viewEmail.backgroundColor = self.defaultColor
-                }
-            default:
-                print("phoneEnd")
-                if self.textFieldPhone.text != ""
-                {
-                    self.viewPhone.backgroundColor = self.greenColor
-                }
-                else
-                {
-                    self.viewPhone.backgroundColor = self.defaultColor
-                }
-        }
-    }
 }
