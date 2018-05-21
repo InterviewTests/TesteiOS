@@ -13,10 +13,11 @@
 		3510677320AF8F640068EE88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3510677220AF8F640068EE88 /* Assets.xcassets */; };
 		3510677620AF8F640068EE88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3510677420AF8F640068EE88 /* LaunchScreen.storyboard */; };
 		3510678120AF8F640068EE88 /* SantanderTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3510678020AF8F640068EE88 /* SantanderTestAppTests.swift */; };
-		3510678C20AF8F640068EE88 /* SantanderTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3510678B20AF8F640068EE88 /* SantanderTestAppUITests.swift */; };
 		35234D0620B0B2540014640D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35234D0520B0B2540014640D /* Colors.swift */; };
-		35234D0820B0D3400014640D /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35234D0720B0D3400014640D /* SnapKit.framework */; };
 		35234D0920B0D3400014640D /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35234D0720B0D3400014640D /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		354956EB20B239D7008F72F7 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35234D0720B0D3400014640D /* SnapKit.framework */; };
+		354956FC20B24300008F72F7 /* TestFieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354956FB20B24300008F72F7 /* TestFieldTest.swift */; };
+		354956FD20B2432E008F72F7 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 354956EC20B23A18008F72F7 /* FBSnapshotTestCase.framework */; };
 		358EE28920B0682E009F4134 /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358EE28820B0682E009F4134 /* Rswift.framework */; };
 		358EE28A20B0682E009F4134 /* Rswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 358EE28820B0682E009F4134 /* Rswift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		358EE29120B069F4009F4134 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE29020B069F4009F4134 /* R.generated.swift */; };
@@ -77,11 +78,12 @@
 		3510678020AF8F640068EE88 /* SantanderTestAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderTestAppTests.swift; sourceTree = "<group>"; };
 		3510678220AF8F640068EE88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3510678720AF8F640068EE88 /* SantanderTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SantanderTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3510678B20AF8F640068EE88 /* SantanderTestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderTestAppUITests.swift; sourceTree = "<group>"; };
 		3510678D20AF8F640068EE88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35234D0520B0B2540014640D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		35234D0720B0D3400014640D /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../../Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
-		358EE28820B0682E009F4134 /* Rswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rswift.framework; path = ../../Carthage/Build/iOS/Rswift.framework; sourceTree = "<group>"; };
+		35234D0720B0D3400014640D /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SnapKit.framework; sourceTree = "<group>"; };
+		354956EC20B23A18008F72F7 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSnapshotTestCase.framework; path = Carthage/Build/iOS/FBSnapshotTestCase.framework; sourceTree = "<group>"; };
+		354956FB20B24300008F72F7 /* TestFieldTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFieldTest.swift; sourceTree = "<group>"; };
+		358EE28820B0682E009F4134 /* Rswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rswift.framework; sourceTree = "<group>"; };
 		358EE29020B069F4009F4134 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		358EE29420B070EC009F4134 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		358EE29620B0711F009F4134 /* TextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextField.xib; sourceTree = "<group>"; };
@@ -102,7 +104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				358EE28920B0682E009F4134 /* Rswift.framework in Frameworks */,
-				35234D0820B0D3400014640D /* SnapKit.framework in Frameworks */,
+				354956EB20B239D7008F72F7 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354956FD20B2432E008F72F7 /* FBSnapshotTestCase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +133,7 @@
 				3510677F20AF8F640068EE88 /* SantanderTestAppTests */,
 				3510678A20AF8F640068EE88 /* SantanderTestAppUITests */,
 				3510676920AF8F620068EE88 /* Products */,
+				354956EA20B239D6008F72F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,6 +165,7 @@
 			children = (
 				3510678020AF8F640068EE88 /* SantanderTestAppTests.swift */,
 				3510678220AF8F640068EE88 /* Info.plist */,
+				354956FB20B24300008F72F7 /* TestFieldTest.swift */,
 			);
 			path = SantanderTestAppTests;
 			sourceTree = "<group>";
@@ -168,7 +173,6 @@
 		3510678A20AF8F640068EE88 /* SantanderTestAppUITests */ = {
 			isa = PBXGroup;
 			children = (
-				3510678B20AF8F640068EE88 /* SantanderTestAppUITests.swift */,
 				3510678D20AF8F640068EE88 /* Info.plist */,
 			);
 			path = SantanderTestAppUITests;
@@ -179,6 +183,15 @@
 			children = (
 				35234D0720B0D3400014640D /* SnapKit.framework */,
 				358EE28820B0682E009F4134 /* Rswift.framework */,
+			);
+			name = Frameworks;
+			path = ../../Carthage/Build/iOS;
+			sourceTree = "<group>";
+		};
+		354956EA20B239D6008F72F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				354956EC20B23A18008F72F7 /* FBSnapshotTestCase.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -260,6 +273,7 @@
 				3510677820AF8F640068EE88 /* Sources */,
 				3510677920AF8F640068EE88 /* Frameworks */,
 				3510677A20AF8F640068EE88 /* Resources */,
+				35B882DC20B244FE00AB3615 /* Carthage Script */,
 			);
 			buildRules = (
 			);
@@ -278,6 +292,7 @@
 				3510678320AF8F640068EE88 /* Sources */,
 				3510678420AF8F640068EE88 /* Frameworks */,
 				3510678520AF8F640068EE88 /* Resources */,
+				354956F920B23F61008F72F7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -370,6 +385,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		354956F920B23F61008F72F7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/FBSnapshotTestCase.framework",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/FBSnapshotTestCase.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		358EE28C20B06834009F4134 /* Carthage Diff Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -416,6 +446,22 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$SRCROOT/rswift\" generate \"$SRCROOT\"";
 		};
+		35B882DC20B244FE00AB3615 /* Carthage Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/FBSnapshotTestCase.framework",
+			);
+			name = "Carthage Script";
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/FBSnapshotTestCase.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -435,6 +481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354956FC20B24300008F72F7 /* TestFieldTest.swift in Sources */,
 				3510678120AF8F640068EE88 /* SantanderTestAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,7 +490,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3510678C20AF8F640068EE88 /* SantanderTestAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,6 +692,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SantanderTestAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -666,6 +716,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SantanderTestAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -685,6 +739,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NNE38JQP9A;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SantanderTestAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -704,6 +763,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NNE38JQP9A;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SantanderTestAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

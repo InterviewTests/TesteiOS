@@ -91,6 +91,12 @@ extension TextFieldValidator {
     
     // MARK: Init
     
+    init() {
+        super.init(frame: .zero)
+        
+        commonInit()
+    }
+    
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         
