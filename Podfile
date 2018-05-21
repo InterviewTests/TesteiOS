@@ -8,5 +8,6 @@ target 'TesteiOS' do
   # Pods for TesteiOS
   pod 'NVActivityIndicatorView'
   pod 'BEMCheckBox'
+  pod "JMMaskTextField-Swift"
 
 end

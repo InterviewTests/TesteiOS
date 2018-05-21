@@ -14,7 +14,7 @@ struct Cell
     var id: Int
     var type: Int
     var message: String
-    var typefield: String
+    var typefield: Int
     var hidden: Bool
     var topSpacing: Double
     var show: Int

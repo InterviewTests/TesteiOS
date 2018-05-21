@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JMMaskTextField_Swift
 
 class FieldsTableViewCell: UITableViewCell
 {
@@ -21,6 +22,7 @@ class FieldsTableViewCell: UITableViewCell
     @IBOutlet weak var textFieldName: UITextField!
     @IBOutlet weak var viewLine: UIView!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var heigthContraint: NSLayoutConstraint!
     
     var idCell: LabelType?
     
@@ -52,10 +54,13 @@ extension FieldsTableViewCell: UITextFieldDelegate
         {
             case .name:
                 self.viewLine.backgroundColor = self.grayColor
+                print("GrayColor")
             case .email:
                 self.viewLine.backgroundColor = self.redColor
+                print("RedColor")
             case .phone:
                 self.viewLine.backgroundColor = self.greenColor
+                print("GreenColor")
         }
     }
     
@@ -80,5 +85,51 @@ extension FieldsTableViewCell: UITextFieldDelegate
         {
             self.viewLine.backgroundColor = self.defaultColor
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        guard let idCell = self.idCell else {return false}
+        switch idCell
+        {
+            case .name:
+                self.viewLine.backgroundColor = self.grayColor
+            case .email:
+                break
+            case .phone:
+                if range.length == 1
+                {
+                    print("Removing characteres")
+                    
+                }
+                else
+                {
+                    if range.location <= 13 
+                    {
+                        let maskTel = JMStringMask(mask: "(00) 0000-0000")
+                        let mask = maskTel.mask(string: self.textFieldName.text)
+                        self.textFieldName.text = mask
+                        print(self.textFieldName.text!)
+                        print("mask", range.location)
+                        
+                    }
+                    else if range.location == 14
+                    {
+                        let text = self.textFieldName.text?.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "-", with: "")
+                        
+                        let maskCel = JMStringMask(mask: "(00) 0 0000-0000")
+                        let mask = maskCel.mask(string: text!)
+                        self.textFieldName.text = mask
+                        print(self.textFieldName.text!)
+                        print("mask2", range.location)
+                    }
+                    else if range.location > 15
+                    {
+                        return false
+                    }
+                }
+        }
+        
+        return true
     }
 }

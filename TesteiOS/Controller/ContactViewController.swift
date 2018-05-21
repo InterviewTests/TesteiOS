@@ -19,11 +19,11 @@ class ContactViewController: UIViewController
         case button = 5
     }
     
-    enum TypeField
+    enum TypeField: Int
     {
-        case text(Int)
-        case tellNumber(String)
-        case email(Int)
+        case text = 1
+        case tellNumber = 2
+        case email = 3
     }
     
     //Outlet
@@ -31,7 +31,9 @@ class ContactViewController: UIViewController
     
     //Properties
     var arrayCell: [Cell] = []
-    var idCell: Int?
+    
+    var isChecked = false
+    var hideCell: Bool?
     
     override func viewDidLoad()
     {
@@ -61,6 +63,18 @@ class ContactViewController: UIViewController
         self.tableView.register(UINib(nibName: "SendTableViewCell", bundle: nil), forCellReuseIdentifier: "buttonCell")
     }
     
+    @objc func sendContact()
+    {
+        if self.hideCell!
+        {
+            
+        }
+        else
+        {
+            
+        }
+    }
+    
 }
 
 //MARK: - UITableViewDataSource, UITableViewDelegate
@@ -87,6 +101,39 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate
             case .fields?:
                 let fieldsCell = tableView.dequeueReusableCell(withIdentifier: "fieldsCell", for: indexPath) as! FieldsTableViewCell
                 
+                fieldsCell.idCell = FieldsTableViewCell.LabelType(rawValue: cell.id)
+                
+                switch TypeField(rawValue: cell.typefield)
+                {
+                    case .text?:
+                        fieldsCell.textFieldName.keyboardType = .default
+                    case .email?:
+                        fieldsCell.textFieldName.keyboardType = .emailAddress
+                    case .tellNumber?:
+                        fieldsCell.textFieldName.keyboardType = .decimalPad
+                    case .none:
+                        break
+                }
+                
+                if self.isChecked == false
+                {
+                    self.hideCell = cell.hidden
+                }
+                
+                if fieldsCell.idCell!.rawValue == 4 && self.hideCell == true
+                {
+                    fieldsCell.heigthContraint.constant = 0
+                    fieldsCell.topConstraint.constant = 0
+                    print("0=====>",fieldsCell.topConstraint.constant)
+
+                }
+                else if fieldsCell.idCell!.rawValue == 4 && self.hideCell == false
+                {
+                    fieldsCell.heigthContraint.constant = 51
+                    fieldsCell.topConstraint.constant = CGFloat(cell.topSpacing)
+                    print("35=====>",fieldsCell.topConstraint.constant)
+                }
+                
                 fieldsCell.topConstraint.constant = CGFloat(cell.topSpacing)
                 fieldsCell.labelFieldName.text = cell.message
                 fieldsCell.idCell = FieldsTableViewCell.LabelType(rawValue: cell.id)
@@ -103,6 +150,7 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate
                 let buttonCell = tableView.dequeueReusableCell(withIdentifier: "buttonCell", for: indexPath) as! SendTableViewCell
                 
                 buttonCell.buttonSend.setTitle(cell.message, for: .normal)
+                buttonCell.buttonSend.addTarget(self, action: #selector(sendContact), for: .touchUpInside)
                 
                 buttonCell.topConstraint.constant = CGFloat(cell.topSpacing)
                 
@@ -132,16 +180,30 @@ extension  ContactViewController: BEMCheckBoxDelegate
 {
     func didTap(_ checkBox: BEMCheckBox)
     {
+        self.isChecked = true
         if checkBox.on
         {
             print("Selecionou para cadastrar email")
-            //self.isInterested = true
+            self.hideCell = false
+            UIView.animate(withDuration: 0.0) {
+                self.tableView.reloadData()
+                print("Viewzinha")
+                self.view.layoutIfNeeded()
+            }
         }
         else
         {
             print("Não selecionou para cadastrar email")
-            //self.isInterested = false
+            self.hideCell = true
+            UIView.animate(withDuration: 0.0) {
+                self.tableView.reloadData()
+                print("Viewzinha2")
+                self.view.layoutIfNeeded()
+            }
         }
+        
+       
+        
     }
 }
 

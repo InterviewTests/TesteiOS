@@ -36,7 +36,8 @@ extension CellRequest: WebServicesDelegate
                     print("cell")
                     guard let id = cell["id"] as? Int,let type = cell["type"] as? Int, let message = cell["message"] as? String, let hidden = cell["hidden"] as? Bool, let topSpacing = cell["topSpacing"] as? Double, let required = cell["required"] as? Bool else {return}
                     
-                    let typefield = cell["typefield"] as? String ?? "Vazio"
+                    let typefield = cell["typefield"] as? Int ?? 2
+                    
                     let show = cell["show"] as? Int ?? 0
                    
                     print("id ===>", id)
