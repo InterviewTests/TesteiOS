@@ -28,12 +28,12 @@ class TestFieldTest: FBSnapshotTestCase {
         super.setUp()
         
         state = MockTextFieldInput(title: "Nome", typedText: "Fred", isValid: nil, isTextFieldActive: false)
-        
-//        recordMode = true
     }
     
     override func tearDown() {
         super.tearDown()
+        
+        recordMode = false
     }
     
     func testIfValidLineUpdatesItsValue() {
@@ -56,7 +56,7 @@ class TestFieldTest: FBSnapshotTestCase {
     
     func testNoTypedTextAndActiveTextField() {
         state.isTextFieldActive = true
-        state.typedText = nil
+        state.typedText = ""
         
         textField.input = state
         
@@ -64,7 +64,7 @@ class TestFieldTest: FBSnapshotTestCase {
     }
     
     func testNoTypedTextAndDisabledTextField() {
-        state.typedText = nil
+        state.typedText = ""
         state.isTextFieldActive = false
         
         textField.input = state
@@ -78,6 +78,18 @@ class TestFieldTest: FBSnapshotTestCase {
         textField.input = state
         
         FBSnapshotVerifyView(textField)
+    }
+    
+    func testTapOnViewToClearText() {
+        state.typedText = "Alguma coisa"
+        textField.input = state
+        
+        XCTAssert(textField.clearTypedTextView.isHidden == false)
+        
+        textField.clearTypedText()
+        
+        XCTAssert(textField.input.typedText == "")
+        XCTAssert(textField.clearTypedTextView.isHidden == true)
     }
     
 }

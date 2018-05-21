@@ -28,7 +28,7 @@ struct TextFieldAppearance {
 protocol TextFieldInput {
     
     var title: String { get }
-    var typedText: String? { get set }
+    var typedText: String { get set }
     var isValid: Bool? { get set }
     var isTextFieldActive: Bool { get set }
 }
@@ -36,7 +36,7 @@ protocol TextFieldInput {
 struct MockTextFieldInput: TextFieldInput {
     
     var title: String
-    var typedText: String?
+    var typedText: String
     var isValid: Bool?
     var isTextFieldActive: Bool = false
 }
@@ -83,7 +83,14 @@ extension TextFieldValidator {
     
     var validator: TextFieldValidator?
     
-    var appearance: TextFieldAppearance = TextFieldAppearance(titleTextColor: ._grey, titleTextBigFont: R.font.dinProRegular(size: 16)!, titleTextSmallFont: R.font.dinProRegular(size: 11)!, providedTextColor: ._black, textFieldCarrierColor: ._blue, normalLineColor: ._lightGrey, errorLineColor: ._vividRed, validLineColor: ._green) {
+    var appearance = TextFieldAppearance(titleTextColor: ._grey,
+                                         titleTextBigFont: R.font.dinProRegular(size: 16)!,
+                                         titleTextSmallFont: R.font.dinProRegular(size: 11)!,
+                                         providedTextColor: ._black,
+                                         textFieldCarrierColor: ._blue,
+                                         normalLineColor: ._lightGrey,
+                                         errorLineColor: ._vividRed,
+                                         validLineColor: ._green) {
         didSet {
             updateAppearance()
         }
@@ -117,6 +124,9 @@ extension TextFieldValidator {
         }
         
         input = MockTextFieldInput(title: "Testando", typedText: "Testando", isValid: nil, isTextFieldActive: false)
+        
+        updateAppearance()
+        
         textField.delegate = self
     }
     
@@ -126,7 +136,8 @@ extension TextFieldValidator {
         titleLabel.text = input.title
         textField.text = input.typedText
         
-        if hasSomeTypedText() {
+        let hasSomeTypedText = !input.typedText.isEmpty
+        if hasSomeTypedText {
             titleLabel.font = appearance.titleTextSmallFont
             textField.isHidden = false
             clearTypedTextView.isHidden = false
@@ -148,14 +159,6 @@ extension TextFieldValidator {
         }
     }
     
-    private func hasSomeTypedText() -> Bool {
-        if let t = input.typedText, !t.isEmpty {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     func updateAppearance() {
         let a = appearance
         titleLabel.textColor = a.titleTextColor
@@ -163,18 +166,18 @@ extension TextFieldValidator {
         textField.tintColor = a.textFieldCarrierColor
     }
     
+    // MARK: IBActions
+    
     @IBAction func activateTextField(_ sender: UITapGestureRecognizer) {
         textField.becomeFirstResponder()
     }
     
     @IBAction func didTapToClearText(_ sender: UITapGestureRecognizer) {
-        input.typedText = nil
+        clearTypedText()
     }
     
-    override func prepareForInterfaceBuilder() {
-        updateAppearance()
-        
-        super.prepareForInterfaceBuilder()
+    func clearTypedText() {
+        input.typedText = ""
     }
 }
 

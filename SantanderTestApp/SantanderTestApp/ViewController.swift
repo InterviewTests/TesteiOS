@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         
         let t = TextField(frame: .zero)
         view.addSubview(t)
-        t.input = MyInput(title: "Testando", typedText: nil, isValid: nil, isTextFieldActive: false)
+        t.input = MyInput(title: "Testando", typedText: "", isValid: nil, isTextFieldActive: false)
         t.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
             $0.width.equalTo(300)
@@ -32,7 +32,7 @@ class ViewController: UIViewController {
 
     struct MyInput: TextFieldInput {
         var title: String
-        var typedText: String?
+        var typedText: String
         var isValid: Bool?
         var isTextFieldActive: Bool = false
     }
