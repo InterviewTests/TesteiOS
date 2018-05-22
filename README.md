@@ -21,13 +21,13 @@
 - Testes unitários;
 - Arquitetura a ser usada Swift Clean (Feito em MVC).
 
- Empresa envolvida no processo seletivo
- ---
- ### Resourceit
- 
- Recrutadora Responsavel
- ---
- ### Erica Danielle Volpe
+Empresa envolvida no processo seletivo
+---
+### Resourceit
+
+Recrutadora Responsavel
+---
+### Erica Danielle Volpe
 
 
 Desafio proposto
@@ -35,7 +35,7 @@ Desafio proposto
 ### # DESAFIO:
 
 Em uma tela terá um formulário dinâmico com alguns campos predefinidos, conforme o arquivo JSON disponível no link ([https://floating-mountain-50292.herokuapp.com/cells.json](https://floating-mountain-50292.herokuapp.com/cells.json)) que deverá
-  ser consumido. Este formulário terá de ser desenhado e exibir uma tela de sucesso quando as informações preenchidas estiverem corretas.
+ser consumido. Este formulário terá de ser desenhado e exibir uma tela de sucesso quando as informações preenchidas estiverem corretas.
 
 Na segunda tela terá o detalhe de um ativo financeiro. As informações devem ser consumidas através do link ([https://floating-mountain-50292.herokuapp.com/fund.json](https://floating-mountain-50292.herokuapp.com/fund.json)).
 
@@ -67,19 +67,19 @@ Você será avaliado pela usabilidade, por respeitar o design e pela arquitetura
 
 ```Swift
 Enum Type {
-    case field = 1,
-    case text = 2,
-    case image = 3,
-    case checkbox = 4,
-    case send = 5
+case field = 1,
+case text = 2,
+case image = 3,
+case checkbox = 4,
+case send = 5
 }
 ```
 
 ```Swift
 Enum TypeField {
-    case text = 1,
-    case telNumber = 2,
-    case email = 3
+case text = 1,
+case telNumber = 2,
+case email = 3
 }
 ```
 
@@ -113,3 +113,4 @@ Faça um fork desse desse repositório em seu Github e nos envie um Pull Request
 ### # Importante: não há prazo de entrega, faça com qualidade!
 
 # BOA SORTE!
+
