@@ -1,5 +1,37 @@
-# Show me the code
+# Teste iOS
 
+## Teste realizado por Luan Orlando
+[Linkedin](https://www.linkedin.com/in/luan-orlando-300300ba/)
+[GitHub](https://github.com/luanorlando)
+
+## Objetivos concluídos
+- Todas as telas feita de acordo com layout proposto;
+- Usado fonte especifica;
+- Tela Contato conforme arquivo [cells](https://floating-mountain-50292.herokuapp.com/cells.json);
+- Tela Ativo financeiro  conforme arquivo [Fund](https://floating-mountain-50292.herokuapp.com/fund.json);
+- Swift 3.0 ou superior;
+- Autolayout;
+- Uso do git;
+- Quebrando linhas conforme o tamanho do texto;
+- Botão download abrindo pagina do [Google](http://google.com);
+- Uso de enum.
+
+## Objetivos não concluídos
+- O app deve funcionar no iOS 9;
+- Testes unitários;
+- Arquitetura a ser usada Swift Clean (Feito em MVC).
+
+ Empresa envolvida no processo seletivo
+ ---
+ ### Resourceit
+ 
+ Recrutadora Responsavel
+ ---
+ ### Erica Danielle Volpe
+
+
+Desafio proposto
+---
 ### # DESAFIO:
 
 Em uma tela terá um formulário dinâmico com alguns campos predefinidos, conforme o arquivo JSON disponível no link ([https://floating-mountain-50292.herokuapp.com/cells.json](https://floating-mountain-50292.herokuapp.com/cells.json)) que deverá
