@@ -32,6 +32,10 @@ class ContactViewController: UIViewController
     //Properties
     var arrayCell: [Cell] = []
     
+    var name = ""
+    var email = ""
+    var phone = ""
+    
     var isChecked = false
     var hideCell: Bool?
     
@@ -65,14 +69,50 @@ class ContactViewController: UIViewController
     
     @objc func sendContact()
     {
-        if self.hideCell!
+        if let name = UserDefaults.standard.string(forKey: "Name"), let phone = UserDefaults.standard.string(forKey: "Phone")
         {
-            
+            print("Name", name)
+            print("Phone", phone)
+            print(hideCell!)
+            if hideCell!
+            {
+                if phone.count > 13
+                {
+                    self.performSegue(withIdentifier: "segueSuccess", sender: nil)
+                }
+                else
+                {
+                    print("Verificar número de telefone")
+                }
+            }
+            else
+            {
+                if let email = UserDefaults.standard.string(forKey: "Email")
+                {
+                    if isValid(email) && phone.count > 13
+                    {
+                        self.performSegue(withIdentifier: "segueSuccess", sender: nil)
+                    }
+                    else
+                    {
+                        if isValid(email) == false
+                        {
+                            print("favor verificar email")
+                        }
+                        
+                        if phone.count < 13
+                        {
+                            print("Verificar telefone")
+                        }
+                    }
+                }
+            }
         }
         else
         {
-            
+            print("Favor preencher todos os campos")
         }
+        
     }
     
 }
@@ -106,11 +146,11 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate
                 switch TypeField(rawValue: cell.typefield)
                 {
                     case .text?:
-                        fieldsCell.textFieldName.keyboardType = .default
+                        fieldsCell.textFields.keyboardType = .default
                     case .email?:
-                        fieldsCell.textFieldName.keyboardType = .emailAddress
+                        fieldsCell.textFields.keyboardType = .emailAddress
                     case .tellNumber?:
-                        fieldsCell.textFieldName.keyboardType = .decimalPad
+                        fieldsCell.textFields.keyboardType = .numberPad
                     case .none:
                         break
                 }
@@ -119,23 +159,25 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate
                 {
                     self.hideCell = cell.hidden
                 }
-                
-                if fieldsCell.idCell!.rawValue == 4 && self.hideCell == true
+               
+                if fieldsCell.idCell!.rawValue == 4
                 {
-                    fieldsCell.heigthContraint.constant = 0
-                    fieldsCell.topConstraint.constant = 0
-                    print("0=====>",fieldsCell.topConstraint.constant)
-
+                    if self.hideCell!
+                    {
+                        fieldsCell.heigthContraint.constant = 0
+                        fieldsCell.topConstraint.constant = 0
+                        print("0=====>",fieldsCell.topConstraint.constant)
+                    }
+                    else
+                    {
+                        fieldsCell.heigthContraint.constant = 51
+                        fieldsCell.topConstraint.constant = CGFloat(cell.topSpacing)
+                        print("35=====>",fieldsCell.topConstraint.constant)
+                    }
                 }
-                else if fieldsCell.idCell!.rawValue == 4 && self.hideCell == false
-                {
-                    fieldsCell.heigthContraint.constant = 51
-                    fieldsCell.topConstraint.constant = CGFloat(cell.topSpacing)
-                    print("35=====>",fieldsCell.topConstraint.constant)
-                }
-                
+               
                 fieldsCell.topConstraint.constant = CGFloat(cell.topSpacing)
-                fieldsCell.labelFieldName.text = cell.message
+                fieldsCell.labelTitle.text = cell.message
                 fieldsCell.idCell = FieldsTableViewCell.LabelType(rawValue: cell.id)
                 
                 return fieldsCell
@@ -201,9 +243,6 @@ extension  ContactViewController: BEMCheckBoxDelegate
                 self.view.layoutIfNeeded()
             }
         }
-        
-       
-        
     }
 }
 

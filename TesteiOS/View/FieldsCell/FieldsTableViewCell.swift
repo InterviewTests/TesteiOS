@@ -18,13 +18,17 @@ class FieldsTableViewCell: UITableViewCell
         case phone = 6
     }
     
-    @IBOutlet weak var labelFieldName: UILabel!
-    @IBOutlet weak var textFieldName: UITextField!
+    //Outlets
+    @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var textFields: UITextField!
     @IBOutlet weak var viewLine: UIView!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var heigthContraint: NSLayoutConstraint!
     
+    //Properties
     var idCell: LabelType?
+    
+    static let shared = FieldsTableViewCell()
     
     let defaultColor = #colorLiteral(red: 0.8374213576, green: 0.8374213576, blue: 0.8374213576, alpha: 1)
     let grayColor = #colorLiteral(red: 0.6642242074, green: 0.6642400622, blue: 0.6642315388, alpha: 1)
@@ -34,7 +38,7 @@ class FieldsTableViewCell: UITableViewCell
     override func awakeFromNib()
     {
         super.awakeFromNib()
-        self.textFieldName.delegate = self
+        self.textFields.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool)
@@ -48,7 +52,7 @@ extension FieldsTableViewCell: UITextFieldDelegate
 {
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
-        self.labelFieldName.font = UIFont(name: self.labelFieldName.font.fontName, size: 22)
+        self.labelTitle.font = UIFont(name: self.labelTitle.font.fontName, size: 22)
         guard let idCell = self.idCell else {return}
         switch idCell
         {
@@ -66,20 +70,36 @@ extension FieldsTableViewCell: UITextFieldDelegate
     
     func textFieldDidEndEditing(_ textField: UITextField)
     {
-        self.labelFieldName.font = UIFont(name: self.labelFieldName.font.fontName, size: 16)
+        self.labelTitle.font = UIFont(name: self.labelTitle.font.fontName, size: 16)
         
-        if self.textFieldName.text != ""
+        if self.textFields.text != ""
         {
             guard let idCell = self.idCell else {return}
             switch idCell
             {
                 case .name:
                     self.viewLine.backgroundColor = self.grayColor
+                    if let nameTemp = self.textFields.text
+                    {
+                        UserDefaults.standard.set(nameTemp, forKey: "Name")
+                        print(self.textFields.text!)
+                    }
                 case .email:
                     self.viewLine.backgroundColor = self.redColor
+                    if let emailTemp = self.textFields.text
+                    {
+                        UserDefaults.standard.set(emailTemp, forKey: "Email")
+                        print(self.textFields.text!)
+                    }
                 case .phone:
                     self.viewLine.backgroundColor = self.greenColor
+                    if let phoneTemp = self.textFields.text
+                    {
+                        UserDefaults.standard.set(phoneTemp, forKey: "Phone")
+                        print(self.textFields.text!)
+                    }
             }
+            
         }
         else
         {
@@ -93,34 +113,49 @@ extension FieldsTableViewCell: UITextFieldDelegate
         switch idCell
         {
             case .name:
-                self.viewLine.backgroundColor = self.grayColor
+                if range.length == 1
+                {}
+                else
+                {
+                    if range.location > 100
+                    {
+                        return false
+                    }
+                }
             case .email:
-                break
+                if range.length == 1
+                {}
+                else
+                {
+                    if range.location > 50
+                    {
+                        return false
+                    }
+                }
             case .phone:
                 if range.length == 1
                 {
                     print("Removing characteres")
-                    
                 }
                 else
                 {
-                    if range.location <= 13 
+                    if range.location <= 13
                     {
                         let maskTel = JMStringMask(mask: "(00) 0000-0000")
-                        let mask = maskTel.mask(string: self.textFieldName.text)
-                        self.textFieldName.text = mask
-                        print(self.textFieldName.text!)
+                        let mask = maskTel.mask(string: self.textFields.text)
+                        self.textFields.text = mask
+                        print(self.textFields.text!)
                         print("mask", range.location)
                         
                     }
                     else if range.location == 14
                     {
-                        let text = self.textFieldName.text?.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "-", with: "")
+                        let text = self.textFields.text?.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "-", with: "")
                         
                         let maskCel = JMStringMask(mask: "(00) 0 0000-0000")
                         let mask = maskCel.mask(string: text!)
-                        self.textFieldName.text = mask
-                        print(self.textFieldName.text!)
+                        self.textFields.text = mask
+                        print(self.textFields.text!)
                         print("mask2", range.location)
                     }
                     else if range.location > 15
