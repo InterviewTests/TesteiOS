@@ -23,6 +23,7 @@ class HomeViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         self.containerContact.isHidden = true
         
     }
@@ -51,6 +52,5 @@ class HomeViewController: UIViewController
                 self.containerContact.isHidden = false
         }
     }
-    
 }
 

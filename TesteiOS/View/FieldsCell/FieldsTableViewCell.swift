@@ -11,6 +11,7 @@ import JMMaskTextField_Swift
 
 class FieldsTableViewCell: UITableViewCell
 {
+    //Enumerates for type of Cell
     enum LabelType: Int
     {
         case name = 2
@@ -28,8 +29,7 @@ class FieldsTableViewCell: UITableViewCell
     //Properties
     var idCell: LabelType?
     
-    static let shared = FieldsTableViewCell()
-    
+    //View colors
     let defaultColor = #colorLiteral(red: 0.8374213576, green: 0.8374213576, blue: 0.8374213576, alpha: 1)
     let grayColor = #colorLiteral(red: 0.6642242074, green: 0.6642400622, blue: 0.6642315388, alpha: 1)
     let redColor = #colorLiteral(red: 0.968627451, green: 0.2901960784, blue: 0.2823529412, alpha: 1)
@@ -47,23 +47,29 @@ class FieldsTableViewCell: UITableViewCell
     }
 }
 
-//MARk: -
+//MARk: - UITextFieldDelegate
 extension FieldsTableViewCell: UITextFieldDelegate
 {
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
+        //Setting font size of label
         self.labelTitle.font = UIFont(name: self.labelTitle.font.fontName, size: 22)
+        
+        //Case id Cell not null
         guard let idCell = self.idCell else {return}
         switch idCell
         {
             case .name:
                 self.viewLine.backgroundColor = self.grayColor
+                UserDefaults.standard.set(nil, forKey: "Name")
                 print("GrayColor")
             case .email:
                 self.viewLine.backgroundColor = self.redColor
+                UserDefaults.standard.set(nil, forKey: "Email")
                 print("RedColor")
             case .phone:
                 self.viewLine.backgroundColor = self.greenColor
+                UserDefaults.standard.set(nil, forKey: "Phone")
                 print("GreenColor")
         }
     }
@@ -81,6 +87,7 @@ extension FieldsTableViewCell: UITextFieldDelegate
                     self.viewLine.backgroundColor = self.grayColor
                     if let nameTemp = self.textFields.text
                     {
+                        //Save value on key "Name"
                         UserDefaults.standard.set(nameTemp, forKey: "Name")
                         print(self.textFields.text!)
                     }
@@ -88,6 +95,7 @@ extension FieldsTableViewCell: UITextFieldDelegate
                     self.viewLine.backgroundColor = self.redColor
                     if let emailTemp = self.textFields.text
                     {
+                        //Save value on key "Email"
                         UserDefaults.standard.set(emailTemp, forKey: "Email")
                         print(self.textFields.text!)
                     }
@@ -95,6 +103,7 @@ extension FieldsTableViewCell: UITextFieldDelegate
                     self.viewLine.backgroundColor = self.greenColor
                     if let phoneTemp = self.textFields.text
                     {
+                        //Save value on key "Phone"
                         UserDefaults.standard.set(phoneTemp, forKey: "Phone")
                         print(self.textFields.text!)
                     }
@@ -103,6 +112,7 @@ extension FieldsTableViewCell: UITextFieldDelegate
         }
         else
         {
+            //Setting the default view color
             self.viewLine.backgroundColor = self.defaultColor
         }
     }
@@ -117,6 +127,7 @@ extension FieldsTableViewCell: UITextFieldDelegate
                 {}
                 else
                 {
+                    //If textfield text is greater than 100 characters
                     if range.location > 100
                     {
                         return false
@@ -127,6 +138,7 @@ extension FieldsTableViewCell: UITextFieldDelegate
                 {}
                 else
                 {
+                    //If textfield text is greater than 50 characters
                     if range.location > 50
                     {
                         return false
@@ -139,8 +151,10 @@ extension FieldsTableViewCell: UITextFieldDelegate
                 }
                 else
                 {
+                    //If location of the textfield is less than or equal to 13
                     if range.location <= 13
                     {
+                        //Enter with this mask
                         let maskTel = JMStringMask(mask: "(00) 0000-0000")
                         let mask = maskTel.mask(string: self.textFields.text)
                         self.textFields.text = mask
@@ -148,10 +162,12 @@ extension FieldsTableViewCell: UITextFieldDelegate
                         print("mask", range.location)
                         
                     }
-                    else if range.location == 14
+                    else if range.location == 14 //If location of the textfield is equal to 14
                     {
+                        //Save text and removing specific characters
                         let text = self.textFields.text?.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "-", with: "")
                         
+                        //Enter with this mask
                         let maskCel = JMStringMask(mask: "(00) 0 0000-0000")
                         let mask = maskCel.mask(string: text!)
                         self.textFields.text = mask
@@ -165,6 +181,13 @@ extension FieldsTableViewCell: UITextFieldDelegate
                 }
         }
         
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        //Removing keybord
+        self.textFields.resignFirstResponder()
         return true
     }
 }

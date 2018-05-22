@@ -37,15 +37,18 @@ class WebViewController: UIViewController
     }
 }
 
+//MARK: - WKNavigationDelegate
 extension WebViewController: WKNavigationDelegate
 {
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!)
     {
+        ActivityIndicator.startActivity()
         print("Loading...")
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
     {
+        ActivityIndicator.stopActivity()
         print("Finish.")
     }
 }

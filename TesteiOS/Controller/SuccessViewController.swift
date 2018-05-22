@@ -8,13 +8,13 @@
 
 import UIKit
 
-class SucessViewController: UIViewController
+class SuccessViewController: UIViewController
 {
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func sendNewMessage(_ sender: UIButton)

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//Class Customized Button
 @IBDesignable class Button: UIButton
 {
     @IBInspectable

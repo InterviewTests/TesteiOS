@@ -18,7 +18,9 @@ class ChangeRegisterTableViewCell: UITableViewCell
     override func awakeFromNib()
     {
         super.awakeFromNib()
+        //Setting checkbox style
         self.checkBox.boxType = .square
+        //Setting time of animation
         self.checkBox.animationDuration = 0.2
     }
 
