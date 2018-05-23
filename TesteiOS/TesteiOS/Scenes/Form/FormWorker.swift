@@ -16,7 +16,24 @@ class FormWorker
 {
   func fetchCells(completionHandler: @escaping ([Cell]) -> Void)
   {
-    let cells = [Cell]()
-    completionHandler(cells)
+    var request = URLRequest(url: URL(string: "https://floating-mountain-50292.herokuapp.com/cells.json")!)
+    request.httpMethod = "GET"
+    
+    URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
+        do {
+            let jsonDecoder = JSONDecoder()
+            let responseModel = try jsonDecoder.decode(CellArray.self, from: data!)
+            
+            var cells = [Cell]()
+            cells = responseModel.cells!
+            
+            DispatchQueue.main.async {
+                completionHandler(cells)
+            }
+        } catch {
+            print("JSON Serialization error")
+            print(error)
+        }
+    }).resume()
   }
 }
