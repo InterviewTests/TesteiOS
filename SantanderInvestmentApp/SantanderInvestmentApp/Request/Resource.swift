@@ -10,12 +10,16 @@ import Foundation
 
 struct Resource<T> {
     let url: URL
+    let method: HttpMethod<Data>
     let parse: (Data) -> Result<T>
 }
 
 extension Resource where T: Codable {
-    init(url: URL, parseJSON: @escaping (Result<T>) -> Result<T>) {
+    init(url: URL, method: HttpMethod<Any> = .get, parseJSON: @escaping (Result<T>) -> Result<T>) {
         self.url = url
+        self.method = method.map { json in
+            try! JSONSerialization.data(withJSONObject: json, options: [])
+        }
         self.parse = { data in
             do {
                 let result: T = try data.decode()
