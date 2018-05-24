@@ -13,7 +13,7 @@ import FBSnapshotTestCase
 
 class TestFieldTest: FBSnapshotTestCase {
     
-    var state = MockTextFieldInput(title: "Nome", typedText: "Fred", isValid: nil, isTextFieldActive: false)
+    var state = TextFieldModel(title: "Nome", typedText: "Fred", validator: nil, isTextFieldActive: false)
     
     var textField: TextField = {
         let t = TextField(frame: CGRect(x: 0, y: 0, width: 300, height: 60))
@@ -27,7 +27,7 @@ class TestFieldTest: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
         
-        state = MockTextFieldInput(title: "Nome", typedText: "Fred", isValid: nil, isTextFieldActive: false)
+        state = TextFieldModel(title: "Nome", typedText: "Fred")
     }
     
     override func tearDown() {
@@ -37,16 +37,19 @@ class TestFieldTest: FBSnapshotTestCase {
     }
     
     func testIfValidLineUpdatesItsValue() {
-        state.isValid = true
-        textField.input = state
+        let validator = MockValidator()
+        var state = TextFieldModel(title: "Nome", typedText: "Fred", validator: validator)
+        
+        let _ = try? state.validateTypedText()
+        textField.model = state
         XCTAssert(textField.lineView.backgroundColor == textField.appearance.validLineColor)
         
-        state.isValid = false
-        textField.input = state
+        validator.handlerIsValidText = { _ in return false }
+        let _ = try? state.validateTypedText()
+        textField.model = state
         XCTAssert(textField.lineView.backgroundColor == textField.appearance.errorLineColor)
         
-        state.isValid = nil
-        textField.input = state
+        textField.model = TextFieldModel(title: "Nome", typedText: "Fred", validator: nil)
         XCTAssert(textField.lineView.backgroundColor == textField.appearance.normalLineColor)
     }
     
@@ -56,39 +59,39 @@ class TestFieldTest: FBSnapshotTestCase {
     
     func testNoTypedTextAndActiveTextField() {
         state.isTextFieldActive = true
-        state.typedText = ""
+        try! state.changeTypedText(with: "")
         
-        textField.input = state
+        textField.model = state
         
         FBSnapshotVerifyView(textField)
     }
     
     func testNoTypedTextAndDisabledTextField() {
-        state.typedText = ""
         state.isTextFieldActive = false
+        try! state.changeTypedText(with: "")
         
-        textField.input = state
+        textField.model = state
         
         FBSnapshotVerifyView(textField)
     }
     
     func testTypedText() {
-        state.typedText = longString
+        try! state.changeTypedText(with: longString)
         
-        textField.input = state
+        textField.model = state
         
         FBSnapshotVerifyView(textField)
     }
     
     func testTapOnViewToClearText() {
-        state.typedText = "Alguma coisa"
-        textField.input = state
+        try! state.changeTypedText(with: "Alguma coisa")
+        textField.model = state
         
         XCTAssert(textField.clearTypedTextView.isHidden == false)
         
-        textField.clearTypedText()
+        textField.model.clearTypedText()
         
-        XCTAssert(textField.input.typedText == "")
+        XCTAssert(textField.model.typedText == "")
         XCTAssert(textField.clearTypedTextView.isHidden == true)
     }
     

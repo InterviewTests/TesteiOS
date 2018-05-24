@@ -23,42 +23,7 @@ struct TextFieldAppearance {
     var validLineColor: UIColor
 }
 
-// MARK: - Input
 
-protocol TextFieldInput {
-    
-    var title: String { get }
-    var typedText: String { get set }
-    var isValid: Bool? { get set }
-    var isTextFieldActive: Bool { get set }
-}
-
-struct MockTextFieldInput: TextFieldInput {
-    
-    var title: String
-    var typedText: String
-    var isValid: Bool?
-    var isTextFieldActive: Bool = false
-}
-
-// MARK: - Validator
-
-protocol TextFieldValidator {
-    
-    var maxTextLength: Int? { get }
-    func isValidText(_ text: String) -> Bool
-}
-
-extension TextFieldValidator {
-    
-    func hasValidLength(_ text: String) -> Bool {
-        if let max = maxTextLength {
-            return text.count <= max
-        } else {
-            return true
-        }
-    }
-}
 
 // MARK: - TextField
 
@@ -75,13 +40,11 @@ extension TextFieldValidator {
     
     // MARK: Properties
     
-    var input: TextFieldInput! {
+    var model: TextFieldModel! {
         didSet {
-            render(input)
+            render(model)
         }
     }
-    
-    var validator: TextFieldValidator?
     
     var appearance = TextFieldAppearance(titleTextColor: ._grey,
                                          titleTextBigFont: R.font.dinProRegular(size: 16)!,
@@ -98,7 +61,7 @@ extension TextFieldValidator {
     
     // MARK: Init
     
-    init() {
+    init(model: TextFieldModel) {
         super.init(frame: .zero)
         
         commonInit()
@@ -123,7 +86,7 @@ extension TextFieldValidator {
             $0.edges.equalToSuperview()
         }
         
-        input = MockTextFieldInput(title: "Testando", typedText: "Testando", isValid: nil, isTextFieldActive: false)
+        model = TextFieldModel(title: "Testando", typedText: "Testando")
         
         updateAppearance()
         
@@ -132,17 +95,17 @@ extension TextFieldValidator {
     
     // MARK: Core
     
-    private func render(_ input: TextFieldInput) {
-        titleLabel.text = input.title
-        textField.text = input.typedText
+    private func render(_ model: TextFieldModel) {
+        titleLabel.text = model.title
+        textField.text = model.typedText
         
-        let hasSomeTypedText = !input.typedText.isEmpty
+        let hasSomeTypedText = !model.typedText.isEmpty
         if hasSomeTypedText {
             titleLabel.font = appearance.titleTextSmallFont
             textField.isHidden = false
             clearTypedTextView.isHidden = false
         } else {
-            if input.isTextFieldActive {
+            if model.isTextFieldActive {
                 titleLabel.font = appearance.titleTextSmallFont
                 textField.isHidden = false
             } else {
@@ -152,7 +115,7 @@ extension TextFieldValidator {
             clearTypedTextView.isHidden = true
         }
         
-        if let isValid = input.isValid {
+        if let isValid = model.validation.isValid() {
             lineView.backgroundColor = isValid ? appearance.validLineColor : appearance.errorLineColor
         } else {
             lineView.backgroundColor = appearance.normalLineColor
@@ -173,19 +136,16 @@ extension TextFieldValidator {
     }
     
     @IBAction func didTapToClearText(_ sender: UITapGestureRecognizer) {
-        clearTypedText()
+        model.clearTypedText()
     }
     
-    func clearTypedText() {
-        input.typedText = ""
-    }
 }
 
 extension TextField: UITextFieldDelegate {
     // MARK: UITextFieldDelegate
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        input.isTextFieldActive = true
+        model.isTextFieldActive = true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -194,24 +154,18 @@ extension TextField: UITextFieldDelegate {
             text.replaceSubrange(r, with: string)
         }
         
-        let hasValidLength = validator?.hasValidLength(text) ?? true
-        if hasValidLength {
-            input.typedText = text
-        }
+        let _ = try? model.changeTypedText(with: text)
         
         return false
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        model.isTextFieldActive = false
         textField.resignFirstResponder()
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        let text = textField.text ?? ""
-        input.typedText = text
-        input.isTextFieldActive = false
-        
-        input.isValid = validator?.isValidText(text)
+        let _ = try? model.validateTypedText()
     }
 }

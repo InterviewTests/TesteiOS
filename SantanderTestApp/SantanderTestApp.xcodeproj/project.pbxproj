@@ -12,7 +12,6 @@
 		3510677120AF8F620068EE88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3510676F20AF8F620068EE88 /* Main.storyboard */; };
 		3510677320AF8F640068EE88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3510677220AF8F640068EE88 /* Assets.xcassets */; };
 		3510677620AF8F640068EE88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3510677420AF8F640068EE88 /* LaunchScreen.storyboard */; };
-		3510678120AF8F640068EE88 /* SantanderTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3510678020AF8F640068EE88 /* SantanderTestAppTests.swift */; };
 		351F407C20B386D30098EDF0 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 351F407B20B386D20098EDF0 /* RxSwift.framework */; };
 		351F407D20B386D30098EDF0 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 351F407B20B386D20098EDF0 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		351F408020B386EF0098EDF0 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 351F407F20B386EF0098EDF0 /* RxCocoa.framework */; };
@@ -36,6 +35,8 @@
 		358EE2A820B07234009F4134 /* DINPro-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 358EE29F20B07234009F4134 /* DINPro-Black.otf */; };
 		358EE2A920B07234009F4134 /* DINPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 358EE2A020B07234009F4134 /* DINPro-Regular.otf */; };
 		358EE2AA20B07234009F4134 /* DINPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 358EE2A120B07234009F4134 /* DINPro-Light.otf */; };
+		35FBBA4820B630610063C40D /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FBBA4720B630610063C40D /* TextFieldModel.swift */; };
+		35FBBA4A20B63E8A0063C40D /* TextFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FBBA4920B63E8A0063C40D /* TextFieldModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +82,6 @@
 		3510677520AF8F640068EE88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3510677720AF8F640068EE88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3510677C20AF8F640068EE88 /* SantanderTestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SantanderTestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3510678020AF8F640068EE88 /* SantanderTestAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderTestAppTests.swift; sourceTree = "<group>"; };
 		3510678220AF8F640068EE88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3510678720AF8F640068EE88 /* SantanderTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SantanderTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3510678D20AF8F640068EE88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,6 +104,8 @@
 		358EE29F20B07234009F4134 /* DINPro-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Black.otf"; sourceTree = "<group>"; };
 		358EE2A020B07234009F4134 /* DINPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Regular.otf"; sourceTree = "<group>"; };
 		358EE2A120B07234009F4134 /* DINPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Light.otf"; sourceTree = "<group>"; };
+		35FBBA4720B630610063C40D /* TextFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModel.swift; sourceTree = "<group>"; };
+		35FBBA4920B63E8A0063C40D /* TextFieldModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,9 +175,9 @@
 		3510677F20AF8F640068EE88 /* SantanderTestAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				3510678020AF8F640068EE88 /* SantanderTestAppTests.swift */,
 				3510678220AF8F640068EE88 /* Info.plist */,
 				354956FB20B24300008F72F7 /* TestFieldTest.swift */,
+				35FBBA4920B63E8A0063C40D /* TextFieldModelTest.swift */,
 			);
 			path = SantanderTestAppTests;
 			sourceTree = "<group>";
@@ -234,6 +236,7 @@
 			children = (
 				358EE29420B070EC009F4134 /* TextField.swift */,
 				358EE29620B0711F009F4134 /* TextField.xib */,
+				35FBBA4720B630610063C40D /* TextFieldModel.swift */,
 			);
 			path = TextField;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				3510676E20AF8F620068EE88 /* ViewController.swift in Sources */,
 				35234D0620B0B2540014640D /* Colors.swift in Sources */,
 				3510676C20AF8F620068EE88 /* AppDelegate.swift in Sources */,
+				35FBBA4820B630610063C40D /* TextFieldModel.swift in Sources */,
 				358EE29120B069F4009F4134 /* R.generated.swift in Sources */,
 				358EE29520B070EC009F4134 /* TextField.swift in Sources */,
 			);
@@ -498,7 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				354956FC20B24300008F72F7 /* TestFieldTest.swift in Sources */,
-				3510678120AF8F640068EE88 /* SantanderTestAppTests.swift in Sources */,
+				35FBBA4A20B63E8A0063C40D /* TextFieldModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
