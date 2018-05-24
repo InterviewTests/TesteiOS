@@ -11,12 +11,28 @@ import Foundation
 final class Request {
    static func load<T>(resource:Resource<T>, completion: @escaping (Result<T>) -> ()) {
         let request = URLRequest(resource: resource)
-        URLSession.shared.dataTask(with: request) { data, _, _ in
-            guard let data = data else {
-                completion(Result.error(nil))
-                return
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response as? HTTPURLResponse {
+                switch response.statusCode {
+                    case 200...299:
+                        guard let data = data else {
+                            completion(Result.error(nil))
+                            return
+                        }
+                        completion(resource.parse(data))
+                    case 401...500:
+                        completion(Result.failureNetwork(NetworkErrorResponse.authenticationError))
+                    case 501...599:
+                        completion(Result.failureNetwork(NetworkErrorResponse.badRequest))
+                    case 600:
+                        completion(Result.failureNetwork(NetworkErrorResponse.outdated))
+                    default:
+                        completion(Result.failureNetwork(NetworkErrorResponse.failed))
+                }
+                
+                
             }
-            completion(resource.parse(data))
+            
             }.resume()
     }
 }

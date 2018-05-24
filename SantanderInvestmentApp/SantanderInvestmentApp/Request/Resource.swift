@@ -36,5 +36,3 @@ extension Data {
         return try decoder.decode(T.self, from: self)
     }
 }
-
-

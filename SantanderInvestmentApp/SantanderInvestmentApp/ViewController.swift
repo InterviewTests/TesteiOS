@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     }
 
     func getService() -> Resource<Service> {
-        let url = URL(string: "https://demo1457479.mockable.io/getService")!
+        let url = URL(string: "https://demo1457479.mockable.io/getServicee")!
         return Resource<Service>(url: url, parseJSON: { result in
             return result
         })
