@@ -23,11 +23,27 @@ class ViewController: UIViewController {
             $0.width.equalTo(300)
             $0.height.equalTo(50)
         }
+        
+        let button = UIButton(type: .contactAdd)
+        self.view.addSubview(button)
+        button.snp.makeConstraints {
+            $0.bottom.trailing.equalToSuperview()
+        }
+        
+        button.addTarget(self, action: #selector(didTapOnButton(_:)), for: .touchUpInside)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    @objc func didTapOnButton(_ sender: UIButton) {
+        
+        let nameField = TextFieldModel(title: "Nome", typedText: "")
+        let emailField = TextFieldModel(title: "Email", typedText: "")
+        let phoneField = TextFieldModel(title: "Phone", typedText: "")
+        
+        let contactModel = ContactViewControllerModel(nameField: nameField, emailField: emailField, phoneField: phoneField)
+        let vc = ContactViewController(model: contactModel)
+        
+        present(vc, animated: true, completion: nil)
     }
 
 }

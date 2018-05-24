@@ -37,6 +37,8 @@
 		358EE2AA20B07234009F4134 /* DINPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 358EE2A120B07234009F4134 /* DINPro-Light.otf */; };
 		35FBBA4820B630610063C40D /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FBBA4720B630610063C40D /* TextFieldModel.swift */; };
 		35FBBA4A20B63E8A0063C40D /* TextFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FBBA4920B63E8A0063C40D /* TextFieldModelTest.swift */; };
+		35FE80C820B76D96002B2924 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FE80C720B76D96002B2924 /* ContactViewController.swift */; };
+		35FE80CA20B76DDD002B2924 /* ContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35FE80C920B76DDD002B2924 /* ContactViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		358EE2A120B07234009F4134 /* DINPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Light.otf"; sourceTree = "<group>"; };
 		35FBBA4720B630610063C40D /* TextFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModel.swift; sourceTree = "<group>"; };
 		35FBBA4920B63E8A0063C40D /* TextFieldModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModelTest.swift; sourceTree = "<group>"; };
+		35FE80C720B76D96002B2924 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		35FE80C920B76DDD002B2924 /* ContactViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,7 @@
 				3510676B20AF8F620068EE88 /* AppDelegate.swift */,
 				358EE28F20B069EA009F4134 /* Resources */,
 				3510676D20AF8F620068EE88 /* ViewController.swift */,
+				35FE80C620B76D53002B2924 /* Contact */,
 				3510676F20AF8F620068EE88 /* Main.storyboard */,
 				3510677420AF8F640068EE88 /* LaunchScreen.storyboard */,
 			);
@@ -263,6 +268,15 @@
 				354956FB20B24300008F72F7 /* TestFieldTest.swift */,
 			);
 			path = TextField;
+			sourceTree = "<group>";
+		};
+		35FE80C620B76D53002B2924 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				35FE80C720B76D96002B2924 /* ContactViewController.swift */,
+				35FE80C920B76DDD002B2924 /* ContactViewController.xib */,
+			);
+			path = Contact;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,6 +402,7 @@
 				358EE2A820B07234009F4134 /* DINPro-Black.otf in Resources */,
 				358EE29720B0711F009F4134 /* TextField.xib in Resources */,
 				358EE2A420B07234009F4134 /* DINPro-Medium.otf in Resources */,
+				35FE80CA20B76DDD002B2924 /* ContactViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +513,7 @@
 			files = (
 				3510676E20AF8F620068EE88 /* ViewController.swift in Sources */,
 				35234D0620B0B2540014640D /* Colors.swift in Sources */,
+				35FE80C820B76D96002B2924 /* ContactViewController.swift in Sources */,
 				3510676C20AF8F620068EE88 /* AppDelegate.swift in Sources */,
 				35FBBA4820B630610063C40D /* TextFieldModel.swift in Sources */,
 				358EE29120B069F4009F4134 /* R.generated.swift in Sources */,
@@ -593,6 +609,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -653,6 +670,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -681,6 +699,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SantanderTestApp/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -703,6 +722,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SantanderTestApp/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

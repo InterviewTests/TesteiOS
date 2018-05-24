@@ -194,10 +194,17 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
   struct nib {
+    /// Nib `ContactViewController`.
+    static let contactViewController = _R.nib._ContactViewController()
     /// Nib `TextField`.
     static let textField = _R.nib._TextField()
+    
+    /// `UINib(name: "ContactViewController", in: bundle)`
+    static func contactViewController(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.contactViewController)
+    }
     
     /// `UINib(name: "TextField", in: bundle)`
     static func textField(_: Void = ()) -> UIKit.UINib {
@@ -263,6 +270,17 @@ struct _R: Rswift.Validatable {
   struct nib: Rswift.Validatable {
     static func validate() throws {
       try _TextField.validate()
+    }
+    
+    struct _ContactViewController: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "ContactViewController"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      fileprivate init() {}
     }
     
     struct _TextField: Rswift.NibResourceType, Rswift.Validatable {
