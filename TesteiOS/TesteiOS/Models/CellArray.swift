@@ -12,17 +12,18 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct CellArray : Codable {
+
+struct CellArray {
 	let cells : [Cell]?
 
 	enum CodingKeys: String, CodingKey {
-
 		case cells = "cells"
 	}
+}
 
-	init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
-		cells = try values.decodeIfPresent([Cell].self, forKey: .cells)
-	}
-
+extension CellArray : Decodable {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        cells = try values.decodeIfPresent([Cell].self, forKey: .cells)
+    }
 }

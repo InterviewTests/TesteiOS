@@ -12,18 +12,32 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct Cell : Codable {
+
+enum CellType: Int {
+    case field = 1
+    case text = 2
+    case image = 3
+    case checkbox = 4
+    case send = 5
+}
+
+enum CellTypeField: Int {
+    case text = 1
+    case telNumber = 2
+    case email = 3
+}
+
+struct Cell {
 	let id : Int?
-	let type : Int?
+	let type : CellType?
 	let message : String?
-	let typefield : Int?
+	let typefield : CellTypeField?
 	let hidden : Bool?
 	let topSpacing : Float?
 	let show : Int?
 	let required : Bool?
 
 	enum CodingKeys: String, CodingKey {
-
 		case id = "id"
 		case type = "type"
 		case message = "message"
@@ -33,45 +47,48 @@ struct Cell : Codable {
 		case show = "show"
 		case required = "required"
 	}
-    
-    enum CellType: Int {
-        case field = 1
-        case text = 2
-        case image = 3
-        case checkbox = 4
-        case send = 5
-    }
-    
-    enum CellTypeField: Int {
-        case text = 1
-        case telNumber = 2
-        case email = 3
-    }
+}
 
-	init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
-		id = try values.decodeIfPresent(Int.self, forKey: .id)
-		type = try values.decodeIfPresent(Int.self, forKey: .type)
-		message = try values.decodeIfPresent(String.self, forKey: .message)
+extension Cell: Decodable {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        
+        let typeIntOptional: Int? = try values.decodeIfPresent(Int.self, forKey: .type)
+        if let typeInt = typeIntOptional {
+            type = CellType(rawValue: typeInt)
+        } else {
+            type = nil
+        }
+        
+        message = try values.decodeIfPresent(String.self, forKey: .message)
+        
+        let typefieldIntOptional: Int?
         do {
-            typefield = try values.decodeIfPresent(Int.self, forKey: .typefield)
+            typefieldIntOptional = try values.decodeIfPresent(Int.self, forKey: .typefield)
         } catch {
             let typefieldString = try values.decodeIfPresent(String.self, forKey: .typefield)
             switch typefieldString {
             case "text":
-                typefield = 1
+                typefieldIntOptional = 1
             case "telnumber":
-                typefield = 2
+                typefieldIntOptional = 2
             case "email":
-                typefield = 3
+                typefieldIntOptional = 3
             default:
-                typefield = nil
+                typefieldIntOptional = nil
             }
         }
-		hidden = try values.decodeIfPresent(Bool.self, forKey: .hidden)
-		topSpacing = try values.decodeIfPresent(Float.self, forKey: .topSpacing)
-		show = try values.decodeIfPresent(Int.self, forKey: .show)
-		required = try values.decodeIfPresent(Bool.self, forKey: .required)
-	}
-
+        if let typefieldInt = typefieldIntOptional {
+            typefield = CellTypeField(rawValue: typefieldInt)
+        } else {
+            typefield = nil
+        }
+        
+        hidden = try values.decodeIfPresent(Bool.self, forKey: .hidden)
+        topSpacing = try values.decodeIfPresent(Float.self, forKey: .topSpacing)
+        show = try values.decodeIfPresent(Int.self, forKey: .show)
+        required = try values.decodeIfPresent(Bool.self, forKey: .required)
+    }
 }
