@@ -1,9 +1,50 @@
+<<<<<<< HEAD
+# Teste iOS
+
+## Teste realizado por Luan Orlando
+[Linkedin](https://www.linkedin.com/in/luan-orlando-300300ba/)
+[GitHub](https://github.com/luanorlando)
+
+## Objetivos concluídos
+- Todas as telas feita de acordo com layout proposto;
+- Usado fonte especifica;
+- Tela Contato conforme arquivo [cells](https://floating-mountain-50292.herokuapp.com/cells.json);
+- Tela Ativo financeiro  conforme arquivo [Fund](https://floating-mountain-50292.herokuapp.com/fund.json);
+- Swift 3.0 ou superior;
+- Autolayout;
+- Uso do git;
+- Quebrando linhas conforme o tamanho do texto;
+- Botão download abrindo pagina do [Google](http://google.com);
+- Uso de enum.
+
+## Objetivos não concluídos
+- O app deve funcionar no iOS 9;
+- Testes unitários;
+- Arquitetura a ser usada Swift Clean (Feito em MVC).
+
+Empresa envolvida no processo seletivo
+---
+### Resourceit
+
+Recrutadora Responsavel
+---
+### Erica Danielle Volpe
+
+
+Desafio proposto
+---
+### # DESAFIO:
+
+Em uma tela terá um formulário dinâmico com alguns campos predefinidos, conforme o arquivo JSON disponível no link ([https://floating-mountain-50292.herokuapp.com/cells.json](https://floating-mountain-50292.herokuapp.com/cells.json)) que deverá
+ser consumido. Este formulário terá de ser desenhado e exibir uma tela de sucesso quando as informações preenchidas estiverem corretas.
+=======
 # Show me the code
 
 ### # DESAFIO:
 
 Em uma tela terá um formulário dinâmico com alguns campos predefinidos, conforme o arquivo JSON disponível no link ([https://floating-mountain-50292.herokuapp.com/cells.json](https://floating-mountain-50292.herokuapp.com/cells.json)) que deverá
   ser consumido. Este formulário terá de ser desenhado e exibir uma tela de sucesso quando as informações preenchidas estiverem corretas.
+>>>>>>> e32711e64809dae44400e3545bbab6821509ce26
 
 Na segunda tela terá o detalhe de um ativo financeiro. As informações devem ser consumidas através do link ([https://floating-mountain-50292.herokuapp.com/fund.json](https://floating-mountain-50292.herokuapp.com/fund.json)).
 
@@ -35,19 +76,33 @@ Você será avaliado pela usabilidade, por respeitar o design e pela arquitetura
 
 ```Swift
 Enum Type {
+<<<<<<< HEAD
+case field = 1,
+case text = 2,
+case image = 3,
+case checkbox = 4,
+case send = 5
+=======
     case field = 1,
     case text = 2,
     case image = 3,
     case checkbox = 4,
     case send = 5
+>>>>>>> e32711e64809dae44400e3545bbab6821509ce26
 }
 ```
 
 ```Swift
 Enum TypeField {
+<<<<<<< HEAD
+case text = 1,
+case telNumber = 2,
+case email = 3
+=======
     case text = 1,
     case telNumber = 2,
     case email = 3
+>>>>>>> e32711e64809dae44400e3545bbab6821509ce26
 }
 ```
 
@@ -81,3 +136,7 @@ Faça um fork desse desse repositório em seu Github e nos envie um Pull Request
 ### # Importante: não há prazo de entrega, faça com qualidade!
 
 # BOA SORTE!
+<<<<<<< HEAD
+
+=======
+>>>>>>> e32711e64809dae44400e3545bbab6821509ce26
