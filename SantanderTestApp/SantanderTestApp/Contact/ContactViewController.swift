@@ -75,7 +75,9 @@ class ContactViewController: UIViewController {
         let guide = UILayoutGuide()
         scroll.addLayoutGuide(guide)
         guide.snp.makeConstraints {
-            $0.topMargin.bottomMargin.equalTo(scroll)
+            $0.topMargin.greaterThanOrEqualTo(scroll)
+            $0.bottomMargin.lessThanOrEqualTo(scroll)
+            $0.centerY.equalTo(scroll).offset(-50).priority(999)
             $0.left.equalTo(scroll).offset(20)
             $0.right.equalTo(scroll).inset(20)
             $0.width.lessThanOrEqualTo(scroll)

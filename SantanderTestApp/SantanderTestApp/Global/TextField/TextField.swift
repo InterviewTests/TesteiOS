@@ -129,6 +129,10 @@ struct TextFieldAppearance {
         textField.tintColor = a.textFieldCarrierColor
     }
     
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 315, height: 58)
+    }
+    
     // MARK: IBActions
     
     @IBAction func activateTextField(_ sender: UITapGestureRecognizer) {
@@ -160,12 +164,12 @@ extension TextField: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        model.isTextFieldActive = false
         textField.resignFirstResponder()
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        model.isTextFieldActive = false
         let _ = try? model.validateTypedText()
     }
 }
