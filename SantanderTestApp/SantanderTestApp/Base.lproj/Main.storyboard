@@ -26,24 +26,33 @@
                                     <constraint firstAttribute="height" constant="58" id="h02-5c-vAb"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iES-0j-pPw">
-                                <rect key="frame" x="165" y="299" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gta-BY-QBK" customClass="Button" customModule="SantanderTestApp" customModuleProvider="target">
+                                <rect key="frame" x="30.5" y="577" width="315" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="315" id="OyF-Ua-fyo"/>
+                                    <constraint firstAttribute="height" constant="50" id="bO6-Rh-v7j"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iES-0j-pPw" customClass="Button" customModule="SantanderTestApp" customModuleProvider="target">
+                                <rect key="frame" x="30" y="308.5" width="315" height="50"/>
                                 <state key="normal" title="Button"/>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gta-BY-QBK" customClass="Button" customModule="SantanderTestApp" customModuleProvider="target">
-                                <rect key="frame" x="68" y="478" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="uGr-Cq-0kK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="E7N-Tp-EQr"/>
+                            <constraint firstItem="gta-BY-QBK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Sfa-Gt-qWe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gta-BY-QBK" secondAttribute="bottom" constant="40" id="W4m-wV-cvn"/>
+                            <constraint firstItem="iES-0j-pPw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="a4V-oR-ZqL"/>
                             <constraint firstItem="uGr-Cq-0kK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aBc-L8-epO"/>
+                            <constraint firstItem="iES-0j-pPw" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xd0-QR-TdQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="myButton" destination="gta-BY-QBK" id="w7R-Yh-ICQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

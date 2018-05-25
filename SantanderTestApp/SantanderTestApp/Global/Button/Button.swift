@@ -11,13 +11,7 @@ import UIKit
 
 @IBDesignable class Button: UIButton {
     
-    override var isSelected: Bool {
-        willSet {
-            self.isSelected = newValue
-            
-            toggleSelectedState()
-        }
-    }
+    var isBeingPressed: Bool = false
     
     init(title: String) {
         super.init(frame: .zero)
@@ -38,30 +32,56 @@ import UIKit
         commonInit()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        layer.cornerRadius = frame.height / 2
+    }
+    
     private func commonInit() {
         isEnabled = true
         isUserInteractionEnabled = true
         backgroundColor = UIColor._red
-        layer.cornerRadius = 25
         
         titleLabel?.font = R.font.dinProMedium(size: 16)
         setTitleColor(UIColor.white, for: .normal)
+        
+        self.addTarget(self, action: #selector(pressButton), for: [.touchDown, .touchDragEnter])
+        self.addTarget(self, action: #selector(releaseButton), for: [.touchUpInside, .touchUpOutside, .touchDragExit, .touchCancel, .touchDragOutside])
     }
     
-    private func toggleSelectedState() {
-        if isSelected {
-            backgroundColor = UIColor._red
-        } else {
-            backgroundColor = UIColor._peach
+    let animationDuration = 0.05
+    
+    @objc func pressButton() {
+        guard !isBeingPressed else {
+            return
+        }
+        
+        isBeingPressed = true
+        backgroundColor = UIColor._peach
+        
+        UIView.animate(withDuration: animationDuration) {
+            self.transform = self.transform.scaledBy(x: 0.92, y: 0.9)
         }
     }
     
-//    override var intrinsicContentSize: CGSize {
-//        if isSelected {
-//            return CGSize(width: 315, height: 50)
-//        } else {
-//            return CGSize(width: 284, height: 45)
-//        }
-//    }
+    @objc func releaseButton() {
+        guard isBeingPressed else {
+            return
+        }
+        
+        isBeingPressed = false
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + animationDuration) {
+            self.backgroundColor = UIColor._red
+        }
+        
+        UIView.animate(withDuration: animationDuration) {
+            self.transform = .identity
+        }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 315, height: 50)
+    }
     
 }

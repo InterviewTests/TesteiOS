@@ -8,9 +8,12 @@
 
 import UIKit
 import SnapKit
+import RxCocoa
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var myButton: Button!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -31,6 +34,8 @@ class ViewController: UIViewController {
         }
         
         button.addTarget(self, action: #selector(didTapOnButton(_:)), for: .touchUpInside)
+        
+        myButton.setTitle("TEstando", for: .normal)
     }
     
     
