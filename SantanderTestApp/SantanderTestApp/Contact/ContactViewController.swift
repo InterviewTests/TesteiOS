@@ -51,11 +51,19 @@ class ContactViewController: UIViewController {
         self.scrollView = makeScrollView()
         
         makeTextFields()
+        
+        let button = Button(title: "Teste")
+        scrollView.addSubview(button)
+        button.snp.makeConstraints {
+            $0.top.equalTo(fieldsStack.snp.bottom).offset(20)
+            $0.leading.trailing.equalTo(scrollContentGuide)
+            $0.bottom.lessThanOrEqualTo(scrollContentGuide)
+        }
     }
     
     private func makeScrollView() -> UIScrollView {
         let s = UIScrollView()
-        s.backgroundColor = UIColor.red
+//        s.backgroundColor = UIColor.red
         
         self.view.addSubview(s)
         s.snp.makeConstraints { (make) in
