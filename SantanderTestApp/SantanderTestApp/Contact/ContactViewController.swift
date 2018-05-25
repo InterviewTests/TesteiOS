@@ -18,7 +18,6 @@ struct ContactViewControllerModel {
     
 }
 
-
 class ContactViewController: UIViewController {
     
     var model: ContactViewControllerModel
@@ -48,7 +47,7 @@ class ContactViewController: UIViewController {
         self.view = UIView()
         self.view.backgroundColor = UIColor.white
         
-        self.scrollView = makeScrollView()
+        makeScrollViewAndContentGuide()
         
         makeTextFields()
         
@@ -56,31 +55,33 @@ class ContactViewController: UIViewController {
         scrollView.addSubview(button)
         button.snp.makeConstraints {
             $0.top.equalTo(fieldsStack.snp.bottom).offset(20)
-            $0.leading.trailing.equalTo(scrollContentGuide)
-            $0.bottom.lessThanOrEqualTo(scrollContentGuide)
+            $0.width.bottom.lessThanOrEqualTo(scrollContentGuide)
+            $0.centerX.equalTo(scrollContentGuide)
         }
     }
     
-    private func makeScrollView() -> UIScrollView {
-        let s = UIScrollView()
-//        s.backgroundColor = UIColor.red
+    private func makeScrollViewAndContentGuide() {
+        let scroll = UIScrollView()
         
-        self.view.addSubview(s)
-        s.snp.makeConstraints { (make) in
-            make.top.equalTo(self.topLayoutGuide.snp.bottom)
-            make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
-            make.leadingMargin.trailingMargin.equalToSuperview()
+        self.view.addSubview(scroll)
+        scroll.snp.makeConstraints {
+            $0.top.equalTo(self.topLayoutGuide.snp.bottom)
+            $0.bottom.equalTo(self.bottomLayoutGuide.snp.top)
+            $0.leading.trailing.equalToSuperview()
         }
         
-        let g = UILayoutGuide()
-        s.addLayoutGuide(g)
-        g.snp.makeConstraints {
-            $0.top.bottom.leading.trailing.width.equalTo(s)
+        scrollView = scroll
+        
+        let guide = UILayoutGuide()
+        scroll.addLayoutGuide(guide)
+        guide.snp.makeConstraints {
+            $0.topMargin.bottomMargin.equalTo(scroll)
+            $0.left.equalTo(scroll).offset(20)
+            $0.right.equalTo(scroll).inset(20)
+            $0.width.lessThanOrEqualTo(scroll)
         }
         
-        scrollContentGuide = g
-        
-        return s
+        scrollContentGuide = guide
     }
     
     private func makeTextFields() {
