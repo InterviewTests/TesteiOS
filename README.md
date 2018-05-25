@@ -1,4 +1,13 @@
-# Show me the code
+# About
+
+**Esse é um projeto em andamento (ainda incompleto)**
+
+Siga os passos abaixo para rodar o projeto:
+
+- Execute `carthage bootstrap --platform iOS` para gerar as depêndencias
+- Abra o arquivo `SantanderTestApp.xcodeproj` no Xcode e apenas execute o app
+
+# Requisitos do Teste
 
 ### # DESAFIO:
 

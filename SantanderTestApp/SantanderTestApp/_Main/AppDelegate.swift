@@ -15,7 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let nameField = TextFieldModel(title: "Nome", typedText: "")
+        let emailField = TextFieldModel(title: "Email", typedText: "")
+        let phoneField = TextFieldModel(title: "Phone", typedText: "")
+        
+        let contactModel = ContactViewControllerModel(nameField: nameField, emailField: emailField, phoneField: phoneField)
+        
+        window?.rootViewController = ContactViewController(model: contactModel)
+        window?.makeKeyAndVisible()
+        
         return true
     }
 

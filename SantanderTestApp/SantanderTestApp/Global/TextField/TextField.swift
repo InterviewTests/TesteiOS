@@ -64,7 +64,7 @@ struct TextFieldAppearance {
     init(model: TextFieldModel) {
         super.init(frame: .zero)
         
-        commonInit()
+        commonInit(model: model)
     }
     
     override init(frame: CGRect = .zero) {
@@ -79,14 +79,18 @@ struct TextFieldAppearance {
         commonInit()
     }
     
-    private func commonInit() {
+    private func commonInit(model: TextFieldModel? = nil) {
         let v = R.nib.textField.firstView(owner: self)!
         self.addSubview(v)
         v.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
-        model = TextFieldModel(title: "Testando", typedText: "Testando")
+        if let model = model {
+            self.model = model
+        } else {
+            self.model = TextFieldModel(title: "Testando", typedText: "Testando")
+        }
         
         updateAppearance()
         

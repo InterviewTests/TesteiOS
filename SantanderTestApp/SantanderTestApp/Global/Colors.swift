@@ -18,6 +18,10 @@ extension UIColor {
     class var _black: UIColor {
         return #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
     }
+
+    class var _darkGrey: UIColor {
+        return #colorLiteral(red: 0.5921568627, green: 0.5921568627, blue: 0.5921568627, alpha: 1)
+    }
     
     class var _lightGrey: UIColor {
         return #colorLiteral(red: 0.937254902, green: 0.9333333333, blue: 0.9294117647, alpha: 1)

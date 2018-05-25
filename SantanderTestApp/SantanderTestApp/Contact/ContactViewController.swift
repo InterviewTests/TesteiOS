@@ -10,17 +10,13 @@ import Foundation
 import UIKit
 import SnapKit
 
-struct ContactViewControllerModel {
-    
-    var nameField: TextFieldModel
-    var emailField: TextFieldModel
-    var phoneField: TextFieldModel
-    
-}
-
 class ContactViewController: UIViewController {
+
+    // MARK: Model
     
     var model: ContactViewControllerModel
+    
+    // MARK: Init
     
     init(model: ContactViewControllerModel) {
         self.model = model
@@ -43,6 +39,10 @@ class ContactViewController: UIViewController {
     var emailField: TextField!
     var phoneField: TextField!
     
+    var checkBox: CheckBox!
+    
+    var button: Button!
+    
     override func loadView() {
         self.view = UIView()
         self.view.backgroundColor = UIColor.white
@@ -51,13 +51,9 @@ class ContactViewController: UIViewController {
         
         makeTextFields()
         
-        let button = Button(title: "Teste")
-        scrollView.addSubview(button)
-        button.snp.makeConstraints {
-            $0.top.equalTo(fieldsStack.snp.bottom).offset(20)
-            $0.width.bottom.lessThanOrEqualTo(scrollContentGuide)
-            $0.centerX.equalTo(scrollContentGuide)
-        }
+        makeCheckBox()
+        
+        makeButton()
     }
     
     private func makeScrollViewAndContentGuide() {
@@ -101,6 +97,27 @@ class ContactViewController: UIViewController {
         fieldsStack.snp.makeConstraints {
             $0.top.leading.trailing.equalTo(scrollContentGuide)
             $0.bottom.lessThanOrEqualTo(scrollContentGuide)
+        }
+    }
+    
+    private func makeCheckBox() {
+        checkBox = CheckBox(frame: .zero)
+        view.addSubview(checkBox)
+        checkBox.snp.makeConstraints {
+            $0.top.equalTo(fieldsStack.snp.bottom).offset(50)
+            $0.bottom.width.lessThanOrEqualTo(scrollContentGuide)
+            $0.centerX.equalTo(scrollContentGuide)
+        }
+        checkBox.label.text = "Gostaria de cadastrar meu email"
+    }
+    
+    private func makeButton() {
+        button = Button(title: "Enviar")
+        scrollView.addSubview(button)
+        button.snp.makeConstraints {
+            $0.top.equalTo(checkBox.snp.bottom).offset(38)
+            $0.width.bottom.lessThanOrEqualTo(scrollContentGuide)
+            $0.centerX.equalTo(scrollContentGuide)
         }
     }
     
