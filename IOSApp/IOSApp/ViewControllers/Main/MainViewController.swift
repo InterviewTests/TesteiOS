@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var invstBtn: UIButton!
     @IBOutlet weak var contBtn: UIButton!
+    
     let BASE_URL = "https://floating-mountain-50292.herokuapp.com/"
     let FORM_API = "cells.json"
     let FUND_API = "fund.json"
@@ -125,8 +126,13 @@ class MainViewController: UIViewController {
                 print ("Success")
                 let formJSON : JSON = JSON(response.result.value!)
                 print (formJSON)
+                do{
+                    let cells = try JSONDecoder().decode(FormDataModel.self, from: response.data!)
+                    print(cells.cells[0].message)
+                }catch (ex: NSException){
+                    print(ex)
+                }
             }
-            
             else {
                 print("Error \(response.result.error)")
             }

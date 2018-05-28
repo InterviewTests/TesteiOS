@@ -8,9 +8,20 @@
 
 import UIKit
 
-class FormDataModel {
+struct FormDataModel : Decodable {
     
-    
+    let cells: [Cell]
+    struct Cell: Decodable {
+        
+        let id : Int
+        let type : Int
+        let message : String
+        let typefield : Int?
+        let hidden : Bool
+        let topSpacing : Double
+        let show : Int?
+        let required : Bool
+    }
     
     
     
