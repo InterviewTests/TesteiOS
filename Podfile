@@ -6,7 +6,7 @@ target 'TesteiOS' do
   use_frameworks!
 
   pod 'Alamofire'
-  
+  pod 'SkyFloatingLabelTextField'
   # Pods for TesteiOS
 
   target 'TesteiOSTests' do
