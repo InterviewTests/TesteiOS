@@ -7,17 +7,22 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class MainViewController: UIViewController {
     
     @IBOutlet weak var invstBtn: UIButton!
     @IBOutlet weak var contBtn: UIButton!
-
+    let BASE_URL = "https://floating-mountain-50292.herokuapp.com/"
+    let FORM_API = "cells.json"
+    let FUND_API = "fund.json"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         invstBtnWasPressed(invstBtn)
+        getFormData(url: "\(BASE_URL)\(FORM_API)")
+        getFundData(url: "\(BASE_URL)\(FUND_API)")
         
         // Do any additional setup after loading the view.
     }
@@ -111,6 +116,42 @@ class MainViewController: UIViewController {
         // Notify Child View Controller
         viewController.removeFromParentViewController()
     }
+    
+    private func getFormData(url: String){
+        
+        Alamofire.request(url, method:.get).responseJSON {
+            response in
+            if  response.result.isSuccess{
+                print ("Success")
+                let formJSON : JSON = JSON(response.result.value!)
+                print (formJSON)
+            }
+            
+            else {
+                print("Error \(response.result.error)")
+            }
+        }
+        
+    }
+    
+    private func getFundData(url: String){
+        
+        Alamofire.request(url, method:.get).responseJSON {
+            response in
+            if  response.result.isSuccess{
+                print ("Success")
+                let formJSON : JSON = JSON(response.result.value!)
+                
+            }
+                
+            else {
+                print("Error \(response.result.error)")
+            }
+        }
+        
+        
+    }
+    
     
 }
 
