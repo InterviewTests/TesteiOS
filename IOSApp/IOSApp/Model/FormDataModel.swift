@@ -11,18 +11,45 @@ import UIKit
 struct FormDataModel : Decodable {
     
     let cells: [Cell]
-    struct Cell: Decodable {
+    
+}
+
+struct Cell: Decodable {
+    
+    let id : Int
+    let type : Int
+    let message : String
+    let typefield : Any?
+    let hidden : Bool
+    let topSpacing : Double
+    let show : Int?
+    let required : Bool
+    
+    enum CodingKeys: String, CodingKey {
         
-        let id : Int
-        let type : Int
-        let message : String
-        let typefield : Int?
-        let hidden : Bool
-        let topSpacing : Double
-        let show : Int?
-        let required : Bool
+        case id
+        case type
+        case message
+        case typefield
+        case hidden
+        case topSpacing
+        case show
+        case required
     }
     
-    
-    
+    init (from decoder: Decoder) throws{
+        let container = try decoder.container (keyedBy: CodingKeys.self)
+        
+        id = try container.decode(Int.self,forKey:CodingKeys.id)
+        type = try container.decode(Int.self,forKey:CodingKeys.type)
+        message = try container.decode(String.self,forKey:CodingKeys.message)
+        
+        do { typefield = try container.decode(Int?.self,forKey:CodingKeys.typefield) }
+        catch { typefield = try container.decode(String?.self,forKey:CodingKeys.typefield) }
+        
+        hidden = try container.decode(Bool.self,forKey:CodingKeys.hidden)
+        topSpacing = try container.decode(Double.self,forKey:CodingKeys.topSpacing)
+        show = try container.decode(Int?.self,forKey:CodingKeys.show)
+        required = try container.decode(Bool.self,forKey:CodingKeys.required)
+    }
 }

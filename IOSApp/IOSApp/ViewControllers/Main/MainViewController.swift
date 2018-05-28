@@ -119,41 +119,36 @@ class MainViewController: UIViewController {
     }
     
     private func getFormData(url: String){
-        
-        Alamofire.request(url, method:.get).responseJSON {
-            response in
-            if  response.result.isSuccess{
-                print ("Success")
-                let formJSON : JSON = JSON(response.result.value!)
-                print (formJSON)
-                do{
-                    let cells = try JSONDecoder().decode(FormDataModel.self, from: response.data!)
-                    print(cells.cells[0].message)
-                }catch (ex: NSException){
-                    print(ex)
-                }
+        guard let formUrl = URL(string: url) else { return }
+        URLSession.shared.dataTask(with: formUrl) { (data, response
+            , error) in
+            guard let data = data else { return }
+            do {
+                let decoder = JSONDecoder()
+                let formData = try decoder.decode(FormDataModel.self, from: data)
+            } catch let err {
+                print("Err", err)
             }
-            else {
-                print("Error \(response.result.error)")
-            }
-        }
+            }.resume()
         
     }
+        
+    
     
     private func getFundData(url: String){
         
-        Alamofire.request(url, method:.get).responseJSON {
-            response in
-            if  response.result.isSuccess{
-                print ("Success")
-                let formJSON : JSON = JSON(response.result.value!)
-                
+        guard let fundUrl = URL(string: url) else { return }
+        URLSession.shared.dataTask(with: fundUrl) { (data, response
+            , error) in
+            guard let data = data else { return }
+            do {
+                let decoder = JSONDecoder()
+                let fundData = try decoder.decode(FundDataModel.self, from: data)
+                print(fundData.screen.infoTitle)
+            } catch let err {
+                print("Err", err)
             }
-                
-            else {
-                print("Error \(response.result.error)")
-            }
-        }
+            }.resume()
         
         
     }
