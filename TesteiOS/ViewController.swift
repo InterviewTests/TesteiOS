@@ -12,12 +12,16 @@ import SkyFloatingLabelTextField
 class ViewController: UIViewController {
 
     @IBOutlet weak var uiTextField: SkyFloatingLabelTextField?
+    var apiFetcher: Fetcher?
     override func viewDidLoad() {
         super.viewDidLoad()
         let lightGreyColor = UIColor(red: 172/255, green: 172/255, blue: 172/255, alpha: 1.0)
         uiTextField?.placeholder = "TESTE "
         uiTextField?.title = "TESTE"
         uiTextField?.selectedTitleColor = lightGreyColor
+        
+        apiFetcher?.fetch(request: Router.Login.create(jsonParameters: "").asURLRequest()) { data in}
+        
         
         // Do any additional setup after loading the view, typically from a nib.
     }

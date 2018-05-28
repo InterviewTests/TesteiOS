@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import SkyFloatingLabelTextField
 extension UIButton {
     func layoutButton() {
         self.layer.cornerRadius = 5
@@ -24,8 +24,12 @@ extension UIButton {
     
 }
 
-extension UITextField {
-    func layoutTextField() {
-        
+extension SkyFloatingLabelTextField {
+    
+    func layoutTextField(configText:String) {
+        let lightGreyColor = UIColor(red: 172/255, green: 172/255, blue: 172/255, alpha: 1.0)
+        self.selectedTitleColor = lightGreyColor
+        self.placeholder = configText
+        self.title = self.placeholder
     }
 }
