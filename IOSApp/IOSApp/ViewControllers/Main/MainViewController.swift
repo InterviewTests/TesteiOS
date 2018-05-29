@@ -23,7 +23,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         invstBtnWasPressed(invstBtn)
         getFormData(url: "\(BASE_URL)\(FORM_API)")
-        getFundData(url: "\(BASE_URL)\(FUND_API)")
         
         // Do any additional setup after loading the view.
     }
@@ -135,23 +134,7 @@ class MainViewController: UIViewController {
         
     
     
-    private func getFundData(url: String){
-        
-        guard let fundUrl = URL(string: url) else { return }
-        URLSession.shared.dataTask(with: fundUrl) { (data, response
-            , error) in
-            guard let data = data else { return }
-            do {
-                let decoder = JSONDecoder()
-                let fundData = try decoder.decode(FundDataModel.self, from: data)
-                print(fundData.screen.infoTitle)
-            } catch let err {
-                print("Err", err)
-            }
-            }.resume()
-        
-        
-    }
+    
     
     
 }

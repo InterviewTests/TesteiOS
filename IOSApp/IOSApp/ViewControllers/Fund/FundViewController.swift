@@ -9,11 +9,35 @@
 import UIKit
 
 class FundViewController: UIViewController {
-
+    let FUND_API_URL = "https://floating-mountain-50292.herokuapp.com/fund.json"
+    
+    @IBOutlet weak var fundTableView: UITableView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        getFundData(url: FUND_API_URL) { (response) in
+            if (response != nil) {
+                let vm = FundViewModel(data: response!)
+                DispatchQueue.main.async(execute: {() -> Void in
+                
+                    self.fundTableView?.dataSource = vm
+                    self.fundTableView?.reloadData()
+                
+                })
+            }
+        }
+        
+        fundTableView?.estimatedRowHeight = 200
+        fundTableView?.rowHeight = UITableViewAutomaticDimension
+        
+        fundTableView?.register(FundTitleAndNameTableViewCell.self, forCellReuseIdentifier: FundTitleAndNameTableViewCell.identifier)
+        fundTableView?.register(FundDefinitionTableViewCell.self, forCellReuseIdentifier: FundDefinitionTableViewCell.identifier)
+        fundTableView?.register(FundRiskTableViewCell.self, forCellReuseIdentifier: FundRiskTableViewCell.identifier)
+        fundTableView?.register(FundMoreInfoTableViewCell.self, forCellReuseIdentifier: FundMoreInfoTableViewCell.identifier)
+        fundTableView?.register(FundInfoTableViewCell.self, forCellReuseIdentifier: FundInfoTableViewCell.identifier)
+        fundTableView?.register(FundDownInfoTableViewCell.self, forCellReuseIdentifier: FundDownInfoTableViewCell.identifier)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +45,23 @@ class FundViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func getFundData(url: String, completionBlock: @escaping (FundDataModel?)->Void) {
+        
+        guard let fundUrl = URL(string: url) else { return }
+        
+        URLSession.shared.dataTask(with: fundUrl) { (data, response
+            , error) in
+            guard let data = data else { return }
+            var response : FundDataModel?
+            do {
+                let decoder = JSONDecoder()
+                response = try decoder.decode(FundDataModel.self, from: data)
+            } catch let err {
+                response = nil
+                print("Err", err)
+            }
+            completionBlock(response)
+        }.resume()
     }
-    */
 
 }
