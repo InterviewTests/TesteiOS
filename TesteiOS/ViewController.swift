@@ -20,7 +20,10 @@ class ViewController: UIViewController {
         uiTextField?.title = "TESTE"
         uiTextField?.selectedTitleColor = lightGreyColor
         
-        apiFetcher?.fetch(request: Router.Login.create(jsonParameters: "").asURLRequest()) { data in}
+        apiFetcher?.fetch(request: Router.Form.create(jsonParameters: "").asURLRequest()) { data in
+            print(data)
+            
+        }
         
         
         // Do any additional setup after loading the view, typically from a nib.
