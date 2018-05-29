@@ -21,7 +21,7 @@ class ThreeLabelCellModel {
               let v3 = value3,
               let b = btnURL
               else {
-                self.value1 = 0
+                self.value1 = ""
                 self.value2 = 0
                 self.value3 = 0
                 self.btnURL = nil

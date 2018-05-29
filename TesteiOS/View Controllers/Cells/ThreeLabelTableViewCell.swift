@@ -9,7 +9,7 @@
 import UIKit
 
 class ThreeLabelTableViewCell: UITableViewCell {
-    var model:ThreeLabelCellModel = ThreeLabelCellModel(nil,nil,nil)
+    var model:ThreeLabelCellModel = ThreeLabelCellModel(nil,nil,nil,nil)
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
