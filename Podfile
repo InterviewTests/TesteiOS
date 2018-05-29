@@ -7,6 +7,8 @@ target 'TesteiOS' do
 
   pod 'Alamofire'
   pod 'SkyFloatingLabelTextField'
+  pod 'RxSwift'
+
   # Pods for TesteiOS
 
   target 'TesteiOSTests' do
