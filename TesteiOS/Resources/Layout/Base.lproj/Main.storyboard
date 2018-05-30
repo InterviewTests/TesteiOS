@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -14,6 +15,9 @@
         </array>
         <array key="DINPro-Medium.otf">
             <string>DINPro-Medium</string>
+        </array>
+        <array key="DINPro-Regular.otf">
+            <string>DINPro-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -28,9 +32,86 @@
                     <view key="view" contentMode="scaleToFill" id="rFj-fo-6km">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2TI-lu-kY3" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                <rect key="frame" x="40" y="80" width="295" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9RN-LL-qIN" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                <rect key="frame" x="40" y="170" width="295" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MZR-23-nIk" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                <rect key="frame" x="40" y="260" width="295" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfs-f5-KTJ">
+                                <rect key="frame" x="40" y="320" width="295" height="22"/>
+                                <state key="normal" title="   Gostaria de cadastrar meu email" image="checkbox">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="checkbox_checked"/>
+                                <state key="highlighted" image="checkbox_checked"/>
+                                <connections>
+                                    <action selector="recordMailBtnTap:" destination="BGN-R3-boY" eventType="touchUpInside" id="jIN-jB-m4w"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyO-aB-Baf">
+                                <rect key="frame" x="40" y="372" width="295" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="P3L-47-qdA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                                <state key="normal" title="Enviar">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendBtnTap:" destination="BGN-R3-boY" eventType="touchUpInside" id="t8C-2g-cC6"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contato" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umj-N1-wcS">
+                                <rect key="frame" x="16" y="40" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tyO-aB-Baf" firstAttribute="leading" secondItem="rFj-fo-6km" secondAttribute="leading" constant="40" id="2az-O6-Pod"/>
+                            <constraint firstItem="2TI-lu-kY3" firstAttribute="top" secondItem="mz1-Nw-hCP" secondAttribute="bottom" constant="60" id="Fxz-Ox-2yp"/>
+                            <constraint firstItem="9RN-LL-qIN" firstAttribute="top" secondItem="2TI-lu-kY3" secondAttribute="bottom" constant="60" id="GtT-p6-UV3"/>
+                            <constraint firstItem="Mfs-f5-KTJ" firstAttribute="top" secondItem="MZR-23-nIk" secondAttribute="bottom" constant="30" id="HoL-r8-06P"/>
+                            <constraint firstAttribute="trailing" secondItem="Mfs-f5-KTJ" secondAttribute="trailing" constant="40" id="Mmo-lb-bZZ"/>
+                            <constraint firstItem="Umj-N1-wcS" firstAttribute="top" secondItem="mz1-Nw-hCP" secondAttribute="bottom" constant="20" id="Owf-W5-qwQ"/>
+                            <constraint firstItem="2TI-lu-kY3" firstAttribute="leading" secondItem="rFj-fo-6km" secondAttribute="leading" constant="40" id="Qn8-q0-6hV"/>
+                            <constraint firstItem="tyO-aB-Baf" firstAttribute="top" secondItem="Mfs-f5-KTJ" secondAttribute="bottom" constant="30" id="a87-c8-G4B"/>
+                            <constraint firstItem="MZR-23-nIk" firstAttribute="leading" secondItem="2TI-lu-kY3" secondAttribute="leading" id="ajt-kx-Xg0"/>
+                            <constraint firstAttribute="trailing" secondItem="tyO-aB-Baf" secondAttribute="trailing" constant="40" id="dtY-bw-XaS"/>
+                            <constraint firstItem="Mfs-f5-KTJ" firstAttribute="leading" secondItem="rFj-fo-6km" secondAttribute="leading" constant="40" id="fRt-sL-Aue"/>
+                            <constraint firstAttribute="trailing" secondItem="2TI-lu-kY3" secondAttribute="trailing" constant="40" id="k1e-OU-3n5"/>
+                            <constraint firstItem="9RN-LL-qIN" firstAttribute="leading" secondItem="2TI-lu-kY3" secondAttribute="leading" id="rgX-Ew-gG6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Umj-N1-wcS" secondAttribute="trailing" id="tvG-JI-CtE"/>
+                            <constraint firstItem="9RN-LL-qIN" firstAttribute="width" secondItem="2TI-lu-kY3" secondAttribute="width" id="uV4-Cv-J9c"/>
+                            <constraint firstItem="Umj-N1-wcS" firstAttribute="leading" secondItem="rFj-fo-6km" secondAttribute="leadingMargin" id="v4b-TK-naV"/>
+                            <constraint firstItem="MZR-23-nIk" firstAttribute="top" secondItem="9RN-LL-qIN" secondAttribute="bottom" constant="60" id="vVo-jo-BS3"/>
+                            <constraint firstItem="MZR-23-nIk" firstAttribute="width" secondItem="2TI-lu-kY3" secondAttribute="width" id="yFL-YW-01h"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Contato" id="dha-c0-3WS"/>
+                    <connections>
+                        <outlet property="uiEmailTextField" destination="9RN-LL-qIN" id="nIf-88-OX5"/>
+                        <outlet property="uiNameTextField" destination="2TI-lu-kY3" id="ykr-hD-ZXg"/>
+                        <outlet property="uiPhoneTextField" destination="MZR-23-nIk" id="pGp-dA-htR"/>
+                        <outlet property="uiRecordEmailBtn" destination="Mfs-f5-KTJ" id="2Ta-aP-Yaw"/>
+                        <outlet property="uiSendBtn" destination="tyO-aB-Baf" id="lRO-BU-IQI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pck-aI-v05" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -189,4 +270,8 @@
             <point key="canvasLocation" x="58" y="165"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="checkbox" width="19" height="19"/>
+        <image name="checkbox_checked" width="19" height="19"/>
+    </resources>
 </document>

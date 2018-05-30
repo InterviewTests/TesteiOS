@@ -10,28 +10,61 @@ import UIKit
 import SkyFloatingLabelTextField
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var uiTextField: SkyFloatingLabelTextField?
+    
+    @IBOutlet weak var uiNameTextField: SkyFloatingLabelTextField?
+    @IBOutlet weak var uiEmailTextField: SkyFloatingLabelTextField?
+    @IBOutlet weak var uiPhoneTextField: SkyFloatingLabelTextField?
+    @IBOutlet weak var uiSendBtn: UIButton?
+    @IBOutlet weak var uiRecordEmailBtn: UIButton?
+    
+    private let name = "Nome Completo"
+    private let email = "Email"
+    private let phone = "Telefone"
+    private let acessibilityName = "Nome"
+    private let acessibilityEmail = "Email"
+    private let acessibilityPhone = "Telefone"
+    
+    
     var apiFetcher: Fetcher?
     override func viewDidLoad() {
         super.viewDidLoad()
-        let lightGreyColor = UIColor(red: 172/255, green: 172/255, blue: 172/255, alpha: 1.0)
-        uiTextField?.placeholder = "TESTE "
-        uiTextField?.title = "TESTE"
-        uiTextField?.selectedTitleColor = lightGreyColor
-        
+
         apiFetcher?.fetch(request: Router.Form.create(jsonParameters: "").asURLRequest()) { data in
             print(data)
             
         }
         
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        layoutTextFields()
+        uiSendBtn?.layoutRedButton()
+    }
+    
+
+    func layoutTextFields() {
+        
+        uiNameTextField?.layoutTextField(configText: self.name)
+        uiEmailTextField?.layoutTextField(configText: self.email)
+        uiPhoneTextField?.layoutTextField(configText: self.phone)
+        
+        uiNameTextField?.accessibilityLabel = self.acessibilityName
+        uiEmailTextField?.accessibilityLabel = self.acessibilityEmail
+        uiPhoneTextField?.accessibilityLabel = self.acessibilityPhone
+    }
+    
+    func layoutButtons() {
+        
+    }
+    @IBAction func recordMailBtnTap(_ sender: UIButton) {
+    sender.setSelected()
+    
+    }
+    
+    
+    @IBAction func sendBtnTap(_ sender: Any) {
+        //validate fields and move next screen
     }
 
 
