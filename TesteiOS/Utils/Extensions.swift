@@ -45,8 +45,17 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate{
                 case "Telefone"?:
 
                     if text.count >= 9  {
-                     self.text = format(phoneNumber: text)
-                    }
+                    let final = format(phoneNumber: text)
+                        if(final.isEmpty) {
+                            self.errorMessage = "Telefone inválido"
+                        } else {
+                            self.text = final
+                            self.errorMessage = ""
+                        }
+
+                    } else {
+                        self.errorMessage = ""
+                }
                 
                 default:
                     print("default")
@@ -59,7 +68,7 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate{
     
     
     
-    func format(phoneNumber sourcePhoneNumber: String) -> String? {
+    func format(phoneNumber sourcePhoneNumber: String) -> String {
         
         // Remove any character that is not a number
         let numbersOnly = sourcePhoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
@@ -68,8 +77,8 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate{
         
         // Check for supported phone number length
         guard length == 9 || length == 10 || (length == 11) else {
-            print("Erro")
-            return nil
+            
+            return ""
         }
         
         let hasAreaCode = (length >= 9)
@@ -81,7 +90,7 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate{
         if hasAreaCode {
             let areaCodeLength = 2
             guard let areaCodeSubstring = numbersOnly.substring(start: sourceIndex, offsetBy: areaCodeLength) else {
-                return nil
+                return ""
             }
             areaCode = String(format: "(%@) ", areaCodeSubstring)
             sourceIndex += areaCodeLength
@@ -94,26 +103,26 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate{
         if(length == 9) {
             prefixLength = 4
            guard let p = numbersOnly.substring(start: sourceIndex, offsetBy: prefixLength) else {
-                return nil
+                return ""
             }
             prefix = p
             sourceIndex += prefixLength
             suffixLength = 3
             guard let s = numbersOnly.substring(start: sourceIndex, offsetBy: suffixLength) else {
-                return nil
+                return ""
             }
             suffix = s
         
         } else {
             prefixLength = 5
             guard let p = numbersOnly.substring(start: sourceIndex, offsetBy: prefixLength) else {
-                return nil
+                return ""
             }
             prefix = p
             sourceIndex += prefixLength
             suffixLength = 3
             guard let s = numbersOnly.substring(start: sourceIndex, offsetBy: suffixLength) else {
-                return nil
+                return ""
             }
             suffix = s
         }
