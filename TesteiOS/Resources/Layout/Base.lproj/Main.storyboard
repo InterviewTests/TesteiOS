@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -24,7 +23,7 @@
         <!--Contato-->
         <scene sceneID="p0P-Pq-xFk">
             <objects>
-                <viewController title="Contato" id="BGN-R3-boY" customClass="ViewController" customModule="TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Contato" id="BGN-R3-boY" customClass="FormViewController" customModule="TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mz1-Nw-hCP"/>
                         <viewControllerLayoutGuide type="bottom" id="JEw-md-SxT"/>
@@ -34,36 +33,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2TI-lu-kY3" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="40" y="80" width="295" height="30"/>
+                                <rect key="frame" x="42" y="124" width="291" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9RN-LL-qIN" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="40" y="170" width="295" height="30"/>
+                                <rect key="frame" x="42" y="214" width="291" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MZR-23-nIk" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="40" y="260" width="295" height="30"/>
+                                <rect key="frame" x="42" y="304" width="291" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfs-f5-KTJ">
-                                <rect key="frame" x="40" y="320" width="295" height="22"/>
-                                <state key="normal" title="   Gostaria de cadastrar meu email" image="checkbox">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="selected" image="checkbox_checked"/>
-                                <state key="highlighted" image="checkbox_checked"/>
-                                <connections>
-                                    <action selector="recordMailBtnTap:" destination="BGN-R3-boY" eventType="touchUpInside" id="jIN-jB-m4w"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyO-aB-Baf">
-                                <rect key="frame" x="40" y="372" width="295" height="50"/>
+                                <rect key="frame" x="42" y="415" width="291" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="P3L-47-qdA"/>
                                 </constraints>
@@ -75,52 +63,59 @@
                                     <action selector="sendBtnTap:" destination="BGN-R3-boY" eventType="touchUpInside" id="t8C-2g-cC6"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contato" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umj-N1-wcS">
-                                <rect key="frame" x="16" y="40" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfs-f5-KTJ">
+                                <rect key="frame" x="42" y="364" width="263" height="21"/>
+                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                                <state key="normal" title="   Gostaria de cadastrar meu email" image="checkbox">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="checkbox_checked"/>
+                                <state key="highlighted" image="checkbox_checked"/>
+                                <connections>
+                                    <action selector="recordMailBtnTap:" destination="BGN-R3-boY" eventType="touchUpInside" id="jIN-jB-m4w"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="tyO-aB-Baf" firstAttribute="leading" secondItem="rFj-fo-6km" secondAttribute="leading" constant="40" id="2az-O6-Pod"/>
+                            <constraint firstItem="tyO-aB-Baf" firstAttribute="leading" secondItem="MZR-23-nIk" secondAttribute="leading" id="1ee-Sf-gD4"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2TI-lu-kY3" secondAttribute="trailing" constant="40" id="FXR-nY-KSM"/>
+                            <constraint firstItem="Mfs-f5-KTJ" firstAttribute="leading" secondItem="MZR-23-nIk" secondAttribute="leading" id="Fhd-1L-SZK"/>
                             <constraint firstItem="2TI-lu-kY3" firstAttribute="top" secondItem="mz1-Nw-hCP" secondAttribute="bottom" constant="60" id="Fxz-Ox-2yp"/>
                             <constraint firstItem="9RN-LL-qIN" firstAttribute="top" secondItem="2TI-lu-kY3" secondAttribute="bottom" constant="60" id="GtT-p6-UV3"/>
                             <constraint firstItem="Mfs-f5-KTJ" firstAttribute="top" secondItem="MZR-23-nIk" secondAttribute="bottom" constant="30" id="HoL-r8-06P"/>
-                            <constraint firstAttribute="trailing" secondItem="Mfs-f5-KTJ" secondAttribute="trailing" constant="40" id="Mmo-lb-bZZ"/>
-                            <constraint firstItem="Umj-N1-wcS" firstAttribute="top" secondItem="mz1-Nw-hCP" secondAttribute="bottom" constant="20" id="Owf-W5-qwQ"/>
-                            <constraint firstItem="2TI-lu-kY3" firstAttribute="leading" secondItem="rFj-fo-6km" secondAttribute="leading" constant="40" id="Qn8-q0-6hV"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Mfs-f5-KTJ" secondAttribute="trailing" constant="70" id="Mmo-lb-bZZ"/>
+                            <constraint firstItem="tyO-aB-Baf" firstAttribute="width" secondItem="MZR-23-nIk" secondAttribute="width" id="UKA-nK-aFt"/>
                             <constraint firstItem="tyO-aB-Baf" firstAttribute="top" secondItem="Mfs-f5-KTJ" secondAttribute="bottom" constant="30" id="a87-c8-G4B"/>
                             <constraint firstItem="MZR-23-nIk" firstAttribute="leading" secondItem="2TI-lu-kY3" secondAttribute="leading" id="ajt-kx-Xg0"/>
-                            <constraint firstAttribute="trailing" secondItem="tyO-aB-Baf" secondAttribute="trailing" constant="40" id="dtY-bw-XaS"/>
-                            <constraint firstItem="Mfs-f5-KTJ" firstAttribute="leading" secondItem="rFj-fo-6km" secondAttribute="leading" constant="40" id="fRt-sL-Aue"/>
-                            <constraint firstAttribute="trailing" secondItem="2TI-lu-kY3" secondAttribute="trailing" constant="40" id="k1e-OU-3n5"/>
+                            <constraint firstItem="2TI-lu-kY3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rFj-fo-6km" secondAttribute="leading" constant="40" id="d1v-p8-erX"/>
                             <constraint firstItem="9RN-LL-qIN" firstAttribute="leading" secondItem="2TI-lu-kY3" secondAttribute="leading" id="rgX-Ew-gG6"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Umj-N1-wcS" secondAttribute="trailing" id="tvG-JI-CtE"/>
                             <constraint firstItem="9RN-LL-qIN" firstAttribute="width" secondItem="2TI-lu-kY3" secondAttribute="width" id="uV4-Cv-J9c"/>
-                            <constraint firstItem="Umj-N1-wcS" firstAttribute="leading" secondItem="rFj-fo-6km" secondAttribute="leadingMargin" id="v4b-TK-naV"/>
+                            <constraint firstItem="2TI-lu-kY3" firstAttribute="centerX" secondItem="rFj-fo-6km" secondAttribute="centerX" id="vFo-zo-hbc"/>
                             <constraint firstItem="MZR-23-nIk" firstAttribute="top" secondItem="9RN-LL-qIN" secondAttribute="bottom" constant="60" id="vVo-jo-BS3"/>
                             <constraint firstItem="MZR-23-nIk" firstAttribute="width" secondItem="2TI-lu-kY3" secondAttribute="width" id="yFL-YW-01h"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Contato" id="dha-c0-3WS"/>
+                    <navigationItem key="navigationItem" title="Contato" id="4Pn-e3-fmN">
+                        <barButtonItem key="backBarButtonItem" title="     " id="grb-b6-ohW"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="uiEmailTextField" destination="9RN-LL-qIN" id="nIf-88-OX5"/>
-                        <outlet property="uiNameTextField" destination="2TI-lu-kY3" id="ykr-hD-ZXg"/>
-                        <outlet property="uiPhoneTextField" destination="MZR-23-nIk" id="pGp-dA-htR"/>
-                        <outlet property="uiRecordEmailBtn" destination="Mfs-f5-KTJ" id="2Ta-aP-Yaw"/>
-                        <outlet property="uiSendBtn" destination="tyO-aB-Baf" id="lRO-BU-IQI"/>
+                        <outlet property="uiEmailTextField" destination="9RN-LL-qIN" id="4LQ-ci-1Se"/>
+                        <outlet property="uiNameTextField" destination="2TI-lu-kY3" id="7GQ-Ve-BGP"/>
+                        <outlet property="uiPhoneTextField" destination="MZR-23-nIk" id="Rxp-Xs-ad4"/>
+                        <outlet property="uiRecordEmailBtn" destination="Mfs-f5-KTJ" id="kOX-gM-OQ6"/>
+                        <outlet property="uiSendBtn" destination="tyO-aB-Baf" id="hMZ-DJ-eJ3"/>
+                        <segue destination="Xpk-ny-Fov" kind="show" identifier="sucess" id="LPw-up-hYc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pck-aI-v05" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1413.5999999999999" y="502.39880059970017"/>
+            <point key="canvasLocation" x="2365.5999999999999" y="592.35382308845578"/>
         </scene>
         <!--Contato-->
         <scene sceneID="ciX-Vu-vvr">
             <objects>
-                <viewController title="Contato" id="Xpk-ny-Fov" sceneMemberID="viewController">
+                <viewController title="Contato" id="Xpk-ny-Fov" customClass="SucessViewController" customModule="TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yr5-4e-wfM"/>
                         <viewControllerLayoutGuide type="bottom" id="GL9-ah-2x1"/>
@@ -147,6 +142,9 @@
                                 <state key="normal" title="Enviar nova mensagem">
                                     <color key="titleColor" red="0.85490196078431369" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="writeNewMessageBtnTap:" destination="Xpk-ny-Fov" eventType="touchUpInside" id="YxJ-G3-or4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -164,7 +162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zh7-Pj-qWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2359.1999999999998" y="512.29385307346331"/>
+            <point key="canvasLocation" x="3226" y="593"/>
         </scene>
         <!--Investimento-->
         <scene sceneID="Hac-ax-oXv">
@@ -261,13 +259,32 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BGN-R3-boY" kind="relationship" relationship="viewControllers" id="fZ5-bf-ycj"/>
+                        <segue destination="tb5-xF-2ZM" kind="relationship" relationship="viewControllers" id="fZ5-bf-ycj"/>
                         <segue destination="Rgu-Ze-MNv" kind="relationship" relationship="viewControllers" id="V2J-Am-ORq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BtE-m2-8aj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="58" y="165"/>
+        </scene>
+        <!--Contato-->
+        <scene sceneID="acz-9I-aQ1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tb5-xF-2ZM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Contato" id="dha-c0-3WS"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1Db-ww-d0F">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BGN-R3-boY" kind="relationship" relationship="rootViewController" id="bAB-lQ-rdz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="woR-EB-aW9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1392" y="593.70314842578716"/>
         </scene>
     </scenes>
     <resources>

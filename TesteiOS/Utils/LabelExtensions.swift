@@ -1,67 +1,64 @@
 //
-//  Extensions.swift
+//  LabelExtensions.swift
 //  TesteiOS
 //
-//  Created by Eduardo Lombardi on 28/05/2018.
+//  Created by Eduardo Lombardi on 30/05/2018.
 //  Copyright © 2018 Eduardo Lombardi. All rights reserved.
 //
 
 import Foundation
 import UIKit
 import SkyFloatingLabelTextField
-extension UIButton {
-    func layoutRedButton() {
-        self.backgroundColor = .red
-        self.layer.cornerRadius = 25
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.red.cgColor
-    }
-    
-    func setSelected() {
-        self.isSelected = !self.isSelected
-    }
-    
-}
 
 extension SkyFloatingLabelTextField: UITextFieldDelegate{
+    
+    
+    func layoutTextField(configText:String) {
+        self.delegate = self
+        let lightGreyColor = UIColor(red: 172/255, green: 172/255, blue: 172/255, alpha: 1.0)
+        self.errorColor = UIColor.red
+        self.selectedTitleColor = lightGreyColor
+        self.placeholder = configText
+        self.title = self.placeholder
+    }
     
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = self.text {
             switch self.accessibilityLabel {
-                case "Nome"?:
-                    if(text.count == 0) {
-                        self.errorMessage = "Campo vazio"
-                    } else {
-                        self.errorMessage = ""
-                    }
-                
-                case "Email"?:
-                    if(text.count < 3 || !text.contains("@")) {
-                        self.errorMessage = "email inválido"
-                    } else {
-                        self.errorMessage = ""
-                    }
-                case "Telefone"?:
-
-                    if text.count >= 9  {
-                    let final = format(phoneNumber: text)
-                        if(final.isEmpty) {
-                            self.errorMessage = "Telefone inválido"
-                        } else {
-                            self.text = final
-                            self.errorMessage = ""
-                        }
-
-                    } else {
-                        self.errorMessage = ""
+            case "Nome"?:
+                if(text.count == 0) {
+                    self.errorMessage = "Campo vazio"
+                } else {
+                    self.errorMessage = ""
                 }
                 
-                default:
-                    print("default")
-    
+            case "Email"?:
+                if(text.count < 3 || !text.contains("@")) {
+                    self.errorMessage = "email inválido"
+                } else {
+                    self.errorMessage = ""
+                }
+            case "Telefone"?:
+                
+                if text.count >= 9  {
+                    let final = format(phoneNumber: text)
+                    if(final.isEmpty) {
+                        self.errorMessage = "Telefone inválido"
+                    } else {
+                        self.text = final
+                        self.errorMessage = ""
+                    }
+                    
+                } else {
+                    self.errorMessage = ""
+                }
+                
+            default:
+                print("default")
+                
             }
-            }
+        }
         return true
     }
     
@@ -77,14 +74,12 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate{
         
         // Check for supported phone number length
         guard length == 9 || length == 10 || (length == 11) else {
-            
             return ""
         }
         
-        let hasAreaCode = (length >= 9)
+        let hasAreaCode = (length > 8)
         var sourceIndex = 0
-        
-        
+    
         // Area code
         var areaCode = ""
         if hasAreaCode {
@@ -102,7 +97,7 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate{
         let suffix:String
         if(length == 9) {
             prefixLength = 4
-           guard let p = numbersOnly.substring(start: sourceIndex, offsetBy: prefixLength) else {
+            guard let p = numbersOnly.substring(start: sourceIndex, offsetBy: prefixLength) else {
                 return ""
             }
             prefix = p
@@ -112,7 +107,7 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate{
                 return ""
             }
             suffix = s
-        
+            
         } else {
             prefixLength = 5
             guard let p = numbersOnly.substring(start: sourceIndex, offsetBy: prefixLength) else {
@@ -126,31 +121,20 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate{
             }
             suffix = s
         }
-     
-            return  areaCode + prefix + "-" + suffix
+        
+        return  areaCode + prefix + "-" + suffix
     }
     
-    func layoutTextField(configText:String) {
-        self.delegate = self
-        let lightGreyColor = UIColor(red: 172/255, green: 172/255, blue: 172/255, alpha: 1.0)
-        self.errorColor = UIColor.red
-        self.selectedTitleColor = lightGreyColor
-        self.placeholder = configText
-        self.title = self.placeholder
-    }
-}
-
-extension String {
-
-    internal func substring(start: Int, offsetBy: Int) -> String? {
-        guard let substringStartIndex = self.index(startIndex, offsetBy: start, limitedBy: endIndex) else {
-            return nil
+    func verifyEmptiness() -> Bool{
+        guard let text = self.text else {
+            return true
         }
         
-        guard let substringEndIndex = self.index(startIndex, offsetBy: start + offsetBy, limitedBy: endIndex) else {
-            return nil
+        if text.isEmpty {
+            return true
+        } else {
+            return false
         }
         
-        return String(self[substringStartIndex ..< substringEndIndex])
     }
 }

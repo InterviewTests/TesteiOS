@@ -9,7 +9,7 @@
 import UIKit
 import SkyFloatingLabelTextField
 
-class ViewController: UIViewController {
+class FormViewController: UIViewController {
     
     @IBOutlet weak var uiNameTextField: SkyFloatingLabelTextField?
     @IBOutlet weak var uiEmailTextField: SkyFloatingLabelTextField?
@@ -39,10 +39,17 @@ class ViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         layoutTextFields()
-        uiSendBtn?.layoutRedButton()
+        layoutButtons()
+        layoutNavigationBar()
+        
     }
     
 
+    func layoutNavigationBar() {
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+    }
+    
     func layoutTextFields() {
         
         uiNameTextField?.layoutTextField(configText: self.name)
@@ -55,8 +62,10 @@ class ViewController: UIViewController {
     }
     
     func layoutButtons() {
-        
+        uiRecordEmailBtn?.layoutButtonText()
+        uiSendBtn?.layoutRedButton()
     }
+    
     @IBAction func recordMailBtnTap(_ sender: UIButton) {
     sender.setSelected()
     
@@ -64,9 +73,29 @@ class ViewController: UIViewController {
     
     
     @IBAction func sendBtnTap(_ sender: Any) {
-        //validate fields and move next screen
+        
+        print(verifyFormFilling())
+        if (verifyFormFilling()) {
+            self.performSegue(withIdentifier: "sucess", sender: self)
+        }
     }
 
+    func verifyFormFilling() -> Bool {
+        
+        guard let name = uiNameTextField,
+              let email = uiEmailTextField,
+              let phone = uiPhoneTextField else {
+            return false
+        }
+        
+        if  name.hasErrorMessage || email.hasErrorMessage || phone.hasErrorMessage {
+            return false
+        }
 
+        if name.verifyEmptiness() || email.verifyEmptiness() || phone.verifyEmptiness() {
+            return false
+        }
+        return true
+    }
 }
 
