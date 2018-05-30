@@ -24,13 +24,13 @@ class FormViewController: UIViewController {
     private let acessibilityEmail = "Email"
     private let acessibilityPhone = "Telefone"
     
-    
     var apiFetcher: Fetcher?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+        
         apiFetcher?.fetch(request: Router.Form.create(jsonParameters: "").asURLRequest()) { data in
             print(data)
             
@@ -46,13 +46,22 @@ class FormViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+        
         layoutTextFields()
         layoutButtons()
         layoutNavigationBar()
+        layoutTabBar()
         
     }
     
 
+    func layoutTabBar() {
+        self.tabBarController?.tabBar.isHidden = true
+
+    }
+    
     func layoutNavigationBar() {
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.white
@@ -83,8 +92,13 @@ class FormViewController: UIViewController {
         
         print(verifyFormFilling())
         if (verifyFormFilling()) {
+            dismissKeyboard()
             self.performSegue(withIdentifier: "sucess", sender: self)
         }
+    }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 
     func verifyFormFilling() -> Bool {

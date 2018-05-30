@@ -27,21 +27,22 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate{
         if let text = self.text {
             switch self.accessibilityLabel {
             case "Nome"?:
-                if(text.count == 0) {
+                if(text.count + string.count == 0) {
                     self.errorMessage = "Campo vazio"
                 } else {
                     self.errorMessage = ""
                 }
                 
             case "Email"?:
-                if(text.count < 3 || !text.contains("@")) {
-                    self.errorMessage = "email inválido"
+                if(text.count + string.count > 3) {
+                    if(text.contains("@") || string.contains("@"))  {
+                        self.errorMessage = ""
+                    }
                 } else {
-                    self.errorMessage = ""
+                    self.errorMessage = "Email inválido"
                 }
             case "Telefone"?:
-                
-                if text.count >= 9  {
+                if text.count >= 9 {
                     let final = format(phoneNumber: text)
                     if(final.isEmpty) {
                         self.errorMessage = "Telefone inválido"
