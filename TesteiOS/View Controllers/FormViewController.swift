@@ -26,6 +26,8 @@ class FormViewController: UIViewController {
     
     
     var apiFetcher: Fetcher?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,6 +36,12 @@ class FormViewController: UIViewController {
             
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        uiNameTextField?.text = ""
+        uiEmailTextField?.text = ""
+        uiPhoneTextField?.text = ""
     }
 
     override func viewWillLayoutSubviews() {
@@ -67,8 +75,7 @@ class FormViewController: UIViewController {
     }
     
     @IBAction func recordMailBtnTap(_ sender: UIButton) {
-    sender.setSelected()
-    
+        sender.setSelected()
     }
     
     
