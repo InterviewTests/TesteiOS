@@ -8,6 +8,8 @@ target 'TesteiOS' do
   pod 'Alamofire'
   pod 'SkyFloatingLabelTextField'
   pod 'RxSwift'
+  pod 'Swinject'
+  pod 'SwinjectStoryboard'
 
   # Pods for TesteiOS
 
