@@ -14,8 +14,6 @@ class FormViewController: UIViewController {
     @IBOutlet weak var uiNameTextField: SkyFloatingLabelTextField?
     @IBOutlet weak var uiEmailTextField: SkyFloatingLabelTextField?
     @IBOutlet weak var uiPhoneTextField: SkyFloatingLabelTextField?
-    @IBOutlet weak var uiSendBtn: UIButton?
-    @IBOutlet weak var uiRecordEmailBtn: UIButton?
     
     private let name = "Nome Completo"
     private let email = "Email"
@@ -29,8 +27,6 @@ class FormViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
-        
         apiFetcher?.fetch(request: Router.Form.create(jsonParameters: "").asURLRequest()) { data in
             print(data)
             
@@ -50,22 +46,8 @@ class FormViewController: UIViewController {
         self.view.addGestureRecognizer(tapGesture)
         
         layoutTextFields()
-        layoutButtons()
-        layoutNavigationBar()
-        layoutTabBar()
-        
     }
     
-
-    func layoutTabBar() {
-        self.tabBarController?.tabBar.isHidden = true
-
-    }
-    
-    func layoutNavigationBar() {
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
-    }
     
     func layoutTextFields() {
         
@@ -78,12 +60,8 @@ class FormViewController: UIViewController {
         uiPhoneTextField?.accessibilityLabel = self.acessibilityPhone
     }
     
-    func layoutButtons() {
-        uiRecordEmailBtn?.layoutButtonText()
-        uiSendBtn?.layoutRedButton()
-    }
     
-    @IBAction func recordMailBtnTap(_ sender: UIButton) {
+    @IBAction func recordMailBtnTap(_ sender: Checkbox) {
         sender.setSelected()
     }
     
@@ -109,13 +87,10 @@ class FormViewController: UIViewController {
             return false
         }
         
-        if  name.hasErrorMessage || email.hasErrorMessage || phone.hasErrorMessage {
+        if  name.hasErrorMessage || name.verifyEmptiness() || email.hasErrorMessage || email.verifyEmptiness() ||  phone.hasErrorMessage || phone.verifyEmptiness() {
             return false
         }
 
-        if name.verifyEmptiness() || email.verifyEmptiness() || phone.verifyEmptiness() {
-            return false
-        }
         return true
     }
 }
