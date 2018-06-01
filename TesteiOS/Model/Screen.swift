@@ -10,16 +10,16 @@ import Foundation
 
 class Screen:Codable {
 
-    var title:String
-    var fundName:String
-    var whatIs:String
-    var definition:String
-    var riskTitle:String
-    var risk:Int
-    var infoTitle:String
-    var moreInfo:MoreInfo
-    var info:Array<DataInfo>
-    var downInfo:Array<DataInfo>
+    let title:String
+    let fundName:String
+    let whatIs:String
+    let definition:String
+    let riskTitle:String
+    let risk:Int
+    let infoTitle:String
+    let moreInfo:MoreInfo
+    let info:Array<DataInfo>
+    let downInfo:Array<DataInfo>
 //
     init(title:String,fundName:String,whatIs:String,definition:String,riskTitle:String,risk:Int,infoTitle:String,moreInfo:MoreInfo,info:Array<DataInfo>,downInfo:Array<DataInfo>) {
         self.title = title

@@ -10,8 +10,8 @@ import Foundation
 
 struct DataInfo: Codable {
     
-    var name:String
-    var data:String?
+    let name:String
+    let data:String?
     
     init(name:String,data:String?) {
         self.name = name

@@ -13,12 +13,15 @@ class RedButton:UIButton {
     
     required init?(coder aDecoder: NSCoder) {
      super.init(coder: aDecoder)
+
+    }
+
+    init() {
+        super.init(frame: .zero)
         backgroundColor = .red
         layer.cornerRadius = 25
         layer.borderWidth = 1
         layer.borderColor = UIColor.red.cgColor
     }
-
-    
     
 }

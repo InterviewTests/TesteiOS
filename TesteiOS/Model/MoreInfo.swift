@@ -11,9 +11,9 @@ import Foundation
 
 class MoreInfo:Codable {
     
-    var month:FundInfo
-    var year:FundInfo
-    var allMonths:FundInfo
+    let month:FundInfo
+    let year:FundInfo
+    let allMonths:FundInfo
     
     init(month:FundInfo,year:FundInfo,allMonths:FundInfo) {
         self.month = month

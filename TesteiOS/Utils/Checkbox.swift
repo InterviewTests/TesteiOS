@@ -13,12 +13,19 @@ class Checkbox:UIButton {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-            titleLabel?.minimumScaleFactor = 0.5
-            titleLabel?.numberOfLines = 1
-            titleLabel?.lineBreakMode = NSLineBreakMode.byClipping
-            titleLabel?.adjustsFontSizeToFitWidth = true
+        
         }
     
+    init() {
+        super.init(frame: .zero)
+        titleLabel?.minimumScaleFactor = 0.5
+        titleLabel?.numberOfLines = 1
+        titleLabel?.lineBreakMode = NSLineBreakMode.byClipping
+        titleLabel?.adjustsFontSizeToFitWidth = true
+        setImage(UIImage(named:"checkbox_checked"), for: UIControlState.selected)
+        setImage(UIImage(named:"checkbox"), for: UIControlState.normal)
+        
+    }
     func setSelected() {
         isSelected = !isSelected
     }

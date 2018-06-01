@@ -9,7 +9,7 @@
 import Foundation
 
 class AdditionalInfo:Codable {
-    var info:FundInfo
+    let info:FundInfo
     
     init(info:FundInfo) {
         self.info = info
