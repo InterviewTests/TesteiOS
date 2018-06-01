@@ -11,16 +11,19 @@ import Foundation
 
 class MoreInfo:Codable {
     
-    var month:AdditionalInfo
-    var year:AdditionalInfo
-    var allMonths:AdditionalInfo
+    var month:FundInfo
+    var year:FundInfo
+    var allMonths:FundInfo
     
-    init(month:AdditionalInfo,year:AdditionalInfo,allMonths:AdditionalInfo) {
+    init(month:FundInfo,year:FundInfo,allMonths:FundInfo) {
         self.month = month
         self.year = year
         self.allMonths = allMonths
         
     }
     
+    private enum CodingKeys : String, CodingKey {
+            case month,year, allMonths = "12months"
+        }
     
 }

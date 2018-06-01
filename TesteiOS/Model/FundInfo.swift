@@ -10,10 +10,10 @@ import Foundation
 
 class FundInfo:Codable {
     var fund:Double
-    var cdi:Double
+    var CDI:Double
     
-    init(fund:Double, cdi:Double) {
+    init(fund:Double, CDI:Double) {
         self.fund = fund
-        self.cdi = cdi
+        self.CDI = CDI
     }
 }

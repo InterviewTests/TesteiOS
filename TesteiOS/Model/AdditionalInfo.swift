@@ -9,11 +9,9 @@
 import Foundation
 
 class AdditionalInfo:Codable {
-    var name:String
     var info:FundInfo
     
-    init(name:String,info:FundInfo) {
-        self.name = name
+    init(info:FundInfo) {
         self.info = info
     }
 }

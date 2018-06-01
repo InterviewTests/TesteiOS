@@ -30,12 +30,9 @@ class FundosTableViewController: UITableViewController {
                 return
             }
             
-            guard let screen = try? JSONDecoder().decode(Screen.self, from: data) else {
-                print("Error: Couldn't decode data into Screen")
-                return
-                }
-            
-            print(screen)
+            let decoder = InvestDecoder(data:data)
+            decoder.decode()
+
             //
             
         }
