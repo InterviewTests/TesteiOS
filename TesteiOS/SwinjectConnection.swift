@@ -7,3 +7,27 @@
 //
 
 import Foundation
+import SwinjectStoryboard
+//
+extension SwinjectStoryboard {
+    class func setup() {
+        defaultContainer.storyboardInitCompleted(FormViewController.self) { r, c in
+            c.apiFetcher = r.resolve(Fetcher.self)
+            
+        }
+        
+        defaultContainer.storyboardInitCompleted(FundosTableViewController.self) { r, c in
+            c.apiFetcher = r.resolve(Fetcher.self)
+            
+        }
+        
+        
+        defaultContainer.register(Networking.self) { _ in APIClient() }
+        
+        defaultContainer.register(Fetcher.self) { r in
+            Fetcher(networking: r.resolve(Networking.self)!)
+        }
+        
+        
+    }
+}

@@ -13,10 +13,32 @@ class FundosTableViewController: UITableViewController {
 
     var data:[Any] = []
      let disposeBag = DisposeBag()
+    var apiFetcher: Fetcher?
+
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        apiFetcher?.fetch(request: Router.FinanceActive.get(params: "").asURLRequest()) { data in
+            print(data)
+            
+            guard let data = data as? Data else {
+                print("Error: No data to decode")
+                return
+            }
+            
+            guard let screen = try? JSONDecoder().decode(Screen.self, from: data) else {
+                print("Error: Couldn't decode data into Screen")
+                return
+                }
+            
+            print(screen)
+            //
+            
+        }
         
 //        Observable.of(self.years).bind(to: table.rx.items(cellIdentifier:"yearCell",cellType:PaymentYieldTableViewCell.self)) {
 //            (row,element,cell) in

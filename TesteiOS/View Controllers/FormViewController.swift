@@ -27,8 +27,19 @@ class FormViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        apiFetcher?.fetch(request: Router.Form.create(jsonParameters: "").asURLRequest()) { data in
+        apiFetcher?.fetch(request: Router.Form.get(params: "").asURLRequest()) { data in
             print(data)
+            
+            guard let data = data as? Data else {
+                print("Error: No data to decode")
+                return
+            }
+            
+            let decoder = FormDecoder(data:data)
+            decoder.decode()
+                        
+
+//
             
         }
         

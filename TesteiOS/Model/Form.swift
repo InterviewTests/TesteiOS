@@ -8,17 +8,17 @@
 
 import Foundation
 
-class Form {
+class Form:Decodable {
     var id:Int
     var type:Int
     var message:String
-    var typefield:Int?
+    var typefield: UncertainValue <Int,String>?
     var hidden:Bool
     var topSpacing:Double
     var show:Int?
     var required:Bool
     
-    init(id:Int, type:Int, message:String, typefield:Int?, hidden:Bool, topSpacing:Double, show:Int?, required:Bool) {
+    init(id:Int, type:Int, message:String, typefield:UncertainValue<Int,String>?, hidden:Bool, topSpacing:Double, show:Int?, required:Bool) {
         self.id = id
         self.type = type
         self.message = message

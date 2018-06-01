@@ -25,8 +25,11 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate{
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = self.text {
+            
             switch self.accessibilityLabel {
             case "Nome"?:
+                print(text)
+                print(string)
                 if(text.count + string.count == 0) {
                     self.errorMessage = "Campo vazio"
                 } else {
@@ -34,6 +37,9 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate{
                 }
                 
             case "Email"?:
+                
+                print(text)
+                print(string)
                 if(text.count + string.count > 3) {
                     if(text.contains("@") || string.contains("@"))  {
                         self.errorMessage = ""

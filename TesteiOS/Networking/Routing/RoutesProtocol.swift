@@ -55,7 +55,6 @@ struct RequestConverter: RequestConverterProtocol {
         var urlRequest = URLRequest(url: (url?.appendingPathComponent(route))!)
         urlRequest.httpMethod = method.rawValue
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue(header, forHTTPHeaderField: "Authorization")
         if(!jsonParameters.isEmpty && jsonParameters != "") {
             urlRequest.httpBody = jsonParameters.data(using: .utf8)
             return urlRequest
@@ -79,7 +78,7 @@ extension Routable {
 extension Readable {
     static func get(params:String, header:String? = nil) -> RequestConverter {
         let temp = Self.init()
-        let route = "\(temp.route)/\(params)"
+        let route = "\(temp.route)\(params)"
         return RequestConverter(method: .get, route: route, header: header)
     }
 }

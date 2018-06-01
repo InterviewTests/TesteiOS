@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FundInfo {
+class FundInfo:Codable {
     var fund:Double
     var cdi:Double
     

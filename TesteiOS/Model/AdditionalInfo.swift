@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AdditionalInfo {
+class AdditionalInfo:Codable {
     var name:String
     var info:FundInfo
     

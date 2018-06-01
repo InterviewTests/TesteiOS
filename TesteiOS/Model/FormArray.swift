@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+class FormArray:Decodable {
+   var cells:Array<Form>
+    
+    init(cells:Array<Form>) {
+        self.cells = cells
+    }
+
+}

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Screen {
+class Screen:Codable {
 
     var title:String
     var fundName:String
@@ -17,18 +17,18 @@ class Screen {
     var riskTitle:String
     var risk:Int
     var infoTitle:String
-    var moreInfo:AdditionalInfo
-    var info:Array<Any>
-    var downInfo:Array<Any>
-    
-    init(title:String,fundName:String,whatIs:String,definition:String,riskTitle:String,risk:Int,infoTitle:String,moreInfo:AdditionalInfo,info:Array<Any>,downInfo:Array<Any>) {
+    var moreInfo:MoreInfo
+    var info:Array<DataInfo>
+    var downInfo:Array<DataInfo>
+//
+    init(title:String,fundName:String,whatIs:String,definition:String,riskTitle:String,risk:Int,infoTitle:String,moreInfo:MoreInfo,info:Array<DataInfo>,downInfo:Array<DataInfo>) {
         self.title = title
         self.fundName = fundName
         self.whatIs = whatIs
         self.definition = definition
         self.riskTitle = riskTitle
         self.risk = risk
-        self.infoTitle=infoTitle
+        self.infoTitle = infoTitle
         self.moreInfo = moreInfo
         self.info = info
         self.downInfo = downInfo
