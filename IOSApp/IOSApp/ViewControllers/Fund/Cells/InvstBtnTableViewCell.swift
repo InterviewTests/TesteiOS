@@ -13,6 +13,7 @@ class InvstBtnTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
     }
 
@@ -21,5 +22,10 @@ class InvstBtnTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    @IBAction func animateButton(_ sender: UIButton) {
+        
+        sender.animateButton()
+    }
+    
 }

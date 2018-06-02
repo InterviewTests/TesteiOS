@@ -47,9 +47,9 @@ class FundViewController: UIViewController, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (screen == nil){
-            return 9
+            return 8
         } else {
-            return 7 + (screen?.screen.info.count)! + (screen?.screen.downInfo.count)!
+            return 8 + (screen?.screen.info.count)! + (screen?.screen.downInfo.count)! + 1
         }
         
         }
@@ -169,23 +169,24 @@ class FundViewController: UIViewController, UITableViewDataSource {
             
         }
         
-        else if (indexPath.row >= 7 && screen != nil && indexPath.row < 7 + (screen?.screen.info.count)!) {
+        else if (indexPath.row >= 8 && screen != nil && indexPath.row < 8 + (screen?.screen.info.count)!) {
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell") as? InfoTableViewCell else {return
                 UITableViewCell()}
             
             
-            cell.nameLbl.text = screen?.screen.info[indexPath.row-7].name
-            cell.dataLbl.text = screen?.screen.info[indexPath.row-7].data
+            cell.nameLbl.text = screen?.screen.info[indexPath.row-8].name
+            cell.dataLbl.text = screen?.screen.info[indexPath.row-8].data
             
             return cell
         }
-        else if (indexPath.row >= 7 && screen != nil && indexPath.row < 7 + (screen?.screen.info.count)!) {
+        else if (screen != nil && indexPath.row >= 8 + (screen?.screen.info.count)! && indexPath.row < 8 + (screen?.screen.info.count)! + (screen?.screen.downInfo.count)!) {
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "DownInfoTableViewCell") as? DownInfoTableViewCell else {return
                 UITableViewCell()}
             
-            cell.DINameLbl.text = screen?.screen.downInfo[indexPath.row - 7 - (screen?.screen.info.count)!].name
+            cell.DINameLbl.text = screen?.screen.downInfo[indexPath.row - (8
+                + (screen?.screen.info.count)!)].name
             
             return cell
         }
