@@ -19,6 +19,9 @@ class FormViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.formTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.formTableView.rowHeight = UITableViewAutomaticDimension
+        self.formTableView.estimatedRowHeight = 20.0
+        
         downloadJson { (cells) in
             self.cells = cells
             DispatchQueue.main.async {
@@ -62,30 +65,30 @@ class FormViewController: UIViewController, UITableViewDataSource {
                 UITableViewCell()}
             
             cell.formTextLbl.text = cells?.cells[indexPath.row].message
-            
-           return cell
+            cell.selectionStyle = .none
+            return cell
         }
         else if (cells?.cells[indexPath.row].type == Cell.CellTypes.checkbox.rawValue){
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "CheckboxTableViewCell") as? CheckboxTableViewCell else {return
                 UITableViewCell()}
             
             cell.checboxLbl.text = cells?.cells[indexPath.row].message
-        
+            cell.selectionStyle = .none
             return cell
         }
         else if (cells?.cells[indexPath.row].type == Cell.CellTypes.image.rawValue){
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ImageTableViewCell") as? ImageTableViewCell else {return
                 UITableViewCell()}
             
-            
+            cell.selectionStyle = .none
             return cell
         }
         else if (cells?.cells[indexPath.row].type == Cell.CellTypes.field.rawValue){
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FieldTableViewCell") as? FieldTableViewCell else {return
                 UITableViewCell()}
             
-            //TO-DO
             
+            cell.selectionStyle = .none
             return cell
         }
         else if (cells?.cells[indexPath.row].type == Cell.CellTypes.send.rawValue){
@@ -94,7 +97,7 @@ class FormViewController: UIViewController, UITableViewDataSource {
             
             cell.sendBtn.setTitle(cells?.cells[indexPath.row].message, for: .normal)
             
-            
+            cell.selectionStyle = .none
             return cell
         }
         
