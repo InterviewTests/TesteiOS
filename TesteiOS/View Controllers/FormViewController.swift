@@ -20,15 +20,7 @@ enum Type :Int {
 
 class FormViewController: UIViewController {
     
-    @IBOutlet weak var uiNameTextField: SkyFloatingLabelTextField?
-    @IBOutlet weak var uiEmailTextField: SkyFloatingLabelTextField?
-    @IBOutlet weak var uiPhoneTextField: SkyFloatingLabelTextField?
-    
-    private let acessibilityName = "Nome"
-    private let acessibilityEmail = "Email"
-    private let acessibilityPhone = "Telefone"
-    
-    var apiFetcher: Fetcher?
+   var apiFetcher: Fetcher?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +34,8 @@ class FormViewController: UIViewController {
             }
             
             let decoder = FormDecoder(data:data)
+            
+            
             decoder.decode()
             
             self.layoutTextFields(list:decoder.initializedFormObjects)
@@ -50,11 +44,11 @@ class FormViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        uiNameTextField?.text = ""
-        uiEmailTextField?.text = ""
-        uiPhoneTextField?.text = ""
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        uiNameTextField?.text = ""
+//        uiEmailTextField?.text = ""
+//        uiPhoneTextField?.text = ""
+//    }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -70,6 +64,7 @@ class FormViewController: UIViewController {
         var views: [String: Any] = [:]
         for a in list {
             views["addView\(b)"] = a.object
+            
             b += 1
         }
         
@@ -77,6 +72,7 @@ class FormViewController: UIViewController {
             return
         }
         obj.isUserInteractionEnabled = false
+        
         var i = 1
         var horizontal = "H:|-40-[addView0]-40|"
         var vertical = "V:|-\(list[0].spacing)-[addView0]"
@@ -89,16 +85,17 @@ class FormViewController: UIViewController {
             i += 1
         }
         
-        vertical.append("-\(list[list.count-1].spacing)-[addView\(list.count-1)(50)]-60-|")
+        vertical.append("-\(list[list.count-1].spacing)-[addView\(list.count-1)(50)]-|")
         var z = 0
         for k in list {
             
             guard let obj = k.object as? UIView else {
                 return
             }
+            
             obj.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview(obj)
-            let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[addView\(z)]-40-|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: views)
+            let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[addView\(z)]-40-|", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: views)
             allConstraints += horizontalConstraints
             z += 1
         }
@@ -112,7 +109,7 @@ class FormViewController: UIViewController {
         
         print(vertical)
 
-
+        
         
 //        NSLayoutConstraint.activate(allConstraints)
 //
@@ -137,9 +134,7 @@ class FormViewController: UIViewController {
 //        uiEmailTextField?.layoutTextField(configText: self.email)
 //        uiPhoneTextField?.layoutTextField(configText: self.phone)
 //
-        uiNameTextField?.accessibilityLabel = self.acessibilityName
-        uiEmailTextField?.accessibilityLabel = self.acessibilityEmail
-        uiPhoneTextField?.accessibilityLabel = self.acessibilityPhone
+
     }
     
     
@@ -148,32 +143,34 @@ class FormViewController: UIViewController {
     }
     
     
-    @IBAction func sendBtnTap(_ sender: Any) {
-        
-        print(verifyFormFilling())
-        if (verifyFormFilling()) {
-            dismissKeyboard()
-            self.performSegue(withIdentifier: "sucess", sender: self)
-        }
-    }
     
+
+//    @IBAction func sendBtnTap(_ sender: Any) {
+//
+//        print(verifyFormFilling())
+//        if (verifyFormFilling()) {
+//            dismissKeyboard()
+//            self.performSegue(withIdentifier: "sucess", sender: self)
+//        }
+//    }
+//
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
 
-    func verifyFormFilling() -> Bool {
-        
-        guard let name = uiNameTextField,
-              let email = uiEmailTextField,
-              let phone = uiPhoneTextField else {
-            return false
-        }
-        
-        if  name.hasErrorMessage || name.verifyEmptiness() || email.hasErrorMessage || email.verifyEmptiness() ||  phone.hasErrorMessage || phone.verifyEmptiness() {
-            return false
-        }
-
-        return true
-    }
+//    func verifyFormFilling() -> Bool {
+//
+//        guard let name = uiNameTextField,
+//              let email = uiEmailTextField,
+//              let phone = uiPhoneTextField else {
+//            return false
+//        }
+//
+//        if  name.hasErrorMessage || name.verifyEmptiness() || email.hasErrorMessage || email.verifyEmptiness() ||  phone.hasErrorMessage || phone.verifyEmptiness() {
+//            return false
+//        }
+//
+//        return true
+//    }
 }
 

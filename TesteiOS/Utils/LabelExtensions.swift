@@ -10,15 +10,18 @@ import Foundation
 import UIKit
 import SkyFloatingLabelTextField
 
-extension SkyFloatingLabelTextField: UITextFieldDelegate{
+extension SkyFloatingLabelTextField: UITextFieldDelegate {
     
     
     func layoutTextField(configText:String) {
-        self.delegate = self
         let lightGreyColor = UIColor(red: 172/255, green: 172/255, blue: 172/255, alpha: 1.0)
         self.errorColor = UIColor.red
         self.selectedTitleColor = lightGreyColor
+        self.delegate = self
         self.placeholder = configText
+        self.accessibilityLabel = self.placeholder
+        let customFont  = UIFont.init(name:"Helvetica-regular", size: 18)
+        self.font = customFont
         self.title = self.placeholder
     }
     
@@ -27,7 +30,7 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate{
         if let text = self.text {
             
             switch self.accessibilityLabel {
-            case "Nome"?:
+            case "Nome Completo"?:
                 print(text)
                 print(string)
                 if(text.count + string.count == 0) {

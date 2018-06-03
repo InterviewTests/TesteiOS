@@ -22,10 +22,12 @@ class Checkbox:UIButton {
         titleLabel?.numberOfLines = 1
         titleLabel?.lineBreakMode = NSLineBreakMode.byClipping
         titleLabel?.adjustsFontSizeToFitWidth = true
+        self.setTitleColor(.black, for: .normal)
         setImage(UIImage(named:"checkbox_checked"), for: UIControlState.selected)
         setImage(UIImage(named:"checkbox"), for: UIControlState.normal)
         
     }
+    
     func setSelected() {
         isSelected = !isSelected
     }

@@ -30,7 +30,7 @@ class FormDecoder {
                     if let show = object.show {
                         for i in array.cells {
                             if (i.id == show) {
-                                formObjects.append((i.topSpacing,i.type,text:object.message))
+                                formObjects.append((i.topSpacing,i.type,text:i.message))
                             }
                         }
                     }
@@ -54,6 +54,7 @@ class FormDecoder {
                 case Type.field.rawValue:
                         print("text-field")
                         let textField = SkyFloatingLabelTextField()
+
                         textField.layoutTextField(configText: i.text)
                         initializedFormObjects.append((spacing:i.spacing,object:textField))
                 case Type.text.rawValue:
@@ -67,6 +68,8 @@ class FormDecoder {
                 case Type.checkbox.rawValue:
                         let button = Checkbox()
                         button.setTitle(i.text, for: UIControlState.normal)
+                        button.setSelected()
+
                         initializedFormObjects.append((spacing: i.spacing,object:button))
                 
                 case Type.send.rawValue:
