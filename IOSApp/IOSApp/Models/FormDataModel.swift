@@ -37,6 +37,21 @@ struct Cell: Decodable {
         case required
     }
     
+    enum CellTypes: Int {
+        case field = 1
+        case text = 2
+        case image = 3
+        case checkbox = 4
+        case send = 5
+    }
+    
+    enum CellTypeField: Int {
+        case text = 1
+        case telNumber = 2
+        case email = 3
+    }
+    
+    
     init (from decoder: Decoder) throws{
         let container = try decoder.container (keyedBy: CodingKeys.self)
         
