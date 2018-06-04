@@ -136,18 +136,19 @@ class FundosTableViewController: UITableViewController,LoadWebView {
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "HeaderLabelsCell",for: indexPath) as? HeaderLabelsTableViewCell
             return cell!
         case 9:
+            
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell
-            cell?.model = ThreeLabelCellModel("No mês",String(describing: s.moreInfo.month.fund),String(describing: s.moreInfo.month.CDI),nil)
+            cell?.model = ThreeLabelCellModel("No mês",String(describing: s.moreInfo.month.fund).percentage(),String(describing: s.moreInfo.month.CDI).percentage(),nil)
             cell?.setLayout()
             return cell!
         case 10:
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell
-            cell?.model = ThreeLabelCellModel("No ano",String(describing: s.moreInfo.year.fund),String(describing: s.moreInfo.year.CDI),nil)
+            cell?.model = ThreeLabelCellModel("No ano",String(describing: s.moreInfo.year.fund).percentage(),String(describing: s.moreInfo.year.CDI).percentage(),nil)
             cell?.setLayout()
             return cell!
         case 11:
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell
-            cell?.model = ThreeLabelCellModel("12 meses",String(describing: s.moreInfo.allMonths.fund),String(describing: s.moreInfo.allMonths.CDI),nil)
+            cell?.model = ThreeLabelCellModel("12 meses",String(describing: s.moreInfo.allMonths.fund).percentage(),String(describing: s.moreInfo.allMonths.CDI).percentage(),nil)
             cell?.setLayout()
             return cell!
         case 12:

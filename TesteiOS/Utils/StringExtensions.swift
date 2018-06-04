@@ -21,4 +21,8 @@ extension String {
         
         return String(self[substringStartIndex ..< substringEndIndex])
     }
+    
+    func percentage() -> String {
+        return self + "%"
+    }
 }
