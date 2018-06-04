@@ -61,10 +61,12 @@ class ThreeLabelTableViewCell: UITableViewCell {
             return
         }
         let svc = SFSafariViewController(url:url)
-        if((delegate?.responds(to: Selector(("loadNewScreen:")))) != nil)
-        {
-            delegate?.loadNewScreen(controller:svc);
-        }
+        delegate?.loadNewScreen(controller:svc);
+    
     }
-
+    @IBAction func downloadBtnTap(_ sender: Any) {
+        openWebview()
+        
+    }
+    
 }

@@ -9,8 +9,8 @@
 import UIKit
 import RxSwift
 
-class FundosTableViewController: UITableViewController {
-
+class FundosTableViewController: UITableViewController,LoadWebView {
+    
     var data:[Any] = []
     let disposeBag = DisposeBag()
     var apiFetcher: Fetcher?
@@ -162,11 +162,11 @@ class FundosTableViewController: UITableViewController {
             return cell!
         case self.count...self.countMore:
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell
-            print("VALUESSSS")
-            print(indexPath.row - self.count)
+
             if indexPath.row - self.count - 1 < s.downInfo.count {
-                cell?.model = ThreeLabelCellModel(s.downInfo[indexPath.row - self.count - 1].name,"",s.downInfo[indexPath.row - self.count - 1].data,"baixar")
+                cell?.model = ThreeLabelCellModel(s.downInfo[indexPath.row - self.count - 1].name,"",s.downInfo[indexPath.row - self.count - 1].data,"https://www.google.com")
             }
+            cell?.delegate = self
             cell?.setLayout()
             return cell!
         
@@ -177,4 +177,8 @@ class FundosTableViewController: UITableViewController {
         }
         
     }
+    func loadNewScreen(controller: UIViewController) {
+        self.present(controller, animated: true, completion: nil)
+    }
+    
 }
