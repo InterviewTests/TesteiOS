@@ -12,16 +12,15 @@ import RxSwift
 class FundosTableViewController: UITableViewController {
 
     var data:[Any] = []
-     let disposeBag = DisposeBag()
+    let disposeBag = DisposeBag()
     var apiFetcher: Fetcher?
-
     
-    
+    @IBOutlet var uiTableView: UITableView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.uiTableView?.delegate = self
 
-        
         apiFetcher?.fetch(request: Router.FinanceActive.get(params: "").asURLRequest()) { data in
             print(data)
             
@@ -32,11 +31,29 @@ class FundosTableViewController: UITableViewController {
             
             let decoder = InvestDecoder(data:data)
             decoder.decode()
-
+            guard let screenDecoder = decoder as? Decoder else {
+                return
+            }
+            do {
+            let screen = try Screen(from: screenDecoder)
+            } catch {
+                print(error)
+            }
+            
             //
             
         }
         
+        func setTableView() {
+            uiTableView?.register(UINib(nibName: "ThreeLabelTableViewCell", bundle: nil), forCellReuseIdentifier: "ThreeLabelTableViewCell")
+            uiTableView?.register(UINib(nibName: "SeparatorCell", bundle: nil), forCellReuseIdentifier: "SeparatorCell")
+            uiTableView?.register(UINib(nibName: "RiskInvestimentCell", bundle: nil), forCellReuseIdentifier: "RiskInvestimentCell")
+            uiTableView?.register(UINib(nibName: "TitleLabelCell", bundle: nil), forCellReuseIdentifier: "TitleLabelCell")
+            uiTableView?.register(UINib(nibName: "NameLabelCell", bundle: nil), forCellReuseIdentifier: "NameLabelCell")
+            uiTableView?.register(UINib(nibName: "TextCell", bundle: nil), forCellReuseIdentifier: "TextCell")
+            uiTableView?.register(UINib(nibName: "HeaderLabelsCell", bundle: nil), forCellReuseIdentifier: "HeaderLabelsCell")
+            uiTableView?.register(UINib(nibName: "LargeButtonCell", bundle: nil), forCellReuseIdentifier: "LargeButtonCell")
+        }
 //        Observable.of(self.years).bind(to: table.rx.items(cellIdentifier:"yearCell",cellType:PaymentYieldTableViewCell.self)) {
 //            (row,element,cell) in
 //            cell.loadItem(date:element.year, reason:element.reason)
@@ -63,62 +80,62 @@ class FundosTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        //11 + numberOfItens.count
         return 0
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+        switch indexPath.row {
+        case 0:
+            let model = TitleCellModel(nil)
+            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath) as? TitleTableViewCell
+            cell?.model = model
+            return cell!
+        case 1:
+            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "NameLabelCell",for: indexPath)
+            return cell!
+        case 2:
+            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "SeparatorCell",for: indexPath)
+            return cell!
+        case 3:
+            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath)
+            return cell!
+        case 4:
+            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TextCell",for: indexPath)
+            return cell!
+        case 5:
+            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath)
+            return cell!
+        case 6:
+            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "RiskInvestimentCell",for: indexPath)
+            return cell!
+        case 7:
+            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath)
+            return cell!
+        case 8:
+            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath)
+            return cell!
+        case 9...11:
+            return UITableViewCell()
+        case 12:
+            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "SeparatorCell",for: indexPath)
+            return cell!
+        
+        //case data.count - 1
+        //redButtonCell
+        default:
+            return UITableViewCell()
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
 
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
+ 
 
 }

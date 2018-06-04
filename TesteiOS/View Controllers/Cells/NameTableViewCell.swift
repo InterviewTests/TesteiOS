@@ -11,10 +11,12 @@ import UIKit
 class NameTableViewCell: UITableViewCell {
     var model:NameCellModel = NameCellModel(nil)
     
+    @IBOutlet weak var uiName: UILabel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print(model.fundName)
+        uiName?.text = model.fundName
+
         // Initialization code
     }
 

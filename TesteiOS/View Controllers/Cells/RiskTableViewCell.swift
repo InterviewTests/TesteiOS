@@ -11,6 +11,9 @@ import UIKit
 class RiskTableViewCell: UITableViewCell {
     var model:RiskCellModel = RiskCellModel(nil)
     
+    @IBOutlet weak var selectedRiskView: UIImageView?
+    @IBOutlet weak var selectedRiskViewTrailingConstraint: NSLayoutConstraint?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         print(model.risk)

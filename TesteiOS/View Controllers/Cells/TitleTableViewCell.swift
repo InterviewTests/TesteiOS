@@ -11,6 +11,7 @@ import UIKit
 class TitleTableViewCell: UITableViewCell {
     var model:TitleCellModel = TitleCellModel(nil)
     
+    @IBOutlet weak var uiTitle: UILabel?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -18,8 +19,8 @@ class TitleTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print(model.title)
-
+        self.uiTitle?.text = model.title
+        
         // Initialization code
     }
 

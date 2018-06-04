@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -17,27 +16,31 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="337" height="86"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O Fundo tem por objetivo proporcionar aos seus cotistas rentabilidade no longo prazo através de investimentos." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4h9-F3-wRn">
-                    <rect key="frame" x="30" y="12.5" width="277" height="61.5"/>
-                    <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="16"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="4h9-F3-wRn" secondAttribute="trailing" constant="30" id="25s-Ue-3ao"/>
-                <constraint firstItem="4h9-F3-wRn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="Ix0-WV-Xxh"/>
-                <constraint firstItem="4h9-F3-wRn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="h4e-hv-jrq"/>
-                <constraint firstItem="4h9-F3-wRn" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="n5Y-d0-syI"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="14.5" y="-236"/>
-        </view>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="116" id="u25-MA-Vra" customClass="TextTableViewCell" customModule="TesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u25-MA-Vra" id="Gje-Vi-Kp3" customClass="TextTableViewCell" customModule="TesteiOS" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="115.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O Fundo tem por objetivo proporcionar aos seus cotistas rentabilidade no longo prazo através de investimentos." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S34-PD-bBK">
+                        <rect key="frame" x="30" y="27" width="315" height="61.5"/>
+                        <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="S34-PD-bBK" firstAttribute="leading" secondItem="Gje-Vi-Kp3" secondAttribute="leading" constant="30" id="96h-AD-ojM"/>
+                    <constraint firstItem="S34-PD-bBK" firstAttribute="centerX" secondItem="Gje-Vi-Kp3" secondAttribute="centerX" id="Voe-aq-MRV"/>
+                    <constraint firstItem="S34-PD-bBK" firstAttribute="centerY" secondItem="Gje-Vi-Kp3" secondAttribute="centerY" id="rVb-9O-9n6"/>
+                    <constraint firstAttribute="trailing" secondItem="S34-PD-bBK" secondAttribute="trailing" constant="30" id="xyl-vA-63G"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="uiText" destination="S34-PD-bBK" id="YpN-ex-Vdg"/>
+            </connections>
+            <point key="canvasLocation" x="12.5" y="-40"/>
+        </tableViewCell>
     </objects>
 </document>

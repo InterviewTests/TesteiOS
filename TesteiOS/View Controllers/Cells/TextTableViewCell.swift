@@ -11,10 +11,11 @@ import UIKit
 class TextTableViewCell: UITableViewCell {
     var model:TextCellModel = TextCellModel(nil)
     
+    @IBOutlet weak var uiText: UILabel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print(model.definition)
+        uiText?.text = model.definition
         // Initialization code
     }
 
