@@ -15,6 +15,7 @@ class RiskTableViewCell: UITableViewCell {
     @IBOutlet weak var selectedRiskView: UIImageView?
     @IBOutlet weak var selectedRiskViewTrailingConstraint: NSLayoutConstraint?
     
+    @IBOutlet weak var yellowView: UIView?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,6 +23,16 @@ class RiskTableViewCell: UITableViewCell {
     
     func setLayout() {
         print(model.risk)
+       
+//       1 a 5
+//       0.5 a 1.5
+        guard let width = yellowView?.frame.width  else {
+            return
+        }
+        
+        
+        selectedRiskViewTrailingConstraint?.constant = (CGFloat(model.risk - 1) * width) + width/2 - 5
+        self.setNeedsLayout()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

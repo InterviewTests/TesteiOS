@@ -63,6 +63,8 @@ class FundosTableViewController: UITableViewController,LoadWebView {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch  indexPath.row {
+        case 1:
+            return 80
         case 4:
             return 100
         case 6:
