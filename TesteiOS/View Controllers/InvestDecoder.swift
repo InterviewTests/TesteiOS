@@ -15,16 +15,13 @@ class InvestDecoder {
         self.data = data
     }
     
-    func decode() {
-        
-    
-        
+    func decode() -> Screen? {
         
         let decoder = JSONDecoder()
         do {
             let investScreen = try decoder.decode(InvestScreen.self, from: self.data)
             
-            print(investScreen.screen.title)
+            return investScreen.screen
             
         } catch {
             //  print(data.description)
@@ -32,7 +29,7 @@ class InvestDecoder {
             debugPrint("Error occurred")
         }
         
-        
+        return nil
     }
     
 }

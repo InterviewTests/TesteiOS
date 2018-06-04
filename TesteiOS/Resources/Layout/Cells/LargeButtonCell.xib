@@ -6,29 +6,32 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="288" height="56"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7A-40-Qd0">
-                    <rect key="frame" x="121" y="13" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
-                </button>
-            </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="j7A-40-Qd0" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ZwL-Fu-bNT"/>
-                <constraint firstItem="j7A-40-Qd0" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ryu-Z7-Nld"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="40" y="-228"/>
-        </view>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="kP4-eH-gkb" customClass="ButtonTableViewCell" customModule="TesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kP4-eH-gkb" id="jZP-R1-mWU">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oll-U8-ZLu" customClass="RedButton" customModule="TesteiOS" customModuleProvider="target">
+                        <rect key="frame" x="164" y="6" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Oll-U8-ZLu" firstAttribute="centerX" secondItem="jZP-R1-mWU" secondAttribute="centerX" id="XGn-1F-0Xz"/>
+                    <constraint firstItem="Oll-U8-ZLu" firstAttribute="centerY" secondItem="jZP-R1-mWU" secondAttribute="centerY" id="o4p-ix-Ppx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="uiBtn" destination="Oll-U8-ZLu" id="weN-5a-mkA"/>
+            </connections>
+            <point key="canvasLocation" x="41" y="-119"/>
+        </tableViewCell>
     </objects>
 </document>

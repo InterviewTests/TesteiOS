@@ -13,17 +13,18 @@ class TitleTableViewCell: UITableViewCell {
     
     @IBOutlet weak var uiTitle: UILabel?
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.uiTitle?.text = model.title
-        
+
         // Initialization code
     }
 
+    func setLayout() {
+        self.uiTitle?.text = model.title
+        print("TITLE")
+        print(model.title)
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

@@ -15,9 +15,13 @@ class NameTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        uiName?.text = model.fundName
+
 
         // Initialization code
+    }
+    
+    func setLayout() {
+        uiName?.text = model.fundName
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

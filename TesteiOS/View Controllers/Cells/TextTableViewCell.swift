@@ -15,10 +15,15 @@ class TextTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        uiText?.text = model.definition
+
         // Initialization code
     }
 
+    
+    func setLayout() {
+        uiText?.text = model.definition
+        
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -23,50 +22,57 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="340" height="67"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6D-J3-mxi">
-                    <rect key="frame" x="29" y="27" width="36.5" height="14"/>
-                    <fontDescription key="fontDescription" name="DINNeuzeitGroteskStd-Light" family="DIN 30640 Std" pointSize="14"/>
-                    <color key="textColor" red="0.67450980392156867" green="0.67450980392156867" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlm-u6-jRa">
-                    <rect key="frame" x="191" y="24.5" width="35" height="18"/>
-                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuA-Fs-5ut">
-                    <rect key="frame" x="276" y="25" width="35" height="18"/>
-                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lx-en-4kc">
-                    <rect key="frame" x="269" y="18.5" width="42" height="30"/>
-                    <fontDescription key="fontDescription" name="DINPro-Bold" family="DINPro" pointSize="14"/>
-                    <state key="normal" title="Baixar">
-                        <color key="titleColor" red="0.85490196078431369" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                </button>
-            </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="b6D-J3-mxi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="10K-V3-NbX"/>
-                <constraint firstItem="vlm-u6-jRa" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="3YG-hb-aDu"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="iuA-Fs-5ut" secondAttribute="trailing" constant="29" id="5Wo-dT-ogQ"/>
-                <constraint firstItem="iuA-Fs-5ut" firstAttribute="leading" secondItem="vlm-u6-jRa" secondAttribute="trailing" constant="50" id="6Dn-L5-pAE"/>
-                <constraint firstItem="8lx-en-4kc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Uw1-wQ-A5f"/>
-                <constraint firstItem="iuA-Fs-5ut" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="u1w-lJ-u7q"/>
-                <constraint firstItem="b6D-J3-mxi" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="29" id="ybV-Fs-Lhf"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8lx-en-4kc" secondAttribute="trailing" constant="29" id="z1T-Rc-aOL"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="16" y="-245.5"/>
-        </view>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3sV-7K-WD8" customClass="ThreeLabelTableViewCell" customModule="TesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3sV-7K-WD8" id="nwf-F0-Oxu">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6AO-rp-oeb">
+                        <rect key="frame" x="29" y="14" width="36.5" height="14"/>
+                        <fontDescription key="fontDescription" name="DINNeuzeitGroteskStd-Light" family="DIN 30640 Std" pointSize="14"/>
+                        <color key="textColor" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgv-3N-3VH">
+                        <rect key="frame" x="311" y="12" width="35" height="18"/>
+                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbm-0b-ppy">
+                        <rect key="frame" x="226" y="12" width="35" height="18"/>
+                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ugb-cs-dsN">
+                        <rect key="frame" x="304" y="7" width="42" height="30"/>
+                        <fontDescription key="fontDescription" name="DINPro-Bold" family="DINPro" pointSize="14"/>
+                        <state key="normal" title="Baixar">
+                            <color key="titleColor" red="0.85490196080000003" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="cbm-0b-ppy" firstAttribute="centerY" secondItem="nwf-F0-Oxu" secondAttribute="centerY" id="3Nu-f3-XyA"/>
+                    <constraint firstAttribute="trailing" secondItem="Ugb-cs-dsN" secondAttribute="trailing" constant="29" id="6lj-KU-0JX"/>
+                    <constraint firstItem="Ugb-cs-dsN" firstAttribute="centerY" secondItem="nwf-F0-Oxu" secondAttribute="centerY" id="Eyb-he-G8D"/>
+                    <constraint firstItem="6AO-rp-oeb" firstAttribute="leading" secondItem="nwf-F0-Oxu" secondAttribute="leading" constant="29" id="FZ0-YM-qyn"/>
+                    <constraint firstItem="fgv-3N-3VH" firstAttribute="leading" secondItem="cbm-0b-ppy" secondAttribute="trailing" constant="50" id="Ffe-LP-1b9"/>
+                    <constraint firstItem="fgv-3N-3VH" firstAttribute="centerY" secondItem="nwf-F0-Oxu" secondAttribute="centerY" id="Tvf-po-fns"/>
+                    <constraint firstAttribute="trailing" secondItem="fgv-3N-3VH" secondAttribute="trailing" constant="29" id="VgU-zz-HIf"/>
+                    <constraint firstItem="6AO-rp-oeb" firstAttribute="centerY" secondItem="nwf-F0-Oxu" secondAttribute="centerY" id="x8Y-F4-7od"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="uiDownloadBtn" destination="Ugb-cs-dsN" id="W7c-pu-ZGs"/>
+                <outlet property="uiFirstLabel" destination="6AO-rp-oeb" id="gyO-Bk-UFX"/>
+                <outlet property="uiSecondLabel" destination="cbm-0b-ppy" id="vQm-D1-XTZ"/>
+                <outlet property="uiThirdLabel" destination="fgv-3N-3VH" id="nGk-UP-UtL"/>
+            </connections>
+            <point key="canvasLocation" x="17" y="-125"/>
+        </tableViewCell>
     </objects>
 </document>
