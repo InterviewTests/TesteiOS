@@ -10,6 +10,7 @@ import UIKit
 
 class TitleTableViewCell: UITableViewCell {
     var model:TitleCellModel = TitleCellModel(nil)
+    var title:Int = 0
     
     @IBOutlet weak var uiTitle: UILabel?
     
@@ -21,9 +22,21 @@ class TitleTableViewCell: UITableViewCell {
     }
 
     func setLayout() {
-        self.uiTitle?.text = model.title
-        print("TITLE")
-        print(model.title)
+        
+        switch title {
+        case 0 :
+            self.uiTitle?.text = model.title
+        case 1:
+            self.uiTitle?.text = model.whatIs
+        case 2:
+            self.uiTitle?.text = model.riskTitle
+        case 3:
+            self.uiTitle?.text = model.infoTitle
+        default:
+            print("")
+        }
+        
+
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

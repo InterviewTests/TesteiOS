@@ -9,28 +9,19 @@
 import Foundation
 
 class ThreeLabelCellModel {
+    let downInfo:DataInfo = DataInfo(name: "", data: "")
+    
     let value1:String?
-    let value2:Double?
-    let value3:Double?
+    let value2:String?
+    let value3:String?
     let btnURL: String?
     
-    init(_ value1:String?,_ value2:Double?,_ value3:Double?,_ btnURL:String?) {
+    init(_ value1:String?,_ value2:String?,_ value3:String?,_ btnURL:String?) {
         
-        guard let v1 = value1,
-              let v2 = value2,
-              let v3 = value3,
-              let b = btnURL
-              else {
-                self.value1 = ""
-                self.value2 = 0
-                self.value3 = 0
-                self.btnURL = nil
-                return
-            }
-        self.value1 = v1
-        self.value2 = v2
-        self.value3 = v3
-        self.btnURL = b
+        self.value1 = value1
+        self.value2 = value2
+        self.value3 = value3
+        self.btnURL = btnURL
         
     }
     

@@ -15,6 +15,9 @@ class FundosTableViewController: UITableViewController {
     let disposeBag = DisposeBag()
     var apiFetcher: Fetcher?
     var screen:Screen?
+    var count:Int = 99
+    var countMore:Int = 999
+    
     @IBOutlet var uiTableView: UITableView?
     
     override func viewDidLoad() {
@@ -23,7 +26,7 @@ class FundosTableViewController: UITableViewController {
         
         layoutTableView()
         apiFetcher?.fetch(request: Router.FinanceActive.get(params: "").asURLRequest()) { data in
-            print(data)
+            
             
             guard let data = data as? Data else {
                 print("Error: No data to decode")
@@ -32,7 +35,14 @@ class FundosTableViewController: UITableViewController {
             
             let decoder = InvestDecoder(data:data)
             self.screen = decoder.decode()
-            print(self.screen?.title)
+            guard let c = self.screen?.info.count,
+                let cM  = self.screen?.downInfo.count else {
+                return
+            }
+            self.count = c + 13
+            self.countMore = self.count + cM
+            print("COUNTTT")
+            print(self.count)
             self.uiTableView?.reloadData()
             
         }
@@ -48,21 +58,6 @@ class FundosTableViewController: UITableViewController {
             uiTableView?.register(UINib(nibName: "HeaderLabelsCell", bundle: nil), forCellReuseIdentifier: "HeaderLabelsCell")
             uiTableView?.register(UINib(nibName: "LargeButtonCell", bundle: nil), forCellReuseIdentifier: "LargeButtonCell")
         }
-//        Observable.of(self.years).bind(to: table.rx.items(cellIdentifier:"yearCell",cellType:PaymentYieldTableViewCell.self)) {
-//            (row,element,cell) in
-//            cell.loadItem(date:element.year, reason:element.reason)
-//            }.disposed(by:self.disposeBag)
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Table view data source
 
@@ -86,15 +81,19 @@ class FundosTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         //11 + numberOfItens.count
-        return 11
+        return self.countMore + 1
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let s = screen else {
+            return UITableViewCell()
+        }
         switch indexPath.row {
         case 0:
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath) as? TitleTableViewCell
             cell?.model = TitleCellModel(screen)
+            cell?.title = 0
             cell?.setLayout()
             return cell!
         case 1:
@@ -106,25 +105,23 @@ class FundosTableViewController: UITableViewController {
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "SeparatorCell",for: indexPath)
             return cell!
         case 3:
-            
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath) as? TitleTableViewCell
             cell?.model = TitleCellModel(screen)
+            cell?.title = 1
             cell?.setLayout()
             return cell!
         case 4:
-                        
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TextCell",for: indexPath) as? TextTableViewCell
                 cell?.model = TextCellModel(screen)
                 cell?.setLayout()
             return cell!
         case 5:
-            
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath) as? TitleTableViewCell
             cell?.model = TitleCellModel(screen)
+            cell?.title = 2
             cell?.setLayout()
             return cell!
         case 6:
-            
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "RiskInvestimentCell",for: indexPath) as? RiskTableViewCell
             cell?.model = RiskCellModel(screen)
             cell?.setLayout()
@@ -132,21 +129,47 @@ class FundosTableViewController: UITableViewController {
         case 7:
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath) as? TitleTableViewCell
             cell?.model = TitleCellModel(screen)
+            cell?.title = 3
             cell?.setLayout()
             return cell!
         case 8:
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "HeaderLabelsCell",for: indexPath) as? HeaderLabelsTableViewCell
             return cell!
-        case 9...11:
+        case 9:
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell
-            cell?.model = ThreeLabelCellModel("",0,0,"")
+            cell?.model = ThreeLabelCellModel("No mês",String(describing: s.moreInfo.month.fund),String(describing: s.moreInfo.month.CDI),nil)
+            cell?.setLayout()
+            return cell!
+        case 10:
+            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell
+            cell?.model = ThreeLabelCellModel("No ano",String(describing: s.moreInfo.year.fund),String(describing: s.moreInfo.year.CDI),nil)
+            cell?.setLayout()
+            return cell!
+        case 11:
+            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell
+            cell?.model = ThreeLabelCellModel("12 meses",String(describing: s.moreInfo.allMonths.fund),String(describing: s.moreInfo.allMonths.CDI),nil)
             cell?.setLayout()
             return cell!
         case 12:
             let cell = uiTableView?.dequeueReusableCell(withIdentifier: "SeparatorCell",for: indexPath)
             return cell!
-        case 13...19:
-            return UITableViewCell()
+        case 13...self.count:
+            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell
+            if indexPath.row - 13 < s.info.count {
+            cell?.model = ThreeLabelCellModel(s.info[indexPath.row - 13].name,"",s.info[indexPath.row - 13].data,nil)
+            }
+            cell?.setLayout()
+            return cell!
+        case self.count...self.countMore:
+            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell
+            print("VALUESSSS")
+            print(indexPath.row - self.count)
+            if indexPath.row - self.count - 1 < s.downInfo.count {
+                cell?.model = ThreeLabelCellModel(s.downInfo[indexPath.row - self.count - 1].name,"",s.downInfo[indexPath.row - self.count - 1].data,"baixar")
+            }
+            cell?.setLayout()
+            return cell!
+        
         //case data.count - 1
         //redButtonCell
         default:

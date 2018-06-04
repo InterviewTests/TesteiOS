@@ -37,14 +37,16 @@ class ThreeLabelTableViewCell: UITableViewCell {
     
     func setLayout() {
         uiFirstLabel?.text = model.value1
-        uiSecondLabel?.text = String(describing: model.value2)
-        uiThirdLabel?.text = String(describing: model.value3)
+        uiSecondLabel?.text =  model.value2
+        uiThirdLabel?.text = model.value3
         
         guard let url = model.btnURL else {
+        self.uiDownloadBtn?.isHidden = true
             return
+
         }
         urlString = url
-        
+        self.uiDownloadBtn?.isHidden = false
         
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
