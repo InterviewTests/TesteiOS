@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double TextFieldFloatingPlaceholderVersionNumber;
-FOUNDATION_EXPORT const unsigned char TextFieldFloatingPlaceholderVersionString[];
+FOUNDATION_EXPORT double SkyFloatingLabelTextFieldVersionNumber;
+FOUNDATION_EXPORT const unsigned char SkyFloatingLabelTextFieldVersionString[];
 
