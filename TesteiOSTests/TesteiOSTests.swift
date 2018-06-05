@@ -16,16 +16,16 @@ class TesteiOSTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        if let path = Bundle.main.path(forResource: "testFormDecoder", ofType: "json")
-        {
-            let url = URL(fileURLWithPath: path)
-            if let jsonData = Data(url)
-            {
-             data = jsonData
-                print (data)
+        let bundle = Bundle(for: type(of: self))
+        if let path = bundle.path(forResource: "testFormDecoder", ofType: "json") {
+            do {
+                let jsonData = try Data(contentsOf: URL(fileURLWithPath: path))
+                data = jsonData
+            } catch {
+                // handle error
             }
         }
-
+        
     }
     
     override func tearDown() {
@@ -34,14 +34,18 @@ class TesteiOSTests: XCTestCase {
     }
     
     func testFormEncoder() {
-        
-        let formEncoder = FormDecoder(data: data as Data)
+        let formEncoder = FormDecoder(data: data)
         formEncoder.decode()
         print(formEncoder.formObjects)
         XCTAssertTrue(formEncoder.formObjects.count > 0)
-
     }
     
-
+    
+    func testFormObjectCreator() {
+        let formEncoder = FormDecoder(data: data)
+        formEncoder.decode()
+        print(formEncoder.formObjects)
+        XCTAssertTrue(formEncoder.initializedFormObjects.count > 0)
+    }
     
 }
