@@ -22,7 +22,7 @@ class CustomTabBarController: UITabBarController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         updateLayout()
-        
+        self.selectedIndex = 1
     }
     
     

@@ -16,30 +16,27 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="116" id="u25-MA-Vra" customClass="TextTableViewCell" customModule="TesteiOS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" textLabel="wRm-0H-MLd" rowHeight="116" style="IBUITableViewCellStyleDefault" id="u25-MA-Vra" customClass="TextTableViewCell" customModule="TesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u25-MA-Vra" id="Gje-Vi-Kp3" customClass="TextTableViewCell" customModule="TesteiOS" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="115.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O Fundo tem por objetivo proporcionar aos seus cotistas rentabilidade no longo prazo através de investimentos." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="S34-PD-bBK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="115.5"/>
-                        <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="16"/>
+                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wRm-0H-MLd">
+                        <rect key="frame" x="16" y="0.0" width="343" height="79.5"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="S34-PD-bBK" firstAttribute="centerX" secondItem="Gje-Vi-Kp3" secondAttribute="centerX" id="Mzg-hP-kMz"/>
-                    <constraint firstItem="S34-PD-bBK" firstAttribute="top" secondItem="Gje-Vi-Kp3" secondAttribute="top" id="WMU-6V-jO5"/>
-                    <constraint firstAttribute="bottom" secondItem="S34-PD-bBK" secondAttribute="bottom" id="cAA-gS-J3W"/>
-                    <constraint firstAttribute="trailing" secondItem="S34-PD-bBK" secondAttribute="trailing" id="sh5-ea-aOH"/>
-                    <constraint firstItem="S34-PD-bBK" firstAttribute="leading" secondItem="Gje-Vi-Kp3" secondAttribute="leading" id="yPS-Z1-yr8"/>
-                </constraints>
+                <connections>
+                    <outlet property="uiText" destination="wRm-0H-MLd" id="jYA-rG-0Mz"/>
+                </connections>
             </tableViewCellContentView>
             <connections>
-                <outlet property="uiText" destination="S34-PD-bBK" id="YpN-ex-Vdg"/>
+                <outlet property="uiText" destination="wRm-0H-MLd" id="ad9-WW-iUZ"/>
             </connections>
             <point key="canvasLocation" x="12.5" y="-40"/>
         </tableViewCell>

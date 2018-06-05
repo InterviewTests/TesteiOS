@@ -66,9 +66,9 @@ class FundosTableViewController: UITableViewController,LoadWebView {
         case 1:
             return 80
         case 4:
-            return 100
+            return 80
         case 6:
-            return 100
+            return 60
         default:
             return 30
         }

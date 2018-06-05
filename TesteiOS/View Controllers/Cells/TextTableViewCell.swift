@@ -15,7 +15,7 @@ class TextTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+            self.uiText?.translatesAutoresizingMaskIntoConstraints = false
         // Initialization code
     }
 
