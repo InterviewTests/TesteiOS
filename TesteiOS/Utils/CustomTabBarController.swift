@@ -21,8 +21,8 @@ class CustomTabBarController: UITabBarController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        self.selectedIndex = 0
         updateLayout()
-        self.selectedIndex = 1
     }
     
     
@@ -46,14 +46,14 @@ class CustomTabBarController: UITabBarController {
     
     
     @IBAction func investBtnTap(_ sender: Any) {
-        self.selectedIndex = 1
+        self.selectedIndex = 0
         self.contactBtn?.backgroundColor = otherColor
         self.InvestBtn?.backgroundColor = selectedColor
         
     }
     
     @IBAction func contactBtnTap(_ sender: Any) {
-    self.selectedIndex = 0
+    self.selectedIndex = 1
     self.InvestBtn?.backgroundColor =  otherColor
     self.contactBtn?.backgroundColor = selectedColor
     }

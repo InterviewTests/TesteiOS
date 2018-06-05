@@ -191,8 +191,8 @@
                         <outlet property="InvestBtn" destination="ral-VW-kal" id="qmM-o4-rDX"/>
                         <outlet property="contactBtn" destination="Xcu-Oh-3vy" id="sth-Ze-w5n"/>
                         <outlet property="customTabBarView" destination="m9F-FV-B0p" id="8j6-Yf-Q0K"/>
-                        <segue destination="tb5-xF-2ZM" kind="relationship" relationship="viewControllers" id="fZ5-bf-ycj"/>
                         <segue destination="Rgu-Ze-MNv" kind="relationship" relationship="viewControllers" id="V2J-Am-ORq"/>
+                        <segue destination="tb5-xF-2ZM" kind="relationship" relationship="viewControllers" id="fZ5-bf-ycj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BtE-m2-8aj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -200,20 +200,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="376" height="55"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" tag="99" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcu-Oh-3vy">
-                            <rect key="frame" x="0.0" y="0.0" width="188" height="55"/>
-                            <color key="backgroundColor" red="0.85490196080000003" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
-                            <state key="normal" title="Contato">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="changeTabWithSender:" destination="G47-UR-OJL" eventType="touchUpInside" id="XiZ-Tv-C91"/>
-                                <action selector="contactBtnTap:" destination="G47-UR-OJL" eventType="touchUpInside" id="oMl-Wb-7EE"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ral-VW-kal">
-                            <rect key="frame" x="188" y="0.0" width="188" height="55"/>
+                            <rect key="frame" x="0.0" y="0.0" width="188" height="55"/>
                             <color key="backgroundColor" red="0.85490196080000003" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
                             <state key="normal" title="Investimento">
@@ -224,17 +212,29 @@
                                 <action selector="investBtnTap:" destination="G47-UR-OJL" eventType="touchUpInside" id="I2A-Tr-JD4"/>
                             </connections>
                         </button>
+                        <button opaque="NO" tag="99" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcu-Oh-3vy">
+                            <rect key="frame" x="188" y="0.0" width="188" height="55"/>
+                            <color key="backgroundColor" red="0.85490196080000003" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                            <state key="normal" title="Contato">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="changeTabWithSender:" destination="G47-UR-OJL" eventType="touchUpInside" id="XiZ-Tv-C91"/>
+                                <action selector="contactBtnTap:" destination="G47-UR-OJL" eventType="touchUpInside" id="oMl-Wb-7EE"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Xcu-Oh-3vy" secondAttribute="trailing" id="Cq9-fT-zfa"/>
                         <constraint firstItem="Xcu-Oh-3vy" firstAttribute="top" secondItem="m9F-FV-B0p" secondAttribute="top" id="K9t-ad-571"/>
-                        <constraint firstItem="ral-VW-kal" firstAttribute="leading" secondItem="Xcu-Oh-3vy" secondAttribute="trailing" id="MQl-3E-meB"/>
                         <constraint firstItem="ral-VW-kal" firstAttribute="top" secondItem="Xcu-Oh-3vy" secondAttribute="top" id="Mmb-PK-fyO"/>
                         <constraint firstItem="ral-VW-kal" firstAttribute="bottom" secondItem="Xcu-Oh-3vy" secondAttribute="bottom" id="VE5-wu-zjp"/>
                         <constraint firstItem="Xcu-Oh-3vy" firstAttribute="width" secondItem="ral-VW-kal" secondAttribute="width" id="adf-uZ-hEX"/>
-                        <constraint firstAttribute="trailing" secondItem="ral-VW-kal" secondAttribute="trailing" id="bnv-rf-OlM"/>
+                        <constraint firstItem="ral-VW-kal" firstAttribute="leading" secondItem="m9F-FV-B0p" secondAttribute="leading" id="eSY-Ac-Ext"/>
+                        <constraint firstItem="Xcu-Oh-3vy" firstAttribute="leading" secondItem="ral-VW-kal" secondAttribute="trailing" id="fkO-Te-gn1"/>
                         <constraint firstAttribute="bottom" secondItem="Xcu-Oh-3vy" secondAttribute="bottom" id="fwe-Za-hy4"/>
-                        <constraint firstItem="Xcu-Oh-3vy" firstAttribute="leading" secondItem="m9F-FV-B0p" secondAttribute="leading" id="jRp-S2-PB4"/>
                     </constraints>
                 </view>
             </objects>

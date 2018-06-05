@@ -23,7 +23,9 @@ class Checkbox:UIButton {
         titleLabel?.numberOfLines = 1
         titleLabel?.lineBreakMode = NSLineBreakMode.byClipping
         titleLabel?.adjustsFontSizeToFitWidth = true
-        self.setTitleColor(.black, for: .normal)
+        titleLabel?.font = UIFont(name: "DINPro", size: 16.0)
+        let color = UIColor(red: 172/255, green: 172/255, blue: 172/255, alpha: 1.0)
+        self.setTitleColor(color, for: .normal)
         setImage(UIImage(named:"checkbox_checked"), for: UIControlState.selected)
         setImage(UIImage(named:"checkbox"), for: UIControlState.normal)
         self.addTarget(self, action: #selector(onPress), for: .touchUpInside)

@@ -25,6 +25,7 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate {
         self.title = self.placeholder
     }
     
+
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = self.text {

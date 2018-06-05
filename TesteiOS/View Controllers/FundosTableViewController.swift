@@ -19,6 +19,9 @@ class FundosTableViewController: UITableViewController,NextView {
     var countMore:Int = 999
     
     @IBOutlet var uiTableView: UITableView?
+
+    
+// MARK: - ViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +50,11 @@ class FundosTableViewController: UITableViewController,NextView {
             
         }
     }
-        
+    
+    
+    // MARK: - TableViewConfiguration
+    
+    
         func layoutTableView() {
             uiTableView?.register(UINib(nibName: "ThreeLabelTableViewCell", bundle: nil), forCellReuseIdentifier: "ThreeLabelTableViewCell")
             uiTableView?.register(UINib(nibName: "SeparatorCell", bundle: nil), forCellReuseIdentifier: "SeparatorCell")
@@ -60,8 +67,6 @@ class FundosTableViewController: UITableViewController,NextView {
             
         }
 
-    
-
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -69,7 +74,7 @@ class FundosTableViewController: UITableViewController,NextView {
         case 1:
             return 80
         case 4:
-            return 60
+            return 90
         case 6:
             return 60
         case countMore + 1:
@@ -205,6 +210,9 @@ class FundosTableViewController: UITableViewController,NextView {
         }
        return UITableViewCell()
     }
+    
+// MARK: - DownloadButtonDelegate
+    
     
     func loadNewScreen(controller: UIViewController?) {
         guard let c = controller else {
