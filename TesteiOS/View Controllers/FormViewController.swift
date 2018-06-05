@@ -29,6 +29,11 @@ class FormViewController: UIViewController, NextView {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        downloadData()
+    }
+    
+    
+    func downloadData() {
         apiFetcher?.fetch(request: Router.Form.get(params: "").asURLRequest()) { data in
             print(data)
             
@@ -38,10 +43,7 @@ class FormViewController: UIViewController, NextView {
             }
             
             self.formDecoder = FormDecoder(data:data)
-            
-            
             self.formDecoder?.decode()
-            
             
             guard let decodedObjs = self.formDecoder?.initializedFormObjects else {
                 return
@@ -51,14 +53,12 @@ class FormViewController: UIViewController, NextView {
             self.uiButtonTap(fromList:decodedObjs)
             
         }
-        
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        uiNameTextField?.text = ""
-//        uiEmailTextField?.text = ""
-//        uiPhoneTextField?.text = ""
-//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+      //  downloadData()
+    }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()

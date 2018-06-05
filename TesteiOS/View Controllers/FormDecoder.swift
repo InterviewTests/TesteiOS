@@ -14,9 +14,11 @@ class FormDecoder {
     let data:Data
     var formObjects:[(spacing:Double,type:Int,text:String)] = []
     var initializedFormObjects:[(spacing:Double,object:Any)] = []
+    var validation:Array<(text:String,error:Bool,field:SkyFloatingLabelTextField)> = []
     
     init(data:Data) {
         self.data = data
+        
     }
     
     func decode() {
@@ -82,22 +84,27 @@ class FormDecoder {
         
     }
     
-    
-    func checkFormValidation() -> Bool {
-        var validation:Array<(text:String,error:Bool)> = []
+    func getTextFields() {
+        validation = []
         for i in initializedFormObjects {
             guard let obj = i.object as? SkyFloatingLabelTextField else {
                 continue
-        }
+            }
             guard let text = obj.text else {
-                return false
+                continue
             }
             
             if obj.hasErrorMessage || text.isEmpty {
-                validation.append((text:text,error:obj.hasErrorMessage))
+                validation.append((text:text,error:obj.hasErrorMessage,field:obj))
             }
-
+            
+            
         }
+        
+    }
+    
+    func checkFormValidation() -> Bool {
+        getTextFields()
         if validation.isEmpty {
             return true
         } else {
