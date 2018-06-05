@@ -72,6 +72,8 @@ class FundosTableViewController: UITableViewController,NextView {
             return 60
         case 6:
             return 60
+        case countMore + 1:
+            return 80
         default:
             return 30
         }
@@ -85,7 +87,7 @@ class FundosTableViewController: UITableViewController,NextView {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         //11 + numberOfItens.count
-        return self.countMore + 1
+        return self.countMore + 2
     }
 
     
@@ -179,6 +181,8 @@ class FundosTableViewController: UITableViewController,NextView {
                 return cell
             }
         case self.count...self.countMore:
+            print(indexPath.row)
+            print(self.countMore)
             if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell {
 
                 if indexPath.row - self.count - 1 < s.downInfo.count {
@@ -188,8 +192,14 @@ class FundosTableViewController: UITableViewController,NextView {
                 cell.setLayout()
                 return cell
             }
-        //case data.count - 1
-        //redButtonCell
+        case self.countMore + 1 :
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "LargeButtonCell",for: indexPath) as? ButtonTableViewCell {
+                cell.title = "Investir"
+                cell.setBtnTitle()
+                return cell
+                
+            }
+            
         default:
             return UITableViewCell()
         }
