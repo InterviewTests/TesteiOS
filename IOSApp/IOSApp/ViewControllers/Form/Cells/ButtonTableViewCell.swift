@@ -23,7 +23,4 @@ class ButtonTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    @IBAction func sendBtnWasPressed(_ sender: UIButton) {
-        sender.animateButton()
-    }
 }

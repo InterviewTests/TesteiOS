@@ -6,11 +6,12 @@
 //  Copyright © 2018 Ana Beatriz Delavia Thomasi. All rights reserved.
 //
 
+import SkyFloatingLabelTextField
 import UIKit
 
 class FieldTableViewCell: UITableViewCell {
     
-    @IBOutlet var textField: UITextField!
+    @IBOutlet var textField: SkyFloatingLabelTextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()

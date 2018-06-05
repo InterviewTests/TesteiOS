@@ -24,31 +24,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RR3-Ya-S8K">
-                                <rect key="frame" x="0.0" y="611" width="188" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.79215686269999996" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
-                                <state key="normal" title="Investimentos">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="invstBtnWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PTG-mW-QyM"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="woM-sd-VYr">
-                                <rect key="frame" x="186" y="611" width="189" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.86666666670000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
-                                <state key="normal" title="Contato" backgroundImage="tabbar-unselected-state">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="contBtnWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E6Y-l9-Iaa"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="sbR-DS-Muf">
+                                <rect key="frame" x="0.0" y="611" width="375" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RR3-Ya-S8K">
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="56"/>
+                                        <color key="backgroundColor" red="0.79215686269999996" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                                        <state key="normal" title="Investimentos">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="invstBtnWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PTG-mW-QyM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="woM-sd-VYr">
+                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="56"/>
+                                        <color key="backgroundColor" red="0.86666666670000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                                        <state key="normal" title="Contato" backgroundImage="tabbar-unselected-state">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="contBtnWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E6Y-l9-Iaa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="Fda-8M-PFw"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="sbR-DS-Muf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0tS-x6-wTX"/>
+                            <constraint firstAttribute="trailing" secondItem="sbR-DS-Muf" secondAttribute="trailing" id="8eS-Kx-kL2"/>
+                            <constraint firstItem="sbR-DS-Muf" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="bqV-9O-oDL"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZX0-jU-5Ty"/>
@@ -70,7 +81,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xpH-um-gyA">
-                                <rect key="frame" x="0.0" y="63" width="375" height="548"/>
+                                <rect key="frame" x="0.0" y="47" width="375" height="548"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -255,36 +266,39 @@
                                                     <color key="textColor" red="0.4941176471" green="0.4941176471" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfH-CA-gdb">
-                                                    <rect key="frame" x="273" y="39" width="87" height="18"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="nwa-8U-oLp">
+                                                    <rect key="frame" x="232" y="29" width="127" height="18"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Va-WM-eSF">
+                                                            <rect key="frame" x="0.0" y="0.0" width="38.5" height="18"/>
+                                                            <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
+                                                            <color key="textColor" red="0.67450980392156867" green="0.67450980392156867" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CDI" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfH-CA-gdb">
+                                                            <rect key="frame" x="88.5" y="0.0" width="38.5" height="18"/>
+                                                            <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
+                                                            <color key="textColor" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="87" id="AF4-3E-QGV"/>
+                                                        <constraint firstAttribute="width" constant="127" id="lES-ei-JBf"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
-                                                    <color key="textColor" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Va-WM-eSF">
-                                                    <rect key="frame" x="179" y="39" width="86" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="86" id="QdY-u7-t5r"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
-                                                    <color key="textColor" red="0.67450980392156867" green="0.67450980392156867" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="1Va-WM-eSF" firstAttribute="top" secondItem="kiY-fE-caJ" secondAttribute="bottom" constant="18.5" id="8y1-ao-5Da"/>
-                                                <constraint firstAttribute="bottom" secondItem="1Va-WM-eSF" secondAttribute="bottom" constant="0.5" id="DPw-JT-m3W"/>
-                                                <constraint firstItem="kiY-fE-caJ" firstAttribute="leading" secondItem="m0b-tp-OhN" secondAttribute="leading" constant="15" id="IJd-wH-hfK"/>
-                                                <constraint firstItem="1Va-WM-eSF" firstAttribute="leading" secondItem="m0b-tp-OhN" secondAttribute="leading" constant="179" id="IKS-Kq-rj0"/>
-                                                <constraint firstAttribute="trailing" secondItem="kiY-fE-caJ" secondAttribute="trailing" constant="15" id="LIQ-CB-orz"/>
-                                                <constraint firstItem="kiY-fE-caJ" firstAttribute="top" secondItem="m0b-tp-OhN" secondAttribute="top" id="Mc9-LZ-x2K"/>
-                                                <constraint firstAttribute="trailing" secondItem="CfH-CA-gdb" secondAttribute="trailing" constant="15" id="Ncu-al-clT"/>
-                                                <constraint firstAttribute="bottom" secondItem="CfH-CA-gdb" secondAttribute="bottom" constant="0.5" id="XSf-Gi-iEH"/>
-                                                <constraint firstItem="CfH-CA-gdb" firstAttribute="top" secondItem="kiY-fE-caJ" secondAttribute="bottom" constant="18.5" id="aKi-X7-8Zs"/>
-                                                <constraint firstItem="1Va-WM-eSF" firstAttribute="top" secondItem="kiY-fE-caJ" secondAttribute="bottom" constant="18.5" id="gPd-Bs-hVr"/>
+                                                <constraint firstAttribute="trailing" secondItem="kiY-fE-caJ" secondAttribute="trailing" constant="15" id="0Ck-09-R9Q"/>
+                                                <constraint firstAttribute="bottom" secondItem="nwa-8U-oLp" secondAttribute="bottom" constant="10.5" id="FWg-wf-13R"/>
+                                                <constraint firstAttribute="bottom" secondItem="nwa-8U-oLp" secondAttribute="bottom" constant="10.5" id="KeJ-Qx-GhQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="nwa-8U-oLp" secondAttribute="trailing" constant="16" id="MeP-VA-V70"/>
+                                                <constraint firstItem="nwa-8U-oLp" firstAttribute="leading" secondItem="m0b-tp-OhN" secondAttribute="leading" constant="232" id="VTz-Ne-PUl"/>
+                                                <constraint firstItem="nwa-8U-oLp" firstAttribute="top" secondItem="kiY-fE-caJ" secondAttribute="bottom" constant="8.5" id="d49-Sq-tqG"/>
+                                                <constraint firstItem="kiY-fE-caJ" firstAttribute="leading" secondItem="m0b-tp-OhN" secondAttribute="leading" constant="15" id="eRR-hm-ye1"/>
+                                                <constraint firstItem="nwa-8U-oLp" firstAttribute="top" secondItem="kiY-fE-caJ" secondAttribute="bottom" constant="8.5" id="gDa-HS-4wU"/>
+                                                <constraint firstItem="kiY-fE-caJ" firstAttribute="top" secondItem="m0b-tp-OhN" secondAttribute="top" id="ijJ-hy-z7c"/>
+                                                <constraint firstItem="nwa-8U-oLp" firstAttribute="leading" secondItem="m0b-tp-OhN" secondAttribute="leading" constant="232" id="jid-Wl-9rN"/>
+                                                <constraint firstAttribute="trailing" secondItem="nwa-8U-oLp" secondAttribute="trailing" constant="16" id="rmn-OK-dBk"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -303,42 +317,41 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzJ-sY-prj">
                                                     <rect key="frame" x="15" y="5" width="172" height="13"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="172" id="9mc-lf-tR4"/>
+                                                        <constraint firstAttribute="width" constant="172" id="xOg-iQ-bed"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
                                                     <color key="textColor" red="0.67450980392156867" green="0.67450980392156867" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GB2-KU-FcK">
-                                                    <rect key="frame" x="273" y="5" width="87" height="13"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="dIu-r1-CgU">
+                                                    <rect key="frame" x="240" y="2" width="120" height="18"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOm-22-goG">
+                                                            <rect key="frame" x="0.0" y="0.0" width="35" height="18"/>
+                                                            <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GB2-KU-FcK">
+                                                            <rect key="frame" x="85" y="0.0" width="35" height="18"/>
+                                                            <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="87" id="ph5-LT-lZs"/>
+                                                        <constraint firstAttribute="width" constant="120" id="1xW-84-DLk"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOm-22-goG">
-                                                    <rect key="frame" x="189" y="5" width="86" height="13"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="86" id="07a-al-rhZ"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="yOm-22-goG" secondAttribute="bottom" constant="5.5" id="4SU-Ny-718"/>
-                                                <constraint firstAttribute="trailing" secondItem="GB2-KU-FcK" secondAttribute="trailing" constant="15" id="7SI-py-XBF"/>
-                                                <constraint firstItem="yOm-22-goG" firstAttribute="leading" secondItem="wzJ-sY-prj" secondAttribute="trailing" constant="2" id="QJO-YL-amp"/>
-                                                <constraint firstItem="GB2-KU-FcK" firstAttribute="top" secondItem="NkH-Rs-Rpc" secondAttribute="top" constant="5" id="S0M-db-aop"/>
-                                                <constraint firstItem="yOm-22-goG" firstAttribute="top" secondItem="NkH-Rs-Rpc" secondAttribute="top" constant="5" id="czG-Js-Zki"/>
-                                                <constraint firstAttribute="bottom" secondItem="GB2-KU-FcK" secondAttribute="bottom" constant="5.5" id="gmZ-d8-zBz"/>
-                                                <constraint firstItem="wzJ-sY-prj" firstAttribute="leading" secondItem="NkH-Rs-Rpc" secondAttribute="leading" constant="15" id="m0J-GA-4Ms"/>
-                                                <constraint firstAttribute="bottom" secondItem="wzJ-sY-prj" secondAttribute="bottom" constant="5.5" id="oHc-Up-kG9"/>
-                                                <constraint firstItem="yOm-22-goG" firstAttribute="leading" secondItem="wzJ-sY-prj" secondAttribute="trailing" constant="2" id="tbq-PA-EBa"/>
-                                                <constraint firstItem="wzJ-sY-prj" firstAttribute="top" secondItem="NkH-Rs-Rpc" secondAttribute="top" constant="5" id="yMx-K2-rIr"/>
+                                                <constraint firstAttribute="trailing" secondItem="dIu-r1-CgU" secondAttribute="trailing" constant="15" id="6t7-eP-l9f"/>
+                                                <constraint firstAttribute="bottom" secondItem="wzJ-sY-prj" secondAttribute="bottom" constant="5.5" id="GJK-7G-MFx"/>
+                                                <constraint firstItem="dIu-r1-CgU" firstAttribute="top" secondItem="NkH-Rs-Rpc" secondAttribute="top" constant="2" id="MyG-DO-Ahd"/>
+                                                <constraint firstItem="wzJ-sY-prj" firstAttribute="top" secondItem="NkH-Rs-Rpc" secondAttribute="top" constant="5" id="WC6-Ld-JpK"/>
+                                                <constraint firstItem="dIu-r1-CgU" firstAttribute="leading" secondItem="wzJ-sY-prj" secondAttribute="trailing" constant="53" id="XZS-Sm-ZJv"/>
+                                                <constraint firstAttribute="bottom" secondItem="dIu-r1-CgU" secondAttribute="bottom" constant="3.5" id="fmK-JL-uDq"/>
+                                                <constraint firstItem="wzJ-sY-prj" firstAttribute="leading" secondItem="NkH-Rs-Rpc" secondAttribute="leading" constant="15" id="kWB-qz-rLU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -400,6 +413,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="FZ4-TX-hmZ" secondAttribute="trailing" constant="188" id="2s5-lx-IEX"/>
                                                 <constraint firstAttribute="bottom" secondItem="2pH-Ji-HlD" secondAttribute="bottom" constant="5.5" id="DvH-Mk-YV7"/>
                                                 <constraint firstAttribute="bottom" secondItem="FZ4-TX-hmZ" secondAttribute="bottom" constant="5.5" id="T64-od-OUV"/>
                                                 <constraint firstItem="FZ4-TX-hmZ" firstAttribute="leading" secondItem="VDM-W1-KPt" secondAttribute="leading" constant="15" id="bfC-RW-8kR"/>
@@ -453,19 +467,19 @@
                                             <outlet property="DINameLbl" destination="ar8-O0-G4V" id="BkF-aa-KRy"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InvstBtnTableViewCell" rowHeight="102" id="HME-WP-eCb" customClass="InvstBtnTableViewCell" customModule="IOSApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="454" width="375" height="102"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InvstBtnTableViewCell" rowHeight="96" id="HME-WP-eCb" customClass="InvstBtnTableViewCell" customModule="IOSApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="454" width="375" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HME-WP-eCb" id="IWC-ZL-a7b">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="101.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="95.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Elk-PL-VUH">
-                                                    <rect key="frame" x="30" y="25" width="315" height="50"/>
+                                                    <rect key="frame" x="30" y="22" width="315" height="50"/>
                                                     <color key="backgroundColor" red="0.85490196078431369" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="b3p-ip-dy2"/>
-                                                        <constraint firstAttribute="width" constant="315" id="kjN-2U-IWw"/>
+                                                        <constraint firstAttribute="height" constant="50" id="gBV-gB-Ckj"/>
+                                                        <constraint firstAttribute="width" constant="315" id="jNR-bh-mqy"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
                                                     <state key="normal" title="Investir">
@@ -482,10 +496,10 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Elk-PL-VUH" firstAttribute="leading" secondItem="IWC-ZL-a7b" secondAttribute="leading" constant="30" id="41a-h2-Ewb"/>
-                                                <constraint firstAttribute="bottom" secondItem="Elk-PL-VUH" secondAttribute="bottom" constant="26.5" id="We5-Cc-8Wm"/>
-                                                <constraint firstItem="Elk-PL-VUH" firstAttribute="top" secondItem="IWC-ZL-a7b" secondAttribute="top" constant="25" id="iqg-6y-S5J"/>
-                                                <constraint firstAttribute="trailing" secondItem="Elk-PL-VUH" secondAttribute="trailing" constant="30" id="xHi-KB-qbs"/>
+                                                <constraint firstAttribute="bottom" secondItem="Elk-PL-VUH" secondAttribute="bottom" constant="23.5" id="6sz-HR-PcR"/>
+                                                <constraint firstItem="Elk-PL-VUH" firstAttribute="leading" secondItem="IWC-ZL-a7b" secondAttribute="leading" constant="30" id="XDe-re-SMu"/>
+                                                <constraint firstItem="Elk-PL-VUH" firstAttribute="top" secondItem="IWC-ZL-a7b" secondAttribute="top" constant="22" id="qmp-3u-Eis"/>
+                                                <constraint firstAttribute="trailing" secondItem="Elk-PL-VUH" secondAttribute="trailing" constant="30" id="uU7-2k-490"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -561,6 +575,9 @@
                                                         <constraint firstAttribute="height" constant="19" id="xbh-Fy-Rhm"/>
                                                     </constraints>
                                                     <state key="normal" image="unchecked"/>
+                                                    <connections>
+                                                        <action selector="checkBoxWasPressed:" destination="iv2-Xr-weq" eventType="touchUpInside" id="bhT-6p-9UN"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JR-w2-nWM">
                                                     <rect key="frame" x="59" y="24" width="301" height="21"/>
@@ -607,47 +624,50 @@
                                             <outlet property="imageImg" destination="0fc-ir-VaD" id="UyH-Vp-uAu"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FieldTableViewCell" rowHeight="91" id="aom-HY-gG6" customClass="FieldTableViewCell" customModule="IOSApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="273" width="375" height="91"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FieldTableViewCell" rowHeight="66" id="aom-HY-gG6" customClass="FieldTableViewCell" customModule="IOSApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="273" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aom-HY-gG6" id="WQu-Ik-hQV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nome" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dc6-M0-QAx" customClass="TextFieldFloatingPlaceholder" customModule="TextFieldFloatingPlaceholder">
-                                                    <rect key="frame" x="15" y="11" width="345" height="69"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h25-bt-Hfl" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                                    <rect key="frame" x="30" y="17" width="315" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="69" id="bpS-0Z-QAq"/>
+                                                        <constraint firstAttribute="width" constant="315" id="emL-lW-w8M"/>
                                                     </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textFieldChanged:" destination="iv2-Xr-weq" eventType="editingChanged" id="FGn-yj-smX"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="dc6-M0-QAx" firstAttribute="leading" secondItem="WQu-Ik-hQV" secondAttribute="leadingMargin" id="JcO-ye-0uc"/>
-                                                <constraint firstItem="dc6-M0-QAx" firstAttribute="trailing" secondItem="WQu-Ik-hQV" secondAttribute="trailingMargin" id="aQE-VM-bD4"/>
-                                                <constraint firstItem="dc6-M0-QAx" firstAttribute="bottom" secondItem="WQu-Ik-hQV" secondAttribute="bottomMargin" id="bHN-ES-R4b"/>
-                                                <constraint firstItem="dc6-M0-QAx" firstAttribute="top" secondItem="WQu-Ik-hQV" secondAttribute="topMargin" id="qfp-1f-dBB"/>
+                                                <constraint firstAttribute="trailing" secondItem="h25-bt-Hfl" secondAttribute="trailing" constant="30" id="FHk-wK-7L6"/>
+                                                <constraint firstAttribute="bottom" secondItem="h25-bt-Hfl" secondAttribute="bottom" constant="18.5" id="eBP-Xk-nvV"/>
+                                                <constraint firstItem="h25-bt-Hfl" firstAttribute="top" secondItem="WQu-Ik-hQV" secondAttribute="top" constant="17" id="f9f-da-Ckg"/>
+                                                <constraint firstItem="h25-bt-Hfl" firstAttribute="leading" secondItem="WQu-Ik-hQV" secondAttribute="leading" constant="30" id="ofm-Ur-KGI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="textField" destination="dc6-M0-QAx" id="yVy-Th-UPl"/>
+                                            <outlet property="textField" destination="h25-bt-Hfl" id="VAd-Gy-t9q"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ButtonTableViewCell" rowHeight="123" id="G9C-Ag-Dik" customClass="ButtonTableViewCell" customModule="IOSApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="364" width="375" height="123"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ButtonTableViewCell" rowHeight="106" id="G9C-Ag-Dik" customClass="ButtonTableViewCell" customModule="IOSApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="339" width="375" height="106"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G9C-Ag-Dik" id="7yc-mc-5HS">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="122.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="105.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPa-qM-i1s">
-                                                    <rect key="frame" x="30" y="36" width="315" height="50"/>
+                                                    <rect key="frame" x="30" y="27" width="315" height="50"/>
                                                     <color key="backgroundColor" red="0.85490196080000003" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="315" id="8Vr-f0-AHb"/>
-                                                        <constraint firstAttribute="height" constant="50" id="WUK-2M-ZLw"/>
+                                                        <constraint firstAttribute="height" constant="50" id="ZDU-0r-a8k"/>
+                                                        <constraint firstAttribute="width" constant="315" id="zZH-EZ-jQP"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
                                                     <state key="normal" title="Enviar">
@@ -659,16 +679,15 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="sendBtnWasPressed:" destination="G9C-Ag-Dik" eventType="touchUpInside" id="hDA-1B-oRK"/>
-                                                        <segue destination="l2L-hM-sE8" kind="presentation" id="Xy5-Ru-JNK"/>
+                                                        <action selector="sendBtnWasPressed:" destination="iv2-Xr-weq" eventType="touchUpInside" id="34L-Mv-Xcd"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="LPa-qM-i1s" secondAttribute="bottom" constant="36.5" id="5hf-yP-vqx"/>
-                                                <constraint firstItem="LPa-qM-i1s" firstAttribute="top" secondItem="7yc-mc-5HS" secondAttribute="top" constant="36" id="USi-YP-axU"/>
-                                                <constraint firstAttribute="trailing" secondItem="LPa-qM-i1s" secondAttribute="trailing" constant="30" id="j08-95-Z4V"/>
-                                                <constraint firstItem="LPa-qM-i1s" firstAttribute="leading" secondItem="7yc-mc-5HS" secondAttribute="leading" constant="30" id="wJZ-ka-JZH"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="LPa-qM-i1s" secondAttribute="trailing" constant="15" id="4Zo-Ry-dOw"/>
+                                                <constraint firstItem="LPa-qM-i1s" firstAttribute="top" secondItem="7yc-mc-5HS" secondAttribute="topMargin" constant="16" id="CNl-mk-1lR"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="LPa-qM-i1s" secondAttribute="bottom" constant="18" id="Tlu-oc-fst"/>
+                                                <constraint firstItem="LPa-qM-i1s" firstAttribute="leading" secondItem="7yc-mc-5HS" secondAttribute="leadingMargin" constant="15" id="Xtk-wP-IDr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -687,6 +706,7 @@
                     </view>
                     <connections>
                         <outlet property="formTableView" destination="gda-0v-WZw" id="rVU-Uw-GfO"/>
+                        <segue destination="l2L-hM-sE8" kind="presentation" identifier="successSegue" id="6Zl-P4-8Yn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjG-in-1go" userLabel="First Responder" sceneMemberID="firstResponder"/>
