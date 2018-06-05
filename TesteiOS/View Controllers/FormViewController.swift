@@ -18,9 +18,13 @@ enum Type :Int {
 }
 
 
-class FormViewController: UIViewController {
+class FormViewController: UIViewController, NextView {
+
     
    var apiFetcher: Fetcher?
+   var formDecoder:FormDecoder?
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +37,19 @@ class FormViewController: UIViewController {
                 return
             }
             
-            let decoder = FormDecoder(data:data)
+            self.formDecoder = FormDecoder(data:data)
             
             
-            decoder.decode()
-        self.layoutTextFields(list:decoder.initializedFormObjects)
-
+            self.formDecoder?.decode()
+            
+            
+            guard let decodedObjs = self.formDecoder?.initializedFormObjects else {
+                return
+            }
+            
+            self.layoutTextFields(list:decodedObjs)
+            self.uiButtonTap(fromList:decodedObjs)
+            
         }
         
     }
@@ -55,14 +66,23 @@ class FormViewController: UIViewController {
         self.view.addGestureRecognizer(tapGesture)
         
     }
+    func uiButtonTap(fromList list:[(spacing:Double,object:Any)]) {
+        for element in list {
+            guard let btn = element.object as? RedButton else {
+                continue
+            }
+            btn.delegate = self
+        }
+    }
     
     
     func getAllViews(fromList list:[(spacing:Double,object:Any)]) -> [String: Any] {
         
         var views: [String: Any] = [:]
-        for (index,element) in list.enumerated() {
-            views["addView\(index)"] = element.object
-
+        for i in 0..<list.count {
+            print(list[i].object)
+            views["addView\(i)"] = list[i].object
+            
         }
         return views
     }
@@ -71,7 +91,7 @@ class FormViewController: UIViewController {
     func appendFields(vertical:String, views:Array<(spacing:Double,object:Any)>) -> String{
         var verticalAppend = vertical
         for (index,element) in views.enumerated() {
-            verticalAppend.append("-\(element.spacing)-[addView\(index)]")
+            verticalAppend.append("-\(element.spacing)-[addView\(index + 1)]")
         }
         return verticalAppend
     }
@@ -91,6 +111,7 @@ class FormViewController: UIViewController {
     }
     
     func layoutTextFields(list:[(spacing:Double,object:Any)]) {
+        
         var allConstraints: [NSLayoutConstraint] = []
         let views = getAllViews(fromList:list)
         
@@ -98,14 +119,13 @@ class FormViewController: UIViewController {
             return
         }
         obj.translatesAutoresizingMaskIntoConstraints = false
-        obj.isUserInteractionEnabled = false
-        
+       
         var vertical = "V:|-\(list[0].spacing)-[addView0]"
         var objs = list
         objs.remove(at: 0)
         objs.remove(at: list.count-2)
         vertical =  appendFields(vertical: vertical, views:objs)
-        vertical.append("-\(list[list.count-1].spacing)-[addView\(list.count-1)(50)]")
+        vertical.append("-\(list[list.count-1].spacing )-[addView\(list.count-1)(50)]")
         
         allConstraints += addHorizontalConstraints(fromList: list, constraints: allConstraints, views: views)
         
@@ -115,63 +135,25 @@ class FormViewController: UIViewController {
         NSLayoutConstraint.activate(allConstraints)
         print(vertical)
 
-//        NSLayoutConstraint.activate(allConstraints)
-//
-//        obj.translatesAutoresizingMaskIntoConstraints = false
-//        self.view.addSubview(obj)
-//        let view = ["addView":obj]
-//        let spacing = list[0].spacing
-//        print(obj)
-//
-//        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[addView]-40-|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: view)
-//
-//        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-\(spacing)-[addView]", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: view)
-
-//        allConstraints += verticalConstraints
-
-        
-        
-        
-//        view.addConstraints(horizontalConstraints)
-//        view.addConstraints(verticalConstraints)
-//        uiNameTextField?.layoutTextField(configText: self.name)
-//        uiEmailTextField?.layoutTextField(configText: self.email)
-//        uiPhoneTextField?.layoutTextField(configText: self.phone)
-//
 
     }
     
-    
-    @IBAction func recordMailBtnTap(_ sender: Checkbox) {
-        sender.setSelected()
-    }
-    
-//    @IBAction func sendBtnTap(_ sender: Any) {
-//
-//        print(verifyFormFilling())
-//        if (verifyFormFilling()) {
-//            dismissKeyboard()
-//            self.performSegue(withIdentifier: "sucess", sender: self)
-//        }
-//    }
-//
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
 
-//    func verifyFormFilling() -> Bool {
-//
-//        guard let name = uiNameTextField,
-//              let email = uiEmailTextField,
-//              let phone = uiPhoneTextField else {
-//            return false
-//        }
-//
-//        if  name.hasErrorMessage || name.verifyEmptiness() || email.hasErrorMessage || email.verifyEmptiness() ||  phone.hasErrorMessage || phone.verifyEmptiness() {
-//            return false
-//        }
-//
-//        return true
-//    }
+    
+    func loadNewScreen(controller: UIViewController?) {
+        if controller == nil {
+            if let validation = formDecoder {
+                if validation.checkFormValidation() {
+                self.performSegue(withIdentifier: "sucess", sender: self)
+                
+                }
+            }
+        }
+    }
+    
+    
 }
 

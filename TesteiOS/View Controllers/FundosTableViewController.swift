@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class FundosTableViewController: UITableViewController,LoadWebView {
+class FundosTableViewController: UITableViewController,NextView {
     
     var data:[Any] = []
     let disposeBag = DisposeBag()
@@ -39,7 +39,7 @@ class FundosTableViewController: UITableViewController,LoadWebView {
                 let cM  = self.screen?.downInfo.count else {
                 return
             }
-            self.count = c + 13
+            self.count = c + 12
             self.countMore = self.count + cM
             print("COUNTTT")
             print(self.count)
@@ -57,7 +57,10 @@ class FundosTableViewController: UITableViewController,LoadWebView {
             uiTableView?.register(UINib(nibName: "TextCell", bundle: nil), forCellReuseIdentifier: "TextCell")
             uiTableView?.register(UINib(nibName: "HeaderLabelsCell", bundle: nil), forCellReuseIdentifier: "HeaderLabelsCell")
             uiTableView?.register(UINib(nibName: "LargeButtonCell", bundle: nil), forCellReuseIdentifier: "LargeButtonCell")
+            
         }
+
+    
 
     // MARK: - Table view data source
 
@@ -66,13 +69,12 @@ class FundosTableViewController: UITableViewController,LoadWebView {
         case 1:
             return 80
         case 4:
-            return 80
+            return 60
         case 6:
             return 60
         default:
             return 30
         }
-
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -93,95 +95,112 @@ class FundosTableViewController: UITableViewController,LoadWebView {
         }
         switch indexPath.row {
         case 0:
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath) as? TitleTableViewCell
-            cell?.model = TitleCellModel(screen)
-            cell?.title = 0
-            cell?.setLayout()
-            return cell!
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath) as? TitleTableViewCell {
+                cell.model = TitleCellModel(screen)
+                cell.title = 0
+                cell.setLayout()
+                return cell
+            }
         case 1:
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "NameLabelCell",for: indexPath) as? NameTableViewCell
-            cell?.model = NameCellModel(screen)
-            cell?.setLayout()
-            return cell!
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "NameLabelCell",for: indexPath) as? NameTableViewCell {
+                cell.model = NameCellModel(screen)
+                cell.setLayout()
+                return cell
+            }
         case 2:
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "SeparatorCell",for: indexPath)
-            return cell!
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "SeparatorCell",for: indexPath) {
+            return cell
+            }
         case 3:
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath) as? TitleTableViewCell
-            cell?.model = TitleCellModel(screen)
-            cell?.title = 1
-            cell?.setLayout()
-            return cell!
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath) as? TitleTableViewCell {
+                cell.model = TitleCellModel(screen)
+                cell.title = 1
+                cell.setLayout()
+                return cell
+            }
         case 4:
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TextCell",for: indexPath) as? TextTableViewCell
-                cell?.model = TextCellModel(screen)
-                cell?.setLayout()
-            return cell!
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TextCell",for: indexPath) as? TextTableViewCell {
+                cell.model = TextCellModel(screen)
+                cell.setLayout()
+                return cell
+            }
         case 5:
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath) as? TitleTableViewCell
-            cell?.model = TitleCellModel(screen)
-            cell?.title = 2
-            cell?.setLayout()
-            return cell!
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath) as? TitleTableViewCell {
+                cell.model = TitleCellModel(screen)
+                cell.title = 2
+                cell.setLayout()
+                return cell
+            }
         case 6:
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "RiskInvestimentCell",for: indexPath) as? RiskTableViewCell
-            cell?.model = RiskCellModel(screen)
-            cell?.setLayout()
-            return cell!
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "RiskInvestimentCell",for: indexPath) as? RiskTableViewCell {
+                cell.model = RiskCellModel(screen)
+                cell.setLayout()
+                return cell
+            }
         case 7:
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath) as? TitleTableViewCell
-            cell?.model = TitleCellModel(screen)
-            cell?.title = 3
-            cell?.setLayout()
-            return cell!
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "TitleLabelCell",for: indexPath) as? TitleTableViewCell {
+                cell.model = TitleCellModel(screen)
+                cell.title = 3
+                cell.setLayout()
+            return cell
+            }
         case 8:
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "HeaderLabelsCell",for: indexPath) as? HeaderLabelsTableViewCell
-            return cell!
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "HeaderLabelsCell",for: indexPath) as? HeaderLabelsTableViewCell {
+                return cell
+            }
         case 9:
-            
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell
-            cell?.model = ThreeLabelCellModel("No mês",String(describing: s.moreInfo.month.fund).percentage(),String(describing: s.moreInfo.month.CDI).percentage(),nil)
-            cell?.setLayout()
-            return cell!
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell {
+                cell.model = ThreeLabelCellModel("No mês",String(describing: s.moreInfo.month.fund).percentage(),String(describing: s.moreInfo.month.CDI).percentage(),nil)
+                cell.setLayout()
+                return cell
+            }
         case 10:
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell
-            cell?.model = ThreeLabelCellModel("No ano",String(describing: s.moreInfo.year.fund).percentage(),String(describing: s.moreInfo.year.CDI).percentage(),nil)
-            cell?.setLayout()
-            return cell!
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell {
+                cell.model = ThreeLabelCellModel("No ano",String(describing: s.moreInfo.year.fund).percentage(),String(describing: s.moreInfo.year.CDI).percentage(),nil)
+                cell.setLayout()
+                return cell
+            }
         case 11:
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell
-            cell?.model = ThreeLabelCellModel("12 meses",String(describing: s.moreInfo.allMonths.fund).percentage(),String(describing: s.moreInfo.allMonths.CDI).percentage(),nil)
-            cell?.setLayout()
-            return cell!
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell {
+                cell.model = ThreeLabelCellModel("12 meses",String(describing: s.moreInfo.allMonths.fund).percentage(),String(describing: s.moreInfo.allMonths.CDI).percentage(),nil)
+                cell.setLayout()
+                return cell
+            }
         case 12:
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "SeparatorCell",for: indexPath)
-            return cell!
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "SeparatorCell",for: indexPath) {
+            return cell
+            }
         case 13...self.count:
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell
-            if indexPath.row - 13 < s.info.count {
-            cell?.model = ThreeLabelCellModel(s.info[indexPath.row - 13].name,"",s.info[indexPath.row - 13].data,nil)
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell {
+                if indexPath.row - 13 < s.info.count {
+                    cell.model = ThreeLabelCellModel(s.info[indexPath.row - 13].name,"",s.info[indexPath.row - 13].data,nil)
+                }
+                cell.setLayout()
+                return cell
             }
-            cell?.setLayout()
-            return cell!
         case self.count...self.countMore:
-            let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell
+            if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell {
 
-            if indexPath.row - self.count - 1 < s.downInfo.count {
-                cell?.model = ThreeLabelCellModel(s.downInfo[indexPath.row - self.count - 1].name,"",s.downInfo[indexPath.row - self.count - 1].data,"https://www.google.com")
+                if indexPath.row - self.count - 1 < s.downInfo.count {
+                    cell.model = ThreeLabelCellModel(s.downInfo[indexPath.row - self.count - 1].name,"",s.downInfo[indexPath.row - self.count - 1].data,"https://www.google.com")
+                }
+                cell.delegate = self
+                cell.setLayout()
+                return cell
             }
-            cell?.delegate = self
-            cell?.setLayout()
-            return cell!
-        
         //case data.count - 1
         //redButtonCell
         default:
             return UITableViewCell()
         }
-        
+       return UITableViewCell()
     }
-    func loadNewScreen(controller: UIViewController) {
-        self.present(controller, animated: true, completion: nil)
+    
+    func loadNewScreen(controller: UIViewController?) {
+        guard let c = controller else {
+            return
+        }
+        self.present(c, animated: true, completion: nil)
     }
     
 }

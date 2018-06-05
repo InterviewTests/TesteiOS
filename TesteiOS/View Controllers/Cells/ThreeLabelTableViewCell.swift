@@ -9,8 +9,8 @@
 import UIKit
 import SafariServices
 
-protocol LoadWebView: NSObjectProtocol {
-    func loadNewScreen(controller: UIViewController) -> Void;
+protocol NextView: NSObjectProtocol {
+    func loadNewScreen(controller: UIViewController?) -> Void;
 }
 
 class ThreeLabelTableViewCell: UITableViewCell {
@@ -21,11 +21,10 @@ class ThreeLabelTableViewCell: UITableViewCell {
     
     @IBOutlet weak var uiThirdLabel: UILabel?
     
-    
     @IBOutlet weak var uiDownloadBtn: UIButton?
     
     var urlString = "https://www.google.com.br"
-    weak var delegate: LoadWebView?
+    weak var delegate: NextView?
     var model:ThreeLabelCellModel = ThreeLabelCellModel(nil,nil,nil,nil)
     override func awakeFromNib() {
         super.awakeFromNib()

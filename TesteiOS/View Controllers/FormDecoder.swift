@@ -30,6 +30,7 @@ class FormDecoder {
                     if let show = object.show {
                         for i in array.cells {
                             if (i.id == show) {
+
                                 formObjects.append((i.topSpacing,i.type,text:i.message))
                             }
                         }
@@ -50,28 +51,26 @@ class FormDecoder {
     func assembleForm() {
         
         for i in formObjects {
+            print(i.type)
             switch i.type {
                 case Type.field.rawValue:
-                        print("text-field")
                         let textField = SkyFloatingLabelTextField()
-
                         textField.layoutTextField(configText: i.text)
                         initializedFormObjects.append((spacing:i.spacing,object:textField))
+                
                 case Type.text.rawValue:
-                        print("text label")
                         let label = UILabel()
                         label.numberOfLines = 0
                         label.text = i.text
+                        label.font = UIFont(name:"DINPro", size: 16)
                         initializedFormObjects.append((spacing: i.spacing,object:label))
                 case Type.image.rawValue:
                         print("nothing")
                 case Type.checkbox.rawValue:
                         let button = Checkbox()
-                        button.setTitle(i.text, for: UIControlState.normal)
-                        button.setSelected()
-
+                        button.setTitle("   " + i.text, for: UIControlState.normal)
+                        
                         initializedFormObjects.append((spacing: i.spacing,object:button))
-                
                 case Type.send.rawValue:
                         let button = RedButton()
                         button.setTitle(i.text, for: UIControlState.normal)
@@ -79,6 +78,30 @@ class FormDecoder {
             default:
                 print("none")
             }
+        }
+        
+    }
+    
+    
+    func checkFormValidation() -> Bool {
+        var validation:Array<(text:String,error:Bool)> = []
+        for i in initializedFormObjects {
+            guard let obj = i.object as? SkyFloatingLabelTextField else {
+                continue
+        }
+            guard let text = obj.text else {
+                return false
+            }
+            
+            if obj.hasErrorMessage || text.isEmpty {
+                validation.append((text:text,error:obj.hasErrorMessage))
+            }
+
+        }
+        if validation.isEmpty {
+            return true
+        } else {
+            return false
         }
         
     }
