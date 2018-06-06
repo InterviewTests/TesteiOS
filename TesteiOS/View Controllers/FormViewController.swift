@@ -25,13 +25,23 @@ class FormViewController: UIViewController, NextView {
    var formDecoder:FormDecoder?
     
     
+   // MARK: - ViewControllerDelegates
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         downloadData()
     }
     
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+        
+    }
+    
+    
+    // MARK: - DownloadData
     
     func downloadData() {
         apiFetcher?.fetch(request: Router.Form.get(params: "").asURLRequest()) { data in
@@ -55,17 +65,7 @@ class FormViewController: UIViewController, NextView {
         }
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-      //  downloadData()
-    }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        self.view.addGestureRecognizer(tapGesture)
-        
-    }
+// MARK: - ConfigureLayout
     func uiButtonTap(fromList list:[(spacing:Double,object:Any)]) {
         for element in list {
             guard let btn = element.object as? RedButton else {
@@ -143,6 +143,7 @@ class FormViewController: UIViewController, NextView {
     }
 
     
+    // MARK: - NextViewProtocol
     func loadNewScreen(controller: UIViewController?) {
         if controller == nil {
             if let validation = formDecoder {
