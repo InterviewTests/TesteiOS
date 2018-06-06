@@ -8,9 +8,6 @@
 
 import Foundation
 
-
-
-
 class Form:Decodable {
     let id:Int
     let type:Int
