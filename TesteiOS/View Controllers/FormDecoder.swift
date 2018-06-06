@@ -10,10 +10,12 @@ import Foundation
 import SkyFloatingLabelTextField
 
 
-class FormDecoder {
+class FormDecoder :HideField {
+
+    
     let data:Data
-    var formObjects:[(spacing:Double,type:Int,text:String)] = []
-    var initializedFormObjects:[(spacing:Double,object:Any)] = []
+    var formObjects:[(spacing:Double,type:Int,text:String,id:Int,show:Int?)] = []
+    var initializedFormObjects:[(spacing:Double,id:Int?,object:Any)] = []
     var validation:Array<(text:String,error:Bool,field:SkyFloatingLabelTextField)> = []
     
     init(data:Data) {
@@ -28,7 +30,7 @@ class FormDecoder {
             debugPrint(array)
             for object in array.cells {
 //                if !object.hidden {
-                    formObjects.append((object.topSpacing,object.type,text:object.message))
+                formObjects.append((object.topSpacing,object.type,text:object.message,id:object.id,show:object.show))
 //                    if let show = object.show {
 //                        for i in array.cells {
 //                            if (i.id == show) {
@@ -58,25 +60,26 @@ class FormDecoder {
                 case Type.field.rawValue:
                         let textField = SkyFloatingLabelTextField()
                         textField.layoutTextField(configText: i.text)
-                        initializedFormObjects.append((spacing:i.spacing,object:textField))
-                
+                        initializedFormObjects.append((spacing:i.spacing,id:i.id,object:textField))
                 case Type.text.rawValue:
                         let label = UILabel()
                         label.numberOfLines = 0
                         label.text = i.text
                         label.font = UIFont(name:"DINPro", size: 16)
-                        initializedFormObjects.append((spacing: i.spacing,object:label))
+                        initializedFormObjects.append((spacing: i.spacing,id:i.id,object:label))
                 case Type.image.rawValue:
                         print("nothing")
                 case Type.checkbox.rawValue:
-                        let button = Checkbox()
+                    
+                        let button = Checkbox(show:i.show)
+                    
                         button.setTitle("   " + i.text, for: UIControlState.normal)
-                        
-                        initializedFormObjects.append((spacing: i.spacing,object:button))
+                        button.delegate = self
+                        initializedFormObjects.append((spacing: i.spacing,id:i.id,object:button))
                 case Type.send.rawValue:
                         let button = RedButton()
                         button.setTitle(i.text, for: UIControlState.normal)
-                        initializedFormObjects.append((spacing:i.spacing,object:button))
+                        initializedFormObjects.append((spacing:i.spacing,id:i.id,object:button))
             default:
                 print("none")
             }
@@ -94,10 +97,14 @@ class FormDecoder {
                 continue
             }
             
-            if obj.hasErrorMessage || text.isEmpty {
+            guard let view = i.object as? UIView else {
+                continue
+            }
+            if !view.isHidden {
+            if obj.hasErrorMessage || text.isEmpty  {
                 validation.append((text:text,error:obj.hasErrorMessage,field:obj))
             }
-            
+            }
             
         }
         
@@ -112,4 +119,20 @@ class FormDecoder {
         }
         
     }
+    func hideField(shouldHide: Bool, field: Int?) {
+        guard let fieldToShow = field else {
+            return
+        }
+        for i in initializedFormObjects {
+            if(fieldToShow == i.id) {
+                guard let view =  i.object as? UIView else {
+                    continue
+                }
+                view.isHidden = shouldHide
+            }
+        }
+        
+
+    }
+    
 }
