@@ -24,7 +24,6 @@ class InvestDecoder {
             return investScreen.screen
             
         } catch {
-            //  print(data.description)
             print(error)
             debugPrint("Error occurred")
         }

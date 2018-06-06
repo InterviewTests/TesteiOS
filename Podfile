@@ -12,3 +12,9 @@ target 'TesteiOS' do
 
 
 end
+
+target 'TesteiOSTests' do
+
+	  pod 'SkyFloatingLabelTextField'
+
+end
