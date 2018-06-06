@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import RxSwift
+
 
 class FundosTableViewController: UITableViewController,NextView {
     
     var data:[Any] = []
-    let disposeBag = DisposeBag()
     var apiFetcher: Fetcher?
     var screen:Screen?
     var count:Int = 99
