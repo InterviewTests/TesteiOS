@@ -29,7 +29,7 @@ class FormViewController: UIViewController, UITableViewDataSource, UITextFieldDe
                 self.formTableView.reloadData()
             }
         }
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(UIInputViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
@@ -225,8 +225,8 @@ class FormViewController: UIViewController, UITableViewDataSource, UITextFieldDe
         }
         
     }
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         
-        view.endEditing(true)
+        formTableView.endEditing(true)
     }
 }
