@@ -32,8 +32,6 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate {
             
             switch self.accessibilityLabel {
             case "Nome Completo"?:
-                print(text)
-                print(string)
                 if(text.count + string.count == 0) {
                     self.errorMessage = "Campo vazio"
                 } else {
@@ -41,9 +39,6 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate {
                 }
                 
             case "Email"?:
-                
-                print(text)
-                print(string)
                 if(text.count + string.count > 3) {
                     if(text.contains("@") || string.contains("@"))  {
                         self.errorMessage = ""
@@ -80,7 +75,6 @@ extension SkyFloatingLabelTextField: UITextFieldDelegate {
         
         // Remove any character that is not a number
         let numbersOnly = sourcePhoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-        print(numbersOnly)
         let length = numbersOnly.count
         
         // Check for supported phone number length

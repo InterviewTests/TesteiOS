@@ -27,7 +27,6 @@ class FormDecoder :HideField {
         let decoder = JSONDecoder()
         do {
             let array = try decoder.decode(FormArray.self, from: self.data)
-            debugPrint(array)
             for object in array.cells {
 //                if !object.hidden {
                 formObjects.append((object.topSpacing,object.type,text:object.message,id:object.id,show:object.show))
@@ -45,9 +44,7 @@ class FormDecoder :HideField {
 //            }
             assembleForm()
         } catch {
-            //  print(data.description)
-            print(error)
-            debugPrint("Error occurred")
+            print("Error occurred")
         }
     }
     
@@ -55,7 +52,6 @@ class FormDecoder :HideField {
     func assembleForm() {
         
         for i in formObjects {
-            print(i.type)
             switch i.type {
                 case Type.field.rawValue:
                         let textField = SkyFloatingLabelTextField()

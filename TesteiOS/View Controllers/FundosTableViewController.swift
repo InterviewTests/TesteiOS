@@ -43,8 +43,6 @@ class FundosTableViewController: UITableViewController,NextView {
             }
             self.count = c + 12
             self.countMore = self.count + cM
-            print("COUNTTT")
-            print(self.count)
             self.uiTableView?.reloadData()
             
         }
@@ -183,8 +181,6 @@ class FundosTableViewController: UITableViewController,NextView {
                 return cell
             }
         case self.count...self.countMore:
-            print(indexPath.row)
-            print(self.countMore)
             if let cell = uiTableView?.dequeueReusableCell(withIdentifier: "ThreeLabelTableViewCell",for: indexPath) as? ThreeLabelTableViewCell {
 
                 if indexPath.row - self.count - 1 < s.downInfo.count {

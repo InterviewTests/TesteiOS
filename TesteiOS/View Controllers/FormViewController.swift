@@ -45,7 +45,6 @@ class FormViewController: UIViewController, NextView {
     
     func downloadData() {
         apiFetcher?.fetch(request: Router.Form.get(params: "").asURLRequest()) { data in
-            print(data)
             
             guard let data = data as? Data else {
                 print("Error: No data to decode")
@@ -80,7 +79,6 @@ class FormViewController: UIViewController, NextView {
         
         var views: [String: Any] = [:]
         for i in 0..<list.count {
-            print(list[i].object)
             views["addView\(i)"] = list[i].object
             
         }

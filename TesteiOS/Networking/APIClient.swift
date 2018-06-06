@@ -40,7 +40,6 @@ class APIClient:Networking {
     func request(request:URLRequest, _ dataResponse: @escaping (Any?) -> ()) {
         
             Alamofire.request(request).responseData { response in
-                print(response)
                 if let json = response.result.value {
                     let result = json
                     dataResponse(result)

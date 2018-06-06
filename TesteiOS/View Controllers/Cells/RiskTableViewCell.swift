@@ -22,7 +22,6 @@ class RiskTableViewCell: UITableViewCell {
     }
     
     func setLayout() {
-        print(model.risk)
        
 //       1 a 5
 //       0.5 a 1.5
