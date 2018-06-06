@@ -84,13 +84,11 @@ class FundosTableViewController: UITableViewController,NextView {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        //11 + numberOfItens.count
+
         return self.countMore + 2
     }
 
@@ -210,8 +208,7 @@ class FundosTableViewController: UITableViewController,NextView {
        return UITableViewCell()
     }
     
-// MARK: - DownloadButtonDelegate
-    
+// MARK: - NextViewProtocol
     
     func loadNewScreen(controller: UIViewController?) {
         guard let c = controller else {

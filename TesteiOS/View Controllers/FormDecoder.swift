@@ -27,20 +27,20 @@ class FormDecoder {
             let array = try decoder.decode(FormArray.self, from: self.data)
             debugPrint(array)
             for object in array.cells {
-                if !object.hidden {
+//                if !object.hidden {
                     formObjects.append((object.topSpacing,object.type,text:object.message))
-                    if let show = object.show {
-                        for i in array.cells {
-                            if (i.id == show) {
-
-                                formObjects.append((i.topSpacing,i.type,text:i.message))
-                            }
-                        }
-                    }
+//                    if let show = object.show {
+//                        for i in array.cells {
+//                            if (i.id == show) {
+//
+//                                formObjects.append((i.topSpacing,i.type,text:i.message))
+//                            }
+//                        }
+//                    }
 
                 }
                 
-            }
+//            }
             assembleForm()
         } catch {
             //  print(data.description)
