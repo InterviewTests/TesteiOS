@@ -66,7 +66,7 @@ class FormViewController: UIViewController, NextView {
     }
     
 // MARK: - ConfigureLayout
-    func uiButtonTap(fromList list:[(spacing:Double,object:Any)]) {
+    func uiButtonTap(fromList list:[(spacing:Double,id:Int?,object:Any)]) {
         for element in list {
             guard let btn = element.object as? RedButton else {
                 continue
@@ -76,7 +76,7 @@ class FormViewController: UIViewController, NextView {
     }
     
     
-    func getAllViews(fromList list:[(spacing:Double,object:Any)]) -> [String: Any] {
+    func getAllViews(fromList list:[(spacing:Double,id:Int?,object:Any)]) -> [String: Any] {
         
         var views: [String: Any] = [:]
         for i in 0..<list.count {
@@ -88,7 +88,7 @@ class FormViewController: UIViewController, NextView {
     }
     
     
-    func appendFields(vertical:String, views:Array<(spacing:Double,object:Any)>) -> String{
+    func appendFields(vertical:String, views:Array<(spacing:Double,id:Int?,object:Any)>) -> String{
         var verticalAppend = vertical
         for (index,element) in views.enumerated() {
             verticalAppend.append("-\(element.spacing)-[addView\(index + 1)]")
@@ -96,7 +96,7 @@ class FormViewController: UIViewController, NextView {
         return verticalAppend
     }
     
-    func addHorizontalConstraints(fromList list:[(spacing:Double,object:Any)],constraints:[NSLayoutConstraint], views:[String:Any]) -> [NSLayoutConstraint] {
+    func addHorizontalConstraints(fromList list:[(spacing:Double,id:Int?,object:Any)],constraints:[NSLayoutConstraint], views:[String:Any]) -> [NSLayoutConstraint] {
         var allConstraints = constraints
         for (index,element) in list.enumerated() {
             guard let obj = element.object as? UIView else {
@@ -110,7 +110,7 @@ class FormViewController: UIViewController, NextView {
         return allConstraints
     }
     
-    func layoutTextFields(list:[(spacing:Double,object:Any)]) {
+    func layoutTextFields(list:[(spacing:Double,id:Int?,object:Any)]) {
         
         var allConstraints: [NSLayoutConstraint] = []
         let views = getAllViews(fromList:list)

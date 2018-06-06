@@ -9,7 +9,15 @@
 import Foundation
 import UIKit
 
+;
+protocol HideField {
+    func hideField(shouldHide:Bool,field:Int?) -> Void;
+}
+
 class Checkbox:UIButton {
+    
+    var delegate: HideField?
+    var show:Int? = 0
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -17,8 +25,10 @@ class Checkbox:UIButton {
         }
     
 
-    init() {
+    init(show:Int?) {
         super.init(frame: .zero)
+        
+        self.show = show
         titleLabel?.minimumScaleFactor = 0.5
         titleLabel?.numberOfLines = 1
         titleLabel?.lineBreakMode = NSLineBreakMode.byClipping
@@ -33,9 +43,9 @@ class Checkbox:UIButton {
     }
     
 
-    
     @objc func onPress() {
         isSelected = !isSelected
+        delegate?.hideField(shouldHide: !isSelected,field:show);
     }
     }
 
