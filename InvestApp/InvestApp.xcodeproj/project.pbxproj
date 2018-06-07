@@ -21,6 +21,10 @@
 		4EAD13C820C8A8D9007836E5 /* InvestmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAD13C720C8A8D9007836E5 /* InvestmentViewModel.swift */; };
 		4EAD13CA20C8A8EF007836E5 /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAD13C920C8A8EF007836E5 /* FormViewModel.swift */; };
 		4EAD13CC20C8A901007836E5 /* FormMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAD13CB20C8A901007836E5 /* FormMessageViewModel.swift */; };
+		4EAD13CF20C8ADD7007836E5 /* InvestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAD13CE20C8ADD7007836E5 /* InvestData.swift */; };
+		4EAD13D120C8ADFD007836E5 /* FormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAD13D020C8ADFD007836E5 /* FormData.swift */; };
+		4EAD13D620C8B4DE007836E5 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAD13D520C8B4DE007836E5 /* APIService.swift */; };
+		4EAD13DA20C8B5C7007836E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAD13D920C8B5C7007836E5 /* Constants.swift */; };
 		BBEABA8AEFC379177CC58C91 /* Pods_InvestAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8600B7768716D7B0EE6B77 /* Pods_InvestAppTests.framework */; };
 		CE43D92C1B9983E1CA5AFD4F /* Pods_InvestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA5ADB2A9007CE59052232B3 /* Pods_InvestApp.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +70,10 @@
 		4EAD13C720C8A8D9007836E5 /* InvestmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentViewModel.swift; sourceTree = "<group>"; };
 		4EAD13C920C8A8EF007836E5 /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
 		4EAD13CB20C8A901007836E5 /* FormMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormMessageViewModel.swift; sourceTree = "<group>"; };
+		4EAD13CE20C8ADD7007836E5 /* InvestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestData.swift; sourceTree = "<group>"; };
+		4EAD13D020C8ADFD007836E5 /* FormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormData.swift; sourceTree = "<group>"; };
+		4EAD13D520C8B4DE007836E5 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		4EAD13D920C8B5C7007836E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9B411719BEF3492BECA6B2A1 /* Pods_InvestAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InvestAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5ADB2A9007CE59052232B3 /* Pods_InvestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InvestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB3FD62527931E166D0F1D1 /* Pods-InvestAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvestAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InvestAppUITests/Pods-InvestAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +144,8 @@
 		4EAD138D20C8A12B007836E5 /* InvestApp */ = {
 			isa = PBXGroup;
 			children = (
+				4EAD13D820C8B5A7007836E5 /* Utils */,
+				4EAD13CD20C8AC89007836E5 /* Model */,
 				4EAD13C620C8A88F007836E5 /* UI */,
 				4EAD13BD20C8A4CA007836E5 /* ViewModel */,
 				4EAD13BC20C8A4B5007836E5 /* ViewControllers */,
@@ -152,6 +162,7 @@
 		4EAD13A220C8A12F007836E5 /* InvestAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				4EAD13D420C8B382007836E5 /* Resources */,
 				4EAD13A320C8A12F007836E5 /* InvestAppTests.swift */,
 				4EAD13A520C8A12F007836E5 /* Info.plist */,
 			);
@@ -192,6 +203,31 @@
 			children = (
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		4EAD13CD20C8AC89007836E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4EAD13CE20C8ADD7007836E5 /* InvestData.swift */,
+				4EAD13D020C8ADFD007836E5 /* FormData.swift */,
+				4EAD13D520C8B4DE007836E5 /* APIService.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4EAD13D420C8B382007836E5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4EAD13D820C8B5A7007836E5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4EAD13D920C8B5C7007836E5 /* Constants.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		CE32A3925768F85F80ECE582 /* Pods */ = {
@@ -430,9 +466,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-InvestApp/Pods-InvestApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -497,11 +536,15 @@
 				4EAD13BF20C8A535007836E5 /* InvestmentViewController.swift in Sources */,
 				4EAD139120C8A12B007836E5 /* ViewController.swift in Sources */,
 				4EAD13CC20C8A901007836E5 /* FormMessageViewModel.swift in Sources */,
+				4EAD13D120C8ADFD007836E5 /* FormData.swift in Sources */,
+				4EAD13D620C8B4DE007836E5 /* APIService.swift in Sources */,
 				4EAD138F20C8A12B007836E5 /* AppDelegate.swift in Sources */,
 				4EAD13C820C8A8D9007836E5 /* InvestmentViewModel.swift in Sources */,
 				4EAD13CA20C8A8EF007836E5 /* FormViewModel.swift in Sources */,
+				4EAD13CF20C8ADD7007836E5 /* InvestData.swift in Sources */,
 				4EAD13C520C8A5F2007836E5 /* FormMessageViewController.swift in Sources */,
 				4EAD13C320C8A59F007836E5 /* FormViewController.swift in Sources */,
+				4EAD13DA20C8B5C7007836E5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,7 +721,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H3P5E98UR8;
 				INFOPLIST_FILE = InvestApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.santander.InvestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -694,7 +740,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H3P5E98UR8;
 				INFOPLIST_FILE = InvestApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.santander.InvestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -711,7 +760,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H3P5E98UR8;
 				INFOPLIST_FILE = InvestAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.santander.InvestAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -729,7 +782,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H3P5E98UR8;
 				INFOPLIST_FILE = InvestAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.santander.InvestAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -746,7 +803,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H3P5E98UR8;
 				INFOPLIST_FILE = InvestAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.santander.InvestAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -763,7 +824,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H3P5E98UR8;
 				INFOPLIST_FILE = InvestAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.santander.InvestAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
