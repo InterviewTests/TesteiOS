@@ -196,4 +196,5 @@ class FundViewController: UIViewController, UITableViewDataSource {
             return cell
         }
     }
+    
 }
