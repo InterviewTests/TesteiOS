@@ -6,19 +6,26 @@
 //  Copyright © 2018 Ana Beatriz Delavia Thomasi. All rights reserved.
 //
 
+import InputMask
 import SkyFloatingLabelTextField
 import UIKit
 
-class FormViewController: UIViewController, UITableViewDataSource, UITextFieldDelegate {
+class FormViewController: UIViewController, UITableViewDataSource, UITextFieldDelegate, MaskedTextFieldDelegateListener {
 
     final let formURL = URL(string: "https://floating-mountain-50292.herokuapp.com/cells.json")
     var cells : FormDataModel? = nil
     
-    @IBOutlet weak var formTableView: UITableView!
+     var maskedDelegate: MaskedTextFieldDelegate!
     
+    @IBOutlet weak var formTableView: UITableView!
+    @IBOutlet weak var listener: PolyMaskTextFieldDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        maskedDelegate = MaskedTextFieldDelegate(format: "{(}[00]{) }[0000]{-}[00009]")
+        maskedDelegate.listener = self
+        
         self.formTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.formTableView.rowHeight = UITableViewAutomaticDimension
         self.formTableView.estimatedRowHeight = 20.0
@@ -33,6 +40,7 @@ class FormViewController: UIViewController, UITableViewDataSource, UITextFieldDe
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
+    
     func downloadJson(onComplete: @escaping (FormDataModel) -> Void) {
         guard let downloadURL = formURL else {return}
         URLSession.shared.dataTask(with: downloadURL) {data, urlResponse, error in
@@ -119,6 +127,7 @@ class FormViewController: UIViewController, UITableViewDataSource, UITextFieldDe
                 cell.textField.keyboardType = UIKeyboardType.emailAddress
             }
             else if (cells?.cells[indexPath.row].typefield == Cell.CellTypeField.telNumberInt.rawValue || cells?.cells[indexPath.row].typefield == Cell.CellTypeField.telNumberStr.rawValue){
+                cell.textField.delegate = maskedDelegate
                 cell.textField.keyboardType = UIKeyboardType.numberPad
             }
             
@@ -186,7 +195,6 @@ class FormViewController: UIViewController, UITableViewDataSource, UITextFieldDe
     }
     
     func isValidPhone(value: String) -> Bool {
-        return true
         let PHONE_REGEX = "^\\((\\d{2})\\)\\s(\\d{4,5}\\-\\d{4})$"
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
         return phoneTest.evaluate(with: value)
@@ -199,6 +207,32 @@ class FormViewController: UIViewController, UITableViewDataSource, UITextFieldDe
             toggleView?.isHidden = false
         } else {
             toggleView?.isHidden = true
+        }
+    }
+    
+    // Phone mask and validation
+    open func textField(
+        _ textField: UITextField,
+        didFillMandatoryCharacters complete: Bool,
+        didExtractValue value: String
+        ) {
+        if (complete){
+            let isCel = value.split(separator: "-").last?.count == 5
+            if (isCel){
+                let dddTel = value.split(separator: " ")
+                let nums = dddTel.last?.split(separator: "-")
+                
+                let ddd = dddTel.first!
+                let numFirst = nums!.first!
+                let numLast = nums!.last!
+                let firstLastDigit = numLast.first!
+                
+                textField.text = "\(ddd) \(numFirst)\(firstLastDigit)-\(numLast.dropFirst())"
+            }
+            (textField as? SkyFloatingLabelTextField)?.errorMessage = ""
+            (textField as? SkyFloatingLabelTextField)?.lineColor = UIColor(red:0.02, green:0.91, blue:0.46, alpha:1.0)
+        } else {
+            (textField as? SkyFloatingLabelTextField)?.errorMessage = "Telefone Inválido"
         }
     }
     
@@ -220,11 +254,27 @@ class FormViewController: UIViewController, UITableViewDataSource, UITextFieldDe
         
         if (success){
             performSegue(withIdentifier: "successSegue", sender: sender)
+            clearAllFields()
         } else {
             //do nothing
         }
         
     }
+    
+    func clearAllFields(){
+        for i in 2...7 where i % 2 == 0 {
+            let textFieldCell = formTableView.viewWithTag(i) as! FieldTableViewCell
+            let textField = textFieldCell.textField as SkyFloatingLabelTextField
+            textField.text = ""
+            
+            let grayColor = UIColor(red:0.67, green:0.67, blue:0.67, alpha:1.0)
+            textField.tintColor = grayColor
+            textField.lineColor = grayColor
+            textField.selectedTitleColor = grayColor
+            textField.selectedLineColor = grayColor
+        }
+    }
+    
     @objc func dismissKeyboard() {
         
         formTableView.endEditing(true)
