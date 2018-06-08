@@ -37,6 +37,12 @@ class FormViewController: UIViewController {
                 _ = FormViewCreator(rootView: self.view, context: self.viewModel).visit(node: formData)
             }
         }).disposed(by: disposeBag)
+
+        viewModel.formCurrentState.asObservable().subscribe(onNext: { state in
+            if state.state == FormState.afterValidate && state.error == nil {
+                self.performSegue(withIdentifier: "sendMessageWithSuccess", sender: nil)
+            }
+        }).disposed(by: disposeBag)
     }
     
 }

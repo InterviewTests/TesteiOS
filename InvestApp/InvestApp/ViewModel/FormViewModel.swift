@@ -14,7 +14,13 @@ protocol IFormContext {
     var disposeBag: DisposeBag? {get set}
     
     func sendNewMessage()
-    
+
+}
+
+enum FormState {
+    case none
+    case validate
+    case afterValidate
 }
 
 class FormViewModel {
@@ -22,8 +28,11 @@ class FormViewModel {
     var formData = Variable<FormData?>(nil)
     
     var disposeBag: DisposeBag?
+
+    var formCurrentState = Variable<(state:FormState, error: String?)>((.none, nil))
     
     init() {
+
     }
     func viewDidLoad() {
         APIService.fetchJsonData(with: Constants.formJsonURL) { (formData: FormData?, result) in
@@ -35,7 +44,6 @@ class FormViewModel {
 extension FormViewModel: IFormContext {
 
     func sendNewMessage() {
-        
+        self.formCurrentState.value = (.afterValidate, nil)
     }
-
 }

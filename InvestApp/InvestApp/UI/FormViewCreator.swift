@@ -105,10 +105,11 @@ extension FormViewCreator {
     func createCheckBox(node: FormCell) -> FormUICheckBox {
         let checkBox = FormUICheckBox()
         checkBox.checkBox.boxType = .square
-        checkBox.checkBox.onTintColor = UIColor.appPrimaryColor()
-        checkBox.checkBox.onCheckColor = UIColor.appPrimaryColor()
+        checkBox.checkBox.onCheckColor = UIColor.clear
+        checkBox.checkBox.onFillColor = UIColor.appPrimaryColor()
         checkBox.titleLabel.font = UIFont.fontDIN(ofSize: 13.0)
         checkBox.titleLabel.text = node.message
+
         return checkBox
     }
     
@@ -128,7 +129,7 @@ extension FormViewCreator {
     }
     
     class func changeButtonStyle(_ button: UIButton) {
-        button.layer.cornerRadius = 15
+        button.layer.cornerRadius = 20
         button.clipsToBounds = true
         button.setTitleColor(UIColor.white, for: .normal)
         button.setTitleColor(UIColor.white, for: .highlighted)

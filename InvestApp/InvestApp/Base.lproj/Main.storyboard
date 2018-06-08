@@ -14,6 +14,9 @@
         <array key="DINMittelschriftStd.otf">
             <string>DINMittelschriftStd</string>
         </array>
+        <array key="DINPro-Bold.otf">
+            <string>DINPro-Bold</string>
+        </array>
         <array key="DINPro-Medium.otf">
             <string>DINPro-Medium</string>
         </array>
@@ -503,7 +506,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="TDa-ts-X6A"/>
                     <connections>
-                        <segue destination="d7e-a6-Qf0" kind="show" id="xH7-0w-WXb"/>
+                        <segue destination="d7e-a6-Qf0" kind="show" identifier="sendMessageWithSuccess" id="xH7-0w-WXb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FKb-zA-wfQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -517,13 +520,58 @@
                     <view key="view" contentMode="scaleToFill" id="T4a-B5-Jsq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contato" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdo-R8-3nQ">
+                                <rect key="frame" x="0.0" y="94" width="414" height="26"/>
+                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="20"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egB-iU-x3i">
+                                <rect key="frame" x="40" y="314.66666666666669" width="334" height="22"/>
+                                <fontDescription key="fontDescription" name="DINPro-Bold" family="DINPro" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagem enviada com sucesso :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TnS-rS-2GM">
+                                <rect key="frame" x="40" y="346.66666666666669" width="334" height="59"/>
+                                <fontDescription key="fontDescription" name="DINPro-Bold" family="DINPro" pointSize="23"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJ2-pK-aeA">
+                                <rect key="frame" x="40" y="464" width="334" height="34"/>
+                                <fontDescription key="fontDescription" name="DINPro-Bold" family="DINPro" pointSize="17"/>
+                                <state key="normal" title="Enviar nova mensagem">
+                                    <color key="titleColor" red="0.80000000000000004" green="0.15686274510000001" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendNewMessage:" destination="d7e-a6-Qf0" eventType="touchUpInside" id="c13-dj-0cE"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="foX-Jl-VgY" firstAttribute="bottom" secondItem="xJ2-pK-aeA" secondAttribute="bottom" constant="189" id="0y9-O0-96r"/>
+                            <constraint firstItem="xJ2-pK-aeA" firstAttribute="leading" secondItem="TnS-rS-2GM" secondAttribute="leading" id="4dN-gO-sAf"/>
+                            <constraint firstItem="egB-iU-x3i" firstAttribute="leading" secondItem="TnS-rS-2GM" secondAttribute="leading" id="K1w-VN-qQU"/>
+                            <constraint firstItem="qdo-R8-3nQ" firstAttribute="leading" secondItem="foX-Jl-VgY" secondAttribute="leading" id="RHy-e5-O5R"/>
+                            <constraint firstItem="egB-iU-x3i" firstAttribute="trailing" secondItem="TnS-rS-2GM" secondAttribute="trailing" id="c41-fW-zHv"/>
+                            <constraint firstItem="TnS-rS-2GM" firstAttribute="centerX" secondItem="foX-Jl-VgY" secondAttribute="centerX" id="fc0-7U-KjY"/>
+                            <constraint firstItem="TnS-rS-2GM" firstAttribute="centerY" secondItem="foX-Jl-VgY" secondAttribute="centerY" id="nws-PX-wqB"/>
+                            <constraint firstItem="qdo-R8-3nQ" firstAttribute="top" secondItem="foX-Jl-VgY" secondAttribute="top" constant="30" id="plM-De-9Vn"/>
+                            <constraint firstItem="xJ2-pK-aeA" firstAttribute="trailing" secondItem="TnS-rS-2GM" secondAttribute="trailing" id="r3u-ga-Gqq"/>
+                            <constraint firstItem="foX-Jl-VgY" firstAttribute="trailing" secondItem="TnS-rS-2GM" secondAttribute="trailing" constant="40" id="s30-ls-Q2f"/>
+                            <constraint firstItem="TnS-rS-2GM" firstAttribute="leading" secondItem="foX-Jl-VgY" secondAttribute="leading" constant="40" id="u79-C9-3m3"/>
+                            <constraint firstItem="foX-Jl-VgY" firstAttribute="trailing" secondItem="qdo-R8-3nQ" secondAttribute="trailing" id="v0v-cQ-eUO"/>
+                            <constraint firstItem="TnS-rS-2GM" firstAttribute="top" secondItem="egB-iU-x3i" secondAttribute="bottom" constant="10" id="yBd-6H-01m"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="foX-Jl-VgY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tw2-kn-Ys7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2532" y="420"/>
+            <point key="canvasLocation" x="2531.8840579710145" y="419.83695652173918"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qbX-uf-S7n">

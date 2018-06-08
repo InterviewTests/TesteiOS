@@ -19,4 +19,8 @@ class FormMessageViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+
+    @IBAction func sendNewMessage(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
