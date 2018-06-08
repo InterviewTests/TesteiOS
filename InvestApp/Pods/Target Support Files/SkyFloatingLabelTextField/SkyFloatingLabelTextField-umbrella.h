@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_InvestAppUITestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_InvestAppUITestsVersionString[];
+FOUNDATION_EXPORT double SkyFloatingLabelTextFieldVersionNumber;
+FOUNDATION_EXPORT const unsigned char SkyFloatingLabelTextFieldVersionString[];
 

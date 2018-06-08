@@ -10,26 +10,23 @@ import UIKit
 
 class FormViewController: UIViewController {
 
+    let viewModel = FormViewModel(
+    )
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        APIService.fetchJsonData(with: Constants.formJsonURL) { (formData: FormData?, result) in
+
+            if let formData = formData {
+                let viewCreator = FormViewCreator(rootView: self.view)
+                _ = viewCreator.visit(node: formData)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
