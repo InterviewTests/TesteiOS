@@ -105,8 +105,9 @@ extension FormViewCreator {
     func createCheckBox(node: FormCell) -> FormUICheckBox {
         let checkBox = FormUICheckBox()
         checkBox.checkBox.boxType = .square
-        checkBox.checkBox.onCheckColor = UIColor.clear
+        checkBox.checkBox.onCheckColor = UIColor.white
         checkBox.checkBox.onFillColor = UIColor.appPrimaryColor()
+        checkBox.checkBox.onTintColor = checkBox.checkBox.tintColor
         checkBox.titleLabel.font = UIFont.fontDIN(ofSize: 13.0)
         checkBox.titleLabel.text = node.message
 
@@ -115,7 +116,7 @@ extension FormViewCreator {
     
     func creatSend(node: FormCell) -> UIButton {
         let button = FormViewCreator.createButton()
-        button.rx.controlEvent(.touchUpInside).debounce(2, scheduler: MainScheduler.instance).subscribe(onNext: {
+        button.rx.controlEvent(.touchUpInside).subscribe(onNext: {
             self.context.sendNewMessage()
         }).disposed(by: self.context.disposeBag!)
         button.setTitle("Enviar", for: .normal)
