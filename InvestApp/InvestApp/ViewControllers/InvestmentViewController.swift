@@ -63,7 +63,8 @@ class InvestmentViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.scrollView.contentSize = self.scrollView.subviews[0].frame.size
+        let size = self.scrollView.subviews[0].frame.size
+        self.scrollView.contentSize = CGSize.init(width: size.width, height: size.height + 200)
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,7 +119,6 @@ class InvestmentViewController: UIViewController {
                           foundLabel: self.twelveFoundLabel)
         self.setUpRisk(data?.risk)
         self.infoTableHeighConstraint.constant = CGFloat(self.getInfoCount())*30.0
-        self.view.layoutIfNeeded()
         self.infoTableView.reloadData()
     }
     
@@ -135,7 +135,6 @@ class InvestmentViewController: UIViewController {
             } else if risk == 5 {
                 _ = self.risk5Constraint.setMultiplier(multiplier: self.risk5Constraint.multiplier*2)
             }
-            self.view.layoutIfNeeded()
         }
     }
     
@@ -174,19 +173,12 @@ extension InvestmentViewController : UITableViewDataSource {
                 items.append(contentsOf: info)
             }
         }
+    
+        let cell = tableView.dequeueReusableCell(withIdentifier: "InvestInfo") as? InvestInfoCellTableViewCell ?? InvestInfoCellTableViewCell.init(style: .default, reuseIdentifier: "InvestInfo")
+        cell.infoLabel.text = items[indexPath.row].name
+        cell.infoValueLabel.text = items[indexPath.row].data
         
-        
-        if indexPath.row >= firstDown {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "InvestDownInfo") as? InvestDownInfoTableViewCell ?? InvestDownInfoTableViewCell.init(style: .default, reuseIdentifier: "InvestDownInfo")
-            cell.infoLabel.text = items[indexPath.row].data
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "InvestInfo") as? InvestInfoCellTableViewCell ?? InvestInfoCellTableViewCell.init(style: .default, reuseIdentifier: "InvestInfo")
-            cell.infoLabel.text = items[indexPath.row].name
-            cell.infoValueLabel.text = items[indexPath.row].data
-            
-            return cell
-        }
+        return cell
     }
 
 }

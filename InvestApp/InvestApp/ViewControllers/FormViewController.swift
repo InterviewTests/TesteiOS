@@ -7,25 +7,32 @@
 //
 
 import UIKit
+import RxSwift
 
 class FormViewController: UIViewController {
-
+    
     let viewModel = FormViewModel()
+    
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupObservables()
+        viewModel.viewDidLoad()
 
-        APIService.fetchJsonData(with: Constants.formJsonURL) { (formData: FormData?, result) in
-
-            if let formData = formData {
-                let viewCreator = FormViewCreator(rootView: self.view)
-                _ = viewCreator.visit(node: formData)
-            }
-        }
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+    func setupObservables() {
+        viewModel.disposeBag = self.disposeBag
+        viewModel.formData.asObservable().subscribe(onNext: { (formData) in
+            if let formData = formData {
+                let viewCreator = FormViewCreator(rootView: self.view, context: self.viewModel)
+                //_ = viewCreator.visit(node: formData)
+            }
+        }).disposed(by: disposeBag)
+    }
+    
 }

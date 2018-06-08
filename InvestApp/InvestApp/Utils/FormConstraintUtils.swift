@@ -28,4 +28,10 @@ class FormConstraintUtils {
         contentView.widthAnchor.constraint(equalTo: parent.widthAnchor).isActive = true
     }
     
+    static func setCellConstraintsForContentView(_ cell: UIView, contentView: UIView, anchor: NSLayoutYAxisAnchor, topSpacing: CGFloat) {
+        cell.translatesAutoresizingMaskIntoConstraints = false
+        cell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        cell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        cell.topAnchor.constraint(equalTo: anchor, constant: topSpacing)
+    }
 }

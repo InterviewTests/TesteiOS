@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 struct FormData: Decodable {
     let cells: [FormCell]?
 }

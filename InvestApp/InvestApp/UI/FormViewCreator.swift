@@ -9,13 +9,34 @@
 import Foundation
 import UIKit
 import TPKeyboardAvoiding
+import RxCocoa
+import SkyFloatingLabelTextField
+
+enum FormCellType: Int {
+    case field = 1
+    case text = 2
+    case image = 3
+    case checkbox = 4
+    case send = 5
+}
+
+enum FormTextFieldType: Int {
+    case text = 1
+    case telNumber = 2
+    case email = 3
+}
 
 class FormViewCreator {
 
+    private var context: IFormContext
+    
     private var currentParent = UIView()
+    
+    private var currentToAnchor: NSLayoutYAxisAnchor?
 
-    init(rootView: UIView) {
+    init(rootView: UIView, context: IFormContext) {
         self.currentParent = rootView
+        self.context = context
     }
 
     func createScrollView() -> TPKeyboardAvoidingScrollView {
@@ -42,14 +63,47 @@ class FormViewCreator {
         return contentView
     }
 
-
 }
 
 extension FormViewCreator {
     
-    class func createButton() {
+    func createField(node: FormCell) -> SkyFloatingLabelTextField{
+        let textField = SkyFloatingLabelTextField()
+        textField.placeholder = node.message
+        FormConstraintUtils.setCellConstraintsForContentView(textField, contentView: self.currentParent, anchor: self.currentToAnchor!, topSpacing: CGFloat(node.topSpacing!))
+        
+        return textField
+    }
+    
+    func createText(node: FormCell) -> UILabel {
+        let label = UILabel()
+        label.text = node.message
+        FormConstraintUtils.setCellConstraintsForContentView(label, contentView: self.currentParent, anchor: self.currentToAnchor!, topSpacing: CGFloat(node.topSpacing!))
+        
+        return label
+    }
+    
+    func createImage(node: FormCell) -> UIImageView {
+        return UIImageView()
+    }
+    
+    func createCheckbox(node: FormCell) -> UISwitch {
+        return UISwitch()
+    }
+    
+    func creatSend(node: FormCell) -> UIButton {
+        let button = FormViewCreator.createButton()
+        button.rx.controlEvent(.touchUpInside).subscribe(onNext: {
+            self.context.sendNewMessage()
+        }).disposed(by: self.context.disposeBag!)
+        button.titleLabel?.text = "Enviar"
+        return button
+    }
+    
+    class func createButton() -> UIButton {
         let button = UIButton()
         FormViewCreator.changeButtonStyle(button)
+        return button
     }
     
     class func changeButtonStyle(_ button: UIButton) {
@@ -70,11 +124,12 @@ extension FormViewCreator: IFormVisitor {
 
     func visit(node: FormData) -> UIView {
         self.currentParent = self.layoutScrollView()
-
+        self.currentToAnchor = self.currentParent.topAnchor
         if let cells = node.cells {
             for cell in cells {
                 let cellView = cell.accept(visitor: self)
                 self.currentParent.addSubview(cellView)
+                self.currentToAnchor = cellView.bottomAnchor
             }
         }
 
@@ -82,12 +137,26 @@ extension FormViewCreator: IFormVisitor {
     }
 
     func visit(node: FormCell) -> UIView {
-        let labelTest = UILabel()
-        labelTest.text = "Test"
-
-        return labelTest
+        if let typeValue = node.type,
+            let type = FormCellType.init(rawValue: typeValue) {
+            if type == FormCellType.field {
+                return createField(node:node)
+            }else if type == FormCellType.text {
+                return createText(node:node)
+            }else if  type == FormCellType.image {
+                return createImage(node: node)
+            }else if  type == FormCellType.checkbox {
+                return createCheckbox(node:node)
+            }else if type == FormCellType.send {
+                return createCheckbox(node:node)
+            }
+        }
+        return UIView()
     }
 }
+
+
+
 
 public extension UIImage {
     
