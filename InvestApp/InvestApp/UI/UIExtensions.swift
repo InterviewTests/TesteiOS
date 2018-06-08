@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIImage {
+
     public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         let rect = CGRect(origin: .zero, size: size)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
@@ -27,6 +28,13 @@ extension UIFont {
 
     public class func fontDIN(ofSize fontSize: CGFloat) -> UIFont {
         return UIFont(name: "DINPro", size: fontSize)!
+    }
+}
+
+extension UIColor {
+    
+    public class func appPrimaryColor() -> UIColor {
+        return UIColor(red: 204/255, green: 40/255, blue: 15/255, alpha: 1.0)
     }
 }
 

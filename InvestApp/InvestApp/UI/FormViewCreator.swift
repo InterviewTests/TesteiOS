@@ -97,8 +97,14 @@ extension FormViewCreator {
         return UIImageView()
     }
     
-    func createCheckbox(node: FormCell) -> UISwitch {
-        return UISwitch()
+    func createCheckBox(node: FormCell) -> FormUICheckBox {
+        let checkBox = FormUICheckBox()
+        checkBox.checkBox.boxType = .square
+        checkBox.checkBox.onTintColor = UIColor.appPrimaryColor()
+        checkBox.checkBox.onCheckColor = UIColor.appPrimaryColor()
+        checkBox.titleLabel.font = UIFont.fontDIN(ofSize: 13.0)
+        checkBox.titleLabel.text = node.message
+        return checkBox
     }
     
     func creatSend(node: FormCell) -> UIButton {
@@ -121,10 +127,8 @@ extension FormViewCreator {
         button.clipsToBounds = true
         button.setTitleColor(UIColor.white, for: .normal)
         button.setTitleColor(UIColor.white, for: .highlighted)
-        let color = UIColor.init(red: 204/255, green: 40/255, blue: 15/255, alpha: 1.0)
-        button.setBackgroundImage(UIImage(color: color), for: .normal)
-        let highlightedColor = UIColor(red: 204/255, green: 40/255, blue: 15/255, alpha: 0.4)
-        button.setBackgroundImage(UIImage(color: highlightedColor), for: .highlighted)
+        button.setBackgroundImage(UIImage(color: UIColor.appPrimaryColor()), for: .normal)
+        button.setBackgroundImage(UIImage(color: UIColor.appPrimaryColor().withAlphaComponent(0.4)), for: .highlighted)
     }
 }
 
@@ -163,7 +167,7 @@ extension FormViewCreator: IFormVisitor {
             }else if  type == FormCellType.image {
                 return createImage(node: node)
             }else if  type == FormCellType.checkbox {
-                return createCheckbox(node:node)
+                return createCheckBox(node:node)
             }else if type == FormCellType.send {
                 return creatSend(node:node)
             }

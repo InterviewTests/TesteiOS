@@ -39,6 +39,7 @@
 		4EAD92FE20CA1EDC0023FAAD /* FormViewCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAD92FD20CA1EDC0023FAAD /* FormViewCreator.swift */; };
 		4EAD930020CA20FE0023FAAD /* FormConstraintUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAD92FF20CA20FE0023FAAD /* FormConstraintUtils.swift */; };
 		4EAD930320CAD2070023FAAD /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAD930220CAD2070023FAAD /* UIExtensions.swift */; };
+		4EAD930520CB2E2E0023FAAD /* FormUICheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAD930420CB2E2E0023FAAD /* FormUICheckBox.swift */; };
 		BBEABA8AEFC379177CC58C91 /* Pods_InvestAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8600B7768716D7B0EE6B77 /* Pods_InvestAppTests.framework */; };
 		CE43D92C1B9983E1CA5AFD4F /* Pods_InvestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA5ADB2A9007CE59052232B3 /* Pods_InvestApp.framework */; };
 		E193156820CA793C00E9F73A /* InvestInfoCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E193156720CA793C00E9F73A /* InvestInfoCellTableViewCell.swift */; };
@@ -95,6 +96,7 @@
 		4EAD92FD20CA1EDC0023FAAD /* FormViewCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewCreator.swift; sourceTree = "<group>"; };
 		4EAD92FF20CA20FE0023FAAD /* FormConstraintUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormConstraintUtils.swift; sourceTree = "<group>"; };
 		4EAD930220CAD2070023FAAD /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		4EAD930420CB2E2E0023FAAD /* FormUICheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormUICheckBox.swift; sourceTree = "<group>"; };
 		9B411719BEF3492BECA6B2A1 /* Pods_InvestAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InvestAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5ADB2A9007CE59052232B3 /* Pods_InvestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InvestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB3FD62527931E166D0F1D1 /* Pods-InvestAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvestAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InvestAppUITests/Pods-InvestAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				4EAD930220CAD2070023FAAD /* UIExtensions.swift */,
 				4EAD92FD20CA1EDC0023FAAD /* FormViewCreator.swift */,
 				E193156720CA793C00E9F73A /* InvestInfoCellTableViewCell.swift */,
+				4EAD930420CB2E2E0023FAAD /* FormUICheckBox.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				4EAD138F20C8A12B007836E5 /* AppDelegate.swift in Sources */,
 				4EAD13C820C8A8D9007836E5 /* InvestmentViewModel.swift in Sources */,
 				4EAD13CA20C8A8EF007836E5 /* FormViewModel.swift in Sources */,
+				4EAD930520CB2E2E0023FAAD /* FormUICheckBox.swift in Sources */,
 				4EAD13CF20C8ADD7007836E5 /* InvestData.swift in Sources */,
 				4EAD92FE20CA1EDC0023FAAD /* FormViewCreator.swift in Sources */,
 				4EAD13C520C8A5F2007836E5 /* FormMessageViewController.swift in Sources */,
@@ -714,7 +718,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H3P5E98UR8;
 				INFOPLIST_FILE = InvestApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.santander.InvestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -730,7 +737,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H3P5E98UR8;
 				INFOPLIST_FILE = InvestApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.santander.InvestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -747,7 +757,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H3P5E98UR8;
 				INFOPLIST_FILE = InvestAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.santander.InvestAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -765,7 +779,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H3P5E98UR8;
 				INFOPLIST_FILE = InvestAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.santander.InvestAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
