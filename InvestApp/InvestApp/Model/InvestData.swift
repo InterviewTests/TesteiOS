@@ -8,14 +8,8 @@
 
 import Foundation
 
-struct InvestCDI: Decodable {
-    let fund: Double?
-    let CDI: Double?
-}
-
-struct InvestItemInfo: Decodable {
-    let name: String?
-    let data: String?
+struct InvestRoot: Decodable {
+    let screen: InvestData?
 }
 
 struct InvestData: Decodable {
@@ -26,10 +20,30 @@ struct InvestData: Decodable {
     let riskTitle: String?
     let risk: Int?
     let infoTitle: String?
-    let monthInfo: InvestCDI?
-    let yearInfo: InvestCDI?
-    let twelveMonthsInfo: InvestCDI?
-    let infos: [InvestItemInfo]?
-    let downInfos: [InvestItemInfo]?
+    let moreInfo: InvestInfo?
+    let info: [InvestItemInfo]?
+    let downInfo: [InvestItemInfo]?
+}
+
+struct InvestInfo: Decodable {
+    let month: InvestCDI?
+    let year: InvestCDI?
+    let twelvemonths: InvestCDI?
+
+    enum CodingKeys: String, CodingKey {
+        case month = "month"
+        case year = "year"
+        case twelvemonths = "12months"
+    }
+}
+
+struct InvestCDI: Decodable {
+    let fund: Double?
+    let CDI: Double?
+}
+
+struct InvestItemInfo: Decodable {
+    let name: String?
+    let data: String?
 }
 

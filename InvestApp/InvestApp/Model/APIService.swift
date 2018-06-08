@@ -9,21 +9,33 @@
 import Foundation
 import Alamofire
 
+enum APIResult {
+    case success
+    case apiError
+    case dataError
+}
+
 class APIService {
 
-    class func fetchJsonData<T: Decodable>(with url: String, completion: @escaping (T?) -> Void) {
+    class func fetchJsonData<T: Decodable>(with url: String, completion: @escaping (T?, APIResult) -> Void) {
         Alamofire.request(url).responseJSON { (response) in
 
-            guard let jsonData = response.data else { return }
-            var json: T? = nil
-
-            do {
-                json = try JSONDecoder().decode(T.self, from: jsonData)
-            } catch {
-                print("overview decoder error")
+            guard response.result.isSuccess,
+                let jsonData = response.data else {
+                completion(nil, .apiError)
+                return
             }
-            completion(json)
+            do {
+                let entity: T? = try APIService.parseJsonDataToClass(jsonData)
+                completion(entity, .success)
+            } catch {
+                completion(nil, .dataError)
+            }
         }
+    }
+
+    class func parseJsonDataToClass<T: Decodable>(_ data: Data) throws -> T? {
+        return try JSONDecoder().decode(T.self, from: data)
     }
 
 }
