@@ -11,6 +11,7 @@ import UIKit
 import TPKeyboardAvoiding
 import RxCocoa
 import SkyFloatingLabelTextField
+import RxSwift
 
 enum FormCellType: Int {
     case field = 1
@@ -82,7 +83,11 @@ extension FormViewCreator {
     func createField(node: FormCell) -> SkyFloatingLabelTextField{
         let textField = SkyFloatingLabelTextField()
         textField.placeholder = node.message
-        textField.borderStyle = UITextBorderStyle.line
+        textField.font = UIFont.fontDIN(ofSize: 15.0)
+        textField.titleFont = UIFont.fontDIN(ofSize: 12.0)
+        textField.placeholderFont = UIFont.fontDIN(ofSize: 15.0)
+        textField.selectedLineColor = UIColor.darkGray
+        textField.selectedTitleColor = UIColor.darkGray
         return textField
     }
     
@@ -109,7 +114,7 @@ extension FormViewCreator {
     
     func creatSend(node: FormCell) -> UIButton {
         let button = FormViewCreator.createButton()
-        button.rx.controlEvent(.touchUpInside).subscribe(onNext: {
+        button.rx.controlEvent(.touchUpInside).debounce(2, scheduler: MainScheduler.instance).subscribe(onNext: {
             self.context.sendNewMessage()
         }).disposed(by: self.context.disposeBag!)
         button.setTitle("Enviar", for: .normal)
