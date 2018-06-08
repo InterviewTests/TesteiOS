@@ -45,6 +45,25 @@ class FormViewCreator {
 
 }
 
+extension FormViewCreator {
+    
+    class func createButton() {
+        let button = UIButton()
+        FormViewCreator.changeButtonStyle(button)
+    }
+    
+    class func changeButtonStyle(_ button: UIButton) {
+        button.layer.cornerRadius = 15
+        button.clipsToBounds = true
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.white, for: .highlighted)
+        let color = UIColor.init(red: 204/255, green: 40/255, blue: 15/255, alpha: 1.0)
+        button.setBackgroundImage(UIImage(color: color), for: .normal)
+        let highlightedColor = UIColor(red: 204/255, green: 40/255, blue: 15/255, alpha: 0.4)
+        button.setBackgroundImage(UIImage(color: highlightedColor), for: .highlighted)
+    }
+}
+
 extension FormViewCreator: IFormVisitor {
 
     typealias T = UIView
@@ -68,5 +87,20 @@ extension FormViewCreator: IFormVisitor {
 
         return labelTest
     }
-
 }
+
+public extension UIImage {
+    
+    public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+        let rect = CGRect(origin: .zero, size: size)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        color.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        guard let cgImage = image?.cgImage else { return nil }
+        self.init(cgImage: cgImage)
+    }
+}
+

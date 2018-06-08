@@ -10,8 +10,8 @@ import UIKit
 
 class FormViewController: UIViewController {
 
-    let viewModel = FormViewModel(
-    )
+    let viewModel = FormViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,7 +26,6 @@ class FormViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }
