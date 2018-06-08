@@ -31,12 +31,17 @@ class FormConstraintUtils {
     static func setCellConstraintsForContentView(_ cell: UIView, contentView: UIView, topSibling: UIView?, topSpacing: CGFloat?) {
         cell.translatesAutoresizingMaskIntoConstraints = false
         cell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8.0).isActive = true
-        cell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 8.0).isActive = true
+        cell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0).isActive = true
         if let unwrappedTopSibling = topSibling { //Row has a top sibling and has no title
             cell.topAnchor.constraint(equalTo: unwrappedTopSibling.bottomAnchor, constant: topSpacing != nil ? topSpacing! : 8.0).isActive = true
         } else {
             cell.topAnchor.constraint(equalTo: contentView.topAnchor, constant: topSpacing != nil ? topSpacing! : 8.0).isActive = true
         }
+    }
+
+    static func setCellDefaultHeightConstraints(_ cell: UIView, height: CGFloat? = nil) {
+        cell.translatesAutoresizingMaskIntoConstraints = false
+        cell.heightAnchor.constraint(equalToConstant: height != nil ? height! : 40.0).isActive = true
     }
 
 }

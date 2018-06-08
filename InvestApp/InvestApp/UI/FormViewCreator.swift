@@ -70,12 +70,15 @@ extension FormViewCreator {
     func createField(node: FormCell) -> SkyFloatingLabelTextField{
         let textField = SkyFloatingLabelTextField()
         textField.placeholder = node.message
+        textField.borderStyle = UITextBorderStyle.line
+        FormConstraintUtils.setCellDefaultHeightConstraints(textField)
         return textField
     }
     
     func createText(node: FormCell) -> UILabel {
         let label = UILabel()
         label.text = node.message
+        FormConstraintUtils.setCellDefaultHeightConstraints(label)
         return label
     }
     
@@ -93,6 +96,7 @@ extension FormViewCreator {
             self.context.sendNewMessage()
         }).disposed(by: self.context.disposeBag!)
         button.titleLabel?.text = "Enviar"
+        FormConstraintUtils.setCellDefaultHeightConstraints(button)
         return button
     }
     
