@@ -70,16 +70,12 @@ extension FormViewCreator {
     func createField(node: FormCell) -> SkyFloatingLabelTextField{
         let textField = SkyFloatingLabelTextField()
         textField.placeholder = node.message
-        FormConstraintUtils.setCellConstraintsForContentView(textField, contentView: self.currentParent, anchor: self.currentToAnchor!, topSpacing: CGFloat(node.topSpacing!))
-        
         return textField
     }
     
     func createText(node: FormCell) -> UILabel {
         let label = UILabel()
         label.text = node.message
-        FormConstraintUtils.setCellConstraintsForContentView(label, contentView: self.currentParent, anchor: self.currentToAnchor!, topSpacing: CGFloat(node.topSpacing!))
-        
         return label
     }
     
@@ -123,13 +119,16 @@ extension FormViewCreator: IFormVisitor {
     typealias T = UIView
 
     func visit(node: FormData) -> UIView {
+        var topSibling: UIView?
         self.currentParent = self.layoutScrollView()
         self.currentToAnchor = self.currentParent.topAnchor
         if let cells = node.cells {
             for cell in cells {
                 let cellView = cell.accept(visitor: self)
                 self.currentParent.addSubview(cellView)
+                FormConstraintUtils.setCellConstraintsForContentView(cellView, contentView: self.currentParent, topSibling: topSibling, topSpacing: cell.topSpacing != nil ? CGFloat(cell.topSpacing!) : nil)
                 self.currentToAnchor = cellView.bottomAnchor
+                topSibling = cellView
             }
         }
 
@@ -155,21 +154,4 @@ extension FormViewCreator: IFormVisitor {
     }
 }
 
-
-
-
-public extension UIImage {
-    
-    public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
-        let rect = CGRect(origin: .zero, size: size)
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
-        color.setFill()
-        UIRectFill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        guard let cgImage = image?.cgImage else { return nil }
-        self.init(cgImage: cgImage)
-    }
-}
 

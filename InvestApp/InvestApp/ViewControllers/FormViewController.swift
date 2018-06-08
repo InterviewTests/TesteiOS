@@ -29,8 +29,7 @@ class FormViewController: UIViewController {
         viewModel.disposeBag = self.disposeBag
         viewModel.formData.asObservable().subscribe(onNext: { (formData) in
             if let formData = formData {
-                let viewCreator = FormViewCreator(rootView: self.view, context: self.viewModel)
-                //_ = viewCreator.visit(node: formData)
+                _ = FormViewCreator(rootView: self.view, context: self.viewModel).visit(node: formData)
             }
         }).disposed(by: disposeBag)
     }
