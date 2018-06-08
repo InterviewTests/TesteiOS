@@ -17,12 +17,17 @@ class FormViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setUpUI()
         self.setupObservables()
         viewModel.viewDidLoad()
-
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    func setUpUI() {
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     func setupObservables() {

@@ -31,8 +31,6 @@ class FormViewCreator {
     private var context: IFormContext
     
     private var currentParent = UIView()
-    
-    private var currentToAnchor: NSLayoutYAxisAnchor?
 
     init(rootView: UIView, context: IFormContext) {
         self.currentParent = rootView
@@ -66,19 +64,32 @@ class FormViewCreator {
 }
 
 extension FormViewCreator {
-    
+
+    func setFormCellProperties(_ cellView: UIView, cell: FormCell) {
+        cellView.isHidden = cell.hidden != nil ? cell.hidden! : false
+    }
+
+    func createFormTitle(parentView: UIView) -> UILabel {
+        let label = UILabel()
+        label.text = "Contato"
+        label.textAlignment = .center
+        label.font = UIFont.fontDIN(ofSize: 20.0)
+        parentView.addSubview(label)
+        FormConstraintUtils.setCellConstraintsForContentView(label, contentView: parentView, topSibling: nil, topSpacing: 30)
+        return label
+    }
+
     func createField(node: FormCell) -> SkyFloatingLabelTextField{
         let textField = SkyFloatingLabelTextField()
         textField.placeholder = node.message
         textField.borderStyle = UITextBorderStyle.line
-        FormConstraintUtils.setCellDefaultHeightConstraints(textField)
         return textField
     }
     
     func createText(node: FormCell) -> UILabel {
         let label = UILabel()
+        label.font = UIFont.fontDIN(ofSize: 13.0)
         label.text = node.message
-        FormConstraintUtils.setCellDefaultHeightConstraints(label)
         return label
     }
     
@@ -95,8 +106,7 @@ extension FormViewCreator {
         button.rx.controlEvent(.touchUpInside).subscribe(onNext: {
             self.context.sendNewMessage()
         }).disposed(by: self.context.disposeBag!)
-        button.titleLabel?.text = "Enviar"
-        FormConstraintUtils.setCellDefaultHeightConstraints(button)
+        button.setTitle("Enviar", for: .normal)
         return button
     }
     
@@ -123,19 +133,23 @@ extension FormViewCreator: IFormVisitor {
     typealias T = UIView
 
     func visit(node: FormData) -> UIView {
-        var topSibling: UIView?
+        var parentheight: CGFloat = 50.0
         self.currentParent = self.layoutScrollView()
-        self.currentToAnchor = self.currentParent.topAnchor
+        var topSibling: UIView = self.createFormTitle(parentView: self.currentParent)
+
         if let cells = node.cells {
             for cell in cells {
                 let cellView = cell.accept(visitor: self)
                 self.currentParent.addSubview(cellView)
-                FormConstraintUtils.setCellConstraintsForContentView(cellView, contentView: self.currentParent, topSibling: topSibling, topSpacing: cell.topSpacing != nil ? CGFloat(cell.topSpacing!) : nil)
-                self.currentToAnchor = cellView.bottomAnchor
+                FormConstraintUtils.setCellConstraintsForContentView(cellView, contentView: self.currentParent, topSibling: topSibling, topSpacing: cell.topSpacing != nil ? CGFloat(cell.topSpacing!) : 8.0)
+                FormConstraintUtils.setCellDefaultHeightConstraints(cellView, height: 40.0)
+                parentheight = parentheight + (cell.topSpacing != nil ? CGFloat(cell.topSpacing!) : CGFloat(8.0))
+                parentheight = parentheight + 40.0
                 topSibling = cellView
             }
         }
 
+        self.currentParent.heightAnchor.constraint(equalToConstant: parentheight).isActive = true
         return self.currentParent
     }
 
@@ -151,7 +165,7 @@ extension FormViewCreator: IFormVisitor {
             }else if  type == FormCellType.checkbox {
                 return createCheckbox(node:node)
             }else if type == FormCellType.send {
-                return createCheckbox(node:node)
+                return creatSend(node:node)
             }
         }
         return UIView()
