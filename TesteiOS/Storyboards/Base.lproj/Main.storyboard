@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,13 +36,28 @@
                     <view key="view" contentMode="scaleToFill" id="bPu-UT-9Sq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bia-41-kPv">
+                                <rect key="frame" x="41.5" y="20" width="292.5" height="598"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Bia-41-kPv" firstAttribute="centerX" secondItem="qyl-mR-XP4" secondAttribute="centerX" id="R2c-Sw-KTz"/>
+                            <constraint firstItem="Bia-41-kPv" firstAttribute="centerY" secondItem="qyl-mR-XP4" secondAttribute="centerY" id="Vik-0P-Z1w"/>
+                            <constraint firstItem="Bia-41-kPv" firstAttribute="width" secondItem="qyl-mR-XP4" secondAttribute="width" multiplier="0.78" id="YUx-jT-evx"/>
+                            <constraint firstItem="Bia-41-kPv" firstAttribute="height" secondItem="qyl-mR-XP4" secondAttribute="height" id="qTY-ta-Xxt"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="qyl-mR-XP4"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Investimento" id="b0S-nG-Po6">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-15"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="tblForm" destination="Bia-41-kPv" id="yUa-1W-D7e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DaX-N0-RU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
