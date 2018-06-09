@@ -9,12 +9,18 @@
 import UIKit
 import M13Checkbox
 
+protocol CheckCellDelegate : class {
+    func chkBoxChanged(_ tag: Int, _ checkState: M13Checkbox.CheckState)
+}
+
 class CheckCell: UITableViewCell {
 
     @IBOutlet weak var chkBox: M13Checkbox!
     @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
 
+    weak var chkCellDelegate : CheckCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,4 +32,9 @@ class CheckCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    // Evento de alterações no checkbox
+    @IBAction func chkChanged(_ sender: M13Checkbox) {
+        // Delegate a ação para a função do protocol
+        chkCellDelegate?.chkBoxChanged(sender.tag, sender.checkState)
+    }
 }

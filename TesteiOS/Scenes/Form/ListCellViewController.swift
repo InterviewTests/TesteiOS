@@ -35,21 +35,31 @@ enum typeField : Int {
 }
 
 // Tableview
-extension ListCellViewController : UITableViewDataSource {
-    
-    
+extension ListCellViewController : UITableViewDataSource, CheckCellDelegate {
+
+    // Protocol para alterações do checkbox utilizado em um dos tipos de celulas da tableView
+    func chkBoxChanged(_ tag: Int, _ checkState: M13Checkbox.CheckState) {
+        
+        let formItem = listCell.first(where: { $0.id == tag })
+        // Alterar visibilidade do item no array
+        formItem?.hidden = (checkState.rawValue == "Checked" ? false : true)
+        // Obter indexPath
+        let idxPath = IndexPath(row: listCell.index(where: { $0.id == formItem?.id })!, section: 0)
+        // Recarregar somente a linha alterada (performance)
+        tblForm.reloadRows(at: [idxPath], with: .automatic)
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let formItem = listCell[indexPath.row]
         
+        // Tratar os tipos de celulas
         switch formItem.type {
         case itemType.field.rawValue:
             let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "text_field_cell", for: indexPath) as! CustomTextFieldCell
             
-            // Margem do topo
+            // Popular os campos
             textFieldCell.topConstraint.constant = CGFloat(formItem.topSpacing)
-            // Placeholder (floating label)
             textFieldCell.txtField.placeholder = formItem.message
-            
             textFieldCell.isHidden = formItem.hidden
             
             return textFieldCell
@@ -57,11 +67,9 @@ extension ListCellViewController : UITableViewDataSource {
         case itemType.text.rawValue:
             let labelCell = tableView.dequeueReusableCell(withIdentifier: "label_cell", for: indexPath) as! LabelCell
             
-            // Margem do topo
+            // Popular os campos
             labelCell.topConstraint.constant = CGFloat(formItem.topSpacing)
-            // Popular label
             labelCell.lblTitle.text = formItem.message
-            
             labelCell.isHidden = formItem.hidden
             
             return labelCell
@@ -69,25 +77,28 @@ extension ListCellViewController : UITableViewDataSource {
         case itemType.checkbox.rawValue:
             let checkCell = tableView.dequeueReusableCell(withIdentifier: "check_cell", for: indexPath) as! CheckCell
             
-            // Margem do topo
+            // Delegate na célula para utilizar os métodos do protocol
+            checkCell.chkCellDelegate = self
+            
+            // Popular os campos
             checkCell.topConstraint.constant = CGFloat(formItem.topSpacing)
-            // Popular label
             checkCell.lblMessage.text = formItem.message
+            checkCell.isHidden = formItem.hidden
+            
             // Personalizar checkbox
             checkCell.chkBox._IBStateChangeAnimation = M13Checkbox.AnimationStyle.fill.rawValue
-
-            checkCell.isHidden = formItem.hidden
+            
+            // Atribuir ID do item a propriedade 'tag' do checkBox
+            checkCell.chkBox.tag = formItem.show!
             
             return checkCell
             
         case itemType.send.rawValue:
             let buttonCell = tableView.dequeueReusableCell(withIdentifier: "button_cell", for: indexPath) as! ButtonCell
             
-            // Margem do topo
+            // Popular os campos
             buttonCell.topConstraint.constant = CGFloat(formItem.topSpacing)
-            // Popular titulo do botão
             buttonCell.btnSend.titleString = formItem.message
-            
             buttonCell.isHidden = formItem.hidden
             
             return buttonCell
@@ -95,11 +106,9 @@ extension ListCellViewController : UITableViewDataSource {
         default:
             let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "text_field_cell", for: indexPath) as! CustomTextFieldCell
             
-            // Margem do topo
+            // Popular os campos
             textFieldCell.topConstraint.constant = CGFloat(formItem.topSpacing)
-            // Placeholder (floating label)
             textFieldCell.txtField.placeholder = formItem.message
-            
             textFieldCell.isHidden = formItem.hidden
             
             return textFieldCell
@@ -112,6 +121,20 @@ extension ListCellViewController : UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    // Definir altura de cada celula
+    // Utilizado para esconder celulas do tipo 'hidden'
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let formItem = listCell[indexPath.row]
+        
+        print("HEIGHT FOR ROW \(formItem.hidden)")
+        
+        if formItem.hidden {
+            return 0
+        }
+        
+        return UITableViewAutomaticDimension
     }
 }
 

@@ -19,7 +19,7 @@ enum CodingKeys: String, CodingKey {
     case required
 }
 
-struct Cell : Decodable {
+class Cell : Decodable {
     var id : Int
     var type : Int
     var message : String
@@ -29,7 +29,7 @@ struct Cell : Decodable {
     var show : Int?
     var required : Bool
     
-    init (from decoder: Decoder) throws{
+    required init (from decoder: Decoder) throws{
         let container = try decoder.container (keyedBy: CodingKeys.self)
         
         id = try container.decode(Int.self,forKey:CodingKeys.id)
