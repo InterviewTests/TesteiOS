@@ -31,4 +31,12 @@ class General {
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: testStr)
     }
+    
+    // Limpar caracteres speciais do telefone
+    class func removeSpecialCharsFromString(_ str: String) -> String {
+        struct Constants {
+            static let validChars = Set("1234567890")
+        }
+        return String(str.filter { Constants.validChars.contains($0) })
+    }
 }

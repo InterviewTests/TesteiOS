@@ -78,7 +78,7 @@ extension ListCellViewController : UITableViewDataSource {
                 case typeField.text.rawValue:
                     textFieldCell.txtField.keyboardType = .alphabet
                 case typeField.telNumber.rawValue:
-                    textFieldCell.txtField.keyboardType = .numberPad
+                    textFieldCell.txtField.keyboardType = .phonePad
                 default:
                     break
             }

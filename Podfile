@@ -15,6 +15,8 @@ target 'TesteiOS' do
   pod 'Alamofire'
   # Rounded Button
   pod 'LGButton'
+  # Maskfield
+  pod 'AKMaskField'
   
   target 'TesteiOSTests' do
     inherit! :search_paths
