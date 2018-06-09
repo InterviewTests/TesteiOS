@@ -76,6 +76,9 @@ class InvestmentViewController: UIViewController {
         self.infoTableView.separatorStyle = .none
         self.infoTableView.dataSource = self
         FormViewCreator.changeButtonStyle(self.investButton)
+
+        let tabBar = self.tabBarController!.tabBar
+        tabBar.barTintColor = UIColor.appPrimaryColor()
     }
     
     func setupObservables() {
