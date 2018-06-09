@@ -28,16 +28,20 @@ enum itemType : Int {
     case send = 5
 }
 
-enum typeField : Int {
-    case text = 1
-    case telNumber = 2
-    case email = 3
+enum typeField : String {
+    case text = "1"
+    case telNumber = "telnumber"
+    case email = "3"
 }
 
-// Tableview
-extension ListCellViewController : UITableViewDataSource, CheckCellDelegate {
+// Protocol ButtonCell
+extension ListCellViewController : ButtonCellDelegate {
+    func btnSendTapped(_ tag: Int) {
+    }
+}
 
-    // Protocol para alterações do checkbox utilizado em um dos tipos de celulas da tableView
+// Protocol CheckCell
+extension ListCellViewController : CheckCellDelegate {
     func chkBoxChanged(_ tag: Int, _ checkState: M13Checkbox.CheckState) {
         
         let formItem = listCell.first(where: { $0.id == tag })
@@ -48,7 +52,12 @@ extension ListCellViewController : UITableViewDataSource, CheckCellDelegate {
         // Recarregar somente a linha alterada (performance)
         tblForm.reloadRows(at: [idxPath], with: .automatic)
     }
+}
 
+// Tableview
+extension ListCellViewController : UITableViewDataSource {
+
+    // Métodos da tableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let formItem = listCell[indexPath.row]
         
@@ -61,6 +70,18 @@ extension ListCellViewController : UITableViewDataSource, CheckCellDelegate {
             textFieldCell.topConstraint.constant = CGFloat(formItem.topSpacing)
             textFieldCell.txtField.placeholder = formItem.message
             textFieldCell.isHidden = formItem.hidden
+            
+            // Tipo do campo (text, email ou telNumber)
+            switch formItem.typefield {
+                case typeField.email.rawValue:
+                    textFieldCell.txtField.keyboardType = .emailAddress
+                case typeField.text.rawValue:
+                    textFieldCell.txtField.keyboardType = .alphabet
+                case typeField.telNumber.rawValue:
+                    textFieldCell.txtField.keyboardType = .numberPad
+                default:
+                    break
+            }
             
             return textFieldCell
             
@@ -99,6 +120,8 @@ extension ListCellViewController : UITableViewDataSource, CheckCellDelegate {
             // Popular os campos
             buttonCell.topConstraint.constant = CGFloat(formItem.topSpacing)
             buttonCell.btnSend.titleString = formItem.message
+            buttonCell.btnCellDelegate = self
+            buttonCell.btnSend.tag = formItem.id
             buttonCell.isHidden = formItem.hidden
             
             return buttonCell
@@ -128,16 +151,17 @@ extension ListCellViewController : UITableViewDataSource, CheckCellDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let formItem = listCell[indexPath.row]
         
-        print("HEIGHT FOR ROW \(formItem.hidden)")
-        
+        // Retornar altura 0 para celulas do tipo hidden
         if formItem.hidden {
             return 0
         }
         
+        // Obter altura automaticamente
         return UITableViewAutomaticDimension
     }
 }
 
+// Controller da tela do formulário
 class ListCellViewController: UIViewController, ListCellViewControllerInput, UITableViewDelegate {
     
     var output: ListCellViewControllerOutput!
@@ -185,5 +209,10 @@ class ListCellViewController: UIViewController, ListCellViewControllerInput, UIT
     
     func errorFetchingItems(response: ListCell.Fetch.Response) {
         //
+    }
+    
+    // Validar o formulário
+    func validateForm(){
+        
     }
 }

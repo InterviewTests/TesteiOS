@@ -9,11 +9,17 @@
 import UIKit
 import LGButton
 
+protocol ButtonCellDelegate : class {
+    func btnSendTapped(_ tag: Int)
+}
+
 class ButtonCell: UITableViewCell {
 
     @IBOutlet weak var btnSend: LGButton!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
 
+    weak var btnCellDelegate : ButtonCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,4 +31,7 @@ class ButtonCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func btnSendTapped(_ sender: LGButton) {
+        btnCellDelegate?.btnSendTapped(sender.tag)
+    }
 }

@@ -21,5 +21,10 @@ class CustomTextFieldCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
+    // Validar o campo de acordo com o tipo
+    @IBAction func txtChanged(_ sender: SkyFloatingLabelTextField) {
+        sender.validateField()
+    }
+    
 }
