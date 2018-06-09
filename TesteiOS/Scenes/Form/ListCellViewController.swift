@@ -50,7 +50,10 @@ extension ListCellViewController : UITableViewDataSource {
             // Placeholder (floating label)
             textFieldCell.txtField.placeholder = formItem.message
             
+            textFieldCell.isHidden = formItem.hidden
+            
             return textFieldCell
+            
         case itemType.text.rawValue:
             let labelCell = tableView.dequeueReusableCell(withIdentifier: "label_cell", for: indexPath) as! LabelCell
             
@@ -59,7 +62,10 @@ extension ListCellViewController : UITableViewDataSource {
             // Popular label
             labelCell.lblTitle.text = formItem.message
             
+            labelCell.isHidden = formItem.hidden
+            
             return labelCell
+            
         case itemType.checkbox.rawValue:
             let checkCell = tableView.dequeueReusableCell(withIdentifier: "check_cell", for: indexPath) as! CheckCell
             
@@ -70,7 +76,22 @@ extension ListCellViewController : UITableViewDataSource {
             // Personalizar checkbox
             checkCell.chkBox._IBStateChangeAnimation = M13Checkbox.AnimationStyle.fill.rawValue
 
+            checkCell.isHidden = formItem.hidden
+            
             return checkCell
+            
+        case itemType.send.rawValue:
+            let buttonCell = tableView.dequeueReusableCell(withIdentifier: "button_cell", for: indexPath) as! ButtonCell
+            
+            // Margem do topo
+            buttonCell.topConstraint.constant = CGFloat(formItem.topSpacing)
+            // Popular titulo do botão
+            buttonCell.btnSend.titleString = formItem.message
+            
+            buttonCell.isHidden = formItem.hidden
+            
+            return buttonCell
+            
         default:
             let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "text_field_cell", for: indexPath) as! CustomTextFieldCell
             
@@ -78,6 +99,8 @@ extension ListCellViewController : UITableViewDataSource {
             textFieldCell.topConstraint.constant = CGFloat(formItem.topSpacing)
             // Placeholder (floating label)
             textFieldCell.txtField.placeholder = formItem.message
+            
+            textFieldCell.isHidden = formItem.hidden
             
             return textFieldCell
         }
@@ -120,10 +143,12 @@ class ListCellViewController: UIViewController, ListCellViewControllerInput, UIT
         let nibTextFieldCell = UINib(nibName: "CustomTextFieldCell", bundle: nil)
         let nibLabelCell = UINib(nibName: "LabelCell", bundle: nil)
         let nibCheckCell = UINib(nibName: "CheckCell", bundle: nil)
+        let nibButtonCell = UINib(nibName: "ButtonCell", bundle: nil)
         
         self.tblForm.register(nibTextFieldCell, forCellReuseIdentifier: "text_field_cell")
         self.tblForm.register(nibLabelCell, forCellReuseIdentifier: "label_cell")
         self.tblForm.register(nibCheckCell, forCellReuseIdentifier: "check_cell")
+        self.tblForm.register(nibButtonCell, forCellReuseIdentifier: "button_cell")
         
         output.fetchItems()
     }

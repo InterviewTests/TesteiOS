@@ -49,6 +49,9 @@
 		FAA4E0FE20CA105D00BDFD93 /* ListCellRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4E0FD20CA105C00BDFD93 /* ListCellRouter.swift */; };
 		FAA4E10020CA112F00BDFD93 /* ListCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4E0FF20CA112F00BDFD93 /* ListCellConfigurator.swift */; };
 		FAA4E10220CA134400BDFD93 /* ListCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4E10120CA134400BDFD93 /* ListCellViewController.swift */; };
+		FAD8DD5A20CBA5260089FA63 /* LGButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD8DD5920CBA5260089FA63 /* LGButton.framework */; };
+		FAD8DD5C20CBA5690089FA63 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD8DD5B20CBA5690089FA63 /* ButtonCell.xib */; };
+		FAD8DD5E20CBA5790089FA63 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8DD5D20CBA5790089FA63 /* ButtonCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +127,9 @@
 		FAA4E0FD20CA105C00BDFD93 /* ListCellRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellRouter.swift; sourceTree = "<group>"; };
 		FAA4E0FF20CA112F00BDFD93 /* ListCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellConfigurator.swift; sourceTree = "<group>"; };
 		FAA4E10120CA134400BDFD93 /* ListCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellViewController.swift; sourceTree = "<group>"; };
+		FAD8DD5920CBA5260089FA63 /* LGButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LGButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAD8DD5B20CBA5690089FA63 /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
+		FAD8DD5D20CBA5790089FA63 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD8DD5A20CBA5260089FA63 /* LGButton.framework in Frameworks */,
 				FA5D075720CB9A1D0017F64B /* M13Checkbox.framework in Frameworks */,
 				FA53B6A120CB601900F8461B /* SkyFloatingLabelTextField.framework in Frameworks */,
 				FA53B69F20CA2DBA00F8461B /* Alamofire.framework in Frameworks */,
@@ -160,6 +167,7 @@
 		237F862B5001CD5350C9F335 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FAD8DD5920CBA5260089FA63 /* LGButton.framework */,
 				FA5D075620CB9A1D0017F64B /* M13Checkbox.framework */,
 				FA45F6EA20CB92DD001A5EE9 /* UICheckbox.framework */,
 				FA53B6A020CB601900F8461B /* SkyFloatingLabelTextField.framework */,
@@ -201,6 +209,8 @@
 				FA45F6E820CB8DA0001A5EE9 /* LabelCell.swift */,
 				FA45F6EC20CB932B001A5EE9 /* CheckCell.xib */,
 				FA5D075420CB95790017F64B /* CheckCell.swift */,
+				FAD8DD5B20CBA5690089FA63 /* ButtonCell.xib */,
+				FAD8DD5D20CBA5790089FA63 /* ButtonCell.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -477,6 +487,7 @@
 				FA53B6BB20CB6B0D00F8461B /* DINEngschriftStd.otf in Resources */,
 				FA53B6BC20CB6B0D00F8461B /* DINPro-Medium.otf in Resources */,
 				FAA4E0F520C9FE9600BDFD93 /* Localizable.strings in Resources */,
+				FAD8DD5C20CBA5690089FA63 /* ButtonCell.xib in Resources */,
 				FA45F6E720CB8D26001A5EE9 /* LabelCell.xib in Resources */,
 				FA53B6C020CB6B0D00F8461B /* DINMittelschriftStd.otf in Resources */,
 			);
@@ -525,12 +536,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TesteiOS/Pods-TesteiOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/LGButton/LGButton.framework",
 				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LGButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 			);
@@ -593,6 +606,7 @@
 				FAA4E0FA20CA088800BDFD93 /* ListCellInteractor.swift in Sources */,
 				FAA4E0F720C9FF1300BDFD93 /* Cell.swift in Sources */,
 				FAA4E10020CA112F00BDFD93 /* ListCellConfigurator.swift in Sources */,
+				FAD8DD5E20CBA5790089FA63 /* ButtonCell.swift in Sources */,
 				FA45F6E920CB8DA0001A5EE9 /* LabelCell.swift in Sources */,
 				FAA4E10220CA134400BDFD93 /* ListCellViewController.swift in Sources */,
 				FAA4E0F320C9FCD800BDFD93 /* ListCellWorker.swift in Sources */,

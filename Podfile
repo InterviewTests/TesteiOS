@@ -13,6 +13,8 @@ target 'TesteiOS' do
   pod 'M13Checkbox'
   # Request
   pod 'Alamofire'
+  # Rounded Button
+  pod 'LGButton'
   
   target 'TesteiOSTests' do
     inherit! :search_paths
