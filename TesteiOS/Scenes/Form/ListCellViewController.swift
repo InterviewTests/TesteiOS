@@ -19,12 +19,56 @@ protocol ListCellViewControllerOutput
     func fetchItems()
 }
 
+enum itemType : Int {
+    case field = 1
+    case text = 2
+    case image = 3
+    case checkbox = 4
+    case send = 5
+}
+
+enum typeField : Int {
+    case text = 1
+    case telNumber = 2
+    case email = 3
+}
+
 // Tableview
 extension ListCellViewController : UITableViewDataSource {
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "text_field_cell", for: indexPath) as! CustomTextFieldCell
+        let formItem = listCell[indexPath.row]
         
-        return textFieldCell
+        switch formItem.type {
+        case itemType.field.rawValue:
+            let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "text_field_cell", for: indexPath) as! CustomTextFieldCell
+            
+            // Margem do topo
+            textFieldCell.topConstraint.constant = CGFloat(formItem.topSpacing)
+            // Placeholder (floating label)
+            textFieldCell.txtField.placeholder = formItem.message
+            
+            return textFieldCell
+        case itemType.text.rawValue:
+            let labelCell = tableView.dequeueReusableCell(withIdentifier: "label_cell", for: indexPath) as! LabelCell
+            
+            // Margem do topo
+            labelCell.topConstraint.constant = CGFloat(formItem.topSpacing)
+            // Popular label
+            labelCell.lblTitle.text = formItem.message
+            
+            return labelCell
+        default:
+            let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "text_field_cell", for: indexPath) as! CustomTextFieldCell
+            
+            // Margem do topo
+            textFieldCell.topConstraint.constant = CGFloat(formItem.topSpacing)
+            // Placeholder (floating label)
+            textFieldCell.txtField.placeholder = formItem.message
+            
+            return textFieldCell
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,7 +106,10 @@ class ListCellViewController: UIViewController, ListCellViewControllerInput, UIT
         
         // Registrar as cells
         let nibTextFieldCell = UINib(nibName: "CustomTextFieldCell", bundle: nil)
+        let nibLabelCell = UINib(nibName: "LabelCell", bundle: nil)
+        
         self.tblForm.register(nibTextFieldCell, forCellReuseIdentifier: "text_field_cell")
+        self.tblForm.register(nibLabelCell, forCellReuseIdentifier: "label_cell")
         
         output.fetchItems()
     }
