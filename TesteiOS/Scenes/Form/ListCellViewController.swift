@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import M13Checkbox
 
 protocol ListCellViewControllerInput
 {
@@ -59,6 +60,17 @@ extension ListCellViewController : UITableViewDataSource {
             labelCell.lblTitle.text = formItem.message
             
             return labelCell
+        case itemType.checkbox.rawValue:
+            let checkCell = tableView.dequeueReusableCell(withIdentifier: "check_cell", for: indexPath) as! CheckCell
+            
+            // Margem do topo
+            checkCell.topConstraint.constant = CGFloat(formItem.topSpacing)
+            // Popular label
+            checkCell.lblMessage.text = formItem.message
+            // Personalizar checkbox
+            checkCell.chkBox._IBStateChangeAnimation = M13Checkbox.AnimationStyle.fill.rawValue
+
+            return checkCell
         default:
             let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "text_field_cell", for: indexPath) as! CustomTextFieldCell
             
@@ -107,9 +119,11 @@ class ListCellViewController: UIViewController, ListCellViewControllerInput, UIT
         // Registrar as cells
         let nibTextFieldCell = UINib(nibName: "CustomTextFieldCell", bundle: nil)
         let nibLabelCell = UINib(nibName: "LabelCell", bundle: nil)
+        let nibCheckCell = UINib(nibName: "CheckCell", bundle: nil)
         
         self.tblForm.register(nibTextFieldCell, forCellReuseIdentifier: "text_field_cell")
         self.tblForm.register(nibLabelCell, forCellReuseIdentifier: "label_cell")
+        self.tblForm.register(nibCheckCell, forCellReuseIdentifier: "check_cell")
         
         output.fetchItems()
     }

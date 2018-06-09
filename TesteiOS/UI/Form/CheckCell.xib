@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Regular.otf">
+            <string>DINPro-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="check_cell" id="NGv-wp-Ni6" customClass="CheckCell" customModule="TesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NGv-wp-Ni6" id="AL6-pG-Yg4">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RBo-XW-BAI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YQo-e8-EPn" customClass="M13Checkbox" customModule="M13Checkbox">
+                                <rect key="frame" x="0.0" y="11.5" width="20" height="20"/>
+                                <color key="tintColor" red="0.85882352939999995" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="8c2-WA-VtX"/>
+                                    <constraint firstAttribute="width" constant="20" id="JuY-Z2-cCf"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="secondaryCheckmarkTintColor">
+                                        <color key="value" red="0.85882352939999995" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="boxLineWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="_IBBoxType" value="Square"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="secondaryTintColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="checkmarkLineWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="kjdhadkjsahdkjsa" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaR-AG-cB6">
+                                <rect key="frame" x="25" y="0.0" width="350" height="43.5"/>
+                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="kaR-AG-cB6" secondAttribute="trailing" id="0Mk-Sh-QEA"/>
+                            <constraint firstAttribute="bottom" secondItem="kaR-AG-cB6" secondAttribute="bottom" id="QmF-HF-TuP"/>
+                            <constraint firstItem="YQo-e8-EPn" firstAttribute="leading" secondItem="RBo-XW-BAI" secondAttribute="leading" id="bX4-zw-mz4"/>
+                            <constraint firstItem="kaR-AG-cB6" firstAttribute="leading" secondItem="YQo-e8-EPn" secondAttribute="trailing" constant="5" id="kp3-a9-zax"/>
+                            <constraint firstItem="kaR-AG-cB6" firstAttribute="top" secondItem="RBo-XW-BAI" secondAttribute="top" id="s21-As-FVP"/>
+                            <constraint firstItem="YQo-e8-EPn" firstAttribute="centerY" secondItem="RBo-XW-BAI" secondAttribute="centerY" id="v4w-to-fXj"/>
+                            <constraint firstItem="kaR-AG-cB6" firstAttribute="centerY" secondItem="YQo-e8-EPn" secondAttribute="centerY" id="xuE-w5-2KM"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="RBo-XW-BAI" firstAttribute="leading" secondItem="AL6-pG-Yg4" secondAttribute="leading" id="Aw8-83-1Wa"/>
+                    <constraint firstItem="RBo-XW-BAI" firstAttribute="top" secondItem="AL6-pG-Yg4" secondAttribute="top" id="SpP-DE-80P"/>
+                    <constraint firstAttribute="trailing" secondItem="RBo-XW-BAI" secondAttribute="trailing" id="Ynj-nT-NhB"/>
+                    <constraint firstAttribute="bottom" secondItem="RBo-XW-BAI" secondAttribute="bottom" id="srH-tw-qw6"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="chkBox" destination="YQo-e8-EPn" id="IV9-dL-X9i"/>
+                <outlet property="lblMessage" destination="kaR-AG-cB6" id="tGd-cE-3qj"/>
+                <outlet property="topConstraint" destination="SpP-DE-80P" id="aw9-EG-lg4"/>
+            </connections>
+            <point key="canvasLocation" x="-90" y="94"/>
+        </tableViewCell>
+    </objects>
+</document>

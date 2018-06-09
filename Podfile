@@ -6,8 +6,11 @@ target 'TesteiOS' do
   use_frameworks!
   
   # Pods for TesteiOS
+  
   # Input Floating
   pod 'SkyFloatingLabelTextField'
+  # Checkbox
+  pod 'M13Checkbox'
   # Request
   pod 'Alamofire'
   
