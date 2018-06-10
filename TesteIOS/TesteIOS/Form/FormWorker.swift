@@ -12,7 +12,6 @@ typealias FormResponse = (_ response: FormModel.Fetch.Response) -> ()
 
 class FormWorker: NSObject {
     let manager = ApiManager()
-    let formUrl = "https://floating-mountain-50292.herokuapp.com/cells.json"
     
     func fetchForm(success: (@escaping FormResponse), failure:(@escaping FormResponse)) {
         manager.fetchCells(stringUrl: Url.formUrl) { (data, error) in
