@@ -56,6 +56,14 @@
 		FAD8DD6220CC37C50089FA63 /* AKMaskField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD8DD6120CC37C50089FA63 /* AKMaskField.framework */; };
 		FAD8DD6420CCD0440089FA63 /* SuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD8DD6320CCD0440089FA63 /* SuccessView.xib */; };
 		FAD8DD6620CCD5EB0089FA63 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8DD6520CCD5EB0089FA63 /* SuccessView.swift */; };
+		FAD8DD6D20CCDA360089FA63 /* ListFundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8DD6C20CCDA360089FA63 /* ListFundModel.swift */; };
+		FAD8DD6F20CCDAC30089FA63 /* ListFundWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8DD6E20CCDAC30089FA63 /* ListFundWorker.swift */; };
+		FAD8DD7120CCDBEE0089FA63 /* ListFundInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8DD7020CCDBEE0089FA63 /* ListFundInteractor.swift */; };
+		FAD8DD7320CCDC710089FA63 /* ListFundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8DD7220CCDC710089FA63 /* ListFundPresenter.swift */; };
+		FAD8DD7520CCDCC30089FA63 /* ListFundRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8DD7420CCDCC30089FA63 /* ListFundRouter.swift */; };
+		FAD8DD7720CCDCF70089FA63 /* ListFundConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8DD7620CCDCF70089FA63 /* ListFundConfigurator.swift */; };
+		FAD8DD7920CCDD4A0089FA63 /* ListFundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8DD7820CCDD4A0089FA63 /* ListFundViewController.swift */; };
+		FAD8DD7B20CCDE9E0089FA63 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8DD7A20CCDE9E0089FA63 /* Screen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +146,14 @@
 		FAD8DD6120CC37C50089FA63 /* AKMaskField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AKMaskField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD8DD6320CCD0440089FA63 /* SuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessView.xib; sourceTree = "<group>"; };
 		FAD8DD6520CCD5EB0089FA63 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
+		FAD8DD6C20CCDA360089FA63 /* ListFundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFundModel.swift; sourceTree = "<group>"; };
+		FAD8DD6E20CCDAC30089FA63 /* ListFundWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFundWorker.swift; sourceTree = "<group>"; };
+		FAD8DD7020CCDBEE0089FA63 /* ListFundInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFundInteractor.swift; sourceTree = "<group>"; };
+		FAD8DD7220CCDC710089FA63 /* ListFundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFundPresenter.swift; sourceTree = "<group>"; };
+		FAD8DD7420CCDCC30089FA63 /* ListFundRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFundRouter.swift; sourceTree = "<group>"; };
+		FAD8DD7620CCDCF70089FA63 /* ListFundConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFundConfigurator.swift; sourceTree = "<group>"; };
+		FAD8DD7820CCDD4A0089FA63 /* ListFundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFundViewController.swift; sourceTree = "<group>"; };
+		FAD8DD7A20CCDE9E0089FA63 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				FAA4E0F620C9FF1300BDFD93 /* Cell.swift */,
+				FAD8DD7A20CCDE9E0089FA63 /* Screen.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -371,10 +388,25 @@
 		FAA4E0EC20C9F8FA00BDFD93 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				FAD8DD6B20CCDA1F0089FA63 /* Fund */,
 				FA53B6AD20CB673000F8461B /* Base */,
 				FA53B6AC20CB672200F8461B /* Form */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		FAD8DD6B20CCDA1F0089FA63 /* Fund */ = {
+			isa = PBXGroup;
+			children = (
+				FAD8DD6C20CCDA360089FA63 /* ListFundModel.swift */,
+				FAD8DD6E20CCDAC30089FA63 /* ListFundWorker.swift */,
+				FAD8DD7020CCDBEE0089FA63 /* ListFundInteractor.swift */,
+				FAD8DD7220CCDC710089FA63 /* ListFundPresenter.swift */,
+				FAD8DD7420CCDCC30089FA63 /* ListFundRouter.swift */,
+				FAD8DD7620CCDCF70089FA63 /* ListFundConfigurator.swift */,
+				FAD8DD7820CCDD4A0089FA63 /* ListFundViewController.swift */,
+			);
+			path = Fund;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -615,18 +647,26 @@
 				FA53B6A720CB62D500F8461B /* CustomTextFieldCell.swift in Sources */,
 				FA5D075520CB95790017F64B /* CheckCell.swift in Sources */,
 				FAA4E0EB20C9F62500BDFD93 /* NetworkReachabillity.swift in Sources */,
+				FAD8DD7B20CCDE9E0089FA63 /* Screen.swift in Sources */,
+				FAD8DD7720CCDCF70089FA63 /* ListFundConfigurator.swift in Sources */,
 				FA53B6AF20CB676000F8461B /* TabViewController.swift in Sources */,
+				FAD8DD6D20CCDA360089FA63 /* ListFundModel.swift in Sources */,
 				FAA4E0FE20CA105D00BDFD93 /* ListCellRouter.swift in Sources */,
 				FAA4E0EE20C9F92A00BDFD93 /* ListCellModel.swift in Sources */,
+				FAD8DD6F20CCDAC30089FA63 /* ListFundWorker.swift in Sources */,
 				FAA4E0FC20CA0E3B00BDFD93 /* ListCellPresenter.swift in Sources */,
 				FAA4E0FA20CA088800BDFD93 /* ListCellInteractor.swift in Sources */,
+				FAD8DD7920CCDD4A0089FA63 /* ListFundViewController.swift in Sources */,
 				FAA4E0F720C9FF1300BDFD93 /* Cell.swift in Sources */,
 				FAA4E10020CA112F00BDFD93 /* ListCellConfigurator.swift in Sources */,
 				FAD8DD5E20CBA5790089FA63 /* ButtonCell.swift in Sources */,
+				FAD8DD7520CCDCC30089FA63 /* ListFundRouter.swift in Sources */,
 				FAD8DD6620CCD5EB0089FA63 /* SuccessView.swift in Sources */,
+				FAD8DD7320CCDC710089FA63 /* ListFundPresenter.swift in Sources */,
 				FA45F6E920CB8DA0001A5EE9 /* LabelCell.swift in Sources */,
 				FAA4E10220CA134400BDFD93 /* ListCellViewController.swift in Sources */,
 				FAA4E0F320C9FCD800BDFD93 /* ListCellWorker.swift in Sources */,
+				FAD8DD7120CCDBEE0089FA63 /* ListFundInteractor.swift in Sources */,
 				FAA4E0E920C9F58A00BDFD93 /* General.swift in Sources */,
 				FAD8DD6020CC2FE60089FA63 /* SkyFloatingLabelTextField.swift in Sources */,
 				FAA4E0B320C9F32800BDFD93 /* AppDelegate.swift in Sources */,
