@@ -14,12 +14,12 @@ struct FormModel {
         struct Request {}
         
         struct Response {
-            var cell: [Cell]
+            var cells: [Cell]
             var message: String
         }
         
         struct ViewModel: Codable {
-            var cell: [Cell]
+            var cells: [Cell]
         }
         
         

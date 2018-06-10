@@ -16,13 +16,13 @@ class FormWorker: NSObject {
     func fetchForm(success: (@escaping FormResponse), failure:(@escaping FormResponse)) {
         manager.fetchCells(stringUrl: Url.formUrl) { (data, error) in
             guard let data = data else {
-                failure(FormModel.Fetch.Response(cell: [], message: "Erro ao conectar com o servidor"))
+                failure(FormModel.Fetch.Response(cells: [], message: "Erro ao conectar com o servidor"))
                 return
             }
             
             do {
                 let decoder = JSONDecoder()
-                let formData = try decoder.decode(CellRoot.self, from: data)
+                let formData = try decoder.decode(FormModel.Fetch.ViewModel.self, from: data)
                 print(formData)
             } catch let err {
                 print("Err", err)
