@@ -35,8 +35,16 @@ enum typeField : String {
 }
 
 // Protocol ButtonCell
-extension ListCellViewController : ButtonCellDelegate {
+extension ListCellViewController : ButtonCellDelegate, SuccessViewDelegate {
+    func btnSendNewMessageTapped(_ tag: Int) {
+        self.successView.removeFromSuperview()
+    }
+    
     func btnSendTapped(_ tag: Int) {
+        self.successView.center = self.centerPosition
+        self.successView.successViewDelegate = self
+        self.successView.tag = tag
+        self.tblForm.addSubview(successView)
     }
 }
 
@@ -172,11 +180,17 @@ class ListCellViewController: UIViewController, ListCellViewControllerInput, UIT
     
     // UI
     @IBOutlet weak var tblForm: UITableView!
+    var successView = SuccessView()
+    var centerPosition : CGPoint = CGPoint(x: 0, y: 0)
     
     override func awakeFromNib()
     {
         super.awakeFromNib()
         ListCellConfigurator.sharedInstance.configure(viewController: self)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.centerPosition = CGPoint(x: (self.tblForm.frame.size.width / 2), y: (self.tblForm.frame.size.height / 2))
     }
     
     override func viewDidLoad(){
@@ -197,6 +211,10 @@ class ListCellViewController: UIViewController, ListCellViewControllerInput, UIT
         self.tblForm.register(nibCheckCell, forCellReuseIdentifier: "check_cell")
         self.tblForm.register(nibButtonCell, forCellReuseIdentifier: "button_cell")
         
+        // View de sucesso do formulário
+        self.successView = UINib(nibName: "SuccessView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! SuccessView
+        
+        // Buscar itens
         output.fetchItems()
     }
     
