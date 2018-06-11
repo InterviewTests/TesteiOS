@@ -19,17 +19,19 @@ extension ListCellWorker {
 
 class ListCellWorker {
     func list(completion: @escaping(responseHandler), errorHandler: @escaping (responseHandler)){
-        RequestAPI.sendGETRequest(urlMethod: self._route(str: "list_cell_route"), completion: { (data) in
-            do {
-                // Parse da resposta para o modelo
-                let result = try JSONDecoder().decode(ListCell.Fetch.Response.self, from: data!)
-                completion(ListCell.Fetch.Response(cells: result.cells))
-            } catch {
+        DispatchQueue.main.async {
+            RequestAPI.sendGETRequest(urlMethod: self._route(str: "list_cell_route"), completion: { (data) in
+                do {
+                    // Parse da resposta para o modelo
+                    let result = try JSONDecoder().decode(ListCell.Fetch.Response.self, from: data!)
+                    completion(ListCell.Fetch.Response(cells: result.cells))
+                } catch {
+                    completion(ListCell.Fetch.Response(cells: []))
+                }
+                
+            }) { (error) in
                 completion(ListCell.Fetch.Response(cells: []))
             }
-            
-        }) { (error) in
-            completion(ListCell.Fetch.Response(cells: []))
         }
     }
 }

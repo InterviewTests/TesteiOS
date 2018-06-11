@@ -83,11 +83,11 @@ extension ListCellViewController : UITableViewDataSource {
     // Métodos da tableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let formItem = listCell[indexPath.row]
-        
+       
         // Tratar os tipos de celulas
         switch formItem.type {
         case itemType.field.rawValue:
-            let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "text_field_cell", for: indexPath) as! CustomTextFieldCell
+            let textFieldCell = self.tblForm.dequeueReusableCell(withIdentifier: "text_field_cell", for: indexPath) as! CustomTextFieldCell
             
             // Popular os campos
             textFieldCell.topConstraint.constant = CGFloat(formItem.topSpacing)
@@ -109,7 +109,7 @@ extension ListCellViewController : UITableViewDataSource {
             return textFieldCell
             
         case itemType.text.rawValue:
-            let labelCell = tableView.dequeueReusableCell(withIdentifier: "label_cell", for: indexPath) as! LabelCell
+            let labelCell = self.tblForm.dequeueReusableCell(withIdentifier: "label_cell", for: indexPath) as! LabelCell
             
             // Popular os campos
             labelCell.topConstraint.constant = CGFloat(formItem.topSpacing)
@@ -119,7 +119,7 @@ extension ListCellViewController : UITableViewDataSource {
             return labelCell
             
         case itemType.checkbox.rawValue:
-            let checkCell = tableView.dequeueReusableCell(withIdentifier: "check_cell", for: indexPath) as! CheckCell
+            let checkCell = self.tblForm.dequeueReusableCell(withIdentifier: "check_cell", for: indexPath) as! CheckCell
             
             // Delegate na célula para utilizar os métodos do protocol
             checkCell.chkCellDelegate = self
@@ -138,7 +138,7 @@ extension ListCellViewController : UITableViewDataSource {
             return checkCell
             
         case itemType.send.rawValue:
-            let buttonCell = tableView.dequeueReusableCell(withIdentifier: "button_cell", for: indexPath) as! ButtonCell
+            let buttonCell = self.tblForm.dequeueReusableCell(withIdentifier: "button_cell", for: indexPath) as! ButtonCell
             
             // Popular os campos
             buttonCell.topConstraint.constant = CGFloat(formItem.topSpacing)
@@ -150,7 +150,7 @@ extension ListCellViewController : UITableViewDataSource {
             return buttonCell
             
         default:
-            let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "text_field_cell", for: indexPath) as! CustomTextFieldCell
+            let textFieldCell = self.tblForm.dequeueReusableCell(withIdentifier: "text_field_cell", for: indexPath) as! CustomTextFieldCell
             
             // Popular os campos
             textFieldCell.topConstraint.constant = CGFloat(formItem.topSpacing)
@@ -210,15 +210,7 @@ class ListCellViewController: UIViewController, ListCellViewControllerInput, UIT
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
         self.hideKeyboardWhenTappedAround()
-        
-        // Delegate
-        self.tblForm.delegate = self
         
         // Registrar as cells
         let nibTextFieldCell = UINib(nibName: "CustomTextFieldCell", bundle: nil)
@@ -234,18 +226,19 @@ class ListCellViewController: UIViewController, ListCellViewControllerInput, UIT
         // View de sucesso do formulário
         self.successView = UINib(nibName: "SuccessView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! SuccessView
         
+        // Delegate
+        self.tblForm.delegate = self
+        self.tblForm.dataSource = self
+        
         // Buscar itens
-        output.fetchItems()
+        self.output.fetchItems()
     }
     
     // Métodos de callback das requisições
     func successFetchedItems(response: ListCell.Fetch.Response) {
-        listCell = response.cells
-        
-        self.tblForm.dataSource = self
-        
         // Recarregar os dados da tabela
         DispatchQueue.main.async {
+            self.listCell = response.cells
             self.tblForm.reloadData()
         }
     }

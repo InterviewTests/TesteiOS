@@ -194,9 +194,10 @@ class ListFundViewController : UIViewController, ListFundViewControllerInput {
         tblMoreInfo.reloadData()
         tblInfo.reloadData()
         
+        cvRisk.reloadData()
         // Selecionar nivel de risco
         let idxRisk = IndexPath(row: listFund.risk - 1, section: 0)
-        collectionView(cvRisk, didSelectItemAt: idxRisk)
+        self.cvRisk.selectItem(at: idxRisk, animated: true, scrollPosition: .centeredVertically)
     }
     
     func errorFetchingItems(response: ListFund.Fetch.Response) {
