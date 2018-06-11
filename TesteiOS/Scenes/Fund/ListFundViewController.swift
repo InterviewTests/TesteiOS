@@ -8,7 +8,94 @@
 
 import Foundation
 import UIKit
+import SafariServices
 
+// Clique botão 'download'
+extension ListFundViewController: DownloadTableViewCellDelegate, SFSafariViewControllerDelegate {
+    func btnDownloadTapped(_ tag: Int) {
+        openSafari()
+    }
+    
+    func openSafari(){
+        let safariVC = SFSafariViewController(url: NSURL(string: "https://www.google.com")! as URL)
+        self.present(safariVC, animated: true, completion: nil)
+        safariVC.delegate = self
+    }
+}
+
+// Tableview
+extension ListFundViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if tableView == self.tblMoreInfo {
+            return 1
+        } else {
+            return 2
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == self.tblMoreInfo {
+            return 3
+        } else {
+            if section == 0 {
+                return self.listFund.info.count
+            } else {
+                return self.listFund.downInfo.count
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if tableView == self.tblMoreInfo {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell_more_info", for: indexPath) as! MoreInfoTableViewCell
+            
+            switch indexPath.row {
+            case 0:
+                cell.lblTitle.text = "No mês"
+                cell.lblFund.text = String(listFund.moreInfo.month.fund) + "%"
+                cell.lblCdi.text = String(listFund.moreInfo.month.cdi) + "%"
+            case 1:
+                cell.lblTitle.text = "No ano"
+                cell.lblFund.text = String(listFund.moreInfo.year.fund) + "%"
+                cell.lblCdi.text = String(listFund.moreInfo.year.cdi) + "%"
+            case 2:
+                cell.lblTitle.text = "12 meses"
+                cell.lblFund.text = String(listFund.moreInfo.the12Months.fund) + "%"
+                cell.lblCdi.text = String(listFund.moreInfo.the12Months.cdi) + "%"
+            default:
+                cell.lblTitle.text = "No mês"
+                cell.lblFund.text = String(listFund.moreInfo.month.fund) + "%"
+                cell.lblCdi.text = String(listFund.moreInfo.month.cdi) + "%"
+            }
+            
+            return cell
+        } else {
+            if indexPath.section == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cell_info", for: indexPath) as! InfoTableViewCell
+                
+                let item = listFund.info[indexPath.row]
+                
+                cell.lblName.text = item.name
+                cell.lblData.text = item.data
+                
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cell_download", for: indexPath) as! DownloadTableViewCell
+                
+                let item = listFund.downInfo[indexPath.row]
+                
+                cell.lblTitle.text = item.name
+                cell.downloadTableViewCellDelegate = self
+                
+                return cell
+            }
+        }
+    } 
+}
+
+// Collectionview
 extension ListFundViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
@@ -37,16 +124,18 @@ extension ListFundViewController : UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
     
+    // Alterar altura caso a cell esteja selecionada
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         switch collectionView.indexPathsForSelectedItems?.first {
             case .some(indexPath):
-                return CGSize(width: (self.cvRisk.frame.width / 5) - 2.0, height: 8.0)
+                return CGSize(width: (self.cvRisk.frame.width / 5) - 2.0, height: 10.0)
             default:
                 return CGSize(width: (self.cvRisk.frame.width / 5) - 2.0, height: 5.0)
         }
     }
     
+    // Efetuar update na collectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         collectionView.performBatchUpdates({
@@ -75,6 +164,9 @@ class ListFundViewController : UIViewController, ListFundViewControllerInput {
     var listFund : Screen!
     
     @IBOutlet weak var cvRisk: UICollectionView!
+    @IBOutlet weak var tblMoreInfo: UITableView!
+    @IBOutlet weak var tblInfo: UITableView!
+    
     override func awakeFromNib()
     {
         super.awakeFromNib()
@@ -87,11 +179,24 @@ class ListFundViewController : UIViewController, ListFundViewControllerInput {
         self.cvRisk.delegate = self
         self.cvRisk.dataSource = self
         
+        self.tblMoreInfo.delegate = self
+        self.tblInfo.delegate = self
+        
         output.fetchItems()
     }
     
     func successFetchedItems(response: ListFund.Fetch.Response) {
         listFund = response.screen
+        
+        self.tblInfo.dataSource = self
+        self.tblMoreInfo.dataSource = self
+        
+        tblMoreInfo.reloadData()
+        tblInfo.reloadData()
+        
+        // Selecionar nivel de risco
+        let idxRisk = IndexPath(row: listFund.risk - 1, section: 0)
+        collectionView(cvRisk, didSelectItemAt: idxRisk)
     }
     
     func errorFetchingItems(response: ListFund.Fetch.Response) {
