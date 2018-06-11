@@ -10,6 +10,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Light.otf">
+            <string>DINPro-Light</string>
+        </array>
+        <array key="DINPro-Medium.otf">
+            <string>DINPro-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Investimento-->
         <scene sceneID="w5z-tk-DAP">
@@ -18,12 +26,143 @@
                     <view key="view" contentMode="scaleToFill" id="tGx-ly-diC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdg-GP-Lty">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Investimento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ZW-VH-jJd">
+                                        <rect key="frame" x="140" y="20" width="93.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2LV-Yx-1lV">
+                                        <rect key="frame" x="178" y="18.5" width="19" height="24"/>
+                                        <state key="normal" image="ic_share"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fundos de investimento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMB-yX-eyO">
+                                        <rect key="frame" x="113" y="70.5" width="149" height="18"/>
+                                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="14"/>
+                                        <color key="textColor" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vinci Valorem FI Multimercado" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eab-1K-bZV">
+                                        <rect key="frame" x="0.0" y="93.5" width="375" height="72"/>
+                                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="separator" translatesAutoresizingMaskIntoConstraints="NO" id="TbX-ec-fo0">
+                                        <rect key="frame" x="28" y="185.5" width="319" height="7"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O que é?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiS-uk-bz4">
+                                        <rect key="frame" x="156" y="212.5" width="61.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O Fundo tem por objetivo proporcionar aos seus cotistas rentabilidade no longo prazo através de investimentos." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1b-oo-0KF">
+                                        <rect key="frame" x="28" y="238" width="318.5" height="61.5"/>
+                                        <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grau de risco do investimento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ki8-3z-Cl7">
+                                        <rect key="frame" x="81" y="329.5" width="213" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QEc-ob-EWD">
+                                        <rect key="frame" x="27.5" y="370" width="319" height="15"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="ACg-GT-Nn1"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="hZk-Ce-oTK">
+                                            <size key="itemSize" width="60" height="10"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell_risk" id="dLi-yi-ggL">
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                                <color key="backgroundColor" red="0.45490196078431372" green="0.85490196078431369" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="eiS-uk-bz4" firstAttribute="centerX" secondItem="pdg-GP-Lty" secondAttribute="centerX" id="44M-xi-Ny3"/>
+                                    <constraint firstItem="3ZW-VH-jJd" firstAttribute="top" secondItem="pdg-GP-Lty" secondAttribute="top" constant="20" id="9cd-DT-WDj"/>
+                                    <constraint firstItem="n1b-oo-0KF" firstAttribute="centerX" secondItem="pdg-GP-Lty" secondAttribute="centerX" id="Hyq-cD-kNm"/>
+                                    <constraint firstItem="QEc-ob-EWD" firstAttribute="centerX" secondItem="pdg-GP-Lty" secondAttribute="centerX" id="Iv4-wO-B6U"/>
+                                    <constraint firstItem="2LV-Yx-1lV" firstAttribute="centerY" secondItem="3ZW-VH-jJd" secondAttribute="centerY" id="MJN-LC-sQc"/>
+                                    <constraint firstItem="eab-1K-bZV" firstAttribute="width" secondItem="pdg-GP-Lty" secondAttribute="width" id="OGm-2B-YFa"/>
+                                    <constraint firstItem="QEc-ob-EWD" firstAttribute="width" secondItem="pdg-GP-Lty" secondAttribute="width" multiplier="0.85" id="SDt-ae-X4v"/>
+                                    <constraint firstItem="TbX-ec-fo0" firstAttribute="top" secondItem="eab-1K-bZV" secondAttribute="bottom" constant="20" id="ZyC-LJ-U6g"/>
+                                    <constraint firstItem="n1b-oo-0KF" firstAttribute="width" secondItem="pdg-GP-Lty" secondAttribute="width" multiplier="0.85" id="aBh-tr-PMT"/>
+                                    <constraint firstItem="eab-1K-bZV" firstAttribute="centerX" secondItem="pdg-GP-Lty" secondAttribute="centerX" id="bFI-TE-fRO"/>
+                                    <constraint firstItem="AMB-yX-eyO" firstAttribute="top" secondItem="3ZW-VH-jJd" secondAttribute="bottom" constant="30" id="bUs-eK-wv5"/>
+                                    <constraint firstItem="eiS-uk-bz4" firstAttribute="top" secondItem="TbX-ec-fo0" secondAttribute="bottom" constant="20" id="c64-9h-v1Q"/>
+                                    <constraint firstItem="TbX-ec-fo0" firstAttribute="width" secondItem="pdg-GP-Lty" secondAttribute="width" multiplier="0.85" id="cdo-ok-pVH"/>
+                                    <constraint firstItem="QEc-ob-EWD" firstAttribute="top" secondItem="ki8-3z-Cl7" secondAttribute="bottom" constant="20" id="nTR-1f-2Ls"/>
+                                    <constraint firstItem="3ZW-VH-jJd" firstAttribute="centerX" secondItem="pdg-GP-Lty" secondAttribute="centerX" id="pJi-fT-JmD"/>
+                                    <constraint firstItem="ki8-3z-Cl7" firstAttribute="centerX" secondItem="pdg-GP-Lty" secondAttribute="centerX" id="saS-48-jf2"/>
+                                    <constraint firstItem="ki8-3z-Cl7" firstAttribute="top" secondItem="n1b-oo-0KF" secondAttribute="bottom" constant="30" id="t5h-80-73z"/>
+                                    <constraint firstItem="TbX-ec-fo0" firstAttribute="centerX" secondItem="pdg-GP-Lty" secondAttribute="centerX" id="tzR-cS-5gv"/>
+                                    <constraint firstItem="AMB-yX-eyO" firstAttribute="centerX" secondItem="pdg-GP-Lty" secondAttribute="centerX" id="u2b-PG-Vtc"/>
+                                    <constraint firstItem="eab-1K-bZV" firstAttribute="top" secondItem="AMB-yX-eyO" secondAttribute="bottom" constant="5" id="ung-l4-LiI"/>
+                                    <constraint firstItem="n1b-oo-0KF" firstAttribute="top" secondItem="eiS-uk-bz4" secondAttribute="bottom" constant="5" id="vV8-8K-oXM"/>
+                                    <constraint firstAttribute="trailing" secondItem="2LV-Yx-1lV" secondAttribute="trailing" id="xAq-A9-lXM"/>
+                                </constraints>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gkl-wQ-qJC" customClass="LGButton" customModule="LGButton">
+                                <rect key="frame" x="0.0" y="311" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" red="0.85882352939999995" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fullyRoundedCorners" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="titleString" value="Enviar"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="titleFontName" value="DINPro-Medium"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="titleFontSize">
+                                        <real key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pdg-GP-Lty" firstAttribute="bottom" secondItem="unQ-iF-BQs" secondAttribute="bottom" id="7HG-43-69F"/>
+                            <constraint firstItem="pdg-GP-Lty" firstAttribute="leading" secondItem="unQ-iF-BQs" secondAttribute="leading" id="Agw-ZP-2MU"/>
+                            <constraint firstItem="pdg-GP-Lty" firstAttribute="top" secondItem="unQ-iF-BQs" secondAttribute="top" id="Rl9-Vl-1Kg"/>
+                            <constraint firstItem="pdg-GP-Lty" firstAttribute="trailing" secondItem="unQ-iF-BQs" secondAttribute="trailing" id="cWh-i5-ODD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="unQ-iF-BQs"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Gkl-wQ-qJC"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Investimento" id="dbg-qo-Pet">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-15"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="cvRisk" destination="QEc-ob-EWD" id="cvV-Cc-8hX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bL7-Nk-vpO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -83,5 +222,22 @@
             </objects>
             <point key="canvasLocation" x="-1184" y="-74"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="YwF-T3-f7g">
+            <objects>
+                <viewController id="Gjn-Uq-Q5P" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HTr-WM-aLT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d3X-EE-ngP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
+    <resources>
+        <image name="ic_share" width="19" height="24"/>
+        <image name="separator" width="315" height="7"/>
+    </resources>
 </document>
