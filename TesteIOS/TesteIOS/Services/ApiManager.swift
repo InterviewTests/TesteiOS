@@ -12,13 +12,18 @@ typealias Response = (Data?, Error?) -> ()
 
 class ApiManager: NSObject {
     
-    func fetchCells(stringUrl: String, completionHandler: @escaping Response) {
+    func fetchCells(stringUrl: String, success: @escaping Response, failure: @escaping Response) {
         guard let url = URL(string: stringUrl) else {
             return
         }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            completionHandler(data, error)
+            guard error == nil && data != nil else {
+                failure(data, error)
+                return
+            }
+            
+            success(data, error)
         }.resume()
         
     }
