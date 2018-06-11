@@ -10,6 +10,19 @@ import Foundation
 import UIKit
 import M13Checkbox
 
+// Put this piece of code anywhere you like
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 protocol ListCellViewControllerInput
 {
     
@@ -41,10 +54,12 @@ extension ListCellViewController : ButtonCellDelegate, SuccessViewDelegate {
     }
     
     func btnSendTapped(_ tag: Int) {
-        self.successView.center = self.centerPosition
-        self.successView.successViewDelegate = self
-        self.successView.tag = tag
-        self.tblForm.addSubview(successView)
+        if validateForm() {
+            self.successView.center = self.centerPosition
+            self.successView.successViewDelegate = self
+            self.successView.tag = tag
+            self.tblForm.addSubview(successView)
+        }
     }
 }
 
@@ -196,9 +211,14 @@ class ListCellViewController: UIViewController, ListCellViewControllerInput, UIT
     override func viewDidLoad(){
         super.viewDidLoad()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.hideKeyboardWhenTappedAround()
+        
         // Delegate
         self.tblForm.delegate = self
-        self.tblForm.dataSource = self
         
         // Registrar as cells
         let nibTextFieldCell = UINib(nibName: "CustomTextFieldCell", bundle: nil)
@@ -221,8 +241,13 @@ class ListCellViewController: UIViewController, ListCellViewControllerInput, UIT
     // Métodos de callback das requisições
     func successFetchedItems(response: ListCell.Fetch.Response) {
         listCell = response.cells
+        
+        self.tblForm.dataSource = self
+        
         // Recarregar os dados da tabela
-        self.tblForm.reloadData()
+        DispatchQueue.main.async {
+            self.tblForm.reloadData()
+        }
     }
     
     func errorFetchingItems(response: ListCell.Fetch.Response) {
@@ -230,7 +255,22 @@ class ListCellViewController: UIViewController, ListCellViewControllerInput, UIT
     }
     
     // Validar o formulário
-    func validateForm(){
+    func validateForm() -> Bool {
+        let tableViewCells = tblForm.visibleCells
+        var valid : Bool = true
         
+        for cell in tableViewCells {
+            if cell.isKind(of: CustomTextFieldCell.self){
+                let cell = cell as! CustomTextFieldCell
+                
+                
+                if cell.txtField.hasErrorMessage || cell.txtField.keyboardType != .emailAddress &&  (cell.txtField.text?.isEmpty)! {
+                    valid = false
+                    return valid
+                }
+            }
+        }
+        
+        return valid
     }
 }

@@ -24,18 +24,22 @@ extension SkyFloatingLabelTextField {
                 if (self.text?.count)! > 0 {
                     self.lineColor = SkyFloatingLabelTextField.validColor
                     self.selectedLineColor = SkyFloatingLabelTextField.validColor
+                    self.errorMessage = nil
                 } else {
                     self.lineColor = SkyFloatingLabelTextField.invalidColor
                     self.selectedLineColor = SkyFloatingLabelTextField.invalidColor
+                    self.errorMessage = self.placeholder
                 }
             case UIKeyboardType.emailAddress:
                 // Validar email
                 if General.isValidEmail(testStr: self.text!){
                     self.selectedLineColor = SkyFloatingLabelTextField.validColor
                     self.lineColor = SkyFloatingLabelTextField.validColor
+                    self.errorMessage = nil
                 } else {
                     self.selectedLineColor = SkyFloatingLabelTextField.invalidColor
                     self.lineColor = SkyFloatingLabelTextField.invalidColor
+                    self.errorMessage = self.placeholder
                 }
             case UIKeyboardType.phonePad:
                 // Aplicar a mascara de telefone
@@ -58,6 +62,7 @@ extension SkyFloatingLabelTextField {
             
             self.selectedLineColor = SkyFloatingLabelTextField.validColor
             self.lineColor = SkyFloatingLabelTextField.validColor
+            self.errorMessage = nil
         } else if phoneNumber.count == 10 {
             field.maskExpression = "({dd}) {dddd}-{dddd}"
             field.text = phoneNumber
@@ -65,9 +70,11 @@ extension SkyFloatingLabelTextField {
             
             self.selectedLineColor = SkyFloatingLabelTextField.validColor
             self.lineColor = SkyFloatingLabelTextField.validColor
+            self.errorMessage = nil
         } else {
             self.selectedLineColor = SkyFloatingLabelTextField.invalidColor
             self.lineColor = SkyFloatingLabelTextField.invalidColor
+            self.errorMessage = self.placeholder
             return
         }
     }
