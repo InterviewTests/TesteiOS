@@ -43,6 +43,10 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFw-OF-qUH">
+                                            <rect key="frame" x="300" y="28.5" width="19" height="24"/>
+                                            <state key="normal" image="ic_share"/>
+                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fundos de investimento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Jz-jd-UYD">
                                             <rect key="frame" x="85" y="70.5" width="149" height="18"/>
                                             <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="14"/>
@@ -197,12 +201,8 @@
                                         <constraint firstItem="rtF-V6-OZ2" firstAttribute="centerX" secondItem="o4g-l3-CGg" secondAttribute="centerX" id="81Y-2I-Esf"/>
                                         <constraint firstItem="3ZW-VH-jJd" firstAttribute="centerX" secondItem="o4g-l3-CGg" secondAttribute="centerX" id="92R-qa-UW6"/>
                                         <constraint firstItem="rtF-V6-OZ2" firstAttribute="top" secondItem="k29-EX-Ybg" secondAttribute="bottom" constant="20" id="Ca8-7N-jyH"/>
-<<<<<<< HEAD
-                                        <constraint firstItem="FHr-TI-Lc4" firstAttribute="top" secondItem="5db-8s-ERz" secondAttribute="bottom" constant="10" id="HI7-Jc-TdQ"/>
-=======
                                         <constraint firstItem="FHr-TI-Lc4" firstAttribute="top" secondItem="5db-8s-ERz" secondAttribute="bottom" constant="20" id="HI7-Jc-TdQ"/>
                                         <constraint firstItem="TFw-OF-qUH" firstAttribute="centerY" secondItem="3ZW-VH-jJd" secondAttribute="centerY" id="J9u-Ah-NRA"/>
->>>>>>> c300ba6... Validações do formulário e correções de layout
                                         <constraint firstItem="x95-2h-Vdl" firstAttribute="top" secondItem="6hb-mf-wUE" secondAttribute="bottom" constant="20" id="Jgr-LF-WPb"/>
                                         <constraint firstItem="0mt-U3-wg1" firstAttribute="top" secondItem="rtF-V6-OZ2" secondAttribute="top" constant="20" id="ObZ-W0-n63"/>
                                         <constraint firstItem="FHr-TI-Lc4" firstAttribute="width" secondItem="o4g-l3-CGg" secondAttribute="width" id="P3O-6x-gbf"/>
@@ -225,6 +225,7 @@
                                         <constraint firstItem="x95-2h-Vdl" firstAttribute="width" secondItem="o4g-l3-CGg" secondAttribute="width" id="t1C-cH-VnS"/>
                                         <constraint firstItem="3ZW-VH-jJd" firstAttribute="top" secondItem="o4g-l3-CGg" secondAttribute="top" constant="30" id="uym-WR-Z4y"/>
                                         <constraint firstItem="eFP-ap-rxa" firstAttribute="top" secondItem="0mt-U3-wg1" secondAttribute="bottom" constant="5" id="wP6-UB-L0X"/>
+                                        <constraint firstAttribute="trailing" secondItem="TFw-OF-qUH" secondAttribute="trailing" id="z5i-Kc-BIh"/>
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="VgN-KA-Trn" customClass="LGButton" customModule="LGButton">
@@ -258,16 +259,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="R0y-fe-EEw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="319" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="5" width="319" height="34"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Teg-6X-grB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="159.5" height="43.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="159.5" height="34"/>
                                                             <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tr-pz-hrV">
-                                                            <rect key="frame" x="159.5" y="0.0" width="159.5" height="43.5"/>
+                                                            <rect key="frame" x="159.5" y="0.0" width="159.5" height="34"/>
                                                             <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -278,8 +279,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="R0y-fe-EEw" secondAttribute="trailing" id="6Xq-OQ-8hO"/>
                                                 <constraint firstItem="R0y-fe-EEw" firstAttribute="leading" secondItem="DWo-Id-Ylu" secondAttribute="leading" id="CNC-sr-nxH"/>
-                                                <constraint firstItem="R0y-fe-EEw" firstAttribute="top" secondItem="DWo-Id-Ylu" secondAttribute="top" id="Pkw-kU-Sb6"/>
-                                                <constraint firstAttribute="bottom" secondItem="R0y-fe-EEw" secondAttribute="bottom" id="Y78-mp-4ua"/>
+                                                <constraint firstItem="R0y-fe-EEw" firstAttribute="top" secondItem="DWo-Id-Ylu" secondAttribute="top" constant="5" id="Pkw-kU-Sb6"/>
+                                                <constraint firstAttribute="bottom" secondItem="R0y-fe-EEw" secondAttribute="bottom" constant="5" id="Y78-mp-4ua"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -291,23 +292,23 @@
                                         <rect key="frame" x="0.0" y="652" width="319" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9JZ-FV-4b8" id="c7I-5R-wq1">
-                                            <rect key="frame" x="0.0" y="0.0" width="319" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VgP-hy-oxv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="319" height="43"/>
+                                                    <rect key="frame" x="0.0" y="5" width="319" height="33.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfe-1y-ESD">
-                                                            <rect key="frame" x="0.0" y="0.0" width="159.5" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="159.5" height="33.5"/>
                                                             <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Luo-SL-7uz">
-                                                            <rect key="frame" x="159.5" y="0.0" width="159.5" height="43"/>
+                                                            <rect key="frame" x="159.5" y="0.0" width="159.5" height="33.5"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4o5-vK-jbc">
-                                                                    <rect key="frame" x="101.5" y="0.0" width="58" height="43"/>
+                                                                    <rect key="frame" x="101.5" y="0.0" width="58" height="33.5"/>
                                                                     <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="14"/>
                                                                     <state key="normal" title=" Baixar" image="ic_download">
                                                                         <color key="titleColor" red="0.85882352939999995" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -324,8 +325,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="VgP-hy-oxv" secondAttribute="trailing" id="4q7-7n-aep"/>
                                                 <constraint firstItem="VgP-hy-oxv" firstAttribute="leading" secondItem="c7I-5R-wq1" secondAttribute="leading" id="AWR-P2-9xb"/>
-                                                <constraint firstAttribute="bottom" secondItem="VgP-hy-oxv" secondAttribute="bottom" id="PRh-eu-TH4"/>
-                                                <constraint firstItem="VgP-hy-oxv" firstAttribute="top" secondItem="c7I-5R-wq1" secondAttribute="top" id="hNv-ca-Emd"/>
+                                                <constraint firstAttribute="bottom" secondItem="VgP-hy-oxv" secondAttribute="bottom" constant="5" id="PRh-eu-TH4"/>
+                                                <constraint firstItem="VgP-hy-oxv" firstAttribute="top" secondItem="c7I-5R-wq1" secondAttribute="top" constant="5" id="hNv-ca-Emd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -444,6 +445,7 @@
     </scenes>
     <resources>
         <image name="ic_download" width="13" height="13"/>
+        <image name="ic_share" width="19" height="24"/>
         <image name="separator" width="315" height="7"/>
         <image name="separator_simple" width="315" height="2"/>
     </resources>
