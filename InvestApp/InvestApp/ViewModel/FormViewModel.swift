@@ -32,8 +32,8 @@ class FormViewModel {
     var formCurrentState = Variable<(state:FormState, error: String?)>((.none, nil))
     
     init() {
-
     }
+    
     func viewDidLoad() {
         APIService.fetchJsonData(with: Constants.formJsonURL) { (formData: FormData?, result) in
             self.formData.value = formData

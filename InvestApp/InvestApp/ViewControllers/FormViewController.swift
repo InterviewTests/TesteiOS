@@ -23,6 +23,13 @@ class FormViewController: UIViewController {
         self.setupObservables()
         viewModel.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let formData = viewModel.formData.value {
+            self.loadFormView(formData)
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -31,13 +38,18 @@ class FormViewController: UIViewController {
     func setUpUI() {
         self.navigationController?.isNavigationBarHidden = true
     }
+    
+    func loadFormView(_ formData: FormData) {
+        self.view.subviews.forEach{$0.removeFromSuperview()}
+        self.viewCreator = FormViewCreator(rootView: self.view, context: self.viewModel)
+        _ = self.viewCreator?.visit(node: formData)
+    }
 
     func setupObservables() {
         viewModel.disposeBag = self.disposeBag
         viewModel.formData.asObservable().subscribe(onNext: { (formData) in
             if let formData = formData {
-                self.viewCreator = FormViewCreator(rootView: self.view, context: self.viewModel)
-                _ = self.viewCreator?.visit(node: formData)
+                self.loadFormView(formData)
             }
         }).disposed(by: disposeBag)
 
