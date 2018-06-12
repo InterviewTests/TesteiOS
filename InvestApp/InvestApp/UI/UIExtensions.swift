@@ -29,6 +29,10 @@ extension UIFont {
     public class func fontDIN(ofSize fontSize: CGFloat) -> UIFont {
         return UIFont(name: "DINPro", size: fontSize)!
     }
+    
+    public class func fontAwesome(ofSize fontSize: CGFloat) -> UIFont {
+        return UIFont(name: "Font Awesome 5 Free", size: fontSize)!
+    }
 }
 
 extension UIColor {

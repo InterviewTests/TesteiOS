@@ -45,7 +45,17 @@ class InvestmentViewController: UIViewController {
     @IBOutlet weak var risk3Constraint: NSLayoutConstraint!
     @IBOutlet weak var risk4Constraint: NSLayoutConstraint!
     @IBOutlet weak var risk5Constraint: NSLayoutConstraint!
-
+    
+    @IBOutlet weak var risk1Label: UILabel!
+    
+    @IBOutlet weak var risk2Label: UILabel!
+    
+    @IBOutlet weak var risk3Label: UILabel!
+    
+    @IBOutlet weak var risk4Label: UILabel!
+    
+    @IBOutlet weak var risk5Label: UILabel!
+    
     @IBOutlet weak var infoTableHeighConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var scrollView: TPKeyboardAvoidingScrollView!
@@ -79,6 +89,20 @@ class InvestmentViewController: UIViewController {
 
         let tabBar = self.tabBarController!.tabBar
         tabBar.barTintColor = UIColor.appPrimaryColor()
+        self.setUpIcons()
+    }
+    
+    func setUpIcons() {
+        self.risk1Label.text = "\u{f107}"
+        self.risk2Label.text = "\u{f107}"
+        self.risk3Label.text = "\u{f107}"
+        self.risk4Label.text = "\u{f107}"
+        self.risk5Label.text = "\u{f107}"
+        self.risk1Label.isHidden = true
+        self.risk2Label.isHidden = true
+        self.risk3Label.isHidden = true
+        self.risk4Label.isHidden = true
+        self.risk5Label.isHidden = true
     }
     
     func setupObservables() {
@@ -126,17 +150,23 @@ class InvestmentViewController: UIViewController {
     }
     
     func setUpRisk(_ value: Int?) {
+        
         if let risk = value {
             if risk == 1 {
                 _ = self.risk1Constraint.setMultiplier(multiplier: self.risk1Constraint.multiplier*2)
+                self.risk1Label.isHidden = false
             } else if risk == 2 {
                 _ = self.risk2Constraint.setMultiplier(multiplier: self.risk2Constraint.multiplier*2)
+                self.risk2Label.isHidden = false
             } else if risk == 3 {
                 _ = self.risk3Constraint.setMultiplier(multiplier: self.risk3Constraint.multiplier*2)
+                self.risk3Label.isHidden = false
             } else if risk == 4 {
                 _ = self.risk4Constraint.setMultiplier(multiplier: self.risk4Constraint.multiplier*2)
+                self.risk4Label.isHidden = false
             } else if risk == 5 {
                 _ = self.risk5Constraint.setMultiplier(multiplier: self.risk5Constraint.multiplier*2)
+                self.risk5Label.isHidden = false
             }
         }
     }
@@ -156,6 +186,9 @@ class InvestmentViewController: UIViewController {
         return count
     }
     
+    @objc func userDidTapDownload(tap: UITapGestureRecognizer) {
+        UIApplication.shared.openURL(URL(string: "https://www.google.com")!)
+    }
 }
 
 extension InvestmentViewController : UITableViewDataSource {
@@ -176,10 +209,25 @@ extension InvestmentViewController : UITableViewDataSource {
                 items.append(contentsOf: info)
             }
         }
-    
+
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "InvestInfo") as? InvestInfoCellTableViewCell ?? InvestInfoCellTableViewCell.init(style: .default, reuseIdentifier: "InvestInfo")
         cell.infoLabel.text = items[indexPath.row].name
-        cell.infoValueLabel.text = items[indexPath.row].data
+
+        if indexPath.row >= firstDown {
+            cell.infoValueLabel.font = UIFont.fontAwesome(ofSize: 13)
+            cell.infoValueLabel.text = "\u{f019}" + " Baixar"
+            cell.infoValueLabel.textColor = UIColor.appPrimaryColor()
+            cell.infoValueLabel.isUserInteractionEnabled = true
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(userDidTapDownload(tap:)))
+            cell.infoValueLabel.addGestureRecognizer(tapGesture)
+        } else {
+            cell.infoValueLabel.font = monthFoundLabel.font
+            cell.infoValueLabel.text = items[indexPath.row].data
+            cell.infoValueLabel.textColor = UIColor.darkGray
+            cell.infoValueLabel.isUserInteractionEnabled = false
+
+        }
         
         return cell
     }
