@@ -33,10 +33,25 @@ class FormViewCreator {
     
     private var currentParent = UIView()
 
+    private var formviews = [Int: UIView]()
+
     init(rootView: UIView, context: IFormContext) {
         self.currentParent = rootView
         self.context = context
     }
+
+    class func changeButtonStyle(_ button: UIButton) {
+        button.layer.cornerRadius = 20
+        button.clipsToBounds = true
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.white, for: .highlighted)
+        button.setBackgroundImage(UIImage(color: UIColor.appPrimaryColor()), for: .normal)
+        button.setBackgroundImage(UIImage(color: UIColor.appPrimaryColor().withAlphaComponent(0.4)), for: .highlighted)
+    }
+
+}
+
+private extension FormViewCreator {
 
     func createScrollView() -> TPKeyboardAvoidingScrollView {
         let scrollView = TPKeyboardAvoidingScrollView()
@@ -61,15 +76,7 @@ class FormViewCreator {
 
         return contentView
     }
-
-}
-
-extension FormViewCreator {
-
-    func setFormCellProperties(_ cellView: UIView, cell: FormCell) {
-        cellView.isHidden = cell.hidden != nil ? cell.hidden! : false
-    }
-
+    
     func createFormTitle(parentView: UIView) -> UILabel {
         let label = UILabel()
         label.text = "Contato"
@@ -111,31 +118,44 @@ extension FormViewCreator {
         checkBox.titleLabel.font = UIFont.fontDIN(ofSize: 13.0)
         checkBox.titleLabel.text = node.message
 
+        checkBox.checkBox.rx.selectionChanged.asObservable().subscribe(onNext: { (on) in
+            if let show = node.show {
+                self.focusOn(id: show)
+            }
+        }).disposed(by: self.context.disposeBag!)
+
         return checkBox
     }
     
     func creatSend(node: FormCell) -> UIButton {
-        let button = FormViewCreator.createButton()
+        let button = self.createButton()
         button.rx.controlEvent(.touchUpInside).subscribe(onNext: {
             self.context.sendNewMessage()
         }).disposed(by: self.context.disposeBag!)
         button.setTitle("Enviar", for: .normal)
         return button
     }
-    
-    class func createButton() -> UIButton {
+
+    func createButton() -> UIButton {
         let button = UIButton()
         FormViewCreator.changeButtonStyle(button)
         return button
     }
-    
-    class func changeButtonStyle(_ button: UIButton) {
-        button.layer.cornerRadius = 20
-        button.clipsToBounds = true
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.setTitleColor(UIColor.white, for: .highlighted)
-        button.setBackgroundImage(UIImage(color: UIColor.appPrimaryColor()), for: .normal)
-        button.setBackgroundImage(UIImage(color: UIColor.appPrimaryColor().withAlphaComponent(0.4)), for: .highlighted)
+
+    func focusOn(id: Int) {
+        if let view = self.formviews[id] as? SkyFloatingLabelTextField {
+            view.becomeFirstResponder()
+        }
+    }
+
+    func registerCellView(_ cell: FormCell, view: UIView) {
+        if let id = cell.id {
+            self.formviews[id] = view
+        }
+    }
+
+    class func setFormCellProperties(_ cellView: UIView, cell: FormCell) {
+        cellView.isHidden = cell.hidden != nil ? cell.hidden! : false
     }
 }
 
@@ -165,21 +185,25 @@ extension FormViewCreator: IFormVisitor {
     }
 
     func visit(node: FormCell) -> UIView {
+        var view = UIView()
         if let typeValue = node.type,
             let type = FormCellType.init(rawValue: typeValue) {
             if type == FormCellType.field {
-                return createField(node:node)
+                view = createField(node:node)
             }else if type == FormCellType.text {
-                return createText(node:node)
+                view = createText(node:node)
             }else if  type == FormCellType.image {
-                return createImage(node: node)
+                view = createImage(node: node)
             }else if  type == FormCellType.checkbox {
-                return createCheckBox(node:node)
+                view = createCheckBox(node:node)
             }else if type == FormCellType.send {
-                return creatSend(node:node)
+                view = creatSend(node:node)
             }
+            self.registerCellView(node, view: view)
         }
-        return UIView()
+
+        return view
+
     }
 }
 

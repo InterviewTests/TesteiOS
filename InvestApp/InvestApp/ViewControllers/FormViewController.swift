@@ -12,7 +12,9 @@ import RxSwift
 class FormViewController: UIViewController {
     
     let viewModel = FormViewModel()
-    
+
+    var viewCreator: FormViewCreator?
+
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -34,7 +36,8 @@ class FormViewController: UIViewController {
         viewModel.disposeBag = self.disposeBag
         viewModel.formData.asObservable().subscribe(onNext: { (formData) in
             if let formData = formData {
-                _ = FormViewCreator(rootView: self.view, context: self.viewModel).visit(node: formData)
+                self.viewCreator = FormViewCreator(rootView: self.view, context: self.viewModel)
+                _ = self.viewCreator?.visit(node: formData)
             }
         }).disposed(by: disposeBag)
 

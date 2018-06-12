@@ -51,7 +51,7 @@ class InvestmentViewController: UIViewController {
     @IBOutlet weak var scrollView: TPKeyboardAvoidingScrollView!
     
     let viewModel = InvestmentViewModel()
-    
+
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {

@@ -9,6 +9,41 @@
 import Foundation
 import UIKit
 import BEMCheckBox
+import RxSwift
+import RxCocoa
+
+class RxBEMCheckBoxDelegateProxy: DelegateProxy<BEMCheckBox, BEMCheckBoxDelegate>, BEMCheckBoxDelegate, DelegateProxyType {
+
+    init(checkBox: BEMCheckBox) {
+        super.init(parentObject: checkBox, delegateProxy: RxBEMCheckBoxDelegateProxy.self)
+    }
+
+    static func registerKnownImplementations() {
+        self.register { RxBEMCheckBoxDelegateProxy(checkBox: $0) }
+    }
+
+    static func currentDelegate(for object: BEMCheckBox) -> BEMCheckBoxDelegate? {
+        return object.delegate
+    }
+
+    static func setCurrentDelegate(_ delegate: BEMCheckBoxDelegate?, to object: BEMCheckBox) {
+        object.delegate = delegate
+    }
+}
+
+extension Reactive where Base: BEMCheckBox {
+
+    var delegateProxy: DelegateProxy<BEMCheckBox, BEMCheckBoxDelegate> {
+        return RxBEMCheckBoxDelegateProxy.proxy(for: base)
+    }
+
+    var selectionChanged: Observable<Bool> {
+        return delegateProxy
+            .methodInvoked(#selector(BEMCheckBoxDelegate.didTap(_:)))
+            .map { ($0[0] as! BEMCheckBox).on }
+    }
+
+}
 
 public class FormUICheckBox: UIView {
 
