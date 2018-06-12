@@ -12,6 +12,7 @@ import TPKeyboardAvoiding
 import RxCocoa
 import SkyFloatingLabelTextField
 import RxSwift
+import InputMask
 
 enum FormCellType: Int {
     case field = 1
@@ -23,7 +24,7 @@ enum FormCellType: Int {
 
 enum FormTextFieldType: String {
     case text = "1"
-    case telNumber = "2"
+    case telNumber = "telnumber"
     case email = "3"
 }
 
@@ -33,7 +34,7 @@ struct FormViewConstants {
     static let foneFormatter1 = "(##) #####-####"
 }
 
-class FormViewCreator {
+class FormViewCreator: NSObject {
 
     private var context: IFormContext
     
@@ -41,6 +42,8 @@ class FormViewCreator {
 
     private var formviews = [Int: (UIView, FormCell)]()
 
+    private var delegates = [Int: MaskedTextFieldDelegate]()
+    
     init(rootView: UIView, context: IFormContext) {
         self.currentParent = rootView
         self.context = context
@@ -214,6 +217,9 @@ private extension FormViewCreator {
                 textField.keyboardType = .default
             case .telNumber:
                 textField.keyboardType = .numbersAndPunctuation
+                if let id = node.id {
+                    setMaskDelegate(format: "([00]) [0000]-[0000]", textField: textField, tag: id)
+                }
             case .email:
                 textField.keyboardType = .emailAddress
             }
@@ -288,4 +294,34 @@ private extension FormViewCreator {
     func setFormCellProperties(_ cellView: UIView, cell: FormCell) {
         cellView.isHidden = cell.hidden != nil ? cell.hidden! : false
     }
+    
+    func setMaskDelegate(format: String, textField: UITextField, tag: Int) {
+        textField.tag = tag
+        textField.keyboardType = .numbersAndPunctuation
+        let maskedDelegate = MaskedTextFieldDelegate(format: format)
+        maskedDelegate.listener = self
+        textField.delegate = maskedDelegate
+        delegates[tag] = maskedDelegate
+    }
+}
+
+extension FormViewCreator: MaskedTextFieldDelegateListener {
+    
+    func textField(_ textField: UITextField, didFillMandatoryCharacters complete: Bool, didExtractValue value: String) {
+        if value.count >= 10 {
+            setMaskDelegate(format: "([00]) [00000]-[00000]", textField: textField, tag: textField.tag)
+            
+            if !complete && value.count == 10 {
+                let maskedDelegate = MaskedTextFieldDelegate(format: "([00]) [0000]-[0000]")
+                maskedDelegate.put(text: value, into: textField)
+            }
+        } else {
+            setMaskDelegate(format: "([00]) [0000]-[0000]", textField: textField, tag: textField.tag)
+            if value.count == 9 {
+                let maskedDelegate = MaskedTextFieldDelegate(format: "([00]) [0000]-[0000]")
+                maskedDelegate.put(text: value, into: textField)
+            }
+        }
+    }
+    
 }
