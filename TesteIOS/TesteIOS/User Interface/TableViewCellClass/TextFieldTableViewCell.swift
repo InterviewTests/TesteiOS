@@ -8,9 +8,22 @@
 
 import UIKit
 
-class TextFieldTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var titleLabel: UILabel!
-    
-
+protocol ValidateTextField {
+    func validate()
 }
+
+class TextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var borderView: UIView!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    var delegate: ValidateTextField!
+    
+    func configureLabel(formCell: Cell) {        
+        guard formCell.message != nil, formCell.topSpacing != nil else {
+            return
+        }
+        self.titleLabel.text = formCell.message!
+        self.topConstraint.constant = CGFloat(formCell.topSpacing!)
+    }
+}
+

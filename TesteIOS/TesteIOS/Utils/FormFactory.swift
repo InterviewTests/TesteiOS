@@ -9,8 +9,6 @@
 import UIKit
 
 class FormFactory: NSObject {
+
     
-    func registerNib(tableView: UITableView){
-        
-    }
 }

@@ -101,20 +101,35 @@ extension ContactViewController {
         let cell = cells[indexPath.row]
         switch cell.type! {
         case .field:
+            let textCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.textFieldCell, for: indexPath) as! TextFieldTableViewCell
+            textCell.configureLabel(formCell: cell)
+            return textCell
+        case .text:
             let labelCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.labelCell, for: indexPath) as! LabelTableViewCell
             return labelCell
-        case .text:
-            let textCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.textFieldCell, for: indexPath) as! TextFieldTableViewCell
-            return textCell
         case .checkbox:
-            let checkCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.textFieldCell, for: indexPath) as! CheckButtonTableViewCell
+            let checkCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.checkButtonCell, for: indexPath) as! CheckButtonTableViewCell
+            checkCell.configureCell(formCell: cell)
             return checkCell
         case .send:
             let buttonCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.buttonCell, for: indexPath) as! ButtonTableViewCell
+            buttonCell.configureCell(formCell: cell)
             return buttonCell
         case .image:
             let imageCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.imageCell, for: indexPath)
             return imageCell
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let cell = cells[indexPath.row]
+        if cell.hidden! {
+            return 0
+        }
+        return UITableViewAutomaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
 }

@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="DINPro-Regular.otf">
-            <string>DINPro-Regular</string>
+        <array key="DINPro-Medium.otf">
+            <string>DINPro-Medium</string>
         </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LdZ-ww-2FQ">
-                    <rect key="frame" x="167.5" y="8" width="40" height="24"/>
-                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="LdZ-ww-2FQ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="K4a-jU-gFR"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="LdZ-ww-2FQ" secondAttribute="bottom" constant="8" id="RMv-tE-oGK"/>
-                <constraint firstItem="LdZ-ww-2FQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dWJ-js-uLa"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-        </view>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="4oU-oc-h07" customClass="LabelTableViewCell" customModule="TesteIOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="24"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4oU-oc-h07" id="yQG-Qa-3oL">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="23.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhI-qT-NJ7">
+                        <rect key="frame" x="167.5" y="0.0" width="40.5" height="23.5"/>
+                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="16"/>
+                        <color key="textColor" red="0.21565845608711243" green="0.21570226550102234" blue="0.21565568447113037" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fhI-qT-NJ7" firstAttribute="top" secondItem="yQG-Qa-3oL" secondAttribute="top" id="2Lg-aZ-vvk"/>
+                    <constraint firstItem="fhI-qT-NJ7" firstAttribute="centerX" secondItem="yQG-Qa-3oL" secondAttribute="centerX" id="6GT-KA-DCH"/>
+                    <constraint firstAttribute="bottom" secondItem="fhI-qT-NJ7" secondAttribute="bottom" id="oEb-tE-Df2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="36.5" y="-42"/>
+        </tableViewCell>
     </objects>
 </document>

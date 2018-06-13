@@ -9,16 +9,19 @@
 import UIKit
 
 class ButtonTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var btnEnviar: UIButton!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    
+    func configureCell(formCell: Cell) {
+        guard formCell.message != nil, formCell.topSpacing != nil else {
+            return
+        }
+        
+        btnEnviar.titleLabel?.text = formCell.message!
+        topConstraint.constant = CGFloat(formCell.topSpacing!)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    @IBAction func tapEnviar(_ sender: Any) {
+        
     }
-
 }

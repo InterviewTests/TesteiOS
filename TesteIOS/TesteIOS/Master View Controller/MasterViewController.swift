@@ -43,7 +43,7 @@ class MasterViewController: UIViewController {
     @IBAction func tapFunds(_ sender: Any) {
         self.configureButtonColor(focusButton: self.fundsButton, unfocusButton: self.formtButton)
         self.configureButtonSize(focusConstraint: self.fundsTopConstraint, unfocusConstraint: self.formTopConstraint)
-        let fundsViewController = masterViewModel.setupViewController(identifier: ViewControllersIdentifier.fundsIdentifier) as! ContactViewController
+        let fundsViewController = masterViewModel.setupViewController(identifier: ViewControllersIdentifier.fundsIdentifier) as! FundsViewController
         masterViewModel.loadViewController(masterViewController: self, childViewController: fundsViewController)
     }
     
