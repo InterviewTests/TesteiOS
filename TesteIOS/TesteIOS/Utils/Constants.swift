@@ -24,5 +24,21 @@ struct ViewControllersIdentifier {
 
 struct CellIdentifier {
     static let fundsCell = "fundsCell"
-    static let formCell = "formCell"
+    static let textFieldCell = "textFieldCell"
+    static let buttonCell = "buttonCell"
+    static let labelCell = "labelCell"
+    static let checkButtonCell = "checkButtonCell"
+    static let imageCell = "imageCell"
+}
+
+struct NibName {
+    static let textfieldNib = "TextField"
+    static let labelNib = "Label"
+    static let buttonNib = "Button"
+    static let checkButtonNib = "CheckButton"
+}
+
+struct AlertControllerConstant {
+    static let alertTitle = "Atenção"
+    static let confirmButton = "tentar novamente"
 }

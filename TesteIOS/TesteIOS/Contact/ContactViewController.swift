@@ -16,7 +16,7 @@ protocol ContactDisplayLogic: class {
 class ContactViewController: UITableViewController, ContactDisplayLogic {
     var interactor: ContactBusinessLogic?
     var router: (NSObjectProtocol & ContactRoutingLogic)?
-    var cells: [Cell]?
+    var cells = [Cell]()
   
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -57,6 +57,7 @@ class ContactViewController: UITableViewController, ContactDisplayLogic {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.registerCell()
         self.fetch()
     }
   
@@ -66,21 +67,54 @@ class ContactViewController: UITableViewController, ContactDisplayLogic {
     }
   
     func display(viewModel: Contact.Fetch.ViewModel) {
-        
+        guard viewModel.error == nil, viewModel.cells != nil else {
+            AlertViewUtil.createAlertView(viewController: self, message: ErrorMessenger.connectError) {
+                self.fetch()
+            }
+            return
+        }
+        self.cells = viewModel.cells!
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
-    func configureCell() {
+    func registerCell() {
+        let textFieldNib = UINib(nibName: NibName.textfieldNib, bundle: nil)
+        let labelNib = UINib(nibName: NibName.labelNib, bundle: nil)
+        let checkButtonNib = UINib(nibName: NibName.checkButtonNib, bundle: nil)
+        let buttonNib = UINib(nibName: NibName.buttonNib, bundle: nil)
         
+        self.tableView.register(textFieldNib, forCellReuseIdentifier: CellIdentifier.textFieldCell)
+        self.tableView.register(buttonNib, forCellReuseIdentifier: CellIdentifier.buttonCell)
+        self.tableView.register(labelNib, forCellReuseIdentifier: CellIdentifier.labelCell)
+        self.tableView.register(checkButtonNib, forCellReuseIdentifier: CellIdentifier.checkButtonCell)
     }
 }
 
 extension ContactViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.cells.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.formCell, for: indexPath)
-        return cell
+        let cell = cells[indexPath.row]
+        switch cell.type! {
+        case .field:
+            let labelCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.labelCell, for: indexPath) as! LabelTableViewCell
+            return labelCell
+        case .text:
+            let textCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.textFieldCell, for: indexPath) as! TextFieldTableViewCell
+            return textCell
+        case .checkbox:
+            let checkCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.textFieldCell, for: indexPath) as! CheckButtonTableViewCell
+            return checkCell
+        case .send:
+            let buttonCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.buttonCell, for: indexPath) as! ButtonTableViewCell
+            return buttonCell
+        case .image:
+            let imageCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.imageCell, for: indexPath)
+            return imageCell
+        }
     }
 }

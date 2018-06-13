@@ -9,7 +9,7 @@
 
 import UIKit
 
-typealias FormResponse = (_ response: FormModel.Fetch.Response) -> ()
+typealias FormResponse = (_ response: Contact.Fetch.Response) -> ()
 
 class ContactWorker {
     let manager = ApiManager()
@@ -17,18 +17,18 @@ class ContactWorker {
     func fetchForm(url: String, success: (@escaping FormResponse), failure:(@escaping FormResponse)) {
         manager.fetchCells(stringUrl: url, success: { (data, error) in
             guard data != nil && error == nil else {
-                failure(FormModel.Fetch.Response(cells: nil, error: error!, message: ErrorMessenger.connectError))
+                failure(Contact.Fetch.Response(cells: nil, error: error!, message: ErrorMessenger.connectError))
                 return
             }
             do {
                 let decoder = JSONDecoder()
                 let formData = try decoder.decode(CellRoot.self, from: data!)
-                success(FormModel.Fetch.Response(cells: formData.cells, error: nil, message: ErrorMessenger.connectError))
+                success(Contact.Fetch.Response(cells: formData.cells, error: nil, message: ""))
             } catch let err {
-                failure(FormModel.Fetch.Response(cells: nil, error: err, message: ErrorMessenger.fetchError))
+                failure(Contact.Fetch.Response(cells: nil, error: err, message: ErrorMessenger.fetchError))
             }
         }, failure: { (data, error) in
-            failure(FormModel.Fetch.Response(cells: nil, error: error!, message: ErrorMessenger.connectError))
+            failure(Contact.Fetch.Response(cells: nil, error: error!, message: ErrorMessenger.connectError))
             return
         })
     }
