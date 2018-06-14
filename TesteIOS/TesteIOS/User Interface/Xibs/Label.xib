@@ -16,7 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="4oU-oc-h07" customClass="LabelTableViewCell" customModule="TesteIOS" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="4oU-oc-h07" customClass="LabelTableViewCell" customModule="TesteIOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="24"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4oU-oc-h07" id="yQG-Qa-3oL">
@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhI-qT-NJ7">
-                        <rect key="frame" x="167.5" y="0.0" width="40.5" height="23.5"/>
+                        <rect key="frame" x="40" y="0.0" width="295" height="23.5"/>
                         <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="16"/>
                         <color key="textColor" red="0.21565845608711243" green="0.21570226550102234" blue="0.21565568447113037" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -32,10 +32,15 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="fhI-qT-NJ7" firstAttribute="top" secondItem="yQG-Qa-3oL" secondAttribute="top" id="2Lg-aZ-vvk"/>
-                    <constraint firstItem="fhI-qT-NJ7" firstAttribute="centerX" secondItem="yQG-Qa-3oL" secondAttribute="centerX" id="6GT-KA-DCH"/>
+                    <constraint firstItem="fhI-qT-NJ7" firstAttribute="leading" secondItem="yQG-Qa-3oL" secondAttribute="leading" constant="40" id="kvd-j0-kPI"/>
                     <constraint firstAttribute="bottom" secondItem="fhI-qT-NJ7" secondAttribute="bottom" id="oEb-tE-Df2"/>
+                    <constraint firstAttribute="trailing" secondItem="fhI-qT-NJ7" secondAttribute="trailing" constant="40" id="rv3-uM-zST"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="titleLabel" destination="fhI-qT-NJ7" id="9HJ-FF-tbg"/>
+                <outlet property="topConstraint" destination="2Lg-aZ-vvk" id="aJ7-Bl-1yp"/>
+            </connections>
             <point key="canvasLocation" x="36.5" y="-42"/>
         </tableViewCell>
     </objects>

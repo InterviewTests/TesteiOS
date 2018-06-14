@@ -9,7 +9,7 @@
 import UIKit
 
 class MasterRouter: NSObject {
-    let masterViewModel = MasterViewModel()
+    let masterViewModel = MasterViewPresenter()
     
     func navigate(masterView: Master.ViewModel){
         masterViewModel.removeViewController(asChildViewController: masterView.childViewController)

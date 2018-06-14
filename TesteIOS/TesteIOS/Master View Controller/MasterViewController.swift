@@ -16,7 +16,7 @@ class MasterViewController: UIViewController {
     @IBOutlet weak var fundsTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var formTopConstraint: NSLayoutConstraint!
     
-    let masterViewModel = MasterViewModel()
+    let masterViewModel = MasterViewPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()

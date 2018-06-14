@@ -57,7 +57,7 @@ class ContactViewController: UITableViewController, ContactDisplayLogic {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.registerCell()
+        FormFactory.registerCell(tableView: self.tableView)
         self.fetch()
     }
   
@@ -78,20 +78,9 @@ class ContactViewController: UITableViewController, ContactDisplayLogic {
             self.tableView.reloadData()
         }
     }
-    
-    func registerCell() {
-        let textFieldNib = UINib(nibName: NibName.textfieldNib, bundle: nil)
-        let labelNib = UINib(nibName: NibName.labelNib, bundle: nil)
-        let checkButtonNib = UINib(nibName: NibName.checkButtonNib, bundle: nil)
-        let buttonNib = UINib(nibName: NibName.buttonNib, bundle: nil)
-        
-        self.tableView.register(textFieldNib, forCellReuseIdentifier: CellIdentifier.textFieldCell)
-        self.tableView.register(buttonNib, forCellReuseIdentifier: CellIdentifier.buttonCell)
-        self.tableView.register(labelNib, forCellReuseIdentifier: CellIdentifier.labelCell)
-        self.tableView.register(checkButtonNib, forCellReuseIdentifier: CellIdentifier.checkButtonCell)
-    }
 }
 
+// MARK: - UITableView data sources
 extension ContactViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.cells.count
@@ -99,28 +88,13 @@ extension ContactViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = cells[indexPath.row]
-        switch cell.type! {
-        case .field:
-            let textCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.textFieldCell, for: indexPath) as! TextFieldTableViewCell
-            textCell.configureLabel(formCell: cell)
-            return textCell
-        case .text:
-            let labelCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.labelCell, for: indexPath) as! LabelTableViewCell
-            return labelCell
-        case .checkbox:
-            let checkCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.checkButtonCell, for: indexPath) as! CheckButtonTableViewCell
-            checkCell.configureCell(formCell: cell)
-            return checkCell
-        case .send:
-            let buttonCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.buttonCell, for: indexPath) as! ButtonTableViewCell
-            buttonCell.configureCell(formCell: cell)
-            return buttonCell
-        case .image:
-            let imageCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.imageCell, for: indexPath)
-            return imageCell
-        }
+        return FormFactory.configureTableViewCell(tableView: tableView, indexPath: indexPath, cell: cell, delegate: self)
     }
-    
+}
+
+//MARK: - UITableView delegates
+
+extension ContactViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cell = cells[indexPath.row]
         if cell.hidden! {
@@ -132,4 +106,22 @@ extension ContactViewController {
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
+}
+
+extension ContactViewController: CheckButtonDelegate {
+    func checkButtonIsClicked(formCell: Cell) {
+        guard formCell.show != nil else {return}
+        if let indexCell = cells.index(where: {$0.id == formCell.show!}) {
+            cells[indexCell].hidden = !cells[indexCell].hidden!
+            self.tableView.reloadData()
+        }
+    }
+}
+
+extension ContactViewController: SendButtonDelegate {
+    func validateFields() {
+        router?.prepareToRouter(cells: cells)
+    }
+    
+    
 }

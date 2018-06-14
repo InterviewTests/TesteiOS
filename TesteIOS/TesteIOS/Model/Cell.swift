@@ -29,6 +29,11 @@ struct Cell: Codable {
         message = try container.decode(String.self, forKey: .message)
         hidden = try container.decode(Bool.self, forKey: .hidden)
         topSpacing = try container.decode(Float.self, forKey: .topSpacing)
+        do {
+            show = try container.decode(Int.self, forKey: .show)
+        } catch {
+            
+        }
         required = try container.decode(Bool.self, forKey: .required)
         
         // O typefield em alguns casos está retornando uma string em vez de um inteiro.

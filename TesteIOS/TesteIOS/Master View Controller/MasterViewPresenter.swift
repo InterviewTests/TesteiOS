@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MasterViewModel: NSObject {
+class MasterViewPresenter: NSObject {
     
     func loadViewController(masterViewController: MasterViewController, childViewController: UIViewController){
         let router = MasterRouter()
