@@ -16,18 +16,24 @@ class MasterViewController: UIViewController {
     @IBOutlet weak var fundsTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var formTopConstraint: NSLayoutConstraint!
     
-    let masterViewModel = MasterViewPresenter()
+    let presenter = MasterViewPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setCustomFontToNavigationBar()
         self.loadViewController()
     }
     
+    func setCustomFontToNavigationBar(){
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: Fonts.dinProMedium, size: 20)!]
+    }
+    
     func loadViewController(){
+        self.navigationItem.title = "Investimento"
         self.configureButtonColor(focusButton: self.fundsButton, unfocusButton: self.formtButton)
         self.configureButtonSize(focusConstraint: self.fundsTopConstraint, unfocusConstraint: self.formTopConstraint)
-        let fundsViewController = masterViewModel.setupViewController(identifier: ViewControllersIdentifier.fundsIdentifier) as! FundsViewController
-        masterViewModel.loadViewController(masterViewController: self, childViewController: fundsViewController)
+        let fundsViewController = presenter.setupViewController(identifier: ViewControllersIdentifier.fundsIdentifier) as! FundsViewController
+        presenter.loadViewController(masterViewController: self, childViewController: fundsViewController)
     }
     
     func configureButtonColor(focusButton: UIButton, unfocusButton: UIButton){
@@ -41,16 +47,18 @@ class MasterViewController: UIViewController {
     }
 
     @IBAction func tapFunds(_ sender: Any) {
+        self.navigationItem.title = "Investimento"
         self.configureButtonColor(focusButton: self.fundsButton, unfocusButton: self.formtButton)
         self.configureButtonSize(focusConstraint: self.fundsTopConstraint, unfocusConstraint: self.formTopConstraint)
-        let fundsViewController = masterViewModel.setupViewController(identifier: ViewControllersIdentifier.fundsIdentifier) as! FundsViewController
-        masterViewModel.loadViewController(masterViewController: self, childViewController: fundsViewController)
+        let fundsViewController = presenter.setupViewController(identifier: ViewControllersIdentifier.fundsIdentifier) as! FundsViewController
+        presenter.loadViewController(masterViewController: self, childViewController: fundsViewController)
     }
     
     @IBAction func tapForm(_ sender: Any) {
+        self.navigationItem.title = "Contato"
         self.configureButtonColor(focusButton: self.formtButton, unfocusButton: self.fundsButton)
         self.configureButtonSize(focusConstraint: self.formTopConstraint, unfocusConstraint: self.fundsTopConstraint)
-        let formViewController = masterViewModel.setupViewController(identifier: ViewControllersIdentifier.formIdentifier) as! ContactViewController
-        masterViewModel.loadViewController(masterViewController: self, childViewController: formViewController)
+        let formViewController = presenter.setupViewController(identifier: ViewControllersIdentifier.formIdentifier) as! ContactViewController
+        presenter.loadViewController(masterViewController: self, childViewController: formViewController)
     }
 }

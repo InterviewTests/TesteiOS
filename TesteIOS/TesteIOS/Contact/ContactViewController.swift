@@ -60,7 +60,7 @@ class ContactViewController: UITableViewController, ContactDisplayLogic {
         FormFactory.registerCell(tableView: self.tableView)
         self.fetch()
     }
-  
+    
     func fetch() {
         let request = Contact.Fetch.Request(url: Url.formUrl)
         interactor?.fetch(request: request)

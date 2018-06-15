@@ -10,6 +10,7 @@ import UIKit
 
 struct Url {
     static let formUrl = "https://floating-mountain-50292.herokuapp.com/cells.json"
+    static let fundsUrl = "https://floating-mountain-50292.herokuapp.com/fund.json"
 }
 
 struct ErrorMessenger {
@@ -54,6 +55,10 @@ struct Colors {
 
 struct Segues {
     static let successSegue = "successViewSegue"
+}
+
+struct Fonts {
+    static let dinProMedium = "DINPro-Medium"
 }
 
 struct Patterns {

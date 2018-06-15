@@ -27,6 +27,7 @@ class FormFactory: NSObject {
         case .field:
             let textCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.textFieldCell, for: indexPath) as! TextFieldTableViewCell
             textCell.formCell = cell
+            textCell.txtField.keyboardType = TextFieldUtils.textFieldKeyboardType(type: cell.typefield!)
             textCell.configureLabel()
             return textCell
         case .text:
