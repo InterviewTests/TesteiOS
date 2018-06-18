@@ -44,7 +44,7 @@ class FundsPresenterTests: XCTestCase {
   
     // MARK: Tests
   
-    func test_present() {
+    func test_presenter() {
         // Given
         let spy = FundsDisplayLogicSpy()
         sut.viewController = spy

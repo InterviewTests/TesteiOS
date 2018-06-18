@@ -54,7 +54,7 @@ class ContactPresenterTests: XCTestCase {
   
     // MARK: Tests
   
-    func testPresentSomething() {
+    func test_presenter() {
         // Given
         let spy = ContactDisplayLogicSpy()
         sut.viewController = spy

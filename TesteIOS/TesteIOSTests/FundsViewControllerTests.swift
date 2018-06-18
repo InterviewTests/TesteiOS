@@ -56,7 +56,7 @@ class FundsViewControllerTests: XCTestCase {
   
     // MARK: Tests
   
-    func testShouldDoSomethingWhenViewIsLoaded() {
+    func test_view_is_loaded() {
         // Given
         let spy = FundsBusinessLogicSpy()
         sut.interactor = spy
