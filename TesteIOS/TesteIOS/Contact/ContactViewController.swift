@@ -42,24 +42,15 @@ class ContactViewController: UITableViewController, ContactDisplayLogic {
         router.viewController = viewController
     }
   
-      // MARK: Routing
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
-  
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
   
     override func viewDidLoad() {
         super.viewDidLoad()
         FormFactory.registerCell(tableView: self.tableView)
         self.fetch()
     }
+    
+    // MARK: - Request
     
     func fetch() {
         let request = Contact.Fetch.Request(url: Url.formUrl)
@@ -108,6 +99,8 @@ extension ContactViewController {
     }
 }
 
+// MARK: - CheckButton delegate
+
 extension ContactViewController: CheckButtonDelegate {
     func checkButtonIsClicked(formCell: Cell) {
         guard formCell.show != nil else {return}
@@ -117,6 +110,8 @@ extension ContactViewController: CheckButtonDelegate {
         }
     }
 }
+
+// MARK: - SendButton Delegate
 
 extension ContactViewController: SendButtonDelegate {
     func validateFields() {

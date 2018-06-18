@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol FundsDisplayLogic: class {
   func display(viewModel: FundsModel.Fetch.ViewModel)
@@ -52,7 +53,7 @@ class FundsViewController: UITableViewController, FundsDisplayLogic {
         fetch()
     }
   
-    // MARK: Do something
+    // MARK: Request
   
     func fetch() {
         let request = FundsModel.Fetch.Request(url: Url.fundsUrl)
@@ -70,5 +71,36 @@ class FundsViewController: UITableViewController, FundsDisplayLogic {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+}
+
+// MARK: - UITableView data sources
+
+extension FundsViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 9
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard funds != nil else {
+            return 0
+        }
+        
+        return FundsFactory.numberOfRows(section: section, fund: self.funds!)
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = FundsFactory.configureCell(fund: funds!, tableView: tableView, indexPath: indexPath, delegate: self)
+        return cell
+    }
+}
+
+// MARK: - Download delegate
+
+extension FundsViewController: DownloadDelegate {
+    func download() {
+        let url = URL(string: "http://www.google.com.br")
+        let safari = SFSafariViewController(url: url!)
+        self.present(safari, animated: true, completion: nil)
     }
 }

@@ -15,6 +15,7 @@ class MasterViewController: UIViewController {
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var fundsTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var formTopConstraint: NSLayoutConstraint!
+    @IBOutlet var btnShare: UIBarButtonItem!
     
     let presenter = MasterViewPresenter()
     
@@ -30,6 +31,7 @@ class MasterViewController: UIViewController {
     
     func loadViewController(){
         self.navigationItem.title = "Investimento"
+        self.navigationItem.rightBarButtonItem = self.btnShare
         self.configureButtonColor(focusButton: self.fundsButton, unfocusButton: self.formtButton)
         self.configureButtonSize(focusConstraint: self.fundsTopConstraint, unfocusConstraint: self.formTopConstraint)
         let fundsViewController = presenter.setupViewController(identifier: ViewControllersIdentifier.fundsIdentifier) as! FundsViewController
@@ -48,6 +50,7 @@ class MasterViewController: UIViewController {
 
     @IBAction func tapFunds(_ sender: Any) {
         self.navigationItem.title = "Investimento"
+        self.navigationItem.rightBarButtonItem = self.btnShare
         self.configureButtonColor(focusButton: self.fundsButton, unfocusButton: self.formtButton)
         self.configureButtonSize(focusConstraint: self.fundsTopConstraint, unfocusConstraint: self.formTopConstraint)
         let fundsViewController = presenter.setupViewController(identifier: ViewControllersIdentifier.fundsIdentifier) as! FundsViewController
@@ -56,9 +59,14 @@ class MasterViewController: UIViewController {
     
     @IBAction func tapForm(_ sender: Any) {
         self.navigationItem.title = "Contato"
+        self.navigationItem.rightBarButtonItem = nil
         self.configureButtonColor(focusButton: self.formtButton, unfocusButton: self.fundsButton)
         self.configureButtonSize(focusConstraint: self.formTopConstraint, unfocusConstraint: self.fundsTopConstraint)
         let formViewController = presenter.setupViewController(identifier: ViewControllersIdentifier.formIdentifier) as! ContactViewController
         presenter.loadViewController(masterViewController: self, childViewController: formViewController)
+    }
+    
+    @IBAction func tapShare(_ sender: Any) {
+        print("Tap")
     }
 }

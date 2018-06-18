@@ -26,7 +26,15 @@ struct ViewControllersIdentifier {
 }
 
 struct CellIdentifier {
-    static let fundsCell = "fundsCell"
+    static let headerCell = "headerCell"
+    static let definitionCell = "definitionCell"
+    static let riskTitleCell = "riskTitleCell"
+    static let riskCell = "riskCell"
+    static let infoTitleCell = "infoTitleCell"
+    static let moreInfoCell = "moreInfoCell"
+    static let infoCell = "infoCell"
+    static let downloadCell = "downloadCell"
+    static let investCell = "investCell"
     static let textFieldCell = "textFieldCell"
     static let buttonCell = "buttonCell"
     static let labelCell = "labelCell"

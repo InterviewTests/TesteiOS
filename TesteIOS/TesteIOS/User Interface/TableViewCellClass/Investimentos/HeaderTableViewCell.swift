@@ -9,7 +9,12 @@
 import UIKit
 
 class HeaderTableViewCell: UITableViewCell {
-    func configureCell() {
-        
+    
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblFundName: UILabel!
+    
+    func configureCell(fund: Funds) {
+        self.lblTitle.text = fund.title
+        self.lblFundName.text = fund.fundName
     }
 }
