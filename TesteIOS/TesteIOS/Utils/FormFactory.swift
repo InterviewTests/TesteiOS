@@ -15,11 +15,13 @@ class FormFactory: NSObject {
         let labelNib = UINib(nibName: NibName.labelNib, bundle: nil)
         let checkButtonNib = UINib(nibName: NibName.checkButtonNib, bundle: nil)
         let buttonNib = UINib(nibName: NibName.buttonNib, bundle: nil)
+        let imageNib = UINib(nibName: NibName.imageNib, bundle: nil)
         
         tableView.register(textFieldNib, forCellReuseIdentifier: CellIdentifier.textFieldCell)
         tableView.register(buttonNib, forCellReuseIdentifier: CellIdentifier.buttonCell)
         tableView.register(labelNib, forCellReuseIdentifier: CellIdentifier.labelCell)
         tableView.register(checkButtonNib, forCellReuseIdentifier: CellIdentifier.checkButtonCell)
+        tableView.register(imageNib, forCellReuseIdentifier: CellIdentifier.imageCell)
     }
     
     static func configureTableViewCell(tableView: UITableView, indexPath: IndexPath, cell: Cell, delegate: ContactViewController) -> UITableViewCell {
@@ -46,7 +48,8 @@ class FormFactory: NSObject {
             buttonCell.delegate = delegate
             return buttonCell
         case .image:
-            let imageCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.imageCell, for: indexPath)
+            let imageCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.imageCell, for: indexPath) as! ImageTableViewCell
+            imageCell.configureCell()
             return imageCell
         }
     }

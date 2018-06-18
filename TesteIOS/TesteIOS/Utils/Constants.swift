@@ -47,6 +47,7 @@ struct NibName {
     static let labelNib = "Label"
     static let buttonNib = "Button"
     static let checkButtonNib = "CheckButton"
+    static let imageNib = "Image"
 }
 
 struct AlertControllerConstant {

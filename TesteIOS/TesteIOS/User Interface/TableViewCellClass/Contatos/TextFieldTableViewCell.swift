@@ -35,7 +35,7 @@ class TextFieldTableViewCell: UITableViewCell {
     
     @IBAction func textFieldDidChanged(_ sender: Any) {
         self.setupPhoneMask()
-        if self.txtField.fieldValidate(cell: self.formCell) {
+        if self.txtField.fieldValidate(typeField: formCell.typefield!) {
             self.isValid = true
             borderView.backgroundColor = Colors.valid
         } else {

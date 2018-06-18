@@ -22,6 +22,8 @@ struct Cell: Codable {
     var show: Int?
     var required: Bool?
     
+    init() {}
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)

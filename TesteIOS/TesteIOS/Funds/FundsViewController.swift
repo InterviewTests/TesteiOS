@@ -25,12 +25,12 @@ class FundsViewController: UITableViewController, FundsDisplayLogic {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-  
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-  
+    
   // MARK: Setup
   
     private func setup() {
