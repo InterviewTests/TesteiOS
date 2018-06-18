@@ -30,6 +30,8 @@ class MasterViewController: UIViewController {
     }
     
     func loadViewController(){
+        self.fundsButton.isEnabled = false
+        self.formtButton.isEnabled = true
         self.navigationItem.title = "Investimento"
         self.navigationItem.rightBarButtonItem = self.btnShare
         self.configureButtonColor(focusButton: self.fundsButton, unfocusButton: self.formtButton)
@@ -49,6 +51,8 @@ class MasterViewController: UIViewController {
     }
 
     @IBAction func tapFunds(_ sender: Any) {
+        self.fundsButton.isEnabled = false
+        self.formtButton.isEnabled = true
         self.navigationItem.title = "Investimento"
         self.navigationItem.rightBarButtonItem = self.btnShare
         self.configureButtonColor(focusButton: self.fundsButton, unfocusButton: self.formtButton)
@@ -58,15 +62,34 @@ class MasterViewController: UIViewController {
     }
     
     @IBAction func tapForm(_ sender: Any) {
+        self.fundsButton.isEnabled = true
+        self.formtButton.isEnabled = false
         self.navigationItem.title = "Contato"
         self.navigationItem.rightBarButtonItem = nil
         self.configureButtonColor(focusButton: self.formtButton, unfocusButton: self.fundsButton)
         self.configureButtonSize(focusConstraint: self.formTopConstraint, unfocusConstraint: self.fundsTopConstraint)
         let formViewController = presenter.setupViewController(identifier: ViewControllersIdentifier.formIdentifier) as! ContactViewController
+        formViewController.delegate = self
         presenter.loadViewController(masterViewController: self, childViewController: formViewController)
     }
     
     @IBAction func tapShare(_ sender: Any) {
         print("Tap")
+    }
+}
+
+extension MasterViewController: SuccessDelegate {
+    func displaySuccessView() {
+        let successViewController = presenter.setupViewController(identifier: ViewControllersIdentifier.successIdentifier) as! SuccessViewController
+        successViewController.delegate = self
+        presenter.loadViewController(masterViewController: self, childViewController: successViewController)
+    }
+}
+
+extension MasterViewController: BackToContactsDelegate {
+    func backToContacts() {
+        let formViewController = presenter.setupViewController(identifier: ViewControllersIdentifier.formIdentifier) as! ContactViewController
+        formViewController.delegate = self
+        presenter.loadViewController(masterViewController: self, childViewController: formViewController)
     }
 }

@@ -21,7 +21,12 @@ class RiskTableViewCell: UITableViewCell {
     
     func configureCell(fund: Funds) {
         self.setAllRiskINdicatorHidden()
-        let index = fund.risk - 1
+        var index = fund.risk - 1
+        
+        if index < 0 || index > self.riskTopConstraints.count {
+            index = 0
+        }
+        
         let riskBottomConstraint = self.riskBottomConstraints[index]
         let riskTopConstraint = self.riskTopConstraints[index]
         

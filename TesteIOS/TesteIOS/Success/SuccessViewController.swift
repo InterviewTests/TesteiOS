@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol BackToContactsDelegate {
+    func backToContacts()
+}
+
 class SuccessViewController: UIViewController {
 
     var router: SuccessRouter!
+    var delegate: BackToContactsDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +29,7 @@ class SuccessViewController: UIViewController {
     
     
     @IBAction func tapBackToFormView(_ sender: Any) {
-        router?.backToContacts()
+        router.backToContacts()
     }
     
 }

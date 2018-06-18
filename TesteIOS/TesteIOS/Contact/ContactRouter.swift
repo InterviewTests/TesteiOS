@@ -15,14 +15,14 @@ protocol ContactRoutingLogic {
 class ContactRouter: NSObject, ContactRoutingLogic {
     weak var viewController: ContactViewController?
     
+    
     func routeToSuccessView() {
-        
-        viewController?.performSegue(withIdentifier: Segues.successSegue, sender: nil)
+        viewController?.delegate?.displaySuccessView()
     }
     
     func prepareToRouter(cells: [Cell]){
         var isValid = false
-        
+
         if let controller = viewController {
             for (index, cell) in cells.enumerated() {
                 if cell.type! == .field && cell.required! && !cell.hidden! {

@@ -9,6 +9,10 @@
 
 import UIKit
 
+protocol SuccessDelegate {
+    func displaySuccessView()
+}
+
 protocol ContactDisplayLogic: class {
     func display(viewModel: Contact.Fetch.ViewModel)
 }
@@ -17,6 +21,7 @@ class ContactViewController: UITableViewController, ContactDisplayLogic {
     var interactor: ContactBusinessLogic?
     var router: (NSObjectProtocol & ContactRoutingLogic)?
     var cells = [Cell]()
+    var delegate: SuccessDelegate?
   
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -117,6 +122,4 @@ extension ContactViewController: SendButtonDelegate {
     func validateFields() {
         router?.prepareToRouter(cells: cells)
     }
-    
-    
 }
