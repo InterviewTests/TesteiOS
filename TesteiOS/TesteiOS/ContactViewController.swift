@@ -30,6 +30,7 @@ class ContactViewController: UIViewController {
     
     @IBOutlet weak var sendButton: UIButton!
     
+    @IBOutlet weak var sucessView: UIView!
     
     
     
@@ -42,24 +43,27 @@ class ContactViewController: UIViewController {
         getContactData(url: URL)
         
         sendButton.layer.cornerRadius = 25
+        sendButton.titleLabel?.text = ""
+        sendButton.titleLabel?.textAlignment = .center
         
-//                self.removeTabbarItemsText()
-
+        sucessView.isHidden = true
 
     }
 
     
     
-//    func removeTabbarItemsText() {
-//        if let items = tabBarController?.tabBar.items {
-//            for item in items {
-//                item.title = ""
-//                item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-//            }
-//        }
-//    }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
+        
+        //self.view.isHidden = true
+        sucessView.isHidden = false
+        
+    }
+    
+    @IBAction func newMessageButtonPressed(_ sender: UIButton) {
+        
+        sucessView.isHidden = true
+        
     }
     
     
@@ -95,7 +99,8 @@ class ContactViewController: UIViewController {
         contactDataModel.name = json["cells"][1]["message"].stringValue
         contactDataModel.email = json["cells"][2]["message"].stringValue
         contactDataModel.phone = json["cells"][3]["message"].stringValue
-        contactDataModel.textButton = json["cells"][4]["message"].stringValue
+        contactDataModel.registerEmailTextButton = json["cells"][4]["message"].stringValue
+        contactDataModel.sendTextButton = json["cells"][5]["message"].stringValue
         
         updateUIWithContactData()
         
@@ -108,7 +113,8 @@ class ContactViewController: UIViewController {
         nameLabel.text = contactDataModel.name
         emailLabel.text = contactDataModel.email
         phoneLabel.text = contactDataModel.phone
-        textButtonLabel.text = contactDataModel.textButton
+        textButtonLabel.text = contactDataModel.registerEmailTextButton
+        sendButton.titleLabel?.text = contactDataModel.sendTextButton
     }
     
     

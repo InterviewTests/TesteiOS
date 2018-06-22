@@ -10,14 +10,11 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
 
-    let deselectItemColorBackground = hexStringToUIColor(hex: "#D80A16")
-    let selectedItemColorBackground = hexStringToUIColor(hex: "#D13235")
+    let deselectItemColorBackground = UIColor.hexStringToUIColor(hex: "#D80A16")
+    let selectedItemColorBackground = UIColor.hexStringToUIColor(hex: "#D13235")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.removeTabbarItemsText()
         
         configureUIInTabBar()
 
@@ -49,45 +46,10 @@ class MainTabBarController: UITabBarController {
         
         tabBar.selectionIndicatorImage = UIImage.imageWithColor(color: selectedItemColorBackground, size: selectedTabBarItemHeight)
         tabBar.unselectedItemTintColor = UIColor.white
-        
-        
     }
     
-    
-    
-        func removeTabbarItemsText() {
-            if let items = tabBarController?.tabBar.items {
-                for item in items {
-                    item.title = ""
-                    item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-                }
-            }
-        }
-
 }
 
-
-func hexStringToUIColor (hex:String) -> UIColor {
-    var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-    
-    if (cString.hasPrefix("#")) {
-        cString.remove(at: cString.startIndex)
-    }
-    
-    if ((cString.count) != 6) {
-        return UIColor.gray
-    }
-    
-    var rgbValue:UInt32 = 0
-    Scanner(string: cString).scanHexInt32(&rgbValue)
-    
-    return UIColor(
-        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-        blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-        alpha: CGFloat(1.0)
-    )
-}
 
 
 extension UIImage {
@@ -101,4 +63,33 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return image
     }
+    
 }
+
+
+extension UIColor {
+
+    class func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+        
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+
+}
+
