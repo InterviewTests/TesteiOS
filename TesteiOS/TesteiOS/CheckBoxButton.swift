@@ -3,6 +3,7 @@
 //  TesteiOS
 //
 //  Created by Carolina Bonturi on 6/20/18.
+//  Reference cocoapods.org/pods/CheckboxButton
 //  Copyright © 2018 Carolina Bonturi. All rights reserved.
 //
 
@@ -54,7 +55,7 @@ class CheckboxButton: UIControl {
 
     //MARK: - Layout
     /*********************************************************************/
-    open override func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         
         // Also layout the layers when laying out subviews

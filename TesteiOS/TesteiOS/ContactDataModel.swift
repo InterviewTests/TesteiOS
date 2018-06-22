@@ -13,5 +13,6 @@ class ContactDataModel {
     var name : String = ""
     var email : String = ""
     var phone : String = ""
+    var textButton : String = ""
     
 }

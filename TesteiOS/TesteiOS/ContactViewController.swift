@@ -13,6 +13,10 @@ import SwiftyJSON
 
 class ContactViewController: UIViewController {
     
+    
+
+
+    
     let URL = "https://floating-mountain-50292.herokuapp.com/cells.json"
     let contactDataModel = ContactDataModel()
     
@@ -22,26 +26,41 @@ class ContactViewController: UIViewController {
     
     @IBOutlet weak var phoneLabel: UILabel!
     
+    @IBOutlet weak var textButtonLabel: UILabel!
+    
+    @IBOutlet weak var sendButton: UIButton!
+    
+    
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
+        self.tabBarItem.title = "Teste"
         getContactData(url: URL)
         
-//        nameLabel.baselineAdjustment = UIBaselineAdjustment(rawValue: 0)!
-//        nameLabel.frame = CGRect(x: 20, y: 20, width: 200, height: 800)
-//        nameLabel.sizeToFit()
-    }
+        sendButton.layer.cornerRadius = 25
+        
+//                self.removeTabbarItemsText()
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
 
     
+    
+//    func removeTabbarItemsText() {
+//        if let items = tabBarController?.tabBar.items {
+//            for item in items {
+//                item.title = ""
+//                item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+//            }
+//        }
+//    }
+    
+    @IBAction func sendButtonPressed(_ sender: UIButton) {
+    }
     
     
     //MARK: - Networking
@@ -76,6 +95,7 @@ class ContactViewController: UIViewController {
         contactDataModel.name = json["cells"][1]["message"].stringValue
         contactDataModel.email = json["cells"][2]["message"].stringValue
         contactDataModel.phone = json["cells"][3]["message"].stringValue
+        contactDataModel.textButton = json["cells"][4]["message"].stringValue
         
         updateUIWithContactData()
         
@@ -88,6 +108,7 @@ class ContactViewController: UIViewController {
         nameLabel.text = contactDataModel.name
         emailLabel.text = contactDataModel.email
         phoneLabel.text = contactDataModel.phone
+        textButtonLabel.text = contactDataModel.textButton
     }
     
     
