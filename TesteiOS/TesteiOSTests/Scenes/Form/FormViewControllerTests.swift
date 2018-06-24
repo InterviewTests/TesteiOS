@@ -39,9 +39,7 @@ class FormViewControllerTests: XCTestCase
   
   func setupFormViewController()
   {
-    let bundle = Bundle.main
-    let storyboard = UIStoryboard(name: "Main", bundle: bundle)
-    sut = storyboard.instantiateViewController(withIdentifier: "FormViewController") as! FormViewController
+    sut = FormViewController()
   }
   
   func loadView()
@@ -78,17 +76,4 @@ class FormViewControllerTests: XCTestCase
         // Then
         XCTAssert(formViewControllerOutputSpy.fetchCellsCalled, "Should fetch cells when the view is loaded")
     }
-  
-  func testDisplayCells()
-  {
-    // Given
-    let viewModel = Form.FetchCells.ViewModel()
-    
-    // When
-    loadView()
-    sut.displayCells(viewModel: viewModel)
-    
-    // Then
-    //XCTAssertEqual(sut.nameTextField.text, "", "displaySomething(viewModel:) should update the name text field")
-  }
 }

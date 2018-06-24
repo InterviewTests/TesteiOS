@@ -50,20 +50,36 @@ class FormInteractorTests: XCTestCase
       presentFetchedCellsCalled = true
     }
   }
+    
+    class FormWorkerSpy: FormWorker
+    {
+        // MARK: Method call expectations
+        var fetchCellsCalled = false
+        
+        // MARK: Spied methods
+        override func fetchCells(completionHandler: @escaping ([Cell]) -> Void)
+        {
+            fetchCellsCalled = true
+            completionHandler([])
+        }
+    }
   
   // MARK: Tests
-  
-  func testFetchCells()
-  {
-    // Given
-    let spy = FormPresentationLogicSpy()
-    sut.presenter = spy
-    let request = Form.FetchCells.Request()
     
-    // When
-    sut.fetchCells(request: request)
-    
-    // Then
-    XCTAssertTrue(spy.presentFetchedCellsCalled, "fetchCells(request:) should ask the presenter to format the result")
-  }
+    func testFetchCellsShouldAskFormWorkerToFetchCellsAndPresenterToFormatResult()
+    {
+        // Given
+        let formPresentationLogicSpy = FormPresentationLogicSpy()
+        sut.presenter = formPresentationLogicSpy
+        let formWorkerSpy = FormWorkerSpy()
+        sut.worker = formWorkerSpy
+        
+        // When
+        let request = Form.FetchCells.Request()
+        sut.fetchCells(request: request)
+        
+        // Then
+        XCTAssert(formWorkerSpy.fetchCellsCalled, "fetchCells(request:) should ask FormWorker to fetch orders")
+        XCTAssert(formPresentationLogicSpy.presentFetchedCellsCalled, "fetchCells(request:) should ask the presenter to format the result")
+    }
 }

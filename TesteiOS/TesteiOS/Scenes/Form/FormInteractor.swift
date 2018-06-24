@@ -25,15 +25,14 @@ protocol FormDataStore
 class FormInteractor: FormViewControllerOutput, FormDataStore
 {
   var presenter: FormPresentationLogic?
-  var worker: FormWorker?
+  var worker = FormWorker()
     var cells: [Cell]?
   
   // MARK: Fetch cells
   
   func fetchCells(request: Form.FetchCells.Request)
   {
-    worker = FormWorker()
-    worker?.fetchCells { (cells) -> Void in
+    worker.fetchCells { (cells) -> Void in
         self.cells = cells
         let response = Form.FetchCells.Response(cells: cells)
         self.presenter?.presentFetchedCells(response: response)

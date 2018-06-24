@@ -43,25 +43,31 @@ class FormPresenterTests: XCTestCase
   
   class FormDisplayLogicSpy: FormDisplayLogic
   {
+    // MARK: Method call expectations
     var displayCellsCalled = false
     
+    // MARK: Argument expectations
+    var viewModel: Form.FetchCells.ViewModel!
+    
+    // MARK: Spied methods
     func displayCells(viewModel: Form.FetchCells.ViewModel)
     {
       displayCellsCalled = true
+        self.viewModel = viewModel
     }
   }
   
   // MARK: Tests
   
-  func testPresentFetchedCells()
+  func testPresentFetchedCellsShouldAskViewControllerToDisplayFetchedCells()
   {
     // Given
     let spy = FormDisplayLogicSpy()
     sut.viewController = spy
-    let cells = [Cell]()
-    let response = Form.FetchCells.Response(cells: cells)
     
     // When
+    let cells = [Cell]()
+    let response = Form.FetchCells.Response(cells: cells)
     sut.presentFetchedCells(response: response)
     
     // Then

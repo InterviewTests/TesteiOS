@@ -18,6 +18,7 @@ class FormWorkerTests: XCTestCase
   // MARK: Subject under test
   
   var sut: FormWorker!
+    static var testCells: [Cell]!
   
   // MARK: Test lifecycle
   
@@ -37,18 +38,47 @@ class FormWorkerTests: XCTestCase
   func setupFormWorker()
   {
     sut = FormWorker()
+    
+    FormWorkerTests.testCells = []
   }
   
   // MARK: Test doubles
+    class FormWorkerSpy: FormWorker
+    {
+        // MARK: Method call expectations
+        var fetchCellsCalled = false
+        
+        // MARK: Spied methods
+        override func fetchCells(completionHandler: @escaping ([Cell]) -> Void)
+        {
+            fetchCellsCalled = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                completionHandler(FormWorkerTests.testCells)
+            }
+        }
+    }
   
   // MARK: Tests
-  
-  func testSomething()
-  {
-    // Given
-    
-    // When
-    
-    // Then
-  }
+    func testFetchCellsShouldReturnListOfCells()
+    {
+        // Given
+        let formWorkerSpy = FormWorkerSpy()
+        sut = formWorkerSpy
+        
+        // When
+        var fetchedCells = [Cell]()
+        let expect = expectation(description: "Wait for fetched cells result")
+        sut.fetchCells { (cells: [Cell]) -> Void in
+            fetchedCells = cells
+            expect.fulfill()
+        }
+        waitForExpectations(timeout: 1.1)
+        
+        // Then
+        XCTAssert(formWorkerSpy.fetchCellsCalled, "Calling fetchCells() should ask the data store for a list of cells")
+        XCTAssertEqual(fetchedCells.count, FormWorkerTests.testCells.count, "fetchCells() should return a list of cells")
+        for cell in fetchedCells {
+            XCTAssert(FormWorkerTests.testCells.contains(where: {$0.id == cell.id}), "Fetched cells should match the cells in the data store")
+        }
+    }
 }
