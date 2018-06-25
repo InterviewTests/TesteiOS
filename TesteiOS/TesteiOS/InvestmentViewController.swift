@@ -7,31 +7,98 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+
 
 class InvestmentViewController: UIViewController {
 
+    let URL = "https://floating-mountain-50292.herokuapp.com/fund.json"
+    
+    let investment = InvestmentDataModel()
+    
+
+    
+    
+
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var fundNameLabel: UILabel!
+    
+    @IBOutlet weak var whatIsLabel: UILabel!
+    
+    @IBOutlet weak var definitionLabel: UILabel!
+    
+    @IBOutlet weak var riskTitleLabel: UILabel!
+    
+    
+    @IBOutlet weak var infoTitleLabel: UILabel!
+    
+    
+    
+    
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        getData(url: URL)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    //MARK: - Networking
+    /*********************************************************************/
+    func getData(url: String) {
+        
+        // retrieve data from an HTTP request
+        Alamofire.request(url, method: .get).responseJSON {
+            // once the response comes back
+            response in
+            if response.result.isSuccess {
+                let dataJSON : JSON = JSON(response.result.value!)
+                self.updateData(using: dataJSON)
+            }
+                // if it did not manage to get the data
+            else {
+                print("Error: \(response.result.error!)")
+            }
+        }
     }
-    */
-
+    
+    
+    //MARK: - JSON parsing
+    /*********************************************************************/
+    func updateData(using json: JSON) {
+        
+        investment.title = json["screen"]["title"].stringValue
+        investment.fundName = json["screen"]["fundName"].stringValue
+        investment.whatIsLabel = json["screen"]["whatIs"].stringValue
+        investment.definition = json["screen"]["definition"].stringValue
+        investment.riskTitle = json["screen"]["riskTitle"].stringValue
+        investment.risk = json["screen"]["risk"].intValue
+        investment.infoTitle = json["screen"]["infoTitle"].stringValue
+        
+        updateUIWithData()
+        
+    }
+    
+    
+    //MARK: - UI Updates
+    /*********************************************************************/
+    func updateUIWithData() {
+        
+        titleLabel.text = investment.title
+        fundNameLabel.text = investment.fundName
+        whatIsLabel.text = investment.whatIsLabel
+        definitionLabel.adjustsFontSizeToFitWidth = true
+        definitionLabel.text = investment.definition
+        riskTitleLabel.text = investment.riskTitle
+        infoTitleLabel.text = investment.infoTitle
+        
+    }
+    
+    
+    
 }

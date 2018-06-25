@@ -13,10 +13,6 @@ import SwiftyJSON
 
 class ContactViewController: UIViewController {
     
-    
-
-
-    
     let URL = "https://floating-mountain-50292.herokuapp.com/cells.json"
     let contactDataModel = ContactDataModel()
     
@@ -39,12 +35,11 @@ class ContactViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.tabBarItem.title = "Teste"
-        getContactData(url: URL)
-        
         sendButton.layer.cornerRadius = 25
-        sendButton.titleLabel?.text = ""
-        sendButton.titleLabel?.textAlignment = .center
+        sendButton.titleLabel!.textAlignment = .center
+        
+        getData(url: URL)
+        
         
         sucessView.isHidden = true
 
@@ -63,24 +58,22 @@ class ContactViewController: UIViewController {
     @IBAction func newMessageButtonPressed(_ sender: UIButton) {
         
         sucessView.isHidden = true
+        updateUIWithData()
         
     }
     
     
     //MARK: - Networking
     /*********************************************************************/
-    func getContactData(url: String) {
+    func getData(url: String) {
         
         // retrieve data from an HTTP request
         Alamofire.request(url, method: .get).responseJSON {
             // once the response comes back
             response in
             if response.result.isSuccess {
-                print("Success! Got the data!")
-                let contactJSON : JSON = JSON(response.result.value!)
-                self.updateContactData(json: contactJSON)
-                
-                
+                let dataJSON : JSON = JSON(response.result.value!)
+                self.updateData(json: dataJSON)
             }
             // if it did not manage to get the data
             else {
@@ -93,8 +86,7 @@ class ContactViewController: UIViewController {
     
     //MARK: - JSON parsing
     /*********************************************************************/
-    func updateContactData(json: JSON) {
-        
+    func updateData(json: JSON) {
         
         contactDataModel.name = json["cells"][1]["message"].stringValue
         contactDataModel.email = json["cells"][2]["message"].stringValue
@@ -102,19 +94,21 @@ class ContactViewController: UIViewController {
         contactDataModel.registerEmailTextButton = json["cells"][4]["message"].stringValue
         contactDataModel.sendTextButton = json["cells"][5]["message"].stringValue
         
-        updateUIWithContactData()
+        updateUIWithData()
         
     }
     
     
     //MARK: - UI Updates
     /*********************************************************************/
-    func updateUIWithContactData() {
+    func updateUIWithData() {
+        
         nameLabel.text = contactDataModel.name
         emailLabel.text = contactDataModel.email
         phoneLabel.text = contactDataModel.phone
         textButtonLabel.text = contactDataModel.registerEmailTextButton
-        sendButton.titleLabel?.text = contactDataModel.sendTextButton
+        sendButton.titleLabel!.text = contactDataModel.sendTextButton
+
     }
     
     
