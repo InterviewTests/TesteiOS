@@ -33,16 +33,28 @@ class InvestmentViewController: UIViewController {
     @IBOutlet weak var riskTitleLabel: UILabel!
     
     
+    
     @IBOutlet weak var infoTitleLabel: UILabel!
     
+    @IBOutlet weak var monthFundLabel: UILabel!
     
+    @IBOutlet weak var yearFundLabel: UILabel!
     
+    @IBOutlet weak var twelveMonthsFundLabel: UILabel!
     
+    @IBOutlet weak var monthCDILabel: UILabel!
+    
+    @IBOutlet weak var yearCDILabel: UILabel!
+    
+    @IBOutlet weak var twelveMonthsCDILabel: UILabel!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //scrollView.contentSize = CGSizeMake(self.view.frame.width, self.view.frame.height+100)
+
         
         getData(url: URL)
     }
