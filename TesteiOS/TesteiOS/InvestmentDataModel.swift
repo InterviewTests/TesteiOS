@@ -19,7 +19,7 @@ class InvestmentDataModel {
     var risk : Int = -1
     var infoTitle : String = ""
     
-    
+    var infoTable : [String : String] = ["" : ""]
     
     
     

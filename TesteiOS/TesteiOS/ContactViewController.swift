@@ -24,7 +24,8 @@ class ContactViewController: UIViewController {
     
     @IBOutlet weak var textButtonLabel: UILabel!
     
-    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var sendButton: CustomButton!
+    
     
     @IBOutlet weak var sucessView: UIView!
     
@@ -35,8 +36,8 @@ class ContactViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        sendButton.layer.cornerRadius = 25
-        sendButton.titleLabel!.textAlignment = .center
+        //sendButton.layer.cornerRadius = 25
+        //sendButton.titleLabel!.textAlignment = .center
         
         getData(url: URL)
         
