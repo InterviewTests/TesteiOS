@@ -11,12 +11,19 @@ import Alamofire
 import SwiftyJSON
 
 
+struct InvestmentInfo {
+    var name : String = ""
+    var data : String = ""
+}
+
+
 class InvestmentViewController: UIViewController {
 
     let URL = "https://floating-mountain-50292.herokuapp.com/fund.json"
     
     let investment = InvestmentDataModel()
     
+    var info = [InvestmentInfo()]
 
     
     
@@ -47,6 +54,10 @@ class InvestmentViewController: UIViewController {
     @IBOutlet weak var yearCDILabel: UILabel!
     
     @IBOutlet weak var twelveMonthsCDILabel: UILabel!
+    
+    
+    @IBOutlet var infoLabels: [UILabel]!
+    
     
     
     
@@ -92,6 +103,42 @@ class InvestmentViewController: UIViewController {
         investment.risk = json["screen"]["risk"].intValue
         investment.infoTitle = json["screen"]["infoTitle"].stringValue
         
+        investment.monthFund = json["screen"]["moreInfo"]["month"]["fund"].floatValue
+        investment.monthCDI = json["screen"]["moreInfo"]["month"]["CDI"].floatValue
+        investment.yearFund = json["screen"]["moreInfo"]["year"]["fund"].floatValue
+        investment.yearCDI = json["screen"]["moreInfo"]["year"]["CDI"].floatValue
+        investment.twelveMonthsFund = json["screen"]["moreInfo"]["12months"]["fund"].floatValue
+        investment.twelveMonthsFund = json["screen"]["moreInfo"]["12months"]["CDI"].floatValue
+        
+        var element = InvestmentInfo()
+        var size = json["screen"]["info"].count
+        
+        for item in 0...(size - 1) {
+            element.name = json["screen"]["info"][item]["name"].stringValue
+            element.data = json["screen"]["info"][item]["data"].stringValue
+            
+            info.insert(element, at: item)
+        }
+        info.remove(at: size)
+        
+        size = json["screen"]["downInfo"].count
+        
+        for item in 0...(size - 1) {
+            element.name = json["screen"]["downInfo"][item]["name"].stringValue
+            element.data = json["screen"]["downInfo"][item]["data"].stringValue
+            
+            info.append(element)
+        }
+        
+        print(info)
+        
+
+    
+        
+        
+        
+        
+        
         updateUIWithData()
         
     }
@@ -108,6 +155,38 @@ class InvestmentViewController: UIViewController {
         definitionLabel.text = investment.definition
         riskTitleLabel.text = investment.riskTitle
         infoTitleLabel.text = investment.infoTitle
+        
+        monthFundLabel.text = "\(investment.monthFund)%"
+        monthCDILabel.text = "\(investment.monthCDI)%"
+        yearFundLabel.text = "\(investment.yearFund)%"
+        yearCDILabel.text = "\(investment.yearCDI)%"
+        twelveMonthsFundLabel.text = "\(investment.twelveMonthsFund)%"
+        twelveMonthsCDILabel.text = "\(investment.twelveMonthsCDI)%"
+        
+        
+        
+        var index = 0
+        
+        for label in infoLabels {
+            
+            
+            
+            // if tag is odd
+            if (label.tag%2 != 0) {
+                print("ímpar: \(label.tag), index: \(index)")
+                label.text = info[index].name
+                
+                
+            } else {
+                label.text = info[index].data
+                print("par: \(label.tag), index: \(index)")
+                index = index + 1
+            }
+        }
+        
+        
+        
+      
         
     }
     

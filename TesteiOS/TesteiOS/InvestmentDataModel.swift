@@ -19,8 +19,18 @@ class InvestmentDataModel {
     var risk : Int = -1
     var infoTitle : String = ""
     
-    var infoTable : [String : String] = ["" : ""]
+    var monthFund : Float = 0.0
+    var monthCDI : Float = 0.0
     
+    var yearFund : Float = 0.0
+    var yearCDI : Float = 0.0
+    
+    var twelveMonthsFund : Float = 0.0
+    var twelveMonthsCDI : Float = 0.0
+    
+    
+    
+  
     
     
 }
