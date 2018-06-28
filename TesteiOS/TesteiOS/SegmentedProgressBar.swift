@@ -51,8 +51,24 @@ import UIKit
                                                 width: segmentWidth,
                                                 height: segmentHeight))
             segment.backgroundColor = colors[index]
+            
+            if (index == 0) {
+                segment.clipsToBounds = true
+                segment.layer.cornerRadius = .pi
+                segment.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+
+            } else if (index == numberOfSegments - 1) {
+                segment.clipsToBounds = true
+                segment.layer.cornerRadius = .pi
+                segment.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+
+            }
+            
+            
+            
             addSubview(segment)
             segments.append(segment)
+            
         }
     }
     
