@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SafariServices
 
 
 struct InvestmentInfo {
@@ -17,17 +18,22 @@ struct InvestmentInfo {
 }
 
 
-class InvestmentViewController: UIViewController {
+class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate {
 
     let URL = "https://floating-mountain-50292.herokuapp.com/fund.json"
+    let googleURL = "https://www.google.com"
     
     let investment = InvestmentDataModel()
     
     var info = [InvestmentInfo()]
-
     
     
-
+    //let safariVC = SFSafariViewController(url: NSURL(string: "www.google.com")! as URL)
+    
+    
+    
+    
+    
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -59,7 +65,6 @@ class InvestmentViewController: UIViewController {
     @IBOutlet var infoLabels: [UILabel]!
     
 
-    @IBOutlet weak var downloadButton: UIButton!
     
     
     
@@ -67,11 +72,33 @@ class InvestmentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //scrollView.contentSize = CGSizeMake(self.view.frame.width, self.view.frame.height+100)
+        //safariVC.delegate = self
+
+        getData(url: URL)
+        
+        
+    }
+    
+    
+    @IBAction func downloadButtonPressed(_ sender: Any) {
+        
+        let safariVC = SFSafariViewController(url: NSURL(string: googleURL)! as URL)
+        self.present(safariVC, animated: true, completion: nil)
+        safariVC.delegate = self
 
         
-        getData(url: URL)
+        
+
     }
+    
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController)
+    {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
     
     
     //MARK: - Networking
