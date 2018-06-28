@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -161,6 +162,39 @@
                                                 <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDe-K1-b38" customClass="SegmentedProgressBar" customModule="TesteiOS" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="331" width="375" height="25"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="eDe-K1-b38" secondAttribute="height" multiplier="15:1" id="Cxu-xq-DF3"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="segmentWidth">
+                                                        <real key="value" value="50"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="segmentHeight">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="segment1Color">
+                                                        <color key="value" red="0.45490196078431372" green="0.85490196078431369" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="segment2Color">
+                                                        <color key="value" red="0.29019607843137257" green="0.75686274509803919" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="segment3Color">
+                                                        <color key="value" red="1" green="0.75294117647058822" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="segment4Color">
+                                                        <color key="value" red="1" green="0.45490196078431372" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="segment5Color">
+                                                        <color key="value" red="1" green="0.21176470588235294" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="highlightSegment">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label: Mais informações sobre o risco do investimento" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZ8-RJ-Alo">
                                                 <rect key="frame" x="29" y="378" width="317" height="41"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -502,9 +536,11 @@
                                             <constraint firstItem="5OO-53-RXW" firstAttribute="trailing" secondItem="dLa-vb-6Kx" secondAttribute="trailing" constant="29" id="DGL-85-3SZ"/>
                                             <constraint firstItem="KgV-uj-6eZ" firstAttribute="top" secondItem="GZ8-RJ-Alo" secondAttribute="bottom" constant="10" id="Ga0-aR-P1d"/>
                                             <constraint firstItem="Ymb-r3-lxl" firstAttribute="centerX" secondItem="5OO-53-RXW" secondAttribute="centerX" id="JcO-ri-2vW"/>
+                                            <constraint firstItem="eDe-K1-b38" firstAttribute="trailing" secondItem="5OO-53-RXW" secondAttribute="trailing" id="Kor-Ll-Keb"/>
                                             <constraint firstItem="dLa-vb-6Kx" firstAttribute="leading" secondItem="5OO-53-RXW" secondAttribute="leading" constant="29" id="LOB-ux-wIO"/>
                                             <constraint firstItem="oYf-ib-7rs" firstAttribute="top" secondItem="EHO-v7-ZAT" secondAttribute="bottom" constant="10" id="MVe-ga-EM3"/>
                                             <constraint firstItem="xOH-11-5c3" firstAttribute="centerX" secondItem="5OO-53-RXW" secondAttribute="centerX" id="Sbw-Q8-FPL"/>
+                                            <constraint firstItem="eDe-K1-b38" firstAttribute="leading" secondItem="5OO-53-RXW" secondAttribute="leading" id="bC6-HW-1CK"/>
                                             <constraint firstItem="dLa-vb-6Kx" firstAttribute="centerX" secondItem="5OO-53-RXW" secondAttribute="centerX" id="gOQ-Fd-HtV"/>
                                             <constraint firstItem="Ymb-r3-lxl" firstAttribute="top" secondItem="xOH-11-5c3" secondAttribute="bottom" constant="10" id="gQY-We-rya"/>
                                             <constraint firstItem="5OO-53-RXW" firstAttribute="trailing" secondItem="KgV-uj-6eZ" secondAttribute="trailing" constant="29" id="h25-S2-aVm"/>
@@ -519,6 +555,7 @@
                                             <constraint firstItem="5OO-53-RXW" firstAttribute="bottom" secondItem="Y58-o7-bDK" secondAttribute="bottom" id="vkr-x8-6SX"/>
                                             <constraint firstItem="GZ8-RJ-Alo" firstAttribute="centerX" secondItem="5OO-53-RXW" secondAttribute="centerX" id="xIW-4g-kk5"/>
                                             <constraint firstItem="xOH-11-5c3" firstAttribute="top" secondItem="oYf-ib-7rs" secondAttribute="bottom" constant="30" id="xqw-gK-kh5"/>
+                                            <constraint firstItem="eDe-K1-b38" firstAttribute="top" secondItem="dLa-vb-6Kx" secondAttribute="bottom" constant="3" id="yWT-nA-5CE"/>
                                             <constraint firstItem="dLa-vb-6Kx" firstAttribute="top" secondItem="Ymb-r3-lxl" secondAttribute="bottom" constant="30" id="ynR-od-xpr"/>
                                         </constraints>
                                         <viewLayoutGuide key="safeArea" id="5OO-53-RXW"/>
@@ -625,6 +662,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gij-4A-yMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="24.800000000000001" y="-834.33283358320841"/>
+        </scene>
+        <!--Progress View Controller-->
+        <scene sceneID="d07-Gl-uyZ">
+            <objects>
+                <viewController id="maB-KP-xar" customClass="ProgressViewController" customModule="TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jMz-HQ-hz4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Rv-DX-8RB" customClass="SegmentedProgressBar" customModule="TesteiOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="308" width="375" height="71"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="segmentWidth">
+                                        <real key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="segmentColor">
+                                        <color key="value" red="0.47684186699999997" green="0.50480759139999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="segmentHeight">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="numberOfSegments">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="segment1Color">
+                                        <color key="value" red="0.45490196078431372" green="0.85490196078431369" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="segment2Color">
+                                        <color key="value" red="0.29019607843137257" green="0.75686274509803919" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="segment3Color">
+                                        <color key="value" red="1" green="0.75294117647058822" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="segment4Color">
+                                        <color key="value" red="1" green="0.45490196078431372" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="segment5Color">
+                                        <color key="value" red="1" green="0.21176470588235294" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.15686274510000001" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="5Rv-DX-8RB" firstAttribute="top" secondItem="v4i-YY-rn2" secondAttribute="top" constant="288" id="Cf8-LO-OyP"/>
+                            <constraint firstItem="v4i-YY-rn2" firstAttribute="trailing" secondItem="5Rv-DX-8RB" secondAttribute="trailing" id="GXB-Si-yDA"/>
+                            <constraint firstItem="v4i-YY-rn2" firstAttribute="centerY" secondItem="5Rv-DX-8RB" secondAttribute="centerY" id="dPH-tY-eUc"/>
+                            <constraint firstItem="v4i-YY-rn2" firstAttribute="leading" secondItem="5Rv-DX-8RB" secondAttribute="leading" id="q45-Mc-m6I"/>
+                            <constraint firstItem="v4i-YY-rn2" firstAttribute="centerX" secondItem="5Rv-DX-8RB" secondAttribute="centerX" id="wif-aN-3KO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="v4i-YY-rn2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hHs-J6-ptL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1021" y="276"/>
         </scene>
         <!--Contato-->
         <scene sceneID="UOa-TN-b38">

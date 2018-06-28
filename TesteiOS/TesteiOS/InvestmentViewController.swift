@@ -28,11 +28,6 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
     var info = [InvestmentInfo()]
     
     
-    //let safariVC = SFSafariViewController(url: NSURL(string: "www.google.com")! as URL)
-    
-    
-    
-    
     
     
     @IBOutlet weak var titleLabel: UILabel!
