@@ -58,6 +58,9 @@ class InvestmentViewController: UIViewController {
     
     @IBOutlet var infoLabels: [UILabel]!
     
+
+    @IBOutlet weak var downloadButton: UIButton!
+    
     
     
     
@@ -130,14 +133,8 @@ class InvestmentViewController: UIViewController {
             info.append(element)
         }
         
-        print(info)
-        
-
+        // print(info)
     
-        
-        
-        
-        
         
         updateUIWithData()
         
@@ -166,30 +163,31 @@ class InvestmentViewController: UIViewController {
         
         
         var index = 0
-        
+         
         for label in infoLabels {
-            
-            
             
             // if tag is odd
             if (label.tag%2 != 0) {
-                print("ímpar: \(label.tag), index: \(index)")
-                label.text = info[index].name
                 
+                    label.text = info[index].name
                 
+                    print("ímpar: \(label.tag), index: \(index)")
+                if (label.tag >= 15) {
+                    index = index + 1
+
+                }
+
+            // if tag is even
             } else {
-                label.text = info[index].data
-                print("par: \(label.tag), index: \(index)")
-                index = index + 1
+                
+                    label.text = info[index].data
+                    index = index + 1
+                
+                    print("par: \(label.tag), index: \(index)")
+
+            }
+
             }
         }
-        
-        
-        
-      
-        
-    }
-    
-    
     
 }
