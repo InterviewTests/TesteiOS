@@ -18,7 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        let initialViewController = FormViewController()
+        let tabBar: UITabBarController = UITabBarController()
+        let fundosVC = FundosViewController()
+        let formVC = FormViewController()
+        fundosVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
+        formVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
+        tabBar.viewControllers = [fundosVC, formVC]
+        let initialViewController = tabBar
         
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
