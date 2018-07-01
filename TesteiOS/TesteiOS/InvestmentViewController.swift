@@ -80,10 +80,6 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
         let safariVC = SFSafariViewController(url: NSURL(string: googleURL)! as URL)
         self.present(safariVC, animated: true, completion: nil)
         safariVC.delegate = self
-
-        
-        
-
     }
     
     

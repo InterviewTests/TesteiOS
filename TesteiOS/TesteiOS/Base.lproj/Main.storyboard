@@ -33,21 +33,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome completo Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ql7-2U-y2F">
-                                <rect key="frame" x="40" y="114" width="295" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FCY-3w-iny" userLabel="Background Form View">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome completo Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ql7-2U-y2F">
+                                <rect key="frame" x="40" y="114" width="295" height="22"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9NI-lY-bq8" userLabel="Name Text Field">
-                                <rect key="frame" x="40" y="144" width="295" height="30"/>
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9NI-lY-bq8" userLabel="Name Text Field">
+                                <rect key="frame" x="40" y="136" width="295" height="22"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sDo-4I-zfW" userLabel="Name Line" customClass="Line" customModule="TesteiOS" customModuleProvider="target">
-                                <rect key="frame" x="40" y="174" width="295" height="3"/>
+                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sDo-4I-zfW" userLabel="Name Line" customClass="Line" customModule="TesteiOS" customModuleProvider="target">
+                                <rect key="frame" x="40" y="158" width="295" height="3"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="3" id="Bb6-CF-WYP"/>
@@ -61,21 +65,21 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telefone Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oo8-Xt-9dW" userLabel="Mail Label">
-                                <rect key="frame" x="40" y="197" width="295" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telefone Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oo8-Xt-9dW" userLabel="Mail Label">
+                                <rect key="frame" x="40" y="181" width="295" height="22"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gfX-ek-pbU" userLabel="Mail Text Field">
-                                <rect key="frame" x="40" y="227" width="295" height="30"/>
+                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gfX-ek-pbU" userLabel="Mail Text Field">
+                                <rect key="frame" x="40" y="203" width="295" height="22"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2B-EU-G07" userLabel="Mail Line" customClass="Line" customModule="TesteiOS" customModuleProvider="target">
-                                <rect key="frame" x="39.5" y="257" width="295" height="3"/>
+                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2B-EU-G07" userLabel="Mail Line" customClass="Line" customModule="TesteiOS" customModuleProvider="target">
+                                <rect key="frame" x="39.5" y="225" width="295" height="3"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
@@ -86,21 +90,21 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teC-Y4-EFe" userLabel="Phone Label">
-                                <rect key="frame" x="40" y="280" width="295" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teC-Y4-EFe" userLabel="Phone Label">
+                                <rect key="frame" x="40" y="248" width="295" height="22"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bjz-5h-qad" userLabel="Phone Text Field">
-                                <rect key="frame" x="40" y="310" width="295" height="30"/>
+                            <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bjz-5h-qad" userLabel="Phone Text Field">
+                                <rect key="frame" x="40" y="270" width="295" height="22"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCR-mh-Lp6" userLabel="Phone Line" customClass="Line" customModule="TesteiOS" customModuleProvider="target">
-                                <rect key="frame" x="39.5" y="340" width="295" height="3"/>
+                            <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCR-mh-Lp6" userLabel="Phone Line" customClass="Line" customModule="TesteiOS" customModuleProvider="target">
+                                <rect key="frame" x="39.5" y="292" width="295" height="3"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="lineThickness">
@@ -112,7 +116,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhx-77-ezw" userLabel="Layout Guide 1">
-                                <rect key="frame" x="40" y="373" width="295" height="50"/>
+                                <rect key="frame" x="40" y="325" width="295" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wXW-ZN-GRt" customClass="CheckboxButton" customModule="TesteiOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -140,7 +144,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIe-im-9f6" userLabel="Send Button *" customClass="CustomButton" customModule="TesteiOS" customModuleProvider="target">
-                                <rect key="frame" x="30" y="425" width="315" height="50"/>
+                                <rect key="frame" x="30" y="377" width="315" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="315" id="kAa-eI-zgZ"/>
@@ -154,27 +158,23 @@
                                     <action selector="sendButtonPressed:" destination="LUr-2V-3rv" eventType="touchUpInside" id="s3N-3j-Kmi"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kFi-7i-BCB">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kFi-7i-BCB">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Obrigado." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cs-Qe-WKs">
-                                        <rect key="frame" x="65" y="91" width="245" height="70"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cs-Qe-WKs">
+                                        <rect key="frame" x="151" y="232" width="73" height="22"/>
                                         <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                         <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mensagem enviada com sucesso! :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waJ-2b-jyc">
-                                        <rect key="frame" x="65" y="242" width="245" height="70"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagem enviada com sucesso! :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waJ-2b-jyc">
+                                        <rect key="frame" x="27" y="264" width="321" height="26"/>
+                                        <fontDescription key="fontDescription" name="DINPro-Black" family="DINPro" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1iS-tI-mkU">
-                                        <rect key="frame" x="99" y="432" width="176" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1iS-tI-mkU">
+                                        <rect key="frame" x="99" y="440" width="176" height="34"/>
                                         <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                         <state key="normal" title="Enviar nova mensagem">
                                             <color key="titleColor" red="0.83921568627450982" green="0.070588235294117646" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -185,6 +185,14 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="1iS-tI-mkU" firstAttribute="top" secondItem="waJ-2b-jyc" secondAttribute="bottom" constant="150" id="A9c-zf-3im"/>
+                                    <constraint firstItem="1iS-tI-mkU" firstAttribute="centerX" secondItem="kFi-7i-BCB" secondAttribute="centerX" id="FYE-vg-JQe"/>
+                                    <constraint firstItem="waJ-2b-jyc" firstAttribute="top" secondItem="2Cs-Qe-WKs" secondAttribute="bottom" constant="10" id="S2w-9m-7go"/>
+                                    <constraint firstItem="2Cs-Qe-WKs" firstAttribute="centerX" secondItem="kFi-7i-BCB" secondAttribute="centerX" id="Uny-aR-kjd"/>
+                                    <constraint firstItem="waJ-2b-jyc" firstAttribute="centerY" secondItem="kFi-7i-BCB" secondAttribute="centerY" id="YHn-3Q-yRd"/>
+                                    <constraint firstItem="waJ-2b-jyc" firstAttribute="centerX" secondItem="kFi-7i-BCB" secondAttribute="centerX" id="cl7-aE-CxE"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -201,6 +209,7 @@
                             <constraint firstItem="gfX-ek-pbU" firstAttribute="top" secondItem="Oo8-Xt-9dW" secondAttribute="bottom" id="M00-NW-OXr"/>
                             <constraint firstItem="yCR-mh-Lp6" firstAttribute="top" secondItem="bjz-5h-qad" secondAttribute="bottom" id="NG4-wN-KO9"/>
                             <constraint firstItem="Ql7-2U-y2F" firstAttribute="centerX" secondItem="eWe-QZ-p3S" secondAttribute="centerX" id="Omm-KK-nQW"/>
+                            <constraint firstItem="FCY-3w-iny" firstAttribute="top" secondItem="eWe-QZ-p3S" secondAttribute="top" id="RGI-7G-vT9"/>
                             <constraint firstItem="bjz-5h-qad" firstAttribute="width" secondItem="teC-Y4-EFe" secondAttribute="width" id="Rp6-wb-R88"/>
                             <constraint firstItem="Oo8-Xt-9dW" firstAttribute="leading" secondItem="eWe-QZ-p3S" secondAttribute="leading" constant="40" id="S7o-xe-ghu"/>
                             <constraint firstItem="eWe-QZ-p3S" firstAttribute="trailing" secondItem="teC-Y4-EFe" secondAttribute="trailing" constant="40" id="SHm-yu-0yX"/>
@@ -218,8 +227,11 @@
                             <constraint firstItem="9NI-lY-bq8" firstAttribute="width" secondItem="Ql7-2U-y2F" secondAttribute="width" id="ffO-Kz-mFi"/>
                             <constraint firstItem="yCR-mh-Lp6" firstAttribute="centerX" secondItem="sDo-4I-zfW" secondAttribute="centerX" id="g6w-dO-gbD"/>
                             <constraint firstItem="hIe-im-9f6" firstAttribute="top" secondItem="CtF-DW-cys" secondAttribute="bottom" constant="30" id="gLV-nR-YN1"/>
+                            <constraint firstItem="eWe-QZ-p3S" firstAttribute="trailing" secondItem="FCY-3w-iny" secondAttribute="trailing" id="gfR-xj-qCq"/>
                             <constraint firstItem="9NI-lY-bq8" firstAttribute="centerX" secondItem="Ql7-2U-y2F" secondAttribute="centerX" id="h0e-Un-tfm"/>
+                            <constraint firstItem="eWe-QZ-p3S" firstAttribute="bottom" secondItem="FCY-3w-iny" secondAttribute="bottom" id="hg4-UL-mdR"/>
                             <constraint firstItem="sDo-4I-zfW" firstAttribute="top" secondItem="9NI-lY-bq8" secondAttribute="bottom" id="icI-VA-tKw"/>
+                            <constraint firstItem="kFi-7i-BCB" firstAttribute="top" secondItem="eWe-QZ-p3S" secondAttribute="top" id="imf-in-wm7"/>
                             <constraint firstItem="sDo-4I-zfW" firstAttribute="leading" secondItem="eWe-QZ-p3S" secondAttribute="leading" constant="40" id="jM2-YA-XnD"/>
                             <constraint firstItem="Oo8-Xt-9dW" firstAttribute="height" secondItem="Ql7-2U-y2F" secondAttribute="height" id="jQj-e2-wcC"/>
                             <constraint firstItem="Ql7-2U-y2F" firstAttribute="top" secondItem="eWe-QZ-p3S" secondAttribute="top" constant="50" id="kpG-x4-5z0"/>
@@ -228,6 +240,10 @@
                             <constraint firstItem="bjz-5h-qad" firstAttribute="top" secondItem="teC-Y4-EFe" secondAttribute="bottom" id="laC-de-BDd"/>
                             <constraint firstItem="hhx-77-ezw" firstAttribute="leading" secondItem="eWe-QZ-p3S" secondAttribute="leading" constant="40" id="mPn-PL-fyI"/>
                             <constraint firstItem="Ql7-2U-y2F" firstAttribute="leading" secondItem="eWe-QZ-p3S" secondAttribute="leading" constant="40" id="mRe-3K-QGE"/>
+                            <constraint firstItem="kFi-7i-BCB" firstAttribute="leading" secondItem="eWe-QZ-p3S" secondAttribute="leading" id="n7V-TL-q0z"/>
+                            <constraint firstItem="kFi-7i-BCB" firstAttribute="bottom" secondItem="eWe-QZ-p3S" secondAttribute="bottom" id="qhb-rc-YFb"/>
+                            <constraint firstItem="FCY-3w-iny" firstAttribute="leading" secondItem="eWe-QZ-p3S" secondAttribute="leading" id="qva-bl-uHy"/>
+                            <constraint firstItem="kFi-7i-BCB" firstAttribute="trailing" secondItem="eWe-QZ-p3S" secondAttribute="trailing" id="rvE-9l-mDS"/>
                             <constraint firstItem="gfX-ek-pbU" firstAttribute="centerX" secondItem="Oo8-Xt-9dW" secondAttribute="centerX" id="u8U-I1-f3U"/>
                             <constraint firstItem="hhx-77-ezw" firstAttribute="top" secondItem="yCR-mh-Lp6" secondAttribute="bottom" constant="30" id="uVJ-ST-9QT"/>
                             <constraint firstItem="teC-Y4-EFe" firstAttribute="height" secondItem="Oo8-Xt-9dW" secondAttribute="height" id="vfB-hX-xsN"/>
@@ -238,9 +254,16 @@
                     </view>
                     <navigationItem key="navigationItem" title="Contato" id="0ei-Z1-Yg3"/>
                     <connections>
+                        <outlet property="backgroundView" destination="FCY-3w-iny" id="PiW-J6-rVa"/>
                         <outlet property="emailLabel" destination="Oo8-Xt-9dW" id="XQL-YP-kmO"/>
+                        <outlet property="mailLine" destination="p2B-EU-G07" id="OlL-72-8AH"/>
+                        <outlet property="mailTextField" destination="gfX-ek-pbU" id="vzy-8U-6z0"/>
                         <outlet property="nameLabel" destination="Ql7-2U-y2F" id="jJY-e7-Lcm"/>
+                        <outlet property="nameLine" destination="sDo-4I-zfW" id="GYR-nh-UKc"/>
+                        <outlet property="nameTextField" destination="9NI-lY-bq8" id="SZH-dX-Tas"/>
                         <outlet property="phoneLabel" destination="teC-Y4-EFe" id="Jy2-su-Efc"/>
+                        <outlet property="phoneLine" destination="yCR-mh-Lp6" id="TMw-FO-IwN"/>
+                        <outlet property="phoneTextField" destination="bjz-5h-qad" id="UZw-fo-UtU"/>
                         <outlet property="sendButton" destination="hIe-im-9f6" id="L2X-Wh-IXc"/>
                         <outlet property="sucessView" destination="kFi-7i-BCB" id="E6h-Rb-Lfv"/>
                         <outlet property="textButtonLabel" destination="CtF-DW-cys" id="CaR-o1-zHo"/>
