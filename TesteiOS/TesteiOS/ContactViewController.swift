@@ -43,39 +43,178 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
         mailTextField.delegate = self
         phoneTextField.delegate = self
         
+        // get data from specified URL
         getData(url: URL)
         
+        // this view is hidden until user sucessfully fills the form
         sucessView.isHidden = true
         
-        // runtime selector to trigger th end editing text field delegate methods
+        // runtime selector to trigger the end-editing text field delegate methods when user taps outside the text field
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped))
         backgroundView.addGestureRecognizer(tapGesture)
 
     }
 
+    
+    
+    
+    //MARK: - TextField Delegate Methods
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print(textField.tag)
+        // editing name
+        if (textField.tag == 1) {
+            nameLabel.font = nameLabel.font.withSize(14)
+            nameLine.lineColor = UIColor.red
+            nameLine.setNeedsDisplay()
+        }
+            // editing mail
+        else if (textField.tag == 2) {
+            emailLabel.font = emailLabel.font.withSize(14)
+            mailLine.lineColor = UIColor.gray
+            mailLine.setNeedsDisplay()
+            
+        }
+            // editing phone
+        else if (textField.tag == 3) {
+            phoneLabel.font = phoneLabel.font.withSize(14)
+            phoneLine.lineColor = UIColor.gray
+            phoneLine.setNeedsDisplay()
+        
+        }
+    }
+
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print(textField.tag)
+        // editing name
+        if (textField.tag == 1) {
+            nameLabel.font = nameLabel.font.withSize(17)
+        }
+            // editing mail
+        else if (textField.tag == 2) {
+            emailLabel.font = emailLabel.font.withSize(17)
+            
+        }
+            // editing phone
+        else if (textField.tag == 3) {
+            phoneLabel.font = phoneLabel.font.withSize(17)
+        }
+    }
+
+    
+    // called whenever the user types a char
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField.tag == 3 {
+            var fullString = textField.text ?? ""
+            fullString.append(string)
+            
+            if range.length == 1 {
+                textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: true)
+            } else {
+                textField.text = format(phoneNumber: fullString)
+            }
+            return false
+        }
+        return true
+    }
+    
+    
+    // return false in cases where delegate detects invalid contents in the text field
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
+        // TODO:
+        //    If you use this method to validate the contents of the text field, you might also want to use an overlay view to provide feedback to that effect. For example, you might display a small icon indicating the text is invalid. For more information about adding overlays to text fields, see the methods of UITextField.
+
+        
+        // editing name
+        if (textField.tag == 1) {
+            let response = Validation.shared.validate(values: (ValidationType.name, textField.text!))
+            
+            switch response {
+            case .success:
+                print("Name boa")
+                break
+            case .failure(_, let message):
+                print(message.localized())
+                return false
+            }
+        }
+            // editing mail
+        else if (textField.tag == 2) {
+            let response = Validation.shared.validate(values: (ValidationType.email, textField.text!))
+            
+            switch response {
+            case .success:
+                print("Email boa")
+                break
+            case .failure(_, let message):
+                print(message.localized())
+                return false
+            }
+            
+        }
+            // editing phone
+        else if (textField.tag == 3) {
+            let response = Validation.shared.validate(values: (ValidationType.phoneNumber, textField.text!))
+            
+            switch response {
+            case .success:
+                print("Phone boa")
+                break
+            case .failure(_, let message):
+                print(message.localized())
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        print("clear")
+        
+//        TODO: button
+        
+        return true
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("return")
+        textField.endEditing(true)
+        
+        return true
+    }
+
+    
+    
+    ///--------
+    
+    
+    
+    
     @objc func backgroundViewTapped() {
         nameTextField.endEditing(true)
         mailTextField.endEditing(true)
         phoneTextField.endEditing(true)
         
     }
+
+    
+    ///--------
     
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        var fullString = textField.text ?? ""
-        fullString.append(string)
-        
-        if range.length == 1 {
-            textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: true)
-        } else {
-            textField.text = format(phoneNumber: fullString)
-        }
-        return false
-    }
     
     
-    func format(phoneNumber: String, shouldRemoveLastDigit: Bool = false) -> String {
+    
+    
+    
+    
+    
+    private func format(phoneNumber: String, shouldRemoveLastDigit: Bool = false) -> String {
         guard !phoneNumber.isEmpty else { return "" }
         guard let regex = try? NSRegularExpression(pattern: "[\\s-\\(\\)]", options: .caseInsensitive) else { return "" }
         let r = NSString(string: phoneNumber).range(of: phoneNumber)
@@ -111,70 +250,11 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print(textField.tag)
-        // editing name
-        if (textField.tag == 1) {
-            nameLabel.font = nameLabel.font.withSize(14)
-            nameLine.lineColor = UIColor.red
-            nameLine.setNeedsDisplay()
-        }
-        // editing mail
-        else if (textField.tag == 2) {
-            emailLabel.font = emailLabel.font.withSize(14)
-            mailLine.lineColor = UIColor.gray
-            mailLine.setNeedsDisplay()
-
-        }
-        // editing phone
-        else if (textField.tag == 3) {
-            phoneLabel.font = phoneLabel.font.withSize(14)
-            phoneLine.lineColor = UIColor.gray
-            phoneLine.setNeedsDisplay()
-        }
     
     
-    }
     
     
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        // Use that method to validate the current text.
-        resignFirstResponder()
-
-        return true
-    }
     
-    
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        print("clear")
-        return true
-        
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("return")
-        resignFirstResponder()
-
-        
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print(textField.tag)
-        // editing name
-        if (textField.tag == 1) {
-            nameLabel.font = nameLabel.font.withSize(17)
-        }
-            // editing mail
-        else if (textField.tag == 2) {
-            emailLabel.font = emailLabel.font.withSize(17)
-            
-        }
-            // editing phone
-        else if (textField.tag == 3) {
-            phoneLabel.font = phoneLabel.font.withSize(17)
-        }
-    }
     
     
     
