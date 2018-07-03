@@ -11,6 +11,14 @@ import Alamofire
 import SwiftyJSON
 
 
+
+enum TextFieldEditingModeType {
+    case normal
+    case reduced
+}
+
+
+
 class ContactViewController: UIViewController, UITextFieldDelegate {
     
     let URL = "https://floating-mountain-50292.herokuapp.com/cells.json"
@@ -57,65 +65,26 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
 
     
     
-    
     //MARK: - TextField Delegate Methods
+    /*********************************************************************/
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print("textFieldDidBeginEditing")
 
-        // editing name
-        if (textField.tag == 1) {
-            nameLabel.font = nameLabel.font.withSize(14)
-            nameLine.lineColor = UIColor.gray
-            nameLine.setNeedsDisplay()
-        }
-            // editing mail
-        else if (textField.tag == 2) {
-            emailLabel.font = emailLabel.font.withSize(14)
-            mailLine.lineColor = UIColor.gray
-            mailLine.setNeedsDisplay()
-            
-        }
-            // editing phone
-        else if (textField.tag == 3) {
-            phoneLabel.font = phoneLabel.font.withSize(14)
-            phoneLine.lineColor = UIColor.gray
-            phoneLine.setNeedsDisplay()
-        
-        }
-    }
+        nameTextField.clearButtonMode = .whileEditing
+        mailTextField.clearButtonMode = .whileEditing
+        phoneTextField.clearButtonMode = .whileEditing
 
+        adjustTextFieldUIWhileEditing(textField: textField, mode: .reduced)
+    }
     
+
     func textFieldDidEndEditing(_ textField: UITextField) {
         print("textFieldDidEndEditing")
 
-        print(textField.tag)
-        // editing name
-        if (textField.tag == 1) {
-            nameLabel.font = nameLabel.font.withSize(17)
-            
-            // TODO: check if data is OK before change line color
-            
-            nameLine.lineColor = UIColor.gray
-            nameLine.setNeedsDisplay()
-        }
-            // editing mail
-        else if (textField.tag == 2) {
-            emailLabel.font = emailLabel.font.withSize(17)
-            mailLine.lineColor = UIColor.gray
-            mailLine.setNeedsDisplay()
-            
-        }
-            // editing phone
-        else if (textField.tag == 3) {
-            phoneLabel.font = phoneLabel.font.withSize(17)
-            phoneLine.lineColor = UIColor.gray
-            phoneLine.setNeedsDisplay()
-        }
+       adjustTextFieldUIWhileEditing(textField: textField, mode: .normal)
     }
 
-    
-    
     
     // called whenever the user types a char
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -201,18 +170,8 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
                 phoneLine.lineColor = UIColor.red
                 phoneLine.setNeedsDisplay()
             }
-            
-//            textField.text = format(phoneNumber: fullString)
-//            print("textfield final: \(textField.text!)")
-
-            
-            
             return false
-            
-            
-            
         }
-        
         return true
     }
     
@@ -278,19 +237,6 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func validationOK(){
-        
-    }
-    
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        print("textFieldShouldClear")
-        
-//        TODO: button
-        
-        return true
-    }
-    
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("textFieldShouldReturn")
         textField.endEditing(true)
@@ -299,13 +245,39 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     }
 
     
+    //MARK: - Supporting Private Methods
+    /*********************************************************************/
+
+    private func adjustTextFieldUIWhileEditing (textField : UITextField, mode : TextFieldEditingModeType) {
+        
+        var fontSize = CGFloat()
+        
+        mode == .reduced ? (fontSize = 14.0) : (fontSize = 17.0)
+
+        // editing name
+        if (textField.tag == 1) {
+            nameLabel.font = nameLabel.font.withSize(fontSize)
+            nameLine.lineColor = UIColor.gray
+            nameLine.setNeedsDisplay()
+        }
+            // editing mail
+        else if (textField.tag == 2) {
+            emailLabel.font = emailLabel.font.withSize(fontSize)
+            mailLine.lineColor = UIColor.gray
+            mailLine.setNeedsDisplay()
+            
+        }
+            // editing phone
+        else if (textField.tag == 3) {
+            phoneLabel.font = phoneLabel.font.withSize(fontSize)
+            phoneLine.lineColor = UIColor.gray
+            phoneLine.setNeedsDisplay()
+            
+        }
+    }
     
-    ///--------
     
-    
-    
-    
-    @objc func backgroundViewTapped() {
+    @objc private func backgroundViewTapped() {
         print("backgroundViewTapped")
         nameTextField.endEditing(true)
         mailTextField.endEditing(true)
@@ -313,16 +285,6 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
         
     }
 
-    
-    ///--------
-    
-    
-    
-    
-    
-    
-    
-    
     
     private func format(phoneNumber: String, shouldRemoveLastDigit: Bool = false) -> String {
         print("format")
@@ -363,26 +325,16 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
+    //MARK: - IBActions Methods
+    /*********************************************************************/
+
     @IBAction func sendButtonPressed(_ sender: UIButton) {
-        
-        //self.view.isHidden = true
         sucessView.isHidden = false
-        
     }
     
     @IBAction func newMessageButtonPressed(_ sender: UIButton) {
-        
         sucessView.isHidden = true
         updateUIWithData()
-        
     }
     
     

@@ -12,9 +12,9 @@
 		C9001CA920E563FF002ECBF0 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = C9001CA820E563FE002ECBF0 /* fonts */; };
 		C9001CAB20E568E9002ECBF0 /* buttonDownload.png in Resources */ = {isa = PBXBuildFile; fileRef = C9001CAA20E568E8002ECBF0 /* buttonDownload.png */; };
 		C9001CAD20E56B6B002ECBF0 /* downloadButtonSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = C9001CAC20E56B6B002ECBF0 /* downloadButtonSymbol.png */; };
+		C905CC5F20EBAB4F00DE023D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C905CC5E20EBAB4E00DE023D /* Default-568h@2x.png */; };
 		C923FCA320D9BB1C00FB7092 /* ContactDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C923FCA220D9BB1C00FB7092 /* ContactDataModel.swift */; };
 		C923FCA520DB2C5900FB7092 /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C923FCA420DB2C5900FB7092 /* CheckBoxButton.swift */; };
-		C923FCAB20DC283C00FB7092 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C923FCAA20DC283C00FB7092 /* CustomTabBar.swift */; };
 		C923FCAD20DC315D00FB7092 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C923FCAC20DC315D00FB7092 /* MainTabBarController.swift */; };
 		C923FCAF20DC36B200FB7092 /* InvestmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C923FCAE20DC36B200FB7092 /* InvestmentViewController.swift */; };
 		C9936F5A20D56EB600C4C68F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9936F5920D56EB600C4C68F /* AppDelegate.swift */; };
@@ -36,9 +36,9 @@
 		C9001CA820E563FE002ECBF0 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		C9001CAA20E568E8002ECBF0 /* buttonDownload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonDownload.png; sourceTree = "<group>"; };
 		C9001CAC20E56B6B002ECBF0 /* downloadButtonSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downloadButtonSymbol.png; sourceTree = "<group>"; };
+		C905CC5E20EBAB4E00DE023D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C923FCA220D9BB1C00FB7092 /* ContactDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataModel.swift; sourceTree = "<group>"; };
 		C923FCA420DB2C5900FB7092 /* CheckBoxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
-		C923FCAA20DC283C00FB7092 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		C923FCAC20DC315D00FB7092 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		C923FCAE20DC36B200FB7092 /* InvestmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentViewController.swift; sourceTree = "<group>"; };
 		C9936F5620D56EB600C4C68F /* TesteiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TesteiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,9 +76,62 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C905CC5920EBA9B800DE023D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C9936F6220D56EBB00C4C68F /* LaunchScreen.storyboard */,
+				C9936F5D20D56EB600C4C68F /* Main.storyboard */,
+				C9936F6020D56EBB00C4C68F /* Assets.xcassets */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C905CC5A20EBAA4C00DE023D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C9001CA820E563FE002ECBF0 /* fonts */,
+				C9001CAA20E568E8002ECBF0 /* buttonDownload.png */,
+				C9001CAC20E56B6B002ECBF0 /* downloadButtonSymbol.png */,
+				C9EBC7E320E1C8B30032B2EF /* background.jpg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C905CC5B20EBAA7D00DE023D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C923FCA220D9BB1C00FB7092 /* ContactDataModel.swift */,
+				C9EBC7DF20E17EED0032B2EF /* InvestmentDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C905CC5C20EBAAE500DE023D /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C923FCA420DB2C5900FB7092 /* CheckBoxButton.swift */,
+				C9EBC7E520E2F4100032B2EF /* CustomButton.swift */,
+				C9001CA620E52A53002ECBF0 /* SegmentedProgressBar.swift */,
+				C9A6CCD820E6782D00D144A9 /* Line.swift */,
+				C9A6CCDC20E9970000D144A9 /* Validation.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		C905CC5D20EBAB0200DE023D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C923FCAC20DC315D00FB7092 /* MainTabBarController.swift */,
+				C9936F5B20D56EB600C4C68F /* ContactViewController.swift */,
+				C923FCAE20DC36B200FB7092 /* InvestmentViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		C9936F4D20D56EB600C4C68F = {
 			isa = PBXGroup;
 			children = (
+				C905CC5E20EBAB4E00DE023D /* Default-568h@2x.png */,
 				C9936F5820D56EB600C4C68F /* TesteiOS */,
 				C9936F5720D56EB600C4C68F /* Products */,
 				F5D5588046BE0F091D3B7D03 /* Pods */,
@@ -98,25 +151,12 @@
 			isa = PBXGroup;
 			children = (
 				C9936F5920D56EB600C4C68F /* AppDelegate.swift */,
-				C923FCAC20DC315D00FB7092 /* MainTabBarController.swift */,
-				C9936F5B20D56EB600C4C68F /* ContactViewController.swift */,
-				C923FCAE20DC36B200FB7092 /* InvestmentViewController.swift */,
-				C9936F5D20D56EB600C4C68F /* Main.storyboard */,
-				C9936F6020D56EBB00C4C68F /* Assets.xcassets */,
-				C9001CA820E563FE002ECBF0 /* fonts */,
-				C9936F6220D56EBB00C4C68F /* LaunchScreen.storyboard */,
+				C905CC5D20EBAB0200DE023D /* Controllers */,
+				C905CC5920EBA9B800DE023D /* View */,
+				C905CC5A20EBAA4C00DE023D /* Resources */,
+				C905CC5B20EBAA7D00DE023D /* Model */,
+				C905CC5C20EBAAE500DE023D /* Sources */,
 				C9936F6520D56EBB00C4C68F /* Info.plist */,
-				C9001CAA20E568E8002ECBF0 /* buttonDownload.png */,
-				C923FCA220D9BB1C00FB7092 /* ContactDataModel.swift */,
-				C9EBC7DF20E17EED0032B2EF /* InvestmentDataModel.swift */,
-				C923FCA420DB2C5900FB7092 /* CheckBoxButton.swift */,
-				C9001CAC20E56B6B002ECBF0 /* downloadButtonSymbol.png */,
-				C923FCAA20DC283C00FB7092 /* CustomTabBar.swift */,
-				C9EBC7E320E1C8B30032B2EF /* background.jpg */,
-				C9EBC7E520E2F4100032B2EF /* CustomButton.swift */,
-				C9001CA620E52A53002ECBF0 /* SegmentedProgressBar.swift */,
-				C9A6CCD820E6782D00D144A9 /* Line.swift */,
-				C9A6CCDC20E9970000D144A9 /* Validation.swift */,
 			);
 			path = TesteiOS;
 			sourceTree = "<group>";
@@ -196,6 +236,7 @@
 				C9EBC7E420E1C8B40032B2EF /* background.jpg in Resources */,
 				C9936F6120D56EBB00C4C68F /* Assets.xcassets in Resources */,
 				C9001CAD20E56B6B002ECBF0 /* downloadButtonSymbol.png in Resources */,
+				C905CC5F20EBAB4F00DE023D /* Default-568h@2x.png in Resources */,
 				C9936F5F20D56EB600C4C68F /* Main.storyboard in Resources */,
 				C9001CAB20E568E9002ECBF0 /* buttonDownload.png in Resources */,
 			);
@@ -270,7 +311,6 @@
 				C923FCAD20DC315D00FB7092 /* MainTabBarController.swift in Sources */,
 				C923FCA520DB2C5900FB7092 /* CheckBoxButton.swift in Sources */,
 				C9EBC7E020E17EED0032B2EF /* InvestmentDataModel.swift in Sources */,
-				C923FCAB20DC283C00FB7092 /* CustomTabBar.swift in Sources */,
 				C923FCA320D9BB1C00FB7092 /* ContactDataModel.swift in Sources */,
 				C923FCAF20DC36B200FB7092 /* InvestmentViewController.swift in Sources */,
 				C9A6CCD920E6782D00D144A9 /* Line.swift in Sources */,
