@@ -11,12 +11,10 @@ import Alamofire
 import SwiftyJSON
 
 
-
 enum TextFieldEditingModeType {
     case normal
     case reduced
 }
-
 
 
 class ContactViewController: UIViewController, UITextFieldDelegate {
@@ -100,16 +98,14 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
             print("textfield: \(textField.text!)")
 
             
-            let response = Validation.shared.validate(values: (ValidationType.name, fullString))
+            let response = Validation.shared.validate(type: ValidationType.name, inputValue: fullString)
             print(fullString)
 
             switch response {
             case .success:
-                print("data ok")
                 nameLine.lineColor = UIColor.green
                 nameLine.setNeedsDisplay()
-            case .failure(_, let message):
-                print(message.localized())
+            case .failure:
                 nameLine.lineColor = UIColor.red
                 nameLine.setNeedsDisplay()
             }
@@ -117,7 +113,6 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
             
         // mail text field
         else if textField.tag == 2 {
-            print(textField.text!)
             
             var fullString = textField.text ?? ""
             fullString.append(string)
@@ -125,7 +120,7 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
             print("fullString: \(fullString)")
             print("textfield: \(textField.text!)")
             
-            let response = Validation.shared.validate(values: (ValidationType.email, fullString))
+            let response = Validation.shared.validate(type: ValidationType.email, inputValue: fullString)
             print(fullString)
 
             switch response {
@@ -133,8 +128,7 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
                 print("data ok")
                 mailLine.lineColor = UIColor.green
                 mailLine.setNeedsDisplay()
-            case .failure(_, let message):
-                print(message.localized())
+            case .failure:
                 mailLine.lineColor = UIColor.red
                 mailLine.setNeedsDisplay()
             }
@@ -158,15 +152,14 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
                 
             }
 
-            let response = Validation.shared.validate(values: (ValidationType.phoneNumber, textField.text!))
+            let response = Validation.shared.validate(type: ValidationType.phoneNumber, inputValue: textField.text!)
             
             switch response {
             case .success:
                 print("data ok")
                 phoneLine.lineColor = UIColor.green
                 phoneLine.setNeedsDisplay()
-            case .failure(_, let message):
-                print(message.localized())
+            case .failure:
                 phoneLine.lineColor = UIColor.red
                 phoneLine.setNeedsDisplay()
             }
@@ -181,7 +174,10 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
         print("textFieldShouldEndEditing")
         // editing name
         if (textField.tag == 1) {
-            let response = Validation.shared.validate(values: (ValidationType.name, textField.text!))
+            let response = Validation.shared.validate(type: ValidationType.name, inputValue: textField.text!)
+            
+            
+            
             
             switch response {
             case .success:
@@ -190,8 +186,7 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
                 nameLine.setNeedsDisplay()
                 
                 break
-            case .failure(_, let message):
-                print(message.localized())
+            case .failure:
                 nameLine.lineColor = UIColor.red
                 nameLine.setNeedsDisplay()
                 return false
@@ -199,7 +194,7 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
         }
             // editing mail
         else if (textField.tag == 2) {
-            let response = Validation.shared.validate(values: (ValidationType.email, textField.text!))
+            let response = Validation.shared.validate(type: ValidationType.email, inputValue: textField.text!)
             
             switch response {
             case .success:
@@ -207,8 +202,7 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
                 mailLine.lineColor = UIColor.green
                 mailLine.setNeedsDisplay()
                 break
-            case .failure(_, let message):
-                print(message.localized())
+            case .failure:
                 mailLine.lineColor = UIColor.red
                 mailLine.setNeedsDisplay()
                 return false
@@ -217,7 +211,8 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
         }
             // editing phone
         else if (textField.tag == 3) {
-            let response = Validation.shared.validate(values: (ValidationType.phoneNumber, textField.text!))
+            let response = Validation.shared.validate(type: ValidationType.phoneNumber, inputValue: textField.text!)
+            
             
             switch response {
             case .success:
@@ -225,8 +220,7 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
                 phoneLine.lineColor = UIColor.green
                 phoneLine.setNeedsDisplay()
                 break
-            case .failure(_, let message):
-                print(message.localized())
+            case .failure:
                 phoneLine.lineColor = UIColor.red
                 phoneLine.setNeedsDisplay()
                 return false
@@ -245,7 +239,7 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     }
 
     
-    //MARK: - Supporting Private Methods
+    //MARK: - Helper Methods
     /*********************************************************************/
 
     private func adjustTextFieldUIWhileEditing (textField : UITextField, mode : TextFieldEditingModeType) {
