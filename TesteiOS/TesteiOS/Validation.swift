@@ -30,7 +30,7 @@ enum ValidationType {
 enum RegEx: String {
     case alphaChar = "[A-Za-z]+" // Only alphabetic charactres
     case email = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]+"
-    case phoneNumber = "[0-9-()\\s]+" // Phone Number formatted () xxx-xxx
+    case phoneNumber = "\\([0-9]{2}\\)\\s[0-9]{4,5}-[0-9]{4}" // Phone Number formatted
 }
 
 enum AlertMessages: String {

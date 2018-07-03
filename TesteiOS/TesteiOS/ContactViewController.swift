@@ -61,11 +61,12 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     //MARK: - TextField Delegate Methods
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print(textField.tag)
+        print("textFieldDidBeginEditing")
+
         // editing name
         if (textField.tag == 1) {
             nameLabel.font = nameLabel.font.withSize(14)
-            nameLine.lineColor = UIColor.red
+            nameLine.lineColor = UIColor.gray
             nameLine.setNeedsDisplay()
         }
             // editing mail
@@ -86,58 +87,154 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
 
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        print("textFieldDidEndEditing")
+
         print(textField.tag)
         // editing name
         if (textField.tag == 1) {
             nameLabel.font = nameLabel.font.withSize(17)
+            
+            // TODO: check if data is OK before change line color
+            
+            nameLine.lineColor = UIColor.gray
+            nameLine.setNeedsDisplay()
         }
             // editing mail
         else if (textField.tag == 2) {
             emailLabel.font = emailLabel.font.withSize(17)
+            mailLine.lineColor = UIColor.gray
+            mailLine.setNeedsDisplay()
             
         }
             // editing phone
         else if (textField.tag == 3) {
             phoneLabel.font = phoneLabel.font.withSize(17)
+            phoneLine.lineColor = UIColor.gray
+            phoneLine.setNeedsDisplay()
         }
     }
 
     
+    
+    
     // called whenever the user types a char
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        print("textField")
         
-        if textField.tag == 3 {
+        // name text field
+        if textField.tag == 1 {
+            
             var fullString = textField.text ?? ""
             fullString.append(string)
             
+            print("fullString: \(fullString)")
+            print("textfield: \(textField.text!)")
+
+            
+            let response = Validation.shared.validate(values: (ValidationType.name, fullString))
+            print(fullString)
+
+            switch response {
+            case .success:
+                print("data ok")
+                nameLine.lineColor = UIColor.green
+                nameLine.setNeedsDisplay()
+            case .failure(_, let message):
+                print(message.localized())
+                nameLine.lineColor = UIColor.red
+                nameLine.setNeedsDisplay()
+            }
+        }
+            
+        // mail text field
+        else if textField.tag == 2 {
+            print(textField.text!)
+            
+            var fullString = textField.text ?? ""
+            fullString.append(string)
+            
+            print("fullString: \(fullString)")
+            print("textfield: \(textField.text!)")
+            
+            let response = Validation.shared.validate(values: (ValidationType.email, fullString))
+            print(fullString)
+
+            switch response {
+            case .success:
+                print("data ok")
+                mailLine.lineColor = UIColor.green
+                mailLine.setNeedsDisplay()
+            case .failure(_, let message):
+                print(message.localized())
+                mailLine.lineColor = UIColor.red
+                mailLine.setNeedsDisplay()
+            }
+        }
+            
+        // format phone number
+        else if textField.tag == 3 {
+            var fullString = textField.text ?? ""
+            fullString.append(string)
+            
+            // empty string
             if range.length == 1 {
                 textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: true)
+                print("fullString: \(fullString)")
+                print("textfield: \(textField.text!)")
+                
             } else {
                 textField.text = format(phoneNumber: fullString)
+                print("fullString: \(fullString)")
+                print("textfield: \(textField.text!)")
+                
             }
+
+            let response = Validation.shared.validate(values: (ValidationType.phoneNumber, textField.text!))
+            
+            switch response {
+            case .success:
+                print("data ok")
+                phoneLine.lineColor = UIColor.green
+                phoneLine.setNeedsDisplay()
+            case .failure(_, let message):
+                print(message.localized())
+                phoneLine.lineColor = UIColor.red
+                phoneLine.setNeedsDisplay()
+            }
+            
+//            textField.text = format(phoneNumber: fullString)
+//            print("textfield final: \(textField.text!)")
+
+            
+            
             return false
+            
+            
+            
         }
+        
         return true
     }
     
     
     // return false in cases where delegate detects invalid contents in the text field
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        
-        // TODO:
-        //    If you use this method to validate the contents of the text field, you might also want to use an overlay view to provide feedback to that effect. For example, you might display a small icon indicating the text is invalid. For more information about adding overlays to text fields, see the methods of UITextField.
-
-        
+        print("textFieldShouldEndEditing")
         // editing name
         if (textField.tag == 1) {
             let response = Validation.shared.validate(values: (ValidationType.name, textField.text!))
             
             switch response {
             case .success:
-                print("Name boa")
+                print("data ok")
+                nameLine.lineColor = UIColor.green
+                nameLine.setNeedsDisplay()
+                
                 break
             case .failure(_, let message):
                 print(message.localized())
+                nameLine.lineColor = UIColor.red
+                nameLine.setNeedsDisplay()
                 return false
             }
         }
@@ -147,10 +244,14 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
             
             switch response {
             case .success:
-                print("Email boa")
+                print("data ok")
+                mailLine.lineColor = UIColor.green
+                mailLine.setNeedsDisplay()
                 break
             case .failure(_, let message):
                 print(message.localized())
+                mailLine.lineColor = UIColor.red
+                mailLine.setNeedsDisplay()
                 return false
             }
             
@@ -161,10 +262,14 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
             
             switch response {
             case .success:
-                print("Phone boa")
+                print("data ok")
+                phoneLine.lineColor = UIColor.green
+                phoneLine.setNeedsDisplay()
                 break
             case .failure(_, let message):
                 print(message.localized())
+                phoneLine.lineColor = UIColor.red
+                phoneLine.setNeedsDisplay()
                 return false
             }
         }
@@ -173,8 +278,12 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    func validationOK(){
+        
+    }
+    
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        print("clear")
+        print("textFieldShouldClear")
         
 //        TODO: button
         
@@ -183,7 +292,7 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("return")
+        print("textFieldShouldReturn")
         textField.endEditing(true)
         
         return true
@@ -197,6 +306,7 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     
     
     @objc func backgroundViewTapped() {
+        print("backgroundViewTapped")
         nameTextField.endEditing(true)
         mailTextField.endEditing(true)
         phoneTextField.endEditing(true)
@@ -215,6 +325,9 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     
     
     private func format(phoneNumber: String, shouldRemoveLastDigit: Bool = false) -> String {
+        print("format")
+
+        
         guard !phoneNumber.isEmpty else { return "" }
         guard let regex = try? NSRegularExpression(pattern: "[\\s-\\(\\)]", options: .caseInsensitive) else { return "" }
         let r = NSString(string: phoneNumber).range(of: phoneNumber)
