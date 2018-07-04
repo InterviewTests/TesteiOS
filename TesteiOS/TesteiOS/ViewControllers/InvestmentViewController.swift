@@ -67,11 +67,7 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //safariVC.delegate = self
-
         getData(url: URL)
-        
-        
     }
     
     
@@ -83,8 +79,7 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
     }
     
     
-    func safariViewControllerDidFinish(_ controller: SFSafariViewController)
-    {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
     
@@ -150,9 +145,6 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
             
             info.append(element)
         }
-        
-        // print(info)
-    
         
         updateUIWithData()
         

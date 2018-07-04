@@ -213,7 +213,6 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
         else if (textField.tag == 3) {
             let response = Validation.shared.validate(type: ValidationType.phoneNumber, inputValue: textField.text!)
             
-            
             switch response {
             case .success:
                 print("data ok")
@@ -347,6 +346,7 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
             // if it did not manage to get the data
             else {
                 print("Error: \(response.result.error!)")
+                print("Reponse: \(response)")
             }
         }
     }

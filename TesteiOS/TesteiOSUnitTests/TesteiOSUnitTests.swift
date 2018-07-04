@@ -7,12 +7,19 @@
 //
 
 import XCTest
+import Alamofire
 @testable import TesteiOS
+
+
 
 class TesteiOSUnitTests: XCTestCase {
     
     let SUCCESS = 1
     let FAIL = 0
+    let urlString1 = "https://floating-mountain-50292.herokuapp.com/cells.json"
+    let urlString2 = "https://floating-mountain-50292.herokuapp.com/fund.json"
+    let timeout = 5.0
+
     
     override func setUp() {
         super.setUp()
@@ -24,6 +31,9 @@ class TesteiOSUnitTests: XCTestCase {
         super.tearDown()
     }
     
+    
+    //MARK: - Validation Class Unit Tests
+    /*********************************************************************/
     
     func testNameInput() {
         let result = Validation.shared.validate(type: ValidationType.name, inputValue: "Carolina")
@@ -59,6 +69,52 @@ class TesteiOSUnitTests: XCTestCase {
         let result = Validation.shared.validate(type: ValidationType.phoneNumber, inputValue: "")
         XCTAssert(result.rawValue == FAIL, "Phone emptiness validation failed")
     }
+    
+    
+    //MARK: - Alamofire Testing
+    /*********************************************************************/
+    
+    func testRequestResponse1() {
+        
+        let expectation = self.expectation(description: "GET request should succeed: \(urlString1)")
+        
+        var response: DefaultDataResponse?
+        
+        Alamofire.request(urlString1, parameters: ["foo": "bar"])
+            .response { resp in
+                response = resp
+                expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: timeout, handler: nil)
+        
+        XCTAssertNotNil(response?.request)
+        XCTAssertNotNil(response?.response)
+        XCTAssertNotNil(response?.data)
+        XCTAssertNil(response?.error)
+    }
+    
+    func testRequestResponse2() {
+        
+        let expectation = self.expectation(description: "GET request should succeed: \(urlString2)")
+        
+        var response: DefaultDataResponse?
+        
+        Alamofire.request(urlString2, parameters: ["foo": "bar"])
+            .response { resp in
+                response = resp
+                expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: timeout, handler: nil)
+        
+        XCTAssertNotNil(response?.request)
+        XCTAssertNotNil(response?.response)
+        XCTAssertNotNil(response?.data)
+        XCTAssertNil(response?.error)
+    }
+    
+    
     
     
     func testPerformanceExample() {

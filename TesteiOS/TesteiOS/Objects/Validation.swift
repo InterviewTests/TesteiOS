@@ -54,7 +54,7 @@ class Validation: NSObject {
 
     
     // test if the input is valid according to regex rule
-    func isValidString(input: String, regex: RegEx) -> Valid? {
+    private func isValidString(input: String, regex: RegEx) -> Valid? {
         if input.isEmpty {
             return Valid.failure
         } else if !isValidRegEx(input, regex) {
@@ -65,7 +65,7 @@ class Validation: NSObject {
     
     
     // test if the input is compliant
-    func isValidRegEx(_ testStr: String, _ regex: RegEx) -> Bool {
+    private func isValidRegEx(_ testStr: String, _ regex: RegEx) -> Bool {
         let stringTest = NSPredicate(format:"SELF MATCHES %@", regex.rawValue)
         let result = stringTest.evaluate(with: testStr)
         return result

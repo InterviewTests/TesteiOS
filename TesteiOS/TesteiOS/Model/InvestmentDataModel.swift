@@ -29,8 +29,4 @@ class InvestmentDataModel {
     var twelveMonthsCDI : Float = 0.0
     
     
-    
-  
-    
-    
 }
