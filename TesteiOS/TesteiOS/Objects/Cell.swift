@@ -24,7 +24,6 @@ enum TypeField : Int {
 }
 
 
-
 class Cell {
     
     var id = 0
@@ -36,16 +35,5 @@ class Cell {
     var show = 0 // field to be shown when it is selected (field if to be shown)
     var required : Bool = false
 }
-
-
-
-//type": "send" esse botão irá validar todas informações que foram preenchidas e ir para a tela de sucesso quando tudo tiver ok;
-//
-//risk": pode ser um int de 1 a 5
-//
-//O tipo text a validação é digitou alguma coisa, já ficou válido.
-//Para "telNumber" o campo deve ser formatado (##) ####-#### || (##) #####-#### e validado de acordo.
-//Para "email" o email deve ser válido.
-
 
 

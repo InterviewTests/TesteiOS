@@ -19,9 +19,9 @@
 		C923FCAD20DC315D00FB7092 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C923FCAC20DC315D00FB7092 /* MainTabBarController.swift */; };
 		C923FCAF20DC36B200FB7092 /* InvestmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C923FCAE20DC36B200FB7092 /* InvestmentViewController.swift */; };
 		C98E523820EC4D55009175C4 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98E523720EC4D55009175C4 /* Cell.swift */; };
-		C98E523A20EC51DF009175C4 /* CellDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98E523920EC51DF009175C4 /* CellDataViewController.swift */; };
-		C98E524020EC671E009175C4 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98E523F20EC671E009175C4 /* FormViewController.swift */; };
+		C98E523A20EC51DF009175C4 /* InvestDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98E523920EC51DF009175C4 /* InvestDataViewController.swift */; };
 		C98E524220ECE77E009175C4 /* FormItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98E524120ECE77E009175C4 /* FormItem.swift */; };
+		C98E524420ED121B009175C4 /* Fund.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98E524320ED121B009175C4 /* Fund.swift */; };
 		C9936F5A20D56EB600C4C68F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9936F5920D56EB600C4C68F /* AppDelegate.swift */; };
 		C9936F5C20D56EB600C4C68F /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9936F5B20D56EB600C4C68F /* ContactViewController.swift */; };
 		C9936F5F20D56EB600C4C68F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9936F5D20D56EB600C4C68F /* Main.storyboard */; };
@@ -61,9 +61,9 @@
 		C923FCAC20DC315D00FB7092 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		C923FCAE20DC36B200FB7092 /* InvestmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentViewController.swift; sourceTree = "<group>"; };
 		C98E523720EC4D55009175C4 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
-		C98E523920EC51DF009175C4 /* CellDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDataViewController.swift; sourceTree = "<group>"; };
-		C98E523F20EC671E009175C4 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		C98E523920EC51DF009175C4 /* InvestDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestDataViewController.swift; sourceTree = "<group>"; };
 		C98E524120ECE77E009175C4 /* FormItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormItem.swift; sourceTree = "<group>"; };
+		C98E524320ED121B009175C4 /* Fund.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fund.swift; sourceTree = "<group>"; };
 		C9936F5620D56EB600C4C68F /* TesteiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TesteiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9936F5920D56EB600C4C68F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9936F5B20D56EB600C4C68F /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +136,7 @@
 		C905CC5C20EBAAE500DE023D /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				C98E524320ED121B009175C4 /* Fund.swift */,
 				C98E523720EC4D55009175C4 /* Cell.swift */,
 				C9A6CCDC20E9970000D144A9 /* Validation.swift */,
 				C923FCA420DB2C5900FB7092 /* CheckBoxButton.swift */,
@@ -153,8 +154,7 @@
 				C923FCAC20DC315D00FB7092 /* MainTabBarController.swift */,
 				C9936F5B20D56EB600C4C68F /* ContactViewController.swift */,
 				C923FCAE20DC36B200FB7092 /* InvestmentViewController.swift */,
-				C98E523920EC51DF009175C4 /* CellDataViewController.swift */,
-				C98E523F20EC671E009175C4 /* FormViewController.swift */,
+				C98E523920EC51DF009175C4 /* InvestDataViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -442,13 +442,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C98E523A20EC51DF009175C4 /* CellDataViewController.swift in Sources */,
+				C98E523A20EC51DF009175C4 /* InvestDataViewController.swift in Sources */,
 				C9936F5C20D56EB600C4C68F /* ContactViewController.swift in Sources */,
+				C98E524420ED121B009175C4 /* Fund.swift in Sources */,
 				C9936F5A20D56EB600C4C68F /* AppDelegate.swift in Sources */,
 				C9EBC7E620E2F4110032B2EF /* CustomButton.swift in Sources */,
 				C923FCAD20DC315D00FB7092 /* MainTabBarController.swift in Sources */,
 				C923FCA520DB2C5900FB7092 /* CheckBoxButton.swift in Sources */,
-				C98E524020EC671E009175C4 /* FormViewController.swift in Sources */,
 				C98E524220ECE77E009175C4 /* FormItem.swift in Sources */,
 				C9EBC7E020E17EED0032B2EF /* InvestmentDataModel.swift in Sources */,
 				C923FCAF20DC36B200FB7092 /* InvestmentViewController.swift in Sources */,

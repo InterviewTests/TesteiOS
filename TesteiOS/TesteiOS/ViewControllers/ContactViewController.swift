@@ -25,11 +25,11 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     
     // variables to handle Json data
     var cells = [Cell]()
-    var namePosition = -1
-    var telNumberPosition = -1
-    var emailPosition = -1
-    var registerEmailPosition = -1
-    var sendPosition = -1
+    var namePosition = Int()
+    var telNumberPosition = Int()
+    var emailPosition = Int()
+    var registerEmailPosition = Int()
+    var sendPosition = Int()
     
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -246,86 +246,6 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     }
 
     
-    //MARK: - Helper Methods
-    /*********************************************************************/
-
-    private func adjustTextFieldUIWhileEditing (textField : UITextField, mode : TextFieldEditingModeType) {
-        
-        var fontSize = CGFloat()
-        
-        mode == .reduced ? (fontSize = 14.0) : (fontSize = 17.0)
-
-        // editing name
-        if (textField.tag == 1) {
-            nameLabel.font = nameLabel.font.withSize(fontSize)
-            nameLine.lineColor = UIColor.gray
-            nameLine.setNeedsDisplay()
-        }
-            // editing mail
-        else if (textField.tag == 2) {
-            emailLabel.font = emailLabel.font.withSize(fontSize)
-            mailLine.lineColor = UIColor.gray
-            mailLine.setNeedsDisplay()
-            
-        }
-            // editing phone
-        else if (textField.tag == 3) {
-            phoneLabel.font = phoneLabel.font.withSize(fontSize)
-            phoneLine.lineColor = UIColor.gray
-            phoneLine.setNeedsDisplay()
-            
-        }
-    }
-    
-    
-    @objc private func backgroundViewTapped() {
-        print("backgroundViewTapped")
-        nameTextField.endEditing(true)
-        mailTextField.endEditing(true)
-        phoneTextField.endEditing(true)
-        
-    }
-
-    
-    private func format(phoneNumber: String, shouldRemoveLastDigit: Bool = false) -> String {
-        print("format")
-
-        
-        guard !phoneNumber.isEmpty else { return "" }
-        guard let regex = try? NSRegularExpression(pattern: "[\\s-\\(\\)]", options: .caseInsensitive) else { return "" }
-        let r = NSString(string: phoneNumber).range(of: phoneNumber)
-        var number = regex.stringByReplacingMatches(in: phoneNumber, options: .init(rawValue: 0), range: r, withTemplate: "")
-        
-        // max 11 numbers
-        if number.count > 11 {
-            let eleventhDigitIndex = number.index(number.startIndex, offsetBy: 11)
-            number = String(number[number.startIndex..<eleventhDigitIndex])
-        }
-        
-        if shouldRemoveLastDigit {
-            let end = number.index(number.startIndex, offsetBy: number.count-1)
-            number = String(number[number.startIndex..<end])
-        }
-        
-        if number.count < 7 {
-            let end = number.index(number.startIndex, offsetBy: number.count)
-            let range = number.startIndex..<end
-            number = number.replacingOccurrences(of: "(\\d{2})(\\d+)", with: "($1) $2", options: .regularExpression, range: range)
-            
-        } else if number.count < 11 {
-                let end = number.index(number.startIndex, offsetBy: number.count)
-                let range = number.startIndex..<end
-                number = number.replacingOccurrences(of: "(\\d{2})(\\d{4})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: range)
-        } else {
-            let end = number.index(number.startIndex, offsetBy: number.count)
-            let range = number.startIndex..<end
-            number = number.replacingOccurrences(of: "(\\d{2})(\\d{5})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: range)
-        }
-        
-        return number
-    }
-    
-    
     //MARK: - IBActions Methods
     /*********************************************************************/
 
@@ -360,7 +280,6 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    
     //MARK: - JSON parsing
     /*********************************************************************/
     func updateData(json: JSON) {
@@ -382,18 +301,6 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
         }
         
         updateUIWithData()
-        
-        
-//
-//
-//        contactDataModel.name = json["cells"][1]["message"].stringValue
-//        contactDataModel.email = json["cells"][2]["message"].stringValue
-//        contactDataModel.phone = json["cells"][3]["message"].stringValue
-//        contactDataModel.registerEmailTextButton = json["cells"][4]["message"].stringValue
-//        contactDataModel.sendTextButton = json["cells"][5]["message"].stringValue
-//
-//        updateUIWithData()
-//
     }
     
     
@@ -415,6 +322,87 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    
+    //MARK: - Helper Methods
+    /*********************************************************************/
+    
+    private func adjustTextFieldUIWhileEditing (textField : UITextField, mode : TextFieldEditingModeType) {
+        
+        var fontSize = CGFloat()
+        
+        mode == .reduced ? (fontSize = 14.0) : (fontSize = 17.0)
+        
+        // editing name
+        if (textField.tag == 1) {
+            nameLabel.font = nameLabel.font.withSize(fontSize)
+            nameLine.lineColor = UIColor.gray
+            nameLine.setNeedsDisplay()
+        }
+            // editing mail
+        else if (textField.tag == 2) {
+            emailLabel.font = emailLabel.font.withSize(fontSize)
+            mailLine.lineColor = UIColor.gray
+            mailLine.setNeedsDisplay()
+            
+        }
+            // editing phone
+        else if (textField.tag == 3) {
+            phoneLabel.font = phoneLabel.font.withSize(fontSize)
+            phoneLine.lineColor = UIColor.gray
+            phoneLine.setNeedsDisplay()
+            
+        }
+    }
+    
+    
+    @objc private func backgroundViewTapped() {
+        print("backgroundViewTapped")
+        nameTextField.endEditing(true)
+        mailTextField.endEditing(true)
+        phoneTextField.endEditing(true)
+        
+    }
+    
+    
+    private func format(phoneNumber: String, shouldRemoveLastDigit: Bool = false) -> String {
+        print("format")
+        
+        
+        guard !phoneNumber.isEmpty else { return "" }
+        guard let regex = try? NSRegularExpression(pattern: "[\\s-\\(\\)]", options: .caseInsensitive) else { return "" }
+        let r = NSString(string: phoneNumber).range(of: phoneNumber)
+        var number = regex.stringByReplacingMatches(in: phoneNumber, options: .init(rawValue: 0), range: r, withTemplate: "")
+        
+        // max 11 numbers
+        if number.count > 11 {
+            let eleventhDigitIndex = number.index(number.startIndex, offsetBy: 11)
+            number = String(number[number.startIndex..<eleventhDigitIndex])
+        }
+        
+        if shouldRemoveLastDigit {
+            let end = number.index(number.startIndex, offsetBy: number.count-1)
+            number = String(number[number.startIndex..<end])
+        }
+        
+        if number.count < 7 {
+            let end = number.index(number.startIndex, offsetBy: number.count)
+            let range = number.startIndex..<end
+            number = number.replacingOccurrences(of: "(\\d{2})(\\d+)", with: "($1) $2", options: .regularExpression, range: range)
+            
+        } else if number.count < 11 {
+            let end = number.index(number.startIndex, offsetBy: number.count)
+            let range = number.startIndex..<end
+            number = number.replacingOccurrences(of: "(\\d{2})(\\d{4})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: range)
+        } else {
+            let end = number.index(number.startIndex, offsetBy: number.count)
+            let range = number.startIndex..<end
+            number = number.replacingOccurrences(of: "(\\d{2})(\\d{5})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: range)
+        }
+        
+        return number
+    }
+    
+    
     private func lookFor(key: String, array: [Cell]) -> Int? {
         
         let size = array.count
@@ -422,10 +410,7 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
         
         for item in 0..<size {
             if ((array[item].typefield?.rawValue == dict[key]) || (array[item].type?.rawValue == dict[key])) {
-                print(item)
                 return item
-            } else {
-                print("Key not found in array")
             }
         }
         return nil

@@ -20,12 +20,17 @@ struct InvestmentInfo {
 
 class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate {
 
+    // URL constants
     let URL = "https://floating-mountain-50292.herokuapp.com/fund.json"
     let googleURL = "https://www.google.com"
     
-    let investment = InvestmentDataModel()
+    // variables to handle Json data
+    var fund = Fund()
     
-    var info = [InvestmentInfo()]
+    
+    
+    let investment = InvestmentDataModel() //*
+    var info = [InvestmentInfo()] //*
     
     
     
@@ -40,9 +45,15 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
     
     @IBOutlet weak var riskTitleLabel: UILabel!
     
-    
-    
     @IBOutlet weak var infoTitleLabel: UILabel!
+    
+    
+    
+    
+    
+    
+    
+    
     
     @IBOutlet weak var monthFundLabel: UILabel!
     
@@ -61,6 +72,7 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
     
 
     
+    @IBOutlet weak var bar: SegmentedProgressBar!
     
     
     
@@ -111,40 +123,96 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
     /*********************************************************************/
     func updateData(using json: JSON) {
         
-        investment.title = json["screen"]["title"].stringValue
-        investment.fundName = json["screen"]["fundName"].stringValue
-        investment.whatIsLabel = json["screen"]["whatIs"].stringValue
-        investment.definition = json["screen"]["definition"].stringValue
-        investment.riskTitle = json["screen"]["riskTitle"].stringValue
-        investment.risk = json["screen"]["risk"].intValue
-        investment.infoTitle = json["screen"]["infoTitle"].stringValue
+        // draw segmented line according to risk
+        bar.drawSegments(highlight: json["screen"]["risk"].intValue)
         
-        investment.monthFund = json["screen"]["moreInfo"]["month"]["fund"].floatValue
-        investment.monthCDI = json["screen"]["moreInfo"]["month"]["CDI"].floatValue
-        investment.yearFund = json["screen"]["moreInfo"]["year"]["fund"].floatValue
-        investment.yearCDI = json["screen"]["moreInfo"]["year"]["CDI"].floatValue
-        investment.twelveMonthsFund = json["screen"]["moreInfo"]["12months"]["fund"].floatValue
-        investment.twelveMonthsFund = json["screen"]["moreInfo"]["12months"]["CDI"].floatValue
+        fund.title = json["screen"]["title"].stringValue
+        fund.fundName = json["screen"]["fundName"].stringValue
+        fund.whatIs = json["screen"]["whatIs"].stringValue
+        fund.definition = json["screen"]["definition"].stringValue
+        fund.riskTitle = json["screen"]["riskTitle"].stringValue
+        fund.risk = json["screen"]["risk"].intValue
+        fund.infoTitle = json["screen"]["infoTitle"].stringValue
         
-        var element = InvestmentInfo()
+        // moreInfo parsing
+        var mi = MoreInfo()
+        
+        mi.fund = json["screen"]["moreInfo"]["month"]["fund"].floatValue
+        mi.CDI = json["screen"]["moreInfo"]["month"]["CDI"].floatValue
+        fund.moreInfo.append(mi)
+        
+        mi.fund = json["screen"]["moreInfo"]["year"]["fund"].floatValue
+        mi.CDI = json["screen"]["moreInfo"]["year"]["CDI"].floatValue
+        fund.moreInfo.append(mi)
+        
+        mi.fund = json["screen"]["moreInfo"]["12months"]["fund"].floatValue
+        mi.CDI = json["screen"]["moreInfo"]["12months"]["CDI"].floatValue
+        fund.moreInfo.append(mi)
+        
+        // info parsing
+        var inf = Info()
         var size = json["screen"]["info"].count
         
-        for item in 0...(size - 1) {
-            element.name = json["screen"]["info"][item]["name"].stringValue
-            element.data = json["screen"]["info"][item]["data"].stringValue
+        for item in 0..<size {
+            inf.name = json["screen"]["info"][item]["name"].stringValue
+            inf.data = json["screen"]["info"][item]["data"].stringValue
             
-            info.insert(element, at: item)
+            fund.info.append(inf)
         }
-        info.remove(at: size)
         
+        // downInfo parsing
+        var di = Info()
         size = json["screen"]["downInfo"].count
         
-        for item in 0...(size - 1) {
-            element.name = json["screen"]["downInfo"][item]["name"].stringValue
-            element.data = json["screen"]["downInfo"][item]["data"].stringValue
+        for item in 0..<size {
+            di.name = json["screen"]["downInfo"][item]["name"].stringValue
+            di.data = json["screen"]["downInfo"][item]["data"].stringValue
             
-            info.append(element)
+            fund.downInfo.append(di)
         }
+        
+        
+//
+//
+//
+//
+//
+//
+//
+//
+//        investment.title = json["screen"]["title"].stringValue
+//        investment.fundName = json["screen"]["fundName"].stringValue
+//        investment.whatIsLabel = json["screen"]["whatIs"].stringValue
+//        investment.definition = json["screen"]["definition"].stringValue
+//        investment.riskTitle = json["screen"]["riskTitle"].stringValue
+//        investment.risk = json["screen"]["risk"].intValue
+//        investment.infoTitle = json["screen"]["infoTitle"].stringValue
+//        investment.monthFund = json["screen"]["moreInfo"]["month"]["fund"].floatValue
+//        investment.monthCDI = json["screen"]["moreInfo"]["month"]["CDI"].floatValue
+//        investment.yearFund = json["screen"]["moreInfo"]["year"]["fund"].floatValue
+//        investment.yearCDI = json["screen"]["moreInfo"]["year"]["CDI"].floatValue
+//        investment.twelveMonthsFund = json["screen"]["moreInfo"]["12months"]["fund"].floatValue
+//        investment.twelveMonthsFund = json["screen"]["moreInfo"]["12months"]["CDI"].floatValue
+//
+//        var element = InvestmentInfo()
+//        size = json["screen"]["info"].count
+//
+//        for item in 0...(size - 1) {
+//            element.name = json["screen"]["info"][item]["name"].stringValue
+//            element.data = json["screen"]["info"][item]["data"].stringValue
+//
+//            info.insert(element, at: item)
+//        }
+//        info.remove(at: size)
+//
+//        size = json["screen"]["downInfo"].count
+//
+//        for item in 0...(size - 1) {
+//            element.name = json["screen"]["downInfo"][item]["name"].stringValue
+//            element.data = json["screen"]["downInfo"][item]["data"].stringValue
+//
+//            info.append(element)
+//        }
         
         updateUIWithData()
         
@@ -155,13 +223,26 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
     /*********************************************************************/
     func updateUIWithData() {
         
-        titleLabel.text = investment.title
-        fundNameLabel.text = investment.fundName
-        whatIsLabel.text = investment.whatIsLabel
+        titleLabel.text = fund.title
+        fundNameLabel.text = fund.fundName
+        whatIsLabel.text = fund.whatIs
+        
         definitionLabel.adjustsFontSizeToFitWidth = true
-        definitionLabel.text = investment.definition
-        riskTitleLabel.text = investment.riskTitle
-        infoTitleLabel.text = investment.infoTitle
+        definitionLabel.text = fund.definition
+        
+        riskTitleLabel.text = fund.riskTitle
+        infoTitleLabel.text = fund.infoTitle
+        
+   
+        
+        
+//        titleLabel.text = investment.title
+//        fundNameLabel.text = investment.fundName
+//        whatIsLabel.text = investment.whatIsLabel
+//        definitionLabel.adjustsFontSizeToFitWidth = true
+//        definitionLabel.text = investment.definition
+//        riskTitleLabel.text = investment.riskTitle
+//        infoTitleLabel.text = investment.infoTitle
         
         monthFundLabel.text = "\(investment.monthFund)%"
         monthCDILabel.text = "\(investment.monthCDI)%"
@@ -172,32 +253,32 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
         
         
         
-        var index = 0
-         
-        for label in infoLabels {
-            
-            // if tag is odd
-            if (label.tag%2 != 0) {
-                
-                    label.text = info[index].name
-                
-                    print("ímpar: \(label.tag), index: \(index)")
-                if (label.tag >= 15) {
-                    index = index + 1
-
-                }
-
-            // if tag is even
-            } else {
-                
-                    label.text = info[index].data
-                    index = index + 1
-                
-                    print("par: \(label.tag), index: \(index)")
-
-            }
-
-            }
+//        var index = 0
+//
+//        for label in infoLabels {
+//
+//            // if tag is odd
+//            if (label.tag%2 != 0) {
+//
+//                    label.text = info[index].name
+//
+//                    print("ímpar: \(label.tag), index: \(index)")
+//                if (label.tag >= 15) {
+//                    index = index + 1
+//
+//                }
+//
+//            // if tag is even
+//            } else {
+//
+//                    label.text = info[index].data
+//                    index = index + 1
+//
+//                    print("par: \(label.tag), index: \(index)")
+//
+//            }
+//
+//            }
         }
     
 }
