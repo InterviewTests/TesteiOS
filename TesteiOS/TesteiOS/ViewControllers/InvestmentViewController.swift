@@ -12,12 +12,6 @@ import SwiftyJSON
 import SafariServices
 
 
-struct InvestmentInfo {
-    var name : String = ""
-    var data : String = ""
-}
-
-
 class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate {
 
     // URL constants
@@ -27,13 +21,7 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
     // variables to handle Json data
     var fund = Fund()
     
-    
-    
-    let investment = InvestmentDataModel() //*
-    var info = [InvestmentInfo()] //*
-    
-    
-    
+    // outlets
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -47,33 +35,11 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
     
     @IBOutlet weak var infoTitleLabel: UILabel!
     
-    
-    
-    
-    
-    
-    
-    
-    
-    @IBOutlet weak var monthFundLabel: UILabel!
-    
-    @IBOutlet weak var yearFundLabel: UILabel!
-    
-    @IBOutlet weak var twelveMonthsFundLabel: UILabel!
-    
-    @IBOutlet weak var monthCDILabel: UILabel!
-    
-    @IBOutlet weak var yearCDILabel: UILabel!
-    
-    @IBOutlet weak var twelveMonthsCDILabel: UILabel!
-    
+    @IBOutlet var moreInfoLabels: [UILabel]!
     
     @IBOutlet var infoLabels: [UILabel]!
     
-
-    
     @IBOutlet weak var bar: SegmentedProgressBar!
-    
     
     
     override func viewDidLoad() {
@@ -171,49 +137,6 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
             fund.downInfo.append(di)
         }
         
-        
-//
-//
-//
-//
-//
-//
-//
-//
-//        investment.title = json["screen"]["title"].stringValue
-//        investment.fundName = json["screen"]["fundName"].stringValue
-//        investment.whatIsLabel = json["screen"]["whatIs"].stringValue
-//        investment.definition = json["screen"]["definition"].stringValue
-//        investment.riskTitle = json["screen"]["riskTitle"].stringValue
-//        investment.risk = json["screen"]["risk"].intValue
-//        investment.infoTitle = json["screen"]["infoTitle"].stringValue
-//        investment.monthFund = json["screen"]["moreInfo"]["month"]["fund"].floatValue
-//        investment.monthCDI = json["screen"]["moreInfo"]["month"]["CDI"].floatValue
-//        investment.yearFund = json["screen"]["moreInfo"]["year"]["fund"].floatValue
-//        investment.yearCDI = json["screen"]["moreInfo"]["year"]["CDI"].floatValue
-//        investment.twelveMonthsFund = json["screen"]["moreInfo"]["12months"]["fund"].floatValue
-//        investment.twelveMonthsFund = json["screen"]["moreInfo"]["12months"]["CDI"].floatValue
-//
-//        var element = InvestmentInfo()
-//        size = json["screen"]["info"].count
-//
-//        for item in 0...(size - 1) {
-//            element.name = json["screen"]["info"][item]["name"].stringValue
-//            element.data = json["screen"]["info"][item]["data"].stringValue
-//
-//            info.insert(element, at: item)
-//        }
-//        info.remove(at: size)
-//
-//        size = json["screen"]["downInfo"].count
-//
-//        for item in 0...(size - 1) {
-//            element.name = json["screen"]["downInfo"][item]["name"].stringValue
-//            element.data = json["screen"]["downInfo"][item]["data"].stringValue
-//
-//            info.append(element)
-//        }
-        
         updateUIWithData()
         
     }
@@ -233,52 +156,54 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
         riskTitleLabel.text = fund.riskTitle
         infoTitleLabel.text = fund.infoTitle
         
-   
+        // more Info labels tags fund: even, CDI: odd
+        moreInfoLabels[0].text = formatNumber(number: fund.moreInfo[0].fund)
+        moreInfoLabels[1].text = formatNumber(number: fund.moreInfo[0].CDI)
+        moreInfoLabels[2].text = formatNumber(number: fund.moreInfo[1].fund)
+        moreInfoLabels[3].text = formatNumber(number: fund.moreInfo[1].CDI)
+        moreInfoLabels[4].text = formatNumber(number: fund.moreInfo[2].fund)
+        moreInfoLabels[5].text = formatNumber(number: fund.moreInfo[2].CDI)
         
+        // info labels tags data: even, name: odd
+        infoLabels[0].text = fund.info[0].name
+        infoLabels[1].text = fund.info[0].data
         
-//        titleLabel.text = investment.title
-//        fundNameLabel.text = investment.fundName
-//        whatIsLabel.text = investment.whatIsLabel
-//        definitionLabel.adjustsFontSizeToFitWidth = true
-//        definitionLabel.text = investment.definition
-//        riskTitleLabel.text = investment.riskTitle
-//        infoTitleLabel.text = investment.infoTitle
+        infoLabels[2].text = fund.info[1].name
+        infoLabels[3].text = fund.info[1].data
         
-        monthFundLabel.text = "\(investment.monthFund)%"
-        monthCDILabel.text = "\(investment.monthCDI)%"
-        yearFundLabel.text = "\(investment.yearFund)%"
-        yearCDILabel.text = "\(investment.yearCDI)%"
-        twelveMonthsFundLabel.text = "\(investment.twelveMonthsFund)%"
-        twelveMonthsCDILabel.text = "\(investment.twelveMonthsCDI)%"
+        infoLabels[4].text = fund.info[2].name
+        infoLabels[5].text = fund.info[2].data
         
+        infoLabels[6].text = fund.info[3].name
+        infoLabels[7].text = fund.info[3].data
         
+        infoLabels[8].text = fund.info[4].name
+        infoLabels[9].text = fund.info[4].data
         
-//        var index = 0
-//
-//        for label in infoLabels {
-//
-//            // if tag is odd
-//            if (label.tag%2 != 0) {
-//
-//                    label.text = info[index].name
-//
-//                    print("ímpar: \(label.tag), index: \(index)")
-//                if (label.tag >= 15) {
-//                    index = index + 1
-//
-//                }
-//
-//            // if tag is even
-//            } else {
-//
-//                    label.text = info[index].data
-//                    index = index + 1
-//
-//                    print("par: \(label.tag), index: \(index)")
-//
-//            }
-//
-//            }
-        }
+        infoLabels[10].text = fund.info[5].name
+        infoLabels[11].text = fund.info[5].data
+        
+        infoLabels[12].text = fund.info[6].name
+        infoLabels[13].text = fund.info[6].data
+        
+        // down info
+        infoLabels[14].text = fund.downInfo[0].name
+        infoLabels[15].text = fund.downInfo[1].name
+        infoLabels[16].text = fund.downInfo[2].name
+        infoLabels[17].text = fund.downInfo[3].name
+        infoLabels[18].text = fund.downInfo[4].name
+    }
+    
+    
+    
+    func formatNumber (number : Float) -> String {
+        // adapt to BRL currency
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.init(identifier: "pt_BR")
+        formatter.numberStyle = .decimal
+        
+        let formattedTotalValue = formatter.string(from: number as NSNumber)
+        return "\(formattedTotalValue!)%"
+    }
     
 }
