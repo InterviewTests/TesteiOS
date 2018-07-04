@@ -19,8 +19,18 @@ enum TextFieldEditingModeType {
 
 class ContactViewController: UIViewController, UITextFieldDelegate {
     
+    
+    // URL constant
     let URL = "https://floating-mountain-50292.herokuapp.com/cells.json"
-    let contactDataModel = ContactDataModel()
+    
+    // variables to handle Json data
+    var cells = [Cell]()
+    var namePosition = -1
+    var telNumberPosition = -1
+    var emailPosition = -1
+    var registerEmailPosition = -1
+    var sendPosition = -1
+    
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
@@ -175,9 +185,7 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
         // editing name
         if (textField.tag == 1) {
             let response = Validation.shared.validate(type: ValidationType.name, inputValue: textField.text!)
-            
-            
-            
+        
             
             switch response {
             case .success:
@@ -357,14 +365,35 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     /*********************************************************************/
     func updateData(json: JSON) {
         
-        contactDataModel.name = json["cells"][1]["message"].stringValue
-        contactDataModel.email = json["cells"][2]["message"].stringValue
-        contactDataModel.phone = json["cells"][3]["message"].stringValue
-        contactDataModel.registerEmailTextButton = json["cells"][4]["message"].stringValue
-        contactDataModel.sendTextButton = json["cells"][5]["message"].stringValue
+        for item in 0..<json["cells"].count {
+            
+            let newCell = Cell()
+            
+            newCell.id = json["cells"][item]["id"].intValue
+            newCell.type = Type(rawValue: json["cells"][item]["type"].intValue)
+            newCell.message = json["cells"][item]["message"].stringValue
+            newCell.typefield = TypeField(rawValue: json["cells"][item]["typefield"].intValue)
+            newCell.hidden = json["cells"][item]["hidden"].boolValue
+            newCell.topSpacing = json["cells"][item]["topSpacing"].doubleValue
+            newCell.show = json["cells"][item]["show"].intValue
+            newCell.required = json["cells"][item]["required"].boolValue
+            
+            cells.append(newCell)
+        }
         
         updateUIWithData()
         
+        
+//
+//
+//        contactDataModel.name = json["cells"][1]["message"].stringValue
+//        contactDataModel.email = json["cells"][2]["message"].stringValue
+//        contactDataModel.phone = json["cells"][3]["message"].stringValue
+//        contactDataModel.registerEmailTextButton = json["cells"][4]["message"].stringValue
+//        contactDataModel.sendTextButton = json["cells"][5]["message"].stringValue
+//
+//        updateUIWithData()
+//
     }
     
     
@@ -372,15 +401,35 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     /*********************************************************************/
     func updateUIWithData() {
         
-        nameLabel.text = contactDataModel.name
-        emailLabel.text = contactDataModel.email
-        phoneLabel.text = contactDataModel.phone
-        textButtonLabel.text = contactDataModel.registerEmailTextButton
-        sendButton.titleLabel!.text = contactDataModel.sendTextButton
+        namePosition = lookFor(key: "name", array: cells)!
+        emailPosition = lookFor(key: "email", array: cells)!
+        //telNumberPosition = lookFor(key: "telNumber", array: cells)! JSON file non compliant with typefield specification
+        registerEmailPosition = lookFor(key: "registerEmail", array: cells)!
+        sendPosition = lookFor(key: "send", array: cells)!
 
+        nameLabel.text = cells[namePosition].message
+        emailLabel.text = cells[emailPosition].message
+        phoneLabel.text = cells[3].message
+        textButtonLabel.text = cells[registerEmailPosition].message
+        sendButton.titleLabel!.text = cells[sendPosition].message
+        
     }
     
-    
+    private func lookFor(key: String, array: [Cell]) -> Int? {
+        
+        let size = array.count
+        var dict : [String : Int] = ["name" : 1, "telNumber": 2, "email" : 3, "registerEmail": 4, "send": 5]
+        
+        for item in 0..<size {
+            if ((array[item].typefield?.rawValue == dict[key]) || (array[item].type?.rawValue == dict[key])) {
+                print(item)
+                return item
+            } else {
+                print("Key not found in array")
+            }
+        }
+        return nil
+    }
 
 }
 
