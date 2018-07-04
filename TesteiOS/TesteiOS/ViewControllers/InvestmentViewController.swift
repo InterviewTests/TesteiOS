@@ -62,9 +62,6 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
     }
     
     
-    
-    
-    
     //MARK: - Networking
     /*********************************************************************/
     func getData(url: String) {
@@ -136,7 +133,6 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
             
             fund.downInfo.append(di)
         }
-        
         updateUIWithData()
         
     }
@@ -193,7 +189,6 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
         infoLabels[17].text = fund.downInfo[3].name
         infoLabels[18].text = fund.downInfo[4].name
     }
-    
     
     
     func formatNumber (number : Float) -> String {
