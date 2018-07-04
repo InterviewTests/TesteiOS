@@ -28,6 +28,7 @@ enum Fundos
     struct ViewModel
     {
         var fund: Fund
+        var riskCollectionModels: [RiskCellCollectionViewCell.ViewModel]
     }
   }
 }

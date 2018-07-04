@@ -20,12 +20,37 @@ protocol FundosPresentationLogic
 class FundosPresenter: FundosPresentationLogic
 {
   weak var viewController: FundosDisplayLogic?
+    
+    private var riskCells: [RiskCellCollectionViewCell.ViewModel] = []
+    
+    init() {
+        riskCells = mountFundosRiskModels()
+    }
   
   // MARK: Do something
   
   func presentFetchedFund(response: Fundos.Something.Response)
   {
-    let viewModel = Fundos.Something.ViewModel(fund: response.fund)
+    let viewModel = mountFundosScreen(fund: response.fund)
     viewController?.displayFundScreen(viewModel: viewModel)
   }
+    
+    public func mountFundosScreen(fund: Fund) -> Fundos.Something.ViewModel {
+        var viewModel = Fundos.Something.ViewModel(fund: fund, riskCollectionModels: [])
+        
+        riskCells[fund.screen.risk ?? 0].isRiskSelect = true
+        viewModel.riskCollectionModels = riskCells
+        
+        return viewModel
+    }
+    
+    private func mountFundosRiskModels() -> [RiskCellCollectionViewCell.ViewModel] {
+        let r1 = RiskCellCollectionViewCell.ViewModel(riskColor: RiskColor.r1, isRiskSelect: false)
+        let r2 = RiskCellCollectionViewCell.ViewModel(riskColor: RiskColor.r2, isRiskSelect: false)
+        let r3 = RiskCellCollectionViewCell.ViewModel(riskColor: RiskColor.r3, isRiskSelect: false)
+        let r4 = RiskCellCollectionViewCell.ViewModel(riskColor: RiskColor.r4, isRiskSelect: false)
+        let r5 = RiskCellCollectionViewCell.ViewModel(riskColor: RiskColor.r5, isRiskSelect: false)
+        
+        return [r1, r2, r3, r4, r5]
+    }
 }

@@ -73,10 +73,16 @@ class FormViewController: UIViewController, FormDisplayLogic
     super.viewDidLoad()
     
     self.tableView = UITableView(frame: self.view.frame)
+    self.tableView.translatesAutoresizingMaskIntoConstraints = false
     self.tableView.delegate = self
     self.tableView.dataSource = self
     self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
     self.view.addSubview(self.tableView)
+    let viewsDict = [
+        "tableview" : self.tableView
+        ] as [String : Any]
+    self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tableview]|", options: [], metrics: nil, views: viewsDict))
+    self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tableview]|", options: [], metrics: nil, views: viewsDict))
     
     fetchCellsOnLoad()
   }

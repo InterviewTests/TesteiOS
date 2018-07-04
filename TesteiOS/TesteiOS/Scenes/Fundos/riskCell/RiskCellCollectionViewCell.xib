@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RiskCellCollectionViewCell" customModule="TesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="60" height="52"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="60" height="52"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIc-0c-EIA">
+                        <rect key="frame" x="0.0" y="23.5" width="60" height="5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="5" identifier="constraintColorViewHeight" id="EHz-xl-y9W"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="riskSelect" translatesAutoresizingMaskIntoConstraints="NO" id="LJy-Da-p46">
+                        <rect key="frame" x="23" y="5.5" width="14" height="8"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="8" id="GGS-gG-dRw"/>
+                            <constraint firstAttribute="width" constant="14" id="Ljo-yW-UHF"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="xIc-0c-EIA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="238-Zv-IhP"/>
+                <constraint firstItem="LJy-Da-p46" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="6aR-u3-RNy"/>
+                <constraint firstItem="xIc-0c-EIA" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="a1f-KG-3Ab"/>
+                <constraint firstItem="xIc-0c-EIA" firstAttribute="top" secondItem="LJy-Da-p46" secondAttribute="bottom" constant="10" id="a76-5z-faf"/>
+                <constraint firstAttribute="trailing" secondItem="xIc-0c-EIA" secondAttribute="trailing" id="x39-wF-gYR"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="107" height="52"/>
+            <connections>
+                <outlet property="colorView" destination="xIc-0c-EIA" id="cV0-Ye-Yzd"/>
+                <outlet property="riskSelect" destination="LJy-Da-p46" id="OAK-K0-Lql"/>
+            </connections>
+            <point key="canvasLocation" x="65.5" y="61"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="riskSelect" width="42" height="24"/>
+    </resources>
+</document>

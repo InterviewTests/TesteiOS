@@ -19,11 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         let tabBar: UITabBarController = UITabBarController()
-        let fundosVC = FundosViewController()
+        let fundosVC = FundosViewController(nibName: "Fundos", bundle: nil)
         let formVC = FormViewController()
         fundosVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
         formVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
         tabBar.viewControllers = [fundosVC, formVC]
+        
         let initialViewController = tabBar
         
         self.window?.rootViewController = initialViewController

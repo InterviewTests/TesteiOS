@@ -21,8 +21,17 @@ class FundosViewController: UIViewController, FundosDisplayLogic
 {
   var interactor: FundosBusinessLogic?
   var router: (NSObjectProtocol & FundosRoutingLogic & FundosDataPassing)?
+    var riskList: [RiskCellCollectionViewCell.ViewModel] = []
 
-  // MARK: Object lifecycle
+    @IBOutlet var contentView: UIView!
+    @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var labelFundName: UILabel!
+    @IBOutlet weak var labelWhatIs: UILabel!
+    @IBOutlet weak var labelDefinition: UILabel!
+    @IBOutlet weak var labelRiskTitle: UILabel!
+    @IBOutlet weak var collectionViewRisk: UICollectionView!
+    @IBOutlet weak var labelInfoTitle: UILabel!
+    // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
   {
@@ -69,6 +78,7 @@ class FundosViewController: UIViewController, FundosDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
+    configCollectionViewRisk()
     doSomething()
   }
   
@@ -81,10 +91,47 @@ class FundosViewController: UIViewController, FundosDisplayLogic
     let request = Fundos.Something.Request()
     interactor?.fetchFund(request: request)
   }
+    
+    func configCollectionViewRisk() {
+        collectionViewRisk.register(UINib(nibName: "RiskCellCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "RiskCellCollectionViewCell")
+    }
   
   func displayFundScreen(viewModel: Fundos.Something.ViewModel)
   {
     //nameTextField.text = viewModel.name
-    print(viewModel)
+    //print(viewModel)
+    labelTitle.text = viewModel.fund.screen.title!
+    labelFundName.text = viewModel.fund.screen.fundName!
+    labelWhatIs.text = viewModel.fund.screen.whatIs!
+    labelDefinition.text = viewModel.fund.screen.definition!
+    labelRiskTitle.text = viewModel.fund.screen.riskTitle!
+    riskList = viewModel.riskCollectionModels
+    collectionViewRisk.reloadData()
+    labelInfoTitle.text = viewModel.fund.screen.infoTitle!
   }
+}
+
+extension FundosViewController: UICollectionViewDelegateFlowLayout {
+    //atualiza a largura da collection de risk quando altera a largura da view (rotaciona o device)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionViewRisk.collectionViewLayout.invalidateLayout()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.size.width / CGFloat(riskList.count), height: collectionView.frame.size.height)
+    }
+}
+
+extension FundosViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return riskList.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RiskCellCollectionViewCell", for: indexPath) as? RiskCellCollectionViewCell
+        
+        cell?.viewModel = riskList[indexPath.row]
+        
+        return cell ?? UICollectionViewCell()
+    }
 }
