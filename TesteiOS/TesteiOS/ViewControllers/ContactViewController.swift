@@ -77,7 +77,6 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     /*********************************************************************/
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("textFieldDidBeginEditing")
 
         nameTextField.clearButtonMode = .whileEditing
         mailTextField.clearButtonMode = .whileEditing
@@ -121,7 +120,6 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
             let response = Validation.shared.validate(type: ValidationType.email, inputValue: fullString)
             switch response {
             case .success:
-                print("data ok")
                 mailLine.lineColor = UIColor.green
                 mailLine.setNeedsDisplay()
             case .failure:
@@ -342,7 +340,6 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     
     
     private func format(phoneNumber: String, shouldRemoveLastDigit: Bool = false) -> String {
-        print("format")
         
         guard !phoneNumber.isEmpty else { return "" }
         guard let regex = try? NSRegularExpression(pattern: "[\\s-\\(\\)]", options: .caseInsensitive) else { return "" }
