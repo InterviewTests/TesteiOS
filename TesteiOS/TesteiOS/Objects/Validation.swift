@@ -32,40 +32,6 @@ class Validation: NSObject {
     
     public static let shared = Validation()
     
-    
-    // Validation.shared.validate(id: Int)
-
-    func letsValidate(id : Int, input : String, range : Int = 0 ) -> Valid {
-    
-        print(range)
-        // is it a name?
-        if (id == ValidationType.name.rawValue) {
-            return Validation.shared.validate(type: ValidationType.name, inputValue: input)
-        }
-        // is it an email?
-        else if (id == ValidationType.email.rawValue) {
-            return Validation.shared.validate(type: ValidationType.email, inputValue: input)
-        }
-        // is it a phone?
-        else if (id == ValidationType.phoneNumber.rawValue) {
-            print("estou validando um telefone")
-            
-            
-            
-            
-            
-            
-        }
-        // error
-        else {
-            print("Validation Type error")
-        }
-        
-        return .failure
-    }
-    
-    
-    
     func validate(type: ValidationType, inputValue: String) -> Valid {
         
             switch type {
