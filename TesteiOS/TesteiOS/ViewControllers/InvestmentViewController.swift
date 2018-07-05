@@ -142,52 +142,52 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
     /*********************************************************************/
     func updateUIWithData() {
         
+        // header labels
         titleLabel.text = fund.title
         fundNameLabel.text = fund.fundName
         whatIsLabel.text = fund.whatIs
-        
         definitionLabel.adjustsFontSizeToFitWidth = true
         definitionLabel.text = fund.definition
-        
         riskTitleLabel.text = fund.riskTitle
         infoTitleLabel.text = fund.infoTitle
         
-        // more Info labels tags fund: even, CDI: odd
-        moreInfoLabels[0].text = formatNumber(number: fund.moreInfo[0].fund)
-        moreInfoLabels[1].text = formatNumber(number: fund.moreInfo[0].CDI)
-        moreInfoLabels[2].text = formatNumber(number: fund.moreInfo[1].fund)
-        moreInfoLabels[3].text = formatNumber(number: fund.moreInfo[1].CDI)
-        moreInfoLabels[4].text = formatNumber(number: fund.moreInfo[2].fund)
-        moreInfoLabels[5].text = formatNumber(number: fund.moreInfo[2].CDI)
+        // more Info labels
+        var fundIndex = 0
+        for label in moreInfoLabels {
+            // if tag is even, it is related to fund
+            if (label.tag%2 == 0) {
+                label.text = formatNumber(number: fund.moreInfo[fundIndex].fund)
+            }
+            // if tag is odd, it is related to CDI
+            else {
+                label.text = formatNumber(number: fund.moreInfo[fundIndex].CDI)
+                fundIndex = fundIndex + 1
+            }
+        }
         
-        // info labels tags data: even, name: odd
-        infoLabels[0].text = fund.info[0].name
-        infoLabels[1].text = fund.info[0].data
-        
-        infoLabels[2].text = fund.info[1].name
-        infoLabels[3].text = fund.info[1].data
-        
-        infoLabels[4].text = fund.info[2].name
-        infoLabels[5].text = fund.info[2].data
-        
-        infoLabels[6].text = fund.info[3].name
-        infoLabels[7].text = fund.info[3].data
-        
-        infoLabels[8].text = fund.info[4].name
-        infoLabels[9].text = fund.info[4].data
-        
-        infoLabels[10].text = fund.info[5].name
-        infoLabels[11].text = fund.info[5].data
-        
-        infoLabels[12].text = fund.info[6].name
-        infoLabels[13].text = fund.info[6].data
-        
-        // down info
-        infoLabels[14].text = fund.downInfo[0].name
-        infoLabels[15].text = fund.downInfo[1].name
-        infoLabels[16].text = fund.downInfo[2].name
-        infoLabels[17].text = fund.downInfo[3].name
-        infoLabels[18].text = fund.downInfo[4].name
+        // info labels
+        var infoIndex = 0
+        var downIndex = 0
+        for label in infoLabels {
+            let tag = label.tag
+            // considering info labels
+            if (tag <= 14){
+                // if tag is odd, it is related to name
+                if (tag%2 != 0){
+                    label.text = fund.info[infoIndex].name
+                }
+                // if tag is even, it is related to data
+                else {
+                    label.text = fund.info[infoIndex].data
+                    infoIndex = infoIndex + 1
+                }
+            }
+            // considering down info labels
+            else {
+                label.text = fund.downInfo[downIndex].name
+                downIndex = downIndex + 1
+            }
+        }
     }
     
     
