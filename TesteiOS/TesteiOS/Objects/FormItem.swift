@@ -10,18 +10,20 @@ import UIKit
 
 class FormItem {
     
-    var id = ""
+    var id = ValidationType(rawValue: Int())
     var label = UILabel()
     var textField = UITextField()
     var line = Line()
     
     
-    init(id: String, label: UILabel, textField: UITextField, line: Line) {
-        self.id = id
-        self.label = label
-        self.textField = textField
-        self.line = line
-    }
+//    init(id: ValidationType, label: UILabel, textField: UITextField, line: Line) {
+//        self.id = id
+//        self.label = label
+//        self.textField = textField
+//        self.line = line
+//    }
     
     
 }
+
+

@@ -24,6 +24,11 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     
     // variables to handle Json data
     var cells = [Cell]()
+    
+    var nameItem = FormItem()
+    var emailItem = FormItem()
+    var phoneItem = FormItem()
+    
     var namePosition = Int()
     var telNumberPosition = Int()
     var emailPosition = Int()
@@ -48,7 +53,7 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var sucessView: UIView!
 
     @IBOutlet weak var backgroundView: UIView!
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,9 +72,10 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
         // runtime selector to trigger the end-editing text field delegate methods when user taps outside the text field
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped))
         backgroundView.addGestureRecognizer(tapGesture)
+        
+        populateFormItems()
     }
 
-    
     
     //MARK: - TextField Delegate Methods
     /*********************************************************************/
@@ -92,124 +98,59 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     // called whenever the user types a char
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        // name text field
-        if textField.tag == 1 {
-            
-            var fullString = textField.text ?? ""
-            fullString.append(string)
-            
-            let response = Validation.shared.validate(type: ValidationType.name, inputValue: fullString)
-            switch response {
-            case .success:
-                nameLine.lineColor = UIColor.green
-                nameLine.setNeedsDisplay()
-            case .failure:
-                nameLine.lineColor = UIColor.red
-                nameLine.setNeedsDisplay()
-            }
-        }
-            
-        // mail text field
-        else if textField.tag == 2 {
-            
-            var fullString = textField.text ?? ""
-            fullString.append(string)
-            
-            let response = Validation.shared.validate(type: ValidationType.email, inputValue: fullString)
-            switch response {
-            case .success:
-                mailLine.lineColor = UIColor.green
-                mailLine.setNeedsDisplay()
-            case .failure:
-                mailLine.lineColor = UIColor.red
-                mailLine.setNeedsDisplay()
-            }
-        }
-            
-        // phone number text field
-        else if textField.tag == 3 {
-            var fullString = textField.text ?? ""
-            fullString.append(string)
+        // validate field and updateUI accordingly
+        var fullString = textField.text ?? ""
+        fullString.append(string)
 
+        if (textField == nameItem.textField) {
+           let response = Validation.shared.validate(type: .name, inputValue: fullString)
+            updateFormItem(response: response, type: .name)
+        }
+        else if (textField == emailItem.textField) {
+            let response = Validation.shared.validate(type: .email, inputValue: fullString)
+            updateFormItem(response: response, type: .email)
+        }
+        else if (textField == phoneItem.textField) {
             // backspace pressed (char erased)
             if range.length == 1 {
-//                textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: true)
                 textField.text = Format.shared.format(phoneNumber: fullString, shouldRemoveLastDigit: true)
             } else {
-                //textField.text = format(phoneNumber: fullString)
                 textField.text = Format.shared.format(phoneNumber: fullString)
             }
-
-            let response = Validation.shared.validate(type: ValidationType.phoneNumber, inputValue: textField.text!)
-            switch response {
-            case .success:
-                phoneLine.lineColor = UIColor.green
-                phoneLine.setNeedsDisplay()
-            case .failure:
-                phoneLine.lineColor = UIColor.red
-                phoneLine.setNeedsDisplay()
-            }
+            
+            fullString = textField.text!
+            let response = Validation.shared.validate(type: .phoneNumber, inputValue: fullString)
+            updateFormItem(response: response, type: .phoneNumber)
+            
+            // return false to not duplicate characters (keep the old text)
             return false
         }
+        // return true to print the character typed (text range should be replaced)
         return true
     }
-    
+
     
     // return false in cases where delegate detects invalid contents in the text field
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        // editing name
-        if (textField.tag == 1) {
-            let response = Validation.shared.validate(type: ValidationType.name, inputValue: textField.text!)
-        
-            switch response {
-            case .success:
-                nameLine.lineColor = UIColor.green
-                nameLine.setNeedsDisplay()
-                break
-            case .failure:
-                nameLine.lineColor = UIColor.red
-                nameLine.setNeedsDisplay()
-                return false
-            }
+        if (textField == nameItem.textField) {
+            let response = Validation.shared.validate(type: .name, inputValue: textField.text!)
+            updateFormItem(response: response, type: .name)
         }
-            // editing mail
-        else if (textField.tag == 2) {
-            let response = Validation.shared.validate(type: ValidationType.email, inputValue: textField.text!)
-            
-            switch response {
-            case .success:
-                mailLine.lineColor = UIColor.green
-                mailLine.setNeedsDisplay()
-                break
-            case .failure:
-                mailLine.lineColor = UIColor.red
-                mailLine.setNeedsDisplay()
-                return false
-            }
-            
+        else if (textField == emailItem.textField) {
+            let response = Validation.shared.validate(type: .email, inputValue: textField.text!)
+            updateFormItem(response: response, type: .email)
         }
-            // editing phone
-        else if (textField.tag == 3) {
-            let response = Validation.shared.validate(type: ValidationType.phoneNumber, inputValue: textField.text!)
-            
-            switch response {
-            case .success:
-                phoneLine.lineColor = UIColor.green
-                phoneLine.setNeedsDisplay()
-                break
-            case .failure:
-                phoneLine.lineColor = UIColor.red
-                phoneLine.setNeedsDisplay()
-                return false
-            }
+        else if (textField == phoneItem.textField) {
+            let response = Validation.shared.validate(type: .phoneNumber, inputValue: textField.text!)
+            updateFormItem(response: response, type: .phoneNumber)
         }
         return true
     }
     
     
+    // return button pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
-        
         return true
     }
 
@@ -219,9 +160,9 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func sendButtonPressed(_ sender: UIButton) {
         
-        let response1 = Validation.shared.validate(type: ValidationType.name, inputValue: nameTextField.text!)
-        let response2 = Validation.shared.validate(type: ValidationType.email, inputValue: mailTextField.text!)
-        let response3 = Validation.shared.validate(type: ValidationType.phoneNumber, inputValue: phoneTextField.text!)
+        let response1 = Validation.shared.validate(type: .name, inputValue: nameTextField.text!)
+        let response2 = Validation.shared.validate(type: .email, inputValue: mailTextField.text!)
+        let response3 = Validation.shared.validate(type: .phoneNumber, inputValue: phoneTextField.text!)
         
         if (response1 == .success && response2 == .success && response3 == .success) {
             sucessView.isHidden = false
@@ -300,42 +241,80 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - Helper Methods
     /*********************************************************************/
+    func populateFormItems() {
+        nameItem.id  = ValidationType.name
+        nameItem.label = nameLabel
+        nameItem.textField = nameTextField
+        nameItem.line = nameLine
+        
+        emailItem.id  = ValidationType.email
+        emailItem.label = emailLabel
+        emailItem.textField = mailTextField
+        emailItem.line = mailLine
+        
+        phoneItem.id  = ValidationType.phoneNumber
+        phoneItem.label = phoneLabel
+        phoneItem.textField = phoneTextField
+        phoneItem.line = phoneLine
+    }
+    
+    
+    private func updateFormItem(response: Valid, type: ValidationType){
+        switch response {
+        case .success:
+            if (type == .name) {
+                nameItem.line.lineColor = UIColor.green
+                nameItem.line.setNeedsDisplay()
+            } else if (type == .email) {
+                emailItem.line.lineColor = UIColor.green
+                emailItem.line.setNeedsDisplay()
+            } else if (type == .phoneNumber) {
+                phoneItem.line.lineColor = UIColor.green
+                phoneItem.line.setNeedsDisplay()
+            }
+        case .failure:
+            if (type == .name) {
+                nameItem.line.lineColor = UIColor.red
+                nameItem.line.setNeedsDisplay()
+            } else if (type == .email) {
+                emailItem.line.lineColor = UIColor.red
+                emailItem.line.setNeedsDisplay()
+            } else if (type == .phoneNumber) {
+                phoneItem.line.lineColor = UIColor.red
+                phoneItem.line.setNeedsDisplay()
+            }
+        }
+    }
+    
     
     private func adjustTextFieldUIWhileEditing (textField : UITextField, mode : TextFieldEditingModeType) {
-        
         var fontSize = CGFloat()
-        
         mode == .reduced ? (fontSize = 14.0) : (fontSize = 17.0)
         
-        // editing name
-        if (textField.tag == 1) {
-            nameLabel.font = nameLabel.font.withSize(fontSize)
-            nameLine.lineColor = UIColor.gray
-            nameLine.setNeedsDisplay()
+        if (textField == nameItem.textField) {
+            nameItem.label.font = nameItem.label.font.withSize(fontSize)
+            nameItem.line.lineColor = UIColor.gray
+            nameItem.line.setNeedsDisplay()
         }
-            // editing mail
-        else if (textField.tag == 2) {
-            emailLabel.font = emailLabel.font.withSize(fontSize)
-            mailLine.lineColor = UIColor.gray
-            mailLine.setNeedsDisplay()
-            
+        else if (textField == emailItem.textField) {
+            emailItem.label.font = emailItem.label.font.withSize(fontSize)
+            emailItem.line.lineColor = UIColor.gray
+            emailItem.line.setNeedsDisplay()
         }
-            // editing phone
-        else if (textField.tag == 3) {
-            phoneLabel.font = phoneLabel.font.withSize(fontSize)
-            phoneLine.lineColor = UIColor.gray
-            phoneLine.setNeedsDisplay()
-            
+        else if (textField == phoneItem.textField) {
+            phoneItem.label.font = phoneItem.label.font.withSize(fontSize)
+            phoneItem.line.lineColor = UIColor.gray
+            phoneItem.line.setNeedsDisplay()
         }
     }
     
     
     @objc private func backgroundViewTapped() {
-        nameTextField.endEditing(true)
-        mailTextField.endEditing(true)
-        phoneTextField.endEditing(true)
-        
+        nameItem.textField.endEditing(true)
+        emailItem.textField.endEditing(true)
+        phoneItem.textField.endEditing(true)
     }
+    
     
     private func lookFor(key: String, array: [Cell]) -> Int? {
         
@@ -349,6 +328,5 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
         }
         return nil
     }
-
 }
 
