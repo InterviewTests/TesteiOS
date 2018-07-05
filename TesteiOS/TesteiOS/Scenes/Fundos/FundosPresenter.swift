@@ -36,7 +36,23 @@ class FundosPresenter: FundosPresentationLogic
   }
     
     public func mountFundosScreen(fund: Fund) -> Fundos.Something.ViewModel {
-        var viewModel = Fundos.Something.ViewModel(fund: fund, riskCollectionModels: [])
+        var viewModel = Fundos.Something.ViewModel(
+            fundScreen: Fundos.Something.ViewModel.FundScreen(
+                title: fund.screen.title ?? "",
+                fundName: fund.screen.fundName ?? "",
+                whatIs: fund.screen.whatIs ?? "",
+                definition: fund.screen.definition ?? "",
+                riskTitle: fund.screen.riskTitle ?? "",
+                infoTitle: fund.screen.infoTitle ?? "",
+                moreInfoMonthFund: "\(fund.screen.moreInfo?.month?.fund ?? 0.0) %",
+                moreInfoMonthCDI: "\(fund.screen.moreInfo?.month?.cdi ?? 0.0) %",
+                moreInfoYearFund: "\(fund.screen.moreInfo?.year?.fund ?? 0.0) %",
+                moreInfoYearCDI: "\(fund.screen.moreInfo?.year?.cdi ?? 0.0) %",
+                moreInfo12monthsFund: "\(fund.screen.moreInfo?.twelveMonths?.fund ?? 0.0) %",
+                moreInfo12monthsCDI: "\(fund.screen.moreInfo?.twelveMonths?.cdi ?? 0.0) %"
+            ),
+            riskCollectionModels: []
+        )
         
         riskCells[fund.screen.risk ?? 0].isRiskSelect = true
         viewModel.riskCollectionModels = riskCells

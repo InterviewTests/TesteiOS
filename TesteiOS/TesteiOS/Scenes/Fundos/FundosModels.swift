@@ -27,7 +27,22 @@ enum Fundos
     }
     struct ViewModel
     {
-        var fund: Fund
+        struct FundScreen {
+            var title: String
+            var fundName: String
+            var whatIs: String
+            var definition: String
+            var riskTitle: String
+            var infoTitle: String
+            var moreInfoMonthFund: String
+            var moreInfoMonthCDI: String
+            var moreInfoYearFund: String
+            var moreInfoYearCDI: String
+            var moreInfo12monthsFund: String
+            var moreInfo12monthsCDI: String
+        }
+        
+        var fundScreen: FundScreen
         var riskCollectionModels: [RiskCellCollectionViewCell.ViewModel]
     }
   }

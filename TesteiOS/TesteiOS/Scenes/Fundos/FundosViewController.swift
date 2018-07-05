@@ -31,6 +31,12 @@ class FundosViewController: UIViewController, FundosDisplayLogic
     @IBOutlet weak var labelRiskTitle: UILabel!
     @IBOutlet weak var collectionViewRisk: UICollectionView!
     @IBOutlet weak var labelInfoTitle: UILabel!
+    @IBOutlet weak var labelMoreInfoMonthFund: UILabel!
+    @IBOutlet weak var labelMoreInfoMonthCDI: UILabel!
+    @IBOutlet weak var labelMoreInfoYearFund: UILabel!
+    @IBOutlet weak var labelMoreInfoYearCDI: UILabel!
+    @IBOutlet weak var labelMoreInfo12monthsFund: UILabel!
+    @IBOutlet weak var labelMoreInfo12monthsCDI: UILabel!
     // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -100,14 +106,20 @@ class FundosViewController: UIViewController, FundosDisplayLogic
   {
     //nameTextField.text = viewModel.name
     //print(viewModel)
-    labelTitle.text = viewModel.fund.screen.title!
-    labelFundName.text = viewModel.fund.screen.fundName!
-    labelWhatIs.text = viewModel.fund.screen.whatIs!
-    labelDefinition.text = viewModel.fund.screen.definition!
-    labelRiskTitle.text = viewModel.fund.screen.riskTitle!
+    labelTitle.text = viewModel.fundScreen.title
+    labelFundName.text = viewModel.fundScreen.fundName
+    labelWhatIs.text = viewModel.fundScreen.whatIs
+    labelDefinition.text = viewModel.fundScreen.definition
+    labelRiskTitle.text = viewModel.fundScreen.riskTitle
     riskList = viewModel.riskCollectionModels
     collectionViewRisk.reloadData()
-    labelInfoTitle.text = viewModel.fund.screen.infoTitle!
+    labelInfoTitle.text = viewModel.fundScreen.infoTitle
+    labelMoreInfoMonthFund.text = viewModel.fundScreen.moreInfoMonthFund
+    labelMoreInfoMonthCDI.text = viewModel.fundScreen.moreInfoMonthCDI
+    labelMoreInfoYearFund.text = viewModel.fundScreen.moreInfoYearFund
+    labelMoreInfoYearCDI.text = viewModel.fundScreen.moreInfoYearCDI
+    labelMoreInfo12monthsFund.text = viewModel.fundScreen.moreInfo12monthsFund
+    labelMoreInfo12monthsCDI.text = viewModel.fundScreen.moreInfo12monthsCDI
   }
 }
 
