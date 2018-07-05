@@ -18,27 +18,18 @@ class InvestmentViewController: UIViewController, SFSafariViewControllerDelegate
     let URL = "https://floating-mountain-50292.herokuapp.com/fund.json"
     let googleURL = "https://www.google.com"
     
-    // variables to handle Json data
+    // variable to handle Json data
     var fund = Fund()
     
     // outlets
-    
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var fundNameLabel: UILabel!
-    
     @IBOutlet weak var whatIsLabel: UILabel!
-    
     @IBOutlet weak var definitionLabel: UILabel!
-    
     @IBOutlet weak var riskTitleLabel: UILabel!
-    
     @IBOutlet weak var infoTitleLabel: UILabel!
-    
     @IBOutlet var moreInfoLabels: [UILabel]!
-    
     @IBOutlet var infoLabels: [UILabel]!
-    
     @IBOutlet weak var bar: SegmentedProgressBar!
     
     

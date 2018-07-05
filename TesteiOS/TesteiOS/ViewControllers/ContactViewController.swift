@@ -19,7 +19,6 @@ enum TextFieldEditingModeType {
 
 class ContactViewController: UIViewController, UITextFieldDelegate {
     
-    
     // URL constant
     let URL = "https://floating-mountain-50292.herokuapp.com/cells.json"
     
@@ -31,7 +30,7 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     var registerEmailPosition = Int()
     var sendPosition = Int()
     
-    
+    // outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var nameLine: Line!
@@ -54,12 +53,12 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // set text fields delegates
+        // set textfields delegates
         nameTextField.delegate = self
         mailTextField.delegate = self
         phoneTextField.delegate = self
         
-        // get data from specified URL
+        // populate labels with data
         getData(url: URL)
         
         // this view is hidden until user sucessfully fills the form
@@ -68,7 +67,6 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
         // runtime selector to trigger the end-editing text field delegate methods when user taps outside the text field
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped))
         backgroundView.addGestureRecognizer(tapGesture)
-
     }
 
     
@@ -128,17 +126,18 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
             }
         }
             
-        // format phone number
+        // phone number text field
         else if textField.tag == 3 {
             var fullString = textField.text ?? ""
             fullString.append(string)
-            
-            // empty string
+
+            // backspace pressed (char erased)
             if range.length == 1 {
-                textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: true)
-                
+//                textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: true)
+                textField.text = Format.shared.format(phoneNumber: fullString, shouldRemoveLastDigit: true)
             } else {
-                textField.text = format(phoneNumber: fullString)
+                //textField.text = format(phoneNumber: fullString)
+                textField.text = Format.shared.format(phoneNumber: fullString)
             }
 
             let response = Validation.shared.validate(type: ValidationType.phoneNumber, inputValue: textField.text!)
@@ -337,44 +336,6 @@ class ContactViewController: UIViewController, UITextFieldDelegate {
         phoneTextField.endEditing(true)
         
     }
-    
-    
-    private func format(phoneNumber: String, shouldRemoveLastDigit: Bool = false) -> String {
-        
-        guard !phoneNumber.isEmpty else { return "" }
-        guard let regex = try? NSRegularExpression(pattern: "[\\s-\\(\\)]", options: .caseInsensitive) else { return "" }
-        let r = NSString(string: phoneNumber).range(of: phoneNumber)
-        var number = regex.stringByReplacingMatches(in: phoneNumber, options: .init(rawValue: 0), range: r, withTemplate: "")
-        
-        // max 11 numbers
-        if number.count > 11 {
-            let eleventhDigitIndex = number.index(number.startIndex, offsetBy: 11)
-            number = String(number[number.startIndex..<eleventhDigitIndex])
-        }
-        
-        if shouldRemoveLastDigit {
-            let end = number.index(number.startIndex, offsetBy: number.count-1)
-            number = String(number[number.startIndex..<end])
-        }
-        
-        if number.count < 7 {
-            let end = number.index(number.startIndex, offsetBy: number.count)
-            let range = number.startIndex..<end
-            number = number.replacingOccurrences(of: "(\\d{2})(\\d+)", with: "($1) $2", options: .regularExpression, range: range)
-            
-        } else if number.count < 11 {
-            let end = number.index(number.startIndex, offsetBy: number.count)
-            let range = number.startIndex..<end
-            number = number.replacingOccurrences(of: "(\\d{2})(\\d{4})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: range)
-        } else {
-            let end = number.index(number.startIndex, offsetBy: number.count)
-            let range = number.startIndex..<end
-            number = number.replacingOccurrences(of: "(\\d{2})(\\d{5})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: range)
-        }
-        
-        return number
-    }
-    
     
     private func lookFor(key: String, array: [Cell]) -> Int? {
         
