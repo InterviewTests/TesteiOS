@@ -27,23 +27,29 @@ enum Fundos
     }
     struct ViewModel
     {
-        struct FundScreen {
-            var title: String
-            var fundName: String
-            var whatIs: String
-            var definition: String
-            var riskTitle: String
-            var infoTitle: String
-            var moreInfoMonthFund: String
-            var moreInfoMonthCDI: String
-            var moreInfoYearFund: String
-            var moreInfoYearCDI: String
-            var moreInfo12monthsFund: String
-            var moreInfo12monthsCDI: String
+        struct FundScreenTop {
+            var title: String = ""
+            var fundName: String = ""
+            var whatIs: String = ""
+            var definition: String = ""
+            var riskTitle: String = ""
+            var riskCollectionModels: [RiskCellCollectionViewCell.ViewModel] = []
+            var infoTitle: String = ""
+            var moreInfoMonthFund: String = ""
+            var moreInfoMonthCDI: String = ""
+            var moreInfoYearFund: String = ""
+            var moreInfoYearCDI: String = ""
+            var moreInfo12monthsFund: String = ""
+            var moreInfo12monthsCDI: String = ""
         }
         
-        var fundScreen: FundScreen
-        var riskCollectionModels: [RiskCellCollectionViewCell.ViewModel]
+        var fundScreenTop: FundScreenTop
+        var infoCells: [Fundos.InfoCell]
     }
   }
+    struct InfoCell {
+        var typeInfoCell: TypeInfoCell = TypeInfoCell.info
+        var infoName: String = ""
+        var infoData: String = ""
+    }
 }

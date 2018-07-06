@@ -21,22 +21,13 @@ class FundosViewController: UIViewController, FundosDisplayLogic
 {
   var interactor: FundosBusinessLogic?
   var router: (NSObjectProtocol & FundosRoutingLogic & FundosDataPassing)?
-    var riskList: [RiskCellCollectionViewCell.ViewModel] = []
+    
+    var viewModelFudosTop: Fundos.Something.ViewModel.FundScreenTop = Fundos.Something.ViewModel.FundScreenTop()
+    var infoCells: [Fundos.InfoCell] = []
 
     @IBOutlet var contentView: UIView!
-    @IBOutlet weak var labelTitle: UILabel!
-    @IBOutlet weak var labelFundName: UILabel!
-    @IBOutlet weak var labelWhatIs: UILabel!
-    @IBOutlet weak var labelDefinition: UILabel!
-    @IBOutlet weak var labelRiskTitle: UILabel!
-    @IBOutlet weak var collectionViewRisk: UICollectionView!
-    @IBOutlet weak var labelInfoTitle: UILabel!
-    @IBOutlet weak var labelMoreInfoMonthFund: UILabel!
-    @IBOutlet weak var labelMoreInfoMonthCDI: UILabel!
-    @IBOutlet weak var labelMoreInfoYearFund: UILabel!
-    @IBOutlet weak var labelMoreInfoYearCDI: UILabel!
-    @IBOutlet weak var labelMoreInfo12monthsFund: UILabel!
-    @IBOutlet weak var labelMoreInfo12monthsCDI: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
     // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -84,9 +75,16 @@ class FundosViewController: UIViewController, FundosDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    configCollectionViewRisk()
+    configTableViewCells()
     doSomething()
   }
+    
+    func configTableViewCells() {
+        tableView.register(UINib(nibName: "FundosTopTableViewCell", bundle: nil), forCellReuseIdentifier: "FundosTopTableViewCell")
+        tableView.register(UINib(nibName: "FundosInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "FundosInfoTableViewCell")
+        tableView.register(UINib(nibName: "FundosButtonTableViewCell", bundle: nil), forCellReuseIdentifier: "FundosButtonTableViewCell")
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+    }
   
   // MARK: Do something
   
@@ -97,53 +95,79 @@ class FundosViewController: UIViewController, FundosDisplayLogic
     let request = Fundos.Something.Request()
     interactor?.fetchFund(request: request)
   }
-    
-    func configCollectionViewRisk() {
-        collectionViewRisk.register(UINib(nibName: "RiskCellCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "RiskCellCollectionViewCell")
-    }
   
   func displayFundScreen(viewModel: Fundos.Something.ViewModel)
   {
     //nameTextField.text = viewModel.name
     //print(viewModel)
-    labelTitle.text = viewModel.fundScreen.title
-    labelFundName.text = viewModel.fundScreen.fundName
-    labelWhatIs.text = viewModel.fundScreen.whatIs
-    labelDefinition.text = viewModel.fundScreen.definition
-    labelRiskTitle.text = viewModel.fundScreen.riskTitle
-    riskList = viewModel.riskCollectionModels
-    collectionViewRisk.reloadData()
-    labelInfoTitle.text = viewModel.fundScreen.infoTitle
-    labelMoreInfoMonthFund.text = viewModel.fundScreen.moreInfoMonthFund
-    labelMoreInfoMonthCDI.text = viewModel.fundScreen.moreInfoMonthCDI
-    labelMoreInfoYearFund.text = viewModel.fundScreen.moreInfoYearFund
-    labelMoreInfoYearCDI.text = viewModel.fundScreen.moreInfoYearCDI
-    labelMoreInfo12monthsFund.text = viewModel.fundScreen.moreInfo12monthsFund
-    labelMoreInfo12monthsCDI.text = viewModel.fundScreen.moreInfo12monthsCDI
+    self.viewModelFudosTop = viewModel.fundScreenTop
+    self.infoCells = viewModel.infoCells
+    tableView.reloadData()
   }
-}
-
-extension FundosViewController: UICollectionViewDelegateFlowLayout {
+    
     //atualiza a largura da collection de risk quando altera a largura da view (rotaciona o device)
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collectionViewRisk.collectionViewLayout.invalidateLayout()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width / CGFloat(riskList.count), height: collectionView.frame.size.height)
+        tableView.reloadData()
     }
 }
 
-extension FundosViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return riskList.count
+// MARK: TableView Delegate
+extension FundosViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RiskCellCollectionViewCell", for: indexPath) as? RiskCellCollectionViewCell
+    
+    func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+}
+
+// MARK: TableView DataSource
+extension FundosViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var numRows:Int = 0
         
-        cell?.viewModel = riskList[indexPath.row]
+        if (section == 0) {
+            numRows = 1
+        } else if (section == 1) {
+            numRows = infoCells.count
+        } else if (section == 2) {
+            numRows = 1
+        }
         
-        return cell ?? UICollectionViewCell()
+        return numRows
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell?
+        
+        if (indexPath.section == 0) {
+            let cellFundosTop = tableView.dequeueReusableCell(withIdentifier: "FundosTopTableViewCell", for: indexPath) as? FundosTopTableViewCell
+            cellFundosTop?.viewModel = self.viewModelFudosTop
+            cell = cellFundosTop
+        } else if (indexPath.section == 1) {
+            let cellInfoCell = tableView.dequeueReusableCell(withIdentifier: "FundosInfoTableViewCell", for: indexPath) as? FundosInfoTableViewCell
+            cellInfoCell?.viewModel = infoCells[indexPath.row]
+            cellInfoCell?.delegate = self;
+            cell = cellInfoCell
+        } else if (indexPath.section == 2) {
+            let cellButton = tableView.dequeueReusableCell(withIdentifier: "FundosButtonTableViewCell", for: indexPath) as? FundosButtonTableViewCell
+            cell = cellButton
+        }
+        
+        return cell ?? UITableViewCell()
+    }
+}
+
+extension FundosViewController: OpenSafariViewControllerProtocol {
+    func openSafariViewController(controller: UIViewController) {
+        self.present(controller, animated: true) { () -> Void in
+            
+        };
     }
 }

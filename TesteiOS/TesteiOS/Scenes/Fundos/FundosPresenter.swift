@@ -37,12 +37,13 @@ class FundosPresenter: FundosPresentationLogic
     
     public func mountFundosScreen(fund: Fund) -> Fundos.Something.ViewModel {
         var viewModel = Fundos.Something.ViewModel(
-            fundScreen: Fundos.Something.ViewModel.FundScreen(
+            fundScreenTop: Fundos.Something.ViewModel.FundScreenTop(
                 title: fund.screen.title ?? "",
                 fundName: fund.screen.fundName ?? "",
                 whatIs: fund.screen.whatIs ?? "",
                 definition: fund.screen.definition ?? "",
                 riskTitle: fund.screen.riskTitle ?? "",
+                riskCollectionModels: [],
                 infoTitle: fund.screen.infoTitle ?? "",
                 moreInfoMonthFund: "\(fund.screen.moreInfo?.month?.fund ?? 0.0) %",
                 moreInfoMonthCDI: "\(fund.screen.moreInfo?.month?.cdi ?? 0.0) %",
@@ -51,11 +52,29 @@ class FundosPresenter: FundosPresentationLogic
                 moreInfo12monthsFund: "\(fund.screen.moreInfo?.twelveMonths?.fund ?? 0.0) %",
                 moreInfo12monthsCDI: "\(fund.screen.moreInfo?.twelveMonths?.cdi ?? 0.0) %"
             ),
-            riskCollectionModels: []
+            infoCells: []
         )
         
         riskCells[fund.screen.risk ?? 0].isRiskSelect = true
-        viewModel.riskCollectionModels = riskCells
+        viewModel.fundScreenTop.riskCollectionModels = riskCells
+        
+        viewModel.infoCells = []
+        fund.screen.info.forEach({ info in
+            let infoCell = Fundos.InfoCell(
+                typeInfoCell: TypeInfoCell.info,
+                infoName: info.name ?? "",
+                infoData: info.data ?? ""
+            )
+            viewModel.infoCells.append(infoCell)
+        })
+        fund.screen.downInfo.forEach({ info in
+            let infoCell = Fundos.InfoCell(
+                typeInfoCell: TypeInfoCell.infoDown,
+                infoName: info.name ?? "",
+                infoData: info.data ?? ""
+            )
+            viewModel.infoCells.append(infoCell)
+        })
         
         return viewModel
     }
