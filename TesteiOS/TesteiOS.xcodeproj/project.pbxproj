@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F27B78F420F2472400989618 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27B78F320F2472400989618 /* AppDelegate.swift */; };
-		F27B78F620F2472400989618 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27B78F520F2472400989618 /* ViewController.swift */; };
 		F27B78F920F2472400989618 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F27B78F720F2472400989618 /* Main.storyboard */; };
 		F27B78FB20F2472400989618 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F27B78FA20F2472400989618 /* Assets.xcassets */; };
 		F27B78FE20F2472400989618 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F27B78FC20F2472400989618 /* LaunchScreen.storyboard */; };
@@ -22,6 +21,10 @@
 		F27B793520F24D3000989618 /* DINMittelschriftStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = F27B792C20F24D3000989618 /* DINMittelschriftStd.otf */; };
 		F27B793620F24D3000989618 /* DINPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F27B792D20F24D3000989618 /* DINPro-Medium.otf */; };
 		F27B793720F24D3000989618 /* DINEngschriftStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = F27B792E20F24D3000989618 /* DINEngschriftStd.otf */; };
+		F27B793920F25EF200989618 /* RootPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27B793820F25EF200989618 /* RootPageViewController.swift */; };
+		F27B793C20F2792700989618 /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27B793B20F2792700989618 /* UIColor+CustomColor.swift */; };
+		F27B793E20F279BD00989618 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27B793D20F279BD00989618 /* UIColor+Hex.swift */; };
+		F27B794220F2833900989618 /* RootPageViewController+view.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27B794120F2833900989618 /* RootPageViewController+view.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +40,6 @@
 /* Begin PBXFileReference section */
 		F27B78F020F2472400989618 /* TesteiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TesteiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F27B78F320F2472400989618 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F27B78F520F2472400989618 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F27B78F820F2472400989618 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F27B78FA20F2472400989618 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F27B78FD20F2472400989618 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +56,10 @@
 		F27B792C20F24D3000989618 /* DINMittelschriftStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINMittelschriftStd.otf; sourceTree = "<group>"; };
 		F27B792D20F24D3000989618 /* DINPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Medium.otf"; sourceTree = "<group>"; };
 		F27B792E20F24D3000989618 /* DINEngschriftStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINEngschriftStd.otf; sourceTree = "<group>"; };
+		F27B793820F25EF200989618 /* RootPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPageViewController.swift; sourceTree = "<group>"; };
+		F27B793B20F2792700989618 /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
+		F27B793D20F279BD00989618 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		F27B794120F2833900989618 /* RootPageViewController+view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootPageViewController+view.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,13 +101,15 @@
 		F27B78F220F2472400989618 /* TesteiOS */ = {
 			isa = PBXGroup;
 			children = (
+				F27B793A20F2791800989618 /* Utils */,
 				F27B791320F2477700989618 /* Fonts */,
 				F27B78F320F2472400989618 /* AppDelegate.swift */,
-				F27B78F520F2472400989618 /* ViewController.swift */,
 				F27B78F720F2472400989618 /* Main.storyboard */,
 				F27B78FA20F2472400989618 /* Assets.xcassets */,
 				F27B78FC20F2472400989618 /* LaunchScreen.storyboard */,
 				F27B78FF20F2472400989618 /* Info.plist */,
+				F27B793820F25EF200989618 /* RootPageViewController.swift */,
+				F27B794120F2833900989618 /* RootPageViewController+view.swift */,
 			);
 			path = TesteiOS;
 			sourceTree = "<group>";
@@ -129,6 +137,15 @@
 				F27B792620F24D3000989618 /* DINPro-Regular.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F27B793A20F2791800989618 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F27B793B20F2792700989618 /* UIColor+CustomColor.swift */,
+				F27B793D20F279BD00989618 /* UIColor+Hex.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,8 +260,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F27B78F620F2472400989618 /* ViewController.swift in Sources */,
 				F27B78F420F2472400989618 /* AppDelegate.swift in Sources */,
+				F27B794220F2833900989618 /* RootPageViewController+view.swift in Sources */,
+				F27B793E20F279BD00989618 /* UIColor+Hex.swift in Sources */,
+				F27B793C20F2792700989618 /* UIColor+CustomColor.swift in Sources */,
+				F27B793920F25EF200989618 /* RootPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
