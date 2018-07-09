@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContatoTableViewController: UITableViewController, FormTableViewCellDelegate {
+class ContatoTableViewController: UITableViewController, FormTableViewCellDelegate, ViewSucessoDelegate {
     var cellList: CellList? = CellList()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +67,7 @@ class ContatoTableViewController: UITableViewController, FormTableViewCellDelega
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        tableView.setSucessoView(self.cellList!.cells.isEmpty, delegate: self)
         return 1
     }
 
@@ -131,10 +132,17 @@ class ContatoTableViewController: UITableViewController, FormTableViewCellDelega
                 formValidInput = formValidInput && formCell.validateInput()
             }
         }
-
+        
         if formValidInput {
-            performSegue(withIdentifier: "segueSucessoViewController", sender: nil)
+            self.cellList!.cells = []
+            self.tableView.reloadData()
         }
+    }
+    
+    // MARK: - ViewSucessoDelegate
+    
+    func buttonDismissClicked() {
+        self.fetch()
     }
     
     /*

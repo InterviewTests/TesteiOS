@@ -46,3 +46,16 @@ extension UITextField {
         self.layer.masksToBounds = true
     }
 }
+
+extension UITableView {
+    func setSucessoView (_ emptyTableView: Bool, delegate: ViewSucessoDelegate? = nil) {
+        if emptyTableView {
+            self.backgroundView = ViewSucesso(frame: self.bounds, delegate: delegate)
+            self.separatorStyle = .none
+            self.tableFooterView = nil
+        } else {
+            self.backgroundView = nil
+            self.separatorStyle = .none
+        }
+    }
+}

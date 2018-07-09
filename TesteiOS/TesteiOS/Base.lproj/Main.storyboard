@@ -6,8 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -211,7 +209,7 @@
             <objects>
                 <tableViewController id="l0t-iK-EVd" customClass="ContatoTableViewController" customModule="TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" id="qWK-hz-weO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -341,72 +339,15 @@
                             <outlet property="delegate" destination="l0t-iK-EVd" id="Yeo-vz-62O"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="Contato" id="Ykg-4C-r3Y">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-17"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <segue destination="4MV-qA-bg5" kind="popoverPresentation" identifier="segueSucessoViewController" popoverAnchorView="qWK-hz-weO" id="of9-J5-UBy">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sfa-ze-QJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1949.5999999999999" y="502.39880059970017"/>
-        </scene>
-        <!--Sucesso View Controller-->
-        <scene sceneID="rkq-SZ-EGY">
-            <objects>
-                <viewController modalPresentationStyle="currentContext" id="4MV-qA-bg5" customClass="SucessoViewController" customModule="TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="x7p-Cs-8pw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEt-ej-mbm">
-                                <rect key="frame" x="16" y="190" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagem enviada com sucesso :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTB-6M-2Yh">
-                                <rect key="frame" x="16" y="219" width="343" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="bCl-Ry-oSq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7N2-w3-h5P">
-                                <rect key="frame" x="16" y="491" width="343" height="30"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Enviar nova mensagem">
-                                    <color key="titleColor" red="0.88235294119999996" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="dismissButtonClicked:" destination="4MV-qA-bg5" eventType="touchUpInside" id="hIw-Ja-hd7"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="yEt-ej-mbm" firstAttribute="leading" secondItem="KTB-6M-2Yh" secondAttribute="leading" id="1JO-ik-MpR"/>
-                            <constraint firstItem="KTB-6M-2Yh" firstAttribute="leading" secondItem="7N2-w3-h5P" secondAttribute="leading" id="3Qe-nr-e6B"/>
-                            <constraint firstItem="yEt-ej-mbm" firstAttribute="trailing" secondItem="x7p-Cs-8pw" secondAttribute="trailingMargin" id="5Yy-zj-u3T"/>
-                            <constraint firstItem="yEt-ej-mbm" firstAttribute="trailing" secondItem="KTB-6M-2Yh" secondAttribute="trailing" id="D8Q-Bd-9YH"/>
-                            <constraint firstItem="yEt-ej-mbm" firstAttribute="top" secondItem="yZW-hw-sw5" secondAttribute="top" constant="170" id="Esu-RT-DFT"/>
-                            <constraint firstItem="KTB-6M-2Yh" firstAttribute="trailing" secondItem="7N2-w3-h5P" secondAttribute="trailing" id="NsM-es-jS5"/>
-                            <constraint firstItem="yZW-hw-sw5" firstAttribute="bottom" secondItem="7N2-w3-h5P" secondAttribute="bottom" constant="146" id="V4u-Zl-f0s"/>
-                            <constraint firstItem="yEt-ej-mbm" firstAttribute="leading" secondItem="x7p-Cs-8pw" secondAttribute="leadingMargin" id="afh-PO-BQy"/>
-                            <constraint firstItem="KTB-6M-2Yh" firstAttribute="top" secondItem="yEt-ej-mbm" secondAttribute="bottom" constant="8" symbolic="YES" id="yvT-Pi-J2R"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="yZW-hw-sw5"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pl0-br-HCD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2692" y="501.49925037481262"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="NkN-sI-V6A">
