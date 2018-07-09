@@ -10,6 +10,12 @@ import UIKit
 
 class InvestimentoTableViewController: UITableViewController {
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.navigationItem.title = "Investimento"
+        self.tabBarController?.setSelectionIndicatorColor(color: UIColor.unselectedRed)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -9,7 +9,7 @@
 import Foundation
 
 struct CellList: Codable {
-    let cells: [Cell]
+    var cells: [Cell]
 }
 
 extension CellList {
@@ -24,12 +24,12 @@ struct Cell: Codable {
         case text = 2
         case image = 3
         case checkbox = 4
-        case send = 5
+        case button = 5
     }
     
     enum FieldType: Int {
         case text = 1
-        case telNumber = 2
+        case phoneNumber = 2
         case email = 3
     }
     
@@ -37,7 +37,7 @@ struct Cell: Codable {
     var id: Int
     var type: Int // CellType
     var message: String
-    var fieldType: Int? // FieldType?
+    var typefield: Int? // FieldType?
     var hidden: Bool
     var topSpacing: Double
     var show: Int?
