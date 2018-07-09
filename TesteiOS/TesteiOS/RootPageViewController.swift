@@ -43,6 +43,8 @@ class RootPageViewController: UIPageViewController {
             currentIndex = 0
         }
     }
+    
+    
   
     @objc func leftButtonClick() {
         if currentIndex != 0 {
