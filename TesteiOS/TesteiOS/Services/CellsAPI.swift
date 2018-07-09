@@ -12,13 +12,7 @@ class CellsAPI: CellsStoreProtocol, CellsStoreUtilityProtocol {
     
     // MARK: - Data
     
-    var cellList: CellList? = CellList()
-    var cells:[Cell] {
-        if let list: CellList = self.cellList {
-            return list.cells
-        }
-        return []
-    }
+    var cells: [Cell] = []
     
     // MARK: - Object lifecycle
     
@@ -31,16 +25,10 @@ class CellsAPI: CellsStoreProtocol, CellsStoreUtilityProtocol {
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
             let jsonString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)?.replacingOccurrences(of: "\"telnumber\"", with: "2") // NO JSON DEVERIA VIR O INTEIRO 2 NA PROPRIEDADE typefield DO CAMPO DE id = 6 MAS ALGUM MOMENTO DURANTE OS TESTES EM 08/07/2018 VEIO A STRING "telnumber"
             print(jsonString ?? "Erro")
-            
             do {
-//                defer {
-//                    DispatchQueue.main.sync{
-//                        self.tableView.reloadData()
-//                    }
-//                }
-                
                 let decoder = JSONDecoder()
-                self.cellList = try decoder.decode(CellList.self, from: jsonString!.data(using: .utf8)!)
+                let cellList = try decoder.decode(CellList.self, from: jsonString!.data(using: .utf8)!)
+                self.cells = cellList.cells
             } catch let error {
                 print(error.localizedDescription)
             }

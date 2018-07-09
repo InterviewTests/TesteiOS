@@ -9,7 +9,12 @@
 import UIKit
 import SafariServices
 
-class FundTableViewController: UITableViewController {
+protocol FundsDisplayLogic: class
+{
+    func displayFetchedFunds(viewModel: Funds.FetchFunds.ViewModel)
+}
+
+class FundTableViewController: UITableViewController, FundsDisplayLogic {
 
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblFundName: UILabel!
@@ -44,6 +49,34 @@ class FundTableViewController: UITableViewController {
     @IBOutlet weak var lblNameDownInfo3: UILabel!
     @IBOutlet weak var lblNameDownInfo4: UILabel!
     
+    var interactor: FundsBusinessLogic?
+    var displayedFunds: [Funds.FetchFunds.ViewModel.DisplayedFund] = []
+    
+    // MARK: Object lifecycle
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    // MARK: Setup
+    
+    private func setup() {
+        let viewController = self
+        let interactor = FundsInteractor()
+        let presenter = FundsPresenter()
+        viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+    }
+    
+    // MARK: - View lifecycle
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.title = "Investimento"
@@ -51,17 +84,62 @@ class FundTableViewController: UITableViewController {
         self.tabBarController?.setSelectionIndicatorColor(color: UIColor.unselectedRed)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        self.fetch()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchFunds()
     }
     
+    // MARK: - Fetch cells
+    
+    func fetchFunds() {
+        let request = Funds.FetchFunds.Request()
+        interactor?.fetchFunds(request: request)
+    }
+    
+    func displayFetchedFunds(viewModel: Funds.FetchFunds.ViewModel) {
+        displayedFunds = viewModel.displayedFunds
+        if let fund: Funds.FetchFunds.ViewModel.DisplayedFund = displayedFunds.first {
+            Thread.isMainThread ? self.updateDisplay(fund: fund) : DispatchQueue.main.sync { self.updateDisplay(fund: fund) }
+        }
+    }
+    
+    func updateDisplay (fund: Funds.FetchFunds.ViewModel.DisplayedFund) {
+        print("updating labels")
+        self.lblTitle.text = fund.title
+        self.lblFundName.text = fund.fundName
+        self.lblWhatIs.text = fund.whatIs
+        self.lblDefinition.text = fund.definition
+        self.lblRiskTitle.text = fund.riskTitle
+        self.imvRisk.image = UIImage(named: "risk\(fund.risk)")
+        self.lblInfoTitle.text = fund.infoTitle
+        self.lblMonthFundo.text = "\(fund.moreInfo.month.fund)%"
+        self.lblMonthCDI.text = "\(fund.moreInfo.month.cdi)%"
+        self.lblYearFundo.text = "\(fund.moreInfo.year.fund)%"
+        self.lblYearCDI.text = "\(fund.moreInfo.year.cdi)%"
+        self.lbl12MonthFundo.text = "\(fund.moreInfo.twelveMonths.fund)%"
+        self.lbl12MonthCDI.text = "\(fund.moreInfo.twelveMonths.cdi)%"
+        self.lblNameInfo0.text = fund.info[0].name
+        self.lblDataInfo0.text = fund.info[0].data
+        self.lblNameInfo1.text = fund.info[1].name
+        self.lblDataInfo1.text = fund.info[1].data
+        self.lblNameInfo2.text = fund.info[2].name
+        self.lblDataInfo2.text = fund.info[2].data
+        self.lblNameInfo3.text = fund.info[3].name
+        self.lblDataInfo3.text = fund.info[3].data
+        self.lblNameInfo4.text = fund.info[4].name
+        self.lblDataInfo4.text = fund.info[4].data
+        self.lblNameInfo5.text = fund.info[5].name
+        self.lblDataInfo5.text = fund.info[5].data
+        self.lblNameInfo6.text = fund.info[6].name
+        self.lblDataInfo6.text = fund.info[6].data
+        self.lblNameDownInfo0.text = fund.info[0].name
+        self.lblNameDownInfo1.text = fund.info[1].name
+        self.lblNameDownInfo2.text = fund.info[2].name
+        self.lblNameDownInfo3.text = fund.info[3].name
+        self.lblNameDownInfo4.text = fund.info[4].name
+//        tableView.reloadData()
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,38 +157,7 @@ class FundTableViewController: UITableViewController {
                 
                 DispatchQueue.main.sync{
 //                    self..text = fundContainer.fund.
-                    self.lblTitle.text = fundContainer.fund.title
-                    self.lblFundName.text = fundContainer.fund.fundName
-                    self.lblWhatIs.text = fundContainer.fund.whatIs
-                    self.lblDefinition.text = fundContainer.fund.definition
-                    self.lblRiskTitle.text = fundContainer.fund.riskTitle
-                    self.imvRisk.image = UIImage(named: "risk\(fundContainer.fund.risk)")
-                    self.lblInfoTitle.text = fundContainer.fund.infoTitle
-                    self.lblMonthFundo.text = "\(fundContainer.fund.moreInfo.month.fund)%"
-                    self.lblMonthCDI.text = "\(fundContainer.fund.moreInfo.month.cdi)%"
-                    self.lblYearFundo.text = "\(fundContainer.fund.moreInfo.year.fund)%"
-                    self.lblYearCDI.text = "\(fundContainer.fund.moreInfo.year.cdi)%"
-                    self.lbl12MonthFundo.text = "\(fundContainer.fund.moreInfo.twelveMonths.fund)%"
-                    self.lbl12MonthCDI.text = "\(fundContainer.fund.moreInfo.twelveMonths.cdi)%"
-                    self.lblNameInfo0.text = fundContainer.fund.info[0].name
-                    self.lblDataInfo0.text = fundContainer.fund.info[0].data
-                    self.lblNameInfo1.text = fundContainer.fund.info[1].name
-                    self.lblDataInfo1.text = fundContainer.fund.info[1].data
-                    self.lblNameInfo2.text = fundContainer.fund.info[2].name
-                    self.lblDataInfo2.text = fundContainer.fund.info[2].data
-                    self.lblNameInfo3.text = fundContainer.fund.info[3].name
-                    self.lblDataInfo3.text = fundContainer.fund.info[3].data
-                    self.lblNameInfo4.text = fundContainer.fund.info[4].name
-                    self.lblDataInfo4.text = fundContainer.fund.info[4].data
-                    self.lblNameInfo5.text = fundContainer.fund.info[5].name
-                    self.lblDataInfo5.text = fundContainer.fund.info[5].data
-                    self.lblNameInfo6.text = fundContainer.fund.info[6].name
-                    self.lblDataInfo6.text = fundContainer.fund.info[6].data
-                    self.lblNameDownInfo0.text = fundContainer.fund.info[0].name
-                    self.lblNameDownInfo1.text = fundContainer.fund.info[1].name
-                    self.lblNameDownInfo2.text = fundContainer.fund.info[2].name
-                    self.lblNameDownInfo3.text = fundContainer.fund.info[3].name
-                    self.lblNameDownInfo4.text = fundContainer.fund.info[4].name
+                    
                 }
                 
             } catch let error {
@@ -131,72 +178,4 @@ class FundTableViewController: UITableViewController {
             self.present(safariViewController, animated: true)
         }
     }
-
-//    // MARK: - Table view data source
-//
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

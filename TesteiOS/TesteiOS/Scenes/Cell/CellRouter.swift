@@ -8,9 +8,9 @@
 
 import Foundation
 
-class CellRouker
+class CellRouter
 {
-    func doSomeWork()
+    func doSomeRoute()
     {
     }
 }

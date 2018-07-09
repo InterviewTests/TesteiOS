@@ -15,6 +15,7 @@ protocol CellsDisplayLogic: class
 
 class CellTableViewController: UITableViewController, CellsDisplayLogic, FormTableViewCellDelegate, SuccessBackgroundViewDelegate {
     
+    var validForm: Bool = false
     var interactor: CellsBusinessLogic?
     var displayedCells: [Cells.FetchCells.ViewModel.DisplayedCell] = []
     
@@ -58,6 +59,7 @@ class CellTableViewController: UITableViewController, CellsDisplayLogic, FormTab
     // MARK: - Fetch cells
     
     func fetchCells() {
+        self.validForm = false
         let request = Cells.FetchCells.Request()
         interactor?.fetchCells(request: request)
     }
@@ -70,7 +72,7 @@ class CellTableViewController: UITableViewController, CellsDisplayLogic, FormTab
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        tableView.setSucessoView(displayedCells.isEmpty, delegate: self)
+        tableView.setSucessoView(displayedCells.isEmpty && self.validForm, delegate: self)
         return 1
     }
     
@@ -79,14 +81,6 @@ class CellTableViewController: UITableViewController, CellsDisplayLogic, FormTab
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        var cell = tableView.dequeueReusableCell(withIdentifier: "CellTableViewCell")
-//        if cell == nil {
-//            cell = UITableViewCell(style: .value1, reuseIdentifier: "CellTableViewCell")
-//        }
-//        cell?.textLabel?.text = displayedCell.date
-//        cell?.detailTextLabel?.text = displayedCell.total
-//        return cell!
-        
         let displayedCell = displayedCells[indexPath.row]
         var reuseIdentifier: String = "TextTableViewCell"
 
@@ -103,7 +97,7 @@ class CellTableViewController: UITableViewController, CellsDisplayLogic, FormTab
             ()
         }
 
-        var cell: FormTableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! FormTableViewCell
+        let cell: FormTableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! FormTableViewCell
         cell.update(self, cell: displayedCell)
         return cell
     }
@@ -149,6 +143,7 @@ class CellTableViewController: UITableViewController, CellsDisplayLogic, FormTab
         }
         
         if formValidInput {
+            self.validForm = true
             displayedCells.removeAll()
             self.tableView.reloadData()
         }

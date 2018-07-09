@@ -118,7 +118,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O fundo tem por objetivo proporcionar aos seus cotistas rentabilidade no longo prazo através de investimentos" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zic-94-wNW">
                                                     <rect key="frame" x="16" y="11" width="343" height="78"/>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -189,7 +189,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mais informações sobre o investimento" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpe-1n-M9K">
                                                     <rect key="frame" x="16" y="11" width="343" height="22"/>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -209,21 +209,33 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CDI" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVS-0g-9DY">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CDI" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVS-0g-9DY">
                                                     <rect key="frame" x="289" y="11" width="70" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="jnl-uD-naw"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fundo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bae-au-j7V">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fundo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bae-au-j7V">
                                                     <rect key="frame" x="211" y="11" width="70" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="fnf-cV-oAW"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Bae-au-j7V" firstAttribute="baseline" secondItem="dVS-0g-9DY" secondAttribute="baseline" id="5tJ-WR-fdc"/>
+                                                <constraint firstItem="Bae-au-j7V" firstAttribute="bottom" secondItem="42J-kj-dsu" secondAttribute="bottomMargin" id="PJA-x8-FiD"/>
+                                                <constraint firstItem="dVS-0g-9DY" firstAttribute="leading" secondItem="Bae-au-j7V" secondAttribute="trailing" constant="8" symbolic="YES" id="TW3-yx-OoD"/>
+                                                <constraint firstItem="dVS-0g-9DY" firstAttribute="trailing" secondItem="42J-kj-dsu" secondAttribute="trailingMargin" id="Y9e-VY-o54"/>
+                                                <constraint firstItem="Bae-au-j7V" firstAttribute="top" secondItem="42J-kj-dsu" secondAttribute="topMargin" id="l9F-pW-lPE"/>
+                                                <constraint firstItem="Bae-au-j7V" firstAttribute="firstBaseline" secondItem="dVS-0g-9DY" secondAttribute="firstBaseline" id="q6O-R6-VEj"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0xt-2R-VSS">
@@ -385,13 +397,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taxa de administração" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUB-PR-7RG">
-                                                    <rect key="frame" x="8" y="11" width="216" height="22"/>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                                    <rect key="frame" x="8" y="11" width="216" height="19.5"/>
+                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqd-gU-Oro">
-                                                    <rect key="frame" x="232" y="11" width="135" height="22"/>
+                                                    <rect key="frame" x="232" y="8.5" width="135" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="135" id="y8n-ey-lfQ"/>
                                                     </constraints>
@@ -416,21 +428,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Aplicação inicial" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JB-IM-itd">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Aplicação inicial" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JB-IM-itd">
                                                     <rect key="frame" x="16" y="11" width="200" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bkw-kM-kLF">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bkw-kM-kLF">
                                                     <rect key="frame" x="224" y="11" width="135" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="135" id="JLm-4V-IfW"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1JB-IM-itd" firstAttribute="top" secondItem="4mr-0v-oDW" secondAttribute="topMargin" id="AWW-Nx-SaN"/>
+                                                <constraint firstItem="Bkw-kM-kLF" firstAttribute="trailing" secondItem="4mr-0v-oDW" secondAttribute="trailingMargin" id="KPj-56-Qb3"/>
+                                                <constraint firstItem="1JB-IM-itd" firstAttribute="leading" secondItem="4mr-0v-oDW" secondAttribute="leadingMargin" id="SNh-Z8-yJs"/>
+                                                <constraint firstItem="1JB-IM-itd" firstAttribute="baseline" secondItem="Bkw-kM-kLF" secondAttribute="baseline" id="SVp-xZ-pLv"/>
+                                                <constraint firstItem="Bkw-kM-kLF" firstAttribute="leading" secondItem="1JB-IM-itd" secondAttribute="trailing" constant="8" symbolic="YES" id="x4g-4e-jzZ"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Ycm-bc-baj">
@@ -440,21 +460,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Movimentação mínima" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNO-KF-w4j">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Movimentação mínima" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNO-KF-w4j">
                                                     <rect key="frame" x="16" y="11" width="200" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAe-RU-4NG">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAe-RU-4NG">
                                                     <rect key="frame" x="224" y="11" width="135" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="135" id="fy8-wZ-tn4"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BNO-KF-w4j" firstAttribute="baseline" secondItem="MAe-RU-4NG" secondAttribute="baseline" id="MrS-og-GfN"/>
+                                                <constraint firstItem="MAe-RU-4NG" firstAttribute="trailing" secondItem="Wbp-VO-hDw" secondAttribute="trailingMargin" id="W1C-uz-rhU"/>
+                                                <constraint firstItem="MAe-RU-4NG" firstAttribute="leading" secondItem="BNO-KF-w4j" secondAttribute="trailing" constant="8" symbolic="YES" id="hjT-Si-0HY"/>
+                                                <constraint firstItem="BNO-KF-w4j" firstAttribute="leading" secondItem="Wbp-VO-hDw" secondAttribute="leadingMargin" id="joc-dp-mNJ"/>
+                                                <constraint firstItem="BNO-KF-w4j" firstAttribute="top" secondItem="Wbp-VO-hDw" secondAttribute="topMargin" id="tr7-oI-1sb"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="SoM-gQ-M7H">
@@ -464,21 +492,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Saldo mínimo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1a-JQ-uKY">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Saldo mínimo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1a-JQ-uKY">
                                                     <rect key="frame" x="16" y="11" width="200" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hL-tL-UXj">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hL-tL-UXj">
                                                     <rect key="frame" x="224" y="11" width="135" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="135" id="amy-16-CbF"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4hL-tL-UXj" firstAttribute="trailing" secondItem="yGX-HI-UAP" secondAttribute="trailingMargin" id="Gdj-8q-0C6"/>
+                                                <constraint firstItem="4hL-tL-UXj" firstAttribute="leading" secondItem="a1a-JQ-uKY" secondAttribute="trailing" constant="8" symbolic="YES" id="Wdy-Ch-ImU"/>
+                                                <constraint firstItem="a1a-JQ-uKY" firstAttribute="top" secondItem="yGX-HI-UAP" secondAttribute="topMargin" id="X06-88-FaZ"/>
+                                                <constraint firstItem="a1a-JQ-uKY" firstAttribute="leading" secondItem="yGX-HI-UAP" secondAttribute="leadingMargin" id="aLL-KR-g7I"/>
+                                                <constraint firstItem="a1a-JQ-uKY" firstAttribute="baseline" secondItem="4hL-tL-UXj" secondAttribute="baseline" id="zch-Tm-l4G"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3Rm-We-FhM">
@@ -488,21 +524,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Resgate (valor bruto)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V55-1b-Do7">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Resgate (valor bruto)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V55-1b-Do7">
                                                     <rect key="frame" x="16" y="11" width="200" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRI-Bh-dKL">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRI-Bh-dKL">
                                                     <rect key="frame" x="224" y="11" width="135" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="135" id="JGE-Ns-EMI"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cRI-Bh-dKL" firstAttribute="trailing" secondItem="u88-X4-zBP" secondAttribute="trailingMargin" id="8MO-MD-iB3"/>
+                                                <constraint firstItem="V55-1b-Do7" firstAttribute="top" secondItem="u88-X4-zBP" secondAttribute="topMargin" id="ArP-HV-emD"/>
+                                                <constraint firstItem="cRI-Bh-dKL" firstAttribute="leading" secondItem="V55-1b-Do7" secondAttribute="trailing" constant="8" symbolic="YES" id="HhK-zv-byx"/>
+                                                <constraint firstItem="V55-1b-Do7" firstAttribute="leading" secondItem="u88-X4-zBP" secondAttribute="leadingMargin" id="Nti-8V-O9Z"/>
+                                                <constraint firstItem="V55-1b-Do7" firstAttribute="baseline" secondItem="cRI-Bh-dKL" secondAttribute="baseline" id="nAe-f2-Dgj"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="emQ-A3-KA8">
@@ -512,21 +556,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cota (valor bruto)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLM-zo-fAy">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Cota (valor bruto)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLM-zo-fAy">
                                                     <rect key="frame" x="16" y="11" width="200" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DnD-bx-QsJ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DnD-bx-QsJ">
                                                     <rect key="frame" x="224" y="11" width="135" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="135" id="mmH-Q1-06d"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="yLM-zo-fAy" firstAttribute="leading" secondItem="x0U-mB-kgG" secondAttribute="leadingMargin" id="DdF-Ck-02B"/>
+                                                <constraint firstItem="DnD-bx-QsJ" firstAttribute="trailing" secondItem="x0U-mB-kgG" secondAttribute="trailingMargin" id="Jfb-aS-0lY"/>
+                                                <constraint firstItem="DnD-bx-QsJ" firstAttribute="leading" secondItem="yLM-zo-fAy" secondAttribute="trailing" constant="8" symbolic="YES" id="KCQ-D0-fRc"/>
+                                                <constraint firstItem="yLM-zo-fAy" firstAttribute="top" secondItem="x0U-mB-kgG" secondAttribute="topMargin" id="haM-7y-jxC"/>
+                                                <constraint firstItem="yLM-zo-fAy" firstAttribute="baseline" secondItem="DnD-bx-QsJ" secondAttribute="baseline" id="vCh-zc-2Wz"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="uCf-LI-EXf">
@@ -536,21 +588,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pagamento (valor bruto)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYF-gr-2xO">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Pagamento (valor bruto)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYF-gr-2xO">
                                                     <rect key="frame" x="16" y="11" width="200" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6P-Tg-YQL">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6P-Tg-YQL">
                                                     <rect key="frame" x="224" y="11" width="135" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="135" id="1fe-8v-5d7"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NYF-gr-2xO" firstAttribute="leading" secondItem="ha2-wN-rXQ" secondAttribute="leadingMargin" id="AHi-El-CNX"/>
+                                                <constraint firstItem="NYF-gr-2xO" firstAttribute="top" secondItem="ha2-wN-rXQ" secondAttribute="topMargin" id="HUR-sW-YZ0"/>
+                                                <constraint firstItem="O6P-Tg-YQL" firstAttribute="trailing" secondItem="ha2-wN-rXQ" secondAttribute="trailingMargin" id="QTI-VE-Sey"/>
+                                                <constraint firstItem="NYF-gr-2xO" firstAttribute="baseline" secondItem="O6P-Tg-YQL" secondAttribute="baseline" id="RFq-0Q-Nnr"/>
+                                                <constraint firstItem="O6P-Tg-YQL" firstAttribute="leading" secondItem="NYF-gr-2xO" secondAttribute="trailing" constant="8" symbolic="YES" id="pM6-Xh-UUa"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -564,16 +624,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Essenciais" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hR-fk-H9I">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Essenciais" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hR-fk-H9I">
                                                     <rect key="frame" x="16" y="11" width="265" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtQ-SM-wmN">
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtQ-SM-wmN">
                                                     <rect key="frame" x="289" y="11" width="70" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="dCj-fd-rGh"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <state key="normal" title=" Baixar" image="download">
                                                         <color key="titleColor" red="0.8582213407" green="0.116757895" blue="0.095126206330000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -583,6 +644,15 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4hR-fk-H9I" firstAttribute="bottom" secondItem="ZtQ-SM-wmN" secondAttribute="bottom" id="4xh-A5-8Wd"/>
+                                                <constraint firstItem="4hR-fk-H9I" firstAttribute="top" secondItem="ZtQ-SM-wmN" secondAttribute="top" id="Efi-B4-tRs"/>
+                                                <constraint firstItem="ZtQ-SM-wmN" firstAttribute="leading" secondItem="4hR-fk-H9I" secondAttribute="trailing" constant="8" symbolic="YES" id="GIW-BS-bha"/>
+                                                <constraint firstItem="4hR-fk-H9I" firstAttribute="bottom" secondItem="gDu-7T-bfZ" secondAttribute="bottomMargin" id="anR-kT-3YS"/>
+                                                <constraint firstItem="4hR-fk-H9I" firstAttribute="top" secondItem="gDu-7T-bfZ" secondAttribute="topMargin" id="fNy-b7-K6r"/>
+                                                <constraint firstItem="4hR-fk-H9I" firstAttribute="leading" secondItem="gDu-7T-bfZ" secondAttribute="leadingMargin" id="trd-LC-xfX"/>
+                                                <constraint firstItem="ZtQ-SM-wmN" firstAttribute="trailing" secondItem="gDu-7T-bfZ" secondAttribute="trailingMargin" id="zjC-k7-hCw"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wWe-Ef-dnT">
@@ -592,16 +662,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Desempenho" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVW-UC-9Ai">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Desempenho" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVW-UC-9Ai">
                                                     <rect key="frame" x="16" y="11" width="265" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEg-4w-FB0">
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEg-4w-FB0">
                                                     <rect key="frame" x="289" y="11" width="70" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="8fG-x3-Y95"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <state key="normal" title=" Baixar" image="download">
                                                         <color key="titleColor" red="0.8582213407" green="0.116757895" blue="0.095126206330000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -611,6 +682,15 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="VEg-4w-FB0" firstAttribute="trailing" secondItem="hFB-cz-8hU" secondAttribute="trailingMargin" id="7oy-Rc-MRe"/>
+                                                <constraint firstItem="sVW-UC-9Ai" firstAttribute="bottom" secondItem="VEg-4w-FB0" secondAttribute="bottom" id="E4g-Vg-oz8"/>
+                                                <constraint firstItem="sVW-UC-9Ai" firstAttribute="leading" secondItem="hFB-cz-8hU" secondAttribute="leadingMargin" id="iM6-tq-Qwd"/>
+                                                <constraint firstItem="VEg-4w-FB0" firstAttribute="leading" secondItem="sVW-UC-9Ai" secondAttribute="trailing" constant="8" symbolic="YES" id="klx-kb-iHx"/>
+                                                <constraint firstItem="sVW-UC-9Ai" firstAttribute="top" secondItem="VEg-4w-FB0" secondAttribute="top" id="ksv-AO-wTN"/>
+                                                <constraint firstItem="sVW-UC-9Ai" firstAttribute="top" secondItem="hFB-cz-8hU" secondAttribute="topMargin" id="lvL-s8-Anr"/>
+                                                <constraint firstItem="sVW-UC-9Ai" firstAttribute="bottom" secondItem="hFB-cz-8hU" secondAttribute="bottomMargin" id="yOx-ig-Gv6"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="VLY-ME-cAa">
@@ -620,16 +700,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Complementares" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgu-y5-Rzz">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Complementares" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgu-y5-Rzz">
                                                     <rect key="frame" x="16" y="11" width="265" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aP-6a-xvk">
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aP-6a-xvk">
                                                     <rect key="frame" x="289" y="11" width="70" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="S1Q-gH-QPx"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <state key="normal" title=" Baixar" image="download">
                                                         <color key="titleColor" red="0.8582213407" green="0.116757895" blue="0.095126206330000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -639,6 +720,15 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sgu-y5-Rzz" firstAttribute="top" secondItem="0aP-6a-xvk" secondAttribute="top" id="CzI-yG-8JG"/>
+                                                <constraint firstItem="sgu-y5-Rzz" firstAttribute="leading" secondItem="kuR-53-f00" secondAttribute="leadingMargin" id="GnM-yS-J78"/>
+                                                <constraint firstItem="0aP-6a-xvk" firstAttribute="trailing" secondItem="kuR-53-f00" secondAttribute="trailingMargin" id="J2m-oC-NFc"/>
+                                                <constraint firstItem="sgu-y5-Rzz" firstAttribute="top" secondItem="kuR-53-f00" secondAttribute="topMargin" id="Peh-Ic-UJA"/>
+                                                <constraint firstItem="sgu-y5-Rzz" firstAttribute="bottom" secondItem="0aP-6a-xvk" secondAttribute="bottom" id="jFn-tx-Pvz"/>
+                                                <constraint firstItem="sgu-y5-Rzz" firstAttribute="bottom" secondItem="kuR-53-f00" secondAttribute="bottomMargin" id="qFU-V3-VEm"/>
+                                                <constraint firstItem="0aP-6a-xvk" firstAttribute="leading" secondItem="sgu-y5-Rzz" secondAttribute="trailing" constant="8" symbolic="YES" id="rvi-Ez-ZMu"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="xhf-Lb-VG5">
@@ -648,16 +738,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Regulamento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWb-Ky-Bwq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Regulamento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWb-Ky-Bwq">
                                                     <rect key="frame" x="16" y="11" width="265" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNK-Qd-hpO">
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNK-Qd-hpO">
                                                     <rect key="frame" x="289" y="11" width="70" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="dwr-aN-tG3"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <state key="normal" title=" Baixar" image="download">
                                                         <color key="titleColor" red="0.8582213407" green="0.116757895" blue="0.095126206330000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -667,6 +758,15 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QNK-Qd-hpO" firstAttribute="leading" secondItem="MWb-Ky-Bwq" secondAttribute="trailing" constant="8" symbolic="YES" id="9mC-Z4-ads"/>
+                                                <constraint firstItem="QNK-Qd-hpO" firstAttribute="trailing" secondItem="Op5-aF-qBV" secondAttribute="trailingMargin" id="MaS-xw-QXi"/>
+                                                <constraint firstItem="MWb-Ky-Bwq" firstAttribute="top" secondItem="Op5-aF-qBV" secondAttribute="topMargin" id="S46-8E-E6w"/>
+                                                <constraint firstItem="MWb-Ky-Bwq" firstAttribute="bottom" secondItem="QNK-Qd-hpO" secondAttribute="bottom" id="S5J-2J-1B7"/>
+                                                <constraint firstItem="MWb-Ky-Bwq" firstAttribute="bottom" secondItem="Op5-aF-qBV" secondAttribute="bottomMargin" id="XTX-7y-K2G"/>
+                                                <constraint firstItem="MWb-Ky-Bwq" firstAttribute="leading" secondItem="Op5-aF-qBV" secondAttribute="leadingMargin" id="kL1-sN-cMq"/>
+                                                <constraint firstItem="MWb-Ky-Bwq" firstAttribute="top" secondItem="QNK-Qd-hpO" secondAttribute="top" id="ps7-AW-b3k"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="pMc-9m-c2w">
@@ -676,16 +776,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Adesão" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fuf-sz-LL6">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Adesão" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fuf-sz-LL6">
                                                     <rect key="frame" x="16" y="11" width="265" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gfa-ou-muM">
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gfa-ou-muM">
                                                     <rect key="frame" x="289" y="11" width="70" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="IZb-ph-v6b"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <state key="normal" title=" Baixar" image="download">
                                                         <color key="titleColor" red="0.8582213407" green="0.116757895" blue="0.095126206330000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -695,6 +796,15 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Gfa-ou-muM" firstAttribute="leading" secondItem="Fuf-sz-LL6" secondAttribute="trailing" constant="8" symbolic="YES" id="9au-qK-Szw"/>
+                                                <constraint firstItem="Fuf-sz-LL6" firstAttribute="bottom" secondItem="Ol1-nS-RMR" secondAttribute="bottomMargin" id="Gbv-Uj-jeI"/>
+                                                <constraint firstItem="Fuf-sz-LL6" firstAttribute="top" secondItem="Gfa-ou-muM" secondAttribute="top" id="c8g-SV-9aS"/>
+                                                <constraint firstItem="Gfa-ou-muM" firstAttribute="trailing" secondItem="Ol1-nS-RMR" secondAttribute="trailingMargin" id="cds-Dn-Qwf"/>
+                                                <constraint firstItem="Fuf-sz-LL6" firstAttribute="leading" secondItem="Ol1-nS-RMR" secondAttribute="leadingMargin" id="nht-CI-6dl"/>
+                                                <constraint firstItem="Fuf-sz-LL6" firstAttribute="top" secondItem="Ol1-nS-RMR" secondAttribute="topMargin" id="p6s-dz-wW1"/>
+                                                <constraint firstItem="Fuf-sz-LL6" firstAttribute="bottom" secondItem="Gfa-ou-muM" secondAttribute="bottom" id="vvl-Vh-Gj0"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>

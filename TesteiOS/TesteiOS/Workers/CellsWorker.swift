@@ -97,21 +97,6 @@ protocol CellsStoreProtocol
 
 protocol CellsStoreUtilityProtocol {}
 
-extension CellsStoreUtilityProtocol
-{
-    func generateCellID(cell: inout Cell)
-    {
-//        guard cell.id == nil else { return }
-//        cell.id = "\(arc4random())"
-    }
-    
-    func calculateCellTotal(cell: inout Cell)
-    {
-//        guard cell.total == NSDecimalNumber.notANumber else { return }
-//        cell.total = NSDecimalNumber.one
-    }
-}
-
 // MARK: - Cells store CRUD operation results
 
 typealias CellsStoreFetchCellsCompletionHandler = (CellsStoreResult<[Cell]>) -> Void

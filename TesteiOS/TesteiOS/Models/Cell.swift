@@ -12,12 +12,6 @@ struct CellList: Codable {
     var cells: [Cell]
 }
 
-extension CellList {
-    init() {
-        self.cells = []
-    }
-}
-
 struct Cell: Codable {
     enum CellType: Int {
         case field = 1
