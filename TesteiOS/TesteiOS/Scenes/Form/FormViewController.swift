@@ -72,20 +72,68 @@ class FormViewController: UIViewController, FormDisplayLogic
   {
     super.viewDidLoad()
     
-    self.tableView = UITableView(frame: self.view.frame)
+    //safeArea
+    let mainView = UIView()
+    mainView.translatesAutoresizingMaskIntoConstraints = false
+    self.view.addSubview(mainView)
+    let margins = view.layoutMarginsGuide
+    NSLayoutConstraint.activate([
+        mainView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+        mainView.trailingAnchor.constraint(equalTo: margins.trailingAnchor)
+    ])
+    if #available(iOS 11, *) {
+        let guide = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            mainView.topAnchor.constraintEqualToSystemSpacingBelow(guide.topAnchor, multiplier: 1.0),
+            guide.bottomAnchor.constraintEqualToSystemSpacingBelow(mainView.bottomAnchor, multiplier: 1.0)
+        ])
+        
+    } else {
+        let standardSpacing: CGFloat = 8.0
+        NSLayoutConstraint.activate([
+            mainView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: standardSpacing),
+            bottomLayoutGuide.topAnchor.constraint(equalTo: mainView.bottomAnchor, constant: standardSpacing)
+        ])
+    }
+    self.view.backgroundColor = UIColor.white
+    
+    let labelTitle = UILabel()
+    labelTitle.translatesAutoresizingMaskIntoConstraints = false
+    labelTitle.font = UIFont.init(name: "DINPro-Medium", size: 17.0)
+    labelTitle.textAlignment = .center
+    labelTitle.text = "Contato"
+    mainView.addSubview(labelTitle)
+    
+    self.tableView = UITableView()
     self.tableView.translatesAutoresizingMaskIntoConstraints = false
     self.tableView.delegate = self
     self.tableView.dataSource = self
     self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-    self.view.addSubview(self.tableView)
-    let viewsDict = [
-        "tableview" : self.tableView
-        ] as [String : Any]
-    self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tableview]|", options: [], metrics: nil, views: viewsDict))
-    self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tableview]|", options: [], metrics: nil, views: viewsDict))
+    mainView.addSubview(self.tableView)
     
+    let metrics = [
+        "topMargin": 10,
+        "leadingLeft": 10,
+        "trailingRight": 10
+    ] as [String : Float]
+    let viewsDict = [
+        "mainview" : mainView,
+        "label" : labelTitle,
+        "tableview" : self.tableView
+    ] as [String : Any]
+    mainView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tableview]|", options: [], metrics: metrics, views: viewsDict))
+    mainView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-topMargin-[label]-topMargin-[tableview]|", options: [], metrics: metrics, views: viewsDict))
+    mainView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-leadingLeft-[label]-trailingRight-|", options: [], metrics: metrics, views: viewsDict))
+    
+    configTableViewCells()
     fetchCellsOnLoad()
   }
+    
+    func configTableViewCells() {
+        tableView.register(UINib(nibName: "TextFieldTableViewCell", bundle: nil), forCellReuseIdentifier: "TextFieldTableViewCell")
+        tableView.register(UINib(nibName: "CheckboxTableViewCell", bundle: nil), forCellReuseIdentifier: "CheckboxTableViewCell")
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+    }
   
   // MARK: Do something
   
@@ -115,35 +163,30 @@ extension FormViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellView: UITableViewCell = UITableViewCell()
+        var cellView: UITableViewCell = UITableViewCell()
         let cell = cells[indexPath.row]
-        print("-> ", cell)
-        
-//        cellView.backgroundColor = UIColor.brown
+        let viewModelCell: Form.FormCell.ViewModel = Form.FormCell.ViewModel(
+            type: cell.type!,
+            typeField: cell.typefield,
+            topSpacing: cell.topSpacing!,
+            message: cell.message!
+        )
         
         let metrics = [
             "topMargin": cell.topSpacing!]
         
         switch cell.type! {
         case .field:
-            let textField = UITextField()
-            textField.translatesAutoresizingMaskIntoConstraints = false
-//            textField.backgroundColor = UIColor.green
-            textField.placeholder = cell.message
-            
-            cellView.addSubview(textField)
-            
-            let viewsDict = [
-                "textfield" : textField
-                ] as [String : Any]
-            cellView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[textfield]-|", options: [], metrics: nil, views: viewsDict))
-            cellView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-topMargin-[textfield]|", options: [], metrics: metrics, views: viewsDict))
+            let cellTextField = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as? TextFieldTableViewCell
+            cellTextField?.viewModel = viewModelCell
+            cellView = cellTextField!
         case .text:
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
+            label.font = UIFont.init(name: "DINPro-Regular", size: 17.0)
             label.textAlignment = .left
             label.text = cell.message
-//            label.backgroundColor = UIColor.blue
+            label.numberOfLines = 0
             
             cellView.addSubview(label)
             
@@ -156,38 +199,27 @@ extension FormViewController: UITableViewDataSource, UITableViewDelegate {
             let imageView = UIImageView()
             cellView.addSubview(imageView)
         case .checkbox:
-            let checkbox = UIButton()
-            checkbox.translatesAutoresizingMaskIntoConstraints = false
-            
-            let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.textAlignment = .left
-            label.text = cell.message
-//            label.backgroundColor = UIColor.blue
-            
-            cellView.addSubview(checkbox)
-            cellView.addSubview(label)
-            
-            let viewsDict = [
-                "checkbox" : checkbox,
-                "label" : label
-                ] as [String : Any]
-            cellView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[checkbox]-[label]-|", options: [.alignAllCenterY], metrics: nil, views: viewsDict))
-            cellView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-topMargin-[checkbox]|", options: [], metrics: metrics, views: viewsDict))
+            let cellCheckbox = tableView.dequeueReusableCell(withIdentifier: "CheckboxTableViewCell", for: indexPath) as? CheckboxTableViewCell
+            cellCheckbox?.viewModel = viewModelCell
+            cellView = cellCheckbox!
         case .send:
             let button = UIButton()
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.setTitle(cell.message, for: UIControlState.normal)
+            button.setTitle(viewModelCell.message, for: UIControlState.normal)
+            button.titleLabel?.font = UIFont.init(name: "DINPro-Medium", size: 17.0)
+            button.backgroundColor = UIColor(red: 202.0/255.0, green: 40.0/255.0, blue: 15.0/255.0, alpha: 1.0)
+            button.layer.cornerRadius = 20
             
             cellView.addSubview(button)
             
+            let metricsButton = [
+                "topMargin": viewModelCell.topSpacing
+            ] as [String : Float]
             let viewsDict = [
                 "button" : button
                 ] as [String : Any]
-            cellView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[button]-|", options: [], metrics: nil, views: viewsDict))
-            cellView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-topMargin-[button]|", options: [], metrics: metrics, views: viewsDict))
-        default:
-            print("~> cell type not found")
+            cellView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[button]-20-|", options: [], metrics: nil, views: viewsDict))
+            cellView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-topMargin-[button(==40)]|", options: [], metrics: metricsButton, views: viewsDict))
         }
         
         return cellView

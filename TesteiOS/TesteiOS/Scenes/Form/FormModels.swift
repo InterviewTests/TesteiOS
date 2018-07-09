@@ -30,4 +30,13 @@ enum Form
         var cells: [Cell]
     }
   }
+    
+    enum FormCell {
+        struct ViewModel {
+            var type: CellType = .field
+            var typeField: CellTypeField?
+            var topSpacing: Float = 0.0
+            var message: String = ""
+        }
+    }
 }

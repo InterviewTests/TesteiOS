@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Medium.otf">
+            <string>DINPro-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="CheckboxTableViewCell" customModule="TesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZlO-FZ-kP9">
+                        <rect key="frame" x="15" y="10" width="290" height="20"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDp-GC-x7i">
+                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="H2f-S9-3AX"/>
+                                    <constraint firstAttribute="height" constant="20" id="beN-hW-n2i"/>
+                                </constraints>
+                                <state key="normal" image="checkboxUnchecked"/>
+                                <connections>
+                                    <action selector="checkboxClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pNy-cR-UCh"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="checkboxLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xH0-Gl-gJM">
+                                <rect key="frame" x="30" y="0.0" width="260" height="20"/>
+                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="16"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="xH0-Gl-gJM" firstAttribute="leading" secondItem="bDp-GC-x7i" secondAttribute="trailing" constant="10" id="Eu0-xh-mW7"/>
+                            <constraint firstItem="bDp-GC-x7i" firstAttribute="centerY" secondItem="ZlO-FZ-kP9" secondAttribute="centerY" id="SNK-8Y-UBt"/>
+                            <constraint firstItem="bDp-GC-x7i" firstAttribute="leading" secondItem="ZlO-FZ-kP9" secondAttribute="leading" id="s1l-tZ-w1f"/>
+                            <constraint firstAttribute="trailing" secondItem="xH0-Gl-gJM" secondAttribute="trailing" id="wru-b3-sFN"/>
+                            <constraint firstItem="xH0-Gl-gJM" firstAttribute="centerY" secondItem="ZlO-FZ-kP9" secondAttribute="centerY" id="xRO-pI-i7q"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="ZlO-FZ-kP9" secondAttribute="trailing" constant="15" id="8PS-S3-rWG"/>
+                    <constraint firstAttribute="bottom" secondItem="ZlO-FZ-kP9" secondAttribute="bottom" id="gpb-rc-Ljv"/>
+                    <constraint firstItem="ZlO-FZ-kP9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="lsY-aj-9OA"/>
+                    <constraint firstItem="ZlO-FZ-kP9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" identifier="constraintStackTop" id="uan-YL-wZK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="checkboxButton" destination="bDp-GC-x7i" id="d7m-qu-mLw"/>
+                <outlet property="labelCheckbox" destination="xH0-Gl-gJM" id="Pgz-Io-aPQ"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="checkboxUnchecked" width="57" height="57"/>
+    </resources>
+</document>

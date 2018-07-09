@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Regular.otf">
+            <string>DINPro-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="66" id="KGk-i7-Jjw" customClass="TextFieldTableViewCell" customModule="TesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="65.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="textFieldLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGX-vl-JZp">
+                        <rect key="frame" x="15" y="10" width="290" height="19.5"/>
+                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fdE-TY-EGq">
+                        <rect key="frame" x="16" y="34.5" width="273" height="28"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2H-gt-hAc">
+                        <rect key="frame" x="284" y="24.5" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="6eL-rG-Cuk"/>
+                            <constraint firstAttribute="height" constant="20" id="aiy-lc-wCW"/>
+                        </constraints>
+                        <state key="normal" image="closeIcon"/>
+                        <connections>
+                            <action selector="buttonClearTouchUpInside:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="u5v-GN-o4b"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRQ-02-1RV">
+                        <rect key="frame" x="15" y="64.5" width="285" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="3jJ-Oa-ggJ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fdE-TY-EGq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="CnN-y1-KhS"/>
+                    <constraint firstItem="LRQ-02-1RV" firstAttribute="top" secondItem="fdE-TY-EGq" secondAttribute="bottom" constant="2" id="EkV-NK-F1y"/>
+                    <constraint firstItem="iGX-vl-JZp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="IJN-em-NEV"/>
+                    <constraint firstItem="m2H-gt-hAc" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="JYf-63-Jfp"/>
+                    <constraint firstItem="fdE-TY-EGq" firstAttribute="top" secondItem="m2H-gt-hAc" secondAttribute="bottom" constant="-10" id="Mlm-nh-aFy"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="fdE-TY-EGq" secondAttribute="trailing" constant="15" id="OnL-bW-Z6e"/>
+                    <constraint firstAttribute="trailing" secondItem="LRQ-02-1RV" secondAttribute="trailing" constant="20" id="Sgp-gg-zKb"/>
+                    <constraint firstAttribute="trailing" secondItem="iGX-vl-JZp" secondAttribute="trailing" constant="15" id="Ucp-Bd-Afg"/>
+                    <constraint firstItem="fdE-TY-EGq" firstAttribute="top" secondItem="iGX-vl-JZp" secondAttribute="bottom" constant="5" id="V35-ON-UQQ"/>
+                    <constraint firstAttribute="bottom" secondItem="LRQ-02-1RV" secondAttribute="bottom" id="W02-TY-YSU"/>
+                    <constraint firstItem="iGX-vl-JZp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" identifier="constraintLabelTop" id="Y15-M3-2qW"/>
+                    <constraint firstItem="LRQ-02-1RV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="gUc-yN-XQh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="buttonClear" destination="m2H-gt-hAc" id="xk0-Z2-ciO"/>
+                <outlet property="labelTextField" destination="iGX-vl-JZp" id="Dz9-yd-ZYi"/>
+                <outlet property="textFieldInput" destination="fdE-TY-EGq" id="iSj-fp-F8Z"/>
+                <outlet property="viewBottomLine" destination="LRQ-02-1RV" id="RzU-dT-JAd"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="65"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="closeIcon" width="60" height="60"/>
+    </resources>
+</document>
