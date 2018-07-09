@@ -19,7 +19,6 @@ protocol ShowFundsDisplayLogic: class {
 class ShowFundsViewController: UIViewController, ShowFundsDisplayLogic {
     
     var interactor: ShowFundsBusinessLogic?
-
     
     // MARK: Outlets
     @IBOutlet weak var screenTitleLabel: UILabel!
@@ -72,64 +71,16 @@ class ShowFundsViewController: UIViewController, ShowFundsDisplayLogic {
         let request = ShowFunds.Funds.Request()
         interactor?.requestData(request: request)
     }
-  
-    func display(viewModel: ShowFunds.Funds.ViewModel) {
-        
-        // Ensure this code will be called in the main thread
-        DispatchQueue.main.async {
-            self.titleLabel.text = viewModel.title
-            self.fundNameLabel.text = viewModel.fundName
-            self.descriptionTitleLabel.text = viewModel.whatIs
-            self.descriptionLabel.text = viewModel.definition
-            self.riskTitleLabel.text = viewModel.riskTitle
-            self.riskMeter.riskIndex = viewModel.risk - 1
-            self.extraInfoTitleLabel.text = viewModel.infoTitle
-            
-            for (index, element) in self.fundLabels.enumerated() {
-                element.text = viewModel.moreInfoFunds[index]
-            }
-            
-            for (index, element) in self.CDILabels.enumerated() {
-                element.text = viewModel.moreInfoCDI[index]
-            }
-            
-            self.buildDownInfo(viewModel: viewModel)
-        }
-    }
+ 
     
-    func buildDownInfo(viewModel: ViewModel) {
-        
-        if viewModel.infoNames.count + viewModel.downInfoNames.count == 0 {
-            return
+    @objc func openSafariPage() {
+        if let url = URL(string: "https://www.google.com") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
-        
-//        var closestTopView: UIView = bottomSeparator
-//        self.buttonTopConstraint.isActive = false
-//        
-//        let label = UILabel()
-//        label.text = viewModel.infoNames[0]
-//        label.font = UIFont(name: "DINPro-Medium", size: 16)
-//        contentView.addSubview(label)
-//        
-//        label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30).isActive = true
-//        label.topAnchor.constraint(equalTo: closestTopView.bottomAnchor, constant: 30).isActive = true
-//        closestTopView = label
-//        
-//        self.investButton.topAnchor.constraint(equalTo: closestTopView.bottomAnchor, constant: 45).isActive = true
-        
-        
-//        let label2 = UILabel()
-//        label2.text = viewModel.infoData[0]
-//        label2.font = UIFont(name: "DINPro-Medium", size: 16)
-        
-        
-        
-        
-        
     }
     
     func displayError() {
-        let controller = UIAlertController(title: "Erro", message: "Temos um problema. Tente novamente mais tarde", preferredStyle: .alert)
+        let controller = UIAlertController(title: "Erro", message: "Temos um problema, Tente novamente mais tarde", preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
         controller.addAction(action)
         
