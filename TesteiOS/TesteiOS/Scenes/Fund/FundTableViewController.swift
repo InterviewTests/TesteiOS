@@ -1,15 +1,15 @@
 //
-//  InvestimentoTableViewController.swift
+//  FundTableViewController.swift
 //  TesteiOS
 //
-//  Created by Bruno Pampolha on 7/7/18.
+//  Created by Bruno Pampolha on 7/9/18.
 //  Copyright © 2018 Bruno Pampolha. All rights reserved.
 //
 
 import UIKit
 import SafariServices
 
-class InvestimentoTableViewController: UITableViewController {
+class FundTableViewController: UITableViewController {
 
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblFundName: UILabel!
@@ -44,7 +44,6 @@ class InvestimentoTableViewController: UITableViewController {
     @IBOutlet weak var lblNameDownInfo3: UILabel!
     @IBOutlet weak var lblNameDownInfo4: UILabel!
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.title = "Investimento"
@@ -54,15 +53,15 @@ class InvestimentoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.fetch()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,7 +78,7 @@ class InvestimentoTableViewController: UITableViewController {
                 let screenContainer = try decoder.decode(ScreenContainer.self, from: data!)
                 
                 DispatchQueue.main.sync{
-//                    self..text = screenContainer.screen.
+                    //                    self..text = screenContainer.screen.
                     self.lblTitle.text = screenContainer.screen.title
                     self.lblFundName.text = screenContainer.screen.fundName
                     self.lblWhatIs.text = screenContainer.screen.whatIs
@@ -124,7 +123,7 @@ class InvestimentoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-
+    
     @IBAction func buttonDownloadClicked(_ sender: UIButton) {
         let urlString = "https://www.google.com"
         if let url = URL(string: urlString) {
@@ -132,8 +131,9 @@ class InvestimentoTableViewController: UITableViewController {
             self.present(safariViewController, animated: true)
         }
     }
-    // MARK: - Table view data source
 
+//    // MARK: - Table view data source
+//
 //    override func numberOfSections(in tableView: UITableView) -> Int {
 //        // #warning Incomplete implementation, return the number of sections
 //        return 0

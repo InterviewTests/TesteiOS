@@ -48,9 +48,9 @@ extension UITextField {
 }
 
 extension UITableView {
-    func setSucessoView (_ emptyTableView: Bool, delegate: ViewSucessoDelegate? = nil) {
+    func setSucessoView (_ emptyTableView: Bool, delegate: SuccessBackgroundViewDelegate? = nil) {
         if emptyTableView {
-            self.backgroundView = ViewSucesso(frame: self.bounds, delegate: delegate)
+            self.backgroundView = SuccessBackgroundView(frame: self.bounds, delegate: delegate)
             self.separatorStyle = .none
             self.tableFooterView = nil
         } else {

@@ -1,5 +1,5 @@
 //
-//  ViewSucesso.swift
+//  SuccessBackgroundView.swift
 //  TesteiOS
 //
 //  Created by Bruno Pampolha on 7/9/18.
@@ -8,19 +8,18 @@
 
 import UIKit
 
-protocol ViewSucessoDelegate {
+protocol SuccessBackgroundViewDelegate {
     func buttonDismissClicked()
 }
 
-class ViewSucesso: UIView {
-    
+class SuccessBackgroundView: UIView {
     // MARK: - @IBOutlet
-
+    
     @IBOutlet var view: UIView!
     
     // MARK: - Class variabels
     
-    var delegate: ViewSucessoDelegate? = nil
+    var delegate: SuccessBackgroundViewDelegate? = nil
     
     // MARK: - UIView
     
@@ -28,9 +27,9 @@ class ViewSucesso: UIView {
         super.init(coder: aDecoder)
     }
     
-    init(frame: CGRect, delegate: ViewSucessoDelegate?) {
+    init(frame: CGRect, delegate: SuccessBackgroundViewDelegate?) {
         super.init(frame: frame)
-        UINib(nibName: "ViewSucesso", bundle: nil).instantiate(withOwner: self, options: nil)
+        UINib(nibName: "SuccessBackgroundView", bundle: nil).instantiate(withOwner: self, options: nil)
         self.view.frame = frame
         self.addSubview(self.view)
         
