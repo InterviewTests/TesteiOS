@@ -1,5 +1,5 @@
 //
-//  ContactModels.swift
+//  CellRouter.swift
 //  TesteiOS
 //
 //  Created by Bruno Pampolha on 7/9/18.
@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+class CellRouker
+{
+    func doSomeWork()
+    {
+    }
+}

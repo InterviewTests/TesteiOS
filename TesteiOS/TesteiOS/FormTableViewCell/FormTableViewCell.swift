@@ -20,7 +20,7 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var checkBox: UIImageView!
     @IBOutlet weak var button: UIButton!
     
-    var cell: Cell? = nil
+    var cell: Cells.FetchCells.ViewModel.DisplayedCell? = nil
     var delegate: FormTableViewCellDelegate? = nil
     var checked: Bool = false
     var auxString: String = ""
@@ -36,7 +36,7 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         // Configure the view for the selected state
     }
     
-    func update(_ delegate: FormTableViewCellDelegate, cell: Cell) {
+    func update(_ delegate: FormTableViewCellDelegate, cell: Cells.FetchCells.ViewModel.DisplayedCell) {
         self.delegate = delegate
         self.cell = cell
         
@@ -54,18 +54,18 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
-    func updateFieldCell(cell: Cell) {
+    func updateFieldCell(cell: Cells.FetchCells.ViewModel.DisplayedCell) {
 //        self.textField.frame = CGRect(x: self.textField.frame.minX, y: self.textField.frame.minY, width: self.textField.frame.width, height: 50)
         self.textField.placeholder = cell.message
         self.textField.setBottomBorder(withColor: UIColor.lightGray)
         self.textField.delegate = self
     }
     
-    func updateTextCell(cell: Cell) {
+    func updateTextCell(cell: Cells.FetchCells.ViewModel.DisplayedCell) {
         self.label.text = cell.message
     }
     
-    func updateCheckboxCell(cell: Cell) {
+    func updateCheckboxCell(cell: Cells.FetchCells.ViewModel.DisplayedCell) {
         self.checkInfo.text = cell.message
         self.checkBox.image = UIImage(named: "\(self.checked ? "" : "un")checked")
     }
@@ -75,7 +75,7 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     
-    func updateButtonCell(cell: Cell) {
+    func updateButtonCell(cell: Cells.FetchCells.ViewModel.DisplayedCell) {
         self.button.setTitle(cell.message, for: .normal)
     }
     
@@ -83,8 +83,7 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     func validateInput () -> Bool {
         var result = true
-        
-        guard self.cell != nil && self.cell!.type == Cell.CellType.field.rawValue && !self.cell!.hidden else {
+        guard self.cell != nil && self.cell!.type == Cell.CellType.field.rawValue && !self.cell!.hidden && self.cell!.required else {
             return result
         }
         

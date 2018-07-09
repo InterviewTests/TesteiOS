@@ -16,7 +16,7 @@ class FundTableViewController: UITableViewController {
     @IBOutlet weak var lblWhatIs: UILabel!
     @IBOutlet weak var lblDefinition: UILabel!
     @IBOutlet weak var lblRiskTitle: UILabel!
-    // View Risk
+    @IBOutlet weak var imvRisk: UIImageView!
     @IBOutlet weak var lblInfoTitle: UILabel!
     @IBOutlet weak var lblMonthFundo: UILabel!
     @IBOutlet weak var lblMonthCDI: UILabel!
@@ -75,42 +75,42 @@ class FundTableViewController: UITableViewController {
             
             do {
                 let decoder = JSONDecoder()
-                let screenContainer = try decoder.decode(ScreenContainer.self, from: data!)
+                let fundContainer = try decoder.decode(FundContainer.self, from: data!)
                 
                 DispatchQueue.main.sync{
-                    //                    self..text = screenContainer.screen.
-                    self.lblTitle.text = screenContainer.screen.title
-                    self.lblFundName.text = screenContainer.screen.fundName
-                    self.lblWhatIs.text = screenContainer.screen.whatIs
-                    self.lblDefinition.text = screenContainer.screen.definition
-                    self.lblRiskTitle.text = screenContainer.screen.riskTitle
-                    // View Risk
-                    self.lblInfoTitle.text = screenContainer.screen.infoTitle
-                    self.lblMonthFundo.text = "\(screenContainer.screen.moreInfo.month.fund)%"
-                    self.lblMonthCDI.text = "\(screenContainer.screen.moreInfo.month.cdi)%"
-                    self.lblYearFundo.text = "\(screenContainer.screen.moreInfo.year.fund)%"
-                    self.lblYearCDI.text = "\(screenContainer.screen.moreInfo.year.cdi)%"
-                    self.lbl12MonthFundo.text = "\(screenContainer.screen.moreInfo.twelveMonths.fund)%"
-                    self.lbl12MonthCDI.text = "\(screenContainer.screen.moreInfo.twelveMonths.cdi)%"
-                    self.lblNameInfo0.text = screenContainer.screen.info[0].name
-                    self.lblDataInfo0.text = screenContainer.screen.info[0].data
-                    self.lblNameInfo1.text = screenContainer.screen.info[1].name
-                    self.lblDataInfo1.text = screenContainer.screen.info[1].data
-                    self.lblNameInfo2.text = screenContainer.screen.info[2].name
-                    self.lblDataInfo2.text = screenContainer.screen.info[2].data
-                    self.lblNameInfo3.text = screenContainer.screen.info[3].name
-                    self.lblDataInfo3.text = screenContainer.screen.info[3].data
-                    self.lblNameInfo4.text = screenContainer.screen.info[4].name
-                    self.lblDataInfo4.text = screenContainer.screen.info[4].data
-                    self.lblNameInfo5.text = screenContainer.screen.info[5].name
-                    self.lblDataInfo5.text = screenContainer.screen.info[5].data
-                    self.lblNameInfo6.text = screenContainer.screen.info[6].name
-                    self.lblDataInfo6.text = screenContainer.screen.info[6].data
-                    self.lblNameDownInfo0.text = screenContainer.screen.info[0].name
-                    self.lblNameDownInfo1.text = screenContainer.screen.info[1].name
-                    self.lblNameDownInfo2.text = screenContainer.screen.info[2].name
-                    self.lblNameDownInfo3.text = screenContainer.screen.info[3].name
-                    self.lblNameDownInfo4.text = screenContainer.screen.info[4].name
+//                    self..text = fundContainer.fund.
+                    self.lblTitle.text = fundContainer.fund.title
+                    self.lblFundName.text = fundContainer.fund.fundName
+                    self.lblWhatIs.text = fundContainer.fund.whatIs
+                    self.lblDefinition.text = fundContainer.fund.definition
+                    self.lblRiskTitle.text = fundContainer.fund.riskTitle
+                    self.imvRisk.image = UIImage(named: "risk\(fundContainer.fund.risk)")
+                    self.lblInfoTitle.text = fundContainer.fund.infoTitle
+                    self.lblMonthFundo.text = "\(fundContainer.fund.moreInfo.month.fund)%"
+                    self.lblMonthCDI.text = "\(fundContainer.fund.moreInfo.month.cdi)%"
+                    self.lblYearFundo.text = "\(fundContainer.fund.moreInfo.year.fund)%"
+                    self.lblYearCDI.text = "\(fundContainer.fund.moreInfo.year.cdi)%"
+                    self.lbl12MonthFundo.text = "\(fundContainer.fund.moreInfo.twelveMonths.fund)%"
+                    self.lbl12MonthCDI.text = "\(fundContainer.fund.moreInfo.twelveMonths.cdi)%"
+                    self.lblNameInfo0.text = fundContainer.fund.info[0].name
+                    self.lblDataInfo0.text = fundContainer.fund.info[0].data
+                    self.lblNameInfo1.text = fundContainer.fund.info[1].name
+                    self.lblDataInfo1.text = fundContainer.fund.info[1].data
+                    self.lblNameInfo2.text = fundContainer.fund.info[2].name
+                    self.lblDataInfo2.text = fundContainer.fund.info[2].data
+                    self.lblNameInfo3.text = fundContainer.fund.info[3].name
+                    self.lblDataInfo3.text = fundContainer.fund.info[3].data
+                    self.lblNameInfo4.text = fundContainer.fund.info[4].name
+                    self.lblDataInfo4.text = fundContainer.fund.info[4].data
+                    self.lblNameInfo5.text = fundContainer.fund.info[5].name
+                    self.lblDataInfo5.text = fundContainer.fund.info[5].data
+                    self.lblNameInfo6.text = fundContainer.fund.info[6].name
+                    self.lblDataInfo6.text = fundContainer.fund.info[6].data
+                    self.lblNameDownInfo0.text = fundContainer.fund.info[0].name
+                    self.lblNameDownInfo1.text = fundContainer.fund.info[1].name
+                    self.lblNameDownInfo2.text = fundContainer.fund.info[2].name
+                    self.lblNameDownInfo3.text = fundContainer.fund.info[3].name
+                    self.lblNameDownInfo4.text = fundContainer.fund.info[4].name
                 }
                 
             } catch let error {

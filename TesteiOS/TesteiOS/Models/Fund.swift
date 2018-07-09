@@ -1,18 +1,22 @@
 //
-//  Screen.swift
+//  Fund.swift
 //  TesteiOS
 //
-//  Created by Bruno Pampolha on 7/7/18.
+//  Created by Bruno Pampolha on 7/9/18.
 //  Copyright © 2018 Bruno Pampolha. All rights reserved.
 //
 
 import Foundation
 
-struct ScreenContainer: Codable {
-    var screen: Screen
+struct FundContainer: Codable {
+    var fund: Fund
+    
+    enum CodingKeys : String, CodingKey {
+        case fund = "screen"
+    }
 }
 
-struct Screen: Codable {
+struct Fund: Codable {
     enum Risk: Int {
         case one = 1
         case two = 2
