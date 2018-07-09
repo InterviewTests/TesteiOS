@@ -12,5 +12,6 @@ extension UIColor {
     struct CustomColor {
         static let vividRed = UIColor(hex: 0xDA0101)
         static let strongRed = UIColor(hex: 0xC80404)
+        static let lightGrayishOrange = UIColor(hex: 0xEFEEED)
     }
 }
