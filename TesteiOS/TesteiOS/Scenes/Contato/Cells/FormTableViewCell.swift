@@ -55,6 +55,7 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func updateFieldCell(cell: Cell) {
+//        self.textField.frame = CGRect(x: self.textField.frame.minX, y: self.textField.frame.minY, width: self.textField.frame.width, height: 50)
         self.textField.placeholder = cell.message
         self.textField.setBottomBorder(withColor: UIColor.lightGray)
         self.textField.delegate = self
@@ -83,7 +84,7 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     func validateInput () -> Bool {
         var result = true
         
-        guard self.cell != nil && self.cell!.type == Cell.CellType.field.rawValue else {
+        guard self.cell != nil && self.cell!.type == Cell.CellType.field.rawValue && !self.cell!.hidden else {
             return result
         }
         
@@ -102,6 +103,7 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
         
         self.textField.setBottomBorder(withColor: result ? UIColor.green : UIColor.red)
+        self.textField.resignFirstResponder()
         
         return result
     }

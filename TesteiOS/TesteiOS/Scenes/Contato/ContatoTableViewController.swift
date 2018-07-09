@@ -14,6 +14,7 @@ class ContatoTableViewController: UITableViewController, FormTableViewCellDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.title = "Contato"
+        self.tabBarController?.navigationItem.rightBarButtonItems = []
         self.tabBarController?.setSelectionIndicatorColor(color: UIColor.selectedRed)
     }
     
@@ -129,12 +130,15 @@ class ContatoTableViewController: UITableViewController, FormTableViewCellDelega
         
         for index in 0..<self.cellList!.cells.count {
             if let formCell: FormTableViewCell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? FormTableViewCell {
-                formValidInput = formValidInput && formCell.validateInput()
+                
+                let formCellValidInput = formCell.validateInput()
+                print("Validating \(formCell.cell!.id) input: \(formCellValidInput)")
+                formValidInput = formValidInput && formCellValidInput
             }
         }
         
         if formValidInput {
-            self.cellList!.cells = []
+            self.cellList!.cells.removeAll()
             self.tableView.reloadData()
         }
     }
