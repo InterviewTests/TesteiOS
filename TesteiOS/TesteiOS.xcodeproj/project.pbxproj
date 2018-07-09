@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		F20C041920F2DD9400BB09C9 /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20C041820F2DD9400BB09C9 /* Separator.swift */; };
 		F243921F20F32D580071B36A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F243921E20F32D580071B36A /* Assets.xcassets */; };
+		F243922820F37D710071B36A /* ShowFundsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F243922220F37D710071B36A /* ShowFundsInteractor.swift */; };
+		F243922920F37D710071B36A /* ShowFundsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F243922320F37D710071B36A /* ShowFundsModels.swift */; };
+		F243922A20F37D710071B36A /* ShowFundsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F243922420F37D710071B36A /* ShowFundsPresenter.swift */; };
+		F243922C20F37D710071B36A /* ShowFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F243922620F37D710071B36A /* ShowFundsViewController.swift */; };
+		F243922D20F37D710071B36A /* ShowFundsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F243922720F37D710071B36A /* ShowFundsWorker.swift */; };
 		F27B78F420F2472400989618 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27B78F320F2472400989618 /* AppDelegate.swift */; };
 		F27B78F920F2472400989618 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F27B78F720F2472400989618 /* Main.storyboard */; };
 		F27B78FE20F2472400989618 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F27B78FC20F2472400989618 /* LaunchScreen.storyboard */; };
@@ -43,6 +48,11 @@
 /* Begin PBXFileReference section */
 		F20C041820F2DD9400BB09C9 /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		F243921E20F32D580071B36A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F243922220F37D710071B36A /* ShowFundsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowFundsInteractor.swift; sourceTree = "<group>"; };
+		F243922320F37D710071B36A /* ShowFundsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowFundsModels.swift; sourceTree = "<group>"; };
+		F243922420F37D710071B36A /* ShowFundsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowFundsPresenter.swift; sourceTree = "<group>"; };
+		F243922620F37D710071B36A /* ShowFundsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowFundsViewController.swift; sourceTree = "<group>"; };
+		F243922720F37D710071B36A /* ShowFundsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowFundsWorker.swift; sourceTree = "<group>"; };
 		F27B78F020F2472400989618 /* TesteiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TesteiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F27B78F320F2472400989618 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F27B78F820F2472400989618 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,6 +105,26 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		F243922020F37C810071B36A /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				F243922120F37CFD0071B36A /* ShowFunds */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		F243922120F37CFD0071B36A /* ShowFunds */ = {
+			isa = PBXGroup;
+			children = (
+				F243922220F37D710071B36A /* ShowFundsInteractor.swift */,
+				F243922320F37D710071B36A /* ShowFundsModels.swift */,
+				F243922420F37D710071B36A /* ShowFundsPresenter.swift */,
+				F243922620F37D710071B36A /* ShowFundsViewController.swift */,
+				F243922720F37D710071B36A /* ShowFundsWorker.swift */,
+			);
+			path = ShowFunds;
+			sourceTree = "<group>";
+		};
 		F27B78E720F2472400989618 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +146,7 @@
 		F27B78F220F2472400989618 /* TesteiOS */ = {
 			isa = PBXGroup;
 			children = (
+				F243922020F37C810071B36A /* Scenes */,
 				F243921E20F32D580071B36A /* Assets.xcassets */,
 				F20C041720F2DD6D00BB09C9 /* Views */,
 				F27B793A20F2791800989618 /* Utils */,
@@ -286,12 +317,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F243922820F37D710071B36A /* ShowFundsInteractor.swift in Sources */,
 				F27B78F420F2472400989618 /* AppDelegate.swift in Sources */,
 				F27B794220F2833900989618 /* RootPageViewController+view.swift in Sources */,
+				F243922C20F37D710071B36A /* ShowFundsViewController.swift in Sources */,
 				F27B793E20F279BD00989618 /* UIColor+Hex.swift in Sources */,
+				F243922920F37D710071B36A /* ShowFundsModels.swift in Sources */,
 				F27B793C20F2792700989618 /* UIColor+CustomColor.swift in Sources */,
+				F243922A20F37D710071B36A /* ShowFundsPresenter.swift in Sources */,
 				F2D2AB9320F30BBC00D5EBC9 /* RiskMeter.swift in Sources */,
 				F27B793920F25EF200989618 /* RootPageViewController.swift in Sources */,
+				F243922D20F37D710071B36A /* ShowFundsWorker.swift in Sources */,
 				F20C041920F2DD9400BB09C9 /* Separator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

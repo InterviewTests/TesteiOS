@@ -16,7 +16,9 @@ class RiskMeter: UIView {
     var riskIndex: Int = 2 {
         didSet {
             displayRisk()
+            bars[oldValue].transform = .identity
         }
+        
     }
  
     override init(frame: CGRect) {
