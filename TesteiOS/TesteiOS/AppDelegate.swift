@@ -21,9 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBar: UITabBarController = UITabBarController()
         let fundosVC = FundosViewController(nibName: "Fundos", bundle: nil)
         let formVC = FormViewController()
-        fundosVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
-        formVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
+        fundosVC.tabBarItem = UITabBarItem(title: "Investimento", image: nil, tag: 0)
+        formVC.tabBarItem = UITabBarItem(title: "Contato", image: nil, tag: 1)
         tabBar.viewControllers = [fundosVC, formVC]
+        tabBar.tabBar.unselectedItemTintColor = UIColor.white
+        let colorUnselected = UIColor(red: 202.0/255.0, green: 40.0/255.0, blue: 15.0/255.0, alpha: 1.0)
+        let colorSelected = UIColor(red: 186.0/255.0, green: 37.0/255.0, blue: 16.0/255.0, alpha: 1.0)
+        tabBar.tabBar.barTintColor = colorUnselected
+        tabBar.tabBar.tintColor = colorSelected
         
         let initialViewController = tabBar
         
