@@ -32,78 +32,34 @@ class CellsWorker
             }
         }
     }
-    
-    func createCell(cellToCreate: Cell, completionHandler: @escaping (Cell?) -> Void)
-    {
-        cellsStore.createCell(cellToCreate: cellToCreate) { (cell: () throws -> Cell?) -> Void in
-            do {
-                let cell = try cell()
-                DispatchQueue.main.async {
-                    completionHandler(cell)
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    completionHandler(nil)
-                }
-            }
-        }
-    }
-    
-    func updateCell(cellToUpdate: Cell, completionHandler: @escaping (Cell?) -> Void)
-    {
-        cellsStore.updateCell(cellToUpdate: cellToUpdate) { (cell: () throws -> Cell?) in
-            do {
-                let cell = try cell()
-                DispatchQueue.main.async {
-                    completionHandler(cell)
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    completionHandler(nil)
-                }
-            }
-        }
-    }
 }
 
 // MARK: - Cells store API
 
 protocol CellsStoreProtocol
 {
-    // MARK: CRUD operations - Optional error
+    // MARK: Fetch operations - Optional error
     
     func fetchCells(completionHandler: @escaping ([Cell], CellsStoreError?) -> Void)
     func fetchCell(id: Int, completionHandler: @escaping (Cell?, CellsStoreError?) -> Void)
-    func createCell(cellToCreate: Cell, completionHandler: @escaping (Cell?, CellsStoreError?) -> Void)
-    func updateCell(cellToUpdate: Cell, completionHandler: @escaping (Cell?, CellsStoreError?) -> Void)
-    func deleteCell(id: String, completionHandler: @escaping (Cell?, CellsStoreError?) -> Void)
     
-    // MARK: CRUD operations - Generic enum result type
+    // MARK: Fetch operations - Generic enum result type
     
     func fetchCells(completionHandler: @escaping CellsStoreFetchCellsCompletionHandler)
     func fetchCell(id: Int, completionHandler: @escaping CellsStoreFetchCellCompletionHandler)
-    func createCell(cellToCreate: Cell, completionHandler: @escaping CellsStoreCreateCellCompletionHandler)
-    func updateCell(cellToUpdate: Cell, completionHandler: @escaping CellsStoreUpdateCellCompletionHandler)
-    func deleteCell(id: String, completionHandler: @escaping CellsStoreDeleteCellCompletionHandler)
     
-    // MARK: CRUD operations - Inner closure
+    // MARK: Fetch operations - Inner closure
     
     func fetchCells(completionHandler: @escaping (() throws -> [Cell]) -> Void)
     func fetchCell(id: Int, completionHandler: @escaping (() throws -> Cell?) -> Void)
-    func createCell(cellToCreate: Cell, completionHandler: @escaping (() throws -> Cell?) -> Void)
-    func updateCell(cellToUpdate: Cell, completionHandler: @escaping (() throws -> Cell?) -> Void)
-    func deleteCell(id: String, completionHandler: @escaping (() throws -> Cell?) -> Void)
 }
 
 protocol CellsStoreUtilityProtocol {}
 
-// MARK: - Cells store CRUD operation results
+// MARK: - Cells store Fetch operation results
 
 typealias CellsStoreFetchCellsCompletionHandler = (CellsStoreResult<[Cell]>) -> Void
 typealias CellsStoreFetchCellCompletionHandler = (CellsStoreResult<Cell>) -> Void
-typealias CellsStoreCreateCellCompletionHandler = (CellsStoreResult<Cell>) -> Void
-typealias CellsStoreUpdateCellCompletionHandler = (CellsStoreResult<Cell>) -> Void
-typealias CellsStoreDeleteCellCompletionHandler = (CellsStoreResult<Cell>) -> Void
 
 enum CellsStoreResult<U>
 {
@@ -111,23 +67,17 @@ enum CellsStoreResult<U>
     case Failure(error: CellsStoreError)
 }
 
-// MARK: - Cells store CRUD operation errors
+// MARK: - Cells store Fetch operation errors
 
 enum CellsStoreError: Equatable, Error
 {
     case CannotFetch(String)
-    case CannotCreate(String)
-    case CannotUpdate(String)
-    case CannotDelete(String)
 }
 
 func ==(lhs: CellsStoreError, rhs: CellsStoreError) -> Bool
 {
     switch (lhs, rhs) {
     case (.CannotFetch(let a), .CannotFetch(let b)) where a == b: return true
-    case (.CannotCreate(let a), .CannotCreate(let b)) where a == b: return true
-    case (.CannotUpdate(let a), .CannotUpdate(let b)) where a == b: return true
-    case (.CannotDelete(let a), .CannotDelete(let b)) where a == b: return true
     default: return false
     }
 }

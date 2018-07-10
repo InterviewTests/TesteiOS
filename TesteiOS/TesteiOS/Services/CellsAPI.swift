@@ -36,7 +36,7 @@ class CellsAPI: CellsStoreProtocol, CellsStoreUtilityProtocol {
         task.resume()
     }
     
-    // MARK: - CRUD operations - Optional error
+    // MARK: - Fetch operations - Optional error
     
     func fetchCells(completionHandler: @escaping ([Cell], CellsStoreError?) -> Void) {
         completionHandler(self.cells, nil)
@@ -51,19 +51,7 @@ class CellsAPI: CellsStoreProtocol, CellsStoreUtilityProtocol {
         }
     }
     
-    func createCell(cellToCreate: Cell, completionHandler: @escaping (Cell?, CellsStoreError?) -> Void)
-    {
-    }
-    
-    func updateCell(cellToUpdate: Cell, completionHandler: @escaping (Cell?, CellsStoreError?) -> Void)
-    {
-    }
-    
-    func deleteCell(id: String, completionHandler: @escaping (Cell?, CellsStoreError?) -> Void)
-    {
-    }
-    
-    // MARK: - CRUD operations - Generic enum result type
+    // MARK: - Fetch operations - Generic enum result type
     
     func fetchCells(completionHandler: @escaping CellsStoreFetchCellsCompletionHandler) {
         completionHandler(CellsStoreResult.Success(result: self.cells))
@@ -80,19 +68,7 @@ class CellsAPI: CellsStoreProtocol, CellsStoreUtilityProtocol {
         }
     }
     
-    func createCell(cellToCreate: Cell, completionHandler: @escaping CellsStoreCreateCellCompletionHandler)
-    {
-    }
-    
-    func updateCell(cellToUpdate: Cell, completionHandler: @escaping CellsStoreUpdateCellCompletionHandler)
-    {
-    }
-    
-    func deleteCell(id: String, completionHandler: @escaping CellsStoreDeleteCellCompletionHandler)
-    {
-    }
-    
-    // MARK: - CRUD operations - Inner closure
+    // MARK: - Fetch operations - Inner closure
     
     func fetchCells(completionHandler: @escaping (() throws -> [Cell]) -> Void) {
         completionHandler { return self.cells }
@@ -104,18 +80,6 @@ class CellsAPI: CellsStoreProtocol, CellsStoreUtilityProtocol {
         } else {
             completionHandler { throw CellsStoreError.CannotFetch("Cannot fetch cell with id \(id)") }
         }
-    }
-    
-    func createCell(cellToCreate: Cell, completionHandler: @escaping (() throws -> Cell?) -> Void)
-    {
-    }
-    
-    func updateCell(cellToUpdate: Cell, completionHandler: @escaping (() throws -> Cell?) -> Void)
-    {
-    }
-    
-    func deleteCell(id: String, completionHandler: @escaping (() throws -> Cell?) -> Void)
-    {
     }
     
     // MARK: - Convenience methods

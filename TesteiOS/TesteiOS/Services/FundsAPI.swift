@@ -42,7 +42,7 @@ class FundsAPI: FundsStoreProtocol, FundsStoreUtilityProtocol {
         task.resume()
     }
     
-    // MARK: - CRUD operations - Optional error
+    // MARK: - Fetch operations - Optional error
     
     func fetchFunds(completionHandler: @escaping ([Fund], FundsStoreError?) -> Void) {
         completionHandler(self.funds, nil)
@@ -56,19 +56,7 @@ class FundsAPI: FundsStoreProtocol, FundsStoreUtilityProtocol {
         }
     }
     
-    func createFund(fundToCreate: Fund, completionHandler: @escaping (Fund?, FundsStoreError?) -> Void)
-    {
-    }
-    
-    func updateFund(fundToUpdate: Fund, completionHandler: @escaping (Fund?, FundsStoreError?) -> Void)
-    {
-    }
-    
-    func deleteFund(id: String, completionHandler: @escaping (Fund?, FundsStoreError?) -> Void)
-    {
-    }
-    
-    // MARK: - CRUD operations - Generic enum result type
+    // MARK: - Fetch operations - Generic enum result type
     
     func fetchFunds(completionHandler: @escaping FundsStoreFetchFundsCompletionHandler) {
         completionHandler(FundsStoreResult.Success(result: self.funds))
@@ -82,19 +70,7 @@ class FundsAPI: FundsStoreProtocol, FundsStoreUtilityProtocol {
         }
     }
     
-    func createFund(fundToCreate: Fund, completionHandler: @escaping FundsStoreCreateFundCompletionHandler)
-    {
-    }
-    
-    func updateFund(fundToUpdate: Fund, completionHandler: @escaping FundsStoreUpdateFundCompletionHandler)
-    {
-    }
-    
-    func deleteFund(id: String, completionHandler: @escaping FundsStoreDeleteFundCompletionHandler)
-    {
-    }
-    
-    // MARK: - CRUD operations - Inner closure
+    // MARK: - Fetch operations - Inner closure
     
     func fetchFunds(completionHandler: @escaping (() throws -> [Fund]) -> Void) {
         completionHandler { return self.funds }
@@ -106,17 +82,5 @@ class FundsAPI: FundsStoreProtocol, FundsStoreUtilityProtocol {
         } else {
             completionHandler { throw FundsStoreError.CannotFetch("Cannot fetch fund") }
         }
-    }
-    
-    func createFund(fundToCreate: Fund, completionHandler: @escaping (() throws -> Fund?) -> Void)
-    {
-    }
-    
-    func updateFund(fundToUpdate: Fund, completionHandler: @escaping (() throws -> Fund?) -> Void)
-    {
-    }
-    
-    func deleteFund(id: String, completionHandler: @escaping (() throws -> Fund?) -> Void)
-    {
     }
 }

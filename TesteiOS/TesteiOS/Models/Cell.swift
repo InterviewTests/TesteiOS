@@ -12,7 +12,7 @@ struct CellList: Codable {
     var cells: [Cell]
 }
 
-struct Cell: Codable {
+struct Cell: Equatable, Codable {
     enum CellType: Int {
         case field = 1
         case text = 2
@@ -36,4 +36,9 @@ struct Cell: Codable {
     var topSpacing: Double
     var show: Int?
     var required: Bool
+}
+
+func ==(lhs: Cell, rhs: Cell) -> Bool
+{
+    return lhs.id == rhs.id
 }
