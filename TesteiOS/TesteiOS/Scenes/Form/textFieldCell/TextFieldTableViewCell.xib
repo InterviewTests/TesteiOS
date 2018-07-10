@@ -36,6 +36,12 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                         <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <action selector="textFieldDidBegin:" destination="KGk-i7-Jjw" eventType="editingDidBegin" id="wfJ-md-dg0"/>
+                            <action selector="textFieldDidEnd:" destination="KGk-i7-Jjw" eventType="editingDidEnd" id="996-SJ-YYa"/>
+                            <action selector="textFieldEditingChanged:" destination="KGk-i7-Jjw" eventType="editingChanged" id="bWl-Wr-nwh"/>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="70p-Mz-ln8"/>
+                        </connections>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2H-gt-hAc">
                         <rect key="frame" x="284" y="24.5" width="20" height="20"/>
@@ -50,7 +56,7 @@
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRQ-02-1RV">
                         <rect key="frame" x="15" y="64.5" width="285" height="1"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="3jJ-Oa-ggJ"/>
                         </constraints>
