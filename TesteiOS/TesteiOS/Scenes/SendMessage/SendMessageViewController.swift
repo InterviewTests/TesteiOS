@@ -48,7 +48,7 @@ class SendMessageViewController: UIViewController, SendMessageDisplayLogic {
   
     func doSomething() {
         let request = SendMessage.Something.Request()
-        interactor?.doSomething(request: request)
+        interactor?.request(request: request)
     }
   
     func display(viewModel: SendMessage.Something.ViewModel) {

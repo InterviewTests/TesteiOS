@@ -108,13 +108,9 @@ enum ShowFunds {
                 self.info = info
                 self.downInfo = downInfo
             } else {
-                throw FundsError.BadJSONError
+                throw ParsingError.BadJSONError
             }
         }
     
-    }
-    
-    enum FundsError: Error {
-        case BadJSONError
     }
 }

@@ -9,30 +9,23 @@
 
 import UIKit
 
-protocol SendMessageBusinessLogic
-{
-  func doSomething(request: SendMessage.Something.Request)
+
+
+protocol SendMessageBusinessLogic {
+  func request(request: SendMessage.Something.Request)
 }
 
-protocol SendMessageDataStore
-{
-  //var name: String { get set }
-}
-
-class SendMessageInteractor: SendMessageBusinessLogic, SendMessageDataStore
-{
-  var presenter: SendMessagePresentationLogic?
-  var worker: SendMessageWorker?
+class SendMessageInteractor: SendMessageBusinessLogic {
+    var presenter: SendMessagePresentationLogic?
+    var worker: SendMessageWorker?
   //var name: String = ""
   
   // MARK: Do something
   
-  func doSomething(request: SendMessage.Something.Request)
-  {
-    worker = SendMessageWorker()
-    worker?.doSomeWork()
-    
-//    let response = SendMessage.Something.Response()
-//    presenter?.presentSomething(response: response)
-  }
+    func request(request: SendMessage.Something.Request) {
+        worker = SendMessageWorker()
+        worker?.requestForm(url: request.url) { response in
+            print(response)
+        }
+    }
 }
