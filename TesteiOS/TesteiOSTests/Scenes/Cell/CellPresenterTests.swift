@@ -9,36 +9,31 @@
 import XCTest
 @testable import TesteiOS
 
-class CellsPresenterTests: XCTestCase
-{
+class CellsPresenterTests: XCTestCase {
     // MARK: - Subject under test
     
     var sut: CellsPresenter!
     
     // MARK: - Test lifecycle
     
-    override func setUp()
-    {
+    override func setUp() {
         super.setUp()
         setupCellsPresenter()
     }
     
-    override func tearDown()
-    {
+    override func tearDown() {
         super.tearDown()
     }
     
     // MARK: - Test setup
     
-    func setupCellsPresenter()
-    {
+    func setupCellsPresenter() {
         sut = CellsPresenter()
     }
     
     // MARK: - Test doubles
     
-    class CellsDisplayLogicSpy: CellsDisplayLogic
-    {
+    class CellsDisplayLogicSpy: CellsDisplayLogic {
         // MARK: Method call expectations
         
         var displayFetchedCellsCalled = false
@@ -49,8 +44,7 @@ class CellsPresenterTests: XCTestCase
         
         // MARK: Spied methods
         
-        func displayFetchedCells(viewModel: Cells.FetchCells.ViewModel)
-        {
+        func displayFetchedCells(viewModel: Cells.FetchCells.ViewModel) {
             displayFetchedCellsCalled = true
             self.viewModel = viewModel
         }
@@ -58,8 +52,7 @@ class CellsPresenterTests: XCTestCase
     
     // MARK: - Tests
     
-    func testPresentFetchedCellsShouldFormatFetchedCellsForDisplay()
-    {
+    func testPresentFetchedCellsShouldFormatFetchedCellsForDisplay() {
         // Given
         let listCellsDisplayLogicSpy = CellsDisplayLogicSpy()
         sut.viewController = listCellsDisplayLogicSpy
@@ -75,13 +68,12 @@ class CellsPresenterTests: XCTestCase
         // Then
         let displayedCells = listCellsDisplayLogicSpy.viewModel.displayedCells
         for displayedCell in displayedCells {
-            XCTAssertEqual(displayedCell.id, 1, "Presenting fetched cells should properly format cell ID")
-            XCTAssertEqual(displayedCell.message, "Um texto informativo para exibição", "Presenting fetched cells should properly format cell date")
+            XCTAssertEqual(displayedCell.id, 1, "Presenting fetched cells should properly format cell id")
+            XCTAssertEqual(displayedCell.message, "Um texto informativo para exibição", "Presenting fetched cells should properly format cell message")
         }
     }
     
-    func testPresentFetchedCellsShouldAskViewControllerToDisplayFetchedCells()
-    {
+    func testPresentFetchedCellsShouldAskViewControllerToDisplayFetchedCells() {
         // Given
         let listCellsDisplayLogicSpy = CellsDisplayLogicSpy()
         sut.viewController = listCellsDisplayLogicSpy
@@ -95,4 +87,3 @@ class CellsPresenterTests: XCTestCase
         XCTAssert(listCellsDisplayLogicSpy.displayFetchedCellsCalled, "Presenting fetched cells should ask view controller to display them")
     }
 }
-

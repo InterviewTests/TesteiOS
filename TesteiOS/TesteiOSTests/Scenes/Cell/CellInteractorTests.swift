@@ -9,58 +9,50 @@
 import XCTest
 @testable import TesteiOS
 
-class CellsInteractorTests: XCTestCase
-{
+class CellsInteractorTests: XCTestCase {
     // MARK: - Subject under test
     
     var sut: CellsInteractor!
     
     // MARK: - Test lifecycle
     
-    override func setUp()
-    {
+    override func setUp() {
         super.setUp()
         setupCellsInteractor()
     }
     
-    override func tearDown()
-    {
+    override func tearDown() {
         super.tearDown()
     }
     
     // MARK: - Test setup
     
-    func setupCellsInteractor()
-    {
+    func setupCellsInteractor() {
         sut = CellsInteractor()
     }
     
     // MARK: - Test doubles
     
-    class CellsPresentationLogicSpy: CellsPresentationLogic
-    {
+    class CellsPresentationLogicSpy: CellsPresentationLogic {
         // MARK: Method call expectations
         
         var presentFetchedCellsCalled = false
         
         // MARK: Spied methods
         
-        func presentFetchedCells(response: Cells.FetchCells.Response)
-        {
+        func presentFetchedCells(response: Cells.FetchCells.Response) {
             presentFetchedCellsCalled = true
         }
     }
     
-    class CellsWorkerSpy: CellsWorker
-    {
+    class CellsWorkerSpy: CellsWorker {
         // MARK: Method call expectations
         
         var fetchCellsCalled = false
         
         // MARK: Spied methods
         
-        override func fetchCells(completionHandler: @escaping ([Cell]) -> Void)
-        {
+        override func fetchCells(completionHandler: @escaping ([Cell]) -> Void) {
             fetchCellsCalled = true
             completionHandler([Seeds.Cells.text, Seeds.Cells.fieldText])
         }
@@ -68,8 +60,7 @@ class CellsInteractorTests: XCTestCase
     
     // MARK: - Tests
     
-    func testFetchCellsShouldAskCellsWorkerToFetchCellsAndPresenterToFormatResult()
-    {
+    func testFetchCellsShouldAskCellsWorkerToFetchCellsAndPresenterToFormatResult() {
         // Given
         let cellsPresentationLogicSpy = CellsPresentationLogicSpy()
         sut.presenter = cellsPresentationLogicSpy

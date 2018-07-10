@@ -8,17 +8,14 @@
 
 import Foundation
 
-class FundsWorker
-{
+class FundsWorker {
     var fundsStore: FundsStoreProtocol
     
-    init(fundsStore: FundsStoreProtocol)
-    {
+    init(fundsStore: FundsStoreProtocol) {
         self.fundsStore = fundsStore
     }
     
-    func fetchFunds(completionHandler: @escaping ([Fund]) -> Void)
-    {
+    func fetchFunds(completionHandler: @escaping ([Fund]) -> Void) {
         fundsStore.fetchFunds { (funds: () throws -> [Fund]) -> Void in
             do {
                 let funds = try funds()
@@ -36,8 +33,7 @@ class FundsWorker
 
 // MARK: - Funds store API
 
-protocol FundsStoreProtocol
-{
+protocol FundsStoreProtocol {
     // MARK: Fetch operations - Optional error
     
     func fetchFunds(completionHandler: @escaping ([Fund], FundsStoreError?) -> Void)
@@ -61,21 +57,18 @@ protocol FundsStoreUtilityProtocol {}
 typealias FundsStoreFetchFundsCompletionHandler = (FundsStoreResult<[Fund]>) -> Void
 typealias FundsStoreFetchFundCompletionHandler = (FundsStoreResult<Fund>) -> Void
 
-enum FundsStoreResult<U>
-{
+enum FundsStoreResult<U> {
     case Success(result: U)
     case Failure(error: FundsStoreError)
 }
 
 // MARK: - Funds store Fetch operation errors
 
-enum FundsStoreError: Equatable, Error
-{
+enum FundsStoreError: Equatable, Error {
     case CannotFetch(String)
 }
 
-func ==(lhs: FundsStoreError, rhs: FundsStoreError) -> Bool
-{
+func ==(lhs: FundsStoreError, rhs: FundsStoreError) -> Bool {
     switch (lhs, rhs) {
     case (.CannotFetch(let a), .CannotFetch(let b)) where a == b: return true
     default: return false

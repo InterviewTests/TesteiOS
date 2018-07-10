@@ -8,9 +8,7 @@
 
 import Foundation
 
-class CellWorker
-{
-    func doSomeWork()
-    {
+class CellWorker {
+    func doSomeWork() {
     }
 }

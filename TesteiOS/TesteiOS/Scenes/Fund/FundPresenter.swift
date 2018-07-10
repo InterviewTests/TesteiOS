@@ -8,19 +8,16 @@
 
 import Foundation
 
-protocol FundsPresentationLogic
-{
+protocol FundsPresentationLogic {
     func presentFetchedFunds(response: Funds.FetchFunds.Response)
 }
 
-class FundsPresenter: FundsPresentationLogic
-{
+class FundsPresenter: FundsPresentationLogic {
     weak var viewController: FundsDisplayLogic?
     
     // MARK: - Fetch orders
     
-    func presentFetchedFunds(response: Funds.FetchFunds.Response)
-    {
+    func presentFetchedFunds(response: Funds.FetchFunds.Response) {
         var displayedFunds: [Funds.FetchFunds.ViewModel.DisplayedFund] = []
         for fund in response.funds {
             let title = fund.title

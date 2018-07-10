@@ -8,9 +8,7 @@
 
 import Foundation
 
-class FundRouter
-{
-    func doSomeRoute()
-    {
+class FundRouter {
+    func doSomeRoute() {
     }
 }

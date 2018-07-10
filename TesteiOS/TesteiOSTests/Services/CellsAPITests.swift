@@ -18,22 +18,19 @@ class CellsAPITests: XCTestCase
     
     // MARK: - Test lifecycle
     
-    override func setUp()
-    {
+    override func setUp() {
         super.setUp()
         setupCellsAPI()
     }
     
-    override func tearDown()
-    {
+    override func tearDown() {
         resetCellsAPI()
         super.tearDown()
     }
     
     // MARK: - Test setup
     
-    func setupCellsAPI()
-    {
+    func setupCellsAPI() {
         sut = CellsAPI()
         
         testCells = [Seeds.Cells.text, Seeds.Cells.fieldText, Seeds.Cells.fieldPhone, Seeds.Cells.fieldEmail, Seeds.Cells.checkbox, Seeds.Cells.button]
@@ -41,16 +38,14 @@ class CellsAPITests: XCTestCase
         sut.cells = testCells
     }
     
-    func resetCellsAPI()
-    {
+    func resetCellsAPI() {
         sut.cells = []
         sut = nil
     }
     
-    // MARK: - Test CRUD operations - Optional error
+    // MARK: - Test Fetch operations - Optional error
     
-    func testFetchCellsShouldReturnListOfCells_OptionalError()
-    {
+    func testFetchCellsShouldReturnListOfCells_OptionalError() {
         // Given
         
         // When
@@ -72,8 +67,7 @@ class CellsAPITests: XCTestCase
         XCTAssertNil(fetchCellsError, "fetchCells() should not return an error")
     }
     
-    func testFetchCellShouldReturnCell_OptionalError()
-    {
+    func testFetchCellShouldReturnCell_OptionalError() {
         // Given
         let cellToFetch = testCells.first!
         
@@ -93,10 +87,9 @@ class CellsAPITests: XCTestCase
         XCTAssertNil(fetchCellError, "fetchCell() should not return an error")
     }
     
-    // MARK: - Test CRUD operations - Generic enum result type
+    // MARK: - Test Fetch operations - Generic enum result type
     
-    func testFetchCellsShouldReturnListOfCells_GenericEnumResultType()
-    {
+    func testFetchCellsShouldReturnListOfCells_GenericEnumResultType() {
         // Given
         
         // When
@@ -123,8 +116,7 @@ class CellsAPITests: XCTestCase
         XCTAssertNil(fetchCellsError, "fetchCells() should not return an error")
     }
     
-    func testFetchCellShouldReturnCell_GenericEnumResultType()
-    {
+    func testFetchCellShouldReturnCell_GenericEnumResultType() {
         // Given
         let cellToFetch = testCells.first!
         
@@ -149,10 +141,9 @@ class CellsAPITests: XCTestCase
         XCTAssertNil(fetchCellError, "fetchCell() should not return an error")
     }
     
-    // MARK: - Test CRUD operations - Inner closure
+    // MARK: - Test Fetch operations - Inner closure
     
-    func testFetchCellsShouldReturnListOfCells_InnerClosure()
-    {
+    func testFetchCellsShouldReturnListOfCells_InnerClosure() {
         // Given
         
         // When
@@ -177,8 +168,7 @@ class CellsAPITests: XCTestCase
         XCTAssertNil(fetchCellsError, "fetchCells() should not return an error")
     }
     
-    func testFetchCellShouldReturnCell_InnerClosure()
-    {
+    func testFetchCellShouldReturnCell_InnerClosure() {
         // Given
         let cellToFetch = testCells.first!
         

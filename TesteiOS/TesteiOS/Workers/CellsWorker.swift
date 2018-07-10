@@ -12,13 +12,11 @@ class CellsWorker
 {
     var cellsStore: CellsStoreProtocol
     
-    init(cellsStore: CellsStoreProtocol)
-    {
+    init(cellsStore: CellsStoreProtocol) {
         self.cellsStore = cellsStore
     }
     
-    func fetchCells(completionHandler: @escaping ([Cell]) -> Void)
-    {
+    func fetchCells(completionHandler: @escaping ([Cell]) -> Void) {
         cellsStore.fetchCells { (cells: () throws -> [Cell]) -> Void in
             do {
                 let cells = try cells()
@@ -36,8 +34,7 @@ class CellsWorker
 
 // MARK: - Cells store API
 
-protocol CellsStoreProtocol
-{
+protocol CellsStoreProtocol {
     // MARK: Fetch operations - Optional error
     
     func fetchCells(completionHandler: @escaping ([Cell], CellsStoreError?) -> Void)
@@ -61,21 +58,18 @@ protocol CellsStoreUtilityProtocol {}
 typealias CellsStoreFetchCellsCompletionHandler = (CellsStoreResult<[Cell]>) -> Void
 typealias CellsStoreFetchCellCompletionHandler = (CellsStoreResult<Cell>) -> Void
 
-enum CellsStoreResult<U>
-{
+enum CellsStoreResult<U> {
     case Success(result: U)
     case Failure(error: CellsStoreError)
 }
 
 // MARK: - Cells store Fetch operation errors
 
-enum CellsStoreError: Equatable, Error
-{
+enum CellsStoreError: Equatable, Error {
     case CannotFetch(String)
 }
 
-func ==(lhs: CellsStoreError, rhs: CellsStoreError) -> Bool
-{
+func ==(lhs: CellsStoreError, rhs: CellsStoreError) -> Bool {
     switch (lhs, rhs) {
     case (.CannotFetch(let a), .CannotFetch(let b)) where a == b: return true
     default: return false

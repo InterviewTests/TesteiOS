@@ -8,18 +8,15 @@
 
 import Foundation
 
-protocol FundsBusinessLogic
-{
+protocol FundsBusinessLogic {
     func fetchFunds(request: Funds.FetchFunds.Request)
 }
 
-protocol FundsDataStore
-{
+protocol FundsDataStore {
     var funds: [Fund]? { get }
 }
 
-class FundsInteractor: FundsBusinessLogic, FundsDataStore
-{
+class FundsInteractor: FundsBusinessLogic, FundsDataStore {
     var presenter: FundsPresentationLogic?
     var fundsWorker = FundsWorker(fundsStore: FundsAPI())
     
@@ -27,8 +24,7 @@ class FundsInteractor: FundsBusinessLogic, FundsDataStore
     
     // MARK: - Fetch orders
     
-    func fetchFunds(request: Funds.FetchFunds.Request)
-    {
+    func fetchFunds(request: Funds.FetchFunds.Request) {
         fundsWorker.fetchFunds { (funds) -> Void in
             self.funds = funds
             let response = Funds.FetchFunds.Response(funds: funds)

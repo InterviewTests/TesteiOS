@@ -8,19 +8,16 @@
 
 import Foundation
 
-protocol CellsPresentationLogic
-{
+protocol CellsPresentationLogic {
     func presentFetchedCells(response: Cells.FetchCells.Response)
 }
 
-class CellsPresenter: CellsPresentationLogic
-{
+class CellsPresenter: CellsPresentationLogic {
     weak var viewController: CellsDisplayLogic?
     
     // MARK: - Fetch orders
     
-    func presentFetchedCells(response: Cells.FetchCells.Response)
-    {
+    func presentFetchedCells(response: Cells.FetchCells.Response) {
         var displayedCells: [Cells.FetchCells.ViewModel.DisplayedCell] = []
         for cell in response.cells {
             let id = cell.id

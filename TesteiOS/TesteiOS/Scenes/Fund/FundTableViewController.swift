@@ -9,8 +9,7 @@
 import UIKit
 import SafariServices
 
-protocol FundsDisplayLogic: class
-{
+protocol FundsDisplayLogic: class {
     func displayFetchedFunds(viewModel: Funds.FetchFunds.ViewModel)
 }
 

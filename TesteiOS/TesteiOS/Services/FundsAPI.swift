@@ -14,10 +14,16 @@ class FundsAPI: FundsStoreProtocol, FundsStoreUtilityProtocol {
     
     var fund: Fund? = nil
     var funds:[Fund] {
-        if let fundAux: Fund = self.fund {
-            return [fundAux]
+        get {
+            if let fundAux: Fund = self.fund {
+                return [fundAux]
+            }
+            return []
         }
-        return []
+        set {
+            self.funds.removeAll()
+            self.funds.append(contentsOf: newValue)
+        }
     }
     
     // MARK: - Object lifecycle

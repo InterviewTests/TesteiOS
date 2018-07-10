@@ -8,21 +8,15 @@
 
 import Foundation
 
-enum Funds
-{
-    enum FetchFunds
-    {
-        struct Request
-        {
+enum Funds {
+    enum FetchFunds {
+        struct Request {
         }
-        struct Response
-        {
+        struct Response {
             var funds: [Fund]
         }
-        struct ViewModel
-        {
-            struct DisplayedFund
-            {
+        struct ViewModel {
+            struct DisplayedFund {
                 var title: String
                 var fundName: String
                 var whatIs: String

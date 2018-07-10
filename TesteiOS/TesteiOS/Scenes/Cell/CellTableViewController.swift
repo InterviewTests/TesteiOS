@@ -8,8 +8,7 @@
 
 import UIKit
 
-protocol CellsDisplayLogic: class
-{
+protocol CellsDisplayLogic: class {
     func displayFetchedCells(viewModel: Cells.FetchCells.ViewModel)
 }
 

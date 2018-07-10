@@ -9,8 +9,7 @@
 import XCTest
 @testable import TesteiOS
 
-class CellsViewControllerTests: XCTestCase
-{
+class CellsViewControllerTests: XCTestCase {
     // MARK: - Subject under test
     
     var sut: CellTableViewController!
@@ -18,38 +17,33 @@ class CellsViewControllerTests: XCTestCase
     
     // MARK: - Test lifecycle
     
-    override func setUp()
-    {
+    override func setUp() {
         super.setUp()
         window = UIWindow()
         setupCellsViewController()
     }
     
-    override func tearDown()
-    {
+    override func tearDown() {
         window = nil
         super.tearDown()
     }
     
     // MARK: - Test setup
     
-    func setupCellsViewController()
-    {
+    func setupCellsViewController() {
         let bundle = Bundle.main
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         sut = storyboard.instantiateViewController(withIdentifier: "CellTableViewController") as! CellTableViewController
     }
     
-    func loadView()
-    {
+    func loadView() {
         window.addSubview(sut.view)
         RunLoop.current.run(until: Date())
     }
     
     // MARK: - Test doubles
     
-    class CellsBusinessLogicSpy: CellsBusinessLogic
-    {
+    class CellsBusinessLogicSpy: CellsBusinessLogic {
         var cells: [Cell]?
         
         // MARK: Method call expectations
@@ -58,14 +52,12 @@ class CellsViewControllerTests: XCTestCase
         
         // MARK: Spied methods
         
-        func fetchCells(request: Cells.FetchCells.Request)
-        {
+        func fetchCells(request: Cells.FetchCells.Request) {
             fetchCellsCalled = true
         }
     }
     
-    class TableViewSpy: UITableView
-    {
+    class TableViewSpy: UITableView {
         // MARK: Method call expectations
         
         var reloadDataCalled = false
@@ -80,8 +72,7 @@ class CellsViewControllerTests: XCTestCase
     
     // MARK: - Tests
     
-    func testShouldFetchCellsWhenViewDidAppear()
-    {
+    func testShouldFetchCellsWhenViewDidAppear() {
         // Given
         let cellsBusinessLogicSpy = CellsBusinessLogicSpy()
         sut.interactor = cellsBusinessLogicSpy
@@ -94,8 +85,7 @@ class CellsViewControllerTests: XCTestCase
         XCTAssert(cellsBusinessLogicSpy.fetchCellsCalled, "Should fetch cells right after the view appears")
     }
     
-    func testShouldDisplayFetchedCells()
-    {
+    func testShouldDisplayFetchedCells() {
         // Given
         let tableViewSpy = TableViewSpy()
         sut.tableView = tableViewSpy
@@ -110,8 +100,7 @@ class CellsViewControllerTests: XCTestCase
         XCTAssert(tableViewSpy.reloadDataCalled, "Displaying fetched cells should reload the table view")
     }
     
-    func testNumberOfSectionsInTableViewShouldAlwaysBeOne()
-    {
+    func testNumberOfSectionsInTableViewShouldAlwaysBeOne() {
         // Given
         let tableView = sut.tableView
         
@@ -122,8 +111,7 @@ class CellsViewControllerTests: XCTestCase
         XCTAssertEqual(numberOfSections, 1, "The number of table view sections should always be 1")
     }
     
-    func testNumberOfRowsInAnySectionShouldEqualNumberOfCellsToDisplay()
-    {
+    func testNumberOfRowsInAnySectionShouldEqualNumberOfCellsToDisplay() {
         // Given
         let tableView = sut.tableView
         let displayedCell = Cells.FetchCells.ViewModel.DisplayedCell(id: 1, type: 2, message: "Mensagem informativa para exibição", typefield: nil, hidden: false, topSpacing: 60.0, show: nil, required: false)
@@ -137,8 +125,7 @@ class CellsViewControllerTests: XCTestCase
         XCTAssertEqual(numberOfRows, testDisplayedCells.count, "The number of table view rows should equal the number of cells to display")
     }
     
-    func testShouldConfigureTableViewCellToDisplayCell()
-    {
+    func testShouldConfigureTableViewCellToDisplayCell() {
         // Given
         let tableView = sut.tableView
         let displayedCell = Cells.FetchCells.ViewModel.DisplayedCell(id: 1, type: 2, message: "Mensagem informativa para exibição", typefield: nil, hidden: false, topSpacing: 60.0, show: nil, required: false)
@@ -150,7 +137,7 @@ class CellsViewControllerTests: XCTestCase
         let cell: FormTableViewCell = sut.tableView(tableView!, cellForRowAt: indexPath) as! FormTableViewCell
         
         // Then
-        XCTAssertEqual(cell.label?.text, "Mensagem informativa para exibição", "A properly configured table view cell should display the cell date")
+        XCTAssertEqual(cell.label?.text, "Mensagem informativa para exibição", "A properly configured table view cell should display the cell message")
     }
 }
 

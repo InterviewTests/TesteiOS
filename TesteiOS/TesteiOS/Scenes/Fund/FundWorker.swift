@@ -8,9 +8,7 @@
 
 import Foundation
 
-class FundWorker
-{
-    func doSomeWork()
-    {
+class FundWorker {
+    func doSomeWork() {
     }
 }

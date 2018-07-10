@@ -8,18 +8,15 @@
 
 import Foundation
 
-protocol CellsBusinessLogic
-{
+protocol CellsBusinessLogic {
     func fetchCells(request: Cells.FetchCells.Request)
 }
 
-protocol CellsDataStore
-{
+protocol CellsDataStore {
     var cells: [Cell]? { get }
 }
 
-class CellsInteractor: CellsBusinessLogic, CellsDataStore
-{
+class CellsInteractor: CellsBusinessLogic, CellsDataStore {
     var presenter: CellsPresentationLogic?
     var cellsWorker = CellsWorker(cellsStore: CellsAPI())
     
@@ -27,8 +24,7 @@ class CellsInteractor: CellsBusinessLogic, CellsDataStore
     
     // MARK: - Fetch orders
     
-    func fetchCells(request: Cells.FetchCells.Request)
-    {
+    func fetchCells(request: Cells.FetchCells.Request) {
         cellsWorker.fetchCells { (cells) -> Void in
             self.cells = cells
             let response = Cells.FetchCells.Response(cells: cells)

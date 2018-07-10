@@ -8,21 +8,15 @@
 
 import Foundation
 
-enum Cells
-{
-    enum FetchCells
-    {
-        struct Request
-        {
+enum Cells {
+    enum FetchCells {
+        struct Request {
         }
-        struct Response
-        {
+        struct Response {
             var cells: [Cell]
         }
-        struct ViewModel
-        {
-            struct DisplayedCell
-            {
+        struct ViewModel {
+            struct DisplayedCell {
                 var id: Int
                 var type: Int
                 var message: String

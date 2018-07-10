@@ -9,8 +9,7 @@
 import XCTest
 @testable import TesteiOS
 
-class CellsWorkerTests: XCTestCase
-{
+class CellsWorkerTests: XCTestCase {
     // MARK: - Subject under test
     
     var sut: CellsWorker!
@@ -18,21 +17,18 @@ class CellsWorkerTests: XCTestCase
     
     // MARK: - Test lifecycle
     
-    override func setUp()
-    {
+    override func setUp() {
         super.setUp()
         setupCellsWorker()
     }
     
-    override func tearDown()
-    {
+    override func tearDown() {
         super.tearDown()
     }
     
     // MARK: - Test setup
     
-    func setupCellsWorker()
-    {
+    func setupCellsWorker() {
         sut = CellsWorker(cellsStore: CellsMemStoreSpy())
         
         CellsWorkerTests.testCells = [Seeds.Cells.text, Seeds.Cells.fieldText]
@@ -40,16 +36,14 @@ class CellsWorkerTests: XCTestCase
     
     // MARK: - Test doubles
     
-    class CellsMemStoreSpy: CellsAPI
-    {
+    class CellsMemStoreSpy: CellsAPI {
         // MARK: Method call expectations
         
         var fetchCellsCalled = false
         
         // MARK: Spied methods
         
-        override func fetchCells(completionHandler: @escaping (() throws -> [Cell]) -> Void)
-        {
+        override func fetchCells(completionHandler: @escaping (() throws -> [Cell]) -> Void) {
             fetchCellsCalled = true
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
                 completionHandler { () -> [Cell] in
@@ -61,8 +55,7 @@ class CellsWorkerTests: XCTestCase
     
     // MARK: - Tests
     
-    func testFetchCellsShouldReturnListOfCells()
-    {
+    func testFetchCellsShouldReturnListOfCells() {
         // Given
         let cellsMemStoreSpy = sut.cellsStore as! CellsMemStoreSpy
         

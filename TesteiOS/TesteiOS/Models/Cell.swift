@@ -38,7 +38,6 @@ struct Cell: Equatable, Codable {
     var required: Bool
 }
 
-func ==(lhs: Cell, rhs: Cell) -> Bool
-{
+func ==(lhs: Cell, rhs: Cell) -> Bool {
     return lhs.id == rhs.id
 }
