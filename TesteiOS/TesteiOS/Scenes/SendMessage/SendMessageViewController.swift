@@ -82,13 +82,24 @@ extension SendMessageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.models.count
+        return self.models.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: models[indexPath.row].type.identifier) as? FormTableViewCell
-        cell?.configure(with: models[indexPath.row])
-        return cell as? UITableViewCell ?? UITableViewCell()
+        
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.kTextCellIdentifier) as! TextTableViewCell
+            cell.textLabel?.font = UIFont(name: "DINPro-Medium", size: 17.0)
+            cell.textlabel.textAlignment = .center
+            cell.textlabel.textColor = UIColor.CustomColor.veryDarkGray
+            cell.bottomBar.isHidden = true
+            cell.textlabel.text = "Contato"
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: models[indexPath.row - 1].type.identifier) as? FormTableViewCell
+            cell?.configure(with: models[indexPath.row - 1])
+            return cell as? UITableViewCell ?? UITableViewCell()
+        }
     }
 }
 

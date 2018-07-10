@@ -14,5 +14,6 @@ extension UIColor {
         static let strongRed = UIColor(hex: 0xC80404)
         static let lightGrayishOrange = UIColor(hex: 0xEFEEED)
         static let lighterGray = UIColor(hex: 0xACACAC)
+        static let veryDarkGray = UIColor(hex: 0x333333)
     }
 }

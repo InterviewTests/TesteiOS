@@ -13,6 +13,7 @@ class SendTableViewCell: UITableViewCell, FormTableViewCell {
     
     func configure(with model: FormItem) {
         self.sendButton.setTitle(model.message, for: .normal)
+        self.topConstraint?.constant = CGFloat(model.topSpacing)
     }
     
     @IBOutlet weak var sendButton: UIButton!

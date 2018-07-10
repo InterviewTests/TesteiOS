@@ -13,12 +13,11 @@ class FieldTableViewCell: UITableViewCell, FormTableViewCell {
     
     func configure(with model: FormItem) {
         nameLabel.text = model.message
+        textField.placeholder = model.message
+        self.topConstraint?.constant = CGFloat(model.topSpacing)
     }
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var bottomBar: UIView!
-    
-    
-    
 }

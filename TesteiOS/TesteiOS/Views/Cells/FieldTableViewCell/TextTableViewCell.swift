@@ -11,10 +11,14 @@ import UIKit
 class TextTableViewCell: UITableViewCell, FormTableViewCell {
     @IBOutlet weak var topConstraint: NSLayoutConstraint?
     
+    @IBOutlet weak var bottomBar: UIView!
     func configure(with model: FormItem) {
-        
+        self.textlabel.font = UIFont(name: "DINPro-Regular", size: 17.0)
         self.textlabel.text = model.message
+        self.topConstraint?.constant = CGFloat(model.topSpacing)
+
     }
+
     
     @IBOutlet weak var textlabel: UILabel!
 }

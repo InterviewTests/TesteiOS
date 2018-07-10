@@ -10,8 +10,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="DINPro-Regular.otf">
-            <string>DINPro-Regular</string>
+        <array key="DINPro-Medium.otf">
+            <string>DINPro-Medium</string>
         </array>
     </customFonts>
     <objects>
@@ -21,25 +21,36 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8d-lg-kZO">
-                    <rect key="frame" x="40" y="18" width="295" height="25"/>
-                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8d-lg-kZO">
+                    <rect key="frame" x="25" y="18" width="325" height="22"/>
+                    <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
                     <color key="textColor" red="0.67450980392156867" green="0.67450980392156867" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ECP-4g-ZKt">
+                    <rect key="frame" x="25" y="51" width="325" height="1"/>
+                    <color key="backgroundColor" red="0.93725490196078431" green="0.93333333333333335" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="dKD-uQ-fsF"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="i8d-lg-kZO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="5Y1-2P-QbT"/>
-                <constraint firstItem="i8d-lg-kZO" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Y1A-3x-MtX"/>
-                <constraint firstItem="i8d-lg-kZO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="18" id="ZvC-ho-o7u"/>
-                <constraint firstItem="i8d-lg-kZO" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="oth-Cr-0Pr"/>
+                <constraint firstItem="ECP-4g-ZKt" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="VPe-aw-JGN"/>
+                <constraint firstItem="ECP-4g-ZKt" firstAttribute="top" secondItem="i8d-lg-kZO" secondAttribute="bottom" priority="750" constant="11" id="WIv-1n-Jj9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ECP-4g-ZKt" secondAttribute="bottom" constant="8" id="YvD-iV-Qxh"/>
+                <constraint firstItem="ECP-4g-ZKt" firstAttribute="width" secondItem="i8d-lg-kZO" secondAttribute="width" id="eGx-WC-Xx8"/>
+                <constraint firstItem="i8d-lg-kZO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="25" id="fqu-op-8K7"/>
+                <constraint firstItem="i8d-lg-kZO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="18" id="hw0-CN-kXR"/>
+                <constraint firstItem="i8d-lg-kZO" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="lsZ-hu-ihc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="bottomBar" destination="ECP-4g-ZKt" id="YF6-f2-DPD"/>
                 <outlet property="textlabel" destination="i8d-lg-kZO" id="d72-va-85V"/>
-                <outlet property="topConstraint" destination="ZvC-ho-o7u" id="GtT-rK-uFI"/>
+                <outlet property="topConstraint" destination="hw0-CN-kXR" id="UCc-Bw-mUv"/>
             </connections>
             <point key="canvasLocation" x="34.5" y="-174"/>
         </view>
