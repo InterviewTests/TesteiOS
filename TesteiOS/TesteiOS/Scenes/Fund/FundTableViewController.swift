@@ -98,45 +98,41 @@ class FundTableViewController: UITableViewController, FundsDisplayLogic {
     func displayFetchedFunds(viewModel: Funds.FetchFunds.ViewModel) {
         displayedFunds = viewModel.displayedFunds
         if let fund: Funds.FetchFunds.ViewModel.DisplayedFund = displayedFunds.first {
-            Thread.isMainThread ? self.updateDisplay(fund: fund) : DispatchQueue.main.sync { self.updateDisplay(fund: fund) }
+            self.lblTitle.text = fund.title
+            self.lblFundName.text = fund.fundName
+            self.lblWhatIs.text = fund.whatIs
+            self.lblDefinition.text = fund.definition
+            self.lblRiskTitle.text = fund.riskTitle
+            self.imvRisk.image = UIImage(named: "risk\(fund.risk)")
+            self.lblInfoTitle.text = fund.infoTitle
+            self.lblMonthFundo.text = "\(fund.moreInfo.month.fund)%"
+            self.lblMonthCDI.text = "\(fund.moreInfo.month.cdi)%"
+            self.lblYearFundo.text = "\(fund.moreInfo.year.fund)%"
+            self.lblYearCDI.text = "\(fund.moreInfo.year.cdi)%"
+            self.lbl12MonthFundo.text = "\(fund.moreInfo.twelveMonths.fund)%"
+            self.lbl12MonthCDI.text = "\(fund.moreInfo.twelveMonths.cdi)%"
+            self.lblNameInfo0.text = fund.info[0].name
+            self.lblDataInfo0.text = fund.info[0].data
+            self.lblNameInfo1.text = fund.info[1].name
+            self.lblDataInfo1.text = fund.info[1].data
+            self.lblNameInfo2.text = fund.info[2].name
+            self.lblDataInfo2.text = fund.info[2].data
+            self.lblNameInfo3.text = fund.info[3].name
+            self.lblDataInfo3.text = fund.info[3].data
+            self.lblNameInfo4.text = fund.info[4].name
+            self.lblDataInfo4.text = fund.info[4].data
+            self.lblNameInfo5.text = fund.info[5].name
+            self.lblDataInfo5.text = fund.info[5].data
+            self.lblNameInfo6.text = fund.info[6].name
+            self.lblDataInfo6.text = fund.info[6].data
+            self.lblNameDownInfo0.text = fund.info[0].name
+            self.lblNameDownInfo1.text = fund.info[1].name
+            self.lblNameDownInfo2.text = fund.info[2].name
+            self.lblNameDownInfo3.text = fund.info[3].name
+            self.lblNameDownInfo4.text = fund.info[4].name
+        } else {
+            self.fetchFunds()
         }
-    }
-    
-    func updateDisplay (fund: Funds.FetchFunds.ViewModel.DisplayedFund) {
-        print("updating labels")
-        self.lblTitle.text = fund.title
-        self.lblFundName.text = fund.fundName
-        self.lblWhatIs.text = fund.whatIs
-        self.lblDefinition.text = fund.definition
-        self.lblRiskTitle.text = fund.riskTitle
-        self.imvRisk.image = UIImage(named: "risk\(fund.risk)")
-        self.lblInfoTitle.text = fund.infoTitle
-        self.lblMonthFundo.text = "\(fund.moreInfo.month.fund)%"
-        self.lblMonthCDI.text = "\(fund.moreInfo.month.cdi)%"
-        self.lblYearFundo.text = "\(fund.moreInfo.year.fund)%"
-        self.lblYearCDI.text = "\(fund.moreInfo.year.cdi)%"
-        self.lbl12MonthFundo.text = "\(fund.moreInfo.twelveMonths.fund)%"
-        self.lbl12MonthCDI.text = "\(fund.moreInfo.twelveMonths.cdi)%"
-        self.lblNameInfo0.text = fund.info[0].name
-        self.lblDataInfo0.text = fund.info[0].data
-        self.lblNameInfo1.text = fund.info[1].name
-        self.lblDataInfo1.text = fund.info[1].data
-        self.lblNameInfo2.text = fund.info[2].name
-        self.lblDataInfo2.text = fund.info[2].data
-        self.lblNameInfo3.text = fund.info[3].name
-        self.lblDataInfo3.text = fund.info[3].data
-        self.lblNameInfo4.text = fund.info[4].name
-        self.lblDataInfo4.text = fund.info[4].data
-        self.lblNameInfo5.text = fund.info[5].name
-        self.lblDataInfo5.text = fund.info[5].data
-        self.lblNameInfo6.text = fund.info[6].name
-        self.lblDataInfo6.text = fund.info[6].data
-        self.lblNameDownInfo0.text = fund.info[0].name
-        self.lblNameDownInfo1.text = fund.info[1].name
-        self.lblNameDownInfo2.text = fund.info[2].name
-        self.lblNameDownInfo3.text = fund.info[3].name
-        self.lblNameDownInfo4.text = fund.info[4].name
-//        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
