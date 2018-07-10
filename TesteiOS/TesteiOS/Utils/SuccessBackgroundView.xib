@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SuccessBackgroundView" customModule="TesteiOS" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="iN0-l3-epB" id="usZ-o8-JXP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2o2-KN-Na4">
+                    <rect key="frame" x="16" y="315" width="343" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagem enviada com sucesso :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kug-u0-YZb">
+                    <rect key="frame" x="16" y="344" width="343" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="1Un-dx-qkO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tn-6D-bp8">
+                    <rect key="frame" x="16" y="572" width="343" height="30"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="Enviar nova mensagem">
+                        <color key="titleColor" red="0.88235294119999996" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="dismissButtonClicked:" destination="-1" eventType="touchUpInside" id="2hP-i9-FIN"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Kug-u0-YZb" firstAttribute="top" secondItem="2o2-KN-Na4" secondAttribute="bottom" constant="8" symbolic="YES" id="BFd-bF-Hdc"/>
+                <constraint firstItem="2o2-KN-Na4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="CNN-7s-jEh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="2Tn-6D-bp8" secondAttribute="bottom" constant="65" id="DKG-g8-XN8"/>
+                <constraint firstItem="2o2-KN-Na4" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="295" id="Ge6-N5-xSb"/>
+                <constraint firstItem="2o2-KN-Na4" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="Yz2-lx-dqc"/>
+                <constraint firstItem="Kug-u0-YZb" firstAttribute="leading" secondItem="2Tn-6D-bp8" secondAttribute="leading" id="fxV-V0-BDN"/>
+                <constraint firstItem="2o2-KN-Na4" firstAttribute="trailing" secondItem="Kug-u0-YZb" secondAttribute="trailing" id="lhg-DU-IFX"/>
+                <constraint firstItem="2o2-KN-Na4" firstAttribute="leading" secondItem="Kug-u0-YZb" secondAttribute="leading" id="uBG-9c-YA5"/>
+                <constraint firstItem="Kug-u0-YZb" firstAttribute="trailing" secondItem="2Tn-6D-bp8" secondAttribute="trailing" id="wBv-uK-dLa"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>
