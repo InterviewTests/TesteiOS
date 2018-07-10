@@ -11,17 +11,6 @@ import UIKit
 class CheckboxTableViewCell: UITableViewCell, FormTableViewCell {
     
     @IBOutlet weak var topConstraint: NSLayoutConstraint?
-    
-    func configure(with model: FormItem) {
-        self.titleLabel.text = model.message
-        self.topConstraint?.constant = CGFloat(model.topSpacing)
-
-    }
-    
-    @objc func didTapCheckbox(_ sender: UITapGestureRecognizer) {
-        self.innerBox.isHidden = !self.innerBox.isHidden
-    }
-    
     @IBOutlet weak var outerBox: UIView!
     @IBOutlet weak var innerBox: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -33,4 +22,15 @@ class CheckboxTableViewCell: UITableViewCell, FormTableViewCell {
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCheckbox(_:)))
         self.addGestureRecognizer(tap)
     }
+    
+    func configure(with model: FormItem, controller: FormController?) {
+        self.titleLabel.text = model.message
+        self.topConstraint?.constant = CGFloat(model.topSpacing)
+    }
+    
+    @objc func didTapCheckbox(_ sender: UITapGestureRecognizer) {
+        self.innerBox.isHidden = !self.innerBox.isHidden
+    }
+    
+    
 }

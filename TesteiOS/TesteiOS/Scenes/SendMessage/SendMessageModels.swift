@@ -44,7 +44,13 @@ enum SendMessage
             
             self.id = id
             self.type = FormItemType(rawValue: dict["type"] as? Int ?? 1)!
+            
             self.fieldType = FormFieldType(rawValue: dict["typefield"] as? Int ?? 1)!
+            
+            if let fieldType = dict["typefield"] as? String, fieldType == "telnumber" {
+                self.fieldType = FormFieldType.telNumber
+            }
+            
             self.message = dict["message"] as? String
             
             if let hidden = dict["hidden"] as? Bool {

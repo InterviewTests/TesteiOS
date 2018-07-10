@@ -16,9 +16,10 @@ protocol SendMessageDisplayLogic: class {
 
 typealias FormItem = SendMessage.FormItem
 
-class SendMessageViewController: UIViewController, SendMessageDisplayLogic {
+class SendMessageViewController: UIViewController, SendMessageDisplayLogic, FormController {
     var interactor: SendMessageBusinessLogic?
-    
+    var textFields: [UITextField] = []
+    var activeTextField: UITextField?
     @IBOutlet weak var formTableView: UITableView!
     // MARK: Object lifecycle
     
@@ -51,6 +52,15 @@ class SendMessageViewController: UIViewController, SendMessageDisplayLogic {
         super.viewDidLoad()
         setupTableView()
         requestForm()
+        
+        NotificationCenter.default
+            .addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default
+            .addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func setupTableView() {
@@ -73,6 +83,34 @@ class SendMessageViewController: UIViewController, SendMessageDisplayLogic {
     func display(viewModel: SendMessage.Something.ViewModel) {
         models = viewModel.items
         formTableView.reloadData()
+    }
+    
+    @objc func keyboardWasShown(notification: Notification) {
+        if let info = notification.userInfo {
+            let keyboardRect = info["UIKeyboardFrameEndUserInfoKey"] as! CGRect
+            
+            let contentInsets = UIEdgeInsetsMake(0, 0, keyboardRect.height, 0)
+            self.formTableView.contentInset = contentInsets
+            self.formTableView.scrollIndicatorInsets = contentInsets
+            
+            var viewRect = self.view.frame
+            viewRect.size.height -= keyboardRect.height
+            
+            if !viewRect.contains((activeTextField?.frame.origin)!) {
+                let scrollPoint = CGPoint(x: 0, y: (activeTextField?.frame.origin.y)! - (keyboardRect.height - 15))
+                formTableView.setContentOffset(scrollPoint, animated: true)
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        let insets = UIEdgeInsets.zero
+        self.formTableView.contentInset = insets
+        self.formTableView.scrollIndicatorInsets = insets
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
 
@@ -97,12 +135,36 @@ extension SendMessageViewController: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: models[indexPath.row - 1].type.identifier) as? FormTableViewCell
-            cell?.configure(with: models[indexPath.row - 1])
+            cell?.configure(with: models[indexPath.row - 1], controller: self)
             return cell as? UITableViewCell ?? UITableViewCell()
         }
     }
+    
+    
 }
 
+// MARK: UITextFieldDelegate
+extension SendMessageViewController {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let index = self.textFields.index(of: textField)
+        
+        if let index = index, index - 1 < textFields.count {
+            textFields[index + 1].becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeTextField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.activeTextField = nil
+    }
+}
 
 
 
