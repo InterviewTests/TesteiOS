@@ -25,6 +25,8 @@ enum Cells {
                 var topSpacing: Double
                 var show: Int?
                 var required: Bool
+                var isSelected: Bool
+                var isValidated: Bool
             }
             var displayedCells: [DisplayedCell]
         }

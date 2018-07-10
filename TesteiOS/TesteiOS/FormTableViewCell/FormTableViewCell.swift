@@ -22,7 +22,6 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     var cell: Cells.FetchCells.ViewModel.DisplayedCell? = nil
     var delegate: FormTableViewCellDelegate? = nil
-    var checked: Bool = false
     var auxString: String = ""
     
     override func awakeFromNib() {
@@ -40,6 +39,11 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         self.delegate = delegate
         self.cell = cell
         
+        let selectedBackgroundView = UIView(frame: self.bounds)
+        selectedBackgroundView.backgroundColor = UIColor.clear
+        self.selectedBackgroundView = selectedBackgroundView
+        
+        
         switch cell.type {
         case Cell.CellType.field.rawValue:
             self.updateFieldCell(cell: cell)
@@ -55,9 +59,10 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func updateFieldCell(cell: Cells.FetchCells.ViewModel.DisplayedCell) {
-//        self.textField.frame = CGRect(x: self.textField.frame.minX, y: self.textField.frame.minY, width: self.textField.frame.width, height: 50)
+        if cell.isValidated {
+            self.validateInput()
+        }
         self.textField.placeholder = cell.message
-        self.textField.setBottomBorder(withColor: UIColor.lightGray)
         self.textField.delegate = self
     }
     
@@ -67,11 +72,11 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     func updateCheckboxCell(cell: Cells.FetchCells.ViewModel.DisplayedCell) {
         self.checkInfo.text = cell.message
-        self.checkBox.image = UIImage(named: "\(self.checked ? "" : "un")checked")
+        self.toggleCheck(isChecked: cell.isSelected)
     }
     
-    func toggleCheck() {
-        self.checked = !self.checked
+    func toggleCheck(isChecked: Bool) {
+        self.checkBox.image = UIImage(named: "\(isChecked ? "" : "un")checked")
     }
     
     
@@ -130,9 +135,8 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         default:()
         }
         
-        auxString = self.formatAsPhoneNumber(auxString)
-        textField.text = auxString
-        
+        textField.text = self.formatAsPhoneNumber(auxString)
+    
         return false
     }
     

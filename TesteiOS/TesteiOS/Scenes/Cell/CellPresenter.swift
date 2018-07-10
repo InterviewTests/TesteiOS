@@ -29,7 +29,7 @@ class CellsPresenter: CellsPresentationLogic {
             let show = cell.show
             let required = cell.required
             
-            let displayedCell = Cells.FetchCells.ViewModel.DisplayedCell(id: id, type: type, message: message, typefield: typefield, hidden: hidden, topSpacing: topSpacing, show: show, required: required)
+            let displayedCell = Cells.FetchCells.ViewModel.DisplayedCell(id: id, type: type, message: message, typefield: typefield, hidden: hidden, topSpacing: topSpacing, show: show, required: required, isSelected: false, isValidated: false)
             displayedCells.append(displayedCell)
         }
         let viewModel = Cells.FetchCells.ViewModel(displayedCells: displayedCells)

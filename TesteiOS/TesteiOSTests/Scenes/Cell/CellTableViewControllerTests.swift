@@ -91,7 +91,7 @@ class CellsViewControllerTests: XCTestCase {
         sut.tableView = tableViewSpy
         
         // When
-        let displayedCell = Cells.FetchCells.ViewModel.DisplayedCell(id: 1, type: 2, message: "Mensagem informativa para exibição", typefield: nil, hidden: false, topSpacing: 60.0, show: nil, required: false)
+        let displayedCell = Cells.FetchCells.ViewModel.DisplayedCell(id: 1, type: 2, message: "Mensagem informativa para exibição", typefield: nil, hidden: false, topSpacing: 60.0, show: nil, required: false, isSelected: false, isValidated: false)
         let displayedCells = [displayedCell]
         let viewModel = Cells.FetchCells.ViewModel(displayedCells: displayedCells)
         sut.displayFetchedCells(viewModel: viewModel)
@@ -114,7 +114,7 @@ class CellsViewControllerTests: XCTestCase {
     func testNumberOfRowsInAnySectionShouldEqualNumberOfCellsToDisplay() {
         // Given
         let tableView = sut.tableView
-        let displayedCell = Cells.FetchCells.ViewModel.DisplayedCell(id: 1, type: 2, message: "Mensagem informativa para exibição", typefield: nil, hidden: false, topSpacing: 60.0, show: nil, required: false)
+        let displayedCell = Cells.FetchCells.ViewModel.DisplayedCell(id: 1, type: 2, message: "Mensagem informativa para exibição", typefield: nil, hidden: false, topSpacing: 60.0, show: nil, required: false, isSelected: false, isValidated: false)
         let testDisplayedCells = [displayedCell]
         sut.displayedCells = testDisplayedCells
         
@@ -128,7 +128,7 @@ class CellsViewControllerTests: XCTestCase {
     func testShouldConfigureTableViewCellToDisplayCell() {
         // Given
         let tableView = sut.tableView
-        let displayedCell = Cells.FetchCells.ViewModel.DisplayedCell(id: 1, type: 2, message: "Mensagem informativa para exibição", typefield: nil, hidden: false, topSpacing: 60.0, show: nil, required: false)
+        let displayedCell = Cells.FetchCells.ViewModel.DisplayedCell(id: 1, type: 2, message: "Mensagem informativa para exibição", typefield: nil, hidden: false, topSpacing: 60.0, show: nil, required: false, isSelected: false, isValidated: false)
         let testDisplayedCells = [displayedCell]
         sut.displayedCells = testDisplayedCells
         

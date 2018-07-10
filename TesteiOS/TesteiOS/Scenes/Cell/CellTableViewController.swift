@@ -115,17 +115,14 @@ class CellTableViewController: UITableViewController, CellsDisplayLogic, FormTab
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        if let formCell: FormTableViewCell = tableView.cellForRow(at: indexPath) as? FormTableViewCell {
-            if let cellModel: Cells.FetchCells.ViewModel.DisplayedCell = formCell.cell {
-                if let id: Int = cellModel.show {
-                    self.showCell(id: id)
-                }
-                
-                if cellModel.type == Cell.CellType.checkbox.rawValue {
-                    formCell.toggleCheck()
-                }
-            }
+        tableView.deselectRow(at: indexPath, animated: false)
+        let displayedCell = displayedCells[indexPath.row]
+        if let id: Int = displayedCell.show {
+            self.showCell(id: id)
+        }
+        if displayedCell.type == Cell.CellType.checkbox.rawValue, let formCell: FormTableViewCell = tableView.cellForRow(at: indexPath) as? FormTableViewCell {
+            displayedCells[indexPath.row].isSelected = !displayedCells[indexPath.row].isSelected
+            formCell.toggleCheck(isChecked: displayedCells[indexPath.row].isSelected)
         }
         tableView.reloadData()
     }
