@@ -8,7 +8,14 @@
 
 import UIKit
 
-class CheckboxTableViewCell: UITableViewCell {
+class CheckboxTableViewCell: UITableViewCell, FormTableViewCell {
+    
+    @IBOutlet weak var topConstraint: NSLayoutConstraint?
+    
+    func configure(with model: FormItem) {
+        self.titleLabel.text = model.message
+    }
+    
     @IBOutlet weak var outerBox: UIView!
     @IBOutlet weak var innerBox: UIView!
     @IBOutlet weak var titleLabel: UILabel!

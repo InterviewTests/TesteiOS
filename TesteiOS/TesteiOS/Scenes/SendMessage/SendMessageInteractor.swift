@@ -25,7 +25,7 @@ class SendMessageInteractor: SendMessageBusinessLogic {
     func request(request: SendMessage.Something.Request) {
         worker = SendMessageWorker()
         worker?.requestForm(url: request.url) { response in
-            print(response)
+            self.presenter?.present(response: response)
         }
     }
 }

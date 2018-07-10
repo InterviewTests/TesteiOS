@@ -10,14 +10,18 @@
 import UIKit
 
 protocol SendMessagePresentationLogic {
-    func presentSomething(response: SendMessage.Something.Response)
+    func present(response: SendMessage.Something.Response)
 }
 
 class SendMessagePresenter: SendMessagePresentationLogic    {
     weak var viewController: SendMessageDisplayLogic?
     
-    func presentSomething(response: SendMessage.Something.Response) {
-        let viewModel = SendMessage.Something.ViewModel()
-        viewController?.display(viewModel: viewModel)
+    func present(response: SendMessage.Something.Response) {
+        switch response {
+        case .error(let _):
+            viewController?.displayError()
+        case .success(let items):
+            viewController?.display(viewModel: SendMessage.Something.ViewModel(items: items))
+        }
     }
 }

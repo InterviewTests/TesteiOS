@@ -63,7 +63,6 @@ class ShowFundsViewController: UIViewController, ShowFundsDisplayLogic {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-
         request()
     }
     
@@ -71,19 +70,10 @@ class ShowFundsViewController: UIViewController, ShowFundsDisplayLogic {
         let request = ShowFunds.Funds.Request()
         interactor?.requestData(request: request)
     }
- 
     
     @objc func openSafariPage() {
         if let url = URL(string: "https://www.google.com") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
-    }
-    
-    func displayError() {
-        let controller = UIAlertController(title: "Erro", message: "Temos um problema, Tente novamente mais tarde", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        controller.addAction(action)
-        
-        self.present(controller, animated: true, completion: nil)
     }
 }

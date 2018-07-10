@@ -8,9 +8,17 @@
 
 import UIKit
 
-class FieldTableViewCell: UITableViewCell {
+class FieldTableViewCell: UITableViewCell, FormTableViewCell {
+    @IBOutlet weak var topConstraint: NSLayoutConstraint?
+    
+    func configure(with model: FormItem) {
+        nameLabel.text = model.message
+    }
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var bottomBar: UIView!
+    
+    
     
 }

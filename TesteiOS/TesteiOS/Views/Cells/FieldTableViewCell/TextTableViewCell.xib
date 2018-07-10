@@ -17,15 +17,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TextTableViewCell" customModule="TesteiOS" customModuleProvider="target">
+        <view contentMode="scaleToFill" restorationIdentifier="TextCell" id="iN0-l3-epB" customClass="TextTableViewCell" customModule="TesteiOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8d-lg-kZO">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8d-lg-kZO">
                     <rect key="frame" x="40" y="18" width="295" height="25"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="25" id="F36-Mr-Of4"/>
-                    </constraints>
                     <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                     <color key="textColor" red="0.67450980392156867" green="0.67450980392156867" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -35,13 +32,14 @@
             <constraints>
                 <constraint firstItem="i8d-lg-kZO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="5Y1-2P-QbT"/>
                 <constraint firstItem="i8d-lg-kZO" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Y1A-3x-MtX"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="i8d-lg-kZO" secondAttribute="bottom" constant="17" id="kAq-6k-UwC"/>
+                <constraint firstItem="i8d-lg-kZO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="18" id="ZvC-ho-o7u"/>
                 <constraint firstItem="i8d-lg-kZO" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="oth-Cr-0Pr"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="textlabel" destination="i8d-lg-kZO" id="d72-va-85V"/>
+                <outlet property="topConstraint" destination="ZvC-ho-o7u" id="GtT-rK-uFI"/>
             </connections>
             <point key="canvasLocation" x="34.5" y="-174"/>
         </view>

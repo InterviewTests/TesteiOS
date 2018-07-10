@@ -22,12 +22,12 @@ enum SendMessage
         case success([FormItem])
         case error(Error)
     }
-    struct ViewModel
-    {
+    struct ViewModel {
+        var items: [FormItem] = []
     }
   }
     
-    struct FormItem {
+    @objc class FormItem: NSObject {
         var id: Int
         var type: FormItemType
         var fieldType: FormFieldType
@@ -63,7 +63,22 @@ enum FormItemType: Int {
     case text = 2
     case checkbox = 4
     case send = 5
+    
+    var identifier: String {
+        switch self {
+        case .field:
+            return Constants.kFieldCellIdentifier
+        case .text:
+            return Constants.kTextCellIdentifier
+        case .checkbox:
+            return Constants.kCheckboxCellIdentifier
+        case .send:
+            return Constants.kSendCellIdentifier
+        }
+    }
 }
+
+
 
 enum FormFieldType: Int {
     case text = 1

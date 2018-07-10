@@ -8,6 +8,13 @@
 
 import UIKit
 
-class TextTableViewCell: UITableViewCell {
+class TextTableViewCell: UITableViewCell, FormTableViewCell {
+    @IBOutlet weak var topConstraint: NSLayoutConstraint?
+    
+    func configure(with model: FormItem) {
+        
+        self.textlabel.text = model.message
+    }
+    
     @IBOutlet weak var textlabel: UILabel!
 }
