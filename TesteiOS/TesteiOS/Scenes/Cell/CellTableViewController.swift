@@ -58,7 +58,9 @@ class CellTableViewController: UITableViewController, CellsDisplayLogic, FormTab
     // MARK: - Fetch cells
     
     func fetchCells() {
-        self.validForm = false
+        guard !self.validForm else {
+            return
+        }
         let request = Cells.FetchCells.Request()
         interactor?.fetchCells(request: request)
     }
@@ -71,7 +73,7 @@ class CellTableViewController: UITableViewController, CellsDisplayLogic, FormTab
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        tableView.setSucessoView(displayedCells.isEmpty && self.validForm, delegate: self)
+        tableView.setSucessoView(self.validForm, delegate: self)
         return 1
     }
     
@@ -132,25 +134,28 @@ class CellTableViewController: UITableViewController, CellsDisplayLogic, FormTab
     // MARK: - FormTableViewCellDelegate
     
     func buttonClicked() {
-        var formValidInput: Bool = true
-        
-        for index in 0..<displayedCells.count {
-            if let formCell: FormTableViewCell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? FormTableViewCell {
-                let formCellValidInput = formCell.validateInput()
-                formValidInput = formValidInput && formCellValidInput
-            }
-        }
-        
-        if formValidInput {
+        if self.validateForm() {
             self.validForm = true
             displayedCells.removeAll()
             self.tableView.reloadData()
         }
     }
     
+    func validateForm() -> Bool {
+        var formValidInput: Bool = true
+        for index in 0..<displayedCells.count {
+            if let formCell: FormTableViewCell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? FormTableViewCell {
+                let formCellValidInput = formCell.validateInput()
+                formValidInput = formValidInput && formCellValidInput
+            }
+        }
+        return formValidInput
+    }
+    
     // MARK: - SuccessBackgroundViewDelegate
     
     func buttonDismissClicked() {
+        self.validForm = false
         self.fetchCells()
     }
 }
