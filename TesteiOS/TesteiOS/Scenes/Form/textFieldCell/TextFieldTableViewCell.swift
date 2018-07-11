@@ -34,22 +34,28 @@ class TextFieldTableViewCell: UITableViewCell {
             if (viewModel.typeField! == .text) {
                 if ((sender.text ?? "").count > 0) {
                     viewBottomLine.backgroundColor = colorValid
+                    viewModel.isValid = true
                 } else {
                     viewBottomLine.backgroundColor = colorInvalid
+                    viewModel.isValid = false
                 }
             }
             if (viewModel.typeField! == .email) {
                 if (isValidEmail(testStr: sender.text ?? "")) {
                     viewBottomLine.backgroundColor = colorValid
+                    viewModel.isValid = true
                 } else {
                     viewBottomLine.backgroundColor = colorInvalid
+                    viewModel.isValid = false
                 }
             }
             if (viewModel.typeField! == .telNumber) {
                 if (isValidTelNumber(testStr: sender.text ?? "")) {
                     viewBottomLine.backgroundColor = colorValid
+                    viewModel.isValid = true
                 } else {
                     viewBottomLine.backgroundColor = colorInvalid
+                    viewModel.isValid = false
                 }
             }
         }

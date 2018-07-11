@@ -14,7 +14,7 @@ import UIKit
 
 protocol FormDisplayLogic: class
 {
-  func displayCells(viewModel: Form.FetchCells.ViewModel)
+  func displayCells(viewModel: [Form.FormCell.ViewModel])
 }
 
 class FormViewController: UIViewController, FormDisplayLogic
@@ -22,7 +22,7 @@ class FormViewController: UIViewController, FormDisplayLogic
   var interactor: FormViewControllerOutput?
   var router: (NSObjectProtocol & FormRoutingLogic & FormDataPassing)?
     var tableView: UITableView!
-    var cells: [Cell] = []
+    var cells: [Form.FormCell.ViewModel] = []
 
   // MARK: Object lifecycle
   
@@ -144,11 +144,25 @@ class FormViewController: UIViewController, FormDisplayLogic
   }
     
     
-  func displayCells(viewModel: Form.FetchCells.ViewModel)
+  func displayCells(viewModel: [Form.FormCell.ViewModel])
   {
-    self.cells = viewModel.cells
+    self.cells = viewModel
     tableView.reloadData()
   }
+    
+    @objc func sendForm(sender: UIButton!) {
+        var isFormValid = true
+//        cells.forEach({ cell in
+//            if (cell.type == CellType.field && !cell.isValid) {
+//                isFormValid = false
+//            }
+//        })
+        
+        if (isFormValid) {
+            let formSuccessVC = FormSuccessViewController(nibName: "FormSuccessViewController", bundle: nil)
+            router?.navigateToFormSuccess(source: self, destination: formSuccessVC)
+        }
+    }
 }
 
 // MARK: TableView Delegate
@@ -164,18 +178,12 @@ extension FormViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cellView: UITableViewCell = UITableViewCell()
-        let cell = cells[indexPath.row]
-        let viewModelCell: Form.FormCell.ViewModel = Form.FormCell.ViewModel(
-            type: cell.type!,
-            typeField: cell.typefield,
-            topSpacing: cell.topSpacing!,
-            message: cell.message!
-        )
+        let viewModelCell = cells[indexPath.row]
         
         let metrics = [
-            "topMargin": cell.topSpacing!]
+            "topMargin": viewModelCell.topSpacing]
         
-        switch cell.type! {
+        switch viewModelCell.type {
         case .field:
             let cellTextField = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as? TextFieldTableViewCell
             cellTextField?.viewModel = viewModelCell
@@ -185,7 +193,7 @@ extension FormViewController: UITableViewDataSource, UITableViewDelegate {
             label.translatesAutoresizingMaskIntoConstraints = false
             label.font = UIFont.init(name: "DINPro-Regular", size: 17.0)
             label.textAlignment = .left
-            label.text = cell.message
+            label.text = viewModelCell.message
             label.numberOfLines = 0
             
             cellView.addSubview(label)
@@ -209,6 +217,7 @@ extension FormViewController: UITableViewDataSource, UITableViewDelegate {
             button.titleLabel?.font = UIFont.init(name: "DINPro-Medium", size: 17.0)
             button.backgroundColor = UIColor(red: 202.0/255.0, green: 40.0/255.0, blue: 15.0/255.0, alpha: 1.0)
             button.layer.cornerRadius = 20
+            button.addTarget(self, action: #selector(sendForm), for: .touchUpInside)
             
             cellView.addSubview(button)
             

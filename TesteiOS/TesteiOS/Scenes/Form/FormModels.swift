@@ -37,6 +37,7 @@ enum Form
             var typeField: CellTypeField?
             var topSpacing: Float = 0.0
             var message: String = ""
+            var isValid: Bool = false
         }
     }
 }

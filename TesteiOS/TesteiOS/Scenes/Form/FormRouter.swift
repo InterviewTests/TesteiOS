@@ -15,6 +15,7 @@ import UIKit
 @objc protocol FormRoutingLogic
 {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func navigateToFormSuccess(source: FormViewController, destination: FormSuccessViewController)
 }
 
 protocol FormDataPassing
@@ -46,10 +47,10 @@ class FormRouter: NSObject, FormRoutingLogic, FormDataPassing
 
   // MARK: Navigation
   
-  //func navigateToSomewhere(source: FormViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
+  func navigateToFormSuccess(source: FormViewController, destination: FormSuccessViewController)
+  {
+    source.show(destination, sender: nil)
+  }
   
   // MARK: Passing data
   

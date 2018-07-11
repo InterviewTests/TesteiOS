@@ -25,7 +25,19 @@ class FormPresenter: FormPresentationLogic
   
   func presentFetchedCells(response: Form.FetchCells.Response)
   {
-    let viewModel = Form.FetchCells.ViewModel(cells: response.cells)
+    var viewModel:[Form.FormCell.ViewModel] = []
+    
+    response.cells.forEach({ cell in
+        let viewModelCell = Form.FormCell.ViewModel(
+            type: cell.type!,
+            typeField: cell.typefield,
+            topSpacing: cell.topSpacing!,
+            message: cell.message!,
+            isValid: false
+        )
+        viewModel.append(viewModelCell)
+    })
+    
     viewController?.displayCells(viewModel: viewModel)
   }
 }
