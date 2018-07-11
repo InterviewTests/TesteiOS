@@ -18,7 +18,7 @@ class SendMessagePresenter: SendMessagePresentationLogic    {
     
     func present(response: SendMessage.Something.Response) {
         switch response {
-        case .error(let _):
+        case .error:
             viewController?.displayError()
         case .success(let items):
             viewController?.display(viewModel: SendMessage.Something.ViewModel(items: items))

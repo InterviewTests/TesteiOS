@@ -24,6 +24,7 @@ class SendMessageViewController: UIViewController, SendMessageDisplayLogic, Form
     // MARK: Object lifecycle
     
     var models = [FormItem]()
+    var indexesToHide = [Int]()
   
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -109,11 +110,34 @@ class SendMessageViewController: UIViewController, SendMessageDisplayLogic, Form
         self.formTableView.scrollIndicatorInsets = insets
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
+    func hideID(id: Int) {
+        let item = models.filter { formItem in
+            formItem.id == id
+        }.first
+        
+        guard let formItem = item, let index = models.index(of: formItem) else {
+            return
+        }
+        
+        indexesToHide.append(index)
+        formTableView.reloadRows(at: [IndexPath(row: index + 1, section: 0)], with: .fade)
+    }
+    
+    func showID(id: Int) {
+        let item = models.filter { formItem in
+            formItem.id == id
+            }.first
+        
+        guard let formItem = item, let index = models.index(of: formItem) else {
+            return
+        }
+        
+        indexesToHide.remove(at: indexesToHide.index(of: index)!)
+        formTableView.reloadRows(at: [IndexPath(row: index + 1, section: 0)], with: .fade)
     }
 }
 
+// MARK: UITableViewDataSource
 extension SendMessageViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -139,22 +163,18 @@ extension SendMessageViewController: UITableViewDataSource {
             return cell as? UITableViewCell ?? UITableViewCell()
         }
     }
-    
-    
+}
+
+extension SendMessageViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return (indexesToHide.contains(indexPath.row - 1)) ? 0 : UITableViewAutomaticDimension
+    }
 }
 
 // MARK: UITextFieldDelegate
 extension SendMessageViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let index = self.textFields.index(of: textField)
-        
-        if let index = index, index - 1 < textFields.count {
-            textFields[index + 1].becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
-        }
-        
-        return true
+        return textField.resignFirstResponder()
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

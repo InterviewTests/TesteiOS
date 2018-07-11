@@ -10,4 +10,7 @@ import UIKit
 
 @objc protocol FormController: UITextFieldDelegate {
     var textFields: [UITextField] { get set }
+    
+    func hideID(id: Int)
+    func showID(id: Int)
 }
