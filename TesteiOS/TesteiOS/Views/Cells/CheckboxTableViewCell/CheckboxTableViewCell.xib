@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Regular.otf">
+            <string>DINPro-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="CheckboxCell" id="iN0-l3-epB" customClass="CheckboxTableViewCell" customModule="TesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UxR-Ff-I4w">
+                    <rect key="frame" x="25" y="22" width="17" height="17"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yLS-Sv-uLV">
+                            <rect key="frame" x="3" y="3" width="11" height="11"/>
+                            <color key="backgroundColor" red="0.85490196078431369" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <real key="value" value="1.5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="UxR-Ff-I4w" secondAttribute="height" multiplier="1:1" id="8Dc-dm-k1h"/>
+                        <constraint firstAttribute="width" constant="17" id="8iM-bD-Xnt"/>
+                        <constraint firstItem="yLS-Sv-uLV" firstAttribute="centerY" secondItem="UxR-Ff-I4w" secondAttribute="centerY" id="Hc1-9Z-MOl"/>
+                        <constraint firstItem="yLS-Sv-uLV" firstAttribute="centerX" secondItem="UxR-Ff-I4w" secondAttribute="centerX" id="a4J-zT-egB"/>
+                        <constraint firstAttribute="width" secondItem="yLS-Sv-uLV" secondAttribute="height" multiplier="17:11" id="xgC-uv-inb"/>
+                        <constraint firstItem="yLS-Sv-uLV" firstAttribute="centerX" secondItem="UxR-Ff-I4w" secondAttribute="centerX" id="yLf-AY-ftR"/>
+                        <constraint firstItem="yLS-Sv-uLV" firstAttribute="leading" secondItem="UxR-Ff-I4w" secondAttribute="leading" constant="3" id="z10-5g-9nV"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <real key="value" value="2.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="EEU-lS-lou">
+                    <rect key="frame" x="53" y="18" width="306" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="hcO-gx-QUj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                    <color key="textColor" red="0.67450980392156867" green="0.67450980392156867" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="UxR-Ff-I4w" secondAttribute="bottom" constant="21.5" id="3xJ-Dr-YPR"/>
+                <constraint firstItem="UxR-Ff-I4w" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="21.5" id="TTe-sv-A5r"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="EEU-lS-lou" secondAttribute="trailing" constant="16" id="UT5-Ye-Fv6"/>
+                <constraint firstItem="EEU-lS-lou" firstAttribute="centerY" secondItem="UxR-Ff-I4w" secondAttribute="centerY" id="cb2-By-NFv"/>
+                <constraint firstItem="EEU-lS-lou" firstAttribute="leading" secondItem="UxR-Ff-I4w" secondAttribute="trailing" constant="11" id="euf-Zz-z6t"/>
+                <constraint firstItem="UxR-Ff-I4w" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="25" id="k2d-5y-TFM"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="innerBox" destination="yLS-Sv-uLV" id="asf-aL-uf6"/>
+                <outlet property="outerBox" destination="UxR-Ff-I4w" id="V5p-4Z-09n"/>
+                <outlet property="titleLabel" destination="EEU-lS-lou" id="bFJ-z0-9yW"/>
+                <outlet property="topConstraint" destination="TTe-sv-A5r" id="DHi-u7-4dk"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="-174"/>
+        </view>
+    </objects>
+</document>
