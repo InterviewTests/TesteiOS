@@ -2,7 +2,7 @@
 //  SantanderPresenter.swift
 //  SantanderApp
 //
-//  Created by Andre Nogueira on 25/04/18.
+//  Created by Andre Nogueira
 //  Copyright © 2018 Andre Nogueira. All rights reserved.
 //
 

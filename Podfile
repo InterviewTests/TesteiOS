@@ -13,6 +13,7 @@ target 'SantanderApp' do
   pod 'SnapKit'
   pod 'SwiftValidators'
   pod 'Toast-Swift', '~> 3.0.1'
+  pod 'R.swift'
     target 'SantanderAppTests' do
     inherit! :search_paths
     # Pods for testing

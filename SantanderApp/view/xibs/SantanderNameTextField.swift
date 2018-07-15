@@ -2,7 +2,7 @@
 //  SantanderNameTextField.swift
 //  SantanderApp
 //
-//  Created by Andre Nogueira on 26/04/18.
+//  Created by Andre Nogueira
 //  Copyright © 2018 Andre Nogueira. All rights reserved.
 //
 
