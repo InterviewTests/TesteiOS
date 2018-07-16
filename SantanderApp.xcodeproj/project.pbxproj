@@ -1,0 +1,969 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		53BE12114C8CBC9E00078D08 /* Pods_SantanderAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186F8C6E90B09299D721A9D6 /* Pods_SantanderAppTests.framework */; };
+		6531FDAA209299AA0033B4F9 /* SantanderNameTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6531FDA9209299AA0033B4F9 /* SantanderNameTextField.xib */; };
+		6531FDAC2092A4DC0033B4F9 /* SantanderNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6531FDAB2092A4DC0033B4F9 /* SantanderNameTextField.swift */; };
+		6531FDAE2092A9AD0033B4F9 /* SantanderPhoneTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6531FDAD2092A9AD0033B4F9 /* SantanderPhoneTextField.xib */; };
+		6531FDB02092A9D50033B4F9 /* SantanderPhoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6531FDAF2092A9D50033B4F9 /* SantanderPhoneTextField.swift */; };
+		6531FDB52092B23C0033B4F9 /* SantanderSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6531FDB42092B23C0033B4F9 /* SantanderSignupView.swift */; };
+		653692467A4CF838CBC6F5B5 /* Pods_SantanderApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A539408C2A8F750775184FEB /* Pods_SantanderApp.framework */; };
+		65D388E22090EA130036DBA1 /* SantanderEmailTypeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D388E12090EA130036DBA1 /* SantanderEmailTypeField.swift */; };
+		65E4A8502090942B0096D305 /* SantanderEmailTypeField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E4A84F2090942B0096D305 /* SantanderEmailTypeField.xib */; };
+		F031FA49209016AD00AF99F6 /* FundEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F031FA48209016AD00AF99F6 /* FundEntity.swift */; };
+		F031FA4B209018A700AF99F6 /* TypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F031FA4A209018A700AF99F6 /* TypeCell.swift */; };
+		F031FA4E2090197D00AF99F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F031FA4D2090197D00AF99F6 /* Main.storyboard */; };
+		F0593013209607E800C49357 /* BuilderInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0593011209607E800C49357 /* BuilderInterface.swift */; };
+		F0593014209607E800C49357 /* SantanderCustomerViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0593012209607E800C49357 /* SantanderCustomerViewControllerExtension.swift */; };
+		F062765D208FF56700766586 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062765C208FF56700766586 /* AppDelegate.swift */; };
+		F0627664208FF56800766586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0627663208FF56800766586 /* Assets.xcassets */; };
+		F0627667208FF56800766586 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0627665208FF56800766586 /* LaunchScreen.storyboard */; };
+		F0627672208FF56800766586 /* SantanderAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0627671208FF56800766586 /* SantanderAppTests.swift */; };
+		F062767E208FF6EB00766586 /* CellEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062767D208FF6EB00766586 /* CellEntity.swift */; };
+		F0627681208FF7AC00766586 /* SantanderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0627680208FF7AC00766586 /* SantanderInteractor.swift */; };
+		F0627684208FFA6800766586 /* stkeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0627683208FFA6800766586 /* stkeys.plist */; };
+		F0627686208FFBF900766586 /* SantanderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0627685208FFBF900766586 /* SantanderService.swift */; };
+		F0810D6B20960B240063F706 /* SantanderPhoneViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0810D6A20960B230063F706 /* SantanderPhoneViewBuilder.swift */; };
+		F0810D6D20960DA90063F706 /* SantanderEmailViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0810D6C20960DA90063F706 /* SantanderEmailViewBuilder.swift */; };
+		F0810D6F20960DBF0063F706 /* SantanderTextViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0810D6E20960DBF0063F706 /* SantanderTextViewBuilder.swift */; };
+		F0810D7120960DDA0063F706 /* SantanderCheckButtonViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0810D7020960DDA0063F706 /* SantanderCheckButtonViewBuilder.swift */; };
+		F0810D7D2098FBB30063F706 /* SantanderFundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0810D7B2098FBB30063F706 /* SantanderFundTableViewCell.swift */; };
+		F0810D7E2098FBB30063F706 /* SantanderFundTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0810D7C2098FBB30063F706 /* SantanderFundTableViewCell.xib */; };
+		F095454620FADC7B00CB07C8 /* DINEngschriftStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = F095454420FADC7700CB07C8 /* DINEngschriftStd.otf */; };
+		F095454720FADC7F00CB07C8 /* DINMittelschriftStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = F095453F20FADC7700CB07C8 /* DINMittelschriftStd.otf */; };
+		F095454820FADC7F00CB07C8 /* DINNeuzeitGroteskStd-BdCond.otf in Resources */ = {isa = PBXBuildFile; fileRef = F095453E20FADC7600CB07C8 /* DINNeuzeitGroteskStd-BdCond.otf */; };
+		F095454920FADC7F00CB07C8 /* DINNeuzeitGroteskStd-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = F095454020FADC7700CB07C8 /* DINNeuzeitGroteskStd-Light.otf */; };
+		F095454A20FADC7F00CB07C8 /* DINPro-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = F095454120FADC7700CB07C8 /* DINPro-Black.otf */; };
+		F095454B20FADC7F00CB07C8 /* DINPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F095454520FADC7700CB07C8 /* DINPro-Bold.otf */; };
+		F095454C20FADC7F00CB07C8 /* DINPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = F095454220FADC7700CB07C8 /* DINPro-Light.otf */; };
+		F095454D20FADC7F00CB07C8 /* DINPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F095453D20FADC7600CB07C8 /* DINPro-Medium.otf */; };
+		F095454E20FADC7F00CB07C8 /* DINPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F095454320FADC7700CB07C8 /* DINPro-Regular.otf */; };
+		F095455320FADEBB00CB07C8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F095455220FADEBA00CB07C8 /* R.generated.swift */; };
+		F095455A20FAEEB100CB07C8 /* MoreInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F095455820FAEEB100CB07C8 /* MoreInfoTableViewCell.swift */; };
+		F095455B20FAEEB100CB07C8 /* MoreInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F095455920FAEEB100CB07C8 /* MoreInfoTableViewCell.xib */; };
+		F095455D20FB7CC100CB07C8 /* FundHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F095455C20FB7CC100CB07C8 /* FundHeaderView.swift */; };
+		F095455F20FB7CD100CB07C8 /* FundHeaderTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F095455E20FB7CD100CB07C8 /* FundHeaderTableView.xib */; };
+		F095456120FB804A00CB07C8 /* SantanderFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F095456020FB804A00CB07C8 /* SantanderFundsViewController.swift */; };
+		F095456620FBD36D00CB07C8 /* SantanderInvestmentRiskIndicatorCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F095456420FBD36D00CB07C8 /* SantanderInvestmentRiskIndicatorCellTableViewCell.swift */; };
+		F095456720FBD36D00CB07C8 /* SantanderInvestmentRiskIndicatorCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F095456520FBD36D00CB07C8 /* SantanderInvestmentRiskIndicatorCellTableViewCell.xib */; };
+		F095456C20FBE27700CB07C8 /* MoreInfoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F095456B20FBE27700CB07C8 /* MoreInfoHeaderView.xib */; };
+		F095456F20FBE58100CB07C8 /* FundHeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F095456D20FBE58000CB07C8 /* FundHeaderTableView.swift */; };
+		F095457020FBE58100CB07C8 /* MoreInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F095456E20FBE58100CB07C8 /* MoreInfoHeaderView.swift */; };
+		F095457320FC1CB300CB07C8 /* InvestButtonFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F095457220FC1CB300CB07C8 /* InvestButtonFooter.swift */; };
+		F095457520FC1CF300CB07C8 /* InvestButtonFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = F095457420FC1CF300CB07C8 /* InvestButtonFooter.xib */; };
+		F095457D20FC2B7800CB07C8 /* SantanderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F095457C20FC2B7800CB07C8 /* SantanderRouter.swift */; };
+		F095457F20FC2C1D00CB07C8 /* SantanderSignupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F095457E20FC2C1D00CB07C8 /* SantanderSignupStackView.swift */; };
+		F095458220FC2E4600CB07C8 /* SantanderFundsViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F095458120FC2E4600CB07C8 /* SantanderFundsViewController+UITableView.swift */; };
+		F095458420FC2E9B00CB07C8 /* SantanderFundsViewController+BuilderFundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F095458320FC2E9B00CB07C8 /* SantanderFundsViewController+BuilderFundView.swift */; };
+		F095458A20FC311100CB07C8 /* SantanderFundsViewController+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F095458920FC311100CB07C8 /* SantanderFundsViewController+AutoLayout.swift */; };
+		F0997BE720F770360013BE37 /* SantanderTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0997BE620F770360013BE37 /* SantanderTabViewController.swift */; };
+		F0E713CF20916969002B3DDB /* SantanderCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E713CE20916969002B3DDB /* SantanderCustomerViewController.swift */; };
+		F0E713D220916FD6002B3DDB /* SantanderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E713D120916FD6002B3DDB /* SantanderPresenter.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F062766E208FF56800766586 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F0627651208FF56700766586 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F0627658208FF56700766586;
+			remoteInfo = SantanderApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0C9E7FEE3F2D6681519270C4 /* Pods-SantanderApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderApp/Pods-SantanderApp.release.xcconfig"; sourceTree = "<group>"; };
+		186F8C6E90B09299D721A9D6 /* Pods_SantanderAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6531FDA9209299AA0033B4F9 /* SantanderNameTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SantanderNameTextField.xib; sourceTree = "<group>"; };
+		6531FDAB2092A4DC0033B4F9 /* SantanderNameTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderNameTextField.swift; sourceTree = "<group>"; };
+		6531FDAD2092A9AD0033B4F9 /* SantanderPhoneTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SantanderPhoneTextField.xib; sourceTree = "<group>"; };
+		6531FDAF2092A9D50033B4F9 /* SantanderPhoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderPhoneTextField.swift; sourceTree = "<group>"; };
+		6531FDB42092B23C0033B4F9 /* SantanderSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderSignupView.swift; sourceTree = "<group>"; };
+		65D388E12090EA130036DBA1 /* SantanderEmailTypeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderEmailTypeField.swift; sourceTree = "<group>"; };
+		65E4A84F2090942B0096D305 /* SantanderEmailTypeField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SantanderEmailTypeField.xib; sourceTree = "<group>"; };
+		6A563551AD686AE500B0F150 /* Pods-SantanderAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderAppTests/Pods-SantanderAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A539408C2A8F750775184FEB /* Pods_SantanderApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C69DCA503B3B2EE370F62459 /* Pods-SantanderAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderAppTests/Pods-SantanderAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		D26FE230443A180DDE2B071C /* Pods-SantanderApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderApp/Pods-SantanderApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F031FA48209016AD00AF99F6 /* FundEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundEntity.swift; sourceTree = "<group>"; };
+		F031FA4A209018A700AF99F6 /* TypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCell.swift; sourceTree = "<group>"; };
+		F031FA4D2090197D00AF99F6 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		F0593011209607E800C49357 /* BuilderInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuilderInterface.swift; sourceTree = "<group>"; };
+		F0593012209607E800C49357 /* SantanderCustomerViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SantanderCustomerViewControllerExtension.swift; sourceTree = "<group>"; };
+		F0627659208FF56700766586 /* SantanderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SantanderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F062765C208FF56700766586 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F0627663208FF56800766586 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F0627666208FF56800766586 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F0627668208FF56800766586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F062766D208FF56800766586 /* SantanderAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SantanderAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0627671208FF56800766586 /* SantanderAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderAppTests.swift; sourceTree = "<group>"; };
+		F0627673208FF56800766586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F062767D208FF6EB00766586 /* CellEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellEntity.swift; sourceTree = "<group>"; };
+		F0627680208FF7AC00766586 /* SantanderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderInteractor.swift; sourceTree = "<group>"; };
+		F0627683208FFA6800766586 /* stkeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = stkeys.plist; sourceTree = "<group>"; };
+		F0627685208FFBF900766586 /* SantanderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderService.swift; sourceTree = "<group>"; };
+		F0810D6A20960B230063F706 /* SantanderPhoneViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderPhoneViewBuilder.swift; sourceTree = "<group>"; };
+		F0810D6C20960DA90063F706 /* SantanderEmailViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderEmailViewBuilder.swift; sourceTree = "<group>"; };
+		F0810D6E20960DBF0063F706 /* SantanderTextViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderTextViewBuilder.swift; sourceTree = "<group>"; };
+		F0810D7020960DDA0063F706 /* SantanderCheckButtonViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderCheckButtonViewBuilder.swift; sourceTree = "<group>"; };
+		F0810D7B2098FBB30063F706 /* SantanderFundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderFundTableViewCell.swift; sourceTree = "<group>"; };
+		F0810D7C2098FBB30063F706 /* SantanderFundTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SantanderFundTableViewCell.xib; sourceTree = "<group>"; };
+		F095453D20FADC7600CB07C8 /* DINPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Medium.otf"; sourceTree = "<group>"; };
+		F095453E20FADC7600CB07C8 /* DINNeuzeitGroteskStd-BdCond.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINNeuzeitGroteskStd-BdCond.otf"; sourceTree = "<group>"; };
+		F095453F20FADC7700CB07C8 /* DINMittelschriftStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINMittelschriftStd.otf; sourceTree = "<group>"; };
+		F095454020FADC7700CB07C8 /* DINNeuzeitGroteskStd-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINNeuzeitGroteskStd-Light.otf"; sourceTree = "<group>"; };
+		F095454120FADC7700CB07C8 /* DINPro-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Black.otf"; sourceTree = "<group>"; };
+		F095454220FADC7700CB07C8 /* DINPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Light.otf"; sourceTree = "<group>"; };
+		F095454320FADC7700CB07C8 /* DINPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Regular.otf"; sourceTree = "<group>"; };
+		F095454420FADC7700CB07C8 /* DINEngschriftStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINEngschriftStd.otf; sourceTree = "<group>"; };
+		F095454520FADC7700CB07C8 /* DINPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Bold.otf"; sourceTree = "<group>"; };
+		F095455220FADEBA00CB07C8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		F095455820FAEEB100CB07C8 /* MoreInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoTableViewCell.swift; sourceTree = "<group>"; };
+		F095455920FAEEB100CB07C8 /* MoreInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreInfoTableViewCell.xib; sourceTree = "<group>"; };
+		F095455C20FB7CC100CB07C8 /* FundHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundHeaderView.swift; sourceTree = "<group>"; };
+		F095455E20FB7CD100CB07C8 /* FundHeaderTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FundHeaderTableView.xib; sourceTree = "<group>"; };
+		F095456020FB804A00CB07C8 /* SantanderFundsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderFundsViewController.swift; sourceTree = "<group>"; };
+		F095456420FBD36D00CB07C8 /* SantanderInvestmentRiskIndicatorCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderInvestmentRiskIndicatorCellTableViewCell.swift; sourceTree = "<group>"; };
+		F095456520FBD36D00CB07C8 /* SantanderInvestmentRiskIndicatorCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SantanderInvestmentRiskIndicatorCellTableViewCell.xib; sourceTree = "<group>"; };
+		F095456B20FBE27700CB07C8 /* MoreInfoHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreInfoHeaderView.xib; sourceTree = "<group>"; };
+		F095456D20FBE58000CB07C8 /* FundHeaderTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FundHeaderTableView.swift; sourceTree = "<group>"; };
+		F095456E20FBE58100CB07C8 /* MoreInfoHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoHeaderView.swift; sourceTree = "<group>"; };
+		F095457220FC1CB300CB07C8 /* InvestButtonFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestButtonFooter.swift; sourceTree = "<group>"; };
+		F095457420FC1CF300CB07C8 /* InvestButtonFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvestButtonFooter.xib; sourceTree = "<group>"; };
+		F095457C20FC2B7800CB07C8 /* SantanderRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SantanderRouter.swift; sourceTree = "<group>"; };
+		F095457E20FC2C1D00CB07C8 /* SantanderSignupStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SantanderSignupStackView.swift; sourceTree = "<group>"; };
+		F095458120FC2E4600CB07C8 /* SantanderFundsViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SantanderFundsViewController+UITableView.swift"; sourceTree = "<group>"; };
+		F095458320FC2E9B00CB07C8 /* SantanderFundsViewController+BuilderFundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SantanderFundsViewController+BuilderFundView.swift"; sourceTree = "<group>"; };
+		F095458920FC311100CB07C8 /* SantanderFundsViewController+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SantanderFundsViewController+AutoLayout.swift"; sourceTree = "<group>"; };
+		F0997BE620F770360013BE37 /* SantanderTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderTabViewController.swift; sourceTree = "<group>"; };
+		F0E713CE20916969002B3DDB /* SantanderCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderCustomerViewController.swift; sourceTree = "<group>"; };
+		F0E713D120916FD6002B3DDB /* SantanderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderPresenter.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F0627656208FF56700766586 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				653692467A4CF838CBC6F5B5 /* Pods_SantanderApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F062766A208FF56800766586 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53BE12114C8CBC9E00078D08 /* Pods_SantanderAppTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		180703639DD2A18F771653FC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D26FE230443A180DDE2B071C /* Pods-SantanderApp.debug.xcconfig */,
+				0C9E7FEE3F2D6681519270C4 /* Pods-SantanderApp.release.xcconfig */,
+				6A563551AD686AE500B0F150 /* Pods-SantanderAppTests.debug.xcconfig */,
+				C69DCA503B3B2EE370F62459 /* Pods-SantanderAppTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5D98157EB5C0DC92532C4ABE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A539408C2A8F750775184FEB /* Pods_SantanderApp.framework */,
+				186F8C6E90B09299D721A9D6 /* Pods_SantanderAppTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F031FA4C2090197100AF99F6 /* storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F0627665208FF56800766586 /* LaunchScreen.storyboard */,
+				F031FA4D2090197D00AF99F6 /* Main.storyboard */,
+			);
+			path = storyboards;
+			sourceTree = "<group>";
+		};
+		F0627650208FF56700766586 = {
+			isa = PBXGroup;
+			children = (
+				F095455220FADEBA00CB07C8 /* R.generated.swift */,
+				F062765B208FF56700766586 /* SantanderApp */,
+				F0627670208FF56800766586 /* SantanderAppTests */,
+				F062765A208FF56700766586 /* Products */,
+				180703639DD2A18F771653FC /* Pods */,
+				5D98157EB5C0DC92532C4ABE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F062765A208FF56700766586 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F0627659208FF56700766586 /* SantanderApp.app */,
+				F062766D208FF56800766586 /* SantanderAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F062765B208FF56700766586 /* SantanderApp */ = {
+			isa = PBXGroup;
+			children = (
+				F0627668208FF56800766586 /* Info.plist */,
+				F095458020FC2C8F00CB07C8 /* assets */,
+				F095457720FC29B800CB07C8 /* contact */,
+				F062767C208FF6C000766586 /* entities */,
+				F095455620FAEE8900CB07C8 /* funds */,
+				F062767F208FF79E00766586 /* interactor */,
+				F0E713D020916FBD002B3DDB /* presenters */,
+				F095457B20FC2B7800CB07C8 /* router */,
+				F031FA4C2090197100AF99F6 /* storyboards */,
+				F0627682208FFA5900766586 /* utils */,
+				F0E713CD2091694D002B3DDB /* view */,
+			);
+			path = SantanderApp;
+			sourceTree = "<group>";
+		};
+		F0627670208FF56800766586 /* SantanderAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				F0627671208FF56800766586 /* SantanderAppTests.swift */,
+				F0627673208FF56800766586 /* Info.plist */,
+			);
+			path = SantanderAppTests;
+			sourceTree = "<group>";
+		};
+		F062767C208FF6C000766586 /* entities */ = {
+			isa = PBXGroup;
+			children = (
+				F062767D208FF6EB00766586 /* CellEntity.swift */,
+				F031FA48209016AD00AF99F6 /* FundEntity.swift */,
+			);
+			path = entities;
+			sourceTree = "<group>";
+		};
+		F062767F208FF79E00766586 /* interactor */ = {
+			isa = PBXGroup;
+			children = (
+				F0627680208FF7AC00766586 /* SantanderInteractor.swift */,
+			);
+			path = interactor;
+			sourceTree = "<group>";
+		};
+		F0627682208FFA5900766586 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				F062765C208FF56700766586 /* AppDelegate.swift */,
+				F095453C20FADC6C00CB07C8 /* fonts */,
+				F0627683208FFA6800766586 /* stkeys.plist */,
+				F0627685208FFBF900766586 /* SantanderService.swift */,
+				F031FA4A209018A700AF99F6 /* TypeCell.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		F0810D7220980AF50063F706 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F0997BE620F770360013BE37 /* SantanderTabViewController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		F095453C20FADC6C00CB07C8 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F095454420FADC7700CB07C8 /* DINEngschriftStd.otf */,
+				F095453F20FADC7700CB07C8 /* DINMittelschriftStd.otf */,
+				F095453E20FADC7600CB07C8 /* DINNeuzeitGroteskStd-BdCond.otf */,
+				F095454020FADC7700CB07C8 /* DINNeuzeitGroteskStd-Light.otf */,
+				F095454120FADC7700CB07C8 /* DINPro-Black.otf */,
+				F095454520FADC7700CB07C8 /* DINPro-Bold.otf */,
+				F095454220FADC7700CB07C8 /* DINPro-Light.otf */,
+				F095453D20FADC7600CB07C8 /* DINPro-Medium.otf */,
+				F095454320FADC7700CB07C8 /* DINPro-Regular.otf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		F095455620FAEE8900CB07C8 /* funds */ = {
+			isa = PBXGroup;
+			children = (
+				F095457620FC299500CB07C8 /* view */,
+			);
+			path = funds;
+			sourceTree = "<group>";
+		};
+		F095455720FAEE8E00CB07C8 /* custom */ = {
+			isa = PBXGroup;
+			children = (
+				F095457120FC1C8E00CB07C8 /* footer */,
+				F095456820FBE24600CB07C8 /* header */,
+				F0810D7B2098FBB30063F706 /* SantanderFundTableViewCell.swift */,
+				F0810D7C2098FBB30063F706 /* SantanderFundTableViewCell.xib */,
+				F095455820FAEEB100CB07C8 /* MoreInfoTableViewCell.swift */,
+				F095455920FAEEB100CB07C8 /* MoreInfoTableViewCell.xib */,
+				F095455C20FB7CC100CB07C8 /* FundHeaderView.swift */,
+				F095456420FBD36D00CB07C8 /* SantanderInvestmentRiskIndicatorCellTableViewCell.swift */,
+				F095456520FBD36D00CB07C8 /* SantanderInvestmentRiskIndicatorCellTableViewCell.xib */,
+			);
+			path = custom;
+			sourceTree = "<group>";
+		};
+		F095456820FBE24600CB07C8 /* header */ = {
+			isa = PBXGroup;
+			children = (
+				F095456D20FBE58000CB07C8 /* FundHeaderTableView.swift */,
+				F095456E20FBE58100CB07C8 /* MoreInfoHeaderView.swift */,
+				F095455E20FB7CD100CB07C8 /* FundHeaderTableView.xib */,
+				F095456B20FBE27700CB07C8 /* MoreInfoHeaderView.xib */,
+			);
+			path = header;
+			sourceTree = "<group>";
+		};
+		F095457120FC1C8E00CB07C8 /* footer */ = {
+			isa = PBXGroup;
+			children = (
+				F095457220FC1CB300CB07C8 /* InvestButtonFooter.swift */,
+				F095457420FC1CF300CB07C8 /* InvestButtonFooter.xib */,
+			);
+			path = footer;
+			sourceTree = "<group>";
+		};
+		F095457620FC299500CB07C8 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				F095456020FB804A00CB07C8 /* SantanderFundsViewController.swift */,
+				F095458920FC311100CB07C8 /* SantanderFundsViewController+AutoLayout.swift */,
+				F095458120FC2E4600CB07C8 /* SantanderFundsViewController+UITableView.swift */,
+				F095458320FC2E9B00CB07C8 /* SantanderFundsViewController+BuilderFundView.swift */,
+				F095455720FAEE8E00CB07C8 /* custom */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		F095457720FC29B800CB07C8 /* contact */ = {
+			isa = PBXGroup;
+			children = (
+				F095457820FC29BE00CB07C8 /* views */,
+			);
+			path = contact;
+			sourceTree = "<group>";
+		};
+		F095457820FC29BE00CB07C8 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				F0E713CE20916969002B3DDB /* SantanderCustomerViewController.swift */,
+				F095457A20FC29F100CB07C8 /* builder */,
+				F095457920FC29C900CB07C8 /* custom */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		F095457920FC29C900CB07C8 /* custom */ = {
+			isa = PBXGroup;
+			children = (
+				6531FDB42092B23C0033B4F9 /* SantanderSignupView.swift */,
+				F095457E20FC2C1D00CB07C8 /* SantanderSignupStackView.swift */,
+				65E4A84F2090942B0096D305 /* SantanderEmailTypeField.xib */,
+				65D388E12090EA130036DBA1 /* SantanderEmailTypeField.swift */,
+				6531FDA9209299AA0033B4F9 /* SantanderNameTextField.xib */,
+				6531FDAB2092A4DC0033B4F9 /* SantanderNameTextField.swift */,
+				6531FDAD2092A9AD0033B4F9 /* SantanderPhoneTextField.xib */,
+				6531FDAF2092A9D50033B4F9 /* SantanderPhoneTextField.swift */,
+			);
+			path = custom;
+			sourceTree = "<group>";
+		};
+		F095457A20FC29F100CB07C8 /* builder */ = {
+			isa = PBXGroup;
+			children = (
+				F0593011209607E800C49357 /* BuilderInterface.swift */,
+				F0593012209607E800C49357 /* SantanderCustomerViewControllerExtension.swift */,
+				F0810D6A20960B230063F706 /* SantanderPhoneViewBuilder.swift */,
+				F0810D6C20960DA90063F706 /* SantanderEmailViewBuilder.swift */,
+				F0810D6E20960DBF0063F706 /* SantanderTextViewBuilder.swift */,
+				F0810D7020960DDA0063F706 /* SantanderCheckButtonViewBuilder.swift */,
+			);
+			path = builder;
+			sourceTree = "<group>";
+		};
+		F095457B20FC2B7800CB07C8 /* router */ = {
+			isa = PBXGroup;
+			children = (
+				F095457C20FC2B7800CB07C8 /* SantanderRouter.swift */,
+			);
+			path = router;
+			sourceTree = "<group>";
+		};
+		F095458020FC2C8F00CB07C8 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				F0627663208FF56800766586 /* Assets.xcassets */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		F0E713CD2091694D002B3DDB /* view */ = {
+			isa = PBXGroup;
+			children = (
+				F0810D7220980AF50063F706 /* controllers */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		F0E713D020916FBD002B3DDB /* presenters */ = {
+			isa = PBXGroup;
+			children = (
+				F0E713D120916FD6002B3DDB /* SantanderPresenter.swift */,
+			);
+			path = presenters;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F0627658208FF56700766586 /* SantanderApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0627676208FF56800766586 /* Build configuration list for PBXNativeTarget "SantanderApp" */;
+			buildPhases = (
+				60146B252D4E8D160FC912FF /* [CP] Check Pods Manifest.lock */,
+				F0627655208FF56700766586 /* Sources */,
+				F0627656208FF56700766586 /* Frameworks */,
+				F0627657208FF56700766586 /* Resources */,
+				3637DC6AFC738916738BD1B1 /* [CP] Embed Pods Frameworks */,
+				606556E020C589C205E0BCE5 /* [CP] Copy Pods Resources */,
+				F095454F20FADE8900CB07C8 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SantanderApp;
+			productName = SantanderApp;
+			productReference = F0627659208FF56700766586 /* SantanderApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F062766C208FF56800766586 /* SantanderAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0627679208FF56800766586 /* Build configuration list for PBXNativeTarget "SantanderAppTests" */;
+			buildPhases = (
+				CA63829DCE2474E5FF4E8FBC /* [CP] Check Pods Manifest.lock */,
+				F0627669208FF56800766586 /* Sources */,
+				F062766A208FF56800766586 /* Frameworks */,
+				F062766B208FF56800766586 /* Resources */,
+				E8A910D84D8B96D1725F0FB5 /* [CP] Embed Pods Frameworks */,
+				79AD8B2318C7852D8E3225E0 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F062766F208FF56800766586 /* PBXTargetDependency */,
+			);
+			name = SantanderAppTests;
+			productName = SantanderAppTests;
+			productReference = F062766D208FF56800766586 /* SantanderAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F0627651208FF56700766586 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Andre Nogueira";
+				TargetAttributes = {
+					F0627658208FF56700766586 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					F062766C208FF56800766586 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F0627658208FF56700766586;
+					};
+				};
+			};
+			buildConfigurationList = F0627654208FF56700766586 /* Build configuration list for PBXProject "SantanderApp" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F0627650208FF56700766586;
+			productRefGroup = F062765A208FF56700766586 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F0627658208FF56700766586 /* SantanderApp */,
+				F062766C208FF56800766586 /* SantanderAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F0627657208FF56700766586 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F095455F20FB7CD100CB07C8 /* FundHeaderTableView.xib in Resources */,
+				6531FDAA209299AA0033B4F9 /* SantanderNameTextField.xib in Resources */,
+				F095454820FADC7F00CB07C8 /* DINNeuzeitGroteskStd-BdCond.otf in Resources */,
+				F095457520FC1CF300CB07C8 /* InvestButtonFooter.xib in Resources */,
+				F095454D20FADC7F00CB07C8 /* DINPro-Medium.otf in Resources */,
+				F095456720FBD36D00CB07C8 /* SantanderInvestmentRiskIndicatorCellTableViewCell.xib in Resources */,
+				F095454E20FADC7F00CB07C8 /* DINPro-Regular.otf in Resources */,
+				F095454C20FADC7F00CB07C8 /* DINPro-Light.otf in Resources */,
+				F0627667208FF56800766586 /* LaunchScreen.storyboard in Resources */,
+				6531FDAE2092A9AD0033B4F9 /* SantanderPhoneTextField.xib in Resources */,
+				F095454B20FADC7F00CB07C8 /* DINPro-Bold.otf in Resources */,
+				F095454620FADC7B00CB07C8 /* DINEngschriftStd.otf in Resources */,
+				F095454720FADC7F00CB07C8 /* DINMittelschriftStd.otf in Resources */,
+				F031FA4E2090197D00AF99F6 /* Main.storyboard in Resources */,
+				F095454A20FADC7F00CB07C8 /* DINPro-Black.otf in Resources */,
+				F095456C20FBE27700CB07C8 /* MoreInfoHeaderView.xib in Resources */,
+				F0627664208FF56800766586 /* Assets.xcassets in Resources */,
+				65E4A8502090942B0096D305 /* SantanderEmailTypeField.xib in Resources */,
+				F0627684208FFA6800766586 /* stkeys.plist in Resources */,
+				F0810D7E2098FBB30063F706 /* SantanderFundTableViewCell.xib in Resources */,
+				F095455B20FAEEB100CB07C8 /* MoreInfoTableViewCell.xib in Resources */,
+				F095454920FADC7F00CB07C8 /* DINNeuzeitGroteskStd-Light.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F062766B208FF56800766586 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3637DC6AFC738916738BD1B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SantanderApp/Pods-SantanderApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Gloss/Gloss.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftValidators/SwiftValidators.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gloss.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftValidators.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SantanderApp/Pods-SantanderApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		60146B252D4E8D160FC912FF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SantanderApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		606556E020C589C205E0BCE5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SantanderApp/Pods-SantanderApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79AD8B2318C7852D8E3225E0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SantanderAppTests/Pods-SantanderAppTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA63829DCE2474E5FF4E8FBC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SantanderAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8A910D84D8B96D1725F0FB5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SantanderAppTests/Pods-SantanderAppTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F095454F20FADE8900CB07C8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F0627655208FF56700766586 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F095456620FBD36D00CB07C8 /* SantanderInvestmentRiskIndicatorCellTableViewCell.swift in Sources */,
+				6531FDB02092A9D50033B4F9 /* SantanderPhoneTextField.swift in Sources */,
+				F095455320FADEBB00CB07C8 /* R.generated.swift in Sources */,
+				F0E713CF20916969002B3DDB /* SantanderCustomerViewController.swift in Sources */,
+				F062767E208FF6EB00766586 /* CellEntity.swift in Sources */,
+				F031FA4B209018A700AF99F6 /* TypeCell.swift in Sources */,
+				F095458420FC2E9B00CB07C8 /* SantanderFundsViewController+BuilderFundView.swift in Sources */,
+				F0E713D220916FD6002B3DDB /* SantanderPresenter.swift in Sources */,
+				F0997BE720F770360013BE37 /* SantanderTabViewController.swift in Sources */,
+				6531FDAC2092A4DC0033B4F9 /* SantanderNameTextField.swift in Sources */,
+				F095457020FBE58100CB07C8 /* MoreInfoHeaderView.swift in Sources */,
+				F095458A20FC311100CB07C8 /* SantanderFundsViewController+AutoLayout.swift in Sources */,
+				F095455A20FAEEB100CB07C8 /* MoreInfoTableViewCell.swift in Sources */,
+				F0593013209607E800C49357 /* BuilderInterface.swift in Sources */,
+				F062765D208FF56700766586 /* AppDelegate.swift in Sources */,
+				F031FA49209016AD00AF99F6 /* FundEntity.swift in Sources */,
+				F095456F20FBE58100CB07C8 /* FundHeaderTableView.swift in Sources */,
+				F0810D6F20960DBF0063F706 /* SantanderTextViewBuilder.swift in Sources */,
+				F0810D7120960DDA0063F706 /* SantanderCheckButtonViewBuilder.swift in Sources */,
+				F0627681208FF7AC00766586 /* SantanderInteractor.swift in Sources */,
+				F095458220FC2E4600CB07C8 /* SantanderFundsViewController+UITableView.swift in Sources */,
+				65D388E22090EA130036DBA1 /* SantanderEmailTypeField.swift in Sources */,
+				F095457320FC1CB300CB07C8 /* InvestButtonFooter.swift in Sources */,
+				F0593014209607E800C49357 /* SantanderCustomerViewControllerExtension.swift in Sources */,
+				F0627686208FFBF900766586 /* SantanderService.swift in Sources */,
+				F0810D6B20960B240063F706 /* SantanderPhoneViewBuilder.swift in Sources */,
+				F095455D20FB7CC100CB07C8 /* FundHeaderView.swift in Sources */,
+				F095456120FB804A00CB07C8 /* SantanderFundsViewController.swift in Sources */,
+				F0810D6D20960DA90063F706 /* SantanderEmailViewBuilder.swift in Sources */,
+				F0810D7D2098FBB30063F706 /* SantanderFundTableViewCell.swift in Sources */,
+				6531FDB52092B23C0033B4F9 /* SantanderSignupView.swift in Sources */,
+				F095457F20FC2C1D00CB07C8 /* SantanderSignupStackView.swift in Sources */,
+				F095457D20FC2B7800CB07C8 /* SantanderRouter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0627669208FF56800766586 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0627672208FF56800766586 /* SantanderAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F062766F208FF56800766586 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F0627658208FF56700766586 /* SantanderApp */;
+			targetProxy = F062766E208FF56800766586 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F0627665208FF56800766586 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F0627666208FF56800766586 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F0627674208FF56800766586 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		F0627675208FF56800766586 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F0627677208FF56800766586 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D26FE230443A180DDE2B071C /* Pods-SantanderApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = SantanderApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.andre.SantanderApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F0627678208FF56800766586 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C9E7FEE3F2D6681519270C4 /* Pods-SantanderApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = SantanderApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.andre.SantanderApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F062767A208FF56800766586 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A563551AD686AE500B0F150 /* Pods-SantanderAppTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SantanderAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.andre.SantanderAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SantanderApp.app/SantanderApp";
+			};
+			name = Debug;
+		};
+		F062767B208FF56800766586 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C69DCA503B3B2EE370F62459 /* Pods-SantanderAppTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SantanderAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.andre.SantanderAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SantanderApp.app/SantanderApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F0627654208FF56700766586 /* Build configuration list for PBXProject "SantanderApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0627674208FF56800766586 /* Debug */,
+				F0627675208FF56800766586 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0627676208FF56800766586 /* Build configuration list for PBXNativeTarget "SantanderApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0627677208FF56800766586 /* Debug */,
+				F0627678208FF56800766586 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0627679208FF56800766586 /* Build configuration list for PBXNativeTarget "SantanderAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F062767A208FF56800766586 /* Debug */,
+				F062767B208FF56800766586 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F0627651208FF56700766586 /* Project object */;
+}

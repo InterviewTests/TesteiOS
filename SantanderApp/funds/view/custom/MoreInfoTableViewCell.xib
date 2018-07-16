@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MoreInfoTableViewCell" id="KGk-i7-Jjw" customClass="MoreInfoTableViewCell" customModule="SantanderApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhK-Oe-Zaz">
+                        <rect key="frame" x="19" y="12" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohk-gQ-vMR">
+                        <rect key="frame" x="265" y="12" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwT-V3-eMc">
+                        <rect key="frame" x="202" y="12" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="xhK-Oe-Zaz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19" id="37u-bS-qKZ"/>
+                    <constraint firstItem="OwT-V3-eMc" firstAttribute="centerY" secondItem="ohk-gQ-vMR" secondAttribute="centerY" id="8ZX-pS-f1r"/>
+                    <constraint firstItem="ohk-gQ-vMR" firstAttribute="leading" secondItem="OwT-V3-eMc" secondAttribute="trailing" constant="21" id="BjJ-jU-5cI"/>
+                    <constraint firstItem="xhK-Oe-Zaz" firstAttribute="centerY" secondItem="OwT-V3-eMc" secondAttribute="centerY" id="Dud-us-uT1"/>
+                    <constraint firstItem="OwT-V3-eMc" firstAttribute="leading" secondItem="xhK-Oe-Zaz" secondAttribute="trailing" constant="141" id="EYv-33-YjT"/>
+                    <constraint firstItem="ohk-gQ-vMR" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="3" id="MBq-2O-sZx"/>
+                    <constraint firstItem="xhK-Oe-Zaz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="3" id="mnS-XF-cET"/>
+                    <constraint firstItem="xhK-Oe-Zaz" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="wJC-WC-WPg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="periodLabel" destination="xhK-Oe-Zaz" id="oWF-gk-VsF"/>
+                <outlet property="statsCDI" destination="ohk-gQ-vMR" id="Htp-Rx-9F5"/>
+                <outlet property="statsFund" destination="OwT-V3-eMc" id="lzc-ea-oks"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
