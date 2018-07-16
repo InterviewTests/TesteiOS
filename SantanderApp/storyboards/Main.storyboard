@@ -188,6 +188,37 @@
             </objects>
             <point key="canvasLocation" x="3001" y="-807"/>
         </scene>
+        <!--Investimento-->
+        <scene sceneID="ymV-DS-JG4">
+            <objects>
+                <viewController storyboardIdentifier="SantanderFundsViewController" id="WhT-kt-jk5" customClass="SantanderFundsViewController" customModule="SantanderApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vcA-vz-3dB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I4B-Sn-Sba">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3qv-LR-Sm8" firstAttribute="bottom" secondItem="I4B-Sn-Sba" secondAttribute="bottom" id="Vhl-Gr-a27"/>
+                            <constraint firstItem="3qv-LR-Sm8" firstAttribute="trailing" secondItem="I4B-Sn-Sba" secondAttribute="trailing" id="eiu-hF-EJZ"/>
+                            <constraint firstItem="I4B-Sn-Sba" firstAttribute="leading" secondItem="3qv-LR-Sm8" secondAttribute="leading" id="hVg-OE-soN"/>
+                            <constraint firstItem="I4B-Sn-Sba" firstAttribute="top" secondItem="vcA-vz-3dB" secondAttribute="top" id="jrw-Hu-AO6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3qv-LR-Sm8"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Investimento" id="ZOa-xd-hGo"/>
+                    <connections>
+                        <outlet property="tableView" destination="I4B-Sn-Sba" id="dPI-5x-Bhr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g8S-7y-HsA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="247" y="-60"/>
+        </scene>
         <!--Investir-->
         <scene sceneID="YDv-P3-BUk">
             <objects>
@@ -197,7 +228,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UNo-YE-Dp1">
-                                <rect key="frame" x="0.0" y="-4" width="389" height="881"/>
+                                <rect key="frame" x="0.0" y="-4" width="389" height="930"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Investimento" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Nm-Q6-EOi">
                                         <rect key="frame" x="154" y="28" width="107" height="21"/>
@@ -553,8 +584,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="nIf-G1-m1z" kind="relationship" relationship="viewControllers" id="LvS-FE-h9t"/>
-                        <segue destination="dCJ-Lh-dRA" kind="relationship" relationship="viewControllers" id="BNQ-2G-I20"/>
+                        <segue destination="WhT-kt-jk5" kind="relationship" relationship="viewControllers" id="j4S-Li-jJT"/>
+                        <segue destination="dCJ-Lh-dRA" kind="relationship" relationship="viewControllers" id="gPC-S0-53c"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FCF-m5-HhW" userLabel="First Responder" sceneMemberID="firstResponder"/>

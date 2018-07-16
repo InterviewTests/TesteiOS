@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-protocol BuilderFundView{
+protocol BuilderFundView2{
     func buildFundMainView(screenInfo: ScreenInfo)
     func buildFundStatsView(moreInfoMonth: MoreInfoScreen)
     func buildCDIStatsView(moreInfoMonth: MoreInfoScreen)
@@ -54,7 +54,7 @@ class SantanderFundViewController: UIViewController {
     }
 }
 
-extension SantanderFundViewController: BuilderFundView{
+extension SantanderFundViewController: BuilderFundView2{
     func buildFundMainView(screenInfo: ScreenInfo){
         let fundName = (screenInfo.fundName)!
         let topTitle = (screenInfo.title)!
