@@ -189,16 +189,28 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 26 images.
+  /// This `R.image` struct is generated, and contains static references to 33 images.
   struct image {
-    /// Image `Botão investir`.
-    static let botãoInvestir = Rswift.ImageResource(bundle: R.hostingBundle, name: "Botão investir")
+    /// Image `Botão investir Copy`.
+    static let botãoInvestirCopy = Rswift.ImageResource(bundle: R.hostingBundle, name: "Botão investir Copy")
+    /// Image `Botão investir-1`.
+    static let botãoInvestir1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Botão investir-1")
+    /// Image `Botão investir-2`.
+    static let botãoInvestir2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Botão investir-2")
     /// Image `Botão send`.
     static let botãoSend = Rswift.ImageResource(bundle: R.hostingBundle, name: "Botão send")
+    /// Image `Group Copy 10`.
+    static let groupCopy10 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Group Copy 10")
+    /// Image `LaunchImage`.
+    static let launchImage = Rswift.ImageResource(bundle: R.hostingBundle, name: "LaunchImage")
+    /// Image `Linha numero da conta-1`.
+    static let linhaNumeroDaConta1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Linha numero da conta-1")
     /// Image `Linha numero da conta-2`.
     static let linhaNumeroDaConta2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Linha numero da conta-2")
     /// Image `Linha número da conta-1`.
     static let linhaNúmeroDaConta1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Linha número da conta-1")
+    /// Image `Linha número da conta`.
+    static let linhaNúmeroDaConta = Rswift.ImageResource(bundle: R.hostingBundle, name: "Linha número da conta")
     /// Image `Rectangle 2 Copy 5`.
     static let rectangle2Copy5 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Rectangle 2 Copy 5")
     /// Image `Rectangle 2 Copy 6`.
@@ -215,6 +227,8 @@ struct R: Rswift.Validatable {
     static let rectangle2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Rectangle-2")
     /// Image `Separador`.
     static let separador = Rswift.ImageResource(bundle: R.hostingBundle, name: "Separador")
+    /// Image `Seta baixar`.
+    static let setaBaixar = Rswift.ImageResource(bundle: R.hostingBundle, name: "Seta baixar")
     /// Image `Spearador`.
     static let spearador = Rswift.ImageResource(bundle: R.hostingBundle, name: "Spearador")
     /// Image `download`.
@@ -244,9 +258,19 @@ struct R: Rswift.Validatable {
     /// Image `tab_item_invest`.
     static let tab_item_invest = Rswift.ImageResource(bundle: R.hostingBundle, name: "tab_item_invest")
     
-    /// `UIImage(named: "Botão investir", bundle: ..., traitCollection: ...)`
-    static func botãoInvestir(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.botãoInvestir, compatibleWith: traitCollection)
+    /// `UIImage(named: "Botão investir Copy", bundle: ..., traitCollection: ...)`
+    static func botãoInvestirCopy(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.botãoInvestirCopy, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "Botão investir-1", bundle: ..., traitCollection: ...)`
+    static func botãoInvestir1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.botãoInvestir1, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "Botão investir-2", bundle: ..., traitCollection: ...)`
+    static func botãoInvestir2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.botãoInvestir2, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "Botão send", bundle: ..., traitCollection: ...)`
@@ -254,9 +278,29 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.botãoSend, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "Group Copy 10", bundle: ..., traitCollection: ...)`
+    static func groupCopy10(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.groupCopy10, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "LaunchImage", bundle: ..., traitCollection: ...)`
+    static func launchImage(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.launchImage, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "Linha numero da conta-1", bundle: ..., traitCollection: ...)`
+    static func linhaNumeroDaConta1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.linhaNumeroDaConta1, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "Linha numero da conta-2", bundle: ..., traitCollection: ...)`
     static func linhaNumeroDaConta2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.linhaNumeroDaConta2, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "Linha número da conta", bundle: ..., traitCollection: ...)`
+    static func linhaNúmeroDaConta(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.linhaNúmeroDaConta, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "Linha número da conta-1", bundle: ..., traitCollection: ...)`
@@ -302,6 +346,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "Separador", bundle: ..., traitCollection: ...)`
     static func separador(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.separador, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "Seta baixar", bundle: ..., traitCollection: ...)`
+    static func setaBaixar(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.setaBaixar, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "Spearador", bundle: ..., traitCollection: ...)`
@@ -542,7 +591,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if UIKit.UIImage(named: "Botão investir", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Botão investir' is used in nib 'InvestButtonFooter', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "Botão investir-2", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Botão investir-2' is used in nib 'InvestButtonFooter', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
@@ -697,9 +746,9 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if UIKit.UIImage(named: "Botão send") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Botão send' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "Rectangle-1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Rectangle-1' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "signup") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'signup' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "Rectangle-2") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Rectangle-2' is used in storyboard 'Main', but couldn't be loaded.") }
         if _R.storyboard.main().finishedID() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'finishedID' could not be loaded from storyboard 'Main' as 'UIKit.UIViewController'.") }
         if _R.storyboard.main().santanderCustomerViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'santanderCustomerViewController' could not be loaded from storyboard 'Main' as 'SantanderCustomerViewController'.") }
         if _R.storyboard.main().santanderFundsViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'santanderFundsViewController' could not be loaded from storyboard 'Main' as 'SantanderFundsViewController'.") }

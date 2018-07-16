@@ -10,6 +10,14 @@ import UIKit
 
 class SantanderInvestmentRiskIndicatorCellTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var greenRisk1: UIImageView!
+    
+    @IBOutlet weak var yellowRisk: UIImageView!
+    @IBOutlet weak var redRisk2: UIImageView!
+    
+    @IBOutlet weak var redRisk1: UIImageView!
+    @IBOutlet weak var greenRisk2: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
