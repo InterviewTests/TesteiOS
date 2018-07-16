@@ -12,6 +12,7 @@ class SantanderTabViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         UITabBar.appearance().tintColor = UIColor.white
         self.tabBar.backgroundImage = UIImage(named: "tab_item_invest")
         self.tabBar.itemPositioning = .fill
