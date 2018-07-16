@@ -33,7 +33,7 @@ class SantanderInteractor: SantanderInteractorInput {
         Alamofire.request(urlCell, method:.get).responseJSON { (response) in
             
             switch response.result{
-            case .failure(let error):
+            case .failure(_):
                 return
             case .success(let data):
                 let swiftyJsonVar = JSON(data)
@@ -49,7 +49,7 @@ class SantanderInteractor: SantanderInteractorInput {
         Alamofire.request(urlCell, method:.get).responseJSON { (response) in
             
             switch response.result{
-            case .failure(let error):
+            case .failure(_):
                 return
             case .success(let data):
                 let swiftyJsonvar = JSON(data)

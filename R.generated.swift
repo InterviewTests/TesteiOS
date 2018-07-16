@@ -377,10 +377,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 8 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 9 nibs.
   struct nib {
     /// Nib `FundHeaderTableView`.
     static let fundHeaderTableView = _R.nib._FundHeaderTableView()
+    /// Nib `InvestButtonFooter`.
+    static let investButtonFooter = _R.nib._InvestButtonFooter()
     /// Nib `MoreInfoHeaderView`.
     static let moreInfoHeaderView = _R.nib._MoreInfoHeaderView()
     /// Nib `MoreInfoTableViewCell`.
@@ -399,6 +401,11 @@ struct R: Rswift.Validatable {
     /// `UINib(name: "FundHeaderTableView", in: bundle)`
     static func fundHeaderTableView(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.fundHeaderTableView)
+    }
+    
+    /// `UINib(name: "InvestButtonFooter", in: bundle)`
+    static func investButtonFooter(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.investButtonFooter)
     }
     
     /// `UINib(name: "MoreInfoHeaderView", in: bundle)`
@@ -505,6 +512,7 @@ struct _R: Rswift.Validatable {
       try _FundHeaderTableView.validate()
       try _SantanderEmailTypeField.validate()
       try _SantanderNameTextField.validate()
+      try _InvestButtonFooter.validate()
       try _SantanderPhoneTextField.validate()
       try _SantanderInvestmentRiskIndicatorCellTableViewCell.validate()
       try _SantanderFundTableViewCell.validate()
@@ -520,6 +528,21 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "share", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'share' is used in nib 'FundHeaderTableView', but couldn't be loaded.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _InvestButtonFooter: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "InvestButtonFooter"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> InvestButtonFooter? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? InvestButtonFooter
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "Botão investir", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Botão investir' is used in nib 'InvestButtonFooter', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
@@ -659,7 +682,6 @@ struct _R: Rswift.Validatable {
       let finishedID = StoryboardViewControllerResource<UIKit.UIViewController>(identifier: "FinishedID")
       let name = "Main"
       let santanderCustomerViewController = StoryboardViewControllerResource<SantanderCustomerViewController>(identifier: "SantanderCustomerViewController")
-      let santanderFundViewController = StoryboardViewControllerResource<SantanderFundViewController>(identifier: "SantanderFundViewController")
       let santanderFundsViewController = StoryboardViewControllerResource<SantanderFundsViewController>(identifier: "SantanderFundsViewController")
       
       func finishedID(_: Void = ()) -> UIKit.UIViewController? {
@@ -670,31 +692,17 @@ struct _R: Rswift.Validatable {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: santanderCustomerViewController)
       }
       
-      func santanderFundViewController(_: Void = ()) -> SantanderFundViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: santanderFundViewController)
-      }
-      
       func santanderFundsViewController(_: Void = ()) -> SantanderFundsViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: santanderFundsViewController)
       }
       
       static func validate() throws {
-        if UIKit.UIImage(named: "Rectangle-1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Rectangle-1' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "laranja") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'laranja' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "Botão investir") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Botão investir' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "red") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'red' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "Spearador") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Spearador' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "share") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'share' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "green1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'green1' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "Separador") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Separador' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "green2") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'green2' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "signup") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'signup' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "Botão send") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Botão send' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "yellow") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'yellow' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "Rectangle-1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Rectangle-1' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "signup") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'signup' is used in storyboard 'Main', but couldn't be loaded.") }
         if _R.storyboard.main().finishedID() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'finishedID' could not be loaded from storyboard 'Main' as 'UIKit.UIViewController'.") }
         if _R.storyboard.main().santanderCustomerViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'santanderCustomerViewController' could not be loaded from storyboard 'Main' as 'SantanderCustomerViewController'.") }
         if _R.storyboard.main().santanderFundsViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'santanderFundsViewController' could not be loaded from storyboard 'Main' as 'SantanderFundsViewController'.") }
-        if _R.storyboard.main().santanderFundViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'santanderFundViewController' could not be loaded from storyboard 'Main' as 'SantanderFundViewController'.") }
       }
       
       fileprivate init() {}

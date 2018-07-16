@@ -29,11 +29,12 @@ extension SantanderFundsViewController{
         
         let nibHeader = UINib.init(nibName: "FundHeaderTableView", bundle: nil)
         let nibMorefundsHeader = UINib.init(nibName: "MoreInfoHeaderView", bundle: nil)
-
+        let nibInvestButtonFooter = UINib.init(nibName: "InvestButtonFooter", bundle: nil)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(nibHeader, forHeaderFooterViewReuseIdentifier: "FundHeaderTableView")
         self.tableView.register(nibMorefundsHeader, forHeaderFooterViewReuseIdentifier: "MoreInfoHeaderView")
+        self.tableView.register(nibInvestButtonFooter, forHeaderFooterViewReuseIdentifier: "InvestButtonFooter")
         
         self.tableView.register(R.nib.moreInfoTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.moreInfoTableViewCell.identifier)
         self.tableView.register(R.nib.santanderFundTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.santanderFundTableViewCell.identifier)
@@ -191,6 +192,9 @@ extension SantanderFundsViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 2{
+            return CGFloat(90)
+        }
         return CGFloat(0)
     }
     
@@ -209,9 +213,16 @@ extension SantanderFundsViewController: UITableViewDelegate, UITableViewDataSour
         return UIView()
     }
     
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        
-//    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        if section == 2{
+            let cell = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "InvestButtonFooter") as! InvestButtonFooter
+            return cell
+        }
+        
+        return UIView()
+
+    }
 }
 
 extension SantanderFundsViewController: BuilderFundView{
@@ -220,16 +231,13 @@ extension SantanderFundsViewController: BuilderFundView{
         let fundName = (screenInfo.fundName)
         let topTitle = (screenInfo.title)
         let definition = (screenInfo.definition)
-        let riskTitle = (screenInfo.riskTitle)
         let whatIs = (screenInfo.whatIs)
-        let moreInfo = (screenInfo.infoTitle)
         let risk = (screenInfo.risk)
         header.definition.text = definition
         header.fundName.text = fundName
         header.subtitle.text = topTitle
         header.whatIs.text = whatIs
-        
-//        self.santanderFundView.startFundView(subtitle: topTitle, fundName: fundName, whatIs: whatIs, riskTitle: riskTitle, definitionLabel: definition, moreInfo: moreInfo, risk: risk)
+
     }
     
     func buildFundStatsView(moreInfoCell: MoreInfoTableViewCell, moreInfoMonth: MoreInfoScreen, indexPath: IndexPath){
