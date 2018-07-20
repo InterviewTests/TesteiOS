@@ -16,6 +16,8 @@
 		95D825442102286A00E4A4FD /* CellWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D825432102286A00E4A4FD /* CellWorker.swift */; };
 		95D8254B21022FA100E4A4FD /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D8254A21022FA100E4A4FD /* Connection.swift */; };
 		95D8254E2102460E00E4A4FD /* CellRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D8254D2102460E00E4A4FD /* CellRequester.swift */; };
+		95D8256021024D0800E4A4FD /* CellWorketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D8255F21024D0800E4A4FD /* CellWorketTests.swift */; };
+		95D8256221024D8400E4A4FD /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D8256121024D8400E4A4FD /* Seeds.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		95D8254D2102460E00E4A4FD /* CellRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellRequester.swift; sourceTree = "<group>"; };
 		95D8255421024C9B00E4A4FD /* FinFormTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinFormTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		95D8255821024C9B00E4A4FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95D8255F21024D0800E4A4FD /* CellWorketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWorketTests.swift; sourceTree = "<group>"; };
+		95D8256121024D8400E4A4FD /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,9 +136,19 @@
 		95D8255521024C9B00E4A4FD /* FinFormTests */ = {
 			isa = PBXGroup;
 			children = (
+				95D8255E21024CDA00E4A4FD /* Workers */,
 				95D8255821024C9B00E4A4FD /* Info.plist */,
+				95D8256121024D8400E4A4FD /* Seeds.swift */,
 			);
 			path = FinFormTests;
+			sourceTree = "<group>";
+		};
+		95D8255E21024CDA00E4A4FD /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				95D8255F21024D0800E4A4FD /* CellWorketTests.swift */,
+			);
+			path = Workers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +204,7 @@
 					};
 					95D8255321024C9B00E4A4FD = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 0940;
 						TestTargetID = 9598AB3121021DBC00916B33;
 					};
 				};
@@ -251,6 +266,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95D8256221024D8400E4A4FD /* Seeds.swift in Sources */,
+				95D8256021024D0800E4A4FD /* CellWorketTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +457,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z33726G6B5;
 				INFOPLIST_FILE = FinFormTests/Info.plist;
@@ -450,6 +468,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = sore.FinFormTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FinForm.app/FinForm";
@@ -460,6 +479,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z33726G6B5;
 				INFOPLIST_FILE = FinFormTests/Info.plist;
