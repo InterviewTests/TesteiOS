@@ -18,6 +18,16 @@
 		95D8254E2102460E00E4A4FD /* CellRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D8254D2102460E00E4A4FD /* CellRequester.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		95D8255921024C9B00E4A4FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9598AB2A21021DBC00916B33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9598AB3121021DBC00916B33;
+			remoteInfo = FinForm;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		9598AB3221021DBC00916B33 /* FinForm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinForm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9598AB3521021DBC00916B33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -30,10 +40,19 @@
 		95D825432102286A00E4A4FD /* CellWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWorker.swift; sourceTree = "<group>"; };
 		95D8254A21022FA100E4A4FD /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		95D8254D2102460E00E4A4FD /* CellRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellRequester.swift; sourceTree = "<group>"; };
+		95D8255421024C9B00E4A4FD /* FinFormTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinFormTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		95D8255821024C9B00E4A4FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9598AB2F21021DBC00916B33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95D8255121024C9B00E4A4FD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -47,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				9598AB3421021DBC00916B33 /* FinForm */,
+				95D8255521024C9B00E4A4FD /* FinFormTests */,
 				9598AB3321021DBC00916B33 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				9598AB3221021DBC00916B33 /* FinForm.app */,
+				95D8255421024C9B00E4A4FD /* FinFormTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,6 +129,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		95D8255521024C9B00E4A4FD /* FinFormTests */ = {
+			isa = PBXGroup;
+			children = (
+				95D8255821024C9B00E4A4FD /* Info.plist */,
+			);
+			path = FinFormTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -128,6 +157,24 @@
 			productReference = 9598AB3221021DBC00916B33 /* FinForm.app */;
 			productType = "com.apple.product-type.application";
 		};
+		95D8255321024C9B00E4A4FD /* FinFormTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95D8255B21024C9B00E4A4FD /* Build configuration list for PBXNativeTarget "FinFormTests" */;
+			buildPhases = (
+				95D8255021024C9B00E4A4FD /* Sources */,
+				95D8255121024C9B00E4A4FD /* Frameworks */,
+				95D8255221024C9B00E4A4FD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				95D8255A21024C9B00E4A4FD /* PBXTargetDependency */,
+			);
+			name = FinFormTests;
+			productName = FinFormTests;
+			productReference = 95D8255421024C9B00E4A4FD /* FinFormTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -140,6 +187,10 @@
 				TargetAttributes = {
 					9598AB3121021DBC00916B33 = {
 						CreatedOnToolsVersion = 9.4;
+					};
+					95D8255321024C9B00E4A4FD = {
+						CreatedOnToolsVersion = 9.4;
+						TestTargetID = 9598AB3121021DBC00916B33;
 					};
 				};
 			};
@@ -157,6 +208,7 @@
 			projectRoot = "";
 			targets = (
 				9598AB3121021DBC00916B33 /* FinForm */,
+				95D8255321024C9B00E4A4FD /* FinFormTests */,
 			);
 		};
 /* End PBXProject section */
@@ -169,6 +221,13 @@
 				9598AB4021021DBF00916B33 /* LaunchScreen.storyboard in Resources */,
 				9598AB3D21021DBF00916B33 /* Assets.xcassets in Resources */,
 				9598AB3B21021DBC00916B33 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95D8255221024C9B00E4A4FD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,7 +247,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		95D8255021024C9B00E4A4FD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		95D8255A21024C9B00E4A4FD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9598AB3121021DBC00916B33 /* FinForm */;
+			targetProxy = 95D8255921024C9B00E4A4FD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9598AB3921021DBC00916B33 /* Main.storyboard */ = {
@@ -362,6 +436,46 @@
 			};
 			name = Release;
 		};
+		95D8255C21024C9B00E4A4FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z33726G6B5;
+				INFOPLIST_FILE = FinFormTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sore.FinFormTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FinForm.app/FinForm";
+			};
+			name = Debug;
+		};
+		95D8255D21024C9B00E4A4FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z33726G6B5;
+				INFOPLIST_FILE = FinFormTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sore.FinFormTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FinForm.app/FinForm";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -379,6 +493,15 @@
 			buildConfigurations = (
 				9598AB4521021DBF00916B33 /* Debug */,
 				9598AB4621021DBF00916B33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		95D8255B21024C9B00E4A4FD /* Build configuration list for PBXNativeTarget "FinFormTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95D8255C21024C9B00E4A4FD /* Debug */,
+				95D8255D21024C9B00E4A4FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
