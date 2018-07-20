@@ -44,8 +44,13 @@ class CellRequesterTests: XCTestCase
                 fetchCellsExpectation.fulfill()
             case .Failure(error: let error):
                 switch error{
-                case .NoInternetAcces:
-                    XCTFail("fetchCells() needs internet access")
+                case .RequestError(let requestError):
+                    switch requestError{
+                    case .NoInternetAcces:
+                        XCTFail("fetchCells() needs internet access")
+                    default:
+                        XCTFail("fetchScreen() request return an error: \(requestError)")
+                    }
                 default:
                     XCTFail("fetchCells() return an error: \(error)")
                 }

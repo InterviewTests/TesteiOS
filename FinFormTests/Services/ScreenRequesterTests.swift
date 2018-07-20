@@ -44,11 +44,22 @@ class ScreenRequesterTests: XCTestCase
                 fetchScreenExpectation.fulfill()
             case .Failure(error: let error):
                 switch error{
-                case .NoInternetAcces:
-                    XCTFail("fetchScreen() needs internet access")
+                case .RequestError(let requestError):
+                    switch requestError{
+                    case .NoInternetAcces:
+                        XCTFail("fetchCells() needs internet access")
+                    default:
+                        XCTFail("fetchScreen() request return an error: \(requestError)")
+                    }
                 default:
                     XCTFail("fetchScreen() return an error: \(error)")
                 }
+//                switch error{
+//                case .NoInternetAcces:
+//                    XCTFail("fetchScreen() needs internet access")
+//                default:
+//                    XCTFail("fetchScreen() return an error: \(error)")
+//                }
             }
         }
         waitForExpectations(timeout: 10.0)

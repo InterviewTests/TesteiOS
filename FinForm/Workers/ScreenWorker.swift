@@ -43,10 +43,6 @@ enum ScreenWorkerResult<U>
 // MARK: - Erros
 enum ScreenWorkerError: Error
 {
-    case CannotFetch(Error)
-    case NoInternetAcces
-    case WrongURLFormat
-    case NoData
+    case RequestError(RequesterError)
     case ParseError
-    case Default
 }
