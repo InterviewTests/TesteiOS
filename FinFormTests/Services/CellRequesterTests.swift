@@ -47,7 +47,7 @@ class CellRequesterTests: XCTestCase
                 case .NoInternetAcces:
                     XCTFail("fetchCells() needs internet access")
                 default:
-                    XCTFail("fetchTopGames() return an error: \(error)")
+                    XCTFail("fetchCells() return an error: \(error)")
                 }
             }
         }
