@@ -32,3 +32,9 @@ enum TypeField: Int,Codable{
     case telNumber = 2
     case email = 3
 }
+
+// MARK: - Parse cells model
+struct RootCells:Codable
+{
+    var cells:[Cell]
+}

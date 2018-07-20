@@ -41,12 +41,12 @@ enum CellWorkerResult<U>
 }
 
 // MARK: - Erros
-enum CellWorkerError: Equatable, Error
+enum CellWorkerError: Error
 {
-    case CannotFetch(String)
+    case CannotFetch(Error)
     case NoInternetAcces
     case WrongURLFormat
     case NoData
-    case ParseError(String)
+    case ParseError
     case Default
 }
