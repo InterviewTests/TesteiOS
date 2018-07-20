@@ -31,7 +31,7 @@ protocol ScreenWorkerProtocol {
 }
 
 // MARK: - Typealias
-typealias FetchScreenCompletionHandler = (ScreenWorkerResult<[Screen]>) -> Void
+typealias FetchScreenCompletionHandler = (ScreenWorkerResult<Screen>) -> Void
 
 // MARK: - Results
 enum ScreenWorkerResult<U>

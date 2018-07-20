@@ -16,7 +16,7 @@ struct Screen:Codable,Equatable {
     var risk: Int
     var infoTitle: String
     
-    var moreInfo:[ScreenMoreInfo]
+    var moreInfo:RootScreenMoreInfo
     var info:[ScreenInfo]
     var downInfo:[ScreenInfo]
     
