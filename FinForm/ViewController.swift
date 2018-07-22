@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: FieldCell.identifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 56
+        tableView.estimatedRowHeight = 70
         
         self.view.addSubview(tableView)
     }
@@ -54,13 +54,13 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
         
         cell.selectionStyle = .none
         cell.populate(cellMetaData: cellMetaData)
-        cell.validationRuleCompletion = { text,type in
-            if text == "Teste"{
-                return true
-            } else{
-                return false
-            }
-        }
+//        cell.validationRuleCompletion = { text,type in
+//            if text == "Teste"{
+//                return true
+//            } else{
+//                return false
+//            }
+//        }
         
         return cell;
     }
