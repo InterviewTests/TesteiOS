@@ -19,6 +19,8 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         let nib = UINib(nibName: "FieldCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: FieldCell.identifier)
+        let nibText = UINib(nibName: "TextCell", bundle: nil)
+        tableView.register(nibText, forCellReuseIdentifier: TextCell.identifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70
@@ -45,24 +47,38 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FieldCell.identifier, for: indexPath) as! FieldCell
-        
         var cellMetaData:CellMetaData = CellMetaData()
         cellMetaData.fieldState = .Default
-        let cellModel = Cell.init(id: 0, type: Type.field, message: "Nome", typeField: TypeField.text, topSpacing: 35.0, show: 1, required: true)
-        cellMetaData.cell = cellModel
         
-        cell.selectionStyle = .none
-        cell.populate(cellMetaData: cellMetaData)
-//        cell.validationRuleCompletion = { text,type in
-//            if text == "Teste"{
-//                return true
-//            } else{
-//                return false
-//            }
-//        }
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier, for: indexPath) as! TextCell
+            let cellModel = Cell.init(id: 0, type: Type.text, message: "Contato", typeField: TypeField.text, topSpacing: 60.0, show: 1, required: false)
+            cellMetaData.cell = cellModel
+            cell.selectionStyle = .none
+            cell.populate(cellMetaData: cellMetaData)
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: FieldCell.identifier, for: indexPath) as! FieldCell
+            
+            let cellModel = Cell.init(id: 1, type: Type.field, message: "Nome", typeField: TypeField.text, topSpacing: 35.0, show: 1, required: true)
+            cellMetaData.cell = cellModel
+            
+            cell.selectionStyle = .none
+            cell.populate(cellMetaData: cellMetaData)
+            //        cell.validationRuleCompletion = { text,type in
+            //            if text == "Teste"{
+            //                return true
+            //            } else{
+            //                return false
+            //            }
+        //        }
+            return cell
+        default:
+            break
+        }
         
-        return cell;
+        return UITableViewCell();
     }
     
 }
