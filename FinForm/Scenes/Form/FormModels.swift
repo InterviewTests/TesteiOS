@@ -15,7 +15,6 @@ import UIKit
 enum Form
 {
   // MARK: Use cases
-  
   enum FetchCells
   {
     struct Request
@@ -23,7 +22,7 @@ enum Form
     }
     struct Response
     {
-        var cells:[Cell]
+        var arrayMetaData:[CellMetaData]
         var noInternt:Bool = false
     }
     struct ViewModel
@@ -32,4 +31,25 @@ enum Form
         var noInternet:Bool = false
     }
   }
+    
+    enum ShowHideCell
+    {
+        struct Request
+        {
+            var cellMetaData:CellMetaData
+            var index:Int
+        }
+        struct Response
+        {
+            var cellMetaData:CellMetaData
+            var index:Int
+            var show:Bool
+        }
+        struct ViewModel
+        {
+            var cellMetaData:CellMetaData
+            var index:Int
+            var show:Bool
+        }
+    }
 }

@@ -15,21 +15,22 @@ import UIKit
 protocol FormBusinessLogic
 {
   func fetchCells(request: Form.FetchCells.Request)
+  func showHideCell(request: Form.ShowHideCell.Request)
 }
 
 protocol FormDataStore
 {
-    var cells: [Cell] { get set }
+    var arrayMetaData: [CellMetaData] { get set }
 }
 
 class FormInteractor: FormBusinessLogic, FormDataStore
 {
-    
+
   var presenter: FormPresentationLogic?
   var worker: CellWorker?
     
     // MARK: Data Store
-  var cells: [Cell] = []
+  var arrayMetaData: [CellMetaData] = []
   
   // MARK: Fetch Cells
     func fetchCells(request: Form.FetchCells.Request) {
@@ -37,28 +38,50 @@ class FormInteractor: FormBusinessLogic, FormDataStore
         worker?.fetchCells(completionHandler: { (result) in
             switch result{
             case .Success(let cells):
-                let response = Form.FetchCells.Response.init(cells: cells, noInternt: false)
-                self.cells = cells
+                let response = Form.FetchCells.Response.init(arrayMetaData: self.generateMetaDataArray(cells: cells), noInternt: false)
+                self.arrayMetaData = self.generateMetaDataArray(cells: cells)
                 self.presenter?.presentFetchedCells(response: response)
             case .Failure(let error):
                 switch error{
                 case .RequestError(let requestRrror):
                     switch requestRrror{
                     case .NoInternetAcces:
-                        let response = Form.FetchCells.Response.init(cells: [], noInternt: true)
+                        let response = Form.FetchCells.Response.init(arrayMetaData: [], noInternt: true)
                         self.presenter?.presentFetchedCells(response: response)
                     default:
-                        let response = Form.FetchCells.Response.init(cells: [], noInternt: true)
+                        let response = Form.FetchCells.Response.init(arrayMetaData: [], noInternt: true)
                         self.presenter?.presentFetchedCells(response: response)
                         break
                     }
                     break
                 default:
-                    let response = Form.FetchCells.Response.init(cells: [], noInternt: false)
+                    let response = Form.FetchCells.Response.init(arrayMetaData: [], noInternt: false)
                     self.presenter?.presentFetchedCells(response: response)
                     break
                 }
             }
         })
+    }
+    
+  // MARK: Show / Hide Cell
+    func showHideCell(request: Form.ShowHideCell.Request) {
+        let cellMetaData = request.cellMetaData
+        
+        let result = FormWorker().didSelect(cellMetaData: cellMetaData, arrayMetaData: self.arrayMetaData)
+        self.arrayMetaData[result.index] = result.cellMetaData
+        
+        let response = Form.ShowHideCell.Response.init(cellMetaData: result.cellMetaData, index: result.index, show: result.show)
+        presenter?.showHideCell(response: response)
+    }
+    
+    // MARK: Private utils methods
+    private func generateMetaDataArray(cells:[Cell]) -> [CellMetaData]{
+        var arrayCellsMetaData:[CellMetaData] = []
+        for cell in cells{
+            var cellMetaData = CellMetaData()
+            cellMetaData.cell = cell
+            arrayCellsMetaData.append(cellMetaData)
+        }
+        return arrayCellsMetaData
     }
 }

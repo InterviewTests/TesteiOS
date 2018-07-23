@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias CheckBoxSelectionCompletion = (Bool,CellMetaData) -> Void
+typealias CheckBoxSelectionCompletion = (Bool,Int) -> Void
 
 class CheckBoxCell: UITableViewCell {
     
@@ -26,8 +26,12 @@ class CheckBoxCell: UITableViewCell {
     
     var selectionCompletion:CheckBoxSelectionCompletion?
     
-    func populate(cellMetaData:CellMetaData){
+    var index:Int = 0
+    
+    func populate(cellMetaData:CellMetaData,index:Int){
         self.cellMetaData = cellMetaData
+        
+        self.index = index
         
         if let cell = cellMetaData.cell{
             if let topSpacing = cell.topSpacing{
@@ -56,10 +60,10 @@ class CheckBoxCell: UITableViewCell {
     @IBAction func selectAction(_ sender: Any) {
         if cellMetaData.selected{
             deselect()
-            selectionCompletion?(false,cellMetaData)
+            selectionCompletion?(false,index)
         } else{
             select()
-            selectionCompletion?(true,cellMetaData)
+            selectionCompletion?(true,index)
         }
         
     }

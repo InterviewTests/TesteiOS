@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias ValidationFieldRuleCompletion = (String,TypeField) -> Bool
+typealias ValidationFieldRuleCompletion = (String) -> Bool
 typealias FieldCellUpdateValueCompletion = (String,Int) -> Void
 
 class FieldCell: UITableViewCell {
@@ -188,12 +188,10 @@ extension FieldCell:UITextFieldDelegate{
                                                        with: string)
             
             if validationRuleCompletion != nil{
-                if let typeField = cellMetaData.cell?.typeField{
-                    if validationRuleCompletion!(updatedText,typeField){
-                        setSuccessState()
-                    } else{
-                        setFailureState()
-                    }
+                if validationRuleCompletion!(updatedText){
+                    setSuccessState()
+                } else{
+                    setFailureState()
                 }
             }
             

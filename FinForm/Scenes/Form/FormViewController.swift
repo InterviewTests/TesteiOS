@@ -15,6 +15,7 @@ import UIKit
 protocol FormDisplayLogic: class
 {
   func displayFetchedCells(viewModel: Form.FetchCells.ViewModel)
+  func displayShowHideCell(viewModel: Form.ShowHideCell.ViewModel)
 }
 
 class FormViewController: UIViewController, FormDisplayLogic
@@ -126,6 +127,29 @@ class FormViewController: UIViewController, FormDisplayLogic
         }
     }
   }
+    
+    // MARK: Show Hide Cell
+    func showHideCell(cellMetaData:CellMetaData,index:Int){
+        let request = Form.ShowHideCell.Request.init(cellMetaData: cellMetaData, index: index)
+        interactor?.showHideCell(request: request)
+    }
+    
+    func displayShowHideCell(viewModel: Form.ShowHideCell.ViewModel){
+        let index = viewModel.index
+        let cellMetaData = viewModel.cellMetaData
+        let show = viewModel.show
+        
+        let indexPath = IndexPath.init(row: index, section: 0)
+        
+        if show{
+            self.arrayCellsMetaData.insert(cellMetaData, at: index)
+            tableView.insertRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+        } else{
+            self.arrayCellsMetaData.remove(at: index)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+        }
+        
+    }
 }
 
 // MARK: Table View Delegate / Data Source
@@ -152,6 +176,13 @@ extension FormViewController:UITableViewDelegate,UITableViewDataSource{
                         cellMetaData.textValue = value
                         self.arrayCellsMetaData[index] = cellMetaData
                     }
+                    if let typeField = cellModel.typeField{
+                        if typeField == .email{
+                            cell.validationRuleCompletion = {email in
+                                return FormWorker().validateEmail(email: email)
+                            }
+                        }
+                    }
                     return cell
                 case .text:
                     let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier, for: indexPath) as! TextCell
@@ -166,7 +197,10 @@ extension FormViewController:UITableViewDelegate,UITableViewDataSource{
                 case .checkbox:
                     let cell = tableView.dequeueReusableCell(withIdentifier: CheckBoxCell.identifier, for: indexPath) as! CheckBoxCell
                     cell.selectionStyle = .none
-                    cell.populate(cellMetaData: cellMetaData)
+                    cell.populate(cellMetaData: cellMetaData,index: indexPath.row)
+                    cell.selectionCompletion = {selected,index in
+                        self.showHideCell(cellMetaData: cellMetaData, index: index)
+                    }
                     return cell
                 case .send:
                     let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier, for: indexPath) as! ButtonCell

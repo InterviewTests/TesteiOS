@@ -14,7 +14,33 @@ import UIKit
 
 class FormWorker
 {
-  func doSomeWork()
-  {
-  }
+    func validateEmail(email:String) -> Bool{
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: email)
+    }
+    
+    func didSelect(cellMetaData:CellMetaData,arrayMetaData:[CellMetaData]) -> (cellMetaData:CellMetaData,index:Int,show:Bool){
+        
+        var array:[CellMetaData] = arrayMetaData
+        if let cell = cellMetaData.cell{
+            if let idToShow = cell.show{
+                for i in 0...array.count - 1{
+                    if var cell = array[i].cell{
+                        if idToShow == cell.id{
+                            if let hidden = cell.hidden{
+                                cell.hidden = !hidden
+                                array[i].cell = cell
+                                return (array[i],i,hidden)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        return (array[0],0,true)
+        
+    }
 }

@@ -15,6 +15,7 @@ import UIKit
 protocol FormPresentationLogic
 {
   func presentFetchedCells(response: Form.FetchCells.Response)
+  func showHideCell(response: Form.ShowHideCell.Response)
 }
 
 class FormPresenter: FormPresentationLogic
@@ -32,15 +33,26 @@ class FormPresenter: FormPresentationLogic
         return
     }
     
-    var arrayCellsMetaData:[CellMetaData] = []
-    for cell in response.cells{
-        if cell.hidden == false{
-            var cellMetaData = CellMetaData()
-            cellMetaData.cell = cell
-            arrayCellsMetaData.append(cellMetaData)
-        }
-    }
+    let arrayCellsMetaData:[CellMetaData] = filterMetaDataArray(array: response.arrayMetaData)
     let viewModel = Form.FetchCells.ViewModel.init(cellsMetaData: arrayCellsMetaData, noInternet: false)
     viewController?.displayFetchedCells(viewModel: viewModel)
   }
+    
+    // MARK: Present Fetched Cells
+    func showHideCell(response: Form.ShowHideCell.Response) {
+        let viewModel = Form.ShowHideCell.ViewModel.init(cellMetaData: response.cellMetaData, index: response.index, show: response.show)
+        viewController?.displayShowHideCell(viewModel: viewModel)
+    }
+    
+    private func filterMetaDataArray(array:[CellMetaData]) -> [CellMetaData]{
+        var arrayCellsMetaData:[CellMetaData] = []
+        for cellMetaData in array{
+            if let cell = cellMetaData.cell{
+                if cell.hidden == false{
+                    arrayCellsMetaData.append(cellMetaData)
+                }
+            }
+        }
+        return arrayCellsMetaData
+    }
 }

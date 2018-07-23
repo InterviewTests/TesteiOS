@@ -18,6 +18,33 @@ struct Cell: Codable,Equatable
     var topSpacing: Float?
     var show: Int?
     var required: Bool?
+    
+    private enum CodingKeys: String, CodingKey {
+        case id,type,message,hidden,topSpacing,show,required
+        
+        case typeField = "typefield"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try? container.decode(Int.self, forKey: .id)
+        type = try? container.decode(Type.self, forKey: .type)
+        message = try? container.decode(String.self, forKey: .message)
+        hidden = try? container.decode(Bool.self, forKey: .hidden)
+        topSpacing = try? container.decode(Float.self, forKey: .topSpacing)
+        show = try? container.decode(Int.self, forKey: .show)
+        required = try? container.decode(Bool.self, forKey: .required)
+        if let value = try? container.decode(Int.self, forKey: .typeField) {
+            typeField = TypeField(rawValue: value)
+        } else {
+            let stringValue = try? container.decode(String.self, forKey: .typeField)
+            if stringValue == "telnumber"{
+                typeField = TypeField(rawValue: 2)
+            } else{
+                typeField = TypeField(rawValue: 0)
+            }
+        }
+    }
 }
 
 enum Type: Int,Codable,Equatable{
@@ -29,6 +56,7 @@ enum Type: Int,Codable,Equatable{
 }
 
 enum TypeField: Int,Codable,Equatable{
+    case none = 0
     case text = 1
     case telNumber = 2
     case email = 3
