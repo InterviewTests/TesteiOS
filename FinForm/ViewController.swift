@@ -25,6 +25,8 @@ class ViewController: UIViewController {
         tableView.register(nibImage, forCellReuseIdentifier: ImageCell.identifier)
         let nibCheckBox = UINib(nibName: "CheckBoxCell", bundle: nil)
         tableView.register(nibCheckBox, forCellReuseIdentifier: CheckBoxCell.identifier)
+        let nibButton = UINib(nibName: "ButtonCell", bundle: nil)
+        tableView.register(nibButton, forCellReuseIdentifier: ButtonCell.identifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70
@@ -47,7 +49,7 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,6 +96,16 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
             cell.selectionCompletion = {selected,cellMetaData in
                 print("Selected: \(selected)")
                 print("Show: \(cellMetaData.cell?.show)")
+            }
+            return cell
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier, for: indexPath) as! ButtonCell
+            let cellModel = Cell.init(id: 0, type: Type.send, message: "Enviar", typeField: TypeField.text, topSpacing: 10.0, show: 4, required: false)
+            cellMetaData.cell = cellModel
+            cell.selectionStyle = .none
+            cell.populate(cellMetaData: cellMetaData)
+            cell.selectionCompletion = {metaData in
+                print("Button: \(metaData.cell?.message)")
             }
             return cell
         default:
