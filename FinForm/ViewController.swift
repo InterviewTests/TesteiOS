@@ -60,77 +60,77 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
         var cellMetaData:CellMetaData = CellMetaData()
         cellMetaData.fieldState = .Default
         
-        switch indexPath.row {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier, for: indexPath) as! TextCell
-            let cellModel = Cell.init(id: 0, type: Type.text, message: "Contato", typeField: TypeField.text, topSpacing: 60.0, show: 1, required: false)
-            cellMetaData.cell = cellModel
-            cell.selectionStyle = .none
-            cell.populate(cellMetaData: cellMetaData)
-            return cell
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ImageCell.identifier, for: indexPath) as! ImageCell
-            let cellModel = Cell.init(id: 1, type: Type.image, message: "https://dicadehoje7.com/wp-content/uploads/2017/10/resultados-santander-capa.jpg", typeField: TypeField.text, topSpacing: 35.0, show: 1, required: false)
-            cellMetaData.cell = cellModel
-            cell.selectionStyle = .none
-            cell.populate(cellMetaData: cellMetaData)
-            return cell
-        case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: FieldCell.identifier, for: indexPath) as! FieldCell
-            
-            let cellModel = Cell.init(id: 2, type: Type.field, message: "Nome", typeField: TypeField.text, topSpacing: 35.0, show: 1, required: true)
-            cellMetaData.cell = cellModel
-            
-            cell.selectionStyle = .none
-            cell.populate(cellMetaData: cellMetaData)
-            //        cell.validationRuleCompletion = { text,type in
-            //            if text == "Teste"{
-            //                return true
-            //            } else{
-            //                return false
-            //            }
-        //        }
-            return cell
-        case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: CheckBoxCell.identifier, for: indexPath) as! CheckBoxCell
-            let cellModel = Cell.init(id: 0, type: Type.checkbox, message: "Gostaria de cadastrar meu email", typeField: TypeField.text, topSpacing: 35.0, show: 4, required: false)
-            cellMetaData.cell = cellModel
-            cell.selectionStyle = .none
-            cell.populate(cellMetaData: cellMetaData)
-            cell.selectionCompletion = {selected,cellMetaData in
-                print("Selected: \(selected)")
-                print("Show: \(cellMetaData.cell?.show)")
-            }
-            return cell
-        case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: InfoCell.identifier, for: indexPath) as! InfoCell
-            var screenInfo = ScreenInfo()
-            screenInfo.name = "Teste"
-            screenInfo.data = "R$ 10.000,00"
-            cell.populate(info: screenInfo)
-            return cell
-        case 5:
-            let cell = tableView.dequeueReusableCell(withIdentifier: DownInfoCell.identifier, for: indexPath) as! DownInfoCell
-            var screenInfo = ScreenInfo()
-            screenInfo.name = "Teste"
-            cell.downloadCompletion = {
-                print("Download action")
-            }
-            cell.populate(info: screenInfo)
-            return cell
-        case 6:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier, for: indexPath) as! ButtonCell
-            let cellModel = Cell.init(id: 0, type: Type.send, message: "Enviar", typeField: TypeField.text, topSpacing: 10.0, show: 4, required: false)
-            cellMetaData.cell = cellModel
-            cell.selectionStyle = .none
-            cell.populate(cellMetaData: cellMetaData)
-            cell.selectionCompletion = {metaData in
-                print("Button: \(metaData.cell?.message)")
-            }
-            return cell
-        default:
-            break
-        }
+//        switch indexPath.row {
+//        case 0:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier, for: indexPath) as! TextCell
+//            let cellModel = Cell.init(id: 0, type: Type.text, message: "Contato", typeField: TypeField.text, topSpacing: 60.0, show: 1, required: false)
+//            cellMetaData.cell = cellModel
+//            cell.selectionStyle = .none
+//            cell.populate(cellMetaData: cellMetaData)
+//            return cell
+//        case 1:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: ImageCell.identifier, for: indexPath) as! ImageCell
+//            let cellModel = Cell.init(id: 1, type: Type.image, message: "https://dicadehoje7.com/wp-content/uploads/2017/10/resultados-santander-capa.jpg", typeField: TypeField.text, topSpacing: 35.0, show: 1, required: false)
+//            cellMetaData.cell = cellModel
+//            cell.selectionStyle = .none
+//            cell.populate(cellMetaData: cellMetaData)
+//            return cell
+//        case 2:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: FieldCell.identifier, for: indexPath) as! FieldCell
+//
+//            let cellModel = Cell.init(id: 2, type: Type.field, message: "Nome", typeField: TypeField.text, topSpacing: 35.0, show: 1, required: true)
+//            cellMetaData.cell = cellModel
+//
+//            cell.selectionStyle = .none
+//            cell.populate(cellMetaData: cellMetaData)
+//            //        cell.validationRuleCompletion = { text,type in
+//            //            if text == "Teste"{
+//            //                return true
+//            //            } else{
+//            //                return false
+//            //            }
+//        //        }
+//            return cell
+//        case 3:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: CheckBoxCell.identifier, for: indexPath) as! CheckBoxCell
+//            let cellModel = Cell.init(id: 0, type: Type.checkbox, message: "Gostaria de cadastrar meu email", typeField: TypeField.text, topSpacing: 35.0, show: 4, required: false)
+//            cellMetaData.cell = cellModel
+//            cell.selectionStyle = .none
+//            cell.populate(cellMetaData: cellMetaData)
+//            cell.selectionCompletion = {selected,cellMetaData in
+//                print("Selected: \(selected)")
+//                print("Show: \(cellMetaData.cell?.show)")
+//            }
+//            return cell
+//        case 4:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: InfoCell.identifier, for: indexPath) as! InfoCell
+//            var screenInfo = ScreenInfo()
+//            screenInfo.name = "Teste"
+//            screenInfo.data = "R$ 10.000,00"
+//            cell.populate(info: screenInfo)
+//            return cell
+//        case 5:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: DownInfoCell.identifier, for: indexPath) as! DownInfoCell
+//            var screenInfo = ScreenInfo()
+//            screenInfo.name = "Teste"
+//            cell.downloadCompletion = {
+//                print("Download action")
+//            }
+//            cell.populate(info: screenInfo)
+//            return cell
+//        case 6:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier, for: indexPath) as! ButtonCell
+//            let cellModel = Cell.init(id: 0, type: Type.send, message: "Enviar", typeField: TypeField.text, topSpacing: 10.0, show: 4, required: false)
+//            cellMetaData.cell = cellModel
+//            cell.selectionStyle = .none
+//            cell.populate(cellMetaData: cellMetaData)
+//            cell.selectionCompletion = {metaData in
+//                print("Button: \(metaData.cell?.message)")
+//            }
+//            return cell
+//        default:
+//            break
+//        }
         
         return UITableViewCell();
     }

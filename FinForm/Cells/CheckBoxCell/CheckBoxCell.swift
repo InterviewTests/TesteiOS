@@ -19,6 +19,10 @@ class CheckBoxCell: UITableViewCell {
     
     var cellMetaData:CellMetaData!
     static let identifier:String = "CheckBoxCell"
+    static var nib:UINib{
+        let nibInfo = UINib(nibName: "CheckBoxCell", bundle: nil)
+        return nibInfo
+    }
     
     var selectionCompletion:CheckBoxSelectionCompletion?
     
@@ -57,6 +61,7 @@ class CheckBoxCell: UITableViewCell {
             select()
             selectionCompletion?(true,cellMetaData)
         }
+        
     }
     
     func select(){

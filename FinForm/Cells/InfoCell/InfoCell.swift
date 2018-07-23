@@ -14,6 +14,10 @@ class InfoCell: UITableViewCell {
     @IBOutlet var infoDetailLabel: UILabel!
     
     static let identifier:String = "InfoCell"
+    static var nib:UINib{
+        let nibInfo = UINib(nibName: "InfoCell", bundle: nil)
+        return nibInfo
+    }
     
     func populate(info:ScreenInfo){
         if let name = info.name{

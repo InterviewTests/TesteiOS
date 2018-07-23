@@ -17,6 +17,10 @@ class ButtonCell: UITableViewCell {
     
     var cellMetaData:CellMetaData!
     static let identifier:String = "ButtonCell"
+    static var nib:UINib{
+        let nibInfo = UINib(nibName: "ButtonCell", bundle: nil)
+        return nibInfo
+    }
     var selectionCompletion:ButtonPressedCompletion?
     
     func populate(cellMetaData:CellMetaData){

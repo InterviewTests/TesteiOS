@@ -15,6 +15,10 @@ class DownInfoCell: UITableViewCell {
     @IBOutlet var downloadInfoTitleLabel: UILabel!
     
     static let identifier:String = "DownInfoCell"
+    static var nib:UINib{
+        let nibInfo = UINib(nibName: "DownInfoCell", bundle: nil)
+        return nibInfo
+    }
     
     var downloadCompletion:DownloadButtonPressedCompletion?
     

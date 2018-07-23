@@ -51,5 +51,9 @@ extension UIColor
     var customRed:UIColor{
         return color(hex: "#DA0101")
     }
+    
+    var customRedDarker:UIColor{
+        return color(hex: "#C20101")
+    }
 }
 

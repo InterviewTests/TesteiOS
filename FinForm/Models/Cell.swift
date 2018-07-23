@@ -14,6 +14,7 @@ struct Cell: Codable,Equatable
     var type: Type?
     var message: String?
     var typeField: TypeField?
+    var hidden:Bool?
     var topSpacing: Float?
     var show: Int?
     var required: Bool?

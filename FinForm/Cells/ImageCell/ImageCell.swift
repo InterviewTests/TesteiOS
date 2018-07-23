@@ -15,6 +15,10 @@ class ImageCell: UITableViewCell {
     
     var cellMetaData:CellMetaData!
     static let identifier:String = "ImageCell"
+    static var nib:UINib{
+        let nibInfo = UINib(nibName: "ImageCell", bundle: nil)
+        return nibInfo
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

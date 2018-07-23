@@ -15,6 +15,10 @@ class TextCell: UITableViewCell {
     
     var cellMetaData:CellMetaData!
     static let identifier:String = "TextCell"
+    static var nib:UINib{
+        let nibInfo = UINib(nibName: "TextCell", bundle: nil)
+        return nibInfo
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

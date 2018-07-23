@@ -9,6 +9,7 @@
 import UIKit
 
 typealias ValidationFieldRuleCompletion = (String,TypeField) -> Bool
+typealias FieldCellUpdateValueCompletion = (String,Int) -> Void
 
 class FieldCell: UITableViewCell {
     
@@ -20,10 +21,16 @@ class FieldCell: UITableViewCell {
     @IBOutlet var topConstraint: NSLayoutConstraint!
     
     var cellMetaData:CellMetaData!
+    var index:Int = 0
     
     static let identifier:String = "FieldCell"
+    static var nib:UINib{
+        let nibInfo = UINib(nibName: "FieldCell", bundle: nil)
+        return nibInfo
+    }
     
     var validationRuleCompletion:ValidationFieldRuleCompletion?
+    var updateValueCompletion:FieldCellUpdateValueCompletion?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,8 +43,9 @@ class FieldCell: UITableViewCell {
         cleanButton.isHidden = true
     }
     
-    func populate(cellMetaData:CellMetaData){
+    func populate(cellMetaData:CellMetaData,index:Int){
         self.cellMetaData = cellMetaData
+        self.index = index
         
         if let cell = cellMetaData.cell{
             if let topSpacing = cell.topSpacing{
@@ -197,6 +205,7 @@ extension FieldCell:UITextFieldDelegate{
             }
             
             cellMetaData.textValue = updatedText
+            self.updateValueCompletion?(cellMetaData.textValue,self.index)
         }
         
         return true
