@@ -22,8 +22,7 @@ class FormPresenter: FormPresentationLogic
     
   weak var viewController: FormDisplayLogic?
   
-  // MARK: Do something
-  
+  // MARK: Present Fetched Cells
   func presentFetchedCells(response: Form.FetchCells.Response)
   {
     

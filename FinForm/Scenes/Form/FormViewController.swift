@@ -94,14 +94,17 @@ class FormViewController: UIViewController, FormDisplayLogic
     tableView.addGestureRecognizer(tap)
     fetchCells()
   }
-  
-  // MARK: Do something
-  
-    @IBAction func investimentAction(_ sender: Any) {
-    }
-    @IBOutlet var tableView: UITableView!
-    var arrayCellsMetaData:[CellMetaData] = []
     
+  // MARK: IBActions
+  @IBAction func investimentAction(_ sender: Any) {
+  }
+  
+  // MARK: Properties
+  @IBOutlet var tableView: UITableView!
+  var arrayCellsMetaData:[CellMetaData] = []
+    
+    
+  // MARK: Fetch Cellls
   func fetchCells()
   {
     let request = Form.FetchCells.Request()
@@ -125,6 +128,7 @@ class FormViewController: UIViewController, FormDisplayLogic
   }
 }
 
+// MARK: Table View Delegate / Data Source
 extension FormViewController:UITableViewDelegate,UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

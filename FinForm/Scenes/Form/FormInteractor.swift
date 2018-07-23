@@ -19,7 +19,7 @@ protocol FormBusinessLogic
 
 protocol FormDataStore
 {
-  //var name: String { get set }
+    var cells: [Cell] { get set }
 }
 
 class FormInteractor: FormBusinessLogic, FormDataStore
@@ -27,9 +27,11 @@ class FormInteractor: FormBusinessLogic, FormDataStore
     
   var presenter: FormPresentationLogic?
   var worker: CellWorker?
+    
+    // MARK: Data Store
   var cells: [Cell] = []
   
-  // MARK: Do something
+  // MARK: Fetch Cells
     func fetchCells(request: Form.FetchCells.Request) {
         worker = CellWorker(cellEngine: CellRequester())
         worker?.fetchCells(completionHandler: { (result) in
@@ -56,10 +58,6 @@ class FormInteractor: FormBusinessLogic, FormDataStore
                     self.presenter?.presentFetchedCells(response: response)
                     break
                 }
-            default:
-                let response = Form.FetchCells.Response.init(cells: [], noInternt: false)
-                self.presenter?.presentFetchedCells(response: response)
-                break
             }
         })
     }
