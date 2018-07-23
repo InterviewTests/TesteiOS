@@ -47,5 +47,9 @@ extension UIColor
     var formGray:UIColor{
         return color(hex: "#ACACAC")
     }
+    
+    var customRed:UIColor{
+        return color(hex: "#DA0101")
+    }
 }
 

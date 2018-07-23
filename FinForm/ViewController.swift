@@ -23,6 +23,8 @@ class ViewController: UIViewController {
         tableView.register(nibText, forCellReuseIdentifier: TextCell.identifier)
         let nibImage = UINib(nibName: "ImageCell", bundle: nil)
         tableView.register(nibImage, forCellReuseIdentifier: ImageCell.identifier)
+        let nibCheckBox = UINib(nibName: "CheckBoxCell", bundle: nil)
+        tableView.register(nibCheckBox, forCellReuseIdentifier: CheckBoxCell.identifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70
@@ -45,7 +47,7 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,6 +84,17 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
             //                return false
             //            }
         //        }
+            return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CheckBoxCell.identifier, for: indexPath) as! CheckBoxCell
+            let cellModel = Cell.init(id: 0, type: Type.checkbox, message: "Gostaria de cadastrar meu email", typeField: TypeField.text, topSpacing: 35.0, show: 4, required: false)
+            cellMetaData.cell = cellModel
+            cell.selectionStyle = .none
+            cell.populate(cellMetaData: cellMetaData)
+            cell.selectionCompletion = {selected,cellMetaData in
+                print("Selected: \(selected)")
+                print("Show: \(cellMetaData.cell?.show)")
+            }
             return cell
         default:
             break
