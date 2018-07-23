@@ -27,6 +27,8 @@ class ViewController: UIViewController {
         tableView.register(nibCheckBox, forCellReuseIdentifier: CheckBoxCell.identifier)
         let nibButton = UINib(nibName: "ButtonCell", bundle: nil)
         tableView.register(nibButton, forCellReuseIdentifier: ButtonCell.identifier)
+        let nibInfo = UINib(nibName: "InfoCell", bundle: nil)
+        tableView.register(nibInfo, forCellReuseIdentifier: InfoCell.identifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70
@@ -49,7 +51,7 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -99,6 +101,13 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
             }
             return cell
         case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: InfoCell.identifier, for: indexPath) as! InfoCell
+            var screenInfo = ScreenInfo()
+            screenInfo.name = "Teste"
+            screenInfo.data = "R$ 10.000,00"
+            cell.populate(info: screenInfo)
+            return cell
+        case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier, for: indexPath) as! ButtonCell
             let cellModel = Cell.init(id: 0, type: Type.send, message: "Enviar", typeField: TypeField.text, topSpacing: 10.0, show: 4, required: false)
             cellMetaData.cell = cellModel
