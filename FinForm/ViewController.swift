@@ -21,6 +21,8 @@ class ViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: FieldCell.identifier)
         let nibText = UINib(nibName: "TextCell", bundle: nil)
         tableView.register(nibText, forCellReuseIdentifier: TextCell.identifier)
+        let nibImage = UINib(nibName: "ImageCell", bundle: nil)
+        tableView.register(nibImage, forCellReuseIdentifier: ImageCell.identifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70
@@ -43,7 +45,7 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,9 +61,16 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
             cell.populate(cellMetaData: cellMetaData)
             return cell
         case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ImageCell.identifier, for: indexPath) as! ImageCell
+            let cellModel = Cell.init(id: 1, type: Type.image, message: "https://dicadehoje7.com/wp-content/uploads/2017/10/resultados-santander-capa.jpg", typeField: TypeField.text, topSpacing: 35.0, show: 1, required: false)
+            cellMetaData.cell = cellModel
+            cell.selectionStyle = .none
+            cell.populate(cellMetaData: cellMetaData)
+            return cell
+        case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: FieldCell.identifier, for: indexPath) as! FieldCell
             
-            let cellModel = Cell.init(id: 1, type: Type.field, message: "Nome", typeField: TypeField.text, topSpacing: 35.0, show: 1, required: true)
+            let cellModel = Cell.init(id: 2, type: Type.field, message: "Nome", typeField: TypeField.text, topSpacing: 35.0, show: 1, required: true)
             cellMetaData.cell = cellModel
             
             cell.selectionStyle = .none
