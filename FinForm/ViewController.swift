@@ -29,6 +29,8 @@ class ViewController: UIViewController {
         tableView.register(nibButton, forCellReuseIdentifier: ButtonCell.identifier)
         let nibInfo = UINib(nibName: "InfoCell", bundle: nil)
         tableView.register(nibInfo, forCellReuseIdentifier: InfoCell.identifier)
+        let nibDownload = UINib(nibName: "DownInfoCell", bundle: nil)
+        tableView.register(nibDownload, forCellReuseIdentifier: DownInfoCell.identifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70
@@ -51,7 +53,7 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -108,6 +110,15 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
             cell.populate(info: screenInfo)
             return cell
         case 5:
+            let cell = tableView.dequeueReusableCell(withIdentifier: DownInfoCell.identifier, for: indexPath) as! DownInfoCell
+            var screenInfo = ScreenInfo()
+            screenInfo.name = "Teste"
+            cell.downloadCompletion = {
+                print("Download action")
+            }
+            cell.populate(info: screenInfo)
+            return cell
+        case 6:
             let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier, for: indexPath) as! ButtonCell
             let cellModel = Cell.init(id: 0, type: Type.send, message: "Enviar", typeField: TypeField.text, topSpacing: 10.0, show: 4, required: false)
             cellMetaData.cell = cellModel
