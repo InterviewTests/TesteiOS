@@ -33,7 +33,7 @@ class FormPresenter: FormPresentationLogic
         return
     }
     
-    let arrayCellsMetaData:[CellMetaData] = filterMetaDataArray(array: response.arrayMetaData)
+    let arrayCellsMetaData:[CellMetaData] = sort(array: filterMetaDataArray(array: response.arrayMetaData))
     let viewModel = Form.FetchCells.ViewModel.init(cellsMetaData: arrayCellsMetaData, noInternet: false)
     viewController?.displayFetchedCells(viewModel: viewModel)
   }
@@ -43,6 +43,8 @@ class FormPresenter: FormPresentationLogic
         let viewModel = Form.ShowHideCell.ViewModel.init(cellMetaData: response.cellMetaData, index: response.index, show: response.show)
         viewController?.displayShowHideCell(viewModel: viewModel)
     }
+    
+    // MARK: Private utils methods
     
     private func filterMetaDataArray(array:[CellMetaData]) -> [CellMetaData]{
         var arrayCellsMetaData:[CellMetaData] = []
@@ -54,5 +56,15 @@ class FormPresenter: FormPresentationLogic
             }
         }
         return arrayCellsMetaData
+    }
+    
+    private func sort(array:[CellMetaData]) -> [CellMetaData]{
+        for metaData in array{
+            if let cell = metaData.cell{
+                if let _ = cell.id{
+                } else{return []}
+            } else{return []}
+        }
+        return array.sorted(by: { $0.cell!.id! < $1.cell!.id! })
     }
 }

@@ -43,4 +43,14 @@ class FormWorker
         return (array[0],0,true)
         
     }
+    
+    func generateMetaDataArray(cells:[Cell]) -> [CellMetaData]{
+        var arrayCellsMetaData:[CellMetaData] = []
+        for cell in cells{
+            var cellMetaData = CellMetaData()
+            cellMetaData.cell = cell
+            arrayCellsMetaData.append(cellMetaData)
+        }
+        return arrayCellsMetaData
+    }
 }

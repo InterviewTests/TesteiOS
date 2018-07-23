@@ -38,8 +38,8 @@ class FormInteractor: FormBusinessLogic, FormDataStore
         worker?.fetchCells(completionHandler: { (result) in
             switch result{
             case .Success(let cells):
-                let response = Form.FetchCells.Response.init(arrayMetaData: self.generateMetaDataArray(cells: cells), noInternt: false)
-                self.arrayMetaData = self.generateMetaDataArray(cells: cells)
+                let response = Form.FetchCells.Response.init(arrayMetaData: FormWorker().generateMetaDataArray(cells: cells), noInternt: false)
+                self.arrayMetaData = FormWorker().generateMetaDataArray(cells: cells)
                 self.presenter?.presentFetchedCells(response: response)
             case .Failure(let error):
                 switch error{
@@ -74,14 +74,4 @@ class FormInteractor: FormBusinessLogic, FormDataStore
         presenter?.showHideCell(response: response)
     }
     
-    // MARK: Private utils methods
-    private func generateMetaDataArray(cells:[Cell]) -> [CellMetaData]{
-        var arrayCellsMetaData:[CellMetaData] = []
-        for cell in cells{
-            var cellMetaData = CellMetaData()
-            cellMetaData.cell = cell
-            arrayCellsMetaData.append(cellMetaData)
-        }
-        return arrayCellsMetaData
-    }
 }
