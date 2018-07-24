@@ -181,6 +181,10 @@ extension FormViewController:UITableViewDelegate,UITableViewDataSource{
                             cell.validationRuleCompletion = {email in
                                 return FormWorker().validateEmail(email: email)
                             }
+                        } else if typeField == .telNumber{
+                            cell.canUpdateValueCompletion = {text,fullText in
+                                return text.isNumeric() && fullText.count < 16
+                            }
                         }
                     }
                     return cell

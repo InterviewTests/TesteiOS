@@ -10,6 +10,7 @@ import UIKit
 
 typealias ValidationFieldRuleCompletion = (String) -> Bool
 typealias FieldCellUpdateValueCompletion = (String,Int) -> Void
+typealias FieldCellCanUpdateValueCompletion = (String,String) -> Bool
 
 class FieldCell: UITableViewCell {
     
@@ -31,6 +32,7 @@ class FieldCell: UITableViewCell {
     
     var validationRuleCompletion:ValidationFieldRuleCompletion?
     var updateValueCompletion:FieldCellUpdateValueCompletion?
+    var canUpdateValueCompletion:FieldCellCanUpdateValueCompletion?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -184,7 +186,7 @@ extension FieldCell:UITextFieldDelegate{
         
         if let text = textField.text,
             let textRange = Range(range, in: text) {
-            let updatedText = text.replacingCharacters(in: textRange,
+            var updatedText = text.replacingCharacters(in: textRange,
                                                        with: string)
             
             if validationRuleCompletion != nil{
@@ -200,6 +202,25 @@ extension FieldCell:UITextFieldDelegate{
                 setDefaultState()
             } else{
                 cleanButton.isHidden = false
+            }
+            
+            if canUpdateValueCompletion != nil{
+                if canUpdateValueCompletion!(string,updatedText) == false{
+                    if text.isEmpty{
+                        cleanButton.isHidden = true
+                    }
+                    return false
+                }
+            }
+            
+            if let typeField = cellMetaData.cell?.typeField{
+                if typeField == .telNumber{
+                    updatedText = FormWorker().telNumberMask(numbers: updatedText)
+                    self.textField.delegate = nil
+                    self.textField.text = updatedText
+                    self.textField.delegate = self
+                    return false
+                }
             }
             
             cellMetaData.textValue = updatedText

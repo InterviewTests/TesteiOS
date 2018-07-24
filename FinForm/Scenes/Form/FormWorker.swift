@@ -53,4 +53,48 @@ class FormWorker
         }
         return arrayCellsMetaData
     }
+    
+    func telNumberMask(numbers:String) -> String{
+        
+        var value = numbers.digits
+        
+        if numbers.isEmpty{
+            return value
+        }
+        
+        let maskOne = "(**) ****-****"//14
+        let maskTwo = "(**) *****-****"//15
+        var mask = ""
+        
+        if numbers.count < 15{
+            mask = maskOne
+        } else{
+            mask = maskTwo
+        }
+        
+        value = getStringWithMask(mask: mask, text: value)
+        
+        return value
+        
+    }
+    
+    private func getStringWithMask(mask:String,text:String) -> String{
+        var value = ""
+        var index = 0
+        
+        for i in 0...mask.count - 1{
+            if index >= text.count{
+                return value
+            }
+            
+            if mask.subString(loc: i, length: 1) == "*"{
+                value = "\(value)\(text.subString(loc: index, length: 1))"
+                index = index + 1
+            } else{
+                value = "\(value)\(mask.subString(loc: i, length: 1))"
+            }
+        }
+        return value
+    }
+
 }
