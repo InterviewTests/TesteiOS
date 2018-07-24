@@ -27,6 +27,54 @@
                                 <rect key="frame" x="30" y="0.0" width="315" height="607"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUD-1B-qTn">
+                                <rect key="frame" x="0.0" y="20" width="375" height="587"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbz-Hf-hdC">
+                                        <rect key="frame" x="4" y="184.5" width="367" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="UKq-2v-axI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
+                                        <color key="textColor" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagem enviada com sucesso :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDG-zX-3aX">
+                                        <rect key="frame" x="45" y="201" width="291" height="109"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="109" id="Mcl-gy-1cX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQB-0G-uHT">
+                                        <rect key="frame" x="42" y="451" width="290" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="GPk-Eb-YKY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="18"/>
+                                        <state key="normal" title="Enviar nova mensagem">
+                                            <color key="titleColor" red="0.85490196080000003" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendAgainAction:" destination="6lq-81-NEA" eventType="touchUpInside" id="58d-g0-nXg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Lbz-Hf-hdC" firstAttribute="leading" secondItem="jUD-1B-qTn" secondAttribute="leading" constant="4" id="KNy-cs-ioJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="JQB-0G-uHT" secondAttribute="trailing" constant="43" id="NoP-tf-AMt"/>
+                                    <constraint firstAttribute="trailing" secondItem="vDG-zX-3aX" secondAttribute="trailing" constant="39" id="WDX-aq-zuu"/>
+                                    <constraint firstItem="JQB-0G-uHT" firstAttribute="leading" secondItem="jUD-1B-qTn" secondAttribute="leading" constant="42" id="YEm-kN-Ujp"/>
+                                    <constraint firstItem="vDG-zX-3aX" firstAttribute="leading" secondItem="jUD-1B-qTn" secondAttribute="leading" constant="45" id="cJ9-G0-VJD"/>
+                                    <constraint firstItem="JQB-0G-uHT" firstAttribute="centerY" secondItem="jUD-1B-qTn" secondAttribute="centerY" constant="172.5" id="jWt-n9-WXL"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lbz-Hf-hdC" secondAttribute="trailing" constant="4" id="urm-2q-iAo"/>
+                                    <constraint firstItem="vDG-zX-3aX" firstAttribute="centerY" secondItem="jUD-1B-qTn" secondAttribute="centerY" constant="-38" id="y55-fh-VJ9"/>
+                                    <constraint firstItem="Lbz-Hf-hdC" firstAttribute="centerY" secondItem="jUD-1B-qTn" secondAttribute="centerY" constant="-87" id="zSP-5c-CkM"/>
+                                </constraints>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="o0u-2Q-P8l">
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <subviews>
@@ -67,10 +115,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="jUD-1B-qTn" firstAttribute="leading" secondItem="wSg-mP-ipL" secondAttribute="leading" id="4qY-mL-ZNg"/>
                             <constraint firstItem="vtx-yd-dZU" firstAttribute="trailing" secondItem="wSg-mP-ipL" secondAttribute="trailing" constant="-30" id="BZb-4z-ET3"/>
+                            <constraint firstItem="o0u-2Q-P8l" firstAttribute="top" secondItem="jUD-1B-qTn" secondAttribute="bottom" id="KbY-4h-6BG"/>
                             <constraint firstItem="o0u-2Q-P8l" firstAttribute="bottom" secondItem="wSg-mP-ipL" secondAttribute="bottom" id="Xnb-J0-axd"/>
                             <constraint firstItem="o0u-2Q-P8l" firstAttribute="trailing" secondItem="wSg-mP-ipL" secondAttribute="trailing" id="gQx-Bb-qsv"/>
                             <constraint firstItem="o0u-2Q-P8l" firstAttribute="leading" secondItem="wSg-mP-ipL" secondAttribute="leading" id="jrk-5q-3Ss"/>
+                            <constraint firstItem="jUD-1B-qTn" firstAttribute="trailing" secondItem="wSg-mP-ipL" secondAttribute="trailing" id="mtt-aI-M91"/>
+                            <constraint firstItem="jUD-1B-qTn" firstAttribute="top" secondItem="wSg-mP-ipL" secondAttribute="top" id="qbX-9m-12j"/>
                             <constraint firstItem="o0u-2Q-P8l" firstAttribute="top" secondItem="vtx-yd-dZU" secondAttribute="bottom" id="w7Y-sA-qhs"/>
                             <constraint firstItem="vtx-yd-dZU" firstAttribute="top" secondItem="eNF-Wm-7QD" secondAttribute="top" id="xi5-58-9eI"/>
                             <constraint firstItem="vtx-yd-dZU" firstAttribute="leading" secondItem="wSg-mP-ipL" secondAttribute="leading" constant="30" id="y4a-Wb-wNY"/>
@@ -78,6 +130,7 @@
                         <viewLayoutGuide key="safeArea" id="wSg-mP-ipL"/>
                     </view>
                     <connections>
+                        <outlet property="successView" destination="jUD-1B-qTn" id="PSA-S5-ycU"/>
                         <outlet property="tableView" destination="vtx-yd-dZU" id="nMh-no-kgj"/>
                     </connections>
                 </viewController>

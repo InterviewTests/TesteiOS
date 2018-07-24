@@ -17,6 +17,7 @@ protocol FormBusinessLogic
   func fetchCells(request: Form.FetchCells.Request)
   func showHideCell(request: Form.ShowHideCell.Request)
   func validate(request: Form.Validate.Request)
+  func restart(request: Form.Restart.Request)
 }
 
 protocol FormDataStore
@@ -80,6 +81,22 @@ class FormInteractor: FormBusinessLogic, FormDataStore
         let metaData:CellMetaData? = FormWorker().validateForm(arrayMetaData: request.arrayMetaData)
         let response = Form.Validate.Response.init(wrongMetaData: metaData)
         presenter?.validate(response: response)
+    }
+    
+    // MARK: Restart
+    func restart(request: Form.Restart.Request){
+        for i in 0...arrayMetaData.count - 1{
+            if let hidden = arrayMetaData[i].cell?.hidden{
+                if hidden == true{
+                    continue
+                }
+            }
+            arrayMetaData[i].textValue = ""
+            arrayMetaData[i].fieldState = .Default
+            arrayMetaData[i].selected = false
+        }
+        let response = Form.Restart.Response.init(arrayMetaData: arrayMetaData)
+        presenter?.restart(response: response)
     }
     
 }

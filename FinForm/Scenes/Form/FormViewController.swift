@@ -17,6 +17,7 @@ protocol FormDisplayLogic: class
   func displayFetchedCells(viewModel: Form.FetchCells.ViewModel)
   func displayShowHideCell(viewModel: Form.ShowHideCell.ViewModel)
   func displayValidationResult(viewModel: Form.Validate.ViewModel)
+  func displayRestart(viewModel: Form.Restart.ViewModel)
 }
 
 class FormViewController: UIViewController, FormDisplayLogic
@@ -97,13 +98,21 @@ class FormViewController: UIViewController, FormDisplayLogic
     fetchCells()
   }
     
-  // MARK: IBActions
-  @IBAction func investimentAction(_ sender: Any) {
-  }
-  
+    // MARK: IBActions
+    @IBAction func investimentAction(_ sender: Any) {
+    }
+    @IBAction func sendAgainAction(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.successView.alpha = 0
+        }) { (success) in
+            self.successView.isHidden = true
+        }
+    }
+    
   // MARK: Properties
   @IBOutlet var tableView: UITableView!
-  var arrayCellsMetaData:[CellMetaData] = []
+    @IBOutlet var successView: UIView!
+    var arrayCellsMetaData:[CellMetaData] = []
     
     
   // MARK: Fetch Cellls
@@ -170,8 +179,27 @@ class FormViewController: UIViewController, FormDisplayLogic
             
         } else{
             
-            print("Sucesso")
+            successView.alpha = 0
+            successView.isHidden = false
+            UIView.animate(withDuration: 0.3, animations: {
+                self.successView.alpha = 1.0
+            }) { (success) in
+                self.restart()
+            }
             
+        }
+    }
+    
+    // MARK: Restart
+    func restart(){
+        interactor?.restart(request: Form.Restart.Request())
+    }
+    
+    func displayRestart(viewModel: Form.Restart.ViewModel){
+        arrayCellsMetaData.removeAll()
+        arrayCellsMetaData = viewModel.arrayMetaData
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
 }

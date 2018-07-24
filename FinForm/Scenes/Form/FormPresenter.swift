@@ -17,6 +17,7 @@ protocol FormPresentationLogic
   func presentFetchedCells(response: Form.FetchCells.Response)
   func showHideCell(response: Form.ShowHideCell.Response)
   func validate(response: Form.Validate.Response)
+  func restart(response: Form.Restart.Response)
 }
 
 class FormPresenter: FormPresentationLogic
@@ -68,6 +69,14 @@ class FormPresenter: FormPresentationLogic
             let viewModel = Form.Validate.ViewModel.init(success: true, validationProblemTitle: nil, validationProblemMessage: nil)
             viewController?.displayValidationResult(viewModel: viewModel)
         }
+    }
+    
+    // MARK: Restart
+    func restart(response: Form.Restart.Response){
+        var arrayCellsMetaData:[CellMetaData] = sort(array: filterMetaDataArray(array: response.arrayMetaData))
+        arrayCellsMetaData = sort(array: arrayCellsMetaData)
+        let viewModel = Form.Restart.ViewModel.init(arrayMetaData: arrayCellsMetaData)
+        viewController?.displayRestart(viewModel: viewModel)
     }
     
     // MARK: Private utils methods

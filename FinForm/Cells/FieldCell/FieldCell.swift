@@ -59,6 +59,8 @@ class FieldCell: UITableViewCell {
             }
         }
         
+        //textField.text = cellMetaData.textValue
+        
         textField.delegate = self
         cleanButton.layer.cornerRadius = cleanButton.frame.width / 2
         cleanButton.layer.masksToBounds = true

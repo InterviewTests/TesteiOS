@@ -70,4 +70,19 @@ enum Form
             var validationProblemMessage:String?
         }
     }
+    
+    enum Restart
+    {
+        struct Request
+        {
+        }
+        struct Response
+        {
+            var arrayMetaData:[CellMetaData]
+        }
+        struct ViewModel
+        {
+            var arrayMetaData:[CellMetaData]
+        }
+    }
 }
