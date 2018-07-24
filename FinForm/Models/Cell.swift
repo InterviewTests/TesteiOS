@@ -25,6 +25,17 @@ struct Cell: Codable,Equatable
         case typeField = "typefield"
     }
     
+    init(id:Int,type:Type,message:String,typeField:TypeField,hidden:Bool,topSpacing:Float,show:Int,required:Bool){
+        self.id = id
+        self.type = type
+        self.message = message
+        self.typeField = typeField
+        self.hidden = hidden
+        self.topSpacing = topSpacing
+        self.show = show
+        self.required = required
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try? container.decode(Int.self, forKey: .id)

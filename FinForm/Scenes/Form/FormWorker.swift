@@ -120,6 +120,24 @@ class FormWorker
         
     }
     
+    // MARK: Restart Cells Meta Data
+    func restartCellsMetaData(arrayMetaData:[CellMetaData]) -> [CellMetaData]{
+        var array:[CellMetaData] = arrayMetaData
+        
+        for i in 0...array.count - 1{
+            if let hidden = array[i].cell?.hidden{
+                if hidden == true{
+                    continue
+                }
+            }
+            array[i].textValue = ""
+            array[i].fieldState = .Default
+            array[i].selected = false
+        }
+        
+        return array
+    }
+    
     // MARK: Private utils methods
     private func getStringWithMask(mask:String,text:String) -> String{
         var value = ""

@@ -29,19 +29,19 @@ class FormInteractor: FormBusinessLogic, FormDataStore
 {
 
   var presenter: FormPresentationLogic?
-  var worker: CellWorker?
+  var cellWorker = CellWorker(cellEngine: CellRequester())
+  var formWorker = FormWorker()
     
     // MARK: Data Store
   var arrayMetaData: [CellMetaData] = []
   
   // MARK: Fetch Cells
     func fetchCells(request: Form.FetchCells.Request) {
-        worker = CellWorker(cellEngine: CellRequester())
-        worker?.fetchCells(completionHandler: { (result) in
+        cellWorker.fetchCells(completionHandler: { (result) in
             switch result{
             case .Success(let cells):
-                let response = Form.FetchCells.Response.init(arrayMetaData: FormWorker().generateMetaDataArray(cells: cells), noInternt: false)
-                self.arrayMetaData = FormWorker().generateMetaDataArray(cells: cells)
+                let response = Form.FetchCells.Response.init(arrayMetaData: self.formWorker.generateMetaDataArray(cells: cells), noInternt: false)
+                self.arrayMetaData = self.formWorker.generateMetaDataArray(cells: cells)
                 self.presenter?.presentFetchedCells(response: response)
             case .Failure(let error):
                 switch error{
@@ -69,7 +69,7 @@ class FormInteractor: FormBusinessLogic, FormDataStore
     func showHideCell(request: Form.ShowHideCell.Request) {
         let cellMetaData = request.cellMetaData
         
-        let result = FormWorker().didSelect(cellMetaData: cellMetaData, arrayMetaData: self.arrayMetaData)
+        let result = formWorker.didSelect(cellMetaData: cellMetaData, arrayMetaData: self.arrayMetaData)
         self.arrayMetaData[result.index] = result.cellMetaData
         
         let response = Form.ShowHideCell.Response.init(cellMetaData: result.cellMetaData, index: result.index, show: result.show)
@@ -78,23 +78,14 @@ class FormInteractor: FormBusinessLogic, FormDataStore
     
     // MARK: Validation
     func validate(request: Form.Validate.Request){
-        let metaData:CellMetaData? = FormWorker().validateForm(arrayMetaData: request.arrayMetaData)
+        let metaData:CellMetaData? = formWorker.validateForm(arrayMetaData: request.arrayMetaData)
         let response = Form.Validate.Response.init(wrongMetaData: metaData)
         presenter?.validate(response: response)
     }
     
     // MARK: Restart
     func restart(request: Form.Restart.Request){
-        for i in 0...arrayMetaData.count - 1{
-            if let hidden = arrayMetaData[i].cell?.hidden{
-                if hidden == true{
-                    continue
-                }
-            }
-            arrayMetaData[i].textValue = ""
-            arrayMetaData[i].fieldState = .Default
-            arrayMetaData[i].selected = false
-        }
+        arrayMetaData = formWorker.restartCellsMetaData(arrayMetaData: arrayMetaData)
         let response = Form.Restart.Response.init(arrayMetaData: arrayMetaData)
         presenter?.restart(response: response)
     }
