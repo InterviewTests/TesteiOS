@@ -59,7 +59,12 @@ class FieldCell: UITableViewCell {
             }
         }
         
-        //textField.text = cellMetaData.textValue
+        textField.text = cellMetaData.textValue
+        if cellMetaData.fieldState == .Default{
+            setDefaultState()
+            cleanButton.isHidden = true
+            setUnselectedTitleStyle()
+        }
         
         textField.delegate = self
         cleanButton.layer.cornerRadius = cleanButton.frame.width / 2

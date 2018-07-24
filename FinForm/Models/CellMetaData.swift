@@ -16,11 +16,13 @@ enum FieldState{
     case Failure
 }
 
-struct CellMetaData{
+struct CellMetaData:Equatable{
     
     var cell:Cell?
     var textValue:String = ""
     var selected:Bool = false
+    
+    var isHidden:Bool = false
     
     var fieldState:FieldState = .Default
 }

@@ -67,13 +67,12 @@ class FormWorker
         if let cell = cellMetaData.cell{
             if let idToShow = cell.show{
                 for i in 0...array.count - 1{
-                    if var cell = array[i].cell{
+                    if let cell = array[i].cell{
                         if idToShow == cell.id{
-                            if let hidden = cell.hidden{
-                                cell.hidden = !hidden
-                                array[i].cell = cell
-                                return (array[i],i,hidden)
-                            }
+                            let hidden = array[i].isHidden
+                            array[i].isHidden = !hidden
+                            return (array[i],i,hidden)
+                            
                         }
                     }
                 }
@@ -90,6 +89,9 @@ class FormWorker
         for cell in cells{
             var cellMetaData = CellMetaData()
             cellMetaData.cell = cell
+            if let hidden = cell.hidden{
+                cellMetaData.isHidden = hidden
+            }
             arrayCellsMetaData.append(cellMetaData)
         }
         return arrayCellsMetaData
@@ -108,7 +110,7 @@ class FormWorker
         let maskTwo = "(**) *****-****"//15
         var mask = ""
         
-        if numbers.count < 15{
+        if value.count < 11{
             mask = maskOne
         } else{
             mask = maskTwo
@@ -126,9 +128,7 @@ class FormWorker
         
         for i in 0...array.count - 1{
             if let hidden = array[i].cell?.hidden{
-                if hidden == true{
-                    continue
-                }
+                array[i].isHidden = hidden
             }
             array[i].textValue = ""
             array[i].fieldState = .Default
