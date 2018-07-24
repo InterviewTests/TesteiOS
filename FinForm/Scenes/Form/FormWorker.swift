@@ -14,6 +14,7 @@ import UIKit
 
 class FormWorker
 {
+    // MARK: Validation
     func validateEmail(email:String) -> Bool{
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
@@ -21,6 +22,45 @@ class FormWorker
         return emailTest.evaluate(with: email)
     }
     
+    func validateTelNumber(telNumber:String) -> Bool{
+        return telNumber.count == 14 || telNumber.count == 15
+    }
+    
+    func validateForm(arrayMetaData:[CellMetaData]) -> CellMetaData?{
+        for var metaData in arrayMetaData{
+            if let cell = metaData.cell{
+                
+                if let required = cell.required,let type = cell.type{
+                    if required && type == .field{
+                        if metaData.textValue.isEmpty{
+                            metaData.fieldState = .Required
+                            return metaData
+                        }
+                    }
+                    if type == .field{
+                        if let typeField = cell.typeField{
+                            if typeField == .email{
+                                if self.validateEmail(email: metaData.textValue) == false{
+                                    metaData.fieldState = .Invalid
+                                    return metaData
+                                }
+                            } else if typeField == .telNumber{
+                                if self.validateTelNumber(telNumber: metaData.textValue) == false{
+                                    metaData.fieldState = .Invalid
+                                    return metaData
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+        return nil
+    }
+    
+    // MARK: CheckBox Logic
     func didSelect(cellMetaData:CellMetaData,arrayMetaData:[CellMetaData]) -> (cellMetaData:CellMetaData,index:Int,show:Bool){
         
         var array:[CellMetaData] = arrayMetaData
@@ -44,6 +84,7 @@ class FormWorker
         
     }
     
+    // MARK: Generate Cell Meta Data Array
     func generateMetaDataArray(cells:[Cell]) -> [CellMetaData]{
         var arrayCellsMetaData:[CellMetaData] = []
         for cell in cells{
@@ -54,6 +95,7 @@ class FormWorker
         return arrayCellsMetaData
     }
     
+    // MARK: Tel Number Mask
     func telNumberMask(numbers:String) -> String{
         
         var value = numbers.digits
@@ -78,6 +120,7 @@ class FormWorker
         
     }
     
+    // MARK: Private utils methods
     private func getStringWithMask(mask:String,text:String) -> String{
         var value = ""
         var index = 0

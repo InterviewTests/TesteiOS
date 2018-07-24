@@ -219,6 +219,8 @@ extension FieldCell:UITextFieldDelegate{
                     self.textField.delegate = nil
                     self.textField.text = updatedText
                     self.textField.delegate = self
+                    cellMetaData.textValue = updatedText
+                    self.updateValueCompletion?(cellMetaData.textValue,self.index)
                     return false
                 }
             }

@@ -9,6 +9,9 @@
 enum FieldState{
     case Default
     
+    case Invalid
+    case Required
+    
     case Success
     case Failure
 }

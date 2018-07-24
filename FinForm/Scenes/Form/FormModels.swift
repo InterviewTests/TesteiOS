@@ -52,4 +52,22 @@ enum Form
             var show:Bool
         }
     }
+    
+    enum Validate
+    {
+        struct Request
+        {
+            var arrayMetaData:[CellMetaData]
+        }
+        struct Response
+        {
+            var wrongMetaData:CellMetaData?
+        }
+        struct ViewModel
+        {
+            var success:Bool
+            var validationProblemTitle:String?
+            var validationProblemMessage:String?
+        }
+    }
 }

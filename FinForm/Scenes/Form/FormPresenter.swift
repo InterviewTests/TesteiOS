@@ -16,6 +16,7 @@ protocol FormPresentationLogic
 {
   func presentFetchedCells(response: Form.FetchCells.Response)
   func showHideCell(response: Form.ShowHideCell.Response)
+  func validate(response: Form.Validate.Response)
 }
 
 class FormPresenter: FormPresentationLogic
@@ -42,6 +43,31 @@ class FormPresenter: FormPresentationLogic
     func showHideCell(response: Form.ShowHideCell.Response) {
         let viewModel = Form.ShowHideCell.ViewModel.init(cellMetaData: response.cellMetaData, index: response.index, show: response.show)
         viewController?.displayShowHideCell(viewModel: viewModel)
+    }
+    
+    // MARK: Validation
+    func validate(response: Form.Validate.Response){
+        if let metaData = response.wrongMetaData{
+            
+            let title = String.loc("INVALID_FORM_ALERT_TITLE")
+            var message:String = ""
+            
+            if metaData.fieldState == .Required{
+                message = String.loc("INVALID_FORM_ALERT_MESSAGE_REQUIRED")
+            } else if metaData.fieldState == .Invalid{
+                message = String.loc("INVALID_FORM_ALERT_MESSAGE_INVALID")
+            }
+            
+            if let fieldName = metaData.cell?.message{
+                message = message.replacingOccurrences(of: "%", with: fieldName)
+            }
+            
+            let viewModel = Form.Validate.ViewModel.init(success: false, validationProblemTitle: title, validationProblemMessage: message)
+            viewController?.displayValidationResult(viewModel: viewModel)
+        } else{
+            let viewModel = Form.Validate.ViewModel.init(success: true, validationProblemTitle: nil, validationProblemMessage: nil)
+            viewController?.displayValidationResult(viewModel: viewModel)
+        }
     }
     
     // MARK: Private utils methods

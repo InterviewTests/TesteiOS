@@ -28,4 +28,14 @@ extension String{
         return String(mySubstring)
     }
     
+    static func loc(_ loc:String) -> String{
+        var result = Bundle.main.localizedString(forKey: loc, value: nil, table: nil)
+        
+        if result == loc {
+            result = Bundle.main.localizedString(forKey: loc, value: nil, table: "Form")
+        }
+        
+        return result
+    }
+    
 }

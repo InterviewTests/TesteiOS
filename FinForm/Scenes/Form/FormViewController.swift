@@ -16,6 +16,7 @@ protocol FormDisplayLogic: class
 {
   func displayFetchedCells(viewModel: Form.FetchCells.ViewModel)
   func displayShowHideCell(viewModel: Form.ShowHideCell.ViewModel)
+  func displayValidationResult(viewModel: Form.Validate.ViewModel)
 }
 
 class FormViewController: UIViewController, FormDisplayLogic
@@ -115,7 +116,7 @@ class FormViewController: UIViewController, FormDisplayLogic
   func displayFetchedCells(viewModel: Form.FetchCells.ViewModel)
   {
     if viewModel.noInternet{
-        let alert = UIAlertController.init(title: "Sem internet", message: "Ligue a internet e tente novamente.", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController.init(title: String.loc("NO_INTERNET_ACCESS_ALERT_TITLE"), message: String.loc("NO_INTERNET_ACCESS_ALERT_MESSAGE"), preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
             self.fetchCells()
         }))
@@ -149,6 +150,29 @@ class FormViewController: UIViewController, FormDisplayLogic
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }
         
+    }
+    
+    // MARK: Validate Result
+    func validateForm()
+    {
+        let request = Form.Validate.Request.init(arrayMetaData: self.arrayCellsMetaData)
+        interactor?.validate(request: request)
+    }
+    
+    func displayValidationResult(viewModel: Form.Validate.ViewModel){
+        if viewModel.success == false{
+            
+            if let title = viewModel.validationProblemTitle,let message = viewModel.validationProblemMessage{
+                let alert = UIAlertController.init(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        } else{
+            
+            print("Sucesso")
+            
+        }
     }
 }
 
@@ -211,7 +235,7 @@ extension FormViewController:UITableViewDelegate,UITableViewDataSource{
                     cell.selectionStyle = .none
                     cell.populate(cellMetaData: cellMetaData)
                     cell.selectionCompletion = {metaData in
-                        print(self.arrayCellsMetaData)
+                        self.validateForm()
                     }
                     return cell
                 }
