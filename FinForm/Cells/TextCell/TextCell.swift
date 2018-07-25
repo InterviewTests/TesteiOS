@@ -8,12 +8,11 @@
 
 import UIKit
 
-class TextCell: UITableViewCell {
+class TextCell: BaseCell {
     
     @IBOutlet var topConstraint: NSLayoutConstraint!
     @IBOutlet var titleLabel: UILabel!
-    
-    var cellMetaData:CellMetaData!
+
     static let identifier:String = "TextCell"
     static var nib:UINib{
         let nibInfo = UINib(nibName: "TextCell", bundle: nil)

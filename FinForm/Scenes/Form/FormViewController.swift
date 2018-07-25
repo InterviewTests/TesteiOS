@@ -164,7 +164,7 @@ class FormViewController: UIViewController, FormDisplayLogic
     // MARK: Validate Result
     func validateForm()
     {
-        let request = Form.Validate.Request.init(arrayMetaData: self.arrayCellsMetaData)
+        let request = Form.Validate.Request.init(arrayMetaData: generateMetaDataArrayForValidation())
         interactor?.validate(request: request)
     }
     
@@ -188,6 +188,17 @@ class FormViewController: UIViewController, FormDisplayLogic
             }
             
         }
+    }
+    
+    private func generateMetaDataArrayForValidation() -> [CellMetaData]{
+        var arrayMetaData:[CellMetaData] = []
+        for i in 0...self.arrayCellsMetaData.count - 1{
+            let indexPath = IndexPath.init(row: i, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) as? BaseCell{
+                arrayMetaData.append(cell.cellMetaData)
+            }
+        }
+        return arrayMetaData
     }
     
     // MARK: Restart
@@ -224,10 +235,6 @@ extension FormViewController:UITableViewDelegate,UITableViewDataSource{
                     cell.selectionStyle = .none
                     cell.populate(cellMetaData: cellMetaData,index: indexPath.row)
                     self.addDoneButton(textField: cell.textField)
-                    cell.updateValueCompletion = {value,index in
-                        cellMetaData.textValue = value
-                        self.arrayCellsMetaData[index] = cellMetaData
-                    }
                     if let typeField = cellModel.typeField{
                         if typeField == .email{
                             cell.validationRuleCompletion = {email in

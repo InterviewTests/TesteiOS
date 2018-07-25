@@ -8,12 +8,11 @@
 
 import UIKit
 
-class ImageCell: UITableViewCell {
+class ImageCell: BaseCell {
 
     @IBOutlet var topConstraint: NSLayoutConstraint!
     @IBOutlet var cellImageView: UIImageView!
     
-    var cellMetaData:CellMetaData!
     static let identifier:String = "ImageCell"
     static var nib:UINib{
         let nibInfo = UINib(nibName: "ImageCell", bundle: nil)

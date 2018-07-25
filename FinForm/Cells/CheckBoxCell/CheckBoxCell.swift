@@ -10,14 +10,13 @@ import UIKit
 
 typealias CheckBoxSelectionCompletion = (Bool,Int) -> Void
 
-class CheckBoxCell: UITableViewCell {
+class CheckBoxCell: BaseCell {
     
     @IBOutlet var boxView: UIView!
     @IBOutlet var boxButton: UIButton!
     @IBOutlet var boxLabel: UILabel!
     @IBOutlet var topConstraint: NSLayoutConstraint!
     
-    var cellMetaData:CellMetaData!
     static let identifier:String = "CheckBoxCell"
     static var nib:UINib{
         let nibInfo = UINib(nibName: "CheckBoxCell", bundle: nil)
@@ -25,8 +24,6 @@ class CheckBoxCell: UITableViewCell {
     }
     
     var selectionCompletion:CheckBoxSelectionCompletion?
-    
-    var index:Int = 0
     
     func populate(cellMetaData:CellMetaData,index:Int){
         self.cellMetaData = cellMetaData

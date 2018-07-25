@@ -10,12 +10,11 @@ import UIKit
 
 typealias ButtonPressedCompletion = (CellMetaData) -> Void
 
-class ButtonCell: UITableViewCell {
+class ButtonCell: BaseCell {
     
     @IBOutlet var button: UIButton!
     @IBOutlet var topConstraint: NSLayoutConstraint!
     
-    var cellMetaData:CellMetaData!
     static let identifier:String = "ButtonCell"
     static var nib:UINib{
         let nibInfo = UINib(nibName: "ButtonCell", bundle: nil)

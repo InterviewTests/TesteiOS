@@ -12,7 +12,7 @@ typealias ValidationFieldRuleCompletion = (String) -> Bool
 typealias FieldCellUpdateValueCompletion = (String,Int) -> Void
 typealias FieldCellCanUpdateValueCompletion = (String,String) -> Bool
 
-class FieldCell: UITableViewCell {
+class FieldCell: BaseCell {
     
     @IBOutlet var selectedTitleLabel: UILabel!
     @IBOutlet var unselectedTitleLabel: UILabel!
@@ -21,9 +21,6 @@ class FieldCell: UITableViewCell {
     @IBOutlet var lineView: UIView!
     @IBOutlet var topConstraint: NSLayoutConstraint!
     
-    var cellMetaData:CellMetaData!
-    var index:Int = 0
-    
     static let identifier:String = "FieldCell"
     static var nib:UINib{
         let nibInfo = UINib(nibName: "FieldCell", bundle: nil)
@@ -31,7 +28,6 @@ class FieldCell: UITableViewCell {
     }
     
     var validationRuleCompletion:ValidationFieldRuleCompletion?
-    var updateValueCompletion:FieldCellUpdateValueCompletion?
     var canUpdateValueCompletion:FieldCellCanUpdateValueCompletion?
     
     override func awakeFromNib() {
@@ -64,6 +60,8 @@ class FieldCell: UITableViewCell {
             setDefaultState()
             cleanButton.isHidden = true
             setUnselectedTitleStyle()
+            validationRuleCompletion = nil
+            canUpdateValueCompletion = nil
         }
         
         textField.delegate = self
@@ -227,13 +225,11 @@ extension FieldCell:UITextFieldDelegate{
                     self.textField.text = updatedText
                     self.textField.delegate = self
                     cellMetaData.textValue = updatedText
-                    self.updateValueCompletion?(cellMetaData.textValue,self.index)
                     return false
                 }
             }
             
             cellMetaData.textValue = updatedText
-            self.updateValueCompletion?(cellMetaData.textValue,self.index)
         }
         
         return true

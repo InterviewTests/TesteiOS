@@ -40,8 +40,9 @@ class FormInteractor: FormBusinessLogic, FormDataStore
         cellWorker.fetchCells(completionHandler: { (result) in
             switch result{
             case .Success(let cells):
-                let response = Form.FetchCells.Response.init(arrayMetaData: self.formWorker.generateMetaDataArray(cells: cells), noInternt: false)
-                self.arrayMetaData = self.formWorker.generateMetaDataArray(cells: cells)
+                let arrayMetaData = self.formWorker.sort(array: self.formWorker.generateMetaDataArray(cells: cells))
+                let response = Form.FetchCells.Response.init(arrayMetaData: arrayMetaData, noInternt: false)
+                self.arrayMetaData = arrayMetaData
                 self.presenter?.presentFetchedCells(response: response)
             case .Failure(let error):
                 switch error{

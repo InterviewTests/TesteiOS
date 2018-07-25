@@ -138,6 +138,17 @@ class FormWorker
         return array
     }
     
+    // MARK: Sort Meta Data Array
+    func sort(array:[CellMetaData]) -> [CellMetaData]{
+        for metaData in array{
+            if let cell = metaData.cell{
+                if let _ = cell.id{
+                } else{return []}
+            } else{return []}
+        }
+        return array.sorted(by: { $0.cell!.id! < $1.cell!.id! })
+    }
+    
     // MARK: Private utils methods
     private func getStringWithMask(mask:String,text:String) -> String{
         var value = ""
