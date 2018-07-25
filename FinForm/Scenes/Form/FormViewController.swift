@@ -95,6 +95,8 @@ class FormViewController: UIViewController, FormDisplayLogic
     let tap = UITapGestureRecognizer(target: self, action: #selector(doneButtonAction))
     tap.cancelsTouchesInView = false
     tableView.addGestureRecognizer(tap)
+    loading = CustomLoading.init(view: view)
+    loading.show()
     fetchCells()
   }
     
@@ -112,6 +114,7 @@ class FormViewController: UIViewController, FormDisplayLogic
   // MARK: Properties
   @IBOutlet var tableView: UITableView!
     @IBOutlet var successView: UIView!
+    var loading:CustomLoading! 
     var arrayCellsMetaData:[CellMetaData] = []
     
     
@@ -124,6 +127,7 @@ class FormViewController: UIViewController, FormDisplayLogic
   
   func displayFetchedCells(viewModel: Form.FetchCells.ViewModel)
   {
+    loading.hide()
     if viewModel.noInternet{
         let alert = UIAlertController.init(title: String.loc("NO_INTERNET_ACCESS_ALERT_TITLE"), message: String.loc("NO_INTERNET_ACCESS_ALERT_MESSAGE"), preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
