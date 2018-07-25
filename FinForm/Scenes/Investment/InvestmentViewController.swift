@@ -70,12 +70,18 @@ class InvestmentViewController: UIViewController, InvestmentDisplayLogic
   {
     super.viewDidLoad()
     doSomething()
+    moreInfoTableViewHeightConstraint.constant = 500
+    infoTableViewHeightConstraint.constant = 500
+    
+    view.layoutIfNeeded()
   }
   
   // MARK: Do something
   
   //@IBOutlet weak var nameTextField: UITextField!
-  
+    @IBOutlet weak var moreInfoTableViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var infoTableViewHeightConstraint: NSLayoutConstraint!
+    
   func doSomething()
   {
     let request = Investment.Something.Request()
