@@ -16,16 +16,22 @@ enum Investment
 {
   // MARK: Use cases
   
-  enum Something
+  enum FetchScreen
   {
     struct Request
     {
     }
     struct Response
     {
+        var screen:Screen?
+        var noInternet:Bool = false
     }
     struct ViewModel
     {
+        var screen:Screen?
+        
+        var alertTitle:String?
+        var alertMessage:String?
     }
   }
 }

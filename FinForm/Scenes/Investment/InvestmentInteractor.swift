@@ -14,28 +14,52 @@ import UIKit
 
 protocol InvestmentBusinessLogic
 {
-  func doSomething(request: Investment.Something.Request)
+  func fetchScreen(request: Investment.FetchScreen.Request)
 }
 
 protocol InvestmentDataStore
 {
-  //var name: String { get set }
+  var screen: Screen? { get set }
 }
 
 class InvestmentInteractor: InvestmentBusinessLogic, InvestmentDataStore
 {
   var presenter: InvestmentPresentationLogic?
-  var worker: InvestmentWorker?
-  //var name: String = ""
+  var screenWorker: ScreenWorker?
+  var screen: Screen?
   
-  // MARK: Do something
+  // MARK: Fetch Screen
   
-  func doSomething(request: Investment.Something.Request)
+  func fetchScreen(request: Investment.FetchScreen.Request)
   {
-    worker = InvestmentWorker()
-    worker?.doSomeWork()
+    screenWorker = ScreenWorker(screenEngine: ScreenRequester())
+    var response = Investment.FetchScreen.Response()
     
-    let response = Investment.Something.Response()
-    presenter?.presentSomething(response: response)
+    screenWorker?.fetchScreen(completionHandler: { (result) in
+        switch result{
+        case .Success(let screen):
+            response.screen = screen
+            self.presenter?.presentFetchedScreen(response: response)
+        case .Failure(let error):
+            switch error{
+            case .RequestError(let requestRrror):
+                switch requestRrror{
+                case .NoInternetAcces:
+                    response.screen = nil
+                    response.noInternet = true
+                    self.presenter?.presentFetchedScreen(response: response)
+                default:
+                    response.screen = nil
+                    self.presenter?.presentFetchedScreen(response: response)
+                    break
+                }
+                break
+            default:
+                response.screen = nil
+                self.presenter?.presentFetchedScreen(response: response)
+                break
+            }
+        }
+    })
   }
 }

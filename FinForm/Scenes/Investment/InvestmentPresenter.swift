@@ -14,7 +14,7 @@ import UIKit
 
 protocol InvestmentPresentationLogic
 {
-  func presentSomething(response: Investment.Something.Response)
+  func presentFetchedScreen(response: Investment.FetchScreen.Response)
 }
 
 class InvestmentPresenter: InvestmentPresentationLogic
@@ -23,9 +23,24 @@ class InvestmentPresenter: InvestmentPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: Investment.Something.Response)
+  func presentFetchedScreen(response: Investment.FetchScreen.Response)
   {
-    let viewModel = Investment.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+    var viewModel = Investment.FetchScreen.ViewModel()
+    
+    if response.noInternet{
+        let title = String.loc("NO_INTERNET_ACCESS_ALERT_TITLE")
+        let message = String.loc("NO_INTERNET_ACCESS_ALERT_MESSAGE")
+        
+        viewModel.alertTitle = title
+        viewModel.alertMessage = message
+        
+        viewController?.displaySomething(viewModel: viewModel)
+    } else{
+        
+        viewModel.screen = response.screen
+        viewController?.displaySomething(viewModel: viewModel)
+        
+    }
+    
   }
 }

@@ -14,7 +14,7 @@ import UIKit
 
 protocol InvestmentDisplayLogic: class
 {
-  func displaySomething(viewModel: Investment.Something.ViewModel)
+  func displayFetchedScreen(viewModel: Investment.FetchScreen.ViewModel)
 }
 
 class InvestmentViewController: UIViewController, InvestmentDisplayLogic
@@ -69,32 +69,46 @@ class InvestmentViewController: UIViewController, InvestmentDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    doSomething()
     moreInfoTableViewHeightConstraint.constant = 500
     infoTableViewHeightConstraint.constant = 500
-    
-    view.layoutIfNeeded()
+    doFetchScreen()
   }
   
     @IBAction func test(_ sender: Any) {
         riskView.setRist(risk: 5)
     }
-    
-  // MARK: Do something
   
-  //@IBOutlet weak var nameTextField: UITextField!
+    // MARK: Properties
     @IBOutlet weak var moreInfoTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var infoTableViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var fundNameLabel: UILabel!
     @IBOutlet weak var riskView: RiskView!
+    @IBOutlet weak var definitionLabel: UILabel!
+    @IBOutlet weak var riskTitleLabel: UILabel!
+    @IBOutlet weak var infoTitleLabel: UILabel!
+    @IBOutlet weak var moreInfoTableView: UITableView!
+    @IBOutlet weak var infoTableView: UITableView!
+    @IBOutlet weak var whatIsLabel: UILabel!
+    @IBOutlet weak var button: UIButton!
     
-  func doSomething()
+    
+// MARK: Fetch Screen
+  func doFetchScreen()
   {
-    let request = Investment.Something.Request()
-    interactor?.doSomething(request: request)
+    let request = Investment.FetchScreen.Request()
+    interactor?.fetchScreen(request: request)
   }
   
-  func displaySomething(viewModel: Investment.Something.ViewModel)
+  func displayFetchedScreen(viewModel: Investment.FetchScreen.ViewModel)
   {
-    //nameTextField.text = viewModel.name
+    
   }
+    
+    // MARK: Private Methods
+    
+    private func bindScreen(screen:Screen)
+    {
+        
+    }
 }

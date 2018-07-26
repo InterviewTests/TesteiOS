@@ -33,6 +33,8 @@ extension String{
         
         if result == loc {
             result = Bundle.main.localizedString(forKey: loc, value: nil, table: "Form")
+        } else if result == loc {
+            result = Bundle.main.localizedString(forKey: loc, value: nil, table: "Investment")
         }
         
         return result
