@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol InvestmentDisplayLogic: class
 {
@@ -69,13 +70,14 @@ class InvestmentViewController: UIViewController, InvestmentDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    moreInfoTableViewHeightConstraint.constant = 500
-    infoTableViewHeightConstraint.constant = 500
+    moreInfoTableViewHeightConstraint.constant = 0
+    infoTableViewHeightConstraint.constant = 0
+    customLoading = CustomLoading(view: view)
+    customLoading.show()
     doFetchScreen()
   }
   
     @IBAction func test(_ sender: Any) {
-        riskView.setRist(risk: 5)
     }
   
     // MARK: Properties
@@ -90,7 +92,13 @@ class InvestmentViewController: UIViewController, InvestmentDisplayLogic
     @IBOutlet weak var moreInfoTableView: UITableView!
     @IBOutlet weak var infoTableView: UITableView!
     @IBOutlet weak var whatIsLabel: UILabel!
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var button: CustomButton!
+    
+    @IBOutlet weak var contentView: UIView!
+    
+    var customLoading:CustomLoading!
+    
+    var screenViewModel:Investment.FetchScreen.ViewModel!
     
     
 // MARK: Fetch Screen
@@ -103,12 +111,173 @@ class InvestmentViewController: UIViewController, InvestmentDisplayLogic
   func displayFetchedScreen(viewModel: Investment.FetchScreen.ViewModel)
   {
     
+    DispatchQueue.main.async {
+        
+        self.customLoading.hide()
+        
+        if let screen = viewModel.screen{
+            
+            self.screenViewModel = viewModel
+            self.configureView(screen: screen)
+            
+        } else{
+            
+            if let title = viewModel.alertTitle,let message = viewModel.alertMessage{
+                let alert = UIAlertController.init(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                    self.customLoading.show()
+                    self.doFetchScreen()
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        }
+    }
+    
   }
     
     // MARK: Private Methods
     
     private func bindScreen(screen:Screen)
     {
-        
+        titleLabel.text = screen.title
+        fundNameLabel.text = screen.fundName
+        whatIsLabel.text = screen.whatIs
+        definitionLabel.text = screen.definition
+        riskTitleLabel.text = screen.riskTitle
+        riskView.setRist(risk: screen.risk)
+        infoTitleLabel.text = screen.infoTitle
     }
+    
+    private func configureView(screen:Screen)
+    {
+        contentView.isHidden = false
+        bindScreen(screen: screen)
+        
+        configureTableViews(screen: screen)
+
+    }
+    
+    private func configureTableViews(screen:Screen)
+    {
+        moreInfoTableView.delegate = self
+        moreInfoTableView.dataSource = self
+        moreInfoTableView.tag = 1001
+        moreInfoTableView.separatorStyle = .none
+        
+        infoTableView.delegate = self
+        infoTableView.dataSource = self
+        infoTableView.tag = 1002
+        infoTableView.separatorStyle = .none
+        
+        moreInfoTableViewHeightConstraint.constant = 4 * MoreInfoCell.height
+        infoTableViewHeightConstraint.constant = CGFloat(screen.info.count + screen.downInfo.count) * InfoCell.height
+        
+        registerTableViewsNibs()
+    }
+    
+    private func registerTableViewsNibs()
+    {
+        infoTableView.register(InfoCell.nib, forCellReuseIdentifier: InfoCell.identifier)
+        infoTableView.register(DownInfoCell.nib, forCellReuseIdentifier: DownInfoCell.identifier)
+        
+        moreInfoTableView.register(MoreInfoCell.nib, forCellReuseIdentifier: MoreInfoCell.identifier)
+    }
+    
+}
+
+extension InvestmentViewController: UITableViewDelegate,UITableViewDataSource
+{
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let screen = screenViewModel.screen{
+            if tableView.tag == 1001{
+                
+                return MoreInfoCell.height
+                
+            } else if tableView.tag == 1002{
+                if indexPath.row < screen.info.count{
+                    
+                    return InfoCell.height
+                    
+                } else{
+                    
+                    return  DownInfoCell.height
+                }
+            }
+        }
+        return 0
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let screen = screenViewModel.screen{
+            if tableView.tag == 1001{
+                return 4
+            } else if tableView.tag == 1002{
+                return screen.info.count + screen.downInfo.count
+            }
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let screen = screenViewModel.screen{
+            if tableView.tag == 1001{
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: MoreInfoCell.identifier, for: indexPath) as! MoreInfoCell
+                
+                if indexPath.row == 0{
+                    
+                    cell.populate(fundTitle: screenViewModel.fundTitle, cdiTitle: screenViewModel.cdiTitle)
+                    
+                } else{
+                    
+                    switch indexPath.row{
+                    case 1:
+                        cell.populate(title: screenViewModel.monthTitle, moreInfo: screen.moreInfo.month)
+                    case 2:
+                        cell.populate(title: screenViewModel.yearTitle, moreInfo: screen.moreInfo.year)
+                    case 3:
+                        cell.populate(title: screenViewModel.twelveMonthsTitle, moreInfo: screen.moreInfo.twelveMonths)
+                    default:
+                        break
+                    }
+                    
+                }
+                
+                return cell
+                
+            } else if tableView.tag == 1002{
+                
+                if indexPath.row < screen.info.count{
+                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: InfoCell.identifier, for: indexPath) as! InfoCell
+                    let info = screen.info[indexPath.row]
+                    cell.populate(info: info)
+                    return cell
+                    
+                } else{
+                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: DownInfoCell.identifier, for: indexPath) as! DownInfoCell
+                    let downInfo = screen.downInfo[indexPath.row - screen.info.count]
+                    cell.populate(info: downInfo)
+                    cell.downloadCompletion = {
+                        if let url = URL.init(string: "https://google.com"){
+                            let safariWebView = SFSafariViewController(url: url)
+                            self.present(safariWebView, animated: true, completion: nil)
+                        }
+                    }
+                    return cell
+                }
+                
+            }
+        }
+        return UITableViewCell()
+    }
+    
+    
 }

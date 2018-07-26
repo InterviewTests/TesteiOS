@@ -12,7 +12,7 @@ typealias ButtonPressedCompletion = (CellMetaData) -> Void
 
 class ButtonCell: BaseCell {
     
-    @IBOutlet var button: UIButton!
+    @IBOutlet var button: CustomButton!
     @IBOutlet var topConstraint: NSLayoutConstraint!
     
     static let identifier:String = "ButtonCell"
@@ -33,31 +33,11 @@ class ButtonCell: BaseCell {
                 button.setTitle(message, for: UIControlState.normal)
             }
         }
-        
-        button.layer.cornerRadius = button.frame.height / 2
-        button.layer.masksToBounds = true
-        
-        button.addTarget(self, action: #selector(pressedAnimation), for: UIControlEvents.touchDown)
-        button.addTarget(self, action: #selector(unpressedAnimation), for: UIControlEvents.touchUpInside)
-        button.addTarget(self, action: #selector(unpressedAnimation), for: UIControlEvents.touchUpOutside)
+        self.selectionStyle = .none
     }
     
     @IBAction func action(_ sender: Any) {
         selectionCompletion?(cellMetaData)
-    }
-    
-    @objc private func pressedAnimation(){
-        UIView.animate(withDuration: 0.2) {
-            self.button.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
-            self.button.alpha = 0.5
-        }
-    }
-    
-    @objc private func unpressedAnimation(){
-        UIView.animate(withDuration: 0.2) {
-            self.button.transform = CGAffineTransform(scaleX: 1, y: 1)
-            self.button.alpha = 1
-        }
     }
     
     override func awakeFromNib() {

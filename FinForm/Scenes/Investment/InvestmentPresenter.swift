@@ -34,11 +34,18 @@ class InvestmentPresenter: InvestmentPresentationLogic
         viewModel.alertTitle = title
         viewModel.alertMessage = message
         
-        viewController?.displaySomething(viewModel: viewModel)
+        viewController?.displayFetchedScreen(viewModel: viewModel)
     } else{
         
+        viewModel.fundTitle = "Fundo"
+        viewModel.cdiTitle = "CDI"
+        
+        viewModel.monthTitle = "No mês"
+        viewModel.yearTitle = "No ano"
+        viewModel.twelveMonthsTitle = "12 meses"
+        
         viewModel.screen = response.screen
-        viewController?.displaySomething(viewModel: viewModel)
+        viewController?.displayFetchedScreen(viewModel: viewModel)
         
     }
     

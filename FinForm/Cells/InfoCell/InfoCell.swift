@@ -18,6 +18,7 @@ class InfoCell: UITableViewCell {
         let nibInfo = UINib(nibName: "InfoCell", bundle: nil)
         return nibInfo
     }
+    static let height:CGFloat = 42.0
     
     func populate(info:ScreenInfo){
         if let name = info.name{
@@ -26,6 +27,7 @@ class InfoCell: UITableViewCell {
         if let data = info.data{
             infoDetailLabel.text = data
         }
+        self.selectionStyle = .none
     }
     
     override func awakeFromNib() {

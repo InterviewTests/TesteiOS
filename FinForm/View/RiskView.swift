@@ -19,8 +19,12 @@ class RiskView: UIView {
     @IBOutlet weak var fourthHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var lastBarHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var vImageViewLeadingConstraint: NSLayoutConstraint!
+    
     private let defaultHeightConstraintValue:CGFloat = 8.0
     private let selectedHeightConstraintValue:CGFloat = 14.0
+    
+    private var defaultVImageViewLeadingConstraintValue:CGFloat!
     
     func setRist(risk:Int)
     {
@@ -44,8 +48,17 @@ class RiskView: UIView {
         default:
             break
         }
+    
+        configureVImageView(risk: risk)
         
         self.layoutIfNeeded()
+    }
+    
+    private func configureVImageView(risk:Int)
+    {
+        let factor = self.frame.width / 5
+        let value = defaultVImageViewLeadingConstraintValue + (CGFloat(risk - 1) * factor)
+        vImageViewLeadingConstraint.constant = value
     }
     
     private func resetHeightConstraints()
@@ -75,7 +88,7 @@ class RiskView: UIView {
         lastBar.layer.cornerRadius = lastBar.frame.height / 2
         lastBar.layer.masksToBounds = true
         
-        resetHeightConstraints()
+        defaultVImageViewLeadingConstraintValue = vImageViewLeadingConstraint.constant
     }
     
     required init?(coder aDecoder: NSCoder) {

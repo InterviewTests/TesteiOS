@@ -19,6 +19,7 @@ class DownInfoCell: UITableViewCell {
         let nibInfo = UINib(nibName: "DownInfoCell", bundle: nil)
         return nibInfo
     }
+    static let height:CGFloat = 42.0
     
     var downloadCompletion:DownloadButtonPressedCompletion?
     
@@ -26,6 +27,7 @@ class DownInfoCell: UITableViewCell {
         if let name = info.name{
             downloadInfoTitleLabel.text = name
         }
+        self.selectionStyle = .none
     }
     
     @IBAction func action(_ sender: Any) {

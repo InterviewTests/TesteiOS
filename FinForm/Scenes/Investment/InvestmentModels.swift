@@ -30,6 +30,13 @@ enum Investment
     {
         var screen:Screen?
         
+        var monthTitle:String = ""
+        var yearTitle:String = ""
+        var twelveMonthsTitle:String = ""
+        
+        var fundTitle:String = ""
+        var cdiTitle:String = ""
+        
         var alertTitle:String?
         var alertMessage:String?
     }
