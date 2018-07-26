@@ -76,11 +76,16 @@ class InvestmentViewController: UIViewController, InvestmentDisplayLogic
     view.layoutIfNeeded()
   }
   
+    @IBAction func test(_ sender: Any) {
+        riskView.setRist(risk: 5)
+    }
+    
   // MARK: Do something
   
   //@IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var moreInfoTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var infoTableViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var riskView: RiskView!
     
   func doSomething()
   {
