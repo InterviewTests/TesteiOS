@@ -200,6 +200,12 @@ extension FieldCell:UITextFieldDelegate{
                 } else{
                     setFailureState()
                 }
+            } else{
+                if updatedText.count > 0{
+                    setSuccessState()
+                } else{
+                    setDefaultState()
+                }
             }
             
             if updatedText.isEmpty{
