@@ -1,5 +1,5 @@
 //
-//  InvestimentRouter.swift
+//  InvestmentRouter.swift
 //  TesteiOS
 //
 //  Created by Tiago Leme on 28/07/18.
@@ -12,20 +12,20 @@
 
 import UIKit
 
-@objc protocol InvestimentRoutingLogic
+@objc protocol InvestmentRoutingLogic
 {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
-protocol InvestimentDataPassing
+protocol InvestmentDataPassing
 {
-  var dataStore: InvestimentDataStore? { get }
+  var dataStore: InvestmentDataStore? { get }
 }
 
-class InvestimentRouter: NSObject, InvestimentRoutingLogic, InvestimentDataPassing
+class InvestmentRouter: NSObject, InvestmentRoutingLogic, InvestmentDataPassing
 {
-  weak var viewController: InvestimentViewController?
-  var dataStore: InvestimentDataStore?
+  weak var viewController: InvestmentViewController?
+  var dataStore: InvestmentDataStore?
   
   // MARK: Routing
   
@@ -46,14 +46,14 @@ class InvestimentRouter: NSObject, InvestimentRoutingLogic, InvestimentDataPassi
 
   // MARK: Navigation
   
-  //func navigateToSomewhere(source: InvestimentViewController, destination: SomewhereViewController)
+  //func navigateToSomewhere(source: InvestmentViewController, destination: SomewhereViewController)
   //{
   //  source.show(destination, sender: nil)
   //}
   
   // MARK: Passing data
   
-  //func passDataToSomewhere(source: InvestimentDataStore, destination: inout SomewhereDataStore)
+  //func passDataToSomewhere(source: InvestmentDataStore, destination: inout SomewhereDataStore)
   //{
   //  destination.name = source.name
   //}

@@ -1,5 +1,5 @@
 //
-//  InvestimentWorker.swift
+//  InvestmentModels.swift
 //  TesteiOS
 //
 //  Created by Tiago Leme on 28/07/18.
@@ -12,9 +12,20 @@
 
 import UIKit
 
-class InvestimentWorker
+enum Investment
 {
-  func doSomeWork()
+  // MARK: Use cases
+  
+  enum Something
   {
+    struct Request
+    {
+    }
+    struct Response
+    {
+    }
+    struct ViewModel
+    {
+    }
   }
 }
