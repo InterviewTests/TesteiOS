@@ -16,16 +16,20 @@ enum Investment
 {
   // MARK: Use cases
   
-  enum Something
+  enum FetchFund
   {
-    struct Request
-    {
+    struct Request {
     }
-    struct Response
-    {
+    
+    struct Response {
+        var investmentFund: InvestmentFund
     }
-    struct ViewModel
-    {
+    struct ViewModel {
+        struct DisplayedInvestmentFund {
+            var fundTitle: String
+            var fundName: String
+        }
+        var displayedInvestmentFund: DisplayedInvestmentFund
     }
   }
 }

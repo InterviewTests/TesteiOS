@@ -14,28 +14,36 @@ import UIKit
 
 protocol InvestmentBusinessLogic
 {
-  func doSomething(request: Investment.Something.Request)
+  func fetchFundInfo(request: Investment.FetchFund.Request)
 }
 
 protocol InvestmentDataStore
 {
-  //var name: String { get set }
+  var investmentFund: InvestmentFund? { get }
 }
 
 class InvestmentInteractor: InvestmentBusinessLogic, InvestmentDataStore
 {
+    
   var presenter: InvestmentPresentationLogic?
   var worker: InvestmentWorker?
-  //var name: String = ""
-  
+
+  var investmentFund: InvestmentFund?
+    
   // MARK: Do something
   
-  func doSomething(request: Investment.Something.Request)
+  func fetchFundInfo(request: Investment.FetchFund.Request)
   {
     worker = InvestmentWorker()
-    worker?.doSomeWork()
-    
-    let response = Investment.Something.Response()
-    presenter?.presentSomething(response: response)
+    worker?.fetchFundInfo(){ result in
+        guard let investmentFund = result else {
+            print("From Interactor: Failure fetching fund info.")
+            return
+        }
+        
+        self.investmentFund = investmentFund
+        let response = Investment.FetchFund.Response(investmentFund: investmentFund)
+        self.presenter?.presentInvestmentFund(response: response)        
+    }
   }
 }

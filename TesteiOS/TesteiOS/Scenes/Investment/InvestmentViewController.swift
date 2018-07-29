@@ -14,7 +14,7 @@ import UIKit
 
 protocol InvestmentDisplayLogic: class
 {
-  func displaySomething(viewModel: Investment.Something.ViewModel)
+  func displayFundInfo(viewModel: Investment.FetchFund.ViewModel)
 }
 
 class InvestmentViewController: UITableViewController, InvestmentDisplayLogic
@@ -69,7 +69,7 @@ class InvestmentViewController: UITableViewController, InvestmentDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    doSomething()
+    fetchFundInfo()
   }
     
     //MARK: Outlets
@@ -127,14 +127,15 @@ class InvestmentViewController: UITableViewController, InvestmentDisplayLogic
   
   //@IBOutlet weak var nameTextField: UITextField!
   
-  func doSomething()
+  func fetchFundInfo()
   {
-    let request = Investment.Something.Request()
-    interactor?.doSomething(request: request)
+    let request = Investment.FetchFund.Request()
+    interactor?.fetchFundInfo(request: request)
   }
   
-  func displaySomething(viewModel: Investment.Something.ViewModel)
+  func displayFundInfo(viewModel: Investment.FetchFund.ViewModel)
   {
-    //nameTextField.text = viewModel.name
+    self.fundTitle.text = viewModel.displayedInvestmentFund.fundTitle
+    self.fundName.text = viewModel.displayedInvestmentFund.fundName
   }
 }

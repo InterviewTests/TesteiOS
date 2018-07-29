@@ -11,10 +11,53 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class InvestmentWorker
 {
-  func doSomeWork()
+    func fetchFundInfo(completion: @escaping (InvestmentFund?) -> Void)
   {
+    
+    guard let url = URL(string: "https://floating-mountain-50292.herokuapp.com/fund.json") else {
+        print("Failure at url parsing.")
+        return
+    }
+    
+    Alamofire.request(url).validate().responseJSON(){ response in
+        
+        guard response.result.isSuccess else {
+            print("Failure at https request: \(response.error!.localizedDescription)")
+            return
+        }
+        
+        guard let data = try? JSON(data: response.data!) else {
+            print("Failure at JSON parsing.")
+            return
+        }
+
+        guard let investmentFund = InvestmentFund(fundTitle: data["screen"]["title"].stringValue,
+                                               fundName: data["screen"]["fundName"].stringValue,
+                                               whatIs: data["screen"]["whatIs"].stringValue,
+                                               definition: data["screen"]["definition"].stringValue,
+                                               riskTitle: data["screen"]["riskTitle"].stringValue,
+                                               risk: data["screen"]["risk"].intValue,
+                                               infoTitle: data["screen"]["infoTitle"].stringValue,
+                                               info: data["screen"]["info"].map({
+                                                    ($0.1["name"].stringValue, $0.1["data"].stringValue)
+                                               }),
+                                               moreInfo: data["screen"]["moreInfo"].map({
+                                                    ($0.0, $0.1["CDI"].stringValue, $0.1["fund"].stringValue)
+                                               }),
+                                               downInfo: data["screen"]["downInfo"].map({
+                                                    ($0.1["name"].stringValue, $0.1["data"].string)
+                                               }))
+        else {
+            print("Failure creating InvestmentFund Object")
+            return
+        }
+        
+        completion(investmentFund)
+    }
   }
 }
