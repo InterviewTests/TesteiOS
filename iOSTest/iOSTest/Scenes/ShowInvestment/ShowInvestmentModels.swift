@@ -1,5 +1,5 @@
 //
-//  InvestmentModels.swift
+//  ShowInvestmentModels.swift
 //  iOSTest
 //
 //  Created by erick.peripolli on 29/07/18.
@@ -12,7 +12,7 @@
 
 import UIKit
 
-enum Investment
+enum ShowInvestment
 {
   // MARK: Use cases
   

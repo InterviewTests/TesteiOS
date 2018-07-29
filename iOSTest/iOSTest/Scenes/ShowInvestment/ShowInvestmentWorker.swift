@@ -1,5 +1,5 @@
 //
-//  InvestmentWorker.swift
+//  ShowInvestmentWorker.swift
 //  iOSTest
 //
 //  Created by erick.peripolli on 29/07/18.
@@ -12,7 +12,7 @@
 
 import UIKit
 
-class InvestmentWorker
+class ShowInvestmentWorker
 {
   func doSomeWork()
   {

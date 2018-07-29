@@ -1,5 +1,5 @@
 //
-//  InvestmentViewController.swift
+//  ShowInvestmentViewController.swift
 //  iOSTest
 //
 //  Created by erick.peripolli on 29/07/18.
@@ -12,15 +12,15 @@
 
 import UIKit
 
-protocol InvestmentDisplayLogic: class
+protocol ShowInvestmentDisplayLogic: class
 {
-  func displaySomething(viewModel: Investment.Something.ViewModel)
+  func displaySomething(viewModel: ShowInvestment.Something.ViewModel)
 }
 
-class InvestmentViewController: UIViewController, InvestmentDisplayLogic
+class ShowInvestmentViewController: UIViewController, ShowInvestmentDisplayLogic
 {
-  var interactor: InvestmentBusinessLogic?
-  var router: (NSObjectProtocol & InvestmentRoutingLogic & InvestmentDataPassing)?
+  var interactor: ShowInvestmentBusinessLogic?
+  var router: (NSObjectProtocol & ShowInvestmentRoutingLogic & ShowInvestmentDataPassing)?
 
   // MARK: Object lifecycle
   
@@ -41,9 +41,9 @@ class InvestmentViewController: UIViewController, InvestmentDisplayLogic
   private func setup()
   {
     let viewController = self
-    let interactor = InvestmentInteractor()
-    let presenter = InvestmentPresenter()
-    let router = InvestmentRouter()
+    let interactor = ShowInvestmentInteractor()
+    let presenter = ShowInvestmentPresenter()
+    let router = ShowInvestmentRouter()
     viewController.interactor = interactor
     viewController.router = router
     interactor.presenter = presenter
@@ -78,11 +78,12 @@ class InvestmentViewController: UIViewController, InvestmentDisplayLogic
   
   func doSomething()
   {
-    let request = Investment.Something.Request()
+    let request = ShowInvestment.Something.Request()
     interactor?.doSomething(request: request)
+    JSONServiceAPI.fetchData(to: .investment)
   }
   
-  func displaySomething(viewModel: Investment.Something.ViewModel)
+  func displaySomething(viewModel: ShowInvestment.Something.ViewModel)
   {
     //nameTextField.text = viewModel.name
   }

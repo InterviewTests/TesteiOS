@@ -1,5 +1,5 @@
 //
-//  InvestmentInteractor.swift
+//  ShowInvestmentInteractor.swift
 //  iOSTest
 //
 //  Created by erick.peripolli on 29/07/18.
@@ -12,30 +12,30 @@
 
 import UIKit
 
-protocol InvestmentBusinessLogic
+protocol ShowInvestmentBusinessLogic
 {
-  func doSomething(request: Investment.Something.Request)
+  func doSomething(request: ShowInvestment.Something.Request)
 }
 
-protocol InvestmentDataStore
+protocol ShowInvestmentDataStore
 {
   //var name: String { get set }
 }
 
-class InvestmentInteractor: InvestmentBusinessLogic, InvestmentDataStore
+class ShowInvestmentInteractor: ShowInvestmentBusinessLogic, ShowInvestmentDataStore
 {
-  var presenter: InvestmentPresentationLogic?
-  var worker: InvestmentWorker?
+  var presenter: ShowInvestmentPresentationLogic?
+  var worker: ShowInvestmentWorker?
   //var name: String = ""
   
   // MARK: Do something
   
-  func doSomething(request: Investment.Something.Request)
+  func doSomething(request: ShowInvestment.Something.Request)
   {
-    worker = InvestmentWorker()
+    worker = ShowInvestmentWorker()
     worker?.doSomeWork()
     
-    let response = Investment.Something.Response()
+    let response = ShowInvestment.Something.Response()
     presenter?.presentSomething(response: response)
   }
 }

@@ -1,5 +1,5 @@
 //
-//  InvestmentPresenter.swift
+//  ShowInvestmentPresenter.swift
 //  iOSTest
 //
 //  Created by erick.peripolli on 29/07/18.
@@ -12,20 +12,20 @@
 
 import UIKit
 
-protocol InvestmentPresentationLogic
+protocol ShowInvestmentPresentationLogic
 {
-  func presentSomething(response: Investment.Something.Response)
+  func presentSomething(response: ShowInvestment.Something.Response)
 }
 
-class InvestmentPresenter: InvestmentPresentationLogic
+class ShowInvestmentPresenter: ShowInvestmentPresentationLogic
 {
-  weak var viewController: InvestmentDisplayLogic?
+  weak var viewController: ShowInvestmentDisplayLogic?
   
   // MARK: Do something
   
-  func presentSomething(response: Investment.Something.Response)
+  func presentSomething(response: ShowInvestment.Something.Response)
   {
-    let viewModel = Investment.Something.ViewModel()
+    let viewModel = ShowInvestment.Something.ViewModel()
     viewController?.displaySomething(viewModel: viewModel)
   }
 }
