@@ -23,11 +23,62 @@ class InvestmentPresenter: InvestmentPresentationLogic
   
   // MARK: Do something
   
-  func presentInvestmentFund(response: Investment.FetchFund.Response)
-  {
+  func presentInvestmentFund(response: Investment.FetchFund.Response) {
+    
+    //MARK: TODO - Implement proper "Risk Image" logic
+    var riskImage: UIImage
+    
+    switch response.investmentFund.risk {
+        case 4:
+            riskImage = #imageLiteral(resourceName: "Risco")
+        default:
+            riskImage = #imageLiteral(resourceName: "Risco")
+    }
+    
+    //MARK: - "moreInfo" data processing
+    var year: String = ""
+    var yearCdi: String = ""
+    var yearFund: String = ""
+    var month: String = ""
+    var monthCdi: String = ""
+    var monthFund: String = ""
+    var twelveMonths: String = ""
+    var twelveMonthsCdi: String = ""
+    var twelveMonthsFund: String = ""
+    
+    for moreInfo in response.investmentFund.moreInfo {
+        switch moreInfo.0 {
+        case "year":
+            year = "No ano"
+            yearCdi = moreInfo.1
+            yearFund = moreInfo.2
+        case "month":
+            month = "No mês"
+            monthCdi = moreInfo.1
+            monthFund = moreInfo.2
+        case "12months":
+            twelveMonths = "12 meses"
+            twelveMonthsCdi = moreInfo.1
+            twelveMonthsFund = moreInfo.2
+        default:
+            break
+        }
+    }
+    
     let displayedInvestmentFund = Investment.FetchFund.ViewModel.DisplayedInvestmentFund(
-                                        fundTitle: response.investmentFund.fundTitle,
-                                        fundName: response.investmentFund.fundName)
+                               fundTitle: response.investmentFund.fundTitle,
+                               fundName: response.investmentFund.fundName,
+                               whatIs: response.investmentFund.whatIs,
+                               definition: response.investmentFund.definition,
+                               riskTitle: response.investmentFund.riskTitle,
+                               riskImage: riskImage,
+                               infoTitle: response.investmentFund.infoTitle,
+                               info: response.investmentFund.info,
+                               downInfo: response.investmentFund.downInfo,
+                               year: year, yearCdi: yearCdi, yearFund: yearFund,
+                               month: month, monthCdi: monthCdi, monthFund: monthFund,
+                               twelveMonths: twelveMonths, twelveMonthsCdi: twelveMonthsCdi, twelveMonthsFund: twelveMonthsFund)
+  
     
     let viewModel = Investment.FetchFund.ViewModel(displayedInvestmentFund: displayedInvestmentFund)
     viewController?.displayFundInfo(viewModel: viewModel)

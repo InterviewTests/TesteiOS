@@ -28,6 +28,24 @@ enum Investment
         struct DisplayedInvestmentFund {
             var fundTitle: String
             var fundName: String
+            var whatIs: String
+            var definition: String
+            var riskTitle: String
+            var riskImage: UIImage
+            var infoTitle: String
+            var info: [(String, String)]
+            var downInfo: [(String, String?)]
+            //MARK - MoreInfo
+            var year: String
+            var yearCdi: String
+            var yearFund: String
+            var month: String
+            var monthCdi: String
+            var monthFund: String
+            var twelveMonths: String
+            var twelveMonthsCdi: String
+            var twelveMonthsFund: String
+            
         }
         var displayedInvestmentFund: DisplayedInvestmentFund
     }
