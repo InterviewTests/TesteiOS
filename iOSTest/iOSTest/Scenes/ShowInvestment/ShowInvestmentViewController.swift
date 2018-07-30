@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol ShowInvestmentDisplayLogic: class {
     func displayInvestmentInfo(viewModel: ShowInvestment.GetInvestmentInfo.ViewModel)
@@ -61,6 +62,13 @@ class ShowInvestmentViewController: UIViewController, ShowInvestmentDisplayLogic
     @IBOutlet weak var regulationLabel: UILabel!
     @IBOutlet weak var accessLabel: UILabel!
     
+    @IBOutlet var riskyViews: [UIView]!
+    @IBOutlet weak var selectArrowImageView: UIImageView!
+    
+    @IBOutlet weak var investButton: UIButton!
+    
+    //    @IBOutlet weak var selectArrowMiddleConstraint: NSLayoutConstraint!
+    
     // MARK: Object lifecycle
   
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -105,7 +113,17 @@ class ShowInvestmentViewController: UIViewController, ShowInvestmentDisplayLogic
         super.viewDidLoad()
         getInvestmentInfo()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.investButton.layer.cornerRadius = self.investButton.frame.height * 0.4
+        self.tabBarController?.tabBar.barTintColor = UIColor(red: 218/255, green: 1/255, blue: 1/255, alpha: 1)
+        
+        self.tabBarController?.tabBar.tintColor = .white
+        self.tabBarController?.tabBar.unselectedItemTintColor = .white
+        UITabBar.appearance().selectionIndicatorImage = UIImage().makeImageWithColorAndSize(color: UIColor(red: 179/255, green: 4/255, blue: 4/255, alpha: 1), size: CGSize(width: (self.tabBarController?.tabBar.frame.width)!/2, height: (self.tabBarController?.tabBar.frame.height)! + 1))
+    }
+    
     // MARK: Do something
 
     //@IBOutlet weak var nameTextField: UITextField!
@@ -125,7 +143,8 @@ class ShowInvestmentViewController: UIViewController, ShowInvestmentDisplayLogic
             self.whatIsLabel.text = titleViewModel.whatIs
             self.definitionLabel.text = titleViewModel.definition
             self.riskTitleLabel.text = titleViewModel.riskTitle
-            // risk
+            self.view.addConstraint(NSLayoutConstraint(item: self.selectArrowImageView, attribute: .centerX, relatedBy: .equal, toItem: self.riskyViews[titleViewModel.risk], attribute: .centerX, multiplier: 1, constant: 0))
+            self.setHeightForRisk(selectedRisk: titleViewModel.risk)
             
             let investmentViewModel = viewModel.investmentInfo
             self.infoTitleLabel.text = investmentViewModel.infoTitle
@@ -160,4 +179,25 @@ class ShowInvestmentViewController: UIViewController, ShowInvestmentDisplayLogic
             self.accessLabel.text = downloadableInfoViewModel.access
         }
     }
+    
+    func setHeightForRisk(selectedRisk: Int) {
+        var height: CGFloat
+        for index in 0...4 {
+            if index == selectedRisk {
+                height = 10
+            } else {
+                height = 6
+            }
+            self.view.addConstraint(NSLayoutConstraint(item: riskyViews[index], attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height))
+        }
+    }
+    @IBAction func tappedDownload(_ sender: UIButton) {
+        if let url = URL(string: "http://google.com") {
+//            let config = SFSafariViewController.Configuration()
+            let vc = SFSafariViewController(url: url)
+            present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    
 }
