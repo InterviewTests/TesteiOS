@@ -50,16 +50,16 @@ class InvestmentPresenter: InvestmentPresentationLogic
         switch moreInfo.0 {
         case "year":
             year = "No ano"
-            yearCdi = moreInfo.1
-            yearFund = moreInfo.2
+            yearCdi = "\(moreInfo.1)%"
+            yearFund = "\(moreInfo.2)%"
         case "month":
             month = "No mês"
-            monthCdi = moreInfo.1
-            monthFund = moreInfo.2
+            monthCdi = "\(moreInfo.1)%"
+            monthFund = "\(moreInfo.2)%"
         case "12months":
             twelveMonths = "12 meses"
-            twelveMonthsCdi = moreInfo.1
-            twelveMonthsFund = moreInfo.2
+            twelveMonthsCdi = "\(moreInfo.1)%"
+            twelveMonthsFund = "\(moreInfo.2)%"
         default:
             break
         }
