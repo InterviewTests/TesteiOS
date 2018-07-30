@@ -22,7 +22,23 @@ class JSONServiceAPI {
             do {
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode(Investment.self, from: data)
-                print(jsonData.screen)
+                
+                completionHandler(jsonData)
+            } catch let err {
+                print("Error: ", err)
+            }
+            }.resume()
+    }
+    
+    static func fetchContactCells(completionHandler: @escaping (ContactCells) -> ()) {
+        guard let url = URL(string: Scene.contact.rawValue) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response
+            , error) in
+            guard let data = data else { return }
+            do {
+                let decoder = JSONDecoder()
+                let jsonData = try decoder.decode(ContactCells.self, from: data)
+                print(jsonData)
                 
                 completionHandler(jsonData)
             } catch let err {
