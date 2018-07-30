@@ -12,20 +12,72 @@
 
 import UIKit
 
-enum ShowInvestment
-{
+enum ShowInvestment {
   // MARK: Use cases
   
-  enum Something
+  enum GetInvestmentInfo
   {
-    struct Request
-    {
+    struct Request {
     }
-    struct Response
-    {
+    struct Response {
+        let investment: Investment
     }
-    struct ViewModel
-    {
+    struct ViewModel {
+        
+        struct TitleInfo {
+            let title: String
+            let fundName: String
+            let whatIs: String
+            let definition: String
+            let riskTitle: String
+            let risk: Int
+        }
+        
+        struct InvestmentInfo {
+            let infoTitle: String
+            let fundMonthData: String
+            let CDIMonthData: String
+            let fundYearData: String
+            let CDIYearData: String
+            let fund12Data: String
+            let CDI12Data: String
+        }
+        
+        struct MoreInfo {
+            let admFee: String
+            let admData: String
+            
+            let initial: String
+            let initialData: String
+            
+            let minimalMov: String
+            let minimalMovData: String
+            
+            let minimalBalance: String
+            let minimalBalanceData: String
+            
+            let rescue: String
+            let rescueData: String
+            
+            let fee: String
+            let feeData: String
+            
+            let payment: String
+            let paymentData: String
+        }
+        
+        struct DownloadableInfo {
+            let essential: String
+            let performance: String
+            let complementary: String
+            let regulation: String
+            let access: String
+        }
+        
+        let titleInfo: TitleInfo
+        let investmentInfo: InvestmentInfo
+        let moreInfo: MoreInfo
+        let downloadableInfo: DownloadableInfo
     }
   }
 }

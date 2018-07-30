@@ -12,20 +12,22 @@
 
 import UIKit
 
-protocol ShowInvestmentPresentationLogic
-{
-  func presentSomething(response: ShowInvestment.Something.Response)
+protocol ShowInvestmentPresentationLogic {
+  func presentInvestmentInfo(response: ShowInvestment.GetInvestmentInfo.Response)
 }
 
-class ShowInvestmentPresenter: ShowInvestmentPresentationLogic
-{
-  weak var viewController: ShowInvestmentDisplayLogic?
+class ShowInvestmentPresenter: ShowInvestmentPresentationLogic {
+    weak var viewController: ShowInvestmentDisplayLogic?
   
-  // MARK: Do something
+    // MARK: Do something
   
-  func presentSomething(response: ShowInvestment.Something.Response)
-  {
-    let viewModel = ShowInvestment.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    func presentInvestmentInfo(response: ShowInvestment.GetInvestmentInfo.Response) {
+        let investment = response.investment.screen
+        let titleInfo = ShowInvestment.GetInvestmentInfo.ViewModel.TitleInfo(title: investment.title, fundName: investment.fundName, whatIs: investment.whatIs, definition: investment.definition, riskTitle: investment.riskTitle, risk: investment.risk)
+        let investmentInfo = ShowInvestment.GetInvestmentInfo.ViewModel.InvestmentInfo(infoTitle: investment.infoTitle, fundMonthData: "\(investment.moreInfo.month.fund)", CDIMonthData: "\(investment.moreInfo.month.CDI)", fundYearData: "\(investment.moreInfo.year.fund)", CDIYearData: "\(investment.moreInfo.year.CDI)", fund12Data: "\(investment.moreInfo.twelveMonths.fund)", CDI12Data: "\(investment.moreInfo.twelveMonths.CDI)")
+        let moreInfo = ShowInvestment.GetInvestmentInfo.ViewModel.MoreInfo(admFee: investment.info[0].name, admData: investment.info[0].data, initial: investment.info[1].name, initialData: investment.info[1].data, minimalMov: investment.info[2].name, minimalMovData: investment.info[2].data, minimalBalance: investment.info[3].name, minimalBalanceData: investment.info[3].data, rescue: investment.info[4].name, rescueData: investment.info[4].data, fee: investment.info[5].name, feeData: investment.info[5].data, payment: investment.info[6].name, paymentData: investment.info[6].data)
+        let downloadableInfo = ShowInvestment.GetInvestmentInfo.ViewModel.DownloadableInfo(essential: investment.downInfo[0].name, performance: investment.downInfo[1].name, complementary: investment.downInfo[2].name, regulation: investment.downInfo[3].name, access: investment.downInfo[4].name)
+        let viewModel = ShowInvestment.GetInvestmentInfo.ViewModel(titleInfo: titleInfo, investmentInfo: investmentInfo, moreInfo: moreInfo, downloadableInfo: downloadableInfo)
+        viewController?.displayInvestmentInfo(viewModel: viewModel)
+    }
 }

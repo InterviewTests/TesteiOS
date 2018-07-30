@@ -12,9 +12,10 @@
 
 import UIKit
 
-class ShowInvestmentWorker
-{
-  func doSomeWork()
-  {
-  }
+class ShowInvestmentWorker {
+    func fetchInvestmentInfo(completionHandler: @escaping (Investment) -> ()) {
+        JSONServiceAPI.fetchInvestmentInfo { investment in
+            completionHandler(investment)
+        }
+    }
 }

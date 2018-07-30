@@ -13,7 +13,7 @@
 import UIKit
 
 protocol ShowInvestmentDisplayLogic: class {
-    func displaySomething(viewModel: ShowInvestment.Something.ViewModel)
+    func displayInvestmentInfo(viewModel: ShowInvestment.GetInvestmentInfo.ViewModel)
 }
 
 class ShowInvestmentViewController: UIViewController, ShowInvestmentDisplayLogic {
@@ -60,6 +60,7 @@ class ShowInvestmentViewController: UIViewController, ShowInvestmentDisplayLogic
     @IBOutlet weak var complementaryLabel: UILabel!
     @IBOutlet weak var regulationLabel: UILabel!
     @IBOutlet weak var accessLabel: UILabel!
+    
     // MARK: Object lifecycle
   
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -102,20 +103,61 @@ class ShowInvestmentViewController: UIViewController, ShowInvestmentDisplayLogic
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
+        getInvestmentInfo()
     }
 
     // MARK: Do something
 
     //@IBOutlet weak var nameTextField: UITextField!
 
-    func doSomething() {
-        let request = ShowInvestment.Something.Request()
-        interactor?.doSomething(request: request)
-        JSONServiceAPI.fetchData(to: .investment)
+    func getInvestmentInfo() {
+        let request = ShowInvestment.GetInvestmentInfo.Request()
+        interactor?.getInvestmentInfo(request: request)
     }
 
-    func displaySomething(viewModel: ShowInvestment.Something.ViewModel) {
+    func displayInvestmentInfo(viewModel: ShowInvestment.GetInvestmentInfo.ViewModel) {
         //nameTextField.text = viewModel.name
+        
+        DispatchQueue.main.async {
+            let titleViewModel = viewModel.titleInfo
+            self.titleLabel.text = titleViewModel.title
+            self.fundNameLabel.text = titleViewModel.fundName
+            self.whatIsLabel.text = titleViewModel.whatIs
+            self.definitionLabel.text = titleViewModel.definition
+            self.riskTitleLabel.text = titleViewModel.riskTitle
+            // risk
+            
+            let investmentViewModel = viewModel.investmentInfo
+            self.infoTitleLabel.text = investmentViewModel.infoTitle
+            self.fundMonthDataLabel.text = investmentViewModel.fundMonthData
+            self.CDIMonthDataLabel.text = investmentViewModel.CDIMonthData
+            self.fundYearDataLabel.text = investmentViewModel.fundYearData
+            self.CDIYearDataLabel.text = investmentViewModel.CDIYearData
+            self.fund12DataLabel.text = investmentViewModel.fund12Data
+            self.CDIYearDataLabel.text = investmentViewModel.CDI12Data
+            
+            let moreInfoViewModel = viewModel.moreInfo
+            self.admFeeLabel.text = moreInfoViewModel.admFee
+            self.admDataLabel.text = moreInfoViewModel.admData
+            self.initialLabel.text = moreInfoViewModel.initial
+            self.initialDataLabel.text = moreInfoViewModel.initialData
+            self.minimalMovLabel.text = moreInfoViewModel.minimalMov
+            self.minimalMovDataLabel.text = moreInfoViewModel.minimalMovData
+            self.minimalBalanceLabel.text = moreInfoViewModel.minimalBalance
+            self.minimalBalanceDataLabel.text = moreInfoViewModel.minimalBalanceData
+            self.rescueLabel.text = moreInfoViewModel.rescue
+            self.rescueDataLabel.text = moreInfoViewModel.rescueData
+            self.feeLabel.text = moreInfoViewModel.fee
+            self.feeDataLabel.text = moreInfoViewModel.feeData
+            self.paymentLabel.text = moreInfoViewModel.payment
+            self.paymentDataLabel.text = moreInfoViewModel.paymentData
+            
+            let downloadableInfoViewModel = viewModel.downloadableInfo
+            self.essentialLabel.text = downloadableInfoViewModel.essential
+            self.performanceLabel.text = downloadableInfoViewModel.performance
+            self.complementaryLabel.text = downloadableInfoViewModel.complementary
+            self.regulationLabel.text = downloadableInfoViewModel.regulation
+            self.accessLabel.text = downloadableInfoViewModel.access
+        }
     }
 }

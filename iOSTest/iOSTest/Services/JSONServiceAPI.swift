@@ -14,19 +14,38 @@ class JSONServiceAPI {
         case contact = "https://floating-mountain-50292.herokuapp.com/cells.json"
     }
     
-    static func fetchData(to scene: Scene) {
-        guard let url = URL(string: scene.rawValue) else { return }
+    static func fetchInvestmentInfo(completionHandler: @escaping (Investment) -> ()) {
+        guard let url = URL(string: Scene.investment.rawValue) else { return }
         URLSession.shared.dataTask(with: url) { (data, response
             , error) in
             guard let data = data else { return }
             do {
                 let decoder = JSONDecoder()
-                let gitData = try decoder.decode(Investment.self, from: data)
-                print(gitData.screen)
+                let jsonData = try decoder.decode(Investment.self, from: data)
+                print(jsonData.screen)
                 
+                completionHandler(jsonData)
             } catch let err {
                 print("Error: ", err)
             }
             }.resume()
     }
+    
+//    static func fetchData(to scene: Scene) -> Codable? {
+//        guard let url = URL(string: scene.rawValue) else { return nil }
+//        URLSession.shared.dataTask(with: url) { (data, response
+//            , error) in
+//            guard let data = data else { return }
+//            do {
+//                let decoder = JSONDecoder()
+//                let jsonData = try decoder.decode(Investment.self, from: data)
+//                print(jsonData.screen)
+//
+//                return jsonData
+//
+//            } catch let err {
+//                print("Error: ", err)
+//            }
+//            }.resume()
+//    }
 }
