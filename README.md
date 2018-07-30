@@ -1,3 +1,9 @@
+Procedimentos para executar o projeto
+
+Abra o o projeto no Xcode.
+Escolha um iphone no simulador.
+Dê play no projeto.
+
 # Show me the code
 
 ### # DESAFIO:
