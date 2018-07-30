@@ -12,20 +12,44 @@
 
 import UIKit
 
-protocol ContactFormPresentationLogic
-{
-  func presentSomething(response: ContactForm.GetContactCells.Response)
+protocol ContactFormPresentationLogic {
+    func presentSomething(response: ContactForm.GetContactCells.Response)
 }
 
-class ContactFormPresenter: ContactFormPresentationLogic
-{
-  weak var viewController: ContactFormDisplayLogic?
+class ContactFormPresenter: ContactFormPresentationLogic {
+    weak var viewController: ContactFormDisplayLogic?
   
   // MARK: Do something
   
-  func presentSomething(response: ContactForm.GetContactCells.Response)
-  {
-//    let viewModel = ContactForm.GetContactCells.ViewModel()
-//    viewController?.displaySomething(viewModel: viewModel)
-  }
+    func presentSomething(response: ContactForm.GetContactCells.Response) {
+        let contactCells = response.contactCells.cells
+        var viewModel: [ContactForm.GetContactCells.ViewModel] = []
+        var typefieldNumber: Int = 100
+        for index in 0..<contactCells.count {
+            
+            if let typefield = contactCells[index].typefield {
+                typefieldNumber = getIntegerFromTypefield(typefield: typefield)
+            } else {
+                typefieldNumber = 100
+            }
+            
+            viewModel.append(ContactForm.GetContactCells.ViewModel(id: contactCells[index].id, type: Type(rawValue: contactCells[index].type)!, message: contactCells[index].message, typefield: TypeField(rawValue:typefieldNumber)!, hidden: contactCells[index].hidden, topSpacing: contactCells[index].topSpacing, show: contactCells[index].show, required: contactCells[index].required))
+        }
+      viewController?.displaySomething(viewModel: viewModel)
+    }
+    
+    func getIntegerFromTypefield(typefield: Typefield?) -> Int {
+        switch typefield {
+        case .string("telnumber")?:
+            return 2
+        case .integer(1)?:
+            return 1
+        case .integer(2)?:
+            return 2
+        case .integer(3)?:
+            return 3
+        default:
+            return 0
+        }
+    }
 }

@@ -13,13 +13,35 @@
 import UIKit
 
 protocol ContactFormDisplayLogic: class {
-    func displaySomething(viewModel: ContactForm.GetContactCells.ViewModel)
+    func displaySomething(viewModel: [ContactForm.GetContactCells.ViewModel])
+}
+enum Type: Int {
+    case field = 1
+    case text = 2
+    case image = 3
+    case checkbox = 4
+    case send = 5
+}
+
+enum TypeField: Int {
+    case text = 1
+    case telNumber = 2
+    case email = 3
+    case null = 100
 }
 
 class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITableViewDataSource {
     
     var interactor: ContactFormBusinessLogic?
     var router: (NSObjectProtocol & ContactFormRoutingLogic & ContactFormDataPassing)?
+    
+    @IBOutlet weak var tableView: UITableView!
+    var cellsViewModels: [ContactForm.GetContactCells.ViewModel]! {
+        didSet {
+            print("AIAIAIAIAIAIIA")
+        }
+    }
+    
 
     // MARK: Object lifecycle
   
@@ -64,6 +86,7 @@ class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         getContactCells()
+        self.tableView.dataSource = self
     }
   
     // MARK: Do something
@@ -75,8 +98,11 @@ class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITa
         interactor?.doSomething(request: request)
     }
   
-    func displaySomething(viewModel: ContactForm.GetContactCells.ViewModel) {
+    func displaySomething(viewModel: [ContactForm.GetContactCells.ViewModel]) {
         //nameTextField.text = viewModel.name
+        DispatchQueue.main.async {
+            self.cellsViewModels = viewModel
+        }
     }
     
     

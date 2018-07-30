@@ -22,6 +22,14 @@ enum ContactForm
         let contactCells: ContactCells
     }
     struct ViewModel {
+        let id: Int
+        let type: Type
+        let message: String
+        let typefield: TypeField
+        var hidden: Bool
+        let topSpacing: Float
+        let show: Int?
+        let required: Bool
     }
   }
 }
