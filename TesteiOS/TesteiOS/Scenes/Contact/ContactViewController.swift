@@ -14,7 +14,7 @@ import UIKit
 
 protocol ContactDisplayLogic: class
 {
-  func displaySomething(viewModel: Contact.Something.ViewModel)
+  func displayDynamicCells(viewModel: Contact.FetchDynamicCells.ViewModel)
 }
 
 class ContactViewController: UIViewController, ContactDisplayLogic
@@ -65,25 +65,66 @@ class ContactViewController: UIViewController, ContactDisplayLogic
   }
   
   // MARK: View lifecycle
+    
+    var displayableCells: [Contact.FetchDynamicCells.ViewModel.DisplayableCell] = []
   
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    doSomething()
+    fetchComponentCells()
+    
+    self.tableView.delegate = self
+    self.tableView.dataSource = self
   }
   
   // MARK: Do something
   
-  //@IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
+    
   
-  func doSomething()
-  {
-    let request = Contact.Something.Request()
-    interactor?.doSomething(request: request)
+  func fetchComponentCells() {
+    let request = Contact.FetchDynamicCells.Request()
+    interactor?.fetchCellInfo(request: request)
+    print("From View Controller: Getting cells.")
   }
   
-  func displaySomething(viewModel: Contact.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+    func displayDynamicCells(viewModel: Contact.FetchDynamicCells.ViewModel) {
+        self.displayableCells = viewModel.displayableCells
+        self.tableView.reloadData()
+    }
+}
+
+extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.displayableCells.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.displayableCells[indexPath.row]
+
+        switch cell.type {
+            case 1:
+                let tableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "field") as! FieldTableViewCell
+                tableViewCell.setCell(cell: cell)
+                return tableViewCell
+            //case 3:
+                //identifier = "image"
+            case 4:
+                let tableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "checkbox") as! CheckboxTableViewCell
+                tableViewCell.setCell(cell: cell)
+                return tableViewCell
+            case 5:
+                let tableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "send") as! SendTableViewCell
+                tableViewCell.setCell(cell: cell)
+                return tableViewCell
+            default:
+                let tableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "text") as! TextTableViewCell
+                tableViewCell.setCell(cell: cell)
+                return tableViewCell
+        }
+        
+        
+    }
+    
 }

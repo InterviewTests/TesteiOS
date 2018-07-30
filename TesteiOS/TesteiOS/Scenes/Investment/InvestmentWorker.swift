@@ -14,10 +14,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class InvestmentWorker
-{
-    func fetchFundInfo(completion: @escaping (InvestmentFund?) -> Void)
-  {
+class InvestmentWorker {
+    func fetchFundInfo(completion: @escaping (InvestmentFund?) -> Void) {
     
     guard let url = URL(string: "https://floating-mountain-50292.herokuapp.com/fund.json") else {
         print("Failure at url parsing.")

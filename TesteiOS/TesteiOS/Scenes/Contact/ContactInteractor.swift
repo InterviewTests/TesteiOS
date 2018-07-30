@@ -14,28 +14,35 @@ import UIKit
 
 protocol ContactBusinessLogic
 {
-  func doSomething(request: Contact.Something.Request)
+  func fetchCellInfo(request: Contact.FetchDynamicCells.Request)
 }
 
 protocol ContactDataStore
 {
-  //var name: String { get set }
+    var dynamicCells: [DynamicCell]? { get }
 }
 
-class ContactInteractor: ContactBusinessLogic, ContactDataStore
-{
-  var presenter: ContactPresentationLogic?
-  var worker: ContactWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Contact.Something.Request)
-  {
-    worker = ContactWorker()
-    worker?.doSomeWork()
+class ContactInteractor: ContactBusinessLogic, ContactDataStore {
+    var presenter: ContactPresentationLogic?
+    var worker: ContactWorker?
     
-    let response = Contact.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    var dynamicCells: [DynamicCell]?
+    
+    // MARK: Do something
+
+    func fetchCellInfo(request: Contact.FetchDynamicCells.Request) {
+        worker = ContactWorker()
+        worker?.fetchCellInfo(){ dynamicCells in
+            guard !dynamicCells.isEmpty  else {
+                print("From Interactor: Dynamic Cells came up empty.")
+                return
+            }
+            
+            self.dynamicCells = dynamicCells
+            
+            let response = Contact.FetchDynamicCells.Response(dynamicCells: self.dynamicCells!)
+            self.presenter?.presentDynamicCells(response: response)
+            
+        }
+    }
 }

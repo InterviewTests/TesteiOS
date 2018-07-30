@@ -40,6 +40,13 @@ import UIKit
     
     @IBInspectable var textBottomInset: CGFloat = 0
     
+    @IBInspectable var labelText: String = "Label" {
+        didSet{
+            self.placeholderLabel.text = self.labelText
+            self.placeholderLabel.sizeToFit()
+        }
+    }
+    
     func setBorder(){
         
         self.borderLayer.frame = CGRect(origin: CGPoint(x: 0, y: frame.height - self.borderHeight), size: CGSize(width: frame.width, height: self.borderHeight))
@@ -48,14 +55,13 @@ import UIKit
     
     func setPlaceholder(){
         
-        self.placeholderLabel.frame = frame.insetBy(dx: 0, dy: 0)
-        self.placeholderLabel.text = placeholder
-        self.placeholderLabel.font = UIFont(name: font!.fontName, size: self.labelFontSize)
+        self.placeholderLabel.frame = super.frame.insetBy(dx: 0, dy: 0)
+        self.placeholderLabel.text = self.labelText
+        self.placeholderLabel.font = UIFont(name: super.font!.fontName, size: self.labelFontSize)
         self.placeholderLabel.textColor = self.labelColor
         self.placeholderLabel.sizeToFit()
         
-        self.placeholderLabel.frame = CGRect(x: 0, y: 0, width: self.placeholderLabel.bounds.width, height: self.placeholderLabel.bounds.height)
-        
+        self.placeholderLabel.frame = CGRect(x: 0, y: 0, width: self.placeholderLabel.bounds.width, height: self.placeholderLabel.bounds.height)        
     }
     
     override init(frame: CGRect) {
@@ -76,8 +82,7 @@ import UIKit
     
         self.setBorder()
         self.setPlaceholder()
-        
-        placeholder = ""
+
     }
     
     func drawElements(){

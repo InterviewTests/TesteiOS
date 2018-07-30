@@ -14,7 +14,7 @@ import UIKit
 
 protocol ContactPresentationLogic
 {
-  func presentSomething(response: Contact.Something.Response)
+  func presentDynamicCells(response: Contact.FetchDynamicCells.Response)
 }
 
 class ContactPresenter: ContactPresentationLogic
@@ -23,9 +23,23 @@ class ContactPresenter: ContactPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: Contact.Something.Response)
-  {
-    let viewModel = Contact.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+  func presentDynamicCells(response: Contact.FetchDynamicCells.Response) {
+    
+    var displayableCells: [Contact.FetchDynamicCells.ViewModel.DisplayableCell] = []
+    for cell in response.dynamicCells {
+        let displayableCell = Contact.FetchDynamicCells.ViewModel.DisplayableCell(id: cell.id,
+                                                                                  type: cell.type,
+                                                                                  message: cell.message,
+                                                                                  typeField: cell.typeField,
+                                                                                  hidden: cell.hidden,
+                                                                                  topSpacing: cell.topSpacing,
+                                                                                  show: cell.show,
+                                                                                  isRequired: cell.isRequired)
+        displayableCells.append(displayableCell)
+        
+    }
+    
+    let viewModel = Contact.FetchDynamicCells.ViewModel(displayableCells: displayableCells)
+    viewController?.displayDynamicCells(viewModel: viewModel)
   }
 }

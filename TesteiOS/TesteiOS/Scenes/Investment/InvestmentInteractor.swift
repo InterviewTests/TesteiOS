@@ -42,7 +42,7 @@ class InvestmentInteractor: InvestmentBusinessLogic, InvestmentDataStore
         }
         
         self.investmentFund = investmentFund
-        let response = Investment.FetchFund.Response(investmentFund: investmentFund)
+        let response = Investment.FetchFund.Response(investmentFund: self.investmentFund!)
         self.presenter?.presentInvestmentFund(response: response)        
     }
   }

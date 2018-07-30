@@ -16,16 +16,28 @@ enum Contact
 {
   // MARK: Use cases
   
-  enum Something
+  enum FetchDynamicCells
   {
     struct Request
     {
     }
     struct Response
     {
+        var dynamicCells: [DynamicCell]
     }
     struct ViewModel
     {
+        struct DisplayableCell {
+            var id: Int
+            var type: Int
+            var message: String
+            var typeField: Int?
+            var hidden: Bool
+            var topSpacing: Int
+            var show: Int?
+            var isRequired: Bool
+        }
+        var displayableCells: [DisplayableCell]
     }
   }
 }
