@@ -134,7 +134,7 @@ class ShowInvestmentViewController: UIViewController, ShowInvestmentDisplayLogic
             self.fundYearDataLabel.text = investmentViewModel.fundYearData
             self.CDIYearDataLabel.text = investmentViewModel.CDIYearData
             self.fund12DataLabel.text = investmentViewModel.fund12Data
-            self.CDIYearDataLabel.text = investmentViewModel.CDI12Data
+            self.CDI12DataLabel.text = investmentViewModel.CDI12Data
             
             let moreInfoViewModel = viewModel.moreInfo
             self.admFeeLabel.text = moreInfoViewModel.admFee
