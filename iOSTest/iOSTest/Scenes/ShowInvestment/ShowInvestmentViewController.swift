@@ -66,9 +66,7 @@ class ShowInvestmentViewController: UIViewController, ShowInvestmentDisplayLogic
     @IBOutlet weak var selectArrowImageView: UIImageView!
     
     @IBOutlet weak var investButton: UIButton!
-    
-    //    @IBOutlet weak var selectArrowMiddleConstraint: NSLayoutConstraint!
-    
+        
     // MARK: Object lifecycle
   
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -193,11 +191,12 @@ class ShowInvestmentViewController: UIViewController, ShowInvestmentDisplayLogic
     }
     @IBAction func tappedDownload(_ sender: UIButton) {
         if let url = URL(string: "http://google.com") {
-//            let config = SFSafariViewController.Configuration()
             let vc = SFSafariViewController(url: url)
             present(vc, animated: true, completion: nil)
         }
     }
     
-    
+    @IBAction func tappedInvest(_ sender: UIButton) {
+        sender.animate()
+    }
 }
