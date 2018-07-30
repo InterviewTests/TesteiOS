@@ -9,7 +9,7 @@
 import UIKit
 
 class TextFieldTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var textField: UITextField!
     
     override func awakeFromNib() {
@@ -25,6 +25,6 @@ class TextFieldTableViewCell: UITableViewCell {
     
     func setCell(placeholderText: String) {
         self.textField.placeholder = placeholderText
+        self.textField.setBottomBorder()
     }
-
 }

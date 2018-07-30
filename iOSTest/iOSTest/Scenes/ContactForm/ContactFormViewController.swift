@@ -42,7 +42,6 @@ class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITa
         }
     }
     
-
     // MARK: Object lifecycle
   
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -89,23 +88,19 @@ class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITa
         self.tableView.dataSource = self
         self.tableView.delegate = self
     }
-  
+    
     // MARK: Do something
-  
-    //@IBOutlet weak var nameTextField: UITextField!
-  
+    
     func getContactCells() {
         let request = ContactForm.GetContactCells.Request()
         interactor?.doSomething(request: request)
     }
   
     func displaySomething(viewModel: [ContactForm.GetContactCells.ViewModel]) {
-        //nameTextField.text = viewModel.name
         DispatchQueue.main.async {
             self.cellsViewModels = viewModel
         }
     }
-    
     
     // MARK: TableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -127,6 +122,7 @@ class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITa
             } else if cells[indexPath.row].type == .field {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldCell", for: indexPath) as! TextFieldTableViewCell
                 cell.setCell(placeholderText: cells[indexPath.row].message)
+                cell.textField?.text = ""
                 return cell
             } else if cells[indexPath.row].type == .checkbox {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CheckboxCell", for: indexPath) as! CheckboxTableViewCell
@@ -150,11 +146,9 @@ class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITa
         if cells[indexPath.row].hidden {
             return 0
         } else {
-            print(cells[indexPath.row].message)
             return 50
         }
     }
-    
     
     // MARK: Cells Delegates
     func checkBoxTapped(isChecked: Bool, cellID: Int) {

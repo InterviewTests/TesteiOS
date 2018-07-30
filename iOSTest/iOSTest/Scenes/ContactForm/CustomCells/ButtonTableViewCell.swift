@@ -27,4 +27,7 @@ class ButtonTableViewCell: UITableViewCell {
         self.sendButton.setTitle(title, for: .normal)
     }
 
+    @IBAction func tappedSend(_ sender: UIButton) {
+        sender.animate()
+    }
 }

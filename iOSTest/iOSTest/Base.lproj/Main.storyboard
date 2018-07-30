@@ -693,17 +693,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vgS-5a-bGZ">
-                                                    <rect key="frame" x="15" y="10" width="345" height="30"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vgS-5a-bGZ">
+                                                    <rect key="frame" x="15" y="15" width="345" height="19"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="vgS-5a-bGZ" firstAttribute="leading" secondItem="qhT-91-swR" secondAttribute="leadingMargin" id="WwC-Vr-1dk"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="vgS-5a-bGZ" secondAttribute="trailing" id="Yba-AO-Br0"/>
                                                 <constraint firstItem="vgS-5a-bGZ" firstAttribute="centerY" secondItem="qhT-91-swR" secondAttribute="centerY" id="eYs-sH-qRc"/>
+                                                <constraint firstItem="vgS-5a-bGZ" firstAttribute="centerX" secondItem="qhT-91-swR" secondAttribute="centerX" id="kDX-tX-T0P"/>
+                                                <constraint firstItem="vgS-5a-bGZ" firstAttribute="width" secondItem="qhT-91-swR" secondAttribute="width" multiplier="0.92" id="tPJ-Ln-57j"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -765,6 +765,9 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="20"/>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="tappedSend:" destination="j9j-Eg-kgv" eventType="touchUpInside" id="XN3-ve-95X"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

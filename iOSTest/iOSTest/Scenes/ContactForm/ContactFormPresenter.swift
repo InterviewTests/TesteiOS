@@ -18,9 +18,7 @@ protocol ContactFormPresentationLogic {
 
 class ContactFormPresenter: ContactFormPresentationLogic {
     weak var viewController: ContactFormDisplayLogic?
-  
-  // MARK: Do something
-  
+    
     func presentSomething(response: ContactForm.GetContactCells.Response) {
         let contactCells = response.contactCells.cells
         var viewModel: [ContactForm.GetContactCells.ViewModel] = []
