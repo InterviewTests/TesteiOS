@@ -17,7 +17,7 @@ struct Cell: Codable {
     let type: Int
     let message: String
     let typefield: Typefield?
-    let hidden: Bool
+    var hidden: Bool
     let topSpacing: Float
     let show: Int?
     let required: Bool

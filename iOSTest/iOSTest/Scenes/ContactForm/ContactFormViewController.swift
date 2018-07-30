@@ -30,7 +30,7 @@ enum TypeField: Int {
     case null = 100
 }
 
-class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITableViewDataSource, UITableViewDelegate {
+class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITableViewDataSource, UITableViewDelegate, CheckboxDelegate {
     
     var interactor: ContactFormBusinessLogic?
     var router: (NSObjectProtocol & ContactFormRoutingLogic & ContactFormDataPassing)?
@@ -130,7 +130,7 @@ class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITa
                 return cell
             } else if cells[indexPath.row].type == .checkbox {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CheckboxCell", for: indexPath) as! CheckboxTableViewCell
-                cell.setCell(description: cells[indexPath.row].message)
+                cell.setCell(description: cells[indexPath.row].message, delegate: self, showId: cells[indexPath.row].show!)
                 
                 return cell
             } else if cells[indexPath.row].type == .send {
@@ -150,7 +150,24 @@ class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITa
         if cells[indexPath.row].hidden {
             return 0
         } else {
+            print(cells[indexPath.row].message)
             return 50
+        }
+    }
+    
+    
+    // MARK: Cells Delegates
+    func checkBoxTapped(isChecked: Bool, cellID: Int) {
+        if isChecked {
+            let index = cellsViewModels?.index(where: {$0.id == cellID})
+            if let index = index {
+                cellsViewModels?[index] = ContactForm.GetContactCells.ViewModel(id: cellsViewModels![index].id, type: cellsViewModels![index].type, message: cellsViewModels![index].message, typefield: cellsViewModels![index].typefield, hidden: false, topSpacing: cellsViewModels![index].topSpacing, show: cellsViewModels![index].show, required: cellsViewModels![index].required)
+            }
+        } else {
+            let index = cellsViewModels?.index(where: {$0.id == cellID})
+            if let index = index {
+                cellsViewModels?[index] = ContactForm.GetContactCells.ViewModel(id: cellsViewModels![index].id, type: cellsViewModels![index].type, message: cellsViewModels![index].message, typefield: cellsViewModels![index].typefield, hidden: true, topSpacing: cellsViewModels![index].topSpacing, show: cellsViewModels![index].show, required: cellsViewModels![index].required)
+            }
         }
     }
 }

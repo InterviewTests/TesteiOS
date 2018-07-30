@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol CheckboxDelegate {
+    func checkBoxTapped(isChecked: Bool, cellID: Int)
+}
+
 class CheckboxTableViewCell: UITableViewCell {
 
     @IBOutlet weak var checkboxButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
+    var delegate: CheckboxDelegate?
+    var cellIDToShow: Int!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,11 +30,19 @@ class CheckboxTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setCell(description: String) {
+    func setCell(description: String, delegate: CheckboxDelegate, showId: Int) {
         self.descriptionLabel.text = description
+        self.delegate = delegate
+        self.cellIDToShow = showId
     }
 
     @IBAction func tappedCheckbox(_ sender: UIButton) {
-        
+        if sender.isSelected{
+            sender.isSelected = false
+        } else {
+            sender.isSelected = true
+            
+        }
+        delegate?.checkBoxTapped(isChecked: sender.isSelected, cellID: self.cellIDToShow)
     }
 }
