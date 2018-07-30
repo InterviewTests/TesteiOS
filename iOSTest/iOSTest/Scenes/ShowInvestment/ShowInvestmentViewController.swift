@@ -12,79 +12,110 @@
 
 import UIKit
 
-protocol ShowInvestmentDisplayLogic: class
-{
-  func displaySomething(viewModel: ShowInvestment.Something.ViewModel)
+protocol ShowInvestmentDisplayLogic: class {
+    func displaySomething(viewModel: ShowInvestment.Something.ViewModel)
 }
 
-class ShowInvestmentViewController: UIViewController, ShowInvestmentDisplayLogic
-{
-  var interactor: ShowInvestmentBusinessLogic?
-  var router: (NSObjectProtocol & ShowInvestmentRoutingLogic & ShowInvestmentDataPassing)?
-
-  // MARK: Object lifecycle
+class ShowInvestmentViewController: UIViewController, ShowInvestmentDisplayLogic {
+    var interactor: ShowInvestmentBusinessLogic?
+    var router: (NSObjectProtocol & ShowInvestmentRoutingLogic & ShowInvestmentDataPassing)?
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var fundNameLabel: UILabel!
+    @IBOutlet weak var whatIsLabel: UILabel!
+    @IBOutlet weak var definitionLabel: UILabel!
+    @IBOutlet weak var riskTitleLabel: UILabel!
+    
+    @IBOutlet weak var infoTitleLabel: UILabel!
+    @IBOutlet weak var fundMonthDataLabel: UILabel!
+    @IBOutlet weak var CDIMonthDataLabel: UILabel!
+    @IBOutlet weak var fundYearDataLabel: UILabel!
+    @IBOutlet weak var CDIYearDataLabel: UILabel!
+    @IBOutlet weak var fund12DataLabel: UILabel!
+    @IBOutlet weak var CDI12DataLabel: UILabel!
+    
+    @IBOutlet weak var admFeeLabel: UILabel!
+    @IBOutlet weak var admDataLabel: UILabel!
+    
+    @IBOutlet weak var initialLabel: UILabel!
+    @IBOutlet weak var initialDataLabel: UILabel!
+    
+    @IBOutlet weak var minimalMovLabel: UILabel!
+    @IBOutlet weak var minimalMovDataLabel: UILabel!
+    
+    @IBOutlet weak var minimalBalanceLabel: UILabel!
+    @IBOutlet weak var minimalBalanceDataLabel: UILabel!
+    
+    @IBOutlet weak var rescueLabel: UILabel!
+    @IBOutlet weak var rescueDataLabel: UILabel!
+    
+    @IBOutlet weak var feeLabel: UILabel!
+    @IBOutlet weak var feeDataLabel: UILabel!
+    
+    @IBOutlet weak var paymentLabel: UILabel!
+    @IBOutlet weak var paymentDataLabel: UILabel!
+    
+    @IBOutlet weak var essentialLabel: UILabel!
+    @IBOutlet weak var performanceLabel: UILabel!
+    @IBOutlet weak var complementaryLabel: UILabel!
+    @IBOutlet weak var regulationLabel: UILabel!
+    @IBOutlet weak var accessLabel: UILabel!
+    // MARK: Object lifecycle
   
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = ShowInvestmentInteractor()
-    let presenter = ShowInvestmentPresenter()
-    let router = ShowInvestmentRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
     }
-  }
-  
-  // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    doSomething()
-  }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = ShowInvestment.Something.Request()
-    interactor?.doSomething(request: request)
-    JSONServiceAPI.fetchData(to: .investment)
-  }
-  
-  func displaySomething(viewModel: ShowInvestment.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+
+    // MARK: Setup
+
+    private func setup() {
+        let viewController = self
+        let interactor = ShowInvestmentInteractor()
+        let presenter = ShowInvestmentPresenter()
+        let router = ShowInvestmentRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
+    }
+
+    // MARK: Routing
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let scene = segue.identifier {
+            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+            if let router = router, router.responds(to: selector) {
+                router.perform(selector, with: segue)
+            }
+        }
+    }
+
+    // MARK: View lifecycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        doSomething()
+    }
+
+    // MARK: Do something
+
+    //@IBOutlet weak var nameTextField: UITextField!
+
+    func doSomething() {
+        let request = ShowInvestment.Something.Request()
+        interactor?.doSomething(request: request)
+        JSONServiceAPI.fetchData(to: .investment)
+    }
+
+    func displaySomething(viewModel: ShowInvestment.Something.ViewModel) {
+        //nameTextField.text = viewModel.name
+    }
 }
