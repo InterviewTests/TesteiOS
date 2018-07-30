@@ -30,15 +30,15 @@ enum TypeField: Int {
     case null = 100
 }
 
-class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITableViewDataSource {
+class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITableViewDataSource, UITableViewDelegate {
     
     var interactor: ContactFormBusinessLogic?
     var router: (NSObjectProtocol & ContactFormRoutingLogic & ContactFormDataPassing)?
     
     @IBOutlet weak var tableView: UITableView!
-    var cellsViewModels: [ContactForm.GetContactCells.ViewModel]! {
+    var cellsViewModels: [ContactForm.GetContactCells.ViewModel]? {
         didSet {
-            print("AIAIAIAIAIAIIA")
+            self.tableView.reloadData()
         }
     }
     
@@ -87,6 +87,7 @@ class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITa
         super.viewDidLoad()
         getContactCells()
         self.tableView.dataSource = self
+        self.tableView.delegate = self
     }
   
     // MARK: Do something
@@ -108,10 +109,48 @@ class ContactFormViewController: UIViewController, ContactFormDisplayLogic, UITa
     
     // MARK: TableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let count = cellsViewModels?.count {
+            return count
+        }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cells = cellsViewModels else {
+            return UITableViewCell()
+        }
+        if !cells[indexPath.row].hidden {
+            if cells[indexPath.row].type == .text {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelTableViewCell
+                cell.setCell(text: cells[indexPath.row].message)
+                return cell
+            } else if cells[indexPath.row].type == .field {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldCell", for: indexPath) as! TextFieldTableViewCell
+                cell.setCell(placeholderText: cells[indexPath.row].message)
+                return cell
+            } else if cells[indexPath.row].type == .checkbox {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "CheckboxCell", for: indexPath) as! CheckboxTableViewCell
+                cell.setCell(description: cells[indexPath.row].message)
+                
+                return cell
+            } else if cells[indexPath.row].type == .send {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath) as! ButtonTableViewCell
+                cell.setCell(title: cells[indexPath.row].message)
+                return cell
+            }
+        }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let cells = cellsViewModels else {
+            return 0
+        }
+        
+        if cells[indexPath.row].hidden {
+            return 0
+        } else {
+            return 50
+        }
     }
 }
