@@ -46,7 +46,7 @@ import UIKit
     }
     
     func sharedInit() {
-        
+        layoutIfNeeded()
         backgroundColor = self.defaultBackgroundColor
         self.updateCornerRadius()
     }
@@ -54,7 +54,7 @@ import UIKit
     //MARK: - Overriden Touch Events
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.01, animations: {
             self.backgroundColor = self.pressedBackgroundColor
         })
     }
