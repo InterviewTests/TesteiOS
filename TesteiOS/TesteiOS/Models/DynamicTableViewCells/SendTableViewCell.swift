@@ -14,7 +14,11 @@ protocol SendCellDelegate {
 
 class SendTableViewCell: UITableViewCell {
 
-    var delegate: SendCellDelegate?
+    var delegate: SendCellDelegate? {
+        didSet{
+            print("Delegate was set")
+        }
+    }
 
     //MARK: - Outlets
     @IBOutlet weak var button: UICustomButton!
@@ -24,7 +28,8 @@ class SendTableViewCell: UITableViewCell {
     var id: Int!
     
     //MARK: - Actions
-    @IBAction func buttonPressed(_ sender: Any) {
+    @IBAction func buttonPressed(_ sender: UICustomButton) {
+        print("Send | Delegate: \(delegate)")
         guard self.delegate != nil else {
             return
         }

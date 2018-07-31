@@ -109,17 +109,17 @@ extension ContactViewController: CheckboxCellDelegate {
 //MARK: - Send Button Delegate
 extension ContactViewController: SendCellDelegate {
     func sendButtonPressed() {
-        
-        //TODO: - Implement Send Logic
-        /*
-        var isValid = false
+        var isValid = true
         
         for index in 0..<self.displayableCells.count {
             if !self.displayableCells[index].hidden, let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? FieldTableViewCell {
-                
+                if cell.textfield.isValid == false {
+                    isValid = cell.textfield.isValid
+                }
             }
         }
-        */
+        
+        print("Valid: \(isValid)")
     }
 }
 
@@ -150,7 +150,7 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
             case 5:
                 let tableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "send") as! SendTableViewCell
                 tableViewCell.setCell(cell: cell)
-                tableView.delegate = self
+                tableViewCell.delegate = self
                 return tableViewCell
             default:
                 let tableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "text") as! TextTableViewCell
@@ -184,10 +184,5 @@ extension ContactViewController: UITextFieldDelegate {
         }
         textField.resignFirstResponder()
         return true
-    }
-    
-    //MARK: - Function to dismiss the keyboard by touching anywhere on the screen
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
     }
 }

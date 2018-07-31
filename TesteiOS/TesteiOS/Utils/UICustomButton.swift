@@ -39,11 +39,17 @@ import UIKit
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.backgroundColor = pressedBackgroundColor
+        super.touchesBegan(touches, with: event)
+        UIView.animate(withDuration: 0.5, animations: {
+            super.backgroundColor = self.pressedBackgroundColor
+        })
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.backgroundColor = defaultBackgroundColor
+        super.touchesEnded(touches, with: event)
+        UIView.animate(withDuration: 0.5, animations: {
+            super.backgroundColor = self.defaultBackgroundColor
+        })
     }
     
     func sharedInit() {

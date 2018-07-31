@@ -10,11 +10,12 @@ import UIKit
 
 class FieldTableViewCell: UITableViewCell {
 
+    //MARK: - Outlets
     @IBOutlet weak var textfield: UICustomTextfield!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
-    var isValid: Bool = false
+    //MARK: - Class Variables
     var id: Int!
 
     func setCell(cell: Contact.FetchDynamicCells.ViewModel.DisplayableCell){

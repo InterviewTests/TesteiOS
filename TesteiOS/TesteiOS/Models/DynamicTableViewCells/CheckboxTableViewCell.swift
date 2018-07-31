@@ -26,6 +26,7 @@ class CheckboxTableViewCell: UITableViewCell {
 
     //MARK: - Actions
     @IBAction func checkboxPressed(_ sender: UICheckBox) {
+        print("Checkbox")
         guard self.delegate != nil else {
             return
         }
