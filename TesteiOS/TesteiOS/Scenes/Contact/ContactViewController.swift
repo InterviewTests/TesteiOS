@@ -94,6 +94,36 @@ class ContactViewController: UIViewController, ContactDisplayLogic
     }
 }
 
+//MARK: - Checkbox Delegate
+extension ContactViewController: CheckboxCellDelegate {
+    func showElementWith(id: Int) {
+        for index in 0..<self.displayableCells.count {
+            if self.displayableCells[index].id == id {
+                self.displayableCells[index].hidden = self.displayableCells[index].hidden ? false : true
+                self.tableView.reloadData()
+            }
+        }
+    }
+}
+
+//MARK: - Send Button Delegate
+extension ContactViewController: SendCellDelegate {
+    func sendButtonPressed() {
+        
+        //TODO: - Implement Send Logic
+        /*
+        var isValid = false
+        
+        for index in 0..<self.displayableCells.count {
+            if !self.displayableCells[index].hidden, let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? FieldTableViewCell {
+                
+            }
+        }
+        */
+    }
+}
+
+//MARK: - Table View Delegates
 extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -107,24 +137,57 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
             case 1:
                 let tableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "field") as! FieldTableViewCell
                 tableViewCell.setCell(cell: cell)
+                tableViewCell.textfield.tag = indexPath.row
+                tableViewCell.textfield.delegate = self
                 return tableViewCell
             //case 3:
                 //identifier = "image"
             case 4:
                 let tableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "checkbox") as! CheckboxTableViewCell
                 tableViewCell.setCell(cell: cell)
+                tableViewCell.delegate = self
                 return tableViewCell
             case 5:
                 let tableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "send") as! SendTableViewCell
                 tableViewCell.setCell(cell: cell)
+                tableView.delegate = self
                 return tableViewCell
             default:
                 let tableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "text") as! TextTableViewCell
                 tableViewCell.setCell(cell: cell)
                 return tableViewCell
         }
-        
-        
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let cell = self.displayableCells[indexPath.row]
+        if cell.hidden {
+            return 0
+        }
+        return UITableViewAutomaticDimension
+    }
+}
+
+extension ContactViewController: UITextFieldDelegate {
+    
+    //MARK: - Textfield Delegate functions
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        let row = textField.tag
+        for index in row..<self.displayableCells.count {
+            if let cell = self.tableView.cellForRow(at: IndexPath(row: index + 1, section: 0)) as? FieldTableViewCell {
+                if !self.displayableCells[index + 1].hidden {
+                    cell.textfield.becomeFirstResponder()
+                    return false
+                }
+            }
+        }
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    //MARK: - Function to dismiss the keyboard by touching anywhere on the screen
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }
