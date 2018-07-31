@@ -65,29 +65,35 @@ class ContactViewController: UIViewController, ContactDisplayLogic
   }
   
   // MARK: View lifecycle
-    
+
+    //MARK: - Class Variables
     var displayableCells: [Contact.FetchDynamicCells.ViewModel.DisplayableCell] = []
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    fetchComponentCells()
-    
-    self.tableView.delegate = self
-    self.tableView.dataSource = self
-  }
-  
-  // MARK: Do something
-  
+
+    //MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var successView: UIView!
     
+    //MARK: - Actions
+    @IBAction func newMessagePressed(_ sender: UIButton) {
+        self.successView.removeFromSuperview()
+    }
+    
+    //MARK: - View Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.fetchComponentCells()
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+    }
+    
+    //MARK: Call Interactor do fetch cells
+    func fetchComponentCells() {
+        let request = Contact.FetchDynamicCells.Request()
+        interactor?.fetchCellInfo(request: request)
+    }
   
-  func fetchComponentCells() {
-    let request = Contact.FetchDynamicCells.Request()
-    interactor?.fetchCellInfo(request: request)
-    print("From View Controller: Getting cells.")
-  }
-  
+    //MARK: Presenter calls this function to display cells
     func displayDynamicCells(viewModel: Contact.FetchDynamicCells.ViewModel) {
         self.displayableCells = viewModel.displayableCells
         self.tableView.reloadData()
@@ -119,7 +125,16 @@ extension ContactViewController: SendCellDelegate {
             }
         }
         
-        print("Valid: \(isValid)")
+        if isValid {
+            self.successView.frame = self.view.frame
+            for index in 0..<self.displayableCells.count {
+                if let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? FieldTableViewCell {
+                    cell.textfield.clearClicked()
+                }
+            }
+            self.view.addSubview(self.successView)
+            self.view.endEditing(true)
+        }
     }
 }
 
@@ -168,9 +183,9 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//MARK: - Textfield Delegate functions
 extension ContactViewController: UITextFieldDelegate {
     
-    //MARK: - Textfield Delegate functions
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         let row = textField.tag

@@ -919,7 +919,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fU6-ZB-Vre">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fU6-ZB-Vre">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -1077,10 +1077,54 @@
                     </view>
                     <navigationItem key="navigationItem" title="Contato" id="YqZ-V7-5aE"/>
                     <connections>
+                        <outlet property="successView" destination="87X-VP-9H1" id="aLl-f4-g4P"/>
                         <outlet property="tableView" destination="fU6-ZB-Vre" id="g90-fu-op5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hLF-Pd-AhC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="87X-VP-9H1">
+                    <rect key="frame" x="0.0" y="0.0" width="338" height="527"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ekr-jh-XEa">
+                            <rect key="frame" x="30" y="213" width="278" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNN-n9-ol2">
+                            <rect key="frame" x="30" y="230" width="278" height="67"/>
+                            <string key="text">Mensagem enviada
+com sucesso :)</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SmY-sZ-pGT">
+                            <rect key="frame" x="85.5" y="395" width="167" height="32"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="Enviar nova mensagem">
+                                <color key="titleColor" red="0.85490196078431369" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="newMessagePressed:" destination="MTx-jI-7KI" eventType="touchUpInside" id="Ah4-AZ-JE6"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="qNN-n9-ol2" firstAttribute="leading" secondItem="48S-6C-URq" secondAttribute="leading" constant="30" id="2ha-Ju-2hk"/>
+                        <constraint firstItem="SmY-sZ-pGT" firstAttribute="centerX" secondItem="87X-VP-9H1" secondAttribute="centerX" id="9Vw-Yr-g0y"/>
+                        <constraint firstItem="qNN-n9-ol2" firstAttribute="top" secondItem="Ekr-jh-XEa" secondAttribute="bottom" id="N0I-Fc-3Gn"/>
+                        <constraint firstItem="Ekr-jh-XEa" firstAttribute="trailing" secondItem="qNN-n9-ol2" secondAttribute="trailing" id="OC2-pi-n7z"/>
+                        <constraint firstItem="qNN-n9-ol2" firstAttribute="centerY" secondItem="87X-VP-9H1" secondAttribute="centerY" id="Q1T-Ly-TGh"/>
+                        <constraint firstItem="Ekr-jh-XEa" firstAttribute="leading" secondItem="qNN-n9-ol2" secondAttribute="leading" id="RGC-mX-N3p"/>
+                        <constraint firstItem="48S-6C-URq" firstAttribute="trailing" secondItem="qNN-n9-ol2" secondAttribute="trailing" constant="30" id="m3E-ce-Vnj"/>
+                        <constraint firstItem="SmY-sZ-pGT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qNN-n9-ol2" secondAttribute="bottom" constant="80" id="mWi-84-nZw"/>
+                        <constraint firstItem="48S-6C-URq" firstAttribute="bottom" secondItem="SmY-sZ-pGT" secondAttribute="bottom" priority="250" constant="100" id="qzD-9X-oU3"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="48S-6C-URq"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="2015.2" y="905.3973013493254"/>
         </scene>

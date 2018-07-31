@@ -10,9 +10,11 @@ import UIKit
 
 class TextTableViewCell: UITableViewCell {
 
+    //MARK: - Outlets
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
+    //MARK: - Class Variables
     var id: Int!
 
     func setCell(cell: Contact.FetchDynamicCells.ViewModel.DisplayableCell){
