@@ -10,13 +10,28 @@ import UIKit
 
 @IBDesignable class UICheckBox: UIButton {
 
+    //MARK: - Class Variables
     @IBInspectable var isChecked: Bool = false {
         didSet {
             self.drawCheckImage()
         }
     }
     
+    //MARK: - Class Functions
+    @objc func pressed(){
+        isChecked = isChecked ? false : true
+    }
     
+    private func drawCheckImage(){
+        
+        if self.isChecked {
+            super.setImage(UIImage(named: "Checked", in: Bundle(for: UICheckBox.self), compatibleWith: nil)?.withRenderingMode(.alwaysOriginal), for: .normal)
+        } else {
+            super.setImage(UIImage(named: "Unchecked", in: Bundle(for: self.classForCoder), compatibleWith: nil)?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+    }
+    
+    //MARK: - Overriden init methods to keep superView draw behaviours both programatically and in storyboard rendering
     override init(frame: CGRect) {
         super.init(frame: frame)
         sharedInit()
@@ -37,20 +52,6 @@ import UIKit
         super.titleEdgeInsets.left = 10.0
         self.drawCheckImage()
     }
-
-    
-    @objc func pressed(){
-        isChecked = isChecked ? false : true
-    }
-    
-    func drawCheckImage(){
-
-        if self.isChecked {
-            super.setImage(UIImage(named: "Checked", in: Bundle(for: UICheckBox.self), compatibleWith: nil)?.withRenderingMode(.alwaysOriginal), for: .normal)
-        } else {
-            super.setImage(UIImage(named: "Unchecked", in: Bundle(for: self.classForCoder), compatibleWith: nil)?.withRenderingMode(.alwaysOriginal), for: .normal)
-        }
-    }
     
     /*
     // Only override draw() if you perform custom drawing.
@@ -58,7 +59,4 @@ import UIKit
     override func draw(_ rect: CGRect) {
 
     }*/
-    
- 
-
 }

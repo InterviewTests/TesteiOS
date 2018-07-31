@@ -11,9 +11,35 @@ import AnyFormatKit
 
 @IBDesignable class UICustomTextfield: UITextField {
 
-    let borderLayer = CALayer()
-    let placeholderLabel = UILabel()
-    let clearButton = UIButton()
+    //MASK: - Class Variables
+    @IBInspectable var borderHeight: CGFloat = 1.0 {
+        didSet{
+            self.setBorder()
+        }
+    }
+    @IBInspectable var borderColor: UIColor = .lightGray {
+        didSet{
+            self.setBorder()
+        }
+    }
+    @IBInspectable var labelFontSize: CGFloat = 11.0 {
+        didSet{
+            self.placeholderLabel.font = UIFont(name: font!.fontName, size: self.labelFontSize)
+            self.placeholderLabel.sizeToFit()
+        }
+    }
+    @IBInspectable var labelColor: UIColor = .lightGray {
+        didSet{
+            self.setPlaceholder()
+        }
+    }
+    @IBInspectable var labelText: String = "Label" {
+        didSet{
+            self.placeholderLabel.text = self.labelText
+            self.placeholderLabel.sizeToFit()
+        }
+    }
+    @IBInspectable var textBottomInset: CGFloat = 0
     
     var masks: [String]? {
         didSet{
@@ -22,7 +48,6 @@ import AnyFormatKit
             })
         }
     }
-    
     var isValid: Bool = false {
         didSet{
             if self.isValid {
@@ -32,58 +57,39 @@ import AnyFormatKit
             }
         }
     }
-    
     var validationRegEx = ".{0,}"
+    private let borderLayer = CALayer()
+    private let placeholderLabel = UILabel()
+    private let clearButton = UIButton()
 
-    private func validate(string: String) {
-        
-        let stringTest = NSPredicate(format:"SELF MATCHES %@", validationRegEx)
-        self.isValid = stringTest.evaluate(with: string)
+    //MARK: - Class Functions
+    @objc func textDidChange() {
+        self.toggleClearButton()
+        self.applyMask()
+        self.validate(string: super.text!)
     }
     
-
-    
-    @IBInspectable var borderHeight: CGFloat = 1.0 {
-        didSet{
-            self.setBorder()
-        }
-    }
-    
-    @IBInspectable var borderColor: UIColor = .lightGray {
-        didSet{
-            self.setBorder()
-        }
-    }
-    
-    @IBInspectable var labelFontSize: CGFloat = 11.0 {
-        didSet{
-            self.placeholderLabel.font = UIFont(name: font!.fontName, size: self.labelFontSize)
-            self.placeholderLabel.sizeToFit()
-        }
-    }
-    
-    @IBInspectable var labelColor: UIColor = .lightGray {
-        didSet{
-            self.setPlaceholder()
-        }
-    }
-    
-    @IBInspectable var textBottomInset: CGFloat = 0
-    
-    @IBInspectable var labelText: String = "Label" {
-        didSet{
-            self.placeholderLabel.text = self.labelText
-            self.placeholderLabel.sizeToFit()
+    @objc func toggleClearButton(){
+        if super.text != nil && super.text!.count > 0 {
+            self.rightView?.alpha = 1
+        } else {
+            self.rightView?.alpha = 0
         }
     }
 
-    func setBorder(){
+    @objc func clearClicked()
+    {
+        super.text = ""
+        self.textDidChange()
+    }
+    
+    private func setBorder(){
         
         self.borderLayer.frame = CGRect(origin: CGPoint(x: 0, y: frame.height - self.borderHeight), size: CGSize(width: frame.width, height: self.borderHeight))
         self.borderLayer.backgroundColor = self.borderColor.cgColor
     }
     
-    func setPlaceholder(){
+    private func setPlaceholder(){
         
         self.placeholderLabel.frame = super.frame.insetBy(dx: 0, dy: 0)
         self.placeholderLabel.text = self.labelText
@@ -91,9 +97,56 @@ import AnyFormatKit
         self.placeholderLabel.textColor = self.labelColor
         self.placeholderLabel.sizeToFit()
         
-        self.placeholderLabel.frame = CGRect(x: 0, y: 0, width: self.placeholderLabel.bounds.width, height: self.placeholderLabel.bounds.height)        
+        self.placeholderLabel.frame = CGRect(x: 0, y: 0, width: self.placeholderLabel.bounds.width, height: self.placeholderLabel.bounds.height)
     }
     
+    private func setClearButton(){
+        let clearButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        clearButton.setImage(#imageLiteral(resourceName: "Limpar"), for: .normal)
+        
+        self.rightView = clearButton
+        clearButton.addTarget(self,action: #selector(clearClicked), for: UIControlEvents.touchUpInside)
+        
+        self.clearButtonMode = UITextFieldViewMode.never
+        self.rightViewMode = UITextFieldViewMode.always
+        self.rightView?.alpha = 0
+    }
+    
+    private func drawElements(){
+        layer.addSublayer(borderLayer)
+        layer.masksToBounds = true
+        
+        addSubview(placeholderLabel)
+    }
+    
+    private func validate(string: String) {
+        
+        let stringTest = NSPredicate(format:"SELF MATCHES %@", validationRegEx)
+        self.isValid = stringTest.evaluate(with: string)
+    }
+    
+    private func applyMask(){
+        guard let masks = self.masks else {
+            return
+        }
+        
+        if masks.count == 1 {
+            text = self.format(string: text!, maskPattern: masks[0])
+        } else {
+            let mask = super.text!.count >= masks[0].count ? masks[0] : masks[1]
+            text = self.format(string: text!, maskPattern: mask)
+        }
+    }
+    
+    private func format(string: String, maskPattern: String) -> String? {
+        
+        let charactersToReplace = maskPattern.replacingOccurrences(of: "[#]", with: "", options: .regularExpression)
+        
+        let formatter = TextFormatter(textPattern: maskPattern)
+        return formatter.formattedText(from: string.replacingOccurrences( of:"[\(charactersToReplace)]", with: "", options: .regularExpression))
+    }
+    
+    //MARK: - Overriden init methods to keep superView draw behaviours both programatically and in storyboard rendering
     override init(frame: CGRect) {
         super.init(frame: frame)
         sharedInit()
@@ -118,66 +171,7 @@ import AnyFormatKit
         self.addTarget(self, action: #selector(textDidChange), for: UIControlEvents.editingChanged)
     }
     
-    private func applyMask(){
-        guard let masks = self.masks else {
-            return
-        }
-
-        if masks.count == 1 {
-            text = self.format(string: text!, maskPattern: masks[0])
-        } else {
-            let mask = super.text!.count >= masks[0].count ? masks[0] : masks[1]
-            text = self.format(string: text!, maskPattern: mask)
-        }
-    }
-    
-    private func format(string: String, maskPattern: String) -> String? {
-        
-        let charactersToReplace = maskPattern.replacingOccurrences(of: "[#]", with: "", options: .regularExpression)
-
-        let formatter = TextFormatter(textPattern: maskPattern)
-        return formatter.formattedText(from: string.replacingOccurrences( of:"[\(charactersToReplace)]", with: "", options: .regularExpression))
-    }
-    
-    @objc func textDidChange() {
-        self.toggleClearButton()
-        self.applyMask()
-        self.validate(string: super.text!)
-    }
-    
-    @objc func toggleClearButton(){
-        if super.text != nil && super.text!.count > 0 {
-            self.rightView?.alpha = 1
-        } else {
-            self.rightView?.alpha = 0
-        }
-    }
-    
-    func setClearButton(){
-        let clearButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        clearButton.setImage(#imageLiteral(resourceName: "Limpar"), for: .normal)
-        
-        self.rightView = clearButton
-        clearButton.addTarget(self,action: #selector(clearClicked), for: UIControlEvents.touchUpInside)
-        
-        self.clearButtonMode = UITextFieldViewMode.never
-        self.rightViewMode = UITextFieldViewMode.always
-        self.rightView?.alpha = 0
-    }
-    
-    @objc func clearClicked()
-    {
-        super.text = ""
-        self.textDidChange()
-    }
-    
-    func drawElements(){
-        layer.addSublayer(borderLayer)
-        layer.masksToBounds = true
-        
-        addSubview(placeholderLabel)
-    }
-    
+    //MARK: - Overriden Rect functions to add padding to text and placeholder variables
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return UIEdgeInsetsInsetRect(bounds, UIEdgeInsetsMake(0, 0, self.textBottomInset, 0))
     }
@@ -185,8 +179,7 @@ import AnyFormatKit
     override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         return UIEdgeInsetsInsetRect(bounds, UIEdgeInsetsMake(0, 0,self.textBottomInset, 0))
     }
-    
-    
+
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
@@ -195,6 +188,4 @@ import AnyFormatKit
         self.drawElements()
   
     }
-    
-
 }

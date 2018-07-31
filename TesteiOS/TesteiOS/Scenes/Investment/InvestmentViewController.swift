@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol InvestmentDisplayLogic: class
 {
@@ -122,6 +123,15 @@ class InvestmentViewController: UITableViewController, InvestmentDisplayLogic
     @IBOutlet weak var invest: UIButton!
     
     
+    //MARK: - Actions
+    
+    @IBAction func baixarPressed(_ sender: UIButton) {
+        guard let url = URL(string: "https://www.google.com") else {
+            return
+        }
+        let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+        self.present(safariViewController, animated: true)
+    }
   
     //MARK: Fetch Investment Fund Information
 
