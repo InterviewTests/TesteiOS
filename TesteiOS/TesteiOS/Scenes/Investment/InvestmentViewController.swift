@@ -64,38 +64,6 @@ class InvestmentViewController: UITableViewController, InvestmentDisplayLogic
       }
     }
   }
-  
-  // MARK: View lifecycle
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-        if let tabBarController = self.tabBarController {
-            
-            var tabBarItemSize = CGSize(width: tabBarController.tabBar.frame.width / 2 + 1, height: tabBarController.tabBar.frame.height / 2 + 1)
-            if UIScreen.main.nativeBounds.height > 1334 {
-                tabBarItemSize = CGSize(width: tabBarController.tabBar.frame.width / 2 + 1, height: tabBarController.tabBar.frame.height / 3 + 1)
-            }
-            
-            let selectedColor = UIColor(red: 200/255.0, green: 8/255.0, blue: 19/255.0, alpha: 1.0)
-            tabBarController.tabBar.selectionIndicatorImage = UIImage(color: selectedColor, size: tabBarItemSize)?.resizableImage(withCapInsets: .zero)
-            tabBarController.tabBar.frame.size.width = tabBarController.view.frame.width + 5
-            tabBarController.tabBar.frame.origin.x = -3
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        
-        
-    }
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    
-    fetchFundInfo()
-  }
     
     //MARK: Outlets
     
@@ -146,9 +114,7 @@ class InvestmentViewController: UITableViewController, InvestmentDisplayLogic
     //MARK: Invest Button
     @IBOutlet weak var invest: UIButton!
     
-    
     //MARK: - Actions
-    
     @IBAction func baixarPressed(_ sender: UIButton) {
         guard let url = URL(string: "https://www.google.com") else {
             return
@@ -156,58 +122,80 @@ class InvestmentViewController: UITableViewController, InvestmentDisplayLogic
         let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: true)
         self.present(safariViewController, animated: true)
     }
-  
-    //MARK: Fetch Investment Fund Information
+    
+    //MARK: View lifecycle
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
 
+        if let tabBarController = self.tabBarController {
+            
+            var tabBarItemSize = CGSize(width: tabBarController.tabBar.frame.width / 2 + 1, height: tabBarController.tabBar.frame.height / 2 + 1)
+            if UIScreen.main.nativeBounds.height > 1334 {
+                tabBarItemSize = CGSize(width: tabBarController.tabBar.frame.width / 2 + 1, height: tabBarController.tabBar.frame.height / 3 + 1)
+            }
+            
+            let selectedColor = UIColor(red: 200/255.0, green: 8/255.0, blue: 19/255.0, alpha: 1.0)
+            tabBarController.tabBar.selectionIndicatorImage = UIImage(color: selectedColor, size: tabBarItemSize)?.resizableImage(withCapInsets: .zero)
+            tabBarController.tabBar.frame.size.width = tabBarController.view.frame.width + 5
+            tabBarController.tabBar.frame.origin.x = -3
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        fetchFundInfo()
+    }
+
+    //MARK: Call Interactor do fetch Investment fund Info
     func fetchFundInfo() {
         let request = Investment.FetchFund.Request()
         interactor?.fetchFundInfo(request: request)
     }
     
-    //MARK: - Display Info received from Presenter
+    //MARK: Presenter calls this function to display cells
     func displayFundInfo(viewModel: Investment.FetchFund.ViewModel) {
-    //MARK: - Basic Investment Info
-    self.fundTitle.text = viewModel.displayedInvestmentFund.fundTitle
-    self.fundName.text = viewModel.displayedInvestmentFund.fundName
-    self.whatIs.text = viewModel.displayedInvestmentFund.whatIs
-    self.definition.text = viewModel.displayedInvestmentFund.definition
-    self.riskTitle.text = viewModel.displayedInvestmentFund.riskTitle
-    self.riskImage.image = viewModel.displayedInvestmentFund.riskImage
-    
-    //MARK: - More Info
-    self.infoTitle.text = viewModel.displayedInvestmentFund.infoTitle
-    self.year.text = viewModel.displayedInvestmentFund.year
-    self.yearCdi.text = viewModel.displayedInvestmentFund.yearCdi
-    self.yearFund.text = viewModel.displayedInvestmentFund.yearFund
-    self.month.text = viewModel.displayedInvestmentFund.month
-    self.monthCdi.text = viewModel.displayedInvestmentFund.monthCdi
-    self.monthFund.text = viewModel.displayedInvestmentFund.monthFund
-    self.twelveMonths.text = viewModel.displayedInvestmentFund.twelveMonths
-    self.twelveMonthsCdi.text = viewModel.displayedInvestmentFund.twelveMonthsCdi
-    self.twelveMonthsFund.text = viewModel.displayedInvestmentFund.twelveMonthsFund
-    
-    //MARK: - Info
-    self.name1.text = viewModel.displayedInvestmentFund.info[0].0
-    self.data1.text = viewModel.displayedInvestmentFund.info[0].1
-    self.name2.text = viewModel.displayedInvestmentFund.info[1].0
-    self.data2.text = viewModel.displayedInvestmentFund.info[1].1
-    self.name3.text = viewModel.displayedInvestmentFund.info[2].0
-    self.data3.text = viewModel.displayedInvestmentFund.info[2].1
-    self.name4.text = viewModel.displayedInvestmentFund.info[3].0
-    self.data4.text = viewModel.displayedInvestmentFund.info[3].1
-    self.name5.text = viewModel.displayedInvestmentFund.info[4].0
-    self.data5.text = viewModel.displayedInvestmentFund.info[4].1
-    self.name6.text = viewModel.displayedInvestmentFund.info[5].0
-    self.data6.text = viewModel.displayedInvestmentFund.info[5].1
-    self.name7.text = viewModel.displayedInvestmentFund.info[6].0
-    self.data7.text = viewModel.displayedInvestmentFund.info[6].1
-    
-    //MARK: - Down Info
-    self.downName1.text = viewModel.displayedInvestmentFund.downInfo[0].0
-    self.downName2.text = viewModel.displayedInvestmentFund.downInfo[1].0
-    self.downName3.text = viewModel.displayedInvestmentFund.downInfo[2].0
-    self.downName4.text = viewModel.displayedInvestmentFund.downInfo[3].0
-    self.downName5.text = viewModel.displayedInvestmentFund.downInfo[4].0
+        //MARK: - Basic Investment Info
+        self.fundTitle.text = viewModel.displayedInvestmentFund.fundTitle
+        self.fundName.text = viewModel.displayedInvestmentFund.fundName
+        self.whatIs.text = viewModel.displayedInvestmentFund.whatIs
+        self.definition.text = viewModel.displayedInvestmentFund.definition
+        self.riskTitle.text = viewModel.displayedInvestmentFund.riskTitle
+        self.riskImage.image = viewModel.displayedInvestmentFund.riskImage
+        
+        //MARK: - More Info
+        self.infoTitle.text = viewModel.displayedInvestmentFund.infoTitle
+        self.year.text = viewModel.displayedInvestmentFund.year
+        self.yearCdi.text = viewModel.displayedInvestmentFund.yearCdi
+        self.yearFund.text = viewModel.displayedInvestmentFund.yearFund
+        self.month.text = viewModel.displayedInvestmentFund.month
+        self.monthCdi.text = viewModel.displayedInvestmentFund.monthCdi
+        self.monthFund.text = viewModel.displayedInvestmentFund.monthFund
+        self.twelveMonths.text = viewModel.displayedInvestmentFund.twelveMonths
+        self.twelveMonthsCdi.text = viewModel.displayedInvestmentFund.twelveMonthsCdi
+        self.twelveMonthsFund.text = viewModel.displayedInvestmentFund.twelveMonthsFund
+        
+        //MARK: - Info
+        self.name1.text = viewModel.displayedInvestmentFund.info[0].0
+        self.data1.text = viewModel.displayedInvestmentFund.info[0].1
+        self.name2.text = viewModel.displayedInvestmentFund.info[1].0
+        self.data2.text = viewModel.displayedInvestmentFund.info[1].1
+        self.name3.text = viewModel.displayedInvestmentFund.info[2].0
+        self.data3.text = viewModel.displayedInvestmentFund.info[2].1
+        self.name4.text = viewModel.displayedInvestmentFund.info[3].0
+        self.data4.text = viewModel.displayedInvestmentFund.info[3].1
+        self.name5.text = viewModel.displayedInvestmentFund.info[4].0
+        self.data5.text = viewModel.displayedInvestmentFund.info[4].1
+        self.name6.text = viewModel.displayedInvestmentFund.info[5].0
+        self.data6.text = viewModel.displayedInvestmentFund.info[5].1
+        self.name7.text = viewModel.displayedInvestmentFund.info[6].0
+        self.data7.text = viewModel.displayedInvestmentFund.info[6].1
+        
+        //MARK: - Down Info
+        self.downName1.text = viewModel.displayedInvestmentFund.downInfo[0].0
+        self.downName2.text = viewModel.displayedInvestmentFund.downInfo[1].0
+        self.downName3.text = viewModel.displayedInvestmentFund.downInfo[2].0
+        self.downName4.text = viewModel.displayedInvestmentFund.downInfo[3].0
+        self.downName5.text = viewModel.displayedInvestmentFund.downInfo[4].0
     
     
   }

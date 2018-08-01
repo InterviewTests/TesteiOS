@@ -11,48 +11,13 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
 class ContactWorker {
     func fetchCellInfo(completion: @escaping ([DynamicCell]) -> Void) {
+        let networkManager = NetworkAPI()
         
-        guard let url = URL(string: "https://floating-mountain-50292.herokuapp.com/cells.json") else {
-            print("Failure at url parsing.")
-            return
-        }
-        
-        Alamofire.request(url).validate().responseJSON(){ response in
-            
-            guard response.result.isSuccess else {
-                print("Failure at https request: \(response.error!.localizedDescription)")
-                return
-            }
-            
-            guard let data = try? JSON(data: response.data!) else {
-                print("Failure at JSON parsing.")
-                return
-            }
-            
-            
-            
-            let dynamicCells = data["cells"].map({
-                DynamicCell(id: $0.1["id"].intValue,
-                            type: $0.1["type"].intValue,
-                            message: $0.1["message"].stringValue,
-                            typeField: $0.1["typefield"].int,
-                            hidden: $0.1["hidden"].boolValue,
-                            topSpacing: $0.1["topSpacing"].intValue,
-                            show: $0.1["show"].int,
-                            isRequired: $0.1["required"].boolValue)
-            })
-            
-            if dynamicCells.isEmpty {
-                print("Failure creating DynamicCell Object")
-                return
-            }
-            
-            completion(dynamicCells)
+        networkManager.fetchCellInfo{ response in
+            completion(response)
         }
     }
     

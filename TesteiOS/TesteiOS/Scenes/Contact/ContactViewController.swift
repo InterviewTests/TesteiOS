@@ -63,8 +63,6 @@ class ContactViewController: UIViewController, ContactDisplayLogic
       }
     }
   }
-  
-  // MARK: View lifecycle
 
     //MARK: - Class Variables
     var displayableCells: [Contact.FetchDynamicCells.ViewModel.DisplayableCell] = []

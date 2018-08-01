@@ -25,9 +25,10 @@ class InvestmentPresenter: InvestmentPresentationLogic
   
   func presentInvestmentFund(response: Investment.FetchFund.Response) {
     
-    //MARK: TODO - Implement proper "Risk Image" logic
+    
     var riskImage: UIImage
     
+    //MARK: TODO - Implement proper "Risk Image" logic
     switch response.investmentFund.risk {
         case 4:
             riskImage = #imageLiteral(resourceName: "Risco")

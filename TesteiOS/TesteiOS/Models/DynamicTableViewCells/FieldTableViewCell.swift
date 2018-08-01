@@ -34,7 +34,6 @@ class FieldTableViewCell: UITableViewCell {
             default:
                 self.textfield.validationRegEx = "\\([0-9]{2}\\)\\s[0-9]{4,5}-[0-9]{4}"
                 self.textfield.masks = ["(##) ####-####", "(##) #####-####"]
-                self.textfield.keyboardType = .namePhonePad
         }
     }
     

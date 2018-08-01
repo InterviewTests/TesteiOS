@@ -8,7 +8,7 @@
 
 import Foundation
 
-class InvestmentFund{
+struct InvestmentFund {
     
     var fundTitle: String
     var fundName: String
@@ -20,18 +20,4 @@ class InvestmentFund{
     var info: [(String, String)]
     var downInfo: [(String, String?)]
     var moreInfo: [(String, String, String)]
-    
-    init?(fundTitle: String, fundName: String, whatIs: String, definition: String, riskTitle: String, risk: Int, infoTitle: String, info: [(String, String)], moreInfo: [(String, String, String)], downInfo: [(String, String?)]) {
-       
-        self.fundTitle = fundTitle
-        self.fundName = fundName
-        self.whatIs = whatIs
-        self.definition = definition
-        self.riskTitle = riskTitle
-        self.risk = risk
-        self.infoTitle = infoTitle
-        self.moreInfo = moreInfo
-        self.info = info
-        self.downInfo = downInfo
-    }
 }
