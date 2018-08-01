@@ -66,10 +66,13 @@ class InvestmentViewController: UITableViewController, InvestmentDisplayLogic
   }
   
   // MARK: View lifecycle
+    
+    
   
   override func viewDidLoad()
   {
     super.viewDidLoad()
+    
     fetchFundInfo()
   }
     
