@@ -66,8 +66,29 @@ class InvestmentViewController: UITableViewController, InvestmentDisplayLogic
   }
   
   // MARK: View lifecycle
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        if let tabBarController = self.tabBarController {
+            
+            var tabBarItemSize = CGSize(width: tabBarController.tabBar.frame.width / 2 + 1, height: tabBarController.tabBar.frame.height / 2 + 1)
+            if UIScreen.main.nativeBounds.height > 1334 {
+                tabBarItemSize = CGSize(width: tabBarController.tabBar.frame.width / 2 + 1, height: tabBarController.tabBar.frame.height / 3 + 1)
+            }
+            
+            let selectedColor = UIColor(red: 200/255.0, green: 8/255.0, blue: 19/255.0, alpha: 1.0)
+            tabBarController.tabBar.selectionIndicatorImage = UIImage(color: selectedColor, size: tabBarItemSize)?.resizableImage(withCapInsets: .zero)
+            tabBarController.tabBar.frame.size.width = tabBarController.view.frame.width + 5
+            tabBarController.tabBar.frame.origin.x = -3
+        }
+    }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        
+    }
   
   override func viewDidLoad()
   {
