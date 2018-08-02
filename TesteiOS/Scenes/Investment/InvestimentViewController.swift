@@ -8,28 +8,39 @@
 
 import UIKit
 
-class InvestimentViewController: UIViewController {
+class InvestimentViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         RestAPI.fetchGenericObject(endPoint: "fund.json", onComplete: { (response: InvestimentResponse) in
             
-            
-            print(response.screen.fundName)
+            self.buildLayout(response)
             
         }) { (apiError) in
             
-            
-            print("an error occourred ", apiError)
+            self.showAlert(title: "Atenção", message: self.getFormatedError(apiError))
         }
+    }
+    
+    func buildLayout(_ response:InvestimentResponse) {
+        
+        
+        
+        
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-
 }
+
+
+
+
+
+
+
+
 
