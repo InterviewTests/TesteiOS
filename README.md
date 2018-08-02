@@ -1,6 +1,6 @@
 # TesteiOS
 
-Testes para candidatos vaga de desenvolver iOS do Santander
+Teste técnico para candidatos à vaga de desenvolver iOS do Santander
 
 ## Pré-Requisitos
 
