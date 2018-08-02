@@ -18,7 +18,7 @@ cd ˜/TesteiOS/TesteiOS
 Instale as dependências:
 
 ```
-pod Install
+pod install
 ```
 
 Abra o arquivo 'TesteiOS.xcworkspace'
