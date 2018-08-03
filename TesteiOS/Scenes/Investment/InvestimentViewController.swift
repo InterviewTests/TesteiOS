@@ -11,9 +11,6 @@ import SafariServices
 
 class InvestimentViewController: BaseViewController {
     
-    let font = UIFont(name: "DINPro-Regular", size: 15.0)
-    let scrollView = UIScrollView()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +30,7 @@ class InvestimentViewController: BaseViewController {
         
         let screen:Screen = response.screen
         
+        let scrollView = UIScrollView()
         view.addSubview(scrollView)
         scrollView.showsVerticalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -307,12 +305,13 @@ class InvestimentViewController: BaseViewController {
                 }
                     
                 let label = UILabel()
-                label.text = j==0 ? info.name : info.data ?? "  " + "Baixar"
+                let space = "  "
+                label.text = j==0 ? info.name : info.data ?? space + "Baixar"
                 label.font = font
                 label.textColor = j==0 ? .gray : .black
                 label.textColor = info.data == nil && j == 1 ? .red : label.textColor
                 label.textAlignment = j==0 ? .left : .right
-                if label.text! == "Baixar" {
+                if label.text! == space + "Baixar" {
                     
                     label.isUserInteractionEnabled = true
                     label.addGestureRecognizer(touchUp)
@@ -334,7 +333,7 @@ class InvestimentViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        scrollView.setContentOffset(CGPoint(x: 0, y: -20), animated: true)
+        //scrollView.setContentOffset(CGPoint(x: 0, y: -20), animated: true)
     }
 
     override func didReceiveMemoryWarning() {

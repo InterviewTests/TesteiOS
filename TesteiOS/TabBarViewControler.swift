@@ -50,8 +50,6 @@ class TabBarViewControler: UITabBarController {
         let image = UIImage.from(color: color, width: Double(tabBar.bounds.size.width / 2.0),height: Double(tabBar.bounds.size.height))
         UITabBar.appearance().selectionIndicatorImage = image
         tabBar.selectionIndicatorImage = image
-        
-        print("Olha o tamanhoo", tabBar.bounds.size.width)
     }
 }
 

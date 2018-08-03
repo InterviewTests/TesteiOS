@@ -9,10 +9,11 @@
 import UIKit
 
 class BaseViewController: UIViewController {
+    
+    let font = UIFont(name: "DINPro-Regular", size: 15.0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
     }
     
     func showAlert(title:String, message:String) {

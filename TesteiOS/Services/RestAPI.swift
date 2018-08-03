@@ -26,6 +26,7 @@ class RestAPI {
         let config = URLSessionConfiguration.default
         config.httpAdditionalHeaders = ["Content-Type":"application/json"]
         config.timeoutIntervalForRequest = 30.0
+        
         config.httpMaximumConnectionsPerHost = 5
         return config
     }()
