@@ -307,18 +307,15 @@ class InvestimentViewController: BaseViewController {
                 }
                     
                 let label = UILabel()
-                label.text = j==0 ? info.name : info.data ?? "  Baixar"
+                label.text = j==0 ? info.name : info.data ?? "  " + "Baixar"
                 label.font = font
                 label.textColor = j==0 ? .gray : .black
                 label.textColor = info.data == nil && j == 1 ? .red : label.textColor
                 label.textAlignment = j==0 ? .left : .right
-                if label.text! == "  Baixar" {
+                if label.text! == "Baixar" {
                     
                     label.isUserInteractionEnabled = true
                     label.addGestureRecognizer(touchUp)
-                    print("Adicionei")
-                } else {
-                    print("Fodeoo")
                 }
                 stackX.addArrangedSubview(label)
             }

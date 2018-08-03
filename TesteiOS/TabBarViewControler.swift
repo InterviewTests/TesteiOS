@@ -10,29 +10,48 @@ import UIKit
 
 class TabBarViewControler: UITabBarController {
 
+    let color = UIColor(red: 234.0/255.0, green: 120.0/255.0, blue: 115.0/255.0, alpha: 1.0)
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.tintColor = .white
         if #available(iOS 10.0, *) {
             tabBar.unselectedItemTintColor = .white
         }
-        tabBar.selectionIndicatorImage = UIImage.from(
-            color: UIColor(red: 234.0/255.0,
-                           green: 120.0/255.0,
-                           blue: 115.0/255.0,
-                           alpha: 1.0),
-            width: Double(view.frame.width) / 2.0,
-            height: Double(tabBar.frame.size.height + 2)
-        )
-     
-        guard let font = UIFont(name: "DINPro-Regular", size: 15.0) else {
+        
+        tabBar.tintColor = .white
+        tabBar.clipsToBounds = true
+        
+        guard let font = UIFont(name: "DINPro-Regular", size: 18.0) else {
             print("Font not found")
             return
         }
         
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font: font ], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([.font: font], for: .normal)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tabBar.invalidateIntrinsicContentSize()
+        
+        var vertical:CGFloat = 0
+        
+        if UIDevice.current.orientation.isPortrait {
+            
+            vertical = -12
+        }
+        
+        tabBar.items?.forEach({ (tabbaritem) in
+            
+            tabbaritem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: vertical)
+        })
+        
+        let image = UIImage.from(color: color, width: Double(tabBar.bounds.size.width / 2.0),height: Double(tabBar.bounds.size.height))
+        UITabBar.appearance().selectionIndicatorImage = image
+        tabBar.selectionIndicatorImage = image
+        
+        print("Olha o tamanhoo", tabBar.bounds.size.width)
     }
 }
 
