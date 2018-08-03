@@ -15,7 +15,9 @@ class TabBarViewControler: UITabBarController {
         super.viewDidLoad()
         
         tabBar.tintColor = .white
-        tabBar.unselectedItemTintColor = .white
+        if #available(iOS 10.0, *) {
+            tabBar.unselectedItemTintColor = .white
+        }
         tabBar.selectionIndicatorImage = UIImage.from(
             color: UIColor(red: 234.0/255.0,
                            green: 120.0/255.0,

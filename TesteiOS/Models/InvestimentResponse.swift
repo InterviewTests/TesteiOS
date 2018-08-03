@@ -23,7 +23,7 @@ struct Screen: Codable {
     let risk: Int
     let infoTitle: String
     let moreInfo:MoreInfo
-    let info:[Info]
+    var info:[Info]
     let downInfo:[Info]
 }
 
