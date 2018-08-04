@@ -18,6 +18,13 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "FieldCell", for: indexPath) as! FormDefaultCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! FormDefaultCell
+        cell.setCell(cell: displayedCells[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 }

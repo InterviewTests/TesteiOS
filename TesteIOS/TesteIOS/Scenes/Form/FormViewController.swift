@@ -10,6 +10,7 @@ import UIKit
 
 protocol FormDisplayLogic: class {
     func displayFetchedCells(viewModel: Form.FetchCells.ViewModel)
+    func displayError(error: Error)
 }
 
 class FormViewController: UIViewController, FormDisplayLogic {
@@ -17,7 +18,7 @@ class FormViewController: UIViewController, FormDisplayLogic {
     
     var interactor: FormBusinessLogic?
     var router: (NSObjectProtocol & FormRoutingLogic & FormDataPassing)?
-    var displayedCells: [Form.FetchCells.ViewModel.DisplayedCells] = []
+    var displayedCells: [Form.FetchCells.ViewModel.DisplayedCell] = []
     
     //    MARK: - Object Lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -60,13 +61,18 @@ class FormViewController: UIViewController, FormDisplayLogic {
         tableView.delegate = self
         tableView.dataSource = self
         
-//        UINib(nibName: "", bundle: nil)
+        tableView.register(UINib(nibName: "FormFieldTableViewCell", bundle: nil), forCellReuseIdentifier: "FieldCell")
+        tableView.register(UINib(nibName: "FormTextTableViewCell", bundle: nil), forCellReuseIdentifier: "TextCell")
     }
     
     //    MARK: - Fetch
     func fetchCells(){
         let request = Form.FetchCells.Request()
         interactor?.fetchCells(request: request)
+    }
+    
+    func displayError(error: Error) {
+        
     }
     
     func displayFetchedCells(viewModel: Form.FetchCells.ViewModel) {

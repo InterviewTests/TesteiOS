@@ -20,7 +20,7 @@ enum Form {
         }
         
         struct ViewModel {
-            struct DisplayedCells {
+            struct DisplayedCell {
                 var id: Int!
                 var type: Int!
                 var message: String!
@@ -31,7 +31,7 @@ enum Form {
                 var isRequired: Bool!
             }
             
-            var displayedCells: [DisplayedCells]
+            var displayedCells: [DisplayedCell]
         }
     }
 }
