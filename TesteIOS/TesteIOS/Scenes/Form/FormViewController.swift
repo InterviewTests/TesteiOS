@@ -8,8 +8,16 @@
 
 import UIKit
 
-class FormViewController: UIViewController {
+protocol FormDisplayLogic: class {
+    func displayFetchedCells(viewModel: Form.FetchCells.ViewModel)
+}
+
+class FormViewController: UIViewController, FormDisplayLogic {
     @IBOutlet weak var tableView: UITableView!
+    
+    var interactor: FormBusinessLogic?
+    var router: (NSObjectProtocol & FormRoutingLogic & FormDataPassing)?
+    var displayedCells: [Form.FetchCells.ViewModel.DisplayedCells] = []
     
     //    MARK: - Object Lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -26,7 +34,16 @@ class FormViewController: UIViewController {
     
     //    MARK: - Setup
     func setup(){
-        
+        let viewController = self
+        let interactor = FormInteractor()
+        let presenter = FormPresenter()
+        let router = FormRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
     }
     
     //    MARK: - View Lifecycle
@@ -34,6 +51,7 @@ class FormViewController: UIViewController {
         super.viewDidLoad()
         
         configTableView()
+        fetchCells()
     }
     
     //    MARK: - View Config
@@ -43,5 +61,16 @@ class FormViewController: UIViewController {
         tableView.dataSource = self
         
 //        UINib(nibName: "", bundle: nil)
+    }
+    
+    //    MARK: - Fetch
+    func fetchCells(){
+        let request = Form.FetchCells.Request()
+        interactor?.fetchCells(request: request)
+    }
+    
+    func displayFetchedCells(viewModel: Form.FetchCells.ViewModel) {
+        displayedCells = viewModel.displayedCells
+        tableView.reloadData()
     }
 }

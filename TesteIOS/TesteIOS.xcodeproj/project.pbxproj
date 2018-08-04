@@ -20,6 +20,11 @@
 		24214D052115513D007DB9C5 /* CellsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24214D042115513D007DB9C5 /* CellsWorker.swift */; };
 		24214D0821155271007DB9C5 /* CellsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24214D0721155271007DB9C5 /* CellsApi.swift */; };
 		24214D0B21155299007DB9C5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24214D0A21155299007DB9C5 /* NetworkManager.swift */; };
+		24214D0D21155439007DB9C5 /* FormInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24214D0C21155439007DB9C5 /* FormInteractor.swift */; };
+		24214D0F211554C3007DB9C5 /* FormModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24214D0E211554C3007DB9C5 /* FormModels.swift */; };
+		24214D112115552D007DB9C5 /* FormPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24214D102115552D007DB9C5 /* FormPresenter.swift */; };
+		24214D1321155584007DB9C5 /* FormRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24214D1221155584007DB9C5 /* FormRouter.swift */; };
+		24214D1621155AB2007DB9C5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24214D1521155AB2007DB9C5 /* Settings.swift */; };
 		71FD5559B4BDC5CC7C2EEC04 /* Pods_TesteIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1115C75CC321DA7B63CB2570 /* Pods_TesteIOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +45,11 @@
 		24214D042115513D007DB9C5 /* CellsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellsWorker.swift; sourceTree = "<group>"; };
 		24214D0721155271007DB9C5 /* CellsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellsApi.swift; sourceTree = "<group>"; };
 		24214D0A21155299007DB9C5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		24214D0C21155439007DB9C5 /* FormInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormInteractor.swift; sourceTree = "<group>"; };
+		24214D0E211554C3007DB9C5 /* FormModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModels.swift; sourceTree = "<group>"; };
+		24214D102115552D007DB9C5 /* FormPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPresenter.swift; sourceTree = "<group>"; };
+		24214D1221155584007DB9C5 /* FormRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRouter.swift; sourceTree = "<group>"; };
+		24214D1521155AB2007DB9C5 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		5EDEA23E48850E8437DF5C26 /* Pods-TesteIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesteIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TesteIOS/Pods-TesteIOS.release.xcconfig"; sourceTree = "<group>"; };
 		F17220E9CA7CCDAD3677EA6C /* Pods-TesteIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesteIOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TesteIOS/Pods-TesteIOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +87,7 @@
 		24214CE121154975007DB9C5 /* TesteIOS */ = {
 			isa = PBXGroup;
 			children = (
+				24214D1421155AAA007DB9C5 /* System */,
 				24214D092115528E007DB9C5 /* Manager */,
 				24214D0621155267007DB9C5 /* Services */,
 				24214D0321155130007DB9C5 /* Workers */,
@@ -113,8 +124,13 @@
 		24214CFE21154D44007DB9C5 /* Form */ = {
 			isa = PBXGroup;
 			children = (
+				24214D17211560AD007DB9C5 /* Cells */,
 				24214CFF21154D54007DB9C5 /* FormViewController.swift */,
 				24214D0121154EC1007DB9C5 /* FormTableViewProtocol.swift */,
+				24214D0C21155439007DB9C5 /* FormInteractor.swift */,
+				24214D0E211554C3007DB9C5 /* FormModels.swift */,
+				24214D102115552D007DB9C5 /* FormPresenter.swift */,
+				24214D1221155584007DB9C5 /* FormRouter.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -141,6 +157,21 @@
 				24214D0A21155299007DB9C5 /* NetworkManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		24214D1421155AAA007DB9C5 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				24214D1521155AB2007DB9C5 /* Settings.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		24214D17211560AD007DB9C5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		9C7938D61634296052768F29 /* Pods */ = {
@@ -275,15 +306,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				24214CF821154AC2007DB9C5 /* FundModel.swift in Sources */,
+				24214D112115552D007DB9C5 /* FormPresenter.swift in Sources */,
 				24214D052115513D007DB9C5 /* CellsWorker.swift in Sources */,
 				24214D0B21155299007DB9C5 /* NetworkManager.swift in Sources */,
 				24214D0021154D54007DB9C5 /* FormViewController.swift in Sources */,
 				24214D0821155271007DB9C5 /* CellsApi.swift in Sources */,
+				24214D1321155584007DB9C5 /* FormRouter.swift in Sources */,
 				24214CFA21154BA1007DB9C5 /* FundPeriodInfoModel.swift in Sources */,
 				24214CE321154975007DB9C5 /* AppDelegate.swift in Sources */,
+				24214D1621155AB2007DB9C5 /* Settings.swift in Sources */,
+				24214D0D21155439007DB9C5 /* FormInteractor.swift in Sources */,
 				24214CFC21154BDD007DB9C5 /* FundInfoModel.swift in Sources */,
 				24214D0221154EC1007DB9C5 /* FormTableViewProtocol.swift in Sources */,
 				24214CF6211549B3007DB9C5 /* CellModel.swift in Sources */,
+				24214D0F211554C3007DB9C5 /* FormModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,7 +467,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TF42CLK79T;
 				INFOPLIST_FILE = TesteIOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTA_API_URL = "https://floating-mountain-50292.herokuapp.com/";
 				PRODUCT_BUNDLE_IDENTIFIER = com.br.andre.TesteIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -447,7 +487,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TF42CLK79T;
 				INFOPLIST_FILE = TesteIOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTA_API_URL = "https://floating-mountain-50292.herokuapp.com/";
 				PRODUCT_BUNDLE_IDENTIFIER = com.br.andre.TesteIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

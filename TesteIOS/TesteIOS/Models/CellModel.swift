@@ -28,4 +28,15 @@ struct CellModelFields: CellModel {
     let topSpacing: Double!
     let show: Int?
     let isRequired: Bool!
+    
+    init(json: JSONDict){
+        id = json["id"] as? Int ?? 0
+        type = json["type"] as? Int ?? 0
+        message = json["message"] as? String ?? ""
+        typeField = json["typeField"] as? Int
+        hidden = json["hidden"] as? Bool
+        topSpacing = json["topSpacing"] as? Double ?? 0
+        show = json["show"] as? Int
+        isRequired = json["required"] as? Bool
+    }
 }
