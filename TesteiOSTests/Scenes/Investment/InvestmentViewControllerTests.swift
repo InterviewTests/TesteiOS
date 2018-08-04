@@ -1,5 +1,5 @@
 //
-//  InvestmentControlerTests.swift
+//  InvestmentViewControllerTests.swift
 //  TesteiOSTests
 //
 //  Created by Dafle Cardoso on 04/08/2018.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import TesteiOS
 
-class InvestmentControlerTests: XCTestCase {
+class InvestmentViewControllerTests: XCTestCase {
     
     var session:URLSession!
     
@@ -37,7 +37,7 @@ class InvestmentControlerTests: XCTestCase {
             responseError = error
             promise.fulfill()
             
-        }.resume()
+            }.resume()
         
         waitForExpectations(timeout: 30, handler: nil)
         
@@ -62,5 +62,4 @@ class InvestmentControlerTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
 }
