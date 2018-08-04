@@ -37,29 +37,27 @@ class InvestmentViewControllerTests: XCTestCase {
             responseError = error
             promise.fulfill()
             
+            
+            guard let data = data else {
+                
+                XCTFail("Dados invalidos")
+                return
+            }
+            
+            do {
+                let obj = try JSONDecoder().decode(InvestimentResponse.self, from: data)
+                
+                XCTAssertEqual(obj.screen.title, "Fundos de investimento")
+                
+            } catch {
+                XCTFail("JSON INVALIDO")
+            }
+            
             }.resume()
         
         waitForExpectations(timeout: 30, handler: nil)
         
         XCTAssertNil(responseError)
         XCTAssertEqual(statusCode, 200)
-    }
-    
-    func testResultAPIInvestment() {
-        
-        RestAPI.fetchGenericObject(endPoint: "fund.json", onComplete: { (result:InvestimentResponse) in
-            
-            XCTAssertEqual(result.screen.title, "Fundos de investimento")
-            
-        }) { (apiError) in
-            
-        }
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
     }
 }
