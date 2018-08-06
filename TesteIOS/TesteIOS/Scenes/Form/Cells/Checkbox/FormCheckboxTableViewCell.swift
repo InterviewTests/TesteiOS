@@ -7,18 +7,26 @@
 //
 
 import UIKit
+import DLRadioButton
 
-class FormCheckboxTableViewCell: UITableViewCell {
+class FormCheckboxTableViewCell: UITableViewCell, FormDefaultCellProtocol {
 
+    
+    @IBOutlet weak var distanceToTop: NSLayoutConstraint!
+    @IBOutlet weak var checkbox: DLRadioButton!
+    @IBOutlet weak var messageLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        checkbox.isMultipleSelectionEnabled = true
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    //    MARK: - Set
+    func setCell(cell: Form.FetchCells.ViewModel.DisplayedCell) {
+        distanceToTop.constant = CGFloat(cell.topSpacing)
+        
+        messageLabel.text = cell.message
     }
-    
 }

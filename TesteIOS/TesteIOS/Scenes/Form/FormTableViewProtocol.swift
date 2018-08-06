@@ -18,9 +18,14 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "FieldCell", for: indexPath) as! FormDefaultCell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! FormDefaultCell
-        cell.setCell(cell: displayedCells[indexPath.row])
+        let displayedCell = displayedCells[indexPath.row]
+        
+        guard let identifier = cellIdentifiers[displayedCell.type] else {
+            return UITableViewCell()
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! FormDefaultCell
+        cell.setCell(cell: displayedCell)
         return cell
     }
     

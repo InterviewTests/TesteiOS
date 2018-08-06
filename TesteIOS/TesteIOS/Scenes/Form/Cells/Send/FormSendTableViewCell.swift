@@ -8,17 +8,21 @@
 
 import UIKit
 
-class FormSendTableViewCell: UITableViewCell {
-
+class FormSendTableViewCell: UITableViewCell, FormDefaultCellProtocol {
+    
+    @IBOutlet weak var buttonDistanceToTop: NSLayoutConstraint!
+    @IBOutlet weak var sendButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
+        sendButton.layer.cornerRadius = sendButton.frame.height/2
     }
     
+    func setCell(cell: Form.FetchCells.ViewModel.DisplayedCell) {
+        sendButton.setTitle(cell.message, for: .normal)
+        
+        buttonDistanceToTop.constant = CGFloat(cell.topSpacing)
+    }
+
 }

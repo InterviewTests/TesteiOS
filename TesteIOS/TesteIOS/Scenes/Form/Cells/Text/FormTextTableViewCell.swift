@@ -15,7 +15,6 @@ class FormTextTableViewCell: UITableViewCell, FormDefaultCellProtocol {
     @IBOutlet weak var fieldNameLabel: UILabel!
     @IBOutlet weak var textField: JMMaskTextField!
     
-    private var textLine: CALayer!
     private var validator: StringValidator?
     
     override func awakeFromNib() {
@@ -27,7 +26,7 @@ class FormTextTableViewCell: UITableViewCell, FormDefaultCellProtocol {
         fieldNameDistanceToTop.constant = CGFloat(cell.topSpacing)
         fieldNameLabel.text = cell.message
         
-        textLine = textField.setBottomLine()
+        textField.setBottomLine()
         setTextFieldValidator(type: cell.typeField)
     }
     
@@ -66,7 +65,7 @@ extension FormTextTableViewCell: UITextFieldDelegate {
         let nsText = NSString(string: textField.text ?? "")
         let newText = nsText.replacingCharacters(in: range, with: string)
         
-        textLine.borderColor = validator.validate(text: newText) ? UIColor.green.cgColor : UIColor.red.cgColor
+        textField.layer.shadowColor = validator.validate(text: newText) ? UIColor.green.cgColor : UIColor.red.cgColor
         
         return true
     }

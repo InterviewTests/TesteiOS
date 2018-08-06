@@ -9,7 +9,7 @@
 import UIKit
 
 enum CellType: Int {
-    case Field=1, Text, Image, Checkbox, Send
+    case Text=1, Field, Image, Checkbox, Send
 }
 
 enum CellTypeField: Int {

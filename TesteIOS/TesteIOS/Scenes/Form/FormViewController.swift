@@ -16,6 +16,13 @@ protocol FormDisplayLogic: class {
 class FormViewController: UIViewController, FormDisplayLogic {
     @IBOutlet weak var tableView: UITableView!
     
+    let cellIdentifiers: [CellType: String] = [
+        CellType.Field :"FieldCell",
+        CellType.Text: "TextCell",
+        CellType.Checkbox: "CheckboxCell",
+        CellType.Send: "SendCell"
+    ]
+    
     var interactor: FormBusinessLogic?
     var router: (NSObjectProtocol & FormRoutingLogic & FormDataPassing)?
     var displayedCells: [Form.FetchCells.ViewModel.DisplayedCell] = []
@@ -63,6 +70,8 @@ class FormViewController: UIViewController, FormDisplayLogic {
         
         tableView.register(UINib(nibName: "FormFieldTableViewCell", bundle: nil), forCellReuseIdentifier: "FieldCell")
         tableView.register(UINib(nibName: "FormTextTableViewCell", bundle: nil), forCellReuseIdentifier: "TextCell")
+        tableView.register(UINib(nibName: "FormCheckboxTableViewCell", bundle: nil), forCellReuseIdentifier: "CheckboxCell")
+        tableView.register(UINib(nibName: "FormSendTableViewCell", bundle: nil), forCellReuseIdentifier: "SendCell")
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
         tableView.addGestureRecognizer(tapGesture)
