@@ -8,11 +8,19 @@
 
 import UIKit
 
+enum CellType: Int {
+    case Field=1, Text, Image, Checkbox, Send
+}
+
+enum CellTypeField: Int {
+    case Text=1, TelNumber, Email
+}
+
 protocol CellModel {
     var id: Int! { get }
-    var type: Int! { get }
+    var type: CellType! { get }
     var message: String! { get }
-    var typeField: Int? { get }
+    var typeField: CellTypeField? { get }
     var hidden: Bool! { get }
     var topSpacing: Double! { get }
     var show: Int? { get }
@@ -21,9 +29,9 @@ protocol CellModel {
 
 struct CellModelFields: CellModel {
     let id: Int!
-    let type: Int!
+    let type: CellType!
     let message: String!
-    let typeField: Int?
+    let typeField: CellTypeField?
     let hidden: Bool!
     let topSpacing: Double!
     let show: Int?
@@ -31,9 +39,23 @@ struct CellModelFields: CellModel {
     
     init(json: JSONDict){
         id = json["id"] as? Int ?? 0
-        type = json["type"] as? Int ?? 0
+        
+        let typeInt = json["type"] as? Int ?? 1
+        type = CellType.init(rawValue: typeInt) ?? CellType.Field
+        
         message = json["message"] as? String ?? ""
-        typeField = json["typeField"] as? Int
+        
+        var auxTypeField: CellTypeField? = nil
+        if let typeFieldInt = json["typefield"] as? Int {
+            auxTypeField = CellTypeField.init(rawValue: typeFieldInt)
+        } else {
+            if let _ = json["typefield"] as? String {
+                // If it is telnumber
+                auxTypeField = CellTypeField.TelNumber
+            }
+        }
+        typeField = auxTypeField
+        
         hidden = json["hidden"] as? Bool
         topSpacing = json["topSpacing"] as? Double ?? 0
         show = json["show"] as? Int

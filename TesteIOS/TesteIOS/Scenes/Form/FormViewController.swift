@@ -63,6 +63,9 @@ class FormViewController: UIViewController, FormDisplayLogic {
         
         tableView.register(UINib(nibName: "FormFieldTableViewCell", bundle: nil), forCellReuseIdentifier: "FieldCell")
         tableView.register(UINib(nibName: "FormTextTableViewCell", bundle: nil), forCellReuseIdentifier: "TextCell")
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
+        tableView.addGestureRecognizer(tapGesture)
     }
     
     //    MARK: - Fetch
@@ -78,5 +81,10 @@ class FormViewController: UIViewController, FormDisplayLogic {
     func displayFetchedCells(viewModel: Form.FetchCells.ViewModel) {
         displayedCells = viewModel.displayedCells
         tableView.reloadData()
+    }
+    
+    //    MARK: - Others
+    @objc func tableViewTapped(){
+        view.endEditing(true)
     }
 }

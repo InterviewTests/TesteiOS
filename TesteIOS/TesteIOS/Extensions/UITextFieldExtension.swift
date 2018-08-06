@@ -9,7 +9,7 @@
 import UIKit
 
 extension UITextField {
-    func setBottomLine(width: CGFloat=1.0, color: UIColor=UIColor.lightGray){
+    func setBottomLine(width: CGFloat=1.0, color: UIColor=UIColor.lightGray) -> CALayer{
         let border = CALayer()
         
         border.borderColor = color.cgColor
@@ -18,5 +18,7 @@ extension UITextField {
         
         layer.addSublayer(border)
         layer.masksToBounds = true
+        
+        return border
     }
 }

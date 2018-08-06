@@ -22,9 +22,9 @@ enum Form {
         struct ViewModel {
             struct DisplayedCell {
                 var id: Int!
-                var type: Int!
+                var type: CellType!
                 var message: String!
-                var typeField: Int?
+                var typeField: CellTypeField?
                 var hidden: Bool!
                 var topSpacing: Double!
                 var show: Int?
