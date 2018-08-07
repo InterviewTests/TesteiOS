@@ -29,7 +29,6 @@ class FundsApi: FundosStoreProtocol {
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 
                 if let jsonResult = jsonResult as? JSONDict {
-                    print(jsonResult)
                     if let screen = jsonResult["screen"] as? JSONDict {
                         let fund = FundModelFields(json: screen)
                         completionHandler(fund, nil)
