@@ -39,26 +39,26 @@ extension FundosDetailsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! FundosDetailsDefaultCell
-        
         guard let fundo = displayedFundo else {
-            return cell
+            return UITableViewCell()
         }
         
         switch indexPath.section {
         case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! FundosDetailsDefaultCell
             cell.setInfo(info: fundo.info[indexPath.row])
-            break
+            cell.delegate = self
+            return cell
             
         case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DownInfoCell", for: indexPath) as! FundosDetailsDefaultCell
             cell.setInfo(info: fundo.downInfo[indexPath.row])
-            break
+            cell.delegate = self
+            return cell
             
         default:
-            break
+            return UITableViewCell()
         }
-        
-        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

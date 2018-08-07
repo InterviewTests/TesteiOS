@@ -79,6 +79,7 @@ class FundosDetailsViewController: UIViewController, FundosDetailsDisplayLogic {
         infoTableView.delegate = self
         infoTableView.dataSource = self
         infoTableView.register(UINib(nibName: "FundosDetailsInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "InfoCell")
+        infoTableView.register(UINib(nibName: "FundosDetailsDownInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "DownInfoCell")
     }
     
     func configLayout(){
@@ -114,5 +115,12 @@ class FundosDetailsViewController: UIViewController, FundosDetailsDisplayLogic {
     }
     
     func displayError(error: FundosDetails.GetFund.ViewModel) {
+    }
+}
+
+extension FundosDetailsViewController: FundosDetailsDefaultCellDelegate, SafariViewControllerProtocol {
+    func downloadButtonTouched() {
+        let url = "https://google.com"
+        openSafariView(at: url)
     }
 }

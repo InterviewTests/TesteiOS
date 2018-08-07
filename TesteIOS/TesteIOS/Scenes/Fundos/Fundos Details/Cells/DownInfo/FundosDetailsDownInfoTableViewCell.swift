@@ -8,17 +8,33 @@
 
 import UIKit
 
-class FundosDetailsDownInfoTableViewCell: UITableViewCell {
+class FundosDetailsDownInfoTableViewCell: UITableViewCell, FundosDetailsDefaultCellProtocol {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var downloadImage: UIImageView!
+    
+    var delegate: FundosDetailsDefaultCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(downloadButtonTouched(_:)))
+        downloadImage.addGestureRecognizer(tapGesture)
+    }
+    
+    //    MARK: - Set
+    func setInfo(info: FundosDetails.GetFund.ViewModel.DisplayedFundInfo) {
+        nameLabel.text = info.name
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    //    MARK: - Action
+    @IBAction func downloadButtonTouched(_ sender: Any) {
+        guard let delegate = delegate else {
+            return
+        }
+        
+        delegate.downloadButtonTouched()
     }
     
 }

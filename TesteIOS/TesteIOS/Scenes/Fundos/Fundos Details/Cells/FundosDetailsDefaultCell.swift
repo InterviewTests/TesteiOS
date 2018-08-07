@@ -16,5 +16,5 @@ protocol FundosDetailsDefaultCellProtocol: NSObjectProtocol {
 }
 
 protocol FundosDetailsDefaultCellDelegate {
-//    func sendButtonTouched()
+    func downloadButtonTouched()
 }
