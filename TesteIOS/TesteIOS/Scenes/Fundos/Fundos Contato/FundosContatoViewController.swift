@@ -19,6 +19,8 @@ class FundosContatoViewController: UIViewController, FundosContatoDisplayLogic {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneTextField: JMMaskTextField!
     @IBOutlet weak var mailCheckbox: DLRadioButton!
+    @IBOutlet weak var beforeMessageContainerView: UIView!
+    @IBOutlet weak var afterMessageContainerView: UIView!
     
     final private let emailValidator = StringEmailValidator()
     final private let phoneValidator = StringTelValidator()
@@ -83,6 +85,25 @@ class FundosContatoViewController: UIViewController, FundosContatoDisplayLogic {
         phoneTextField.maskString = "(00) 0000-00000"
         
         mailCheckbox.isMultipleSelectionEnabled = true
+    }
+    
+    //    MARK: - Action
+    @IBAction func sendButtonTouched(_ sender: Any) {
+        UIView.animate(withDuration: 0.2) {
+            self.beforeMessageContainerView.alpha = 0
+            self.afterMessageContainerView.alpha = 1
+        }
+    }
+    
+    @IBAction func sendNewMessageButtonTouched(_ sender: Any) {
+        UIView.animate(withDuration: 0.2) {
+            self.beforeMessageContainerView.alpha = 1
+            self.afterMessageContainerView.alpha = 0
+            
+            self.nameTextField.text = ""
+            self.emailTextField.text = ""
+            self.phoneTextField.text = ""
+        }
     }
 }
 extension FundosContatoViewController: UITextFieldDelegate {

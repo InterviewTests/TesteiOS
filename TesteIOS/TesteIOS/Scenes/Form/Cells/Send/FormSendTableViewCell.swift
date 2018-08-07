@@ -17,8 +17,6 @@ class FormSendTableViewCell: UITableViewCell, FormDefaultCellProtocol {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        sendButton.layer.cornerRadius = sendButton.frame.height/2
     }
     
     func setCell(cell: Form.FetchCells.ViewModel.DisplayedCell) {
