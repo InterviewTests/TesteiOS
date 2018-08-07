@@ -20,6 +20,7 @@ class FundosDetailsViewController: UIViewController, FundosDetailsDisplayLogic {
     @IBOutlet weak var whatIsLabel: UILabel!
     @IBOutlet weak var definitionLabel: UILabel!
     @IBOutlet weak var riskTitle: UILabel!
+    @IBOutlet weak var riskChart: UIView!
     @IBOutlet weak var infoTitleLabel: UILabel!
     @IBOutlet weak var monthFundLabel: UILabel!
     @IBOutlet weak var monthCDILabel: UILabel!
@@ -30,6 +31,8 @@ class FundosDetailsViewController: UIViewController, FundosDetailsDisplayLogic {
     
     @IBOutlet weak var infoTableView: UITableView!
     @IBOutlet weak var infoTableViewHeight: NSLayoutConstraint!
+    
+    var riskChartIndicatorImageView: UIImageView!
     
     
     var interactor: FundosDetailsBusinessLogic?
@@ -70,6 +73,7 @@ class FundosDetailsViewController: UIViewController, FundosDetailsDisplayLogic {
         super.viewDidLoad()
 
         configTableView()
+        configRiskChartIndicatorImageView()
         fetchFundo()
     }
     
@@ -84,6 +88,14 @@ class FundosDetailsViewController: UIViewController, FundosDetailsDisplayLogic {
     func configNavBarButton(){
         let button = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
         tabBarController?.navigationItem.setRightBarButton(button, animated: false)
+    }
+    
+    func configRiskChartIndicatorImageView(){
+        let img = UIImage(named: "arrow_down")
+        riskChartIndicatorImageView = UIImageView(image: img!)
+        riskChart.addSubview(riskChartIndicatorImageView)
+        
+        setRiskChartIndicator(risk: 1)
     }
     
     func configTableView(){
@@ -113,6 +125,16 @@ class FundosDetailsViewController: UIViewController, FundosDetailsDisplayLogic {
         yearCDILabel.text = fundo.moreInfo.year.cdi
         twelveFundLabel.text = fundo.moreInfo.twelveMonths.fund
         twelveCDILabel.text = fundo.moreInfo.twelveMonths.cdi
+        
+        setRiskChartIndicator(risk: fundo.risk)
+    }
+    
+    func setRiskChartIndicator(risk: Int){
+        let risk = CGFloat(risk)
+        let indicatorWidth = CGFloat(20)
+        let eachRiskWidth = riskChart.frame.width/CGFloat(5)
+        let distanceX = eachRiskWidth*risk - (eachRiskWidth/CGFloat(2) + indicatorWidth/CGFloat(2))
+        riskChartIndicatorImageView.frame = CGRect(x: distanceX, y: 0, width: indicatorWidth, height: indicatorWidth)
     }
     
     //    MARK: - Fetch Fundo

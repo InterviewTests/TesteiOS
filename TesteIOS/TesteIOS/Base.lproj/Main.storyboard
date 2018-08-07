@@ -106,7 +106,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mais informações sobre o investimento" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="S7c-bE-Rkb">
-                                        <rect key="frame" x="15" y="358" width="345" height="20"/>
+                                        <rect key="frame" x="15" y="373" width="345" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="dTa-GW-JfV"/>
                                         </constraints>
@@ -137,10 +137,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YOf-Ol-O1e">
-                                        <rect key="frame" x="15" y="293" width="345" height="30"/>
+                                        <rect key="frame" x="15" y="293" width="345" height="45"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="S81-li-z2l">
-                                                <rect key="frame" x="0.0" y="10" width="345" height="20"/>
+                                                <rect key="frame" x="0.0" y="25" width="345" height="20"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zzm-pI-YXl">
                                                         <rect key="frame" x="0.0" y="0.0" width="69" height="20"/>
@@ -172,12 +172,12 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="S81-li-z2l" secondAttribute="trailing" id="3Ix-2g-sww"/>
                                             <constraint firstItem="S81-li-z2l" firstAttribute="leading" secondItem="YOf-Ol-O1e" secondAttribute="leading" id="ARV-g9-ccA"/>
-                                            <constraint firstItem="S81-li-z2l" firstAttribute="top" secondItem="YOf-Ol-O1e" secondAttribute="top" constant="10" id="RLP-Ox-7CT"/>
+                                            <constraint firstItem="S81-li-z2l" firstAttribute="top" secondItem="YOf-Ol-O1e" secondAttribute="top" constant="25" id="RLP-Ox-7CT"/>
                                             <constraint firstAttribute="bottom" secondItem="S81-li-z2l" secondAttribute="bottom" id="q6h-Qx-cvv"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="976-gx-hnf">
-                                        <rect key="frame" x="0.0" y="393" width="375" height="146"/>
+                                        <rect key="frame" x="0.0" y="408" width="375" height="146"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fundo" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Per-B2-8yU">
                                                 <rect key="frame" x="165" y="10" width="45" height="20"/>
@@ -308,14 +308,14 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frs-bb-p6C">
-                                        <rect key="frame" x="15" y="564" width="345" height="1"/>
+                                        <rect key="frame" x="15" y="579" width="345" height="1"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="Z0M-Ly-tSJ"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHe-ZX-IOu" customClass="DefaultButton" customModule="TesteIOS" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="675" width="345" height="45"/>
+                                        <rect key="frame" x="15" y="690" width="345" height="45"/>
                                         <color key="backgroundColor" red="0.88627450980392153" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="rn4-pP-6GX"/>
@@ -325,7 +325,7 @@
                                         </state>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NC8-22-ehm">
-                                        <rect key="frame" x="0.0" y="590" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="605" width="375" height="60"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="2PI-GD-teo"/>
@@ -393,6 +393,7 @@
                         <outlet property="infoTitleLabel" destination="S7c-bE-Rkb" id="0yX-ph-iuq"/>
                         <outlet property="monthCDILabel" destination="Unf-Za-pPy" id="N0Y-u2-WtM"/>
                         <outlet property="monthFundLabel" destination="s0V-Ti-9zY" id="9bp-fC-kUO"/>
+                        <outlet property="riskChart" destination="YOf-Ol-O1e" id="Z9D-vo-162"/>
                         <outlet property="riskTitle" destination="OUm-GI-a32" id="qfB-Ih-T8H"/>
                         <outlet property="titleLabel" destination="GON-hL-opf" id="21b-KF-FtV"/>
                         <outlet property="twelveCDILabel" destination="2a7-qO-LXf" id="6hA-WE-VlL"/>

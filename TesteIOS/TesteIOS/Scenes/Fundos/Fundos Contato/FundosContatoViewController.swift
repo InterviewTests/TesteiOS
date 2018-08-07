@@ -100,12 +100,12 @@ class FundosContatoViewController: UIViewController, FundosContatoDisplayLogic {
             nameTextField.layer.shadowColor = UIColor.Default.red.cgColor
         }
         
-        if email.count < 1 && !emailValidator.validate(text: email){
+        if email.count < 1 || !emailValidator.validate(text: email){
             error = NSError()
             emailTextField.layer.shadowColor = UIColor.Default.red.cgColor
         }
         
-        if phone.count < 1 && !phoneValidator.validate(text: phone) {
+        if phone.count < 1 || !phoneValidator.validate(text: phone) {
             error = NSError()
             phoneTextField.layer.shadowColor = UIColor.Default.red.cgColor
         }
