@@ -13,6 +13,24 @@ protocol FundosDetailsDisplayLogic: class {
 }
 
 class FundosDetailsViewController: UIViewController, FundosDetailsDisplayLogic {
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var fundNameLabel: UILabel!
+    @IBOutlet weak var whatIsLabel: UILabel!
+    @IBOutlet weak var definitionLabel: UILabel!
+    @IBOutlet weak var riskTitle: UILabel!
+    @IBOutlet weak var infoTitleLabel: UILabel!
+    @IBOutlet weak var monthFundLabel: UILabel!
+    @IBOutlet weak var monthCDILabel: UILabel!
+    @IBOutlet weak var yearFundLabel: UILabel!
+    @IBOutlet weak var yearCDILabel: UILabel!
+    @IBOutlet weak var twelveFundLabel: UILabel!
+    @IBOutlet weak var twelveCDILabel: UILabel!
+    
+    @IBOutlet weak var infoTableView: UITableView!
+    @IBOutlet weak var infoTableViewHeight: NSLayoutConstraint!
+    
+    
     var interactor: FundosDetailsBusinessLogic?
     var router: (NSObjectProtocol & FundosDetailsRoutingLogic & FundosDetailsDataPassing)?
     
