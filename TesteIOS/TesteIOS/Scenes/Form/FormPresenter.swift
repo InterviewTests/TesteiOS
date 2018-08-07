@@ -19,7 +19,7 @@ class FormPresenter: FormPresentationLogic {
     //    MARK: - Fetch
     func presentFetchedCells(response: Form.FetchCells.Response) {
         if let error = response.error {
-            viewController?.displayError(error: error)
+            viewController?.displayError(viewModel: Form.FetchCells.ViewModel(displayedCells: [], error: error))
             return
         }
         
@@ -30,7 +30,7 @@ class FormPresenter: FormPresentationLogic {
             displayedCells.append(displayedCell)
         }
         
-        let viewModel = Form.FetchCells.ViewModel(displayedCells: displayedCells)
+        let viewModel = Form.FetchCells.ViewModel(displayedCells: displayedCells, error: nil)
         viewController?.displayFetchedCells(viewModel: viewModel)
     }
 }

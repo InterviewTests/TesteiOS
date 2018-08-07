@@ -27,9 +27,9 @@ class FundosDetailsPresenter: FundosDetailsPresentationLogic {
             return
         }
         
-        let month = FundosDetails.GetFund.ViewModel.DisplayedFundPeriodInfo(fund: fundo.moreInfo.month.fund, cdi: fundo.moreInfo.month.cdi)
-        let year = FundosDetails.GetFund.ViewModel.DisplayedFundPeriodInfo(fund: fundo.moreInfo.year.fund, cdi: fundo.moreInfo.year.cdi)
-        let twelveMonths = FundosDetails.GetFund.ViewModel.DisplayedFundPeriodInfo(fund: fundo.moreInfo.twelveMonths.fund, cdi: fundo.moreInfo.twelveMonths.cdi)
+        let month = FundosDetails.GetFund.ViewModel.DisplayedFundPeriodInfo(fund: formatDoubleToPercentString(number: fundo.moreInfo.month.fund), cdi: formatDoubleToPercentString(number: fundo.moreInfo.month.cdi))
+        let year = FundosDetails.GetFund.ViewModel.DisplayedFundPeriodInfo(fund: formatDoubleToPercentString(number: fundo.moreInfo.year.fund), cdi: formatDoubleToPercentString(number: fundo.moreInfo.year.cdi))
+        let twelveMonths = FundosDetails.GetFund.ViewModel.DisplayedFundPeriodInfo(fund: formatDoubleToPercentString(number: fundo.moreInfo.twelveMonths.fund), cdi: formatDoubleToPercentString(number: fundo.moreInfo.twelveMonths.cdi))
         
         let moreInfo = FundosDetails.GetFund.ViewModel.DisplayedFundMoreInfo(month: month, year: year, twelveMonths: twelveMonths)
         
@@ -47,5 +47,10 @@ class FundosDetailsPresenter: FundosDetailsPresentationLogic {
         
         let viewModel = FundosDetails.GetFund.ViewModel(displayedFund: displayedFundo, error: nil)
         viewController?.displayFundo(viewModel: viewModel)
+    }
+    
+    //    MARK: - Aux
+    func formatDoubleToPercentString(number: Double) -> String {
+        return "\(number as NSNumber)%".replacingOccurrences(of: ".", with: ",")
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 protocol FundosDetailsDisplayLogic: class {
     func displayFundo(viewModel: FundosDetails.GetFund.ViewModel)
+    func displayError(error: FundosDetails.GetFund.ViewModel)
 }
 
 class FundosDetailsViewController: UIViewController, FundosDetailsDisplayLogic {
@@ -34,7 +35,8 @@ class FundosDetailsViewController: UIViewController, FundosDetailsDisplayLogic {
     var interactor: FundosDetailsBusinessLogic?
     var router: (NSObjectProtocol & FundosDetailsRoutingLogic & FundosDetailsDataPassing)?
     
-    var displayedFundo: FundosDetails.GetFund.ViewModel.DisplayedFund!
+    var displayedFundo: FundosDetails.GetFund.ViewModel.DisplayedFund?
+    final let cellHeight: CGFloat = CGFloat(50)
     
     //    MARK: - Object Lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -67,7 +69,37 @@ class FundosDetailsViewController: UIViewController, FundosDetailsDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configTableView()
         fetchFundo()
+    }
+    
+    //    MARK: - Config
+    func configTableView(){
+        infoTableView.tableFooterView = UIView()
+        infoTableView.delegate = self
+        infoTableView.dataSource = self
+        infoTableView.register(UINib(nibName: "FundosDetailsInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "InfoCell")
+    }
+    
+    func configLayout(){
+        guard let fundo = displayedFundo else {
+            return
+        }
+        
+        infoTableView.reloadData()
+
+        titleLabel.text = fundo.title
+        fundNameLabel.text = fundo.fundName
+        whatIsLabel.text = fundo.whatIs
+        definitionLabel.text = fundo.definition
+        riskTitle.text = fundo.riskTitle
+        infoTitleLabel.text = fundo.infoTitle
+        monthFundLabel.text = fundo.moreInfo.month.fund
+        monthCDILabel.text = fundo.moreInfo.month.cdi
+        yearFundLabel.text = fundo.moreInfo.year.fund
+        yearCDILabel.text = fundo.moreInfo.year.cdi
+        twelveFundLabel.text = fundo.moreInfo.twelveMonths.fund
+        twelveCDILabel.text = fundo.moreInfo.twelveMonths.cdi
     }
     
     //    MARK: - Fetch Fundo
@@ -77,7 +109,10 @@ class FundosDetailsViewController: UIViewController, FundosDetailsDisplayLogic {
     }
     
     func displayFundo(viewModel: FundosDetails.GetFund.ViewModel) {
-        
+        displayedFundo = viewModel.displayedFund
+        configLayout()
     }
-
+    
+    func displayError(error: FundosDetails.GetFund.ViewModel) {
+    }
 }

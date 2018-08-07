@@ -32,6 +32,7 @@ enum Form {
             }
             
             var displayedCells: [DisplayedCell]
+            var error: CellsStoreError?
         }
     }
 }

@@ -10,15 +10,15 @@ import UIKit
 
 protocol FundInfoModel {
     var name: String! { get }
-    var data: String! { get }
+    var data: String? { get }
 }
 
 struct FundInfoModelFields: FundInfoModel {
     let name: String!
-    let data: String!
+    let data: String?
     
     init(json: JSONDict) {
         name = json["name"] as? String ?? ""
-        data = json["data"] as? String ?? ""
+        data = json["data"] as? String
     }
 }

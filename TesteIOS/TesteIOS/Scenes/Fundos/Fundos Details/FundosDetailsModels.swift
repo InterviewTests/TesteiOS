@@ -20,8 +20,8 @@ enum FundosDetails {
         
         struct ViewModel {
             struct DisplayedFundPeriodInfo{
-                let fund: Double
-                let cdi: Double
+                let fund: String
+                let cdi: String
             }
             
             struct DisplayedFundMoreInfo {
@@ -32,7 +32,7 @@ enum FundosDetails {
             
             struct DisplayedFundInfo {
                 let name: String
-                let data: String
+                let data: String?
             }
             
             struct DisplayedFund {

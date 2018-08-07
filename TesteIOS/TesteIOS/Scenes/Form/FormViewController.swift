@@ -10,7 +10,7 @@ import UIKit
 
 protocol FormDisplayLogic: class {
     func displayFetchedCells(viewModel: Form.FetchCells.ViewModel)
-    func displayError(error: Error)
+    func displayError(viewModel: Form.FetchCells.ViewModel)
 }
 
 class FormViewController: UIViewController, FormDisplayLogic {
@@ -83,7 +83,7 @@ class FormViewController: UIViewController, FormDisplayLogic {
         interactor?.fetchCells(request: request)
     }
     
-    func displayError(error: Error) {
+    func displayError(viewModel: Form.FetchCells.ViewModel) {
         
     }
     
