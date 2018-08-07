@@ -10,6 +10,11 @@ import UIKit
 
 typealias FormDefaultCell = UITableViewCell & FormDefaultCellProtocol
 
-protocol FormDefaultCellProtocol where Self: UITableViewCell {
+protocol FormDefaultCellProtocol: NSObjectProtocol {
+    var delegate: FormDefaultCellDelegate? { get set }
     func setCell(cell: Form.FetchCells.ViewModel.DisplayedCell)
+}
+
+protocol FormDefaultCellDelegate {
+    func sendButtonTouched()
 }

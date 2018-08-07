@@ -16,4 +16,9 @@ protocol FundPeriodInfoModel {
 struct FundPeriodInfoModelFields: FundPeriodInfoModel {
     let fund: Double!
     let cdi: Double!
+    
+    init(json: JSONDict) {
+        fund = json["fund"] as? Double ?? 0
+        cdi = json["CDI"] as? Double ?? 0
+    }
 }

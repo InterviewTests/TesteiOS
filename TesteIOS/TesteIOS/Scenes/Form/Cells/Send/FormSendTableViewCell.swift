@@ -13,6 +13,8 @@ class FormSendTableViewCell: UITableViewCell, FormDefaultCellProtocol {
     @IBOutlet weak var buttonDistanceToTop: NSLayoutConstraint!
     @IBOutlet weak var sendButton: UIButton!
     
+    var delegate: FormDefaultCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -25,4 +27,12 @@ class FormSendTableViewCell: UITableViewCell, FormDefaultCellProtocol {
         buttonDistanceToTop.constant = CGFloat(cell.topSpacing)
     }
 
+    //    MARK: - Action
+    @IBAction func sendButtonTouched(_ sender: Any) {
+        guard let delegate = delegate else {
+            return
+        }
+        
+        delegate.sendButtonTouched()
+    }
 }

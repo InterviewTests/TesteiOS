@@ -16,6 +16,7 @@ class FormTextTableViewCell: UITableViewCell, FormDefaultCellProtocol {
     @IBOutlet weak var textField: JMMaskTextField!
     
     private var validator: StringValidator?
+    var delegate: FormDefaultCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()

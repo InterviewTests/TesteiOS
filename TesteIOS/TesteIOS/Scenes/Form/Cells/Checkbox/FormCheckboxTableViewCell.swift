@@ -10,12 +10,11 @@ import UIKit
 import DLRadioButton
 
 class FormCheckboxTableViewCell: UITableViewCell, FormDefaultCellProtocol {
-
-    
     @IBOutlet weak var distanceToTop: NSLayoutConstraint!
     @IBOutlet weak var checkbox: DLRadioButton!
     @IBOutlet weak var messageLabel: UILabel!
     
+    var delegate: FormDefaultCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()

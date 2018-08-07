@@ -18,7 +18,7 @@ protocol FundModel {
     var infoTitle: String! { get }
     
     //Info
-    var moreInfo: [FundPeriodInfoModel]! { get }
+    var moreInfo: FundMoreInfoModel! { get }
     var info: [FundInfoModel]! { get }
     var downInfo: [FundInfoModel]! { get }
 }
@@ -33,7 +33,36 @@ struct FundModelFields: FundModel {
     let infoTitle: String!
     
     //Info
-    let moreInfo: [FundPeriodInfoModel]!
+    let moreInfo: FundMoreInfoModel!
     let info: [FundInfoModel]!
     let downInfo: [FundInfoModel]!
+    
+    init(json: JSONDict){
+        title = json["title"] as? String ?? ""
+        fundName = json["fundName"] as? String ?? ""
+        whatIs = json["whatIs"] as? String ?? ""
+        definition = json["definition"] as? String ?? ""
+        riskTitle = json["riskTitle"] as? String ?? ""
+        risk = json["risk"] as? Int ?? 0
+        infoTitle = json["infoTitle"] as? String ?? ""
+        
+        let moreInfoJson = json["moreInfo"] as? JSONDict ?? [:]
+        moreInfo = FundMoreInfoModelFields(json: moreInfoJson)
+        
+        var info: [FundInfoModel] = []
+        if let infoJsonArray = json["info"] as? [JSONDict] {
+            for infoJson in infoJsonArray {
+                info.append(FundInfoModelFields(json: infoJson))
+            }
+        }
+        self.info = info
+        
+        var downInfo: [FundInfoModel] = []
+        if let downInfoJsonArray = json["downInfo"] as? [JSONDict] {
+            for downInfoJson in downInfoJsonArray {
+                downInfo.append(FundInfoModelFields(json: downInfoJson))
+            }
+        }
+        self.downInfo = downInfo
+    }
 }

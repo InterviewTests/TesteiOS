@@ -13,6 +13,8 @@ class FormFieldTableViewCell: UITableViewCell, FormDefaultCellProtocol {
     @IBOutlet weak var fieldLabelTopDistance: NSLayoutConstraint!
     @IBOutlet weak var fieldLabel: UILabel!
     
+    var delegate: FormDefaultCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

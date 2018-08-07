@@ -97,3 +97,11 @@ class FormViewController: UIViewController, FormDisplayLogic {
         view.endEditing(true)
     }
 }
+
+extension FormViewController: FormDefaultCellDelegate {
+    func sendButtonTouched() {
+        if let router = router {
+            router.routeToShowFundos()
+        }
+    }
+}

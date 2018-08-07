@@ -26,6 +26,8 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! FormDefaultCell
         cell.setCell(cell: displayedCell)
+        cell.delegate = self
+        
         return cell
     }
     

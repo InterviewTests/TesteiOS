@@ -16,4 +16,9 @@ protocol FundInfoModel {
 struct FundInfoModelFields: FundInfoModel {
     let name: String!
     let data: String!
+    
+    init(json: JSONDict) {
+        name = json["name"] as? String ?? ""
+        data = json["data"] as? String ?? ""
+    }
 }
