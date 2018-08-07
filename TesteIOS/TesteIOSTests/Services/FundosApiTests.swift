@@ -12,7 +12,6 @@ import XCTest
 class FundosApiTests: XCTestCase {
     
     var sut: FundsApi!
-    var testFunds: [FundModel]!
     
     //    MARK: - Test Lifecycle
     
@@ -29,7 +28,6 @@ class FundosApiTests: XCTestCase {
     //    MARK: - Test Setup
     func setupFundsApi(){
         sut = FundsApi()
-        
     }
     
     //MARK: - Test
