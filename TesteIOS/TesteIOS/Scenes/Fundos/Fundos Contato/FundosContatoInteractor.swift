@@ -9,6 +9,7 @@
 import UIKit
 
 protocol FundosContatoBusinessLogic {
+    func sendMessage(request: FundosContato.SendMessage.Request)
 }
 
 protocol FundosContatoDataStore {
@@ -17,4 +18,8 @@ protocol FundosContatoDataStore {
 
 class FundosContatoInteractor: FundosContatoBusinessLogic, FundosContatoDataStore {
     var presenter: FundosContatoPresentationLogic?
+    
+    func sendMessage(request: FundosContato.SendMessage.Request) {
+        
+    }
 }

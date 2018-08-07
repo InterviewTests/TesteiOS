@@ -14,4 +14,11 @@ extension UIViewController {
         
         view.endEditing(true)
     }
+    
+    func showAlert(message: String){
+        let alertController = UIAlertController(title: "Aplicativo", message: message, preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "Fechar", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
 }

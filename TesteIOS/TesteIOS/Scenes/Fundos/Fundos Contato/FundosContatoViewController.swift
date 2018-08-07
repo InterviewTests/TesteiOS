@@ -89,6 +89,33 @@ class FundosContatoViewController: UIViewController, FundosContatoDisplayLogic {
     
     //    MARK: - Action
     @IBAction func sendButtonTouched(_ sender: Any) {
+        //Código temporário.
+        let name = nameTextField.text ?? ""
+        let email = emailTextField.text ?? ""
+        let phone = phoneTextField.text ?? ""
+        
+        var error: NSError?
+        if name.count < 1 {
+            error = NSError()
+            nameTextField.layer.shadowColor = UIColor.Default.red.cgColor
+        }
+        
+        if email.count < 1 && !emailValidator.validate(text: email){
+            error = NSError()
+            emailTextField.layer.shadowColor = UIColor.Default.red.cgColor
+        }
+        
+        if phone.count < 1 && !phoneValidator.validate(text: phone) {
+            error = NSError()
+            phoneTextField.layer.shadowColor = UIColor.Default.red.cgColor
+        }
+        
+        if error != nil {
+            showAlert(message: "Favor preencher todos os campos")
+            return
+        }
+        //Fim código temporário
+        
         UIView.animate(withDuration: 0.2) {
             self.beforeMessageContainerView.alpha = 0
             self.afterMessageContainerView.alpha = 1
@@ -113,6 +140,10 @@ extension FundosContatoViewController: UITextFieldDelegate {
         let newText = nsText.replacingCharacters(in: range, with: string)
         
         switch textField.tag {
+        case nameTextField.tag:
+            textField.layer.shadowColor = newText.count > 0 ? UIColor.green.cgColor : UIColor.Default.red.cgColor
+            break
+            
         case emailTextField.tag:
             textField.layer.shadowColor = emailValidator.validate(text: newText) ? UIColor.green.cgColor : UIColor.Default.red.cgColor
             break

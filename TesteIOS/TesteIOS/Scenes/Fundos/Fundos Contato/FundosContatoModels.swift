@@ -9,4 +9,15 @@
 import UIKit
 
 enum FundosContato {
+    struct MessageFormFields {
+        var name: String
+        var email: String
+        var phone: String
+    }
+    
+    enum SendMessage {
+        struct Request {
+            var messageFormFields: MessageFormFields
+        }
+    }
 }
