@@ -66,7 +66,7 @@ extension FormTextTableViewCell: UITextFieldDelegate {
         let nsText = NSString(string: textField.text ?? "")
         let newText = nsText.replacingCharacters(in: range, with: string)
         
-        textField.layer.shadowColor = validator.validate(text: newText) ? UIColor.green.cgColor : UIColor.red.cgColor
+        textField.layer.shadowColor = validator.validate(text: newText) ? UIColor.green.cgColor : UIColor.Default.red.cgColor
         
         return true
     }

@@ -76,6 +76,7 @@ class FundosDetailsViewController: UIViewController, FundosDetailsDisplayLogic {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        tabBarController?.navigationItem.title = "Investimento"
         configNavBarButton()
     }
     

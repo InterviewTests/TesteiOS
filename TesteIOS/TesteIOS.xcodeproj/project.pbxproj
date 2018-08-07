@@ -57,6 +57,11 @@
 		8B718E9A2119F3FC00C2EF3D /* SafariViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B718E992119F3FC00C2EF3D /* SafariViewControllerProtocol.swift */; };
 		8B718E9C211A0DDA00C2EF3D /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B718E9B211A0DDA00C2EF3D /* UIImageExtension.swift */; };
 		8B718E9E211A0E4400C2EF3D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B718E9D211A0E4400C2EF3D /* UIColorExtension.swift */; };
+		8B718EA1211A1B9B00C2EF3D /* FundosContatoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B718EA0211A1B9B00C2EF3D /* FundosContatoViewController.swift */; };
+		8B718EA3211A1ED500C2EF3D /* FundosContatoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B718EA2211A1ED500C2EF3D /* FundosContatoInteractor.swift */; };
+		8B718EA5211A1F1C00C2EF3D /* FundosContatoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B718EA4211A1F1C00C2EF3D /* FundosContatoModels.swift */; };
+		8B718EA7211A1F3300C2EF3D /* FundosContatoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B718EA6211A1F3300C2EF3D /* FundosContatoPresenter.swift */; };
+		8B718EA9211A1F7800C2EF3D /* FundosContatoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B718EA8211A1F7800C2EF3D /* FundosContatoRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +118,11 @@
 		8B718E992119F3FC00C2EF3D /* SafariViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewControllerProtocol.swift; sourceTree = "<group>"; };
 		8B718E9B211A0DDA00C2EF3D /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		8B718E9D211A0E4400C2EF3D /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		8B718EA0211A1B9B00C2EF3D /* FundosContatoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundosContatoViewController.swift; sourceTree = "<group>"; };
+		8B718EA2211A1ED500C2EF3D /* FundosContatoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundosContatoInteractor.swift; sourceTree = "<group>"; };
+		8B718EA4211A1F1C00C2EF3D /* FundosContatoModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundosContatoModels.swift; sourceTree = "<group>"; };
+		8B718EA6211A1F3300C2EF3D /* FundosContatoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundosContatoPresenter.swift; sourceTree = "<group>"; };
+		8B718EA8211A1F7800C2EF3D /* FundosContatoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundosContatoRouter.swift; sourceTree = "<group>"; };
 		F17220E9CA7CCDAD3677EA6C /* Pods-TesteIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesteIOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TesteIOS/Pods-TesteIOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -301,6 +311,7 @@
 			children = (
 				2449DCB92119235500281371 /* TabBar */,
 				2449DCB62119220100281371 /* Fundos Details */,
+				8B718E9F211A1B7200C2EF3D /* Fundos Contato */,
 			);
 			path = Fundos;
 			sourceTree = "<group>";
@@ -369,6 +380,18 @@
 				8B718E992119F3FC00C2EF3D /* SafariViewControllerProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		8B718E9F211A1B7200C2EF3D /* Fundos Contato */ = {
+			isa = PBXGroup;
+			children = (
+				8B718EA0211A1B9B00C2EF3D /* FundosContatoViewController.swift */,
+				8B718EA2211A1ED500C2EF3D /* FundosContatoInteractor.swift */,
+				8B718EA4211A1F1C00C2EF3D /* FundosContatoModels.swift */,
+				8B718EA6211A1F3300C2EF3D /* FundosContatoPresenter.swift */,
+				8B718EA8211A1F7800C2EF3D /* FundosContatoRouter.swift */,
+			);
+			path = "Fundos Contato";
 			sourceTree = "<group>";
 		};
 		9C7938D61634296052768F29 /* Pods */ = {
@@ -512,6 +535,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				248008A22117ECF700529EA0 /* StringValidator.swift in Sources */,
+				8B718EA5211A1F1C00C2EF3D /* FundosContatoModels.swift in Sources */,
+				8B718EA7211A1F3300C2EF3D /* FundosContatoPresenter.swift in Sources */,
 				24214CF821154AC2007DB9C5 /* FundModel.swift in Sources */,
 				2449DCC1211926DA00281371 /* FundosDetailsModels.swift in Sources */,
 				24214D2D2115615C007DB9C5 /* FormDefaultCell.swift in Sources */,
@@ -532,6 +557,7 @@
 				2449DCBF2119268E00281371 /* FundosDetailsInteractor.swift in Sources */,
 				24214D0021154D54007DB9C5 /* FormViewController.swift in Sources */,
 				24214D0821155271007DB9C5 /* CellsApi.swift in Sources */,
+				8B718EA3211A1ED500C2EF3D /* FundosContatoInteractor.swift in Sources */,
 				24214D1321155584007DB9C5 /* FormRouter.swift in Sources */,
 				24214CFA21154BA1007DB9C5 /* FundPeriodInfoModel.swift in Sources */,
 				2449DCC721192CF300281371 /* FundosWorker.swift in Sources */,
@@ -540,6 +566,7 @@
 				8B718E7E2119DE3800C2EF3D /* FundosDetailsDownInfoTableViewCell.swift in Sources */,
 				2449DCC921192DDF00281371 /* FundsApi.swift in Sources */,
 				24214D1621155AB2007DB9C5 /* Settings.swift in Sources */,
+				8B718EA9211A1F7800C2EF3D /* FundosContatoRouter.swift in Sources */,
 				2449DCB82119221100281371 /* FundosDetailsViewController.swift in Sources */,
 				2449DCCB2119317000281371 /* FundMoreInfoModel.swift in Sources */,
 				24214D0D21155439007DB9C5 /* FormInteractor.swift in Sources */,
@@ -549,6 +576,7 @@
 				24214D0221154EC1007DB9C5 /* FormTableViewProtocol.swift in Sources */,
 				24214CF6211549B3007DB9C5 /* CellModel.swift in Sources */,
 				24214D4621156B18007DB9C5 /* UIViewControllerExtension.swift in Sources */,
+				8B718EA1211A1B9B00C2EF3D /* FundosContatoViewController.swift in Sources */,
 				24214D0F211554C3007DB9C5 /* FormModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
