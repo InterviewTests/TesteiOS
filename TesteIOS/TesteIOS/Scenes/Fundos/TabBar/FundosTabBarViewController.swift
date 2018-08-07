@@ -13,6 +13,6 @@ class FundosTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        tabBar.isHidden = true
     }
 }

@@ -73,7 +73,18 @@ class FundosDetailsViewController: UIViewController, FundosDetailsDisplayLogic {
         fetchFundo()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configNavBarButton()
+    }
+    
     //    MARK: - Config
+    func configNavBarButton(){
+        let button = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
+        tabBarController?.navigationItem.setRightBarButton(button, animated: false)
+    }
+    
     func configTableView(){
         infoTableView.tableFooterView = UIView()
         infoTableView.delegate = self
