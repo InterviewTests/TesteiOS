@@ -38,13 +38,12 @@ class CellsApiTests: XCTestCase {
         
         sut.fetchCells { (cells, error) in
             fetchedCells = cells
-            fetchErrors = error
+            fetchError = error
             expect.fulfill()
         }
         
         waitForExpectations(timeout: 5.0)
         
-        // Then
         XCTAssert(fetchedCells.count > 0, "fetchCells() should not return an empty array")
         XCTAssertNil(fetchError, "fetchCells() should not return an error")
     }
