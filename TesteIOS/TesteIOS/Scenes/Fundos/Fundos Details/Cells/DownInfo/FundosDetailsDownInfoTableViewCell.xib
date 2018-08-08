@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINMittelschriftStd.otf">
+            <string>DINMittelschriftStd</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="FundosDetailsDownInfoTableViewCell" customModule="TesteIOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taxa de administração" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="r2Q-5P-Hhh">
+                        <rect key="frame" x="15" y="13" width="190" height="17"/>
+                        <fontDescription key="fontDescription" name="DINMittelschriftStd" family="DIN 1451 Std" pointSize="17"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8e-yK-h7x">
+                        <rect key="frame" x="240" y="5" width="65" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="65" id="uGk-HP-uZh"/>
+                            <constraint firstAttribute="height" constant="35" id="wPJ-Wm-MX4"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="DINMittelschriftStd" family="DIN 1451 Std" pointSize="17"/>
+                        <state key="normal" title="Baixar">
+                            <color key="titleColor" red="0.7686274509803922" green="0.21568627450980393" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="downloadButtonTouched:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="UIM-8b-GSN"/>
+                        </connections>
+                    </button>
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="download_button" translatesAutoresizingMaskIntoConstraints="NO" id="acK-Zb-CC8">
+                        <rect key="frame" x="215" y="10" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="Fo5-kF-LJ6"/>
+                            <constraint firstAttribute="width" secondItem="acK-Zb-CC8" secondAttribute="height" multiplier="1:1" id="TM8-3C-EMZ"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="r2Q-5P-Hhh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="26F-S5-IWg"/>
+                    <constraint firstItem="r2Q-5P-Hhh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UrI-p1-jUs"/>
+                    <constraint firstAttribute="trailing" secondItem="c8e-yK-h7x" secondAttribute="trailing" constant="15" id="fcx-qX-lyu"/>
+                    <constraint firstItem="c8e-yK-h7x" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gUZ-T7-sUU"/>
+                    <constraint firstItem="acK-Zb-CC8" firstAttribute="leading" secondItem="r2Q-5P-Hhh" secondAttribute="trailing" constant="10" id="kgy-61-Bwy"/>
+                    <constraint firstItem="c8e-yK-h7x" firstAttribute="centerY" secondItem="acK-Zb-CC8" secondAttribute="centerY" id="w3Z-ak-Kwe"/>
+                    <constraint firstItem="c8e-yK-h7x" firstAttribute="leading" secondItem="acK-Zb-CC8" secondAttribute="trailing" id="zwG-ae-egX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="downloadImage" destination="acK-Zb-CC8" id="OJ7-zD-ZYB"/>
+                <outlet property="nameLabel" destination="r2Q-5P-Hhh" id="six-1P-JGg"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="download_button" width="100" height="100"/>
+    </resources>
+</document>
