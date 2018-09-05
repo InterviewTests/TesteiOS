@@ -6,31 +6,23 @@
 //  Copyright © 2018 Andre Paganin. All rights reserved.
 //
 
+import Foundation
 import XCTest
 
-class TesteiOSUITests: XCTestCase {
+class XCTestCaseBase: XCTestCase {
+    
+    func loadJsonMockData(formFile name: String, type: String) throws -> Data? {
         
-    override func setUp() {
-        super.setUp()
+        let bundle = Bundle(for: Swift.type(of: self))
         
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        if let path = bundle.path(forResource: name, ofType: type) {
+            let json = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
+            return json.data(using: .utf8)
+        }
         
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        return nil
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
     
 }
