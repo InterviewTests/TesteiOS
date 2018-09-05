@@ -235,9 +235,11 @@ private extension FormViewCreator {
         return label
     }
     
+    
     func createImage(node: FormCell) -> UIImageView {
         return UIImageView()
     }
+
     
     func createCheckBox(node: FormCell) -> FormUICheckBox {
         let checkBox = FormUICheckBox()
