@@ -18,4 +18,8 @@ class Cell: EVObject {
     var topSpacing: NSNumber?
     var show: NSNumber?
     var required = false
+    
+    var identifier: CellIdentifier {
+        return CellIdentifier(rawValue: id?.intValue ?? 0)!
+    }
 }

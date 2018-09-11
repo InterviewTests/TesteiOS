@@ -11,4 +11,11 @@ import EVReflection
 
 class Cells: EVObject {
     var cells = [Cell]()
+    
+    func getCell(identifier: CellIdentifier) -> Cell {
+        let cell = cells.filter { (cell) -> Bool in
+            return cell.identifier == identifier
+        }
+        return cell.first!
+    }
 }

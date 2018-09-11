@@ -13,6 +13,9 @@
         <array key="DINMittelschriftStd.otf">
             <string>DINMittelschriftStd</string>
         </array>
+        <array key="DINNeuzeitGroteskStd-Light.otf">
+            <string>DINNeuzeitGroteskStd-Light</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Form View Controller-->
@@ -32,32 +35,41 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nome completo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bJd-1A-Zex">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bJd-1A-Zex">
                                 <rect key="frame" x="28" y="108" width="320" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="uYn-nV-FMK"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="DINNeuzeitGroteskStd-Light" family="DIN 30640 Std" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Mca-qV-Shj"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WeJ-85-4Cj">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WeJ-85-4Cj">
                                 <rect key="frame" x="28" y="168" width="320" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ykc-yD-1bx"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="DINNeuzeitGroteskStd-Light" family="DIN 30640 Std" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="a2q-7i-MDR"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Telefone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vxf-jh-T7h">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Vxf-jh-T7h">
                                 <rect key="frame" x="28" y="228" width="320" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="WHV-pO-ABN"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="DINNeuzeitGroteskStd-Light" family="DIN 30640 Std" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="oM8-f5-e9u"/>
+                                </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZp-0z-Qed">
                                 <rect key="frame" x="28" y="138" width="320" height="2"/>
@@ -80,11 +92,51 @@
                                     <constraint firstAttribute="height" constant="2" id="Zbt-UJ-9N9"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QyD-UH-ihY">
+                                <rect key="frame" x="164" y="312" width="15" height="15"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="8V0-M4-hWt"/>
+                                    <constraint firstAttribute="height" constant="15" id="Hmm-wC-AFz"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oui-nE-SfG">
+                                <rect key="frame" x="187.5" y="309" width="0.0" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Pg1-Wd-Elb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xC-xi-i3y">
+                                <rect key="frame" x="56" y="379" width="262" height="50"/>
+                                <color key="backgroundColor" red="0.7843137255" green="0.015686274510000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="voQ-ve-ale"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Oui-nE-SfG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1KW-cG-9v6"/>
                             <constraint firstItem="lEY-0T-O8E" firstAttribute="trailing" secondItem="WeJ-85-4Cj" secondAttribute="trailing" id="1jn-Ui-0g9"/>
                             <constraint firstItem="Vxf-jh-T7h" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="28" id="487-gf-O0R"/>
+                            <constraint firstItem="Oui-nE-SfG" firstAttribute="centerY" secondItem="QyD-UH-ihY" secondAttribute="centerY" id="6eh-do-SWd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vxf-jh-T7h" secondAttribute="trailing" constant="27" id="725-Cu-N1w"/>
                             <constraint firstItem="lEY-0T-O8E" firstAttribute="top" secondItem="WeJ-85-4Cj" secondAttribute="bottom" id="7z5-BI-GNM"/>
                             <constraint firstItem="hZp-0z-Qed" firstAttribute="top" secondItem="bJd-1A-Zex" secondAttribute="bottom" id="BWI-Sw-Nmw"/>
@@ -95,17 +147,33 @@
                             <constraint firstItem="bJd-1A-Zex" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="28" id="USM-xe-2hn"/>
                             <constraint firstItem="bJd-1A-Zex" firstAttribute="top" secondItem="Q7b-Yd-8h3" secondAttribute="bottom" constant="39" id="c0n-hP-AeQ"/>
                             <constraint firstItem="Vxf-jh-T7h" firstAttribute="top" secondItem="lEY-0T-O8E" secondAttribute="bottom" constant="28" id="cah-3I-cEy"/>
+                            <constraint firstItem="Oui-nE-SfG" firstAttribute="leading" secondItem="QyD-UH-ihY" secondAttribute="trailing" constant="8.5" id="d1B-W1-gRe"/>
+                            <constraint firstItem="2xC-xi-i3y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="56" id="erc-KI-pxd"/>
                             <constraint firstItem="Lm7-XL-4iy" firstAttribute="leading" secondItem="Vxf-jh-T7h" secondAttribute="leading" id="gnj-Ez-EQK"/>
                             <constraint firstItem="WeJ-85-4Cj" firstAttribute="top" secondItem="hZp-0z-Qed" secondAttribute="bottom" constant="28" id="h2a-fB-fd5"/>
                             <constraint firstItem="Lm7-XL-4iy" firstAttribute="trailing" secondItem="Vxf-jh-T7h" secondAttribute="trailing" id="j3Y-L8-KFy"/>
                             <constraint firstItem="Lm7-XL-4iy" firstAttribute="top" secondItem="Vxf-jh-T7h" secondAttribute="bottom" id="jeG-GU-GFj"/>
                             <constraint firstItem="Q7b-Yd-8h3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mO1-1q-lIL"/>
                             <constraint firstItem="Q7b-Yd-8h3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="mgl-cd-MlZ"/>
+                            <constraint firstItem="2xC-xi-i3y" firstAttribute="top" secondItem="Oui-nE-SfG" secondAttribute="bottom" constant="49" id="o5b-Zs-Izk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2xC-xi-i3y" secondAttribute="trailing" constant="57" id="ogh-U8-f0z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WeJ-85-4Cj" secondAttribute="trailing" constant="27" id="qIB-OW-sSZ"/>
                             <constraint firstItem="lEY-0T-O8E" firstAttribute="leading" secondItem="WeJ-85-4Cj" secondAttribute="leading" id="zxr-Zg-aqh"/>
+                            <constraint firstItem="Oui-nE-SfG" firstAttribute="top" secondItem="Lm7-XL-4iy" secondAttribute="bottom" constant="49" id="zyA-Sr-WEM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="email" destination="WeJ-85-4Cj" id="Ln4-cS-dTa"/>
+                        <outlet property="emailIndicator" destination="lEY-0T-O8E" id="8uP-2v-qq4"/>
+                        <outlet property="fullName" destination="bJd-1A-Zex" id="vlO-Q6-gSg"/>
+                        <outlet property="fullNameIndicator" destination="hZp-0z-Qed" id="k84-Cv-YcY"/>
+                        <outlet property="phone" destination="Vxf-jh-T7h" id="zgU-8c-d1p"/>
+                        <outlet property="phoneIndicator" destination="Lm7-XL-4iy" id="cZq-jM-A52"/>
+                        <outlet property="registerEmail" destination="QyD-UH-ihY" id="Bbg-D1-aMq"/>
+                        <outlet property="registerEmailText" destination="Oui-nE-SfG" id="L8Q-Ub-vCh"/>
+                        <outlet property="sendButton" destination="2xC-xi-i3y" id="AGv-iR-FMA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

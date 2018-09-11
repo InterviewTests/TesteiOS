@@ -23,7 +23,7 @@ class CellsAPI: NSObject {
     }
     
     //MARK: - Cells
-    static func getAllFormCells(completionHandler: @escaping ((_ cells: [Cell]?, _ success: Bool) -> ())) {
+    static func getAllFormCells(completionHandler: @escaping ((_ cells: Cells?, _ success: Bool) -> ())) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         CellsAPI.configAlamofire()
         
@@ -32,7 +32,7 @@ class CellsAPI: NSObject {
             switch cellsResponse.statusCode {
             case 200:
                 if let cellsObject = response.result.value {
-                    completionHandler(cellsObject.cells, true)
+                    completionHandler(cellsObject, true)
                 }
             default:
                 completionHandler(nil, false)
