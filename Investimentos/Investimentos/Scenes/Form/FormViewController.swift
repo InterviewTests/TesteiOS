@@ -45,11 +45,11 @@ class FormViewController: UIViewController {
     
     //MARK: - Common metadata
     func commonMetadata() {
-        fullName.placeholder = cells.getCell(identifier: .Name).message
-        email.placeholder = cells.getCell(identifier: .Email).message
-        phone.placeholder = cells.getCell(identifier: .Phone).message
-        registerEmailText.text = cells.getCell(identifier: .RegisterEmail).message
-        sendButton.setTitle(cells.getCell(identifier: .Send).message, for: .normal)
+        fullName.placeholder = cells.getCell(identifier: .Name)?.message
+        email.placeholder = cells.getCell(identifier: .Email)?.message
+        phone.placeholder = cells.getCell(identifier: .Phone)?.message
+        registerEmailText.text = cells.getCell(identifier: .RegisterEmail)?.message
+        sendButton.setTitle(cells.getCell(identifier: .Send)?.message, for: .normal)
     }
     
     

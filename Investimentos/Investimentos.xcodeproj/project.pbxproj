@@ -37,6 +37,12 @@
 		97E6D6DCAFA111D468374212 /* Pods_Investimentos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAD18005C3079E6F4246831 /* Pods_Investimentos.framework */; };
 		D310A63EC00E8C49FAE01606 /* Pods_InvestimentosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF81737458F2CB907A185F12 /* Pods_InvestimentosUITests.framework */; };
 		D5AF5CAE5F27919050A3D7D3 /* Pods_InvestimentosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8FA58CB4C8D75DFE2EAFEC6 /* Pods_InvestimentosTests.framework */; };
+		DC8075BC214802E100305375 /* FormTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8075BB214802E100305375 /* FormTableViewController.swift */; };
+		DC8075BF2148063400305375 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8075BE2148063400305375 /* TextFieldTableViewCell.swift */; };
+		DC8075C121482B8700305375 /* RegisterEmailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8075C021482B8700305375 /* RegisterEmailTableViewCell.swift */; };
+		DC8075C321482D5E00305375 /* SendButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8075C221482D5E00305375 /* SendButtonTableViewCell.swift */; };
+		DC8075C52148310B00305375 /* Namespaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8075C42148310B00305375 /* Namespaces.swift */; };
+		DC8075C72148550400305375 /* PresentationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8075C62148550400305375 /* PresentationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +104,12 @@
 		B4202E354300CF31742FBF16 /* Pods-InvestimentosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvestimentosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InvestimentosTests/Pods-InvestimentosTests.release.xcconfig"; sourceTree = "<group>"; };
 		C33B5E8031BD324681C407F3 /* Pods-InvestimentosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvestimentosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InvestimentosUITests/Pods-InvestimentosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CE92BB0867A0F873BAE1A291 /* Pods-Investimentos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Investimentos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Investimentos/Pods-Investimentos.debug.xcconfig"; sourceTree = "<group>"; };
+		DC8075BB214802E100305375 /* FormTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTableViewController.swift; sourceTree = "<group>"; };
+		DC8075BE2148063400305375 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		DC8075C021482B8700305375 /* RegisterEmailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmailTableViewCell.swift; sourceTree = "<group>"; };
+		DC8075C221482D5E00305375 /* SendButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButtonTableViewCell.swift; sourceTree = "<group>"; };
+		DC8075C42148310B00305375 /* Namespaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Namespaces.swift; sourceTree = "<group>"; };
+		DC8075C62148550400305375 /* PresentationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationTableViewCell.swift; sourceTree = "<group>"; };
 		FF81737458F2CB907A185F12 /* Pods_InvestimentosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InvestimentosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -164,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				168DC7762147511400AC110D /* UtilEnuns.swift */,
+				DC8075C42148310B00305375 /* Namespaces.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -256,7 +269,9 @@
 		16F36419214309B000C8FE60 /* Form */ = {
 			isa = PBXGroup;
 			children = (
+				DC8075BD214802F200305375 /* Cells */,
 				168DC707214453EA00AC110D /* FormViewController.swift */,
+				DC8075BB214802E100305375 /* FormTableViewController.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -288,6 +303,17 @@
 				168DC6DF21440F2E00AC110D /* Funds.swift */,
 			);
 			path = Funds;
+			sourceTree = "<group>";
+		};
+		DC8075BD214802F200305375 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DC8075BE2148063400305375 /* TextFieldTableViewCell.swift */,
+				DC8075C021482B8700305375 /* RegisterEmailTableViewCell.swift */,
+				DC8075C221482D5E00305375 /* SendButtonTableViewCell.swift */,
+				DC8075C62148550400305375 /* PresentationTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		EB4E6C0D79FC6C4669B4291F /* Pods */ = {
@@ -535,18 +561,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				16F364222144042100C8FE60 /* Screen.swift in Sources */,
+				DC8075C52148310B00305375 /* Namespaces.swift in Sources */,
 				16F363EC2142DC1900C8FE60 /* Investimentos.xcdatamodeld in Sources */,
 				16F364242144058500C8FE60 /* Fund.swift in Sources */,
 				168DC6DA2144099500AC110D /* Info.swift in Sources */,
 				16F3641F21430DF700C8FE60 /* Cells.swift in Sources */,
 				16F364162143051C00C8FE60 /* Cell.swift in Sources */,
+				DC8075C121482B8700305375 /* RegisterEmailTableViewCell.swift in Sources */,
 				168DC6E021440F2E00AC110D /* Funds.swift in Sources */,
 				16F3641C21430A7100C8FE60 /* CellsAPI.swift in Sources */,
+				DC8075C321482D5E00305375 /* SendButtonTableViewCell.swift in Sources */,
 				168DC7772147511400AC110D /* UtilEnuns.swift in Sources */,
+				DC8075BF2148063400305375 /* TextFieldTableViewCell.swift in Sources */,
+				DC8075C72148550400305375 /* PresentationTableViewCell.swift in Sources */,
 				16F363E42142DC1900C8FE60 /* AppDelegate.swift in Sources */,
 				168DC6DE21440A8D00AC110D /* FundsAPI.swift in Sources */,
 				16F36426214405D500C8FE60 /* MoreInfo.swift in Sources */,
 				168DC708214453EA00AC110D /* FormViewController.swift in Sources */,
+				DC8075BC214802E100305375 /* FormTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
