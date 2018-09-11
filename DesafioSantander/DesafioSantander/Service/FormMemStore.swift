@@ -12,9 +12,12 @@ var cellAux:[cellStruct] = []
 class FormMemStore: FormStoreProtocol{
     
     var form = FormModal(cells: cellAux)
+    var api = CellAPI()
     
     func fetchForms(completionHandler: @escaping (FormModal, Error?) -> Void) {
-        completionHandler(form,nil)
+        api.fetchForms { (form, error) in
+            completionHandler(form,nil)
+        }
     }
     
 }
