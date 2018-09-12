@@ -11,3 +11,11 @@ import UIKit
 enum CellIdentifier: Int {
     case Presentation = 1, Name, RegisterEmail, Email, Phone = 6, Send = 7
 }
+
+enum Type: Int {
+    case field = 1, text, image, checkbox, send
+}
+
+enum TypeField: Int {
+    case text = 1, telNumber, email
+}

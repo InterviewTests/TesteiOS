@@ -22,4 +22,12 @@ class Cell: EVObject {
     var identifier: CellIdentifier {
         return CellIdentifier(rawValue: id?.intValue ?? 0)!
     }
+    
+    var cellType: Type {
+        return Type(rawValue: type?.intValue ?? 0)!
+    }
+    
+    var cellTypeField: TypeField {
+        return TypeField(rawValue: typefield?.intValue ?? 0)!
+    }
 }
