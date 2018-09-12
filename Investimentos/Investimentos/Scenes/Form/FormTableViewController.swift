@@ -101,3 +101,56 @@ extension FormTableViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
+
+
+
+extension FormTableViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        //Validando e-mail
+        if textField.keyboardType == .emailAddress {
+            //pegar célula responsável pelo e-mail
+            let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? TextFieldTableViewCell
+            //alterando cor do indicador
+            if Validators.isValidEmail(testStr: textField.text!) {
+                cell?.indicator.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+            } else {
+                cell?.indicator.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            }
+        }
+        //Aplicando máscara e verificando número de telefone
+        else if textField.keyboardType == .phonePad {
+            //verificando se o backspace foi selecionado
+            let  char = string.cString(using: String.Encoding.utf8)!
+            let isBackSpace = strcmp(char, "\\b")
+            
+            //alterando cor do indicador
+            let cell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? TextFieldTableViewCell
+            if textField.text!.count + string.count - range.length > 13 {
+                cell?.indicator.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+            } else {
+                cell?.indicator.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            }
+            
+            //formatando texto
+            let phone = Masks.formattedNumber(number: textField.text! + string)
+            textField.text = phone
+            
+            if (isBackSpace == -92) {
+                return true
+            }
+            
+            return false
+        }
+        //Validando nome completo
+        else if textField.autocapitalizationType == .words {
+            //Verificando apenas se quantidade de caracteres é maior que zero
+            let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TextFieldTableViewCell
+            if textField.text!.count + string.count - range.length > 0 {
+                cell?.indicator.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+            } else {
+                cell?.indicator.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            }
+        }
+        return true
+    }
+}
