@@ -68,6 +68,8 @@ extension FormTableViewController: UITableViewDelegate, UITableViewDataSource {
             let emailCell = cells.getCell(identifier: .Email)
             cell?.textField.placeholder = emailCell?.message
             cell?.textField.keyboardType = .emailAddress
+            cell?.textField.autocapitalizationType = .none
+            cell?.textField.autocorrectionType = .no
             return cell!
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.TextFieldCell, for: indexPath) as? TextFieldTableViewCell
