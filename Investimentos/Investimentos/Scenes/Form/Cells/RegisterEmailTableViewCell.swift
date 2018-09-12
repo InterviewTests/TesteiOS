@@ -13,7 +13,9 @@ class RegisterEmailTableViewCell: UITableViewCell {
     @IBOutlet weak var registerEmailLabel: UILabel!
     @IBOutlet weak var registerEmailSign: UIView!
     
-    var registerEmail = false
+    var registerEmail = true
+    
+    var switched: ((_ isOn: Bool) -> ())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +41,9 @@ class RegisterEmailTableViewCell: UITableViewCell {
         } else {
             registerEmail = true
             registerEmailSign.backgroundColor = #colorLiteral(red: 0.8334353566, green: 0.1204492822, blue: 0, alpha: 1)
+        }
+        if let switched = self.switched {
+            switched(self.registerEmail)
         }
     }
     

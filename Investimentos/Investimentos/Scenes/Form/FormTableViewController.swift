@@ -14,6 +14,10 @@ class FormTableViewController: UIViewController {
     
     var cells = Cells()
     
+    var registerEmail = true
+    
+    var emailCell: Cell?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,7 +33,11 @@ class FormTableViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    //MARK: - Send action
+    @IBAction func sendAction(_ sender: UIButton) {
+        
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -47,7 +55,7 @@ class FormTableViewController: UIViewController {
 
 extension FormTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return registerEmail ? 6 : 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,13 +72,16 @@ extension FormTableViewController: UITableViewDelegate, UITableViewDataSource {
             cell?.textField.autocapitalizationType = .words
             return cell!
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.TextFieldCell, for: indexPath) as? TextFieldTableViewCell
-            let emailCell = cells.getCell(identifier: .Email)
-            cell?.textField.placeholder = emailCell?.message
-            cell?.textField.keyboardType = .emailAddress
-            cell?.textField.autocapitalizationType = .none
-            cell?.textField.autocorrectionType = .no
-            return cell!
+            if registerEmail {
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.TextFieldCell, for: indexPath) as? TextFieldTableViewCell
+                let emailCell = cells.getCell(identifier: .Email)
+                cell?.textField.placeholder = emailCell?.message
+                cell?.textField.keyboardType = .emailAddress
+                cell?.textField.autocapitalizationType = .none
+                cell?.textField.autocorrectionType = .no
+                return cell!
+            }
+            return UITableViewCell()
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.TextFieldCell, for: indexPath) as? TextFieldTableViewCell
             let phoneCell = cells.getCell(identifier: .Phone)
@@ -81,8 +92,21 @@ extension FormTableViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.RegisterEmailCell, for: indexPath) as? RegisterEmailTableViewCell
             let registerEmailCell = cells.getCell(identifier: .RegisterEmail)
             cell?.registerEmailLabel.text = registerEmailCell?.message
+            cell?.switched = { (isOn) in
+                self.registerEmail = isOn
+                tableView.beginUpdates()
+                if isOn {
+                    self.cells.cells.insert(self.emailCell!, at: 2)
+                    tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: UITableViewRowAnimation.fade)
+                } else {
+                    self.emailCell = self.cells.cells[2]
+                    self.cells.cells.remove(at: 2)
+                    tableView.deleteRows(at: [IndexPath(row: 2, section: 0)], with: UITableViewRowAnimation.fade)
+                }
+                tableView.endUpdates()
+            }
             return cell!
-        case 5:
+        case (cells.cells.count-1):
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.SendButtonCell, for: indexPath) as? SendButtonTableViewCell
             let sendButtonCell = cells.getCell(identifier: .Send)
             cell?.sendButton.setTitle(sendButtonCell?.message, for: .normal)
