@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vs8-Ra-lf4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qd5-oF-84H">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -246,24 +246,24 @@
         <!--Investimento-->
         <scene sceneID="Kgj-N4-UhI">
             <objects>
-                <viewController id="XAR-xd-CLv" sceneMemberID="viewController">
+                <viewController id="XAR-xd-CLv" customClass="FundsViewController" customModule="Investimentos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qqr-97-7y4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Nc-o2-708">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Nc-o2-708">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="229" id="AS4-vf-gg0">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="229"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FUND_INFO_CELL" rowHeight="260" id="AS4-vf-gg0" customClass="FundInfoTableViewCell" customModule="Investimentos" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="260"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AS4-vf-gg0" id="AE9-XM-wKL">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="229"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fundos de investimento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0v-1g-hyw">
-                                                    <rect key="frame" x="102" y="11" width="170" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[title]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0v-1g-hyw">
+                                                    <rect key="frame" x="169" y="28" width="36" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="EaF-JR-eHp"/>
                                                     </constraints>
@@ -271,8 +271,8 @@
                                                     <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vinci Valorem FI Multimercado V34" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVj-U0-9G8">
-                                                    <rect key="frame" x="14.5" y="29" width="345.5" height="73"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[fund name]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVj-U0-9G8">
+                                                    <rect key="frame" x="14.5" y="46" width="345.5" height="73"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="73" id="QfG-SV-9bx"/>
                                                     </constraints>
@@ -281,14 +281,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zf7-uD-bKU">
-                                                    <rect key="frame" x="28" y="108" width="320" height="2"/>
+                                                    <rect key="frame" x="28" y="125" width="320" height="2"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="2" id="lrv-7i-xKU"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O que é?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAn-IV-ybB">
-                                                    <rect key="frame" x="157" y="122" width="62" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[what is]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAn-IV-ybB">
+                                                    <rect key="frame" x="158" y="149" width="60.5" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="9Ba-H8-jy1"/>
                                                     </constraints>
@@ -296,33 +296,80 @@
                                                     <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="O fundo tem por objetivo proporcionar aos seus cotistas rentabilidade no longo prazo através de investimentos." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Wej-PU-N6x">
-                                                    <rect key="frame" x="17" y="142" width="340" height="76"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="[definition]" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Wej-PU-N6x">
+                                                    <rect key="frame" x="17" y="170" width="340" height="80"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="zf7-uD-bKU" secondAttribute="trailing" constant="12" id="1pg-2i-woQ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Wej-PU-N6x" secondAttribute="trailing" constant="3" id="3T8-7B-KIN"/>
-                                                <constraint firstItem="Wej-PU-N6x" firstAttribute="top" secondItem="wAn-IV-ybB" secondAttribute="bottom" constant="3" id="5Mj-da-nEE"/>
-                                                <constraint firstItem="wAn-IV-ybB" firstAttribute="top" secondItem="zf7-uD-bKU" secondAttribute="bottom" constant="12" id="5pt-xw-prM"/>
+                                                <constraint firstItem="Wej-PU-N6x" firstAttribute="top" secondItem="wAn-IV-ybB" secondAttribute="bottom" constant="4" id="5Mj-da-nEE"/>
+                                                <constraint firstItem="wAn-IV-ybB" firstAttribute="top" secondItem="zf7-uD-bKU" secondAttribute="bottom" constant="22" id="5pt-xw-prM"/>
                                                 <constraint firstItem="Wej-PU-N6x" firstAttribute="leading" secondItem="AE9-XM-wKL" secondAttribute="leadingMargin" constant="2" id="7rf-V6-xNN"/>
                                                 <constraint firstItem="i0v-1g-hyw" firstAttribute="centerX" secondItem="AE9-XM-wKL" secondAttribute="centerX" id="FNm-yy-DZP"/>
                                                 <constraint firstAttribute="trailing" secondItem="zVj-U0-9G8" secondAttribute="trailing" constant="15" id="Fap-58-YkL"/>
-                                                <constraint firstItem="i0v-1g-hyw" firstAttribute="top" secondItem="AE9-XM-wKL" secondAttribute="topMargin" id="JVp-Dz-Tfg"/>
+                                                <constraint firstItem="i0v-1g-hyw" firstAttribute="top" secondItem="AE9-XM-wKL" secondAttribute="topMargin" constant="17" id="JVp-Dz-Tfg"/>
                                                 <constraint firstItem="wAn-IV-ybB" firstAttribute="centerX" secondItem="AE9-XM-wKL" secondAttribute="centerX" id="K1s-Wh-uto"/>
                                                 <constraint firstItem="zf7-uD-bKU" firstAttribute="leading" secondItem="AE9-XM-wKL" secondAttribute="leadingMargin" constant="13" id="PoD-NE-qTt"/>
-                                                <constraint firstItem="Wej-PU-N6x" firstAttribute="bottom" secondItem="AE9-XM-wKL" secondAttribute="bottomMargin" id="Ta9-d1-5CG"/>
+                                                <constraint firstItem="Wej-PU-N6x" firstAttribute="bottom" secondItem="AE9-XM-wKL" secondAttribute="bottomMargin" constant="1" id="Ta9-d1-5CG"/>
                                                 <constraint firstItem="zVj-U0-9G8" firstAttribute="leading" secondItem="AE9-XM-wKL" secondAttribute="leading" constant="14.5" id="lTF-hu-Bit"/>
                                                 <constraint firstItem="zVj-U0-9G8" firstAttribute="top" secondItem="i0v-1g-hyw" secondAttribute="bottom" constant="1" id="s9x-lH-3wW"/>
                                                 <constraint firstItem="zf7-uD-bKU" firstAttribute="top" secondItem="zVj-U0-9G8" secondAttribute="bottom" constant="6" id="viq-Xd-pVU"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="definitionTextView" destination="Wej-PU-N6x" id="67R-Me-bmg"/>
+                                            <outlet property="fundNameLabel" destination="zVj-U0-9G8" id="UPP-5U-pJI"/>
+                                            <outlet property="titleLabel" destination="i0v-1g-hyw" id="Oov-Ly-3k3"/>
+                                            <outlet property="whatIsLabel" destination="wAn-IV-ybB" id="zG9-3K-DQB"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DEGREE_RISK_CELL" rowHeight="120" id="rDt-9G-uXo" customClass="RiskTableViewCell" customModule="Investimentos" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="288" width="375" height="120"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rDt-9G-uXo" id="9Da-RG-O2A">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[degree risk title]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cW7-XE-yJC">
+                                                    <rect key="frame" x="126.5" y="22" width="121.5" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="17" id="nGl-fn-1dh"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="DINMittelschriftStd" family="DIN 1451 Std" pointSize="17"/>
+                                                    <color key="textColor" red="0.50980392159999999" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LsF-Yl-HG3">
+                                                    <rect key="frame" x="15" y="48" width="345" height="50"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="tG2-9C-cWd"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="LsF-Yl-HG3" firstAttribute="top" secondItem="cW7-XE-yJC" secondAttribute="bottom" constant="9" id="OYj-Nk-cOL"/>
+                                                <constraint firstItem="LsF-Yl-HG3" firstAttribute="leading" secondItem="9Da-RG-O2A" secondAttribute="leadingMargin" id="T5p-lj-PU0"/>
+                                                <constraint firstItem="LsF-Yl-HG3" firstAttribute="trailing" secondItem="9Da-RG-O2A" secondAttribute="trailingMargin" id="UHa-IB-Evf"/>
+                                                <constraint firstItem="cW7-XE-yJC" firstAttribute="centerX" secondItem="9Da-RG-O2A" secondAttribute="centerX" id="eNB-K6-wp6"/>
+                                                <constraint firstItem="cW7-XE-yJC" firstAttribute="top" secondItem="9Da-RG-O2A" secondAttribute="topMargin" constant="11" id="gMq-5g-FEn"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="LsF-Yl-HG3" secondAttribute="bottom" constant="11" id="lrv-8z-50V"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="riskDegreeLabel" destination="cW7-XE-yJC" id="K1v-tD-vfd"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="XAR-xd-CLv" id="Kwo-YL-Bdu"/>
+                                    <outlet property="delegate" destination="XAR-xd-CLv" id="6W0-GW-BQw"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -335,6 +382,9 @@
                         <viewLayoutGuide key="safeArea" id="Wc1-Uo-Uto"/>
                     </view>
                     <navigationItem key="navigationItem" title="Investimento" id="L24-cQ-Acl"/>
+                    <connections>
+                        <outlet property="tableView" destination="3Nc-o2-708" id="1YL-lj-2l6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EHO-wT-bwi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

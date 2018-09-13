@@ -9,8 +9,13 @@
 import UIKit
 
 enum CellNamespace {
+    //MARK: - Form
     static let PresentationCell = "PRESENTATION_CELL"
     static let TextFieldCell = "TEXT_FIELD_CELL"
     static let RegisterEmailCell = "REGISTER_EMAIL_CELL"
     static let SendButtonCell = "SEND_BUTTON_CELL"
+    
+    //MARK: - Funds
+    static let FundInfoCell = "FUND_INFO_CELL"
+    static let DegreeRiskCell = "DEGREE_RISK_CELL"
 }
