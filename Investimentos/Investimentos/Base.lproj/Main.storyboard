@@ -391,7 +391,7 @@
                                             <outlet property="infoTitleLabel" destination="NJd-gM-U7K" id="3VO-fK-v0v"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="40" id="0xd-oB-OsN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MORE_INFO_HEADER" rowHeight="40" id="0xd-oB-OsN" customClass="MoreInfoHeaderTableViewCell" customModule="Investimentos" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="452" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0xd-oB-OsN" id="LjT-Oa-4KU">
@@ -419,13 +419,18 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ZM0-FW-mdY" firstAttribute="trailing" secondItem="LjT-Oa-4KU" secondAttribute="trailingMargin" id="CKZ-8O-BLB"/>
-                                                <constraint firstItem="ZM0-FW-mdY" firstAttribute="leading" secondItem="wWL-kR-saG" secondAttribute="trailing" constant="69" id="RIK-Dq-Xsx"/>
+                                                <constraint firstAttribute="trailing" secondItem="wWL-kR-saG" secondAttribute="trailing" constant="109" id="EbF-0e-G6w"/>
                                                 <constraint firstItem="ZM0-FW-mdY" firstAttribute="centerY" secondItem="LjT-Oa-4KU" secondAttribute="centerY" id="dLo-WA-4Fq"/>
                                                 <constraint firstItem="ZM0-FW-mdY" firstAttribute="centerY" secondItem="wWL-kR-saG" secondAttribute="centerY" id="e5s-a2-Ycg"/>
                                                 <constraint firstItem="wWL-kR-saG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LjT-Oa-4KU" secondAttribute="leading" constant="20" symbolic="YES" id="i10-gY-G1p"/>
                                                 <constraint firstItem="ZM0-FW-mdY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LjT-Oa-4KU" secondAttribute="leadingMargin" id="naU-WB-BI2"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="cdiTitleLabel" destination="ZM0-FW-mdY" id="eve-hI-sVC"/>
+                                            <outlet property="fundTitleLabel" destination="wWL-kR-saG" id="lQs-nM-91J"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MORE_INFO_CELL" rowHeight="40" id="S1f-Pk-a01" customClass="MoreInfoTableViewCell" customModule="Investimentos" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="492" width="375" height="40"/>
@@ -464,12 +469,12 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="rFp-4d-czW" firstAttribute="leading" secondItem="A7B-58-QPj" secondAttribute="leadingMargin" id="7EA-w4-VXE"/>
+                                                <constraint firstAttribute="trailing" secondItem="XX8-FO-p1D" secondAttribute="trailing" constant="108" id="9UU-NS-2N6"/>
                                                 <constraint firstItem="XX8-FO-p1D" firstAttribute="centerY" secondItem="rFp-4d-czW" secondAttribute="centerY" id="Atb-cx-04S"/>
                                                 <constraint firstItem="XX8-FO-p1D" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="A7B-58-QPj" secondAttribute="leading" constant="20" symbolic="YES" id="EsU-hO-cX6"/>
                                                 <constraint firstItem="XX8-FO-p1D" firstAttribute="top" secondItem="A7B-58-QPj" secondAttribute="topMargin" constant="1" id="Fa2-qM-lPz"/>
                                                 <constraint firstItem="DP6-7t-YZu" firstAttribute="centerY" secondItem="rFp-4d-czW" secondAttribute="centerY" id="Jeo-y4-aUY"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rFp-4d-czW" secondAttribute="trailingMargin" id="KTz-yz-UEO"/>
-                                                <constraint firstItem="DP6-7t-YZu" firstAttribute="leading" secondItem="XX8-FO-p1D" secondAttribute="trailing" constant="63" id="c6x-8R-qYl"/>
                                                 <constraint firstItem="rFp-4d-czW" firstAttribute="centerY" secondItem="A7B-58-QPj" secondAttribute="centerY" id="hT8-SC-kaB"/>
                                                 <constraint firstItem="rFp-4d-czW" firstAttribute="centerY" secondItem="A7B-58-QPj" secondAttribute="centerY" id="qVa-ZG-xcx"/>
                                                 <constraint firstItem="DP6-7t-YZu" firstAttribute="trailing" secondItem="A7B-58-QPj" secondAttribute="trailingMargin" id="xJI-Bb-xSh"/>
@@ -481,7 +486,7 @@
                                             <outlet property="fundLabel" destination="XX8-FO-p1D" id="YgC-Da-oCl"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="20" id="e01-eI-o49">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SEPARATOR_CELL" rowHeight="20" id="e01-eI-o49">
                                         <rect key="frame" x="0.0" y="532" width="375" height="20"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e01-eI-o49" id="QjT-4b-mg9">

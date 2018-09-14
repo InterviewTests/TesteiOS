@@ -49,17 +49,19 @@ class FundsViewController: UIViewController {
 
 extension FundsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 6
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0, 1:
             return 3
         case 2:
-            return screen.info.count
+            return 1
         case 3:
-            return screen.downInfo.count
+            return screen.info.count
         case 4:
+            return screen.downInfo.count
+        case 5:
             return 1
         default:
             return 0
@@ -111,15 +113,18 @@ extension FundsViewController: UITableViewDelegate, UITableViewDataSource {
             default: break
             }
         case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.SeparatorCell, for: indexPath)
+            return cell
+        case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.InfoCell, for: indexPath) as? InfoTableViewCell
             cell?.descLabel.text = screen.info[indexPath.row].name
             cell?.valueLabel.text = screen.info[indexPath.row].data
             return cell!
-        case 3:
+        case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.DownInfoCell, for: indexPath) as? DownInfoTableViewCell
             cell?.descLabel.text = screen.downInfo[indexPath.row].name
             return cell!
-        case 4:
+        case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.InvestButtonCell, for: indexPath)
             return cell
         default:
@@ -140,13 +145,29 @@ extension FundsViewController: UITableViewDelegate, UITableViewDataSource {
             default:
                 return 44.0
             }
-        case 1, 2, 3:
+        case 2:
+            return 20.0
+        case 1, 3, 4:
             return 40.0
-        case 4:
+        case 5:
             return 55.0
         default:
             break
         }
         return 0.0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 1 ? 40.0 : 0.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1 {
+            let header = tableView.dequeueReusableCell(withIdentifier: "MORE_INFO_HEADER") as? MoreInfoHeaderTableViewCell
+            header?.cdiTitleLabel.text = "CDI"
+            header?.fundTitleLabel.text = "Fundos"
+            return header
+        }
+        return nil
     }
 }

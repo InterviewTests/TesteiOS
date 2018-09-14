@@ -23,4 +23,6 @@ enum CellNamespace {
     static let MoreInfoCell = "MORE_INFO_CELL"
     static let InfoCell = "INFO_CELL"
     static let DownInfoCell = "DOWN_INFO_CELL"
+    static let MoreInfoHeader = "MORE_INFO_HEADER"
+    static let SeparatorCell = "SEPARATOR_CELL"
 }
