@@ -12,7 +12,7 @@ struct Form {
         let id: Int
         let type: FieldType
         let message: String?
-        let typefield: FormFieldType.TextFieldType?
+        let typefield: FieldType.TextFieldType?
         let hidden: Bool
         let topSpacing: Float
         let show: Int?
