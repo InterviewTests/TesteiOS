@@ -18,4 +18,9 @@ enum CellNamespace {
     //MARK: - Funds
     static let FundInfoCell = "FUND_INFO_CELL"
     static let DegreeRiskCell = "DEGREE_RISK_CELL"
+    static let InfoTitleCell = "INFO_TITLE_CELL"
+    static let InvestButtonCell = "INVEST_BUTTON_CELL"
+    static let MoreInfoCell = "MORE_INFO_CELL"
+    static let InfoCell = "INFO_CELL"
+    static let DownInfoCell = "DOWN_INFO_CELL"
 }

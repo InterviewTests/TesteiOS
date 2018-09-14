@@ -48,35 +48,105 @@ class FundsViewController: UIViewController {
 
 
 extension FundsViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 5
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        switch section {
+        case 0, 1:
+            return 3
+        case 2:
+            return screen.info.count
+        case 3:
+            return screen.downInfo.count
+        case 4:
+            return 1
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
+        switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.FundInfoCell, for: indexPath) as? FundInfoTableViewCell
-            cell?.titleLabel.text = screen.title
-            cell?.fundNameLabel.text = screen.fundName
-            cell?.whatIsLabel.text = screen.whatIs
-            cell?.definitionTextView.text = screen.definition
-            return cell!
+            switch indexPath.row {
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.FundInfoCell, for: indexPath) as? FundInfoTableViewCell
+                cell?.titleLabel.text = screen.title
+                cell?.fundNameLabel.text = screen.fundName
+                cell?.whatIsLabel.text = screen.whatIs
+                cell?.definitionTextView.text = screen.definition
+                return cell!
+            case 1:
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.DegreeRiskCell, for: indexPath) as? RiskTableViewCell
+                cell?.riskDegreeLabel.text = screen.riskTitle
+                return cell!
+            case 2:
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.InfoTitleCell, for: indexPath) as? InfoTitleTableViewCell
+                cell?.infoTitleLabel.text = screen.infoTitle
+                return cell!
+            default:
+                break
+            }
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.DegreeRiskCell, for: indexPath) as? RiskTableViewCell
-            cell?.riskDegreeLabel.text = screen.riskTitle
+            switch indexPath.row {
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.MoreInfoCell, for: indexPath) as? MoreInfoTableViewCell
+                cell?.descLabel.text = "No mês"
+                cell?.cdiLabel.text = screen.moreInfo?.month?.CDI?.doubleValue.getPercentageStringValue()
+                cell?.fundLabel.text = screen.moreInfo?.month?.fund?.doubleValue.getPercentageStringValue()
+                return cell!
+            case 1:
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.MoreInfoCell, for: indexPath) as? MoreInfoTableViewCell
+                cell?.descLabel.text = "No ano"
+                cell?.cdiLabel.text = screen.moreInfo?.year?.CDI?.doubleValue.getPercentageStringValue()
+                cell?.fundLabel.text = screen.moreInfo?.year?.fund?.doubleValue.getPercentageStringValue()
+                return cell!
+            case 2:
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.MoreInfoCell, for: indexPath) as? MoreInfoTableViewCell
+                cell?.descLabel.text = "12 meses"
+                cell?.cdiLabel.text = screen.moreInfo?._12months?.CDI?.doubleValue.getPercentageStringValue()
+                cell?.fundLabel.text = screen.moreInfo?._12months?.fund?.doubleValue.getPercentageStringValue()
+                return cell!
+            default: break
+            }
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.InfoCell, for: indexPath) as? InfoTableViewCell
+            cell?.descLabel.text = screen.info[indexPath.row].name
+            cell?.valueLabel.text = screen.info[indexPath.row].data
             return cell!
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.DownInfoCell, for: indexPath) as? DownInfoTableViewCell
+            cell?.descLabel.text = screen.downInfo[indexPath.row].name
+            return cell!
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.InvestButtonCell, for: indexPath)
+            return cell
         default:
             break
         }
+
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
+        switch indexPath.section {
         case 0:
-            return UITableViewAutomaticDimension
+            switch indexPath.row {
+            case 0:
+                return UITableViewAutomaticDimension
+            case 1:
+                return 120.0
+            default:
+                return 44.0
+            }
+        case 1, 2, 3:
+            return 40.0
+        case 4:
+            return 55.0
         default:
-            return 120.0
+            break
         }
+        return 0.0
     }
 }
