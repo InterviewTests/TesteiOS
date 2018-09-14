@@ -6,7 +6,9 @@
 //  Copyright © 2018 Leonardo Oliveira. All rights reserved.
 //
 
-struct Form {
+struct Form: Codable {
+    
+    let cells: [Cell]
     
     struct Cell: Codable {
         let id: Int
@@ -31,7 +33,6 @@ struct Form {
                 case email
             }
         }
-        
     }
     
 }
