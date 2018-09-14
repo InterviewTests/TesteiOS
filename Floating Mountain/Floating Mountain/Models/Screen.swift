@@ -6,22 +6,17 @@
 //  Copyright © 2018 Leonardo Oliveira. All rights reserved.
 //
 
-struct Fund: Codable {
-    
-    let screen: Screen
-    
-    struct Screen: Codable {
-        let title: String
-        let fundName: String
-        let whatIs: String
-        let definition: String
-        let riskTitle: String
-        let risk: Int
-        let infoTitle: String
-        let moreInfo: MoreInfo
-        let info: [Info]
-        let downInfo: [Info]
-    }
+struct Screen: Codable {
+    let title: String
+    let fundName: String
+    let whatIs: String
+    let definition: String
+    let riskTitle: String
+    let risk: Int
+    let infoTitle: String
+    let moreInfo: MoreInfo
+    let info: [Info]
+    let downInfo: [Info]
     
     struct MoreInfo: Codable {
         let month: Details
@@ -43,12 +38,10 @@ struct Fund: Codable {
                 case cdi = "CDI"
             }
         }
-        
     }
     
     struct Info: Codable {
         let name: String
         let data: String?
     }
-    
 }

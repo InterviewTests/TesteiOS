@@ -14,8 +14,9 @@
 		A753909E214BFB9D003FBB5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A753909C214BFB9D003FBB5C /* LaunchScreen.storyboard */; };
 		A75390A9214BFB9D003FBB5C /* Floating_MountainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75390A8214BFB9D003FBB5C /* Floating_MountainTests.swift */; };
 		A75390B4214BFB9D003FBB5C /* Floating_MountainUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75390B3214BFB9D003FBB5C /* Floating_MountainUITests.swift */; };
-		A75390D1214C1DFE003FBB5C /* Fund.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75390D0214C1DFE003FBB5C /* Fund.swift */; };
-		A75390D3214C1ECF003FBB5C /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75390D2214C1ECF003FBB5C /* Form.swift */; };
+		A75390D1214C1DFE003FBB5C /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75390D0214C1DFE003FBB5C /* Screen.swift */; };
+		A75390D3214C1ECF003FBB5C /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75390D2214C1ECF003FBB5C /* Cell.swift */; };
+		A75390D5214C21EC003FBB5C /* ShowInvestimentsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75390D4214C21EC003FBB5C /* ShowInvestimentsModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,8 +50,9 @@
 		A75390AF214BFB9D003FBB5C /* Floating MountainUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Floating MountainUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A75390B3214BFB9D003FBB5C /* Floating_MountainUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floating_MountainUITests.swift; sourceTree = "<group>"; };
 		A75390B5214BFB9D003FBB5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A75390D0214C1DFE003FBB5C /* Fund.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fund.swift; sourceTree = "<group>"; };
-		A75390D2214C1ECF003FBB5C /* Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Form.swift; sourceTree = "<group>"; };
+		A75390D0214C1DFE003FBB5C /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
+		A75390D2214C1ECF003FBB5C /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		A75390D4214C21EC003FBB5C /* ShowInvestimentsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowInvestimentsModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +105,8 @@
 			children = (
 				A7539093214BFB9B003FBB5C /* AppDelegate.swift */,
 				A7539095214BFB9B003FBB5C /* ViewController.swift */,
-				A75390C3214BFDD6003FBB5C /* Model */,
+				A75390D6214C21F6003FBB5C /* Scenes */,
+				A75390C3214BFDD6003FBB5C /* Models */,
 				A7539097214BFB9B003FBB5C /* Main.storyboard */,
 				A753909A214BFB9D003FBB5C /* Assets.xcassets */,
 				A753909C214BFB9D003FBB5C /* LaunchScreen.storyboard */,
@@ -130,13 +133,21 @@
 			path = "Floating MountainUITests";
 			sourceTree = "<group>";
 		};
-		A75390C3214BFDD6003FBB5C /* Model */ = {
+		A75390C3214BFDD6003FBB5C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A75390D2214C1ECF003FBB5C /* Form.swift */,
-				A75390D0214C1DFE003FBB5C /* Fund.swift */,
+				A75390D2214C1ECF003FBB5C /* Cell.swift */,
+				A75390D0214C1DFE003FBB5C /* Screen.swift */,
 			);
-			path = Model;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A75390D6214C21F6003FBB5C /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				A75390D4214C21EC003FBB5C /* ShowInvestimentsModels.swift */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,9 +282,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7539096214BFB9B003FBB5C /* ViewController.swift in Sources */,
-				A75390D1214C1DFE003FBB5C /* Fund.swift in Sources */,
+				A75390D1214C1DFE003FBB5C /* Screen.swift in Sources */,
+				A75390D5214C21EC003FBB5C /* ShowInvestimentsModels.swift in Sources */,
 				A7539094214BFB9B003FBB5C /* AppDelegate.swift in Sources */,
-				A75390D3214C1ECF003FBB5C /* Form.swift in Sources */,
+				A75390D3214C1ECF003FBB5C /* Cell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
