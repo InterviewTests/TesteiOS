@@ -18,8 +18,20 @@ protocol ContactDisplayLogic: class {
 }
 
 class ContactViewController: UIViewController, ContactDisplayLogic {
+    
+    // MARK: - Instance variables
+    
     var interactor: ContactBusinessLogic?
     var router: (NSObjectProtocol & ContactRoutingLogic & ContactDataPassing)?
+    
+    // MARK: Outlets
+    
+    @IBOutlet weak var formStackView: UIStackView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    // MARK: Lazy initialization
+    
+    lazy var keyboardScrollViewHandler = KeyboardScrollViewHandler(scrollView: scrollView)
     
     // MARK: Object lifecycle
     
@@ -48,6 +60,42 @@ class ContactViewController: UIViewController, ContactDisplayLogic {
         router.dataStore = interactor
     }
     
+    // MARK: View lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        fetchForm()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        keyboardScrollViewHandler.registerForKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        keyboardScrollViewHandler.unregisterForKeyboardNotifications()
+    }
+    
+    // MARK: - Fetch Form
+    
+    func fetchForm() {
+        let request = Contact.FetchForm.Request()
+        interactor?.fetchForm(request: request)
+    }
+    
+    func displayForm(viewModel: Contact.FetchForm.ViewModel) {
+        viewModel.cells.forEach { (cell) in
+            self.formStackView.addArrangedSubview(FormCellView(formCell: cell))
+        }
+    }
+    
+    func displayError(error: Error?) {
+        let alert = UIAlertController(title: "Erro", message: error?.localizedDescription, preferredStyle: .alert)
+        alert.addAction(.init(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: Routing
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -57,31 +105,5 @@ class ContactViewController: UIViewController, ContactDisplayLogic {
                 router.perform(selector, with: segue)
             }
         }
-    }
-    
-    // MARK: View lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        fetchForm()
-    }
-    
-    // MARK: Do something
-    
-    //@IBOutlet weak var nameTextField: UITextField!
-    
-    func fetchForm() {
-        let request = Contact.FetchForm.Request()
-        interactor?.fetchForm(request: request)
-    }
-    
-    func displayForm(viewModel: Contact.FetchForm.ViewModel) {
-        
-    }
-    
-    func displayError(error: Error?) {
-        let alert = UIAlertController(title: "Erro", message: error?.localizedDescription, preferredStyle: .alert)
-        alert.addAction(.init(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
 }

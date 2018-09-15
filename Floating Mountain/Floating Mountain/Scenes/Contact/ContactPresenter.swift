@@ -21,7 +21,17 @@ class ContactPresenter: ContactPresentationLogic {
     
     func presentForm(response: Contact.FetchForm.Response) {
         if let form = response.form {
-            let viewModel = Contact.FetchForm.ViewModel()
+            let cells = form.cells.map { cell in Contact.FetchForm.ViewModel.CellViewModel(
+                id: cell.id,
+                type: cell.type,
+                message: cell.message,
+                typefield: cell.typefield,
+                hidden: cell.hidden,
+                topSpacing: cell.topSpacing,
+                show: cell.show,
+                required: cell.required) }
+            
+            let viewModel = Contact.FetchForm.ViewModel(cells: cells)
             viewController?.displayForm(viewModel: viewModel)
         } else if let error = response.error {
             viewController?.displayError(error: error)

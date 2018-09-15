@@ -19,10 +19,28 @@ protocol InvestmentsDisplayLogic: class {
 
 class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic {
     
+    // MARK: - Instance variables
+    
     var interactor: InvestmentsBusinessLogic?
     var router: (NSObjectProtocol & InvestmentsRoutingLogic & InvestmentsDataPassing)?
     
-    // MARK: Object lifecycle
+    // MARK: Outlets
+    
+    @IBOutlet weak var fundTitleLabel: UILabel!
+    @IBOutlet weak var fundNameLabel: UILabel!
+    @IBOutlet weak var whatIsLabel: UILabel!
+    @IBOutlet weak var definitionLabel: UILabel!
+    @IBOutlet weak var riskTitleLabel: UILabel!
+    @IBOutlet weak var riskLabel: UILabel!
+    @IBOutlet weak var infoTitleLabel: UILabel!
+    @IBOutlet weak var monthFundLabel: UILabel!
+    @IBOutlet weak var monthCDILabel: UILabel!
+    @IBOutlet weak var yearFundLabel: UILabel!
+    @IBOutlet weak var yearCDILabel: UILabel!
+    @IBOutlet weak var twelveFundLabel: UILabel!
+    @IBOutlet weak var twelveCDILabel: UILabel!
+    
+    // MARK: - Object lifecycle
     
     override init(style: UITableView.Style) {
         super.init(style: style)
@@ -54,39 +72,12 @@ class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic 
         router.dataStore = interactor
     }
     
-    // MARK: Routing
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
-    
     // MARK: View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchInvestments()
     }
-    
-    // MARK: Outlets
-    
-    @IBOutlet weak var fundTitleLabel: UILabel!
-    @IBOutlet weak var fundNameLabel: UILabel!
-    @IBOutlet weak var whatIsLabel: UILabel!
-    @IBOutlet weak var definitionLabel: UILabel!
-    @IBOutlet weak var riskTitleLabel: UILabel!
-    @IBOutlet weak var riskLabel: UILabel!
-    @IBOutlet weak var infoTitleLabel: UILabel!
-    @IBOutlet weak var monthFundLabel: UILabel!
-    @IBOutlet weak var monthCDILabel: UILabel!
-    @IBOutlet weak var yearFundLabel: UILabel!
-    @IBOutlet weak var yearCDILabel: UILabel!
-    @IBOutlet weak var twelveFundLabel: UILabel!
-    @IBOutlet weak var twelveCDILabel: UILabel!
     
     var infosViewModel: [Investments.FetchInvestments.ViewModel.InfoViewModel] = []
     
@@ -131,6 +122,17 @@ class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic 
         cell.textLabel?.text = info.name
         cell.detailTextLabel?.text = info.data
         return cell
+    }
+    
+    // MARK: Routing
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let scene = segue.identifier {
+            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+            if let router = router, router.responds(to: selector) {
+                router.perform(selector, with: segue)
+            }
+        }
     }
     
 }

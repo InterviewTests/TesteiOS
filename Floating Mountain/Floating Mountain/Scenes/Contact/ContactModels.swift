@@ -21,6 +21,20 @@ enum Contact {
             var error: Error?
         }
         struct ViewModel {
+            
+            let cells: [CellViewModel]
+            
+            struct CellViewModel {
+                let id: Int
+                let type: Form.Cell.FieldType
+                let message: String?
+                let typefield: Form.Cell.FieldType.TextFieldType?
+                let hidden: Bool
+                let topSpacing: Float
+                let show: Int?
+                let required: Bool
+            }
+            
         }
     }
 }
