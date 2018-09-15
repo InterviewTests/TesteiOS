@@ -82,6 +82,7 @@ extension FundsViewController: UITableViewDelegate, UITableViewDataSource {
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.DegreeRiskCell, for: indexPath) as? RiskTableViewCell
                 cell?.riskDegreeLabel.text = screen.riskTitle
+                cell?.selectRisk(risk: screen.risk?.intValue ?? 3)
                 return cell!
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.InfoTitleCell, for: indexPath) as? InfoTitleTableViewCell
