@@ -19,3 +19,8 @@ enum Type: Int {
 enum TypeField: Int {
     case text = 1, telNumber, email
 }
+
+enum ViewControllerPresented {
+    case FundsViewController
+    case FormViewController
+}

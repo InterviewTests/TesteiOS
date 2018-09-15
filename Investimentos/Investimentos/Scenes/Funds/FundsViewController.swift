@@ -151,7 +151,7 @@ extension FundsViewController: UITableViewDelegate, UITableViewDataSource {
         case 1, 3, 4:
             return 40.0
         case 5:
-            return 55.0
+            return 95.0
         default:
             break
         }

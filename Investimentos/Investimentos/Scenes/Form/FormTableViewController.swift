@@ -21,6 +21,8 @@ class FormTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "Contato"
+        
         CellsAPI.getAllFormCells { (cells, success) in
             guard let cells = cells else { return }
             self.cells = cells

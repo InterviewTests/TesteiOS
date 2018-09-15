@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qd5-oF-84H">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yAQ-5K-GqB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,10 +19,87 @@
         </array>
     </customFonts>
     <scenes>
+        <!--View Controller Containment-->
+        <scene sceneID="NFo-u3-DUK">
+            <objects>
+                <viewController id="yAQ-5K-GqB" customClass="ViewControllerContainment" customModule="Investimentos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QNb-mX-YHD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NWq-oF-Nea">
+                                <rect key="frame" x="187" y="617" width="1" height="50"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="CVN-hK-97d"/>
+                                    <constraint firstAttribute="width" constant="1" id="WEJ-c6-gf4"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwQ-Vw-2vQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ve-db-EvX">
+                                <rect key="frame" x="188" y="617" width="187" height="50"/>
+                                <color key="backgroundColor" red="0.7843137255" green="0.015686274510000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="qWy-Da-yKI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINNeuzeitGroteskStd-Light" family="DIN 30640 Std" pointSize="17"/>
+                                <state key="normal" title="Contato">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="showFormViewController:" destination="yAQ-5K-GqB" eventType="touchUpInside" id="b2m-CR-e7n"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6O-Fs-wxf">
+                                <rect key="frame" x="0.0" y="617" width="188" height="50"/>
+                                <color key="backgroundColor" red="0.85490196078431369" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="sL6-tw-oQA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINNeuzeitGroteskStd-Light" family="DIN 30640 Std" pointSize="17"/>
+                                <state key="normal" title="Investimento">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="showFundsViewController:" destination="yAQ-5K-GqB" eventType="touchUpInside" id="CWU-UI-Wy5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="F6O-Fs-wxf" firstAttribute="bottom" secondItem="Bsq-tt-0dr" secondAttribute="bottom" id="4zn-lo-bwd"/>
+                            <constraint firstItem="1ve-db-EvX" firstAttribute="trailing" secondItem="Bsq-tt-0dr" secondAttribute="trailing" id="5SU-et-pby"/>
+                            <constraint firstItem="mwQ-Vw-2vQ" firstAttribute="top" secondItem="Bsq-tt-0dr" secondAttribute="top" constant="-20" id="AlA-RC-8Yp"/>
+                            <constraint firstItem="1ve-db-EvX" firstAttribute="top" secondItem="mwQ-Vw-2vQ" secondAttribute="bottom" id="Oip-ib-2ET"/>
+                            <constraint firstItem="1ve-db-EvX" firstAttribute="bottom" secondItem="Bsq-tt-0dr" secondAttribute="bottom" id="QGh-33-fJj"/>
+                            <constraint firstItem="mwQ-Vw-2vQ" firstAttribute="leading" secondItem="Bsq-tt-0dr" secondAttribute="leading" id="RYe-ga-uRr"/>
+                            <constraint firstItem="NWq-oF-Nea" firstAttribute="centerX" secondItem="QNb-mX-YHD" secondAttribute="centerX" id="X7R-aV-HlF"/>
+                            <constraint firstItem="1ve-db-EvX" firstAttribute="leading" secondItem="F6O-Fs-wxf" secondAttribute="trailing" id="aQa-68-F87"/>
+                            <constraint firstItem="F6O-Fs-wxf" firstAttribute="leading" secondItem="Bsq-tt-0dr" secondAttribute="leading" id="e8L-f8-yty"/>
+                            <constraint firstItem="1ve-db-EvX" firstAttribute="leading" secondItem="NWq-oF-Nea" secondAttribute="trailing" id="oPn-wV-sPf"/>
+                            <constraint firstItem="NWq-oF-Nea" firstAttribute="bottom" secondItem="QNb-mX-YHD" secondAttribute="bottomMargin" id="sBb-S2-NOM"/>
+                            <constraint firstItem="mwQ-Vw-2vQ" firstAttribute="trailing" secondItem="Bsq-tt-0dr" secondAttribute="trailing" id="wAy-wy-Ep4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Bsq-tt-0dr"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="z7l-23-I77"/>
+                    <connections>
+                        <outlet property="containerView" destination="mwQ-Vw-2vQ" id="3qO-z7-ADf"/>
+                        <outlet property="formButton" destination="1ve-db-EvX" id="i7x-Kb-TV1"/>
+                        <outlet property="fundsButton" destination="F6O-Fs-wxf" id="2Lv-Wl-csx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o1c-uL-YTx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2903.1999999999998" y="358.4707646176912"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="GAv-Fv-tZY">
             <objects>
-                <navigationController id="vs8-Ra-lf4" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YfZ-zO-FRO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="FormViewController" id="vs8-Ra-lf4" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Ygk-mG-lm7">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -36,7 +113,6 @@
                         <segue destination="BFk-Bg-pRm" kind="relationship" relationship="rootViewController" id="YVT-ZB-VRu"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YfZ-zO-FRO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1882" y="-10"/>
         </scene>
@@ -225,14 +301,14 @@
         <!--Navigation Controller-->
         <scene sceneID="feL-ao-b9F">
             <objects>
-                <navigationController id="qd5-oF-84H" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FundsViewController" id="qd5-oF-84H" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="oow-BX-RnI">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.7843137255" green="0.015686274510000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="DINMittelschriftStd" family="DIN 1451 Std" pointSize="17"/>
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -248,11 +324,11 @@
             <objects>
                 <viewController id="XAR-xd-CLv" customClass="FundsViewController" customModule="Investimentos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qqr-97-7y4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="686"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="726"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Nc-o2-708">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="686"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="726"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FUND_INFO_CELL" rowHeight="260" id="AS4-vf-gg0" customClass="FundInfoTableViewCell" customModule="Investimentos" customModuleProvider="target">
@@ -706,15 +782,15 @@
                                             <outlet property="descLabel" destination="kJx-af-uOd" id="3k7-Rr-nmN"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="INVEST_BUTTON_CELL" rowHeight="55" id="5Dh-c5-GTJ">
-                                        <rect key="frame" x="0.0" y="632" width="375" height="55"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="INVEST_BUTTON_CELL" rowHeight="95" id="5Dh-c5-GTJ">
+                                        <rect key="frame" x="0.0" y="632" width="375" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Dh-c5-GTJ" id="8sf-iV-aN7">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="re1-HK-JUu">
-                                                    <rect key="frame" x="56" y="2" width="262" height="50"/>
+                                                    <rect key="frame" x="56" y="22.5" width="262" height="50"/>
                                                     <color key="backgroundColor" red="0.7843137255" green="0.015686274510000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="MEy-4V-PEx"/>
@@ -757,14 +833,14 @@
                         <viewLayoutGuide key="safeArea" id="Wc1-Uo-Uto"/>
                     </view>
                     <navigationItem key="navigationItem" title="Investimento" id="L24-cQ-Acl"/>
-                    <size key="freeformSize" width="375" height="750"/>
+                    <size key="freeformSize" width="375" height="790"/>
                     <connections>
                         <outlet property="tableView" destination="3Nc-o2-708" id="1YL-lj-2l6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EHO-wT-bwi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1124" y="771.8140929535233"/>
+            <point key="canvasLocation" x="-1124" y="790"/>
         </scene>
         <!--Safari View Controller-->
         <scene sceneID="S4q-4v-GEu">

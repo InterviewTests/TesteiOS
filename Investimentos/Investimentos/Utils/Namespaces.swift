@@ -26,3 +26,8 @@ enum CellNamespace {
     static let MoreInfoHeader = "MORE_INFO_HEADER"
     static let SeparatorCell = "SEPARATOR_CELL"
 }
+
+enum StoryboardIdentifiersNamespaces {
+    static let FormViewController = "FormViewController"
+    static let FundsViewController = "FundsViewController"
+}
