@@ -31,7 +31,7 @@ class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic 
     @IBOutlet weak var whatIsLabel: UILabel!
     @IBOutlet weak var definitionLabel: UILabel!
     @IBOutlet weak var riskTitleLabel: UILabel!
-    @IBOutlet weak var riskLabel: UILabel!
+    @IBOutlet weak var riskBarView: RiskBarView!
     @IBOutlet weak var infoTitleLabel: UILabel!
     @IBOutlet weak var monthFundLabel: UILabel!
     @IBOutlet weak var monthCDILabel: UILabel!
@@ -92,7 +92,7 @@ class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic 
         whatIsLabel.text = viewModel.whatIs
         definitionLabel.text = viewModel.definition
         riskTitleLabel.text = viewModel.riskTitle
-        riskLabel.text = viewModel.risk.description
+        riskBarView.currentRisk = viewModel.risk
         infoTitleLabel.text = viewModel.infoTitle
         monthFundLabel.text = viewModel.moreInfo.month.fund
         monthCDILabel.text = viewModel.moreInfo.month.cdi
