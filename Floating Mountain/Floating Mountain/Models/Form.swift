@@ -35,3 +35,32 @@ struct Form: Codable {
         }
     }
 }
+
+extension Form.Cell.FieldType.TextFieldType {
+    
+    init?(from string: String) {
+        switch string {
+        case "text":
+            self.init(rawValue: 1)
+            break
+        case "telnumber":
+            self.init(rawValue: 2)
+            break
+        case "email":
+            self.init(rawValue: 3)
+            break
+        default:
+            return nil
+        }
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let stringValue = try? container.decode(String.self) {
+            self.init(from: stringValue)!
+            return
+        }
+        let intValue = try container.decode(Int.self)
+        self.init(rawValue: intValue)!
+    }
+}
