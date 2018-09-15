@@ -110,6 +110,7 @@ class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic 
         twelveFundLabel.text = viewModel.moreInfo.twelveMonths.fund
         twelveCDILabel.text = viewModel.moreInfo.twelveMonths.cdi
         infosViewModel = viewModel.info + viewModel.downInfo
+        tableView.reloadData()
     }
     
     func displayError(error: Error) {
@@ -120,7 +121,7 @@ class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic 
     
     // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return infosViewModel.count
     }
     

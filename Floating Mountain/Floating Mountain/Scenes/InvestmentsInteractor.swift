@@ -15,7 +15,7 @@ protocol InvestmentsBusinessLogic {
 }
 
 protocol InvestmentsDataStore {
-    //var name: String { get set }
+    
 }
 
 class InvestmentsInteractor: InvestmentsBusinessLogic, InvestmentsDataStore {
@@ -24,9 +24,9 @@ class InvestmentsInteractor: InvestmentsBusinessLogic, InvestmentsDataStore {
     
     func fetch(request: Investments.FetchInvestments.Request) {
         worker = InvestmentsWorker()
-        worker?.fetch(request: request, completion: { (fund, error) in
+        worker?.fetch(request: request, completion: { [weak self] (fund, error) in
             let response = Investments.FetchInvestments.Response(fund: fund, error: error)
-            presenter?.presentFunds(response: response)
+            self?.presenter?.presentFunds(response: response)
         })
     }
 }

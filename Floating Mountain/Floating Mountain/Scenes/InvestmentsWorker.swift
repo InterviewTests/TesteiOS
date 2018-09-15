@@ -12,7 +12,8 @@
 
 class InvestmentsWorker {
     
-    func fetch(request: Investments.FetchInvestments.Request, completion: (Fund?, Error?) -> Void) {
-        
+    func fetch(request: Investments.FetchInvestments.Request, completion: @escaping (Fund?, Error?) -> Void) {
+        let service = Service.floatingMountain
+        service.request(resource: .fund, completion: completion)
     }
 }

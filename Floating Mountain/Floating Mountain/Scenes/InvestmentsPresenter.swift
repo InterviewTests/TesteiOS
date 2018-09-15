@@ -30,14 +30,14 @@ class InvestmentsPresenter: InvestmentsPresentationLogic {
         
         if let screen = response.fund?.screen {
             let monthDetailsViewModel = Investments.FetchInvestments.ViewModel.MoreInfoViewModel.DetailsViewModel(
-                fund: percentFormatter.string(from: screen.moreInfo.month.fund as NSNumber),
-                cdi: percentFormatter.string(from: screen.moreInfo.month.cdi as NSNumber))
+                fund: percentFormatter.string(from: screen.moreInfo.month.fund / 100.0 as NSNumber),
+                cdi: percentFormatter.string(from: screen.moreInfo.month.cdi / 100.0 as NSNumber))
             let yearDetailsViewModel = Investments.FetchInvestments.ViewModel.MoreInfoViewModel.DetailsViewModel(
-                fund: percentFormatter.string(from: screen.moreInfo.year.fund as NSNumber),
-                cdi: percentFormatter.string(from: screen.moreInfo.year.cdi as NSNumber))
+                fund: percentFormatter.string(from: screen.moreInfo.year.fund / 100.0 as NSNumber),
+                cdi: percentFormatter.string(from: screen.moreInfo.year.cdi / 100.0 as NSNumber))
             let twelveDetailsViewModel = Investments.FetchInvestments.ViewModel.MoreInfoViewModel.DetailsViewModel(
-                fund: percentFormatter.string(from: screen.moreInfo.twelveMonths.fund as NSNumber),
-                cdi: percentFormatter.string(from: screen.moreInfo.twelveMonths.cdi as NSNumber))
+                fund: percentFormatter.string(from: screen.moreInfo.twelveMonths.fund / 100.0 as NSNumber),
+                cdi: percentFormatter.string(from: screen.moreInfo.twelveMonths.cdi / 100.0 as NSNumber))
             
             
             let moreInfoViewModel = Investments.FetchInvestments.ViewModel.MoreInfoViewModel(
