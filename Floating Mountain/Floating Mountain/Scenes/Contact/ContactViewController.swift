@@ -86,7 +86,26 @@ class ContactViewController: UIViewController, ContactDisplayLogic {
     
     func displayForm(viewModel: Contact.FetchForm.ViewModel) {
         viewModel.cells.forEach { (cell) in
-            self.formStackView.addArrangedSubview(FormCellView(formCell: cell))
+            let view: FormCellView
+            switch cell.type {
+            case .textField:
+                view = FormCellTextFieldView()
+                break
+            case .label:
+                view = FormCellLabelView()
+                break
+            case .image:
+                view = FormCellImageView()
+                break
+            case .checkbox:
+                view = FormCellCheckboxView()
+                break
+            case .send:
+                view = FormCellSendButtonView()
+                break
+            }
+            view.setup(for: cell)
+            formStackView.addArrangedSubview(view)
         }
     }
     
