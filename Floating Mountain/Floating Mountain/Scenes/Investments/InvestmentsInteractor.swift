@@ -10,8 +10,11 @@
 //  see http://clean-swift.com
 //
 
+import Foundation
+
 protocol InvestmentsBusinessLogic {
     func fetch(request: Investments.FetchInvestments.Request)
+    func downloadMoreInfo()
 }
 
 protocol InvestmentsDataStore {
@@ -28,5 +31,9 @@ class InvestmentsInteractor: InvestmentsBusinessLogic, InvestmentsDataStore {
             let response = Investments.FetchInvestments.Response(fund: fund, error: error)
             self?.presenter?.presentFunds(response: response)
         })
+    }
+    
+    func downloadMoreInfo() {
+        presenter?.presentMoreInfo()
     }
 }

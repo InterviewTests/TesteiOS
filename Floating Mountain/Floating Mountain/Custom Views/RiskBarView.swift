@@ -28,6 +28,8 @@ class RiskBarView: UIView {
             if (1...5).contains(currentRisk) {
                 currentRiskChevron.isHidden = false
                 let view = stackView.arrangedSubviews[currentRisk - 1]
+                constraints.first(where: { constraint in constraint.identifier == "height\(currentRisk - 1)"})?.constant = 8
+                constraints.first(where: { constraint in constraint.identifier == "height\(oldValue - 1)"})?.constant = 6
                 if let constraint = currentRiskChevron.constraints.first (where: { constraint in constraint.identifier == "centerX" }) {
                     view.removeConstraint(constraint)
                 }
@@ -66,9 +68,10 @@ class RiskBarView: UIView {
         centerXChevron.identifier = "centerX"
         var constraints = [height, leading, trailing, bottom, topChevron, centerXChevron]
         let colors = [#colorLiteral(red: 0.4549019608, green: 0.8549019608, blue: 0.3803921569, alpha: 1), #colorLiteral(red: 0.2901960784, green: 0.7568627451, blue: 0.4235294118, alpha: 1), #colorLiteral(red: 1, green: 0.7529411765, blue: 0.06666666667, alpha: 1), #colorLiteral(red: 1, green: 0.4549019608, blue: 0.1725490196, alpha: 1), #colorLiteral(red: 1, green: 0.2117647059, blue: 0.2039215686, alpha: 1)]
-        colors.forEach { color in
+        colors.enumerated().forEach { index, color in
             let view = levelView(with: color)
             let constraint = view.heightAnchor.constraint(equalToConstant: 6)
+            constraint.identifier = "height\(index)"
             stackView.addArrangedSubview(view)
             constraints.append(constraint)
         }

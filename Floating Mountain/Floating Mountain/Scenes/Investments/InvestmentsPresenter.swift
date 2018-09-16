@@ -14,6 +14,7 @@ import Foundation
 
 protocol InvestmentsPresentationLogic {
     func presentFunds(response: Investments.FetchInvestments.Response)
+    func presentMoreInfo()
 }
 
 class InvestmentsPresenter: InvestmentsPresentationLogic {
@@ -46,11 +47,11 @@ class InvestmentsPresenter: InvestmentsPresentationLogic {
                 twelveMonths: twelveDetailsViewModel)
             
             let infoViewModels = screen.info.map { info in
-                Investments.FetchInvestments.ViewModel.InfoViewModel(name: info.name, data: info.data)
+                Investments.FetchInvestments.ViewModel.InfoViewModel(name: info.name, data: info.data, showsDownloadButton: false)
             }
             
             let downInfoViewModels = screen.downInfo.map { info in
-                Investments.FetchInvestments.ViewModel.InfoViewModel(name: info.name, data: info.data)
+                Investments.FetchInvestments.ViewModel.InfoViewModel(name: info.name, data: info.data, showsDownloadButton: true)
             }
             
             let viewModel = Investments.FetchInvestments.ViewModel(
@@ -70,5 +71,9 @@ class InvestmentsPresenter: InvestmentsPresentationLogic {
             viewController?.displayError(error: error)
         }
         
+    }
+    
+    func presentMoreInfo() {
+        viewController?.displayMoreInfo(at: URL(string: "https://www.google.com")!)
     }
 }

@@ -10,10 +10,10 @@
 //  see http://clean-swift.com
 //
 
-import Foundation
+import SafariServices
 
 @objc protocol InvestmentsRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func presentMoreInfo(source: InvestmentsViewController, destination: SFSafariViewController)
 }
 
 protocol InvestmentsDataPassing {
@@ -26,32 +26,8 @@ class InvestmentsRouter: NSObject, InvestmentsRoutingLogic, InvestmentsDataPassi
     
     // MARK: Routing
     
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
-    //{
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
+    func presentMoreInfo(source: InvestmentsViewController, destination: SFSafariViewController) {
+        source.present(destination, animated: true, completion: nil)
+    }
     
-    // MARK: Navigation
-    
-    //func navigateToSomewhere(source: InvestmentsViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
-    
-    // MARK: Passing data
-    
-    //func passDataToSomewhere(source: InvestmentsDataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
 }

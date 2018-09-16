@@ -11,18 +11,22 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol InvestmentsDisplayLogic: class {
     func displayInvestments(viewModel: Investments.FetchInvestments.ViewModel)
     func displayError(error: Error)
+    func displayMoreInfo(at url: URL)
 }
 
-class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic {
+class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic, DownloadInfoTableViewCellDelegate {
     
     // MARK: - Instance variables
     
     var interactor: InvestmentsBusinessLogic?
     var router: (NSObjectProtocol & InvestmentsRoutingLogic & InvestmentsDataPassing)?
+    
+    var infosViewModel: [Investments.FetchInvestments.ViewModel.InfoViewModel] = []
     
     // MARK: Outlets
     
@@ -79,7 +83,24 @@ class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic 
         fetchInvestments()
     }
     
-    var infosViewModel: [Investments.FetchInvestments.ViewModel.InfoViewModel] = []
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        resizeTableViewHeaderViewIfNeeded()
+    }
+    
+    private func resizeTableViewHeaderViewIfNeeded() {
+        if let headerView = tableView.tableHeaderView {
+            
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+            var headerFrame = headerView.frame
+            
+            if height != headerFrame.size.height {
+                headerFrame.size.height = height
+                headerView.frame = headerFrame
+                tableView.tableHeaderView = headerView
+            }
+        }
+    }
     
     func fetchInvestments() {
         let request = Investments.FetchInvestments.Request()
@@ -110,6 +131,11 @@ class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic 
         present(alert, animated: true, completion: nil)
     }
     
+    func displayMoreInfo(at url: URL) {
+        let safariViewController = SFSafariViewController(url: url)
+        router?.presentMoreInfo(source: self, destination: safariViewController)
+    }
+    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -117,11 +143,31 @@ class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic 
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let info = infosViewModel[indexPath.row]
-        cell.textLabel?.text = info.name
-        cell.detailTextLabel?.text = info.data
-        return cell
+        
+        if info.showsDownloadButton {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "downInfoCell", for: indexPath) as! DownloadInfoTableViewCell
+            cell.nameLabel.text = info.name
+            cell.delegate = self
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath)
+            cell.textLabel?.text = info.name
+            cell.detailTextLabel?.text = info.data
+            return cell
+        }
+    }
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 32.0
+    }
+    
+    // MARK: - Download info table view cell delegate
+    
+    func downloadInfoCell(_ downloadInfoCell: DownloadInfoTableViewCell, downloadButtonTapped downloadButton: UIButton) {
+        interactor?.downloadMoreInfo()
     }
     
     // MARK: Routing

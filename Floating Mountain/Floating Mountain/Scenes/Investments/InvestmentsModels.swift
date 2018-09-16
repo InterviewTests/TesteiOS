@@ -47,6 +47,7 @@ enum Investments {
             struct InfoViewModel {
                 var name: String
                 var data: String?
+                var showsDownloadButton: Bool
             }
         }
     }
