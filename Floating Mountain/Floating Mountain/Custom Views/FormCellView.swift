@@ -29,6 +29,8 @@ extension FormCellView {
         case .label:
             let label = UILabel()
             label.text = formCell.message
+            label.font = UIFont(name: "DINPro-Regular", size: 16)
+            label.textColor = #colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1)
             label.numberOfLines = 0
             label.textAlignment = .center
             label.sizeToFit()
@@ -40,10 +42,11 @@ extension FormCellView {
             break
         case .checkbox:
             let button = CheckboxButton()
+            button.titleEdgeInsets.left = 8
             button.titleLabel?.numberOfLines = 0
-            button.titleEdgeInsets.left = 16
+            button.titleLabel?.font = UIFont(name: "DINPro-Regular", size: 16)
+            button.setTitleColor(#colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1), for: .normal)
             button.setTitle(formCell.message, for: .normal)
-            button.setTitleColor(.lightGray, for: .normal)
             button.contentHorizontalAlignment = .left
             button.sizeToFit()
             innerView = button
@@ -51,7 +54,7 @@ extension FormCellView {
         case .send:
             let button = UIButton()
             button.setTitle(formCell.message, for: .normal)
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+            button.titleLabel?.font = UIFont(name: "DINPro-Medium", size: 16)
             button.setTitleColor(.white, for: .normal)
             button.setBackgroundImage(#imageLiteral(resourceName: "button-background-normal"), for: .normal)
             button.sizeToFit()
