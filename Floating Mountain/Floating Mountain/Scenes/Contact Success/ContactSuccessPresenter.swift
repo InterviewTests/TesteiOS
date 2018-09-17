@@ -11,7 +11,7 @@
 //
 
 protocol ContactSuccessPresentationLogic {
-    func presentSomething(response: ContactSuccess.Something.Response)
+    func dismissView()
 }
 
 class ContactSuccessPresenter: ContactSuccessPresentationLogic {
@@ -19,8 +19,7 @@ class ContactSuccessPresenter: ContactSuccessPresentationLogic {
     
     // MARK: Do something
     
-    func presentSomething(response: ContactSuccess.Something.Response) {
-        let viewModel = ContactSuccess.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+    func dismissView() {
+        viewController?.dismissView()
     }
 }

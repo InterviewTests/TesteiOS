@@ -11,7 +11,7 @@
 //
 
 protocol ContactSuccessBusinessLogic {
-    func doSomething(request: ContactSuccess.Something.Request)
+    func sendAnotherMessage()
 }
 
 protocol ContactSuccessDataStore {
@@ -25,11 +25,7 @@ class ContactSuccessInteractor: ContactSuccessBusinessLogic, ContactSuccessDataS
     
     // MARK: Do something
     
-    func doSomething(request: ContactSuccess.Something.Request) {
-        worker = ContactSuccessWorker()
-        worker?.doSomeWork()
-        
-        let response = ContactSuccess.Something.Response()
-        presenter?.presentSomething(response: response)
+    func sendAnotherMessage() {
+        presenter?.dismissView()
     }
 }

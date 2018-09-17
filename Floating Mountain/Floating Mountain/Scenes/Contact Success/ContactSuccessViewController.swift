@@ -13,7 +13,7 @@
 import UIKit
 
 protocol ContactSuccessDisplayLogic: class {
-    func displaySomething(viewModel: ContactSuccess.Something.ViewModel)
+    func dismissView()
 }
 
 class ContactSuccessViewController: UIViewController, ContactSuccessDisplayLogic {
@@ -62,19 +62,17 @@ class ContactSuccessViewController: UIViewController, ContactSuccessDisplayLogic
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
     }
     
-    // MARK: Do something
-    
-    //@IBOutlet weak var nameTextField: UITextField!
-    
-    func doSomething() {
-        let request = ContactSuccess.Something.Request()
-        interactor?.doSomething(request: request)
+    @IBAction func sendAnotherMessage(_ sender: Any) {
+        sendAnotherMessage()
     }
     
-    func displaySomething(viewModel: ContactSuccess.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
+    func sendAnotherMessage() {
+        interactor?.sendAnotherMessage()
+    }
+    
+    func dismissView() {
+        navigationController?.popViewController(animated: true)
     }
 }
