@@ -44,6 +44,10 @@
 		A76BB445214C38DD00E93D93 /* InvestmentsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BB43F214C38DD00E93D93 /* InvestmentsModels.swift */; };
 		A76BB446214C38DD00E93D93 /* InvestmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BB440214C38DD00E93D93 /* InvestmentsViewController.swift */; };
 		A76BB447214C38DD00E93D93 /* InvestmentsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BB441214C38DD00E93D93 /* InvestmentsInteractor.swift */; };
+		A781D8C521501FF100BAB9EC /* ContactSuccessViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781D8C121501FF100BAB9EC /* ContactSuccessViewControllerTests.swift */; };
+		A781D8C621501FF100BAB9EC /* ContactSuccessInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781D8C221501FF100BAB9EC /* ContactSuccessInteractorTests.swift */; };
+		A781D8C721501FF100BAB9EC /* ContactSuccessWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781D8C321501FF100BAB9EC /* ContactSuccessWorkerTests.swift */; };
+		A781D8C821501FF100BAB9EC /* ContactSuccessPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781D8C421501FF100BAB9EC /* ContactSuccessPresenterTests.swift */; };
 		A7A87E49214D7FA100B6BA00 /* FormCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A87E48214D7FA100B6BA00 /* FormCellView.swift */; };
 		A7A87E4C214D8D2B00B6BA00 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A87E4B214D8D2B00B6BA00 /* CheckboxButton.swift */; };
 		A7B8FEE9214ED5FC00B60587 /* FormCellTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B8FEE8214ED5FC00B60587 /* FormCellTextFieldView.swift */; };
@@ -131,6 +135,10 @@
 		A76BB43F214C38DD00E93D93 /* InvestmentsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsModels.swift; sourceTree = "<group>"; };
 		A76BB440214C38DD00E93D93 /* InvestmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsViewController.swift; sourceTree = "<group>"; };
 		A76BB441214C38DD00E93D93 /* InvestmentsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsInteractor.swift; sourceTree = "<group>"; };
+		A781D8C121501FF100BAB9EC /* ContactSuccessViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSuccessViewControllerTests.swift; sourceTree = "<group>"; };
+		A781D8C221501FF100BAB9EC /* ContactSuccessInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSuccessInteractorTests.swift; sourceTree = "<group>"; };
+		A781D8C321501FF100BAB9EC /* ContactSuccessWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSuccessWorkerTests.swift; sourceTree = "<group>"; };
+		A781D8C421501FF100BAB9EC /* ContactSuccessPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSuccessPresenterTests.swift; sourceTree = "<group>"; };
 		A7A87E48214D7FA100B6BA00 /* FormCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCellView.swift; sourceTree = "<group>"; };
 		A7A87E4B214D8D2B00B6BA00 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 		A7B8FEE8214ED5FC00B60587 /* FormCellTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCellTextFieldView.swift; sourceTree = "<group>"; };
@@ -320,8 +328,9 @@
 		A75390A7214BFB9D003FBB5C /* Floating MountainTests */ = {
 			isa = PBXGroup;
 			children = (
-				A736A946214F3D77004EC96B /* Contact */,
 				A736A93D214F3C57004EC96B /* Investments */,
+				A736A946214F3D77004EC96B /* Contact */,
+				A781D8C921501FF500BAB9EC /* ContactSuccess */,
 				A75390AA214BFB9D003FBB5C /* Info.plist */,
 			);
 			path = "Floating MountainTests";
@@ -353,6 +362,17 @@
 				A7FFAB70214F012C00C65E17 /* Contact Success */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		A781D8C921501FF500BAB9EC /* ContactSuccess */ = {
+			isa = PBXGroup;
+			children = (
+				A781D8C121501FF100BAB9EC /* ContactSuccessViewControllerTests.swift */,
+				A781D8C221501FF100BAB9EC /* ContactSuccessInteractorTests.swift */,
+				A781D8C321501FF100BAB9EC /* ContactSuccessWorkerTests.swift */,
+				A781D8C421501FF100BAB9EC /* ContactSuccessPresenterTests.swift */,
+			);
+			path = ContactSuccess;
 			sourceTree = "<group>";
 		};
 		A7A87E4A214D7FA600B6BA00 /* Custom Views */ = {
@@ -676,9 +696,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A736A93B214F330D004EC96B /* InvestmentsWorkerTests.swift in Sources */,
+				A781D8C821501FF100BAB9EC /* ContactSuccessPresenterTests.swift in Sources */,
 				A736A93A214F330D004EC96B /* InvestmentsInteractorTests.swift in Sources */,
 				A736A942214F3D72004EC96B /* ContactViewControllerTests.swift in Sources */,
+				A781D8C721501FF100BAB9EC /* ContactSuccessWorkerTests.swift in Sources */,
+				A781D8C521501FF100BAB9EC /* ContactSuccessViewControllerTests.swift in Sources */,
 				A736A939214F330D004EC96B /* InvestmentsViewControllerTests.swift in Sources */,
+				A781D8C621501FF100BAB9EC /* ContactSuccessInteractorTests.swift in Sources */,
 				A736A93C214F330D004EC96B /* InvestmentsPresenterTests.swift in Sources */,
 				A736A945214F3D72004EC96B /* ContactPresenterTests.swift in Sources */,
 				A736A944214F3D72004EC96B /* ContactWorkerTests.swift in Sources */,
