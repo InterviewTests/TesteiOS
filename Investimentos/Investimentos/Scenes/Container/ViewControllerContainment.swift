@@ -16,6 +16,7 @@ class ViewControllerContainment: UIViewController {
     
     var viewControllerPresented: ViewControllerPresented?
     
+    //Referência para tela de fundos de investimentos.
     lazy var fundsViewController: UINavigationController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
@@ -26,6 +27,7 @@ class ViewControllerContainment: UIViewController {
         return navigation!
     }()
     
+    //Referência para tela de formulário para contato.
     lazy var formViewController: UINavigationController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
@@ -49,6 +51,7 @@ class ViewControllerContainment: UIViewController {
     
     //MARK: - Init methods
     private func configSantanderTabBar() {
+        //Tela principal: tela de fundos de investimentos
         fundsViewController.view.isHidden = false
         viewControllerPresented = .FundsViewController
         paintTabBar()
@@ -64,6 +67,7 @@ class ViewControllerContainment: UIViewController {
     }
     */
     
+    //Adicionando uma view para ser exibida.
     private func addViewControllerAsChildViewController(childViewController: UINavigationController) {
         addChildViewController(childViewController)
         
@@ -75,6 +79,7 @@ class ViewControllerContainment: UIViewController {
         childViewController.didMove(toParentViewController: self)
     }
     
+    //Removendo uma view para a outra ser apresentada.
     private func removeViewControllerAsChildViewController(childViewController: UIViewController) {
         childViewController.willMove(toParentViewController: nil)
         
@@ -84,6 +89,7 @@ class ViewControllerContainment: UIViewController {
     }
     
     //MARK: - Santander tab bar
+    //Escolhendo tela de Fundos de investimentos
     @IBAction func showFundsViewController(_ sender: UIButton) {
         formViewController.view.isHidden = true
         fundsViewController.view.isHidden = false
@@ -91,6 +97,7 @@ class ViewControllerContainment: UIViewController {
         paintTabBar()
     }
     
+    //Escolhendo tela de formulário para contato
     @IBAction func showFormViewController(_ sender: UIButton) {
         fundsViewController.view.isHidden = true
         formViewController.view.isHidden = false

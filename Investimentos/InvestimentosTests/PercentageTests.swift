@@ -1,15 +1,15 @@
 //
-//  InvestimentosTests.swift
+//  PercentageTests.swift
 //  InvestimentosTests
 //
-//  Created by Adolfho Athyla on 07/09/2018.
+//  Created by Adolfho Athyla on 16/09/2018.
 //  Copyright © 2018 a7hyla. All rights reserved.
 //
 
 import XCTest
 @testable import Investimentos
 
-class InvestimentosTests: XCTestCase {
+class PercentageTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -21,16 +21,15 @@ class InvestimentosTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testPercentage() {
+        XCTAssertEqual(1.2.getPercentageStringValue(), "1.2%")
     }
     
 }

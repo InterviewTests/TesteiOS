@@ -103,6 +103,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Ygk-mG-lm7">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.7843137255" green="0.015686274510000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="DINMittelschriftStd" family="DIN 1451 Std" pointSize="17"/>
@@ -292,11 +293,70 @@
                     <navigationItem key="navigationItem" title="Contato" id="J37-dM-zQJ"/>
                     <connections>
                         <outlet property="tableView" destination="rid-J7-8G1" id="nlU-Gs-VXo"/>
+                        <segue destination="IsR-4q-kKL" kind="show" identifier="SUCCESS_MESSAGE_SEGUE" id="u60-en-0ja"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="caP-j4-Ftc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1124" y="-10.344827586206897"/>
+        </scene>
+        <!--Status Message View Controller-->
+        <scene sceneID="q0f-ci-1wM">
+            <objects>
+                <viewController id="IsR-4q-kKL" customClass="StatusMessageViewController" customModule="Investimentos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xZh-DD-T2L">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JP7-ed-Tx3">
+                                <rect key="frame" x="153" y="163" width="69" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="0CQ-cY-yiO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINMittelschriftStd" family="DIN 1451 Std" pointSize="17"/>
+                                <color key="textColor" red="0.50980392159999999" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagem enviada com sucesso :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rbn-iJ-keo">
+                                <rect key="frame" x="15" y="184" width="346" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="bHx-Mt-lgy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINNeuzeitGroteskStd-Light" family="DIN 30640 Std" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNd-V8-Hp7">
+                                <rect key="frame" x="104" y="419" width="168" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="9Oi-OS-cvy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINMittelschriftStd" family="DIN 1451 Std" pointSize="17"/>
+                                <state key="normal" title="Enviar nova mensagem">
+                                    <color key="titleColor" red="0.7843137255" green="0.015686274510000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="SendNewMessageAction:" destination="IsR-4q-kKL" eventType="touchUpInside" id="0fj-cH-GR9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Rbn-iJ-keo" firstAttribute="top" secondItem="JP7-ed-Tx3" secondAttribute="bottom" constant="4" id="6WX-IQ-Cv4"/>
+                            <constraint firstItem="dXm-7Z-dcH" firstAttribute="bottom" secondItem="oNd-V8-Hp7" secondAttribute="bottom" constant="155" id="7mf-Tj-eYd"/>
+                            <constraint firstItem="dXm-7Z-dcH" firstAttribute="trailing" secondItem="Rbn-iJ-keo" secondAttribute="trailing" constant="14" id="Bpd-30-8lD"/>
+                            <constraint firstItem="Rbn-iJ-keo" firstAttribute="leading" secondItem="dXm-7Z-dcH" secondAttribute="leading" constant="15" id="N19-br-2hQ"/>
+                            <constraint firstItem="JP7-ed-Tx3" firstAttribute="top" secondItem="dXm-7Z-dcH" secondAttribute="top" constant="163" id="Y7F-ys-X6g"/>
+                            <constraint firstItem="JP7-ed-Tx3" firstAttribute="centerX" secondItem="xZh-DD-T2L" secondAttribute="centerX" id="r9L-dW-9Wf"/>
+                            <constraint firstItem="oNd-V8-Hp7" firstAttribute="centerX" secondItem="xZh-DD-T2L" secondAttribute="centerX" id="v8c-xN-KDW"/>
+                            <constraint firstItem="JP7-ed-Tx3" firstAttribute="centerX" secondItem="xZh-DD-T2L" secondAttribute="centerX" id="vzH-gc-4fl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dXm-7Z-dcH"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4dG-i0-lik" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-303.19999999999999" y="-10.344827586206897"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="feL-ao-b9F">

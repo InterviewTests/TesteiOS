@@ -12,6 +12,7 @@ class Masks: NSObject {
 
     static func formattedNumber(number: String) -> String {
         let cleanPhoneNumber = number.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        //formato do número de telefone
         let mask = "(XX) XXXXX-XXXX"
         
         var result = ""

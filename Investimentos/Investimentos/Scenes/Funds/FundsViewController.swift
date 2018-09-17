@@ -25,6 +25,7 @@ class FundsViewController: UIViewController {
             }
         }
         
+        //altura da primeira célula é definida dinamicamente
         tableView.rowHeight = UITableViewAutomaticDimension
     }
 
@@ -32,17 +33,6 @@ class FundsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -73,6 +63,7 @@ extension FundsViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             switch indexPath.row {
             case 0:
+                //célula de informações gerais
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.FundInfoCell, for: indexPath) as? FundInfoTableViewCell
                 cell?.titleLabel.text = screen.title
                 cell?.fundNameLabel.text = screen.fundName
@@ -80,11 +71,13 @@ extension FundsViewController: UITableViewDelegate, UITableViewDataSource {
                 cell?.definitionTextView.text = screen.definition
                 return cell!
             case 1:
+                //célula de riscos de investimentos
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.DegreeRiskCell, for: indexPath) as? RiskTableViewCell
                 cell?.riskDegreeLabel.text = screen.riskTitle
                 cell?.selectRisk(risk: screen.risk?.intValue ?? 3)
                 return cell!
             case 2:
+                //título sobre investimentos
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.InfoTitleCell, for: indexPath) as? InfoTitleTableViewCell
                 cell?.infoTitleLabel.text = screen.infoTitle
                 return cell!
@@ -94,18 +87,21 @@ extension FundsViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             switch indexPath.row {
             case 0:
+                //informações do investimento: mês
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.MoreInfoCell, for: indexPath) as? MoreInfoTableViewCell
                 cell?.descLabel.text = "No mês"
                 cell?.cdiLabel.text = screen.moreInfo?.month?.CDI?.doubleValue.getPercentageStringValue()
                 cell?.fundLabel.text = screen.moreInfo?.month?.fund?.doubleValue.getPercentageStringValue()
                 return cell!
             case 1:
+                //informações do investimento: ano
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.MoreInfoCell, for: indexPath) as? MoreInfoTableViewCell
                 cell?.descLabel.text = "No ano"
                 cell?.cdiLabel.text = screen.moreInfo?.year?.CDI?.doubleValue.getPercentageStringValue()
                 cell?.fundLabel.text = screen.moreInfo?.year?.fund?.doubleValue.getPercentageStringValue()
                 return cell!
             case 2:
+                //informações do investimento: 12 meses
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.MoreInfoCell, for: indexPath) as? MoreInfoTableViewCell
                 cell?.descLabel.text = "12 meses"
                 cell?.cdiLabel.text = screen.moreInfo?._12months?.CDI?.doubleValue.getPercentageStringValue()
@@ -114,18 +110,22 @@ extension FundsViewController: UITableViewDelegate, UITableViewDataSource {
             default: break
             }
         case 2:
+            //célula separador
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.SeparatorCell, for: indexPath)
             return cell
         case 3:
+            //informações do investimento
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.InfoCell, for: indexPath) as? InfoTableViewCell
             cell?.descLabel.text = screen.info[indexPath.row].name
             cell?.valueLabel.text = screen.info[indexPath.row].data
             return cell!
         case 4:
+            //informações para download
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.DownInfoCell, for: indexPath) as? DownInfoTableViewCell
             cell?.descLabel.text = screen.downInfo[indexPath.row].name
             return cell!
         case 5:
+            //botão Investir
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.InvestButtonCell, for: indexPath)
             return cell
         default:
@@ -140,6 +140,7 @@ extension FundsViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             switch indexPath.row {
             case 0:
+                //primeira céula com altura dinâmica
                 return UITableViewAutomaticDimension
             case 1:
                 return 120.0

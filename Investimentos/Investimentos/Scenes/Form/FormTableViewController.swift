@@ -20,8 +20,6 @@ class FormTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = "Contato"
         
         CellsAPI.getAllFormCells { (cells, success) in
             guard let cells = cells else { return }
@@ -35,45 +33,64 @@ class FormTableViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: - Send action
+    //MARK: - View action
     @IBAction func sendAction(_ sender: UIButton) {
+        //recuperando células que necessitam de validação
+        let nameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TextFieldTableViewCell
+        let emailCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? TextFieldTableViewCell
+        let phoneCell = tableView.cellForRow(at: IndexPath(row: registerEmail ? 3 : 2, section: 0)) as? TextFieldTableViewCell
+        /*
+         > validando apenas as cores dos campos estão válidas.
+         > se sim, apresentar tela de sucesso.
+         > se não, mostrar alert de erro.
+        */
+        if nameCell?.indicator.backgroundColor == #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1) && phoneCell?.indicator.backgroundColor == #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1) {
+            if registerEmail {
+                if emailCell?.indicator.backgroundColor == #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1) {
+                    performSegue(withIdentifier: SeguesIdentifiersNamespaces.SuccessMessageSegue, sender: nil)
+                } else {
+                    Notices.showAlert(title: "Ops", message: "Por favor, verifique os campos preenchidos.", target: self)
+                }
+            } else {
+                performSegue(withIdentifier: SeguesIdentifiersNamespaces.SuccessMessageSegue, sender: nil)
+            }
+        } else {
+            Notices.showAlert(title: "Ops", message: "Por favor, verifique os campos preenchidos.", target: self)
+        }
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 
 
-
+//MARK: - table view datasource e delegate
 extension FormTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //caso o usuário desejar registrar seu e-mail, o formulário terá 6 rows, senão terá 5
         return registerEmail ? 6 : 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
+            //célula de saudações
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.PresentationCell, for: indexPath) as? PresentationTableViewCell
             let presentationCell = cells.getCell(identifier: .Presentation)
             cell?.presentationLabel.text = presentationCell?.message
             return cell!
         case 1:
+            //célula textfield para nome
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.TextFieldCell, for: indexPath) as? TextFieldTableViewCell
             let nameCell = cells.getCell(identifier: .Name)
             cell?.textField.placeholder = nameCell?.message
             cell?.textField.autocapitalizationType = .words
             return cell!
         case 2:
+            /*
+             > célula textfield para email
+             Obs: só irá aparecer caso o usuário decide registrar seu e-mail no contato
+            */
             if registerEmail {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.TextFieldCell, for: indexPath) as? TextFieldTableViewCell
                 let emailCell = cells.getCell(identifier: .Email)
@@ -85,12 +102,17 @@ extension FormTableViewController: UITableViewDelegate, UITableViewDataSource {
             }
             return UITableViewCell()
         case 3:
+            //célula textfield para telefone
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.TextFieldCell, for: indexPath) as? TextFieldTableViewCell
             let phoneCell = cells.getCell(identifier: .Phone)
             cell?.textField.placeholder = phoneCell?.message
             cell?.textField.keyboardType = .phonePad
             return cell!
         case 4:
+            /*
+             > célula checkbox indicando se o usuário deseja enviar seu endereço de e-mail ou não.
+             > dependendo da opção escolhida pelo usuário, a célula de e-mail deve ser removida ou não.
+            */
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.RegisterEmailCell, for: indexPath) as? RegisterEmailTableViewCell
             let registerEmailCell = cells.getCell(identifier: .RegisterEmail)
             cell?.registerEmailLabel.text = registerEmailCell?.message
@@ -109,6 +131,7 @@ extension FormTableViewController: UITableViewDelegate, UITableViewDataSource {
             }
             return cell!
         case (cells.cells.count-1):
+            //célula button Enviar
             let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.SendButtonCell, for: indexPath) as? SendButtonTableViewCell
             let sendButtonCell = cells.getCell(identifier: .Send)
             cell?.sendButton.setTitle(sendButtonCell?.message, for: .normal)
@@ -145,12 +168,12 @@ extension FormTableViewController: UITextFieldDelegate {
         }
         //Aplicando máscara e verificando número de telefone
         else if textField.keyboardType == .phonePad {
-            //verificando se o backspace foi selecionado
+            //identificando o backspace
             let  char = string.cString(using: String.Encoding.utf8)!
             let isBackSpace = strcmp(char, "\\b")
             
             //alterando cor do indicador
-            let cell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? TextFieldTableViewCell
+            let cell = tableView.cellForRow(at: IndexPath(row: registerEmail ? 3 : 2, section: 0)) as? TextFieldTableViewCell
             if textField.text!.count + string.count - range.length > 13 {
                 cell?.indicator.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
             } else {
@@ -161,6 +184,7 @@ extension FormTableViewController: UITextFieldDelegate {
             let phone = Masks.formattedNumber(number: textField.text! + string)
             textField.text = phone
             
+            //verificando se o backspace foi selecionado
             if (isBackSpace == -92) {
                 return true
             }

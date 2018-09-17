@@ -9,6 +9,7 @@
 import UIKit
 
 extension Double {
+    //método utilizado para transformar um Double em String com simbolo de porcentagem
     func getPercentageStringValue() -> String {
         return String(format: "%.1f%%", self)
     }

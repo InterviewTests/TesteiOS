@@ -10,6 +10,7 @@ import UIKit
 
 class Validators: NSObject {
     static func isValidEmail(testStr: String) -> Bool {
+        //expressão regular para validar e-mail
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)

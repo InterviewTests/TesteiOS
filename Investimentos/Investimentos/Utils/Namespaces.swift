@@ -31,3 +31,7 @@ enum StoryboardIdentifiersNamespaces {
     static let FormViewController = "FormViewController"
     static let FundsViewController = "FundsViewController"
 }
+
+enum SeguesIdentifiersNamespaces {
+    static let SuccessMessageSegue  = "SUCCESS_MESSAGE_SEGUE"
+}

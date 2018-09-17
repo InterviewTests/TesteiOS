@@ -34,6 +34,7 @@ class RegisterEmailTableViewCell: UITableViewCell {
         checkSwitch()
     }
     
+    //ação do checkbox
     fileprivate func checkSwitch() {
         if registerEmail {
             registerEmail = false
@@ -47,6 +48,7 @@ class RegisterEmailTableViewCell: UITableViewCell {
         }
     }
     
+    //configurando checkbox
     fileprivate func configRegisterEmail() {
         registerEmailSign.layer.borderWidth = 2
         registerEmailSign.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1).cgColor
