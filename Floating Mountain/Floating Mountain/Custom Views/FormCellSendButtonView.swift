@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol FormCellSendButtonViewDelegate: class {
+    func formCell(_ formCell: FormCellSendButtonView, didTapSendButton button: UIButton)
+}
+
 class FormCellSendButtonView: FormCellView {
 
     lazy var button: UIButton = {
@@ -15,9 +19,12 @@ class FormCellSendButtonView: FormCellView {
         button.titleLabel?.font = mediumFont
         button.setTitleColor(.white, for: .normal)
         button.setBackgroundImage(#imageLiteral(resourceName: "button-background-normal"), for: .normal)
+        button.addTarget(self, action: #selector(sendButtonTapped(_:)), for: .touchUpInside)
         button.sizeToFit()
         return button
     }()
+    
+    weak var delegate: FormCellSendButtonViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,6 +41,10 @@ class FormCellSendButtonView: FormCellView {
     override func setup(for formCell: Contact.FetchForm.ViewModel.CellViewModel) {
         super.setup(for: formCell)
         button.setTitle(formCell.message, for: .normal)
+    }
+    
+    @objc func sendButtonTapped(_ button: UIButton) {
+        delegate?.formCell(self, didTapSendButton: button)
     }
 
 }

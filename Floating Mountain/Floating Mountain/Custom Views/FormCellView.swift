@@ -9,9 +9,16 @@
 import UIKit
 import MaterialComponents.MaterialTextFields
 
+struct FormCellData {
+    let identifier: Int
+    let showIdentifier: Int?
+    let value: Any?
+}
+
 class FormCellView: UIView {
     
     var identifier: Int = 0
+    var showIdentifier: Int?
     
     private var topSpacingConstraint: NSLayoutConstraint?
     
@@ -25,6 +32,7 @@ class FormCellView: UIView {
     
     func setup(for formCell: Contact.FetchForm.ViewModel.CellViewModel) {
         self.identifier = formCell.id
+        self.showIdentifier = formCell.show
         self.isHidden = formCell.hidden
         self.topSpacingConstraint?.constant = CGFloat(formCell.topSpacing)
     }
@@ -38,5 +46,9 @@ class FormCellView: UIView {
         let bottomConstraint = view.bottomAnchor.constraint(equalTo: bottomAnchor)
         addConstraints([topConstraint, leadingConstraint, trailingConstraint, bottomConstraint])
         self.topSpacingConstraint = topConstraint
+    }
+    
+    func isValid() -> Bool {
+        return true
     }
 }

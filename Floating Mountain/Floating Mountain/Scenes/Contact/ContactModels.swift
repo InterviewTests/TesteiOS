@@ -11,7 +11,6 @@
 //
 
 enum Contact {
-    // MARK: Use cases
     
     enum FetchForm {
         struct Request {
@@ -37,4 +36,14 @@ enum Contact {
             
         }
     }
+    
+    enum SendForm {
+        struct Request {
+        }
+        struct Response {
+        }
+        struct ViewModel {
+        }
+    }
+    
 }

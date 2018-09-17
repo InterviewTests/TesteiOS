@@ -15,9 +15,11 @@ import UIKit
 protocol ContactDisplayLogic: class {
     func displayForm(viewModel: Contact.FetchForm.ViewModel)
     func displayError(error: Error?)
+    func displayContactSuccess()
+    func changeVisibilityOfField(with identifier: Int, to visibility: Bool)
 }
 
-class ContactViewController: UIViewController, ContactDisplayLogic {
+class ContactViewController: UIViewController, ContactDisplayLogic, FormCellSendButtonViewDelegate, FormCellCheckboxViewDelegate {
     
     // MARK: - Instance variables
     
@@ -77,6 +79,21 @@ class ContactViewController: UIViewController, ContactDisplayLogic {
         keyboardScrollViewHandler.unregisterForKeyboardNotifications()
     }
     
+    // MARK: - Form send button 
+    
+    func formCell(_ formCell: FormCellSendButtonView, didTapSendButton button: UIButton) {
+        if formStackView.arrangedSubviews.contains(where: { view in !((view as? FormCellView)?.isValid() ?? true) }) {
+            return
+        }
+        interactor?.sendForm()
+    }
+    
+    // MARK: - Form checkbox
+    
+    func formCellCheckbox(_ formCellCheckbox: FormCellCheckboxView, didChangeSelection selected: Bool) {
+        interactor?.changeVisibilityOfField(with: formCellCheckbox.showIdentifier, to: selected)
+    }
+    
     // MARK: - Fetch Form
     
     func fetchForm() {
@@ -98,10 +115,14 @@ class ContactViewController: UIViewController, ContactDisplayLogic {
                 view = FormCellImageView()
                 break
             case .checkbox:
-                view = FormCellCheckboxView()
+                let checkboxButton = FormCellCheckboxView()
+                checkboxButton.delegate = self
+                view = checkboxButton
                 break
             case .send:
-                view = FormCellSendButtonView()
+                let sendButton = FormCellSendButtonView()
+                sendButton.delegate = self
+                view = sendButton
                 break
             }
             view.setup(for: cell)
@@ -113,6 +134,21 @@ class ContactViewController: UIViewController, ContactDisplayLogic {
         let alert = UIAlertController(title: "Erro", message: error?.localizedDescription, preferredStyle: .alert)
         alert.addAction(.init(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    func displayContactSuccess() {
+        performSegue(withIdentifier: "ContactSuccess", sender: nil)
+    }
+    
+    func changeVisibilityOfField(with identifier: Int, to visible: Bool) {
+        guard let view = formStackView.arrangedSubviews.first(where: { (view) -> Bool in
+            return view is FormCellView && (view as! FormCellView).identifier == identifier
+        }), view.isHidden == visible else {
+            return
+        }
+        UIView.animate(withDuration: 0.3) {
+            view.isHidden = !visible
+        }
     }
     
     // MARK: Routing

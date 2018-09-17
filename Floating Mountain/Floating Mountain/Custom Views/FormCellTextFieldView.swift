@@ -9,6 +9,7 @@
 import UIKit
 import MaterialComponents.MaterialTextFields
 import SwiftValidators
+import PhoneNumberKit
 
 class FormCellTextFieldView: FormCellView {
     
@@ -20,6 +21,9 @@ class FormCellTextFieldView: FormCellView {
         textField.sizeToFit()
         return textField
     }()
+    
+    private var isPhoneTextField = false
+    lazy var phoneNumberFormatter = PartialFormatter(phoneNumberKit: PhoneNumberKit(), defaultRegion: "BR", withPrefix: false)
     
     var textFieldControllerFloating: MDCTextInputControllerFloatingPlaceholder!
     
@@ -71,11 +75,12 @@ class FormCellTextFieldView: FormCellView {
             if #available(iOS 10.0, *) {
                 textField.textContentType = .telephoneNumber
             }
-            validator = Validator.regex("^(\\([0-9]{2}\\) [9][0-9]{4}-[0-9]{4})|(\\([0-9]{2}\\) [5-9][0-9]{3}-[0-9]{4})|(\\([2-9][1-9]\\) [5-9][0-9]{3}-[0-9]{4})$")
+            validator = Validator.regex("^([0-9]{2} [9][0-9]{4}-[0-9]{4})|([0-9]{2} [0-9]{4}-[0-9]{4})$")
             if formCell.required {
                 validator = validator! && Validator.required()
             }
             errorDescription = "Telefone inválido"
+            isPhoneTextField = true
             break
         case .email:
             textField.keyboardType = .emailAddress
@@ -92,8 +97,15 @@ class FormCellTextFieldView: FormCellView {
         }
     }
     
-    func validateInputValue() {
-        if validator?.apply(textField.text) ?? true {
+    @discardableResult
+    override func isValid() -> Bool {
+        let isValid = (validator?.apply(textField.text) ?? true) || isHidden
+        validateInputValue(valid: isValid)
+        return isValid
+    }
+    
+    func validateInputValue(valid: Bool) {
+        if valid {
             textFieldControllerFloating.setErrorText(nil, errorAccessibilityValue: nil)
         } else {
             textFieldControllerFloating.setErrorText(errorDescription, errorAccessibilityValue: nil)
@@ -101,7 +113,11 @@ class FormCellTextFieldView: FormCellView {
     }
     
     @objc func textDidChange() {
-        validateInputValue()
+        if isPhoneTextField, let phone = textField.text {
+            let filteredPhone = phone.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+            textField.text = phoneNumberFormatter.formatPartial(filteredPhone)
+        }
+        isValid()
     }
     
 }

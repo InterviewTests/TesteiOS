@@ -12,24 +12,35 @@
 
 protocol ContactBusinessLogic {
     func fetchForm(request: Contact.FetchForm.Request)
+    func sendForm()
+    func changeVisibilityOfField(with identifier: Int?, to visibility: Bool)
 }
 
 protocol ContactDataStore {
-    //var name: String { get set }
+    
 }
 
 class ContactInteractor: ContactBusinessLogic, ContactDataStore {
     var presenter: ContactPresentationLogic?
-    var worker: ContactWorker?
-    //var name: String = ""
-    
-    // MARK: Do something
+    lazy var worker = ContactWorker()
     
     func fetchForm(request: Contact.FetchForm.Request) {
-        worker = ContactWorker()
-        worker?.fetchForm(request: request, completion: { [weak self] (form, error) in
+        worker.fetchForm(request: request, completion: { [weak self] (form, error) in
             let response = Contact.FetchForm.Response(form: form, error: error)
             self?.presenter?.presentForm(response: response)
         })
     }
+    
+    func sendForm() {
+        let request = Contact.SendForm.Request()
+        worker.sendForm(request: request) { [weak self] in
+            self?.presenter?.presentContactSuccess()
+        }
+    }
+    
+    func changeVisibilityOfField(with identifier: Int?, to visibility: Bool) {
+        guard let identifier = identifier else { return }
+        presenter?.changeVisibilityOfField(with: identifier, to: visibility)
+    }
+    
 }

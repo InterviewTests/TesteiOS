@@ -28,6 +28,7 @@ class CheckboxButton: UIButton {
     
     @objc func toggleSelection() {
         isSelected = !isSelected
+        sendActions(for: .valueChanged)
     }
 
 }

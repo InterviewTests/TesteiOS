@@ -12,6 +12,8 @@
 
 protocol ContactPresentationLogic {
     func presentForm(response: Contact.FetchForm.Response)
+    func presentContactSuccess()
+    func changeVisibilityOfField(with identifier: Int, to visibility: Bool)
 }
 
 class ContactPresenter: ContactPresentationLogic {
@@ -37,4 +39,13 @@ class ContactPresenter: ContactPresentationLogic {
             viewController?.displayError(error: error)
         }
     }
+    
+    func presentContactSuccess() {
+        viewController?.displayContactSuccess()
+    }
+    
+    func changeVisibilityOfField(with identifier: Int, to visibility: Bool) {
+        viewController?.changeVisibilityOfField(with: identifier, to: visibility)
+    }
+    
 }

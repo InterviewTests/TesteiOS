@@ -17,4 +17,8 @@ class ContactWorker {
         service.request(resource: .cells, completion: completion)
     }
     
+    func sendForm(request: Contact.SendForm.Request, completion: @escaping () -> Void) {
+        completion()
+    }
+    
 }

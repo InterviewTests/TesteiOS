@@ -10,10 +10,10 @@
 //  see http://clean-swift.com
 //
 
-import Foundation
+import UIKit
 
 @objc protocol ContactRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToContactSuccess(segue: UIStoryboardSegue?)
 }
 
 protocol ContactDataPassing {
@@ -26,32 +26,29 @@ class ContactRouter: NSObject, ContactRoutingLogic, ContactDataPassing {
     
     // MARK: Routing
     
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
-    //{
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
+    func routeToContactSuccess(segue: UIStoryboardSegue?) {
+        if let segue = segue {
+            let destinationVC = segue.destination as! ContactSuccessViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToContactSuccess(source: dataStore!, destination: &destinationDS)
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: "ContactSuccessViewController") as! ContactSuccessViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToContactSuccess(source: dataStore!, destination: &destinationDS)
+            navigateToContactSuccess(source: viewController!, destination: destinationVC)
+        }
+    }
     
     // MARK: Navigation
     
-    //func navigateToSomewhere(source: ContactViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
+    func navigateToContactSuccess(source: ContactViewController, destination: ContactSuccessViewController) {
+        source.show(destination, sender: nil)
+    }
     
     // MARK: Passing data
     
-    //func passDataToSomewhere(source: ContactDataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
+    func passDataToContactSuccess(source: ContactDataStore, destination: inout ContactSuccessDataStore) {
+        
+    }
 }

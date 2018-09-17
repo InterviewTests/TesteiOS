@@ -50,6 +50,12 @@
 		A7EF2ACE214CA8B30001A1F8 /* ContactModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EF2AC8214CA8B30001A1F8 /* ContactModels.swift */; };
 		A7EF2ACF214CA8B30001A1F8 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EF2AC9214CA8B30001A1F8 /* ContactViewController.swift */; };
 		A7EF2AD0214CA8B30001A1F8 /* ContactInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EF2ACA214CA8B30001A1F8 /* ContactInteractor.swift */; };
+		A7FFAB6A214F012900C65E17 /* ContactSuccessPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FFAB64214F012800C65E17 /* ContactSuccessPresenter.swift */; };
+		A7FFAB6B214F012900C65E17 /* ContactSuccessWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FFAB65214F012800C65E17 /* ContactSuccessWorker.swift */; };
+		A7FFAB6C214F012900C65E17 /* ContactSuccessRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FFAB66214F012800C65E17 /* ContactSuccessRouter.swift */; };
+		A7FFAB6D214F012900C65E17 /* ContactSuccessModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FFAB67214F012800C65E17 /* ContactSuccessModels.swift */; };
+		A7FFAB6E214F012900C65E17 /* ContactSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FFAB68214F012900C65E17 /* ContactSuccessViewController.swift */; };
+		A7FFAB6F214F012900C65E17 /* ContactSuccessInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FFAB69214F012900C65E17 /* ContactSuccessInteractor.swift */; };
 		E93A318553654866497DD41D /* Pods_Floating_Mountain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1131D1F3A92F7F4BDA508E7 /* Pods_Floating_Mountain.framework */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +130,12 @@
 		A7EF2AC8214CA8B30001A1F8 /* ContactModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModels.swift; sourceTree = "<group>"; };
 		A7EF2AC9214CA8B30001A1F8 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		A7EF2ACA214CA8B30001A1F8 /* ContactInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInteractor.swift; sourceTree = "<group>"; };
+		A7FFAB64214F012800C65E17 /* ContactSuccessPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSuccessPresenter.swift; sourceTree = "<group>"; };
+		A7FFAB65214F012800C65E17 /* ContactSuccessWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSuccessWorker.swift; sourceTree = "<group>"; };
+		A7FFAB66214F012800C65E17 /* ContactSuccessRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSuccessRouter.swift; sourceTree = "<group>"; };
+		A7FFAB67214F012800C65E17 /* ContactSuccessModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSuccessModels.swift; sourceTree = "<group>"; };
+		A7FFAB68214F012900C65E17 /* ContactSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSuccessViewController.swift; sourceTree = "<group>"; };
+		A7FFAB69214F012900C65E17 /* ContactSuccessInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSuccessInteractor.swift; sourceTree = "<group>"; };
 		AB43C7AD777C7A9C6D396BE8 /* Pods-Floating MountainUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Floating MountainUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Floating MountainUITests/Pods-Floating MountainUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AFA0E9A600E8D73B44BDCB7A /* Pods-Floating MountainUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Floating MountainUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Floating MountainUITests/Pods-Floating MountainUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E82B45C8DED9D1E8047D04D1 /* Pods_Floating_MountainUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Floating_MountainUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -291,8 +303,9 @@
 		A75390D6214C21F6003FBB5C /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				A7EF2AD1214CA8BA0001A1F8 /* Contact */,
 				A7EF2AD2214CA8C40001A1F8 /* Investments */,
+				A7EF2AD1214CA8BA0001A1F8 /* Contact */,
+				A7FFAB70214F012C00C65E17 /* Contact Success */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -337,6 +350,19 @@
 				A76BB441214C38DD00E93D93 /* InvestmentsInteractor.swift */,
 			);
 			path = Investments;
+			sourceTree = "<group>";
+		};
+		A7FFAB70214F012C00C65E17 /* Contact Success */ = {
+			isa = PBXGroup;
+			children = (
+				A7FFAB64214F012800C65E17 /* ContactSuccessPresenter.swift */,
+				A7FFAB65214F012800C65E17 /* ContactSuccessWorker.swift */,
+				A7FFAB66214F012800C65E17 /* ContactSuccessRouter.swift */,
+				A7FFAB67214F012800C65E17 /* ContactSuccessModels.swift */,
+				A7FFAB68214F012900C65E17 /* ContactSuccessViewController.swift */,
+				A7FFAB69214F012900C65E17 /* ContactSuccessInteractor.swift */,
+			);
+			path = "Contact Success";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,12 +532,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Floating Mountain/Pods-Floating Mountain-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftValidators/SwiftValidators.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftValidators.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,26 +595,32 @@
 				A7B8FEE9214ED5FC00B60587 /* FormCellTextFieldView.swift in Sources */,
 				A7EF2ACC214CA8B30001A1F8 /* ContactWorker.swift in Sources */,
 				A7043D3D214D9BCB00F0445D /* KeyboardScrollViewHandler.swift in Sources */,
+				A7FFAB6E214F012900C65E17 /* ContactSuccessViewController.swift in Sources */,
 				A7EF2ACF214CA8B30001A1F8 /* ContactViewController.swift in Sources */,
 				A76BB446214C38DD00E93D93 /* InvestmentsViewController.swift in Sources */,
 				A76BB443214C38DD00E93D93 /* InvestmentsWorker.swift in Sources */,
 				A7EF2ACB214CA8B30001A1F8 /* ContactPresenter.swift in Sources */,
+				A7FFAB6F214F012900C65E17 /* ContactSuccessInteractor.swift in Sources */,
 				A7B8FEEB214ED62300B60587 /* FormCellLabelView.swift in Sources */,
 				A76BB442214C38DD00E93D93 /* InvestmentsPresenter.swift in Sources */,
+				A7FFAB6B214F012900C65E17 /* ContactSuccessWorker.swift in Sources */,
 				A7B8FEEF214ED65600B60587 /* FormCellCheckboxView.swift in Sources */,
 				A76BB444214C38DD00E93D93 /* InvestmentsRouter.swift in Sources */,
 				A7539094214BFB9B003FBB5C /* AppDelegate.swift in Sources */,
 				A7EF2ACD214CA8B30001A1F8 /* ContactRouter.swift in Sources */,
 				A7A87E4C214D8D2B00B6BA00 /* CheckboxButton.swift in Sources */,
+				A7FFAB6C214F012900C65E17 /* ContactSuccessRouter.swift in Sources */,
 				A70BEAEE214C927F004E6FE8 /* Service.swift in Sources */,
 				A70BEAF1214C92D7004E6FE8 /* Resource.swift in Sources */,
 				A7A87E49214D7FA100B6BA00 /* FormCellView.swift in Sources */,
 				A75390D3214C1ECF003FBB5C /* Form.swift in Sources */,
 				A7B8FEED214ED64300B60587 /* FormCellImageView.swift in Sources */,
 				A7EF2ACE214CA8B30001A1F8 /* ContactModels.swift in Sources */,
+				A7FFAB6D214F012900C65E17 /* ContactSuccessModels.swift in Sources */,
 				A7043D53214DAD6000F0445D /* RiskBarView.swift in Sources */,
 				A72992D9214EA943007A710C /* DownloadInfoTableViewCell.swift in Sources */,
 				A76BB445214C38DD00E93D93 /* InvestmentsModels.swift in Sources */,
+				A7FFAB6A214F012900C65E17 /* ContactSuccessPresenter.swift in Sources */,
 				A7EF2AD0214CA8B30001A1F8 /* ContactInteractor.swift in Sources */,
 				A7B8FEF1214ED67900B60587 /* FormCellSendButtonView.swift in Sources */,
 			);

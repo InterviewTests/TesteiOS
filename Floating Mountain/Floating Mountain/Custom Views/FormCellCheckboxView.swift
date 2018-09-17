@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol FormCellCheckboxViewDelegate: class {
+    func formCellCheckbox(_ formCellCheckbox: FormCellCheckboxView, didChangeSelection selected: Bool)
+}
+
 class FormCellCheckboxView: FormCellView {
 
     lazy var checkboxButton: CheckboxButton = {
@@ -17,9 +21,12 @@ class FormCellCheckboxView: FormCellView {
         button.titleLabel?.font = regularFont
         button.setTitleColor(#colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1), for: .normal)
         button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(selectionChange(_:)), for: .valueChanged)
         button.sizeToFit()
         return button
     }()
+    
+    weak var delegate: FormCellCheckboxViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,6 +43,10 @@ class FormCellCheckboxView: FormCellView {
     override func setup(for formCell: Contact.FetchForm.ViewModel.CellViewModel) {
         super.setup(for: formCell)
         checkboxButton.setTitle(formCell.message, for: .normal)
+    }
+    
+    @objc func selectionChange(_ checkboxButton: CheckboxButton) {
+        delegate?.formCellCheckbox(self, didChangeSelection: checkboxButton.isSelected)
     }
     
 }
