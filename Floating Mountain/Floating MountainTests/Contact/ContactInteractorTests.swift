@@ -50,7 +50,7 @@ class ContactInteractorTests: XCTestCase {
             presentContactSuccessCalled = true
         }
         
-        func changeVisibilityOfField(with identifier: Int, to visibility: Bool) {
+        func present(response: Contact.ChangeVisibilityOfField.Response) {
             changeVisibilityOfFieldCalled = true
         }
         
@@ -90,9 +90,9 @@ class ContactInteractorTests: XCTestCase {
         // Given
         let spy = ContactPresentationLogicSpy()
         sut.presenter = spy
-        
+        let request = Contact.ChangeVisibilityOfField.Request(identifier: 1, visibility: true)
         // When
-        sut.changeVisibilityOfField(with: 1, to: true)
+        sut.perfom(request: request)
         
         // Then
         XCTAssertTrue(spy.changeVisibilityOfFieldCalled, "changeVisibilityOfField(with:to:) should ask the presenter to format the result")

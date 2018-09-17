@@ -11,21 +11,20 @@
 //
 
 protocol ContactSuccessBusinessLogic {
-    func sendAnotherMessage()
+    func sendAnotherMessage(request: ContactSuccess.SendAnotherMessage.Request)
 }
 
 protocol ContactSuccessDataStore {
-    //var name: String { get set }
 }
 
 class ContactSuccessInteractor: ContactSuccessBusinessLogic, ContactSuccessDataStore {
     var presenter: ContactSuccessPresentationLogic?
     var worker: ContactSuccessWorker?
-    //var name: String = ""
     
-    // MARK: Do something
+    // MARK: Send another message
     
-    func sendAnotherMessage() {
-        presenter?.dismissView()
+    func sendAnotherMessage(request: ContactSuccess.SendAnotherMessage.Request) {
+        let response = ContactSuccess.SendAnotherMessage.Response()
+        presenter?.presentSendAnotherMessage(response: response)
     }
 }

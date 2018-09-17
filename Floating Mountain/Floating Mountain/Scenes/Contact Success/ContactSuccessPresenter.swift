@@ -11,15 +11,16 @@
 //
 
 protocol ContactSuccessPresentationLogic {
-    func dismissView()
+    func presentSendAnotherMessage(response: ContactSuccess.SendAnotherMessage.Response)
 }
 
 class ContactSuccessPresenter: ContactSuccessPresentationLogic {
     weak var viewController: ContactSuccessDisplayLogic?
     
-    // MARK: Do something
+    // MARK: Send another message
     
-    func dismissView() {
-        viewController?.dismissView()
+    func presentSendAnotherMessage(response: ContactSuccess.SendAnotherMessage.Response) {
+        let viewModel = ContactSuccess.SendAnotherMessage.ViewModel()
+        viewController?.displaySendAnotherMessage(viewModel: viewModel)
     }
 }

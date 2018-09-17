@@ -46,4 +46,19 @@ enum Contact {
         }
     }
     
+    enum ChangeVisibilityOfField {
+        struct Request {
+            let identifier: Int?
+            let visibility: Bool
+        }
+        struct Response {
+            let identifier: Int
+            let visibility: Bool
+        }
+        struct ViewModel {
+            let identifier: Int
+            let visible: Bool
+        }
+    }
+    
 }

@@ -13,7 +13,7 @@
 import UIKit
 
 protocol ContactSuccessDisplayLogic: class {
-    func dismissView()
+    func displaySendAnotherMessage(viewModel: ContactSuccess.SendAnotherMessage.ViewModel)
 }
 
 class ContactSuccessViewController: UIViewController, ContactSuccessDisplayLogic {
@@ -64,15 +64,18 @@ class ContactSuccessViewController: UIViewController, ContactSuccessDisplayLogic
         super.viewDidLoad()
     }
     
+    // MARK: - Interface builder actions
+    
     @IBAction func sendAnotherMessage(_ sender: Any) {
         sendAnotherMessage()
     }
     
     func sendAnotherMessage() {
-        interactor?.sendAnotherMessage()
+        let request = ContactSuccess.SendAnotherMessage.Request()
+        interactor?.sendAnotherMessage(request: request)
     }
     
-    func dismissView() {
-        navigationController?.popViewController(animated: true)
+    func displaySendAnotherMessage(viewModel: ContactSuccess.SendAnotherMessage.ViewModel) {
+        dismiss(animated: true, completion: nil)
     }
 }

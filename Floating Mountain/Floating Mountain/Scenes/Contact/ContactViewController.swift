@@ -16,7 +16,7 @@ protocol ContactDisplayLogic: class {
     func displayForm(viewModel: Contact.FetchForm.ViewModel)
     func displayError(error: Error?)
     func displayContactSuccess()
-    func changeVisibilityOfField(with identifier: Int, to visibility: Bool)
+    func display(viewModel: Contact.ChangeVisibilityOfField.ViewModel)
 }
 
 class ContactViewController: UIViewController, ContactDisplayLogic, FormCellSendButtonViewDelegate, FormCellCheckboxViewDelegate {
@@ -91,7 +91,8 @@ class ContactViewController: UIViewController, ContactDisplayLogic, FormCellSend
     // MARK: - Form checkbox
     
     func formCellCheckbox(_ formCellCheckbox: FormCellCheckboxView, didChangeSelection selected: Bool) {
-        changeVisibilityOfField(with: formCellCheckbox.showIdentifier, to: selected)
+        let request = Contact.ChangeVisibilityOfField.Request(identifier: formCellCheckbox.showIdentifier, visibility: selected)
+        perform(request: request)
     }
     
     // MARK: - Fetch Form
@@ -140,18 +141,18 @@ class ContactViewController: UIViewController, ContactDisplayLogic, FormCellSend
         performSegue(withIdentifier: "ContactSuccess", sender: nil)
     }
     
-    func changeVisibilityOfField(with identifier: Int?, to visible: Bool) {
-        interactor?.changeVisibilityOfField(with: identifier, to: visible)
+    func perform(request: Contact.ChangeVisibilityOfField.Request) {
+        interactor?.perfom(request: request)
     }
     
-    func changeVisibilityOfField(with identifier: Int, to visible: Bool) {
+    func display(viewModel: Contact.ChangeVisibilityOfField.ViewModel) {
         guard let view = formStackView.arrangedSubviews.first(where: { (view) -> Bool in
-            return view is FormCellView && (view as! FormCellView).identifier == identifier
-        }), view.isHidden == visible else {
+            return view is FormCellView && (view as! FormCellView).identifier == viewModel.identifier
+        }), view.isHidden == viewModel.visible else {
             return
         }
         UIView.animate(withDuration: 0.3) {
-            view.isHidden = !visible
+            view.isHidden = !viewModel.visible
         }
     }
     

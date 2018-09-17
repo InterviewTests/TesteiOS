@@ -55,7 +55,7 @@ class ContactPresenterTests: XCTestCase {
             displayContactSuccessCalled = true
         }
         
-        func changeVisibilityOfField(with identifier: Int, to visibility: Bool) {
+        func display(viewModel: Contact.ChangeVisibilityOfField.ViewModel) {
             changeVisibilityOfFieldCalled = true
         }
     }
@@ -111,9 +111,9 @@ class ContactPresenterTests: XCTestCase {
         // Given
         let spy = ContactDisplayLogicSpy()
         sut.viewController = spy
-        
+        let response = Contact.ChangeVisibilityOfField.Response(identifier: 1, visibility: true)
         // When
-        sut.changeVisibilityOfField(with: 1, to: false)
+        sut.present(response: response)
         
         // Then
         XCTAssertTrue(spy.changeVisibilityOfFieldCalled, "changeVisibilityOfField(with:to:) should ask the view controller to display the result")

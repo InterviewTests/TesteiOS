@@ -85,6 +85,7 @@ class FormCellTextFieldView: FormCellView {
         case .email:
             textField.keyboardType = .emailAddress
             textField.autocapitalizationType = .none
+            textField.autocorrectionType = .no
             if #available(iOS 10.0, *) {
                 textField.textContentType = .emailAddress
             }

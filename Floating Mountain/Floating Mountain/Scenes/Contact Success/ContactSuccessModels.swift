@@ -12,7 +12,7 @@
 
 enum ContactSuccess {
     
-    enum Something {
+    enum SendAnotherMessage {
         struct Request {
         }
         struct Response {

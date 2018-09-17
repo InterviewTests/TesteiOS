@@ -13,7 +13,7 @@
 protocol ContactBusinessLogic {
     func fetchForm(request: Contact.FetchForm.Request)
     func sendForm()
-    func changeVisibilityOfField(with identifier: Int?, to visibility: Bool)
+    func perfom(request: Contact.ChangeVisibilityOfField.Request)
 }
 
 protocol ContactDataStore {
@@ -38,9 +38,10 @@ class ContactInteractor: ContactBusinessLogic, ContactDataStore {
         }
     }
     
-    func changeVisibilityOfField(with identifier: Int?, to visibility: Bool) {
-        guard let identifier = identifier else { return }
-        presenter?.changeVisibilityOfField(with: identifier, to: visibility)
+    func perfom(request: Contact.ChangeVisibilityOfField.Request) {
+        guard let identifier = request.identifier else { return }
+        let response = Contact.ChangeVisibilityOfField.Response(identifier: identifier, visibility: request.visibility)
+        presenter?.present(response: response)
     }
     
 }

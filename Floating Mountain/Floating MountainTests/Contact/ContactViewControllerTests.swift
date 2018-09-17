@@ -60,7 +60,7 @@ class ContactViewControllerTests: XCTestCase {
             sendFormCalled = true
         }
         
-        func changeVisibilityOfField(with identifier: Int?, to visibility: Bool) {
+        func perfom(request: Contact.ChangeVisibilityOfField.Request) {
             changeVisibilityOfFieldCalled = true
         }
     }
@@ -119,11 +119,11 @@ class ContactViewControllerTests: XCTestCase {
         // Given
         let spy = ContactBusinessLogicSpy()
         sut.interactor = spy
-        
+        let request = Contact.ChangeVisibilityOfField.Request(identifier: 1, visibility: true)
         // When
         loadView()
-        let id: Int? = 1
-        sut.changeVisibilityOfField(with: id, to: true)
+        
+        sut.perform(request: request)
         
         // Then
         XCTAssertTrue(spy.changeVisibilityOfFieldCalled)
