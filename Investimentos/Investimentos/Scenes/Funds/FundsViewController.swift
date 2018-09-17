@@ -166,7 +166,7 @@ extension FundsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
-            let header = tableView.dequeueReusableCell(withIdentifier: "MORE_INFO_HEADER") as? MoreInfoHeaderTableViewCell
+            let header = tableView.dequeueReusableCell(withIdentifier: CellNamespace.MoreInfoHeader) as? MoreInfoHeaderTableViewCell
             header?.cdiTitleLabel.text = "CDI"
             header?.fundTitleLabel.text = "Fundos"
             return header
