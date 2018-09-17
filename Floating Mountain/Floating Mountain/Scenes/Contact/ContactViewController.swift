@@ -85,13 +85,13 @@ class ContactViewController: UIViewController, ContactDisplayLogic, FormCellSend
         if formStackView.arrangedSubviews.contains(where: { view in !((view as? FormCellView)?.isValid() ?? true) }) {
             return
         }
-        interactor?.sendForm()
+        sendForm()
     }
     
     // MARK: - Form checkbox
     
     func formCellCheckbox(_ formCellCheckbox: FormCellCheckboxView, didChangeSelection selected: Bool) {
-        interactor?.changeVisibilityOfField(with: formCellCheckbox.showIdentifier, to: selected)
+        changeVisibilityOfField(with: formCellCheckbox.showIdentifier, to: selected)
     }
     
     // MARK: - Fetch Form
@@ -140,6 +140,10 @@ class ContactViewController: UIViewController, ContactDisplayLogic, FormCellSend
         performSegue(withIdentifier: "ContactSuccess", sender: nil)
     }
     
+    func changeVisibilityOfField(with identifier: Int?, to visible: Bool) {
+        interactor?.changeVisibilityOfField(with: identifier, to: visible)
+    }
+    
     func changeVisibilityOfField(with identifier: Int, to visible: Bool) {
         guard let view = formStackView.arrangedSubviews.first(where: { (view) -> Bool in
             return view is FormCellView && (view as! FormCellView).identifier == identifier
@@ -149,6 +153,10 @@ class ContactViewController: UIViewController, ContactDisplayLogic, FormCellSend
         UIView.animate(withDuration: 0.3) {
             view.isHidden = !visible
         }
+    }
+    
+    func sendForm() {
+        interactor?.sendForm()
     }
     
     // MARK: Routing

@@ -75,7 +75,7 @@ class InvestmentsViewControllerTests: XCTestCase {
         XCTAssertTrue(spy.fetchInvestmentsCalled, "viewDidLoad() should ask the interactor to do something")
     }
     
-    func testDisplaySomething() {
+    func testDisplayInvestments() {
         // Given
         let viewModel = Investments.FetchInvestments.ViewModel(
             title: "test",
