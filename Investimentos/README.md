@@ -4,15 +4,11 @@
 
 Aplicativo que consome dois serviços na web, preenchendo os metadados das páginas de Fundos de Investimentos e Formulário de Contato.
 
-  
 
-![Fundos de Investimentos](Assets/funds.png)
-
-![Formulário de contato (sem e-mail)](Assets/form.png)
-
-![Formulário de contato (com e-mail)](Assets/form-with-email.png)
-
-![Mensagem enviada com sucesso](Assets/success.png)
+. | .
+:-------: | :------:
+![Fundos de Investimentos](Assets/funds.png) | ![Formulário de contato (sem e-mail)](Assets/form.png)
+![Formulário de contato (com e-mail)](Assets/form-with-email.png)    | ![Mensagem enviada com sucesso](Assets/success.png)
 
   
 
