@@ -40,24 +40,43 @@ class FormTableViewController: UIViewController {
         let emailCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? TextFieldTableViewCell
         let phoneCell = tableView.cellForRow(at: IndexPath(row: registerEmail ? 3 : 2, section: 0)) as? TextFieldTableViewCell
         /*
-         > validando apenas as cores dos campos estão válidas.
+         > validando apenas se as cores dos campos estão válidas.
          > se sim, apresentar tela de sucesso.
          > se não, mostrar alert de erro.
         */
         if nameCell?.indicator.backgroundColor == #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1) && phoneCell?.indicator.backgroundColor == #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1) {
             if registerEmail {
                 if emailCell?.indicator.backgroundColor == #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1) {
+                    cleanFields()
                     performSegue(withIdentifier: SeguesIdentifiersNamespaces.SuccessMessageSegue, sender: nil)
                 } else {
                     Notices.showAlert(title: "Ops", message: "Por favor, verifique os campos preenchidos.", target: self)
                 }
             } else {
+                cleanFields()
                 performSegue(withIdentifier: SeguesIdentifiersNamespaces.SuccessMessageSegue, sender: nil)
             }
         } else {
             Notices.showAlert(title: "Ops", message: "Por favor, verifique os campos preenchidos.", target: self)
         }
         
+    }
+    
+    //MARK: - Aux actions
+    private func cleanFields() {
+        //recuperando células
+        let nameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TextFieldTableViewCell
+        let emailCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? TextFieldTableViewCell
+        let phoneCell = tableView.cellForRow(at: IndexPath(row: registerEmail ? 3 : 2, section: 0)) as? TextFieldTableViewCell
+        
+        //limpando texto
+        nameCell?.textField.text = ""
+        emailCell?.textField.text = ""
+        phoneCell?.textField.text = ""
+        
+        nameCell?.indicator.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.9372549057, blue: 0.9568627477, alpha: 1)
+        emailCell?.indicator.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.9372549057, blue: 0.9568627477, alpha: 1)
+        phoneCell?.indicator.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.9372549057, blue: 0.9568627477, alpha: 1)
     }
 
 }

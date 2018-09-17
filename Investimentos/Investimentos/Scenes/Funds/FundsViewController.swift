@@ -126,8 +126,9 @@ extension FundsViewController: UITableViewDelegate, UITableViewDataSource {
             return cell!
         case 5:
             //botão Investir
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.InvestButtonCell, for: indexPath)
-            return cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellNamespace.InvestButtonCell, for: indexPath) as? InvestButtonTableViewCell
+            cell?.investButton.setTitle("Investir", for: .normal)
+            return cell!
         default:
             break
         }
@@ -140,7 +141,7 @@ extension FundsViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             switch indexPath.row {
             case 0:
-                //primeira céula com altura dinâmica
+                //primeira célula com altura dinâmica
                 return UITableViewAutomaticDimension
             case 1:
                 return 120.0
