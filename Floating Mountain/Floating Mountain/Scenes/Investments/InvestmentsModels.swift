@@ -10,6 +10,8 @@
 //  see http://clean-swift.com
 //
 
+import Foundation
+
 enum Investments {
     // MARK: Use cases
     
@@ -49,6 +51,17 @@ enum Investments {
                 var data: String?
                 var showsDownloadButton: Bool
             }
+        }
+    }
+    
+    enum DownloadMoreInfo {
+        struct Request {
+        }
+        struct Response {
+            let url: URL
+        }
+        struct ViewModel {
+            let url: URL
         }
     }
 }

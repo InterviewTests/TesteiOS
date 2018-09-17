@@ -56,9 +56,10 @@ class InvestmentsViewControllerTests: XCTestCase {
             fetchInvestmentsCalled = true
         }
         
-        func downloadMoreInfo() {
+        func downloadMoreInfo(request: Investments.DownloadMoreInfo.Request) {
             downloadMoreInfoCalled = true
         }
+        
     }
     
     // MARK: Tests
@@ -111,5 +112,17 @@ class InvestmentsViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.twelveFundLabel.text, "test", "displayInvestments(viewModel:) should update the twelveFundLabel label")
         XCTAssertEqual(sut.twelveCDILabel.text, "test", "displayInvestments(viewModel:) should update the twelveCDILabel label")
         XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), 2, "displayInvestments(viewModel:) should update the tableView data")
+    }
+    
+    func testDownloadMoreInfo() {
+        // Given
+        let spy = InvestmentsBusinessLogicSpy()
+        sut.interactor = spy
+        
+        // When
+        loadView()
+        sut.downloadMoreInfo()
+        // Then
+        XCTAssertTrue(spy.downloadMoreInfoCalled, "downloadMoreInfo() should ask the interactor to download more info")
     }
 }

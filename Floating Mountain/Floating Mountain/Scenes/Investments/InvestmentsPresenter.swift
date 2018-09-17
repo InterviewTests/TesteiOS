@@ -14,7 +14,7 @@ import Foundation
 
 protocol InvestmentsPresentationLogic {
     func presentFunds(response: Investments.FetchInvestments.Response)
-    func presentMoreInfo()
+    func presentMoreInfo(response: Investments.DownloadMoreInfo.Response)
 }
 
 class InvestmentsPresenter: InvestmentsPresentationLogic {
@@ -73,7 +73,8 @@ class InvestmentsPresenter: InvestmentsPresentationLogic {
         
     }
     
-    func presentMoreInfo() {
-        viewController?.displayMoreInfo(at: URL(string: "https://www.google.com")!)
+    func presentMoreInfo(response: Investments.DownloadMoreInfo.Response) {
+        let viewModel = Investments.DownloadMoreInfo.ViewModel(url: response.url)
+        viewController?.displayMoreInfo(viewModel: viewModel)
     }
 }

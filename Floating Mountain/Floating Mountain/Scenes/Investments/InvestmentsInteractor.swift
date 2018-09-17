@@ -14,7 +14,7 @@ import Foundation
 
 protocol InvestmentsBusinessLogic {
     func fetch(request: Investments.FetchInvestments.Request)
-    func downloadMoreInfo()
+    func downloadMoreInfo(request: Investments.DownloadMoreInfo.Request)
 }
 
 protocol InvestmentsDataStore {
@@ -33,7 +33,8 @@ class InvestmentsInteractor: InvestmentsBusinessLogic, InvestmentsDataStore {
         })
     }
     
-    func downloadMoreInfo() {
-        presenter?.presentMoreInfo()
+    func downloadMoreInfo(request: Investments.DownloadMoreInfo.Request) {
+        let response = Investments.DownloadMoreInfo.Response(url: URL(string: "https://www.google.com")!)
+        presenter?.presentMoreInfo(response: response)
     }
 }

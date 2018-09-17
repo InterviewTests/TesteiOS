@@ -45,7 +45,7 @@ class InvestmentsInteractorTests: XCTestCase {
             presentFundsCalled = true
         }
         
-        func presentMoreInfo() {
+        func presentMoreInfo(response: Investments.DownloadMoreInfo.Response) {
             presentMoreInfoCalled = true
         }
         
@@ -74,9 +74,9 @@ class InvestmentsInteractorTests: XCTestCase {
         // Given
         let spy = InvestmentsPresentationLogicSpy()
         sut.presenter = spy
-        
+        let request = Investments.DownloadMoreInfo.Request()
         // When
-        sut.downloadMoreInfo()
+        sut.downloadMoreInfo(request: request)
         
         // Then
         XCTAssertTrue(spy.presentMoreInfoCalled, "downloadMoreInfo() should ask the presenter to format the result")

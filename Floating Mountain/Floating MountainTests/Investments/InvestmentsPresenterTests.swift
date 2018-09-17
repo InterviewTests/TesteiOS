@@ -55,7 +55,7 @@ class InvestmentsPresenterTests: XCTestCase {
             displayError = true
         }
         
-        func displayMoreInfo(at url: URL) {
+        func displayMoreInfo(viewModel: Investments.DownloadMoreInfo.ViewModel) {
             displayMoreInfo = true
         }
         
@@ -107,9 +107,9 @@ class InvestmentsPresenterTests: XCTestCase {
         // Given
         let spy = InvestmentsDisplayLogicSpy()
         sut.viewController = spy
-        
+        let response = Investments.DownloadMoreInfo.Response(url: URL(string: "https://www.google.com")!)
         // When
-        sut.presentMoreInfo()
+        sut.presentMoreInfo(response: response)
         
         // Then
         XCTAssertTrue(spy.displayMoreInfo, "presentMoreInfo() should ask the view controller to display the result")

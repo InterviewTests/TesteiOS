@@ -16,7 +16,7 @@ import SafariServices
 protocol InvestmentsDisplayLogic: class {
     func displayInvestments(viewModel: Investments.FetchInvestments.ViewModel)
     func displayError(error: Error)
-    func displayMoreInfo(at url: URL)
+    func displayMoreInfo(viewModel: Investments.DownloadMoreInfo.ViewModel)
 }
 
 class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic, DownloadInfoTableViewCellDelegate {
@@ -107,6 +107,11 @@ class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic,
         interactor?.fetch(request: request)
     }
     
+    func downloadMoreInfo() {
+        let request = Investments.DownloadMoreInfo.Request()
+        interactor?.downloadMoreInfo(request: request)
+    }
+    
     func displayInvestments(viewModel: Investments.FetchInvestments.ViewModel) {
         fundTitleLabel.text = viewModel.title
         fundNameLabel.text = viewModel.fundName
@@ -131,8 +136,8 @@ class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic,
         present(alert, animated: true, completion: nil)
     }
     
-    func displayMoreInfo(at url: URL) {
-        let safariViewController = SFSafariViewController(url: url)
+    func displayMoreInfo(viewModel: Investments.DownloadMoreInfo.ViewModel) {
+        let safariViewController = SFSafariViewController(url: viewModel.url)
         router?.presentMoreInfo(source: self, destination: safariViewController)
     }
     
@@ -167,7 +172,7 @@ class InvestmentsViewController: UITableViewController, InvestmentsDisplayLogic,
     // MARK: - Download info table view cell delegate
     
     func downloadInfoCell(_ downloadInfoCell: DownloadInfoTableViewCell, downloadButtonTapped downloadButton: UIButton) {
-        interactor?.downloadMoreInfo()
+        downloadMoreInfo()
     }
     
     // MARK: Routing
