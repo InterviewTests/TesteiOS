@@ -15,7 +15,7 @@ import UIKit
 protocol ContactDisplayLogic: class {
     func displayForm(viewModel: Contact.FetchForm.ViewModel)
     func displayError(error: Error?)
-    func displayContactSuccess()
+    func displayContactSuccess(viewModel: Contact.SendForm.ViewModel)
     func display(viewModel: Contact.ChangeVisibilityOfField.ViewModel)
 }
 
@@ -137,7 +137,7 @@ class ContactViewController: UIViewController, ContactDisplayLogic, FormCellSend
         present(alert, animated: true, completion: nil)
     }
     
-    func displayContactSuccess() {
+    func displayContactSuccess(viewModel: Contact.SendForm.ViewModel) {
         performSegue(withIdentifier: "ContactSuccess", sender: nil)
     }
     
@@ -157,7 +157,8 @@ class ContactViewController: UIViewController, ContactDisplayLogic, FormCellSend
     }
     
     func sendForm() {
-        interactor?.sendForm()
+        let request = Contact.SendForm.Request()
+        interactor?.sendForm(request: request)
     }
     
     // MARK: Routing

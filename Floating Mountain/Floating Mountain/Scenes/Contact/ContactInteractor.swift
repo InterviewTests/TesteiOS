@@ -12,7 +12,7 @@
 
 protocol ContactBusinessLogic {
     func fetchForm(request: Contact.FetchForm.Request)
-    func sendForm()
+    func sendForm(request: Contact.SendForm.Request)
     func perfom(request: Contact.ChangeVisibilityOfField.Request)
 }
 
@@ -31,10 +31,10 @@ class ContactInteractor: ContactBusinessLogic, ContactDataStore {
         })
     }
     
-    func sendForm() {
-        let request = Contact.SendForm.Request()
+    func sendForm(request: Contact.SendForm.Request) {
         worker.sendForm(request: request) { [weak self] in
-            self?.presenter?.presentContactSuccess()
+            let response = Contact.SendForm.Response()
+            self?.presenter?.presentContactSuccess(response: response)
         }
     }
     

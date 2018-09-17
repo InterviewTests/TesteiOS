@@ -39,12 +39,24 @@ class ContactWorkerTests: XCTestCase {
     
     // MARK: Tests
     
-    func testSomething() {
+    func testFetchForm() {
         // Given
         let expectation = XCTestExpectation(description: "fetch form")
         let request = Contact.FetchForm.Request()
         // When
         sut.fetchForm(request: request) { (_, _) in
+            expectation.fulfill()
+        }
+        // Then
+        wait(for: [expectation], timeout: 2.0)
+    }
+    
+    func testSendForm() {
+        // Given
+        let expectation = XCTestExpectation(description: "send form")
+        let request = Contact.SendForm.Request()
+        // When
+        sut.sendForm(request: request) {
             expectation.fulfill()
         }
         // Then

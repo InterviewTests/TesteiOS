@@ -12,7 +12,7 @@
 
 protocol ContactPresentationLogic {
     func presentForm(response: Contact.FetchForm.Response)
-    func presentContactSuccess()
+    func presentContactSuccess(response: Contact.SendForm.Response)
     func present(response: Contact.ChangeVisibilityOfField.Response)
 }
 
@@ -40,8 +40,9 @@ class ContactPresenter: ContactPresentationLogic {
         }
     }
     
-    func presentContactSuccess() {
-        viewController?.displayContactSuccess()
+    func presentContactSuccess(response: Contact.SendForm.Response) {
+        let viewModel = Contact.SendForm.ViewModel()
+        viewController?.displayContactSuccess(viewModel: viewModel)
     }
     
     func present(response: Contact.ChangeVisibilityOfField.Response) {

@@ -46,7 +46,7 @@ class ContactInteractorTests: XCTestCase {
             presentFormCalled = true
         }
         
-        func presentContactSuccess() {
+        func presentContactSuccess(response: Contact.SendForm.Response) {
             presentContactSuccessCalled = true
         }
         
@@ -78,9 +78,9 @@ class ContactInteractorTests: XCTestCase {
         // Given
         let spy = ContactPresentationLogicSpy()
         sut.presenter = spy
-        
+        let request = Contact.SendForm.Request()
         // When
-        sut.sendForm()
+        sut.sendForm(request: request)
         
         // Then
         XCTAssertTrue(spy.presentContactSuccessCalled, "sendForm() should ask the presenter to format the result")

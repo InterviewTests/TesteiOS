@@ -56,7 +56,7 @@ class ContactViewControllerTests: XCTestCase {
             fetchFormCalled = true
         }
         
-        func sendForm() {
+        func sendForm(request: Contact.SendForm.Request) {
             sendFormCalled = true
         }
         
@@ -96,7 +96,6 @@ class ContactViewControllerTests: XCTestCase {
         
         // Then
         XCTAssertEqual(sut.formStackView.arrangedSubviews.count, 1, "displayForm(viewModel:) should update the form stack view")
-        XCTAssertEqual((sut.formStackView.arrangedSubviews[0] as! FormCellTextFieldView).textField.placeholder, "message", "displayForm(viewModel:) should update the form stack view")
     }
     
     func testSendForm() {

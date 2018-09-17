@@ -51,7 +51,7 @@ class ContactPresenterTests: XCTestCase {
             displayErrorCalled = true
         }
         
-        func displayContactSuccess() {
+        func displayContactSuccess(viewModel: Contact.SendForm.ViewModel) {
             displayContactSuccessCalled = true
         }
         
@@ -100,8 +100,9 @@ class ContactPresenterTests: XCTestCase {
         // Given
         let spy = ContactDisplayLogicSpy()
         sut.viewController = spy
+        let response = Contact.SendForm.Response()
         // When
-        sut.presentContactSuccess()
+        sut.presentContactSuccess(response: response)
         
         // Then
         XCTAssertTrue(spy.displayContactSuccessCalled, "presentContactSuccess() should ask the view controller to display the result")
