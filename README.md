@@ -1,3 +1,11 @@
+## Lucas Fernandez Nicolau (IBM)
+
+# Para rodar basta acessar o projeto do XCode que se encontra na pasta TesteiOS
+# OBS.: Devido à bugs em algumas versões do XCode, rodar os testes em um simulador rodando iOS 11.x
+
+
+# - Desafio: -
+
 # Show me the code
 
 ### # DESAFIO:
