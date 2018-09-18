@@ -52,6 +52,28 @@ struct InfoModel: Codable {
     var data: String?
 }
 
+
+class FundViewModel {
+    var fund: FundModel
+    
+    init(fund: FundModel) {
+        self.fund = fund
+    }
+    
+    func getMoreInfoDetails() -> [InfoDetailModel?] {
+        var month = fund.moreInfo?.month
+        month?.title = "No mês"
+        
+        var year = fund.moreInfo?.year
+        year?.title = "No ano"
+        
+        var twelveMonths = fund.moreInfo?.month
+        twelveMonths?.title = "12 meses"
+        return [month, year, twelveMonths]
+    }
+}
+
+
 enum Fund {
     
     

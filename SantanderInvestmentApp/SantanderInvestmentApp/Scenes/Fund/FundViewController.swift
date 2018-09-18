@@ -12,78 +12,200 @@
 
 import UIKit
 
-protocol FundDisplayLogic: class
-{
-  func displaySomething(viewModel: Fund.Something.ViewModel)
+enum ScreenType {
+    case contact
+    case investiment
 }
 
-class FundViewController: UIViewController, FundDisplayLogic
-{
-  var interactor: FundBusinessLogic?
-  var router: (NSObjectProtocol & FundRoutingLogic & FundDataPassing)?
+protocol FundViewControllerInput: class {
+    func displayFunds(viewModel: FundViewModel)
+    func displayError(status: ViewStatus<ButtonAction>)
+}
 
-  // MARK: Object lifecycle
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = FundInteractor()
-    let presenter = FundPresenter()
-    let router = FundRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+protocol FundInfoProtocol {
+    func sections() -> [TableSectionable]
+    func itemsInfoSections() -> [TableSectionable]
+    
+    func contactSections() -> [TableSectionable]
+    func contactInfoSections() -> [TableSectionable]
+}
+
+extension FundInfoProtocol {
+    func sections() -> [TableSectionable] {
+        var sections: [TableSectionable] = []
+        sections.append(contentsOf: itemsInfoSections())
+        return sections
     }
-  }
-  
-  // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    doSomething()
-  }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = Fund.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: Fund.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+    
+    func contactSections() -> [TableSectionable] {
+        var sections: [TableSectionable] = []
+        sections.append(contentsOf: contactInfoSections())
+        return sections
+    }
 }
+
+class FundViewController: UIViewController {
+    var fundView: FundView?
+    var yieldBuilder: FundCellBuilder?
+    var descriptionItemsBuilder: FundCellBuilder?
+    var descriptionWithDownloadItemsBuilder: FundCellBuilder?
+    var interactor: FundInteractor?
+    var router: FundRouter?
+    
+    var datasource: TableViewSectionableDataSourceDelegate?
+    var contactDatasource: TableViewSectionableDataSourceDelegate?
+    
+    init(interactor: FundInteractor = FundInteractor(), presenter: FundPresenter = FundPresenter(), router: FundRouter = FundRouter()) {
+        self.fundView = FundView()
+        super.init(nibName: nil, bundle: nil)
+        
+        let viewController = self
+        self.interactor = interactor
+        let presenter = presenter
+        self.router = router
+        self.router?.viewController = viewController
+        viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        self.fundView?.delegate = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fundView = nil
+        super.init(coder: aDecoder)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupNavigationController()
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchForm()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func loadView() {
+        self.view = self.fundView
+    }
+    
+    private func setupNavigationController() {
+        self.title = "Investimento"
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    private func setupDatasource() {
+        yieldBuilder?.registerCell()
+        datasource = TableViewSectionableDataSourceDelegate(sections: sections())
+        fundView?.investementView.tableView.delegate = datasource
+        fundView?.investementView.tableView.dataSource = datasource
+        fundView?.investementView.tableView.reloadData()
+        
+        contactDatasource = TableViewSectionableDataSourceDelegate(sections: contactInfoSections())
+        fundView?.contactView.tableView.delegate = contactDatasource
+        fundView?.contactView.tableView.dataSource = contactDatasource
+        fundView?.contactView.tableView.reloadData()
+        
+        fundView?.updateTable()
+    }
+    
+    func fetchForm() {
+        ProgressView.shared.showProgressView(self.view)
+        interactor?.fetchFund()
+    }
+}
+
+extension FundViewController: FundViewControllerInput {
+    func displayError(status: ViewStatus<ButtonAction>) {
+        ProgressView.shared.hideProgressView()
+        switch status {
+        case .internetError(_):
+            self.view = ErrorView(errorMessage: "Você näo está conectado a internet, por favor conecte-se e tente novamente mais tarde.", buttonAction: {
+                self.fetchForm()
+            })
+        default:
+            self.view = ErrorView(errorMessage: "Ocorreu um erro na sua requisição, por favor tente novamente.", buttonAction: {
+                self.fetchForm()
+            })
+        }
+    }
+    
+    func displayFunds(viewModel: FundViewModel) {
+        ProgressView.shared.hideProgressView()
+        self.fundView?.setup(littleTitle: viewModel.fund.title, title: viewModel.fund.fundName, descriptionTitle: viewModel.fund.whatIs, descriptionText: viewModel.fund.definition, risk: viewModel.fund.riskTitle, riskSelected: viewModel.fund.risk, info: viewModel.fund.infoTitle)
+        guard let tableView = self.fundView?.investementView.tableView else {
+            fatalError("Cells and tableView must be provided")
+        }
+        
+        self.yieldBuilder = FundCellBuilder(infoDetailItems: viewModel.getMoreInfoDetails(), items: [], type: BuilderType.yield, tableView: tableView)
+        self.descriptionItemsBuilder = FundCellBuilder(infoDetailItems: [], items: viewModel.fund.info, type: BuilderType.details, tableView: tableView)
+        self.descriptionWithDownloadItemsBuilder = FundCellBuilder(infoDetailItems: [], items: viewModel.fund.downInfo, type: BuilderType.detailWithDownload, tableView: tableView)
+        
+        self.descriptionWithDownloadItemsBuilder?.delegate = self
+        self.setupDatasource()
+    }
+}
+
+//extension FundViewController: FormInfoProtocol {
+//    func itemsInfoSections() -> [TableSectionable] {
+//        guard let yieldBuilder = self.yieldBuilder, let descriptionItemsBuilder = self.descriptionItemsBuilder, let descriptionWithDownloadItemsBuilder = self.descriptionWithDownloadItemsBuilder else {
+//            fatalError("YieldBuilder, DescriptionItemsBuilder amd DescriptionWithDownloadItemsBuilder must be provided")
+//        }
+//        return [yieldBuilder.build(), descriptionItemsBuilder.build(), descriptionWithDownloadItemsBuilder.build()]
+//    }
+//    
+//    func contactInfoSections() -> [TableSectionable] {
+//        let cells = [
+//            CellModel(id: 1, type: .field, message: "Nome Completo", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true),
+//            CellModel(id: 2, type: .field, message: "Email", typefield: .email, hidden: false, topSpacing: 18.0, show: nil, required: true),
+//            CellModel(id: 3, type: .field, message: "Telefone", typefield: .telNumber, hidden: false, topSpacing: 18.0, show: nil, required: true),
+//            CellModel(id: 4, type: .checkbox, message: "Gostaria de cadastrar meu email", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true),
+//            CellModel(id: 5, type: .send, message: "Enviar", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true)
+//        ]
+//        if let tableView = FundView?.contactView.tableView {
+//            let cellsBuilder = FormCellBuilder(items: cells, tableView: tableView)
+//            cellsBuilder.registerCell()
+//            cellsBuilder.delegate = self
+//            return [cellsBuilder.build()]
+//        }
+//        fatalError("Must implement a tableView for the builder")
+//    }
+//}
+
+extension FundViewController: FundCellBuilderProtocol {
+    func didClickOnButton() {
+        router?.routerToSafari()
+    }
+}
+//
+//extension FundViewController: FormCellBuilderProtocol {
+//    func didClickButton() {
+//        self.fundView?.contactView.setupStatus(status: .success)
+//    }
+//}
+
+extension FundViewController: FundViewProtocol {
+    func didChangeTab(type: ScreenType) {
+        if type == .contact {
+            self.title = "Contato"
+        } else {
+            self.title = "Investimento"
+        }
+    }
+}
+

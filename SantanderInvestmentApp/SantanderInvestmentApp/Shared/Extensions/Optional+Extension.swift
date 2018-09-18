@@ -20,6 +20,12 @@ extension Optional where Wrapped == Int {
     }
 }
 
+extension Optional where Wrapped == Float {
+    var orZero: Float {
+        return self ?? 0.0
+    }
+}
+
 extension Optional where Wrapped == Data {
     var orNoData: Data {
         return self ?? Data.init()
