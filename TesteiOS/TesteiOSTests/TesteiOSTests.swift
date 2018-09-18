@@ -9,6 +9,15 @@
 import XCTest
 @testable import TesteiOS
 
+/****************************************************
+ *                                                  *
+ *           ----- OBSERVAÇÃO ------                *
+ * Devido à bugs em algumas versões do XCode,       *
+ * rodar os testes em um simulador rodando iOS 11.x *
+ *                                                  *
+ ****************************************************/
+
+
 class TesteiOSTests: XCTestCase {
     
     lazy var formVC: FormVC = {
