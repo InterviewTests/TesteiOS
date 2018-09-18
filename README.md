@@ -4,7 +4,6 @@
 ### OBS.: Devido à bugs em algumas versões do XCode, rodar os testes em um simulador rodando iOS 11.x
 
 
-# - Desafio: -
 
 # Show me the code
 
