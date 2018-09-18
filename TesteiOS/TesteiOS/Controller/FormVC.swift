@@ -21,12 +21,9 @@ class FormVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var checkbox: CustomCheckbox!
     @IBOutlet weak var sendButton: CustomButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var sentMessageView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        sentMessageView.isHidden = true
         
         cells = decodeFormJSON(fromFile: cellsJSON)
         setOutlets()
@@ -55,26 +52,19 @@ class FormVC: UIViewController, UITextFieldDelegate {
         if validate(textField: fullNameTextField) == .correct
             && validate(textField: emailTextField) == .correct
             && validate(textField: phoneNumberTextField) == .correct {
-            fullNameTextField.text = ""
-            fullNameTextField.customPlaceholderLabel.changeStatus(to: .noFocus)
-            fullNameTextField.statusView.changeStatus(to: .noFocus)
-        
-            emailTextField.text = ""
-            emailTextField.customPlaceholderLabel.changeStatus(to: .noFocus)
-            emailTextField.statusView.changeStatus(to: .noFocus)
-        
-            phoneNumberTextField.text = ""
-            phoneNumberTextField.customPlaceholderLabel.changeStatus(to: .noFocus)
-            phoneNumberTextField.statusView.changeStatus(to: .noFocus)
         
             dismissTextFields()
             dismissKeyboard()
-        
-            sentMessageView.isHidden = false
+            clearForm()
+            
+            self.tabBarController?.selectedIndex = 2
+            
+            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+            viewDidLayoutSubviews()
+        } else {
+            fullNameTextField.statusView.changeStatus(to: .incorrect)
+            emailTextField.statusView.changeStatus(to: .incorrect)
+            phoneNumberTextField.statusView.changeStatus(to: .incorrect)
         }
-    }
-    
-    @IBAction func newMessage(_ sender: Any) {
-        sentMessageView.isHidden = true
     }
 }
