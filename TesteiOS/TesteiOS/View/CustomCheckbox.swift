@@ -53,14 +53,6 @@ class CustomCheckbox: UIView {
         return view
     }()
     
-    @IBInspectable var font: UIFont = UILabel().font {
-        didSet {
-            if sideLabel == self.sideLabel {
-                sideLabel.font = font
-            }
-        }
-    }
-    
     override func awakeFromNib() {
         updateView()
     }

@@ -59,7 +59,6 @@ class RiskView: UIView {
                 let maskLayer = CAShapeLayer()
                 maskLayer.path = path.cgPath
                 riskView.layer.mask = maskLayer
-                
             }
             
             self.riskViews.append(riskView)
