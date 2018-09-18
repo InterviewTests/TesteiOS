@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jLM-Wp-zkY">
-    <device id="retina3_5" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -22,6 +22,68 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Item-->
+        <scene sceneID="0GR-Wp-SMp">
+            <objects>
+                <viewController id="5lQ-sx-Qwo" customClass="MessageSentVC" customModule="TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bSb-8r-hWF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contato" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3w9-Zj-s4h">
+                                <rect key="frame" x="157" y="70" width="61.5" height="20"/>
+                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yaE-d8-c19">
+                                <rect key="frame" x="92.5" y="478" width="190" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="CTU-Ov-L05"/>
+                                    <constraint firstAttribute="width" constant="190" id="dBg-AX-5Rc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
+                                <state key="normal" title="Enviar nova mensagem">
+                                    <color key="titleColor" red="0.79215686269999996" green="0.058823529409999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendNewMessage:" destination="5lQ-sx-Qwo" eventType="touchUpInside" id="cBa-EL-9EZ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPd-AB-LMP">
+                                <rect key="frame" x="154" y="256.5" width="67" height="17.5"/>
+                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="15"/>
+                                <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagem enviada com sucesso :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thi-FI-kn7">
+                                <rect key="frame" x="20" y="278" width="335" height="51.5"/>
+                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="thi-FI-kn7" secondAttribute="trailing" constant="20" id="0Ni-af-mQZ"/>
+                            <constraint firstItem="yaE-d8-c19" firstAttribute="centerX" secondItem="bSb-8r-hWF" secondAttribute="centerX" id="BhO-de-v37"/>
+                            <constraint firstItem="thi-FI-kn7" firstAttribute="centerY" secondItem="bSb-8r-hWF" secondAttribute="centerY" constant="-30" id="Eci-6h-fnk"/>
+                            <constraint firstItem="thi-FI-kn7" firstAttribute="top" secondItem="NPd-AB-LMP" secondAttribute="bottom" constant="4" id="Ffy-Eh-dW9"/>
+                            <constraint firstItem="thi-FI-kn7" firstAttribute="leading" secondItem="bSb-8r-hWF" secondAttribute="leading" constant="20" id="Gh0-54-Ttg"/>
+                            <constraint firstItem="thi-FI-kn7" firstAttribute="centerX" secondItem="bSb-8r-hWF" secondAttribute="centerX" id="GzM-yO-Apf"/>
+                            <constraint firstItem="NPd-AB-LMP" firstAttribute="centerX" secondItem="bSb-8r-hWF" secondAttribute="centerX" id="dOn-yw-BGc"/>
+                            <constraint firstItem="3w9-Zj-s4h" firstAttribute="top" secondItem="lFe-IL-NoS" secondAttribute="top" constant="50" id="hio-3J-FHU"/>
+                            <constraint firstItem="3w9-Zj-s4h" firstAttribute="centerX" secondItem="bSb-8r-hWF" secondAttribute="centerX" id="nee-w6-5Gx"/>
+                            <constraint firstItem="lFe-IL-NoS" firstAttribute="bottom" secondItem="yaE-d8-c19" secondAttribute="bottom" constant="100" id="u5M-se-S9B"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lFe-IL-NoS"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="bO9-Nk-RqU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kus-qb-7gU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1789" y="1195"/>
+        </scene>
         <!--FormVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -43,45 +105,60 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jdo-6X-nQw" customClass="CustomTextField" customModule="TesteiOS" customModuleProvider="target">
-                                                <rect key="frame" x="30" y="109.5" width="260" height="30"/>
+                                                <rect key="frame" x="30" y="109.5" width="260" height="22"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="typeFieldRawValue">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="onTextChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="i3O-tM-JLN"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ykx-l4-AfG" customClass="CustomTextField" customModule="TesteiOS" customModuleProvider="target">
-                                                <rect key="frame" x="30" y="199.5" width="260" height="30"/>
+                                                <rect key="frame" x="30" y="191.5" width="260" height="22"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="typeFieldRawValue">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="onTextChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="7ys-ao-mhz"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JRB-dm-tvz" customClass="CustomTextField" customModule="TesteiOS" customModuleProvider="target">
-                                                <rect key="frame" x="30" y="294.5" width="260" height="30"/>
+                                                <rect key="frame" x="30" y="278.5" width="260" height="22"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="typeFieldRawValue">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="onTextChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="TfL-Bj-gKZ"/>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z4g-94-tdn" customClass="CustomCheckbox" customModule="TesteiOS" customModuleProvider="target">
-                                                <rect key="frame" x="30" y="384.5" width="260" height="22"/>
+                                                <rect key="frame" x="30" y="360.5" width="260" height="22"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="FGr-jz-hea"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fww-49-giC" customClass="CustomButton" customModule="TesteiOS" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="431.5" width="280" height="50"/>
-                                                <color key="backgroundColor" red="0.79215686269999996" green="0.058823529409999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <rect key="frame" x="20" y="407.5" width="280" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="031-Id-Gsx"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="18"/>
+                                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
                                                 <state key="normal" title="Enviar">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -112,65 +189,11 @@
                                             <constraint firstAttribute="trailing" secondItem="JRB-dm-tvz" secondAttribute="trailing" constant="30" id="yZ5-gj-EIF"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXJ-IR-ECI">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="550"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contato" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRc-kc-Zj8">
-                                                <rect key="frame" x="130" y="45" width="60" height="22"/>
-                                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagem enviada com sucesso :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NgL-xP-aa7">
-                                                <rect key="frame" x="20" y="247.5" width="280" height="56.5"/>
-                                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="22"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efu-32-j3B">
-                                                <rect key="frame" x="65" y="390" width="190" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="14i-Fb-cdv"/>
-                                                    <constraint firstAttribute="width" constant="190" id="9xz-mN-D0l"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="17"/>
-                                                <state key="normal" title="Enviar nova mensagem">
-                                                    <color key="titleColor" red="0.79215686269999996" green="0.058823529409999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="newMessage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vhr-P2-BGH"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYh-hn-91P">
-                                                <rect key="frame" x="127.5" y="220" width="66.5" height="19.5"/>
-                                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="15"/>
-                                                <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="NgL-xP-aa7" firstAttribute="top" secondItem="bYh-hn-91P" secondAttribute="bottom" constant="8" id="4vV-JO-sMZ"/>
-                                            <constraint firstItem="NgL-xP-aa7" firstAttribute="centerY" secondItem="OXJ-IR-ECI" secondAttribute="centerY" id="CPA-Nd-FQG"/>
-                                            <constraint firstItem="efu-32-j3B" firstAttribute="centerX" secondItem="OXJ-IR-ECI" secondAttribute="centerX" id="IHI-hU-yiW"/>
-                                            <constraint firstItem="fRc-kc-Zj8" firstAttribute="centerX" secondItem="OXJ-IR-ECI" secondAttribute="centerX" id="Lf5-Uo-8qT"/>
-                                            <constraint firstAttribute="trailing" secondItem="NgL-xP-aa7" secondAttribute="trailing" constant="20" id="aHs-bl-cnK"/>
-                                            <constraint firstItem="bYh-hn-91P" firstAttribute="centerX" secondItem="OXJ-IR-ECI" secondAttribute="centerX" id="cGF-qf-4av"/>
-                                            <constraint firstItem="fRc-kc-Zj8" firstAttribute="top" secondItem="OXJ-IR-ECI" secondAttribute="top" constant="45" id="dbG-Ss-r5g"/>
-                                            <constraint firstItem="NgL-xP-aa7" firstAttribute="leading" secondItem="OXJ-IR-ECI" secondAttribute="leading" constant="20" id="o2L-Tg-8a2"/>
-                                            <constraint firstItem="NgL-xP-aa7" firstAttribute="centerX" secondItem="OXJ-IR-ECI" secondAttribute="centerX" id="rXR-6D-ed7"/>
-                                            <constraint firstAttribute="bottom" secondItem="efu-32-j3B" secondAttribute="bottom" constant="120" id="xV6-DV-WCn"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="OXJ-IR-ECI" secondAttribute="trailing" id="8dj-ig-PRN"/>
-                                    <constraint firstAttribute="bottom" secondItem="OXJ-IR-ECI" secondAttribute="bottom" id="SJP-dP-cjD"/>
                                     <constraint firstItem="gVv-4b-YDB" firstAttribute="width" secondItem="jyd-2Z-HLt" secondAttribute="width" id="WSp-fZ-CNk"/>
-                                    <constraint firstItem="OXJ-IR-ECI" firstAttribute="top" secondItem="jyd-2Z-HLt" secondAttribute="top" id="XGZ-wt-ec7"/>
                                     <constraint firstAttribute="bottom" secondItem="gVv-4b-YDB" secondAttribute="bottom" constant="10" id="bIT-cx-f2x"/>
                                     <constraint firstItem="gVv-4b-YDB" firstAttribute="height" secondItem="jyd-2Z-HLt" secondAttribute="height" priority="250" id="j9j-r0-JlX"/>
-                                    <constraint firstItem="OXJ-IR-ECI" firstAttribute="leading" secondItem="jyd-2Z-HLt" secondAttribute="leading" id="p0l-0h-nf5"/>
                                     <constraint firstAttribute="trailing" secondItem="gVv-4b-YDB" secondAttribute="trailing" id="rxh-j6-dfq"/>
                                     <constraint firstItem="gVv-4b-YDB" firstAttribute="leading" secondItem="jyd-2Z-HLt" secondAttribute="leading" id="xA9-DQ-Mcz"/>
                                     <constraint firstItem="gVv-4b-YDB" firstAttribute="top" secondItem="jyd-2Z-HLt" secondAttribute="top" id="xif-dy-KXF"/>
@@ -195,7 +218,6 @@
                         <outlet property="phoneNumberTextField" destination="JRB-dm-tvz" id="ONu-Ri-vJn"/>
                         <outlet property="scrollView" destination="jyd-2Z-HLt" id="owV-wp-S3P"/>
                         <outlet property="sendButton" destination="Fww-49-giC" id="zF0-Qi-i1e"/>
-                        <outlet property="sentMessageView" destination="OXJ-IR-ECI" id="cmT-hR-lnk"/>
                         <outlet property="titleLabel" destination="nBX-Zt-TvP" id="bMm-mE-kY3"/>
                     </connections>
                 </viewController>
@@ -394,12 +416,12 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhi-KK-hzI">
-                                                                    <rect key="frame" x="15" y="17" width="32" height="17"/>
+                                                                    <rect key="frame" x="15" y="17" width="33" height="17"/>
                                                                     <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="13"/>
                                                                     <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwi-oP-IyV">
+                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwi-oP-IyV">
                                                                     <rect key="frame" x="240" y="15.5" width="65" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="65" id="UCQ-gh-Zbd"/>
@@ -557,6 +579,7 @@
                     <connections>
                         <segue destination="94y-4h-amH" kind="relationship" relationship="viewControllers" id="maP-3x-k8s"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="u1f-Cc-QN6"/>
+                        <segue destination="5lQ-sx-Qwo" kind="relationship" relationship="viewControllers" id="BSt-2I-4cd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R3v-z7-ccj" userLabel="First Responder" sceneMemberID="firstResponder"/>
