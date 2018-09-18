@@ -1,5 +1,5 @@
 //
-//  TableViewHandler.swift
+//  TableViewDelegate.swift
 //  TesteiOS
 //
 //  Created by Nicolau on 16/09/18.
@@ -10,6 +10,7 @@ import UIKit
 import SafariServices
 
 extension FundVC {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return info.count
     }
