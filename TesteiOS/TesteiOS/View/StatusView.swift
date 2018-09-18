@@ -19,10 +19,11 @@ class StatusView: UIView {
     var status: Status = .noFocus
     let topSpacing: CGFloat = 10
     let height: CGFloat = 2
+    let margin: CGFloat = 60
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.frame = CGRect(x: 0, y: frame.height + topSpacing, width: UIScreen.main.bounds.width - 60, height: height)
+        self.frame = CGRect(x: 0, y: frame.height + topSpacing, width: UIScreen.main.bounds.width - margin, height: height)
     }
     
     required init?(coder aDecoder: NSCoder) {

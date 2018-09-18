@@ -11,8 +11,27 @@ import UIKit
 @IBDesignable
 class CustomTextField: UITextField {
     
-    var statusView: StatusView!
-    var customPlaceholderLabel: CustomPlaceholderLabel!
+    var typeField: TypeField = .text
+    @IBInspectable var typeFieldRawValue: Int = 1 {
+        didSet {
+            typeField = TypeField(rawValue: typeFieldRawValue) ?? .text
+            updateView()
+        }
+    }
+    
+    lazy var customPlaceholderLabel: CustomPlaceholderLabel = {
+        let view = CustomPlaceholderLabel(frame: self.frame)
+        view.changeStatus(to: .noFocus)
+        
+        return view
+    }()
+    
+    lazy var statusView: StatusView = {
+        let view = StatusView(frame: self.frame)
+        view.changeStatus(to: .noFocus)
+        
+        return view
+    }()
     
     override func awakeFromNib() {
         updateView()
@@ -25,14 +44,22 @@ class CustomTextField: UITextField {
     func updateView() {
         self.borderStyle = .none
         
-        customPlaceholderLabel = CustomPlaceholderLabel(frame: self.frame)
-        customPlaceholderLabel.changeStatus(to: .noFocus)
+        switch typeField {
+        case .text:
+            self.autocapitalizationType = .words
+            break
+        case .telNumber:
+            self.keyboardType = .phonePad
+            break
+        case .email:
+            self.keyboardType = .emailAddress
+            self.autocapitalizationType = .none
+            self.autocorrectionType = .no
+            break
+        }
+        
         self.addSubview(customPlaceholderLabel)
-        
-        statusView = StatusView(frame: self.frame)
-        statusView.changeStatus(to: .noFocus)
         self.addSubview(statusView)
-        
         self.bringSubview(toFront: statusView)
     }
 }

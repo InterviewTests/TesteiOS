@@ -15,14 +15,44 @@ enum State {
 
 @IBDesignable
 class CustomCheckbox: UIView {
-    var sideLabel: UILabel!
-    var border: UIView!
-    var check: UIView!
     var text = ""
     var btnState: State = .notSelected
     let margin: CGFloat = 6
     let sideLabelDist: CGFloat = 5
     let checkSize: CGFloat = 15
+    
+    var isSelected: Bool {
+        return btnState == .selected
+    }
+    
+    lazy var sideLabel: UILabel = {
+        let view = UILabel(frame: CGRect(x: border.frame.width + sideLabelDist, y: -self.frame.height / 4, width: UIScreen.main.bounds.width - check.frame.minX, height: self.frame.height))
+        view.text = text
+        view.textColor = #colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1)
+        view.backgroundColor = UIColor.clear
+        
+        return view
+    }()
+    
+    lazy var border: UIView = {
+        let view = UIView(frame: CGRect(x: -(margin / 2), y: -(margin / 2), width: check.frame.width + margin, height: check.frame.height + margin))
+        view.layer.cornerRadius = view.frame.width / 4
+        view.backgroundColor = UIColor.clear
+        view.clipsToBounds = true
+        view.layer.borderWidth = 2
+        view.layer.borderColor = #colorLiteral(red: 0.5921568627, green: 0.5921568627, blue: 0.5921568627, alpha: 1)
+        
+        return view
+    }()
+    
+    lazy var check: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: checkSize, height: checkSize))
+        view.layer.cornerRadius = view.frame.width / 4
+        view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
+        return view
+    }()
+    
     @IBInspectable var font: UIFont = UILabel().font {
         didSet {
             if sideLabel == self.sideLabel {
@@ -39,27 +69,7 @@ class CustomCheckbox: UIView {
         updateView()
     }
     
-    func isSelected() -> Bool {
-        return btnState == .selected
-    }
-    
     func updateView() {
-        check = UIView(frame: CGRect(x: 0, y: 0, width: checkSize, height: checkSize))
-        check.layer.cornerRadius = check.frame.width / 4
-        check.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        
-        border = UIView(frame: CGRect(x: -(margin / 2), y: -(margin / 2), width: check.frame.width + margin, height: check.frame.height + margin))
-        border.layer.cornerRadius = border.frame.width / 4
-        border.backgroundColor = UIColor.clear
-        border.clipsToBounds = true
-        border.layer.borderWidth = 2
-        border.layer.borderColor = #colorLiteral(red: 0.5921568627, green: 0.5921568627, blue: 0.5921568627, alpha: 1)
-        
-        sideLabel = UILabel(frame: CGRect(x: border.frame.width + sideLabelDist, y: -self.frame.height / 4, width: UIScreen.main.bounds.width - check.frame.minX, height: self.frame.height))
-        sideLabel.text = text
-        sideLabel.textColor = #colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1)
-        sideLabel.backgroundColor = UIColor.clear
-        
         self.layer.cornerRadius = self.frame.width / 4
         self.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
