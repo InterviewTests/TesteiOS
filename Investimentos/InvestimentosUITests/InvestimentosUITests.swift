@@ -73,10 +73,8 @@ class InvestimentosUITests: XCTestCase {
         
         let key3 = app/*@START_MENU_TOKEN@*/.keys["0"]/*[[".keyboards.keys[\"0\"]",".keys[\"0\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
         key3.tap()
-        key3.tap()
         
         let key4 = app/*@START_MENU_TOKEN@*/.keys["3"]/*[[".keyboards.keys[\"3\"]",".keys[\"3\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        key4.tap()
         key4.tap()
         tablesQuery/*@START_MENU_TOKEN@*/.buttons["Enviar"]/*[[".cells.buttons[\"Enviar\"]",".buttons[\"Enviar\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
 
@@ -84,5 +82,30 @@ class InvestimentosUITests: XCTestCase {
         XCTAssertTrue(successLabel.exists)
     }
     
+    func testRegisterEmailUnchecked() {
+        let app = XCUIApplication()
+        app.buttons["Contato"].tap()
+        
+        let tablesQuery = app.tables
+        
+        //desmarcando checkbox
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Gostaria de cadastrar meu email"]/*[[".cells.staticTexts[\"Gostaria de cadastrar meu email\"]",".staticTexts[\"Gostaria de cadastrar meu email\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        XCTAssertFalse(tablesQuery/*@START_MENU_TOKEN@*/.textFields["Email"]/*[[".cells.textFields[\"Email\"]",".textFields[\"Email\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.exists)
+    }
+    
+    func testRegisterEmailChecked() {
+        let app = XCUIApplication()
+        app.buttons["Contato"].tap()
+        
+        let tablesQuery = app.tables
+        
+        //desmarcando checkbox
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Gostaria de cadastrar meu email"]/*[[".cells.staticTexts[\"Gostaria de cadastrar meu email\"]",".staticTexts[\"Gostaria de cadastrar meu email\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        //marcando checkbox
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Gostaria de cadastrar meu email"]/*[[".cells.staticTexts[\"Gostaria de cadastrar meu email\"]",".staticTexts[\"Gostaria de cadastrar meu email\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        XCTAssertTrue(tablesQuery/*@START_MENU_TOKEN@*/.textFields["Email"]/*[[".cells.textFields[\"Email\"]",".textFields[\"Email\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.exists)
+    }
     
 }

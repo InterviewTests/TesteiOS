@@ -42,5 +42,5 @@ No projeto, foi utilizado o Travis CI, um servidor de Integração Contínua que
 
 * O Travis deve executar os testes unitários.
 
-* O Travis deve executar o teste de interface.
+* O Travis deve executar os testes de interface.
 
