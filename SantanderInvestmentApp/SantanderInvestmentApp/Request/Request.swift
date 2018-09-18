@@ -2,16 +2,17 @@
 //  Request.swift
 //  SantanderInvestmentApp
 //
-//  Created by Michel de Sousa Carvalho on 23/05/18.
+//  Created by m.a.carvalho on 17/09/18.
 //  Copyright © 2018 Michel de Sousa Carvalho. All rights reserved.
 //
 
 import Foundation
 
 final class Request {
-   static func load<T>(resource:Resource<T>, completion: @escaping (Result<T>) -> ()) {
+   static func load<T>(session: URLSessionProtocol = URLSession.shared, resource:Resource<T>,
+                       completion: @escaping (Result<T>) -> ()) {
         let request = URLRequest(resource: resource)
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        session.dataTask(with: request) { data, response, error in
             if let response = response as? HTTPURLResponse {
                 switch response.statusCode {
                     case 200...299:
@@ -29,10 +30,7 @@ final class Request {
                     default:
                         completion(Result.failureNetwork(NetworkErrorResponse.failed))
                 }
-                
-                
             }
-            
             }.resume()
     }
 }

@@ -2,7 +2,7 @@
 //  HTTPMethod.swift
 //  SantanderInvestmentApp
 //
-//  Created by Michel de Sousa Carvalho on 23/05/18.
+//  Created by m.a.carvalho on 17/09/18.
 //  Copyright © 2018 Michel de Sousa Carvalho. All rights reserved.
 //
 

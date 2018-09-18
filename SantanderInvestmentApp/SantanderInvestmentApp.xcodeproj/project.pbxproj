@@ -26,6 +26,11 @@
 		6C6A825920B60D9F009223AE /* FundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A825320B60D9F009223AE /* FundViewController.swift */; };
 		6C6A825A20B60D9F009223AE /* FundWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A825420B60D9F009223AE /* FundWorker.swift */; };
 		6C6A825C20B6493A009223AE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A825B20B6493A009223AE /* NetworkError.swift */; };
+		D6DEC7432150733600A0D019 /* Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7422150733600A0D019 /* Encoding.swift */; };
+		D6DEC7472150739C00A0D019 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7462150739C00A0D019 /* Dictionary+Extension.swift */; };
+		D6DEC74A2150823000A0D019 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7492150823000A0D019 /* URLSessionProtocol.swift */; };
+		D6DEC74C215082D500A0D019 /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC74B215082D500A0D019 /* URLSession+Extension.swift */; };
+		D6DEC74E215083D800A0D019 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC74D215083D800A0D019 /* MockURLSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +71,11 @@
 		70B36C54DDAD7396649BE658 /* Pods-SantanderInvestmentApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderInvestmentApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderInvestmentApp/Pods-SantanderInvestmentApp.debug.xcconfig"; sourceTree = "<group>"; };
 		982F0BEC6B86C22BAC58AD28 /* Pods-SantanderInvestmentApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderInvestmentApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderInvestmentApp/Pods-SantanderInvestmentApp.release.xcconfig"; sourceTree = "<group>"; };
 		C551318053D79B0D842B340F /* Pods-SantanderInvestmentAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderInvestmentAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderInvestmentAppTests/Pods-SantanderInvestmentAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D6DEC7422150733600A0D019 /* Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encoding.swift; sourceTree = "<group>"; };
+		D6DEC7462150739C00A0D019 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		D6DEC7492150823000A0D019 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		D6DEC74B215082D500A0D019 /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
+		D6DEC74D215083D800A0D019 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +121,8 @@
 		6C6A822420B5CC87009223AE /* SantanderInvestmentApp */ = {
 			isa = PBXGroup;
 			children = (
-				6C6A824E20B60D6F009223AE /* Fund */,
+				D6DEC7482150813D00A0D019 /* Scenes */,
+				D6DEC7442150737700A0D019 /* Shared */,
 				6C6A824520B5D0A1009223AE /* Request */,
 				6C6A822520B5CC87009223AE /* AppDelegate.swift */,
 				6C6A822720B5CC87009223AE /* ViewController.swift */,
@@ -140,6 +151,9 @@
 				6C6A824A20B5D0D2009223AE /* Resource.swift */,
 				6C6A824C20B5D262009223AE /* HTTPMethod.swift */,
 				6C6A825B20B6493A009223AE /* NetworkError.swift */,
+				D6DEC7422150733600A0D019 /* Encoding.swift */,
+				D6DEC7492150823000A0D019 /* URLSessionProtocol.swift */,
+				D6DEC74D215083D800A0D019 /* MockURLSession.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -155,6 +169,31 @@
 				6C6A825420B60D9F009223AE /* FundWorker.swift */,
 			);
 			path = Fund;
+			sourceTree = "<group>";
+		};
+		D6DEC7442150737700A0D019 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D6DEC7452150737F00A0D019 /* Extensions */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		D6DEC7452150737F00A0D019 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D6DEC7462150739C00A0D019 /* Dictionary+Extension.swift */,
+				D6DEC74B215082D500A0D019 /* URLSession+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D6DEC7482150813D00A0D019 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				6C6A824E20B60D6F009223AE /* Fund */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		F844470C07C663F154506B1F /* Pods */ = {
@@ -399,17 +438,22 @@
 			files = (
 				6C6A822820B5CC87009223AE /* ViewController.swift in Sources */,
 				6C6A824720B5D0BE009223AE /* Request.swift in Sources */,
+				D6DEC7432150733600A0D019 /* Encoding.swift in Sources */,
 				6C6A824D20B5D262009223AE /* HTTPMethod.swift in Sources */,
 				6C6A825820B60D9F009223AE /* FundRouter.swift in Sources */,
 				6C6A824920B5D0C5009223AE /* Result.swift in Sources */,
+				D6DEC74E215083D800A0D019 /* MockURLSession.swift in Sources */,
 				6C6A825720B60D9F009223AE /* FundPresenter.swift in Sources */,
 				6C6A825A20B60D9F009223AE /* FundWorker.swift in Sources */,
 				6C6A825620B60D9F009223AE /* FundModels.swift in Sources */,
 				6C6A825920B60D9F009223AE /* FundViewController.swift in Sources */,
 				6C6A824B20B5D0D2009223AE /* Resource.swift in Sources */,
 				6C6A825C20B6493A009223AE /* NetworkError.swift in Sources */,
+				D6DEC74A2150823000A0D019 /* URLSessionProtocol.swift in Sources */,
 				6C6A825520B60D9F009223AE /* FundInteractor.swift in Sources */,
 				6C6A822620B5CC87009223AE /* AppDelegate.swift in Sources */,
+				D6DEC7472150739C00A0D019 /* Dictionary+Extension.swift in Sources */,
+				D6DEC74C215082D500A0D019 /* URLSession+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
