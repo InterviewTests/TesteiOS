@@ -11,25 +11,69 @@ import XCTest
 
 class TesteiOSTests: XCTestCase {
     
+    lazy var formVC: FormVC = {
+        let vc = FormVC()
+        return vc
+    }()
+    
+    lazy var textField: CustomTextField = {
+        let view = CustomTextField()
+        return view
+    }()
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func test() {
+    func testEmailValidation() {
+        XCTAssertEqual(formVC.validateEmail(candidate: "a@a.co"), true)
+        XCTAssertEqual(formVC.validateEmail(candidate: "a@a.com"), true)
+        XCTAssertEqual(formVC.validateEmail(candidate: "a@a.com.br"), true)
         
+        XCTAssertEqual(formVC.validateEmail(candidate: "a@acom"), false)
+        XCTAssertEqual(formVC.validateEmail(candidate: "a@a.c"), false)
+        XCTAssertEqual(formVC.validateEmail(candidate: "@a.c"), false)
+        XCTAssertEqual(formVC.validateEmail(candidate: "a@.c"), false)
+        XCTAssertEqual(formVC.validateEmail(candidate: "aa.com"), false)
+        XCTAssertEqual(formVC.validateEmail(candidate: ""), false)
+    }
+    
+    func testPhoneValidation() {
+        XCTAssertEqual(formVC.validatePhone(candidate: "1111111111"), true)
+        XCTAssertEqual(formVC.validatePhone(candidate: "11111111111"), true)
+        
+        XCTAssertEqual(formVC.validatePhone(candidate: "111111111"), false)
+        XCTAssertEqual(formVC.validatePhone(candidate: "111111111111"), false)
+        XCTAssertEqual(formVC.validatePhone(candidate: "qwerty"), false)
+        XCTAssertEqual(formVC.validatePhone(candidate: ""), false)
+    }
+    
+    func testTextFieldValidations() {
+        textField.typeField = .text
+        textField.text = "Lucas"
+        XCTAssertEqual(formVC.validate(textField: textField), Status.correct)
+        textField.text = ""
+        XCTAssertEqual(formVC.validate(textField: textField), Status.incorrect)
+        
+        textField.typeField = .email
+        textField.text = "a@a.com"
+        XCTAssertEqual(formVC.validate(textField: textField), Status.correct)
+        textField.text = "a.com"
+        XCTAssertEqual(formVC.validate(textField: textField), Status.incorrect)
+        
+        textField.typeField = .telNumber
+        textField.text = "(11) 11111-1111"
+        XCTAssertEqual(formVC.validate(textField: textField), Status.correct)
+        textField.text = "111111111111"
+        XCTAssertEqual(formVC.validate(textField: textField), Status.incorrect)
     }
     
     func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        self.measure {}
     }
     
 }
