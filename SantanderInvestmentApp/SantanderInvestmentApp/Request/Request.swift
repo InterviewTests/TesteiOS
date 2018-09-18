@@ -17,7 +17,7 @@ final class Request {
                 switch response.statusCode {
                     case 200...299:
                         guard let data = data else {
-                            completion(Result.error(nil))
+                            completion(Result.failureNetwork(NetworkErrorResponse.noData))
                             return
                         }
                         completion(resource.parse(data))
@@ -40,9 +40,18 @@ extension URLRequest {
     init<T>(resource: Resource<T>) {
         self.init(url: resource.url)
         httpMethod = resource.method.method
-        self.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        self.allHTTPHeaderFields = resource.parametersHeader
+        if case let .get(params) = resource.method {
+            if let params = params as? String, var urlComponents =
+                URLComponents(url: resource.url, resolvingAgainstBaseURL: false) {
+                urlComponents.percentEncodedQuery = params
+                self.url = urlComponents.url
+            }
+        }
         if case let .post(data) = resource.method {
-            httpBody = data
+            if let data = data as? Data {
+                httpBody = data
+            }
         }
     }
 }

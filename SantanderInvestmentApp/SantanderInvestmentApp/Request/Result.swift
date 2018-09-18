@@ -10,17 +10,16 @@ import Foundation
 
 public enum Result<T> {
     case success(T)
-    case error(Error?)
     case failureNetwork(NetworkErrorResponse)
 }
 
 
 extension Result {
-    public init(_ value: T?, or error: Error) {
+    public init(_ value: T?, or error: NetworkErrorResponse) {
         if let value = value {
             self = .success(value)
         } else {
-            self = .error(error)
+            self = .failureNetwork(error)
         }
     }
     public var value: T? {

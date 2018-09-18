@@ -12,8 +12,8 @@ typealias JSONDictionary = [String: AnyObject]
 
 
 enum HttpMethod<Body> {
-    case get
-    case post(Body)
+    case get(data: Body?)
+    case post(data: Body)
 }
 
 extension HttpMethod {
@@ -24,11 +24,19 @@ extension HttpMethod {
         }
     }
     
+
     func map<B>(f: (Body) -> B) -> HttpMethod<B> {
         switch self {
-        case .get: return .get
-        case .post(let body):
-            return .post(f(body))
+        case .get(let data):
+            guard let data = data else {
+                return .get(data: nil)
+            }
+            return .get(data: f(data))
+
+        case .post(let data): return .post(data: f(data))
         }
     }
+    
 }
+
+

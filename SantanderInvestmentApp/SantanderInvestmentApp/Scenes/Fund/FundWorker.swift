@@ -14,47 +14,33 @@ import UIKit
 
 class FundWorker {
 
-    static func getFund(success: @escaping(_ fund: FundModel)->(),
-                        failure: @escaping(_ error: Error) ->()) {
+    func getFund(session: URLSessionProtocol = URLSession.shared,
+                 completion: @escaping(_ fund: FundModel)->(),
+                 failure: @escaping(_ error: NetworkErrorResponse) ->()) {
+        
+        guard let url = URL(string: Constants.Request.fund) else {
+            fatalError("Must provide a URL")
+        }
+        
+        let resource = Resource<FundModel>.init(url: url, parseJSON: { result in
+            return result
+        })
+        
+
+        
+        Request.load(session: session, resource: resource, completion: { result in
+            switch result {
+            case let .success(fund):
+                completion(fund)
+            case let .failureNetwork(error):
+                failure(error)
+            }
+            
+        })
         
     }
     
-    func doSomeWork() {
 
-    }
 }
 
-//
-//override func viewDidLoad() {
-//    super.viewDidLoad()
-//    // Do any additional setup after loading the view, typically from a nib.
-//    Request.load(resource: testPost(), completion: { data in
-//        print("Post \(data)")
-//    })
-//    Request.load(resource: getService(), completion: { data in
-//        print("Get \(data)")
-//    })
-//
-//}
-//
-//override func didReceiveMemoryWarning() {
-//    super.didReceiveMemoryWarning()
-//    // Dispose of any resources that can be recreated.
-//}
-//
-//
-//func testPost() -> Resource<Return> {
-//    let url = URL(string: "https://demo4558816.mockable.io/teste")!
-//    let dictionary = ["": ""]
-//    return Resource<Return>(url: url, method: .post(dictionary), parseJSON: { result in
-//        return result
-//    })
-//}
-//
-//func getService() -> Resource<Service> {
-//    let url = URL(string: "https://demo1457479.mockable.io/getService")!
-//    return Resource<Service>(url: url, parseJSON: { result in
-//        return result
-//    })
-//}
 

@@ -33,7 +33,7 @@ class FundInteractor: FundBusinessLogic, FundDataStore
   func doSomething(request: Fund.Something.Request)
   {
     worker = FundWorker()
-    worker?.doSomeWork()
+//    worker?.doSomeWork()
     
     let response = Fund.Something.Response()
     presenter?.presentSomething(response: response)

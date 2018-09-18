@@ -17,22 +17,22 @@ struct ScreenModel: Codable {
 }
 
 struct FundModel: Codable {
-    var title: String
-    var fundName: String
-    var whatIs: String
-    var definition: String
-    var riskTitle: String
-    var risk: Int
-    var infoTitle: String
-    var moreInfo: MoreInfoModel
-    var info: [InfoModel]
-    var downInfo: [InfoModel]
+    var title: String?
+    var fundName: String?
+    var whatIs: String?
+    var definition: String?
+    var riskTitle: String?
+    var risk: Int?
+    var infoTitle: String?
+    var moreInfo: MoreInfoModel?
+    var info: [InfoModel]?
+    var downInfo: [InfoModel]?
 }
 
 struct MoreInfoModel: Codable {
-    var month: InfoDetailModel
-    var year: InfoDetailModel
-    var twelveMonths: InfoDetailModel
+    var month: InfoDetailModel?
+    var year: InfoDetailModel?
+    var twelveMonths: InfoDetailModel?
     
     enum CodingKeys: String, CodingKey {
         case month
@@ -43,30 +43,28 @@ struct MoreInfoModel: Codable {
 
 struct InfoDetailModel: Codable {
     var title: String?
-    var fund: Float
-    var CDI: Float
+    var fund: Float?
+    var CDI: Float?
 }
 
 struct InfoModel: Codable {
-    var name: String
+    var name: String?
     var data: String?
 }
 
-
 enum Fund {
-
-
-  enum Something
-  {
-    struct Request
+    
+    
+    enum Something
     {
+        struct Request
+        {
+        }
+        struct Response {
+            
+        }
+        struct ViewModel {
+            
+        }
     }
-    struct Response {
-
-    }
-    struct ViewModel {
-
-    }
-  }
 }
-
