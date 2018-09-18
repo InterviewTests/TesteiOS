@@ -62,9 +62,17 @@ class FormVC: UIViewController, UITextFieldDelegate {
             scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
             viewDidLayoutSubviews()
         } else {
-            fullNameTextField.statusView.changeStatus(to: .incorrect)
-            emailTextField.statusView.changeStatus(to: .incorrect)
-            phoneNumberTextField.statusView.changeStatus(to: .incorrect)
+            if fullNameTextField.statusView.status != .correct {
+                fullNameTextField.statusView.changeStatus(to: .incorrect)
+            }
+            
+            if emailTextField.statusView.status != .correct {
+                emailTextField.statusView.changeStatus(to: .incorrect)
+            }
+            
+            if phoneNumberTextField.statusView.status != .correct {
+                phoneNumberTextField.statusView.changeStatus(to: .incorrect)
+            }
         }
     }
 }
