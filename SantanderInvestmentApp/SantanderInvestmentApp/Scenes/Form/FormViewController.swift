@@ -1,70 +1,50 @@
 //
-//  MainViewController.swift
+//  FormViewController.swift
 //  SantanderInvestmentApp
 //
 //  Created by m.a.carvalho on 18/09/18.
 //  Copyright © 2018 Michel de Sousa Carvalho. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-enum ScreenType {
-    case contact
-    case investiment
-}
-
-protocol MainViewControllerInput: class {
-    func displayFunds(viewModel: MainViewModel)
+protocol FormViewControllerInput: class {
+    func displayForm(viewModel: FormViewModel)
     func displayError(status: ViewStatus<ButtonAction>)
 }
 
-protocol MainInfoProtocol {
+protocol FormInfoProtocol {
     func sections() -> [TableSectionable]
     func itemsInfoSections() -> [TableSectionable]
-    
-    func contactSections() -> [TableSectionable]
-    func contactInfoSections() -> [TableSectionable]
 }
 
-extension MainInfoProtocol {
+extension FormInfoProtocol {
     func sections() -> [TableSectionable] {
         var sections: [TableSectionable] = []
         sections.append(contentsOf: itemsInfoSections())
         return sections
     }
-    
-    func contactSections() -> [TableSectionable] {
-        var sections: [TableSectionable] = []
-        sections.append(contentsOf: contactInfoSections())
-        return sections
-    }
 }
 
-class MainViewController: UIViewController {
-    var mainView: MainView?
-    var yieldBuilder: MainCellBuilder?
-    var descriptionItemsBuilder: MainCellBuilder?
-    var descriptionWithDownloadItemsBuilder: MainCellBuilder?
-    var interactor: MainInteractor?
-    var router: MainRouter?
+class FormViewController: UIViewController {
+    var mainView: FormView?
+    var cellsBuilder: FormCellBuilder?
+    var interactor: FormInteractor?
+    var router: FormRouterLogic?
     
     var datasource: TableViewSectionableDataSourceDelegate?
-    var contactDatasource: TableViewSectionableDataSourceDelegate?
     
-    init(interactor: MainInteractor = MainInteractor(), presenter: MainPresenter = MainPresenter(), router: MainRouter = MainRouter()) {
-        self.mainView = MainView()
+    init(interactor: FormInteractor = FormInteractor(), presenter: FormPresenter = FormPresenter(), router: FormRouter = FormRouter()) {
+        self.mainView = FormView()
         super.init(nibName: nil, bundle: nil)
         
         let viewController = self
         self.interactor = interactor
         let presenter = presenter
         self.router = router
-        self.router?.viewController = viewController
-        viewController.interactor = interactor
+        router.viewController = viewController
         interactor.presenter = presenter
         presenter.viewController = viewController
-        self.mainView?.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -74,7 +54,6 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationController()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -85,49 +64,43 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        setupNavigationController()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     override func loadView() {
-        self.view = self.mainView
+        self.view = mainView
     }
     
     private func setupNavigationController() {
-        self.title = "Investimento"
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationItem.title = " "
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     private func setupDatasource() {
-        yieldBuilder?.registerCell()
+        self.view = mainView
+        cellsBuilder?.registerCell()
         datasource = TableViewSectionableDataSourceDelegate(sections: sections())
-        mainView?.investementView.tableView.delegate = datasource
-        mainView?.investementView.tableView.dataSource = datasource
-        mainView?.investementView.tableView.reloadData()
-        
-        contactDatasource = TableViewSectionableDataSourceDelegate(sections: contactInfoSections())
-        mainView?.contactView.tableView.delegate = contactDatasource
-        mainView?.contactView.tableView.dataSource = contactDatasource
-        mainView?.contactView.tableView.reloadData()
-        
-        mainView?.updateTable()
+        datasource?.delegate = self
+        mainView?.tableView.delegate = datasource
+        mainView?.tableView.dataSource = datasource
+        mainView?.tableView.reloadData()
     }
     
     func fetchForm() {
         ProgressView.shared.showProgressView(self.view)
-        interactor?.fetchFund()
+        interactor?.fetchForm()
     }
 }
 
-extension MainViewController: MainViewControllerInput {
+extension FormViewController: FormViewControllerInput {
     func displayError(status: ViewStatus<ButtonAction>) {
         ProgressView.shared.hideProgressView()
         switch status {
@@ -142,66 +115,35 @@ extension MainViewController: MainViewControllerInput {
         }
     }
     
-    func displayFunds(viewModel: MainViewModel) {
+    func displayForm(viewModel: FormViewModel) {
         ProgressView.shared.hideProgressView()
-        self.mainView?.setup(littleTitle: viewModel.fund.title, title: viewModel.fund.fundName, descriptionTitle: viewModel.fund.whatIs, descriptionText: viewModel.fund.definition, risk: viewModel.fund.riskTitle, riskSelected: viewModel.fund.risk, info: viewModel.fund.infoTitle)
-        guard let tableView = self.mainView?.investementView.tableView else {
+        guard let tableView = self.mainView?.tableView else {
             fatalError("Cells and tableView must be provided")
         }
-        
-        self.yieldBuilder = MainCellBuilder(infoDetailItems: viewModel.getMoreInfoDetails(), items: [], type: BuilderType.yield, tableView: tableView)
-        self.descriptionItemsBuilder = MainCellBuilder(infoDetailItems: [], items: viewModel.fund.info, type: BuilderType.details, tableView: tableView)
-        self.descriptionWithDownloadItemsBuilder = MainCellBuilder(infoDetailItems: [], items: viewModel.fund.downInfo, type: BuilderType.detailWithDownload, tableView: tableView)
-        
-        self.descriptionWithDownloadItemsBuilder?.delegate = self
+        self.cellsBuilder = FormCellBuilder(items: viewModel.cells, tableView: tableView)
+        self.cellsBuilder?.delegate = self
         self.setupDatasource()
     }
 }
 
-extension MainViewController: FormInfoProtocol {
-    func itemsInfoSections() -> [TableSectionable] {
-        guard let yieldBuilder = self.yieldBuilder, let descriptionItemsBuilder = self.descriptionItemsBuilder, let descriptionWithDownloadItemsBuilder = self.descriptionWithDownloadItemsBuilder else {
-            fatalError("YieldBuilder, DescriptionItemsBuilder amd DescriptionWithDownloadItemsBuilder must be provided")
-        }
-        return [yieldBuilder.build(), descriptionItemsBuilder.build(), descriptionWithDownloadItemsBuilder.build()]
-    }
-    
-    func contactInfoSections() -> [TableSectionable] {
-        let cells = [
-            CellModel(id: 1, type: .field, message: "Nome Completo", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true),
-            CellModel(id: 2, type: .field, message: "Email", typefield: .email, hidden: false, topSpacing: 18.0, show: nil, required: true),
-            CellModel(id: 3, type: .field, message: "Telefone", typefield: .telNumber, hidden: false, topSpacing: 18.0, show: nil, required: true),
-            CellModel(id: 4, type: .checkbox, message: "Gostaria de cadastrar meu email", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true),
-            CellModel(id: 5, type: .send, message: "Enviar", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true)
-        ]
-        if let tableView = mainView?.contactView.tableView {
-            let cellsBuilder = FormCellBuilder(items: cells, tableView: tableView)
-            cellsBuilder.registerCell()
-            cellsBuilder.delegate = self
-            return [cellsBuilder.build()]
-        }
-        fatalError("Must implement a tableView for the builder")
+extension FormViewController: TableViewSectionableDelegate {
+    func didSelectRowAt(indexPath: IndexPath) {
+        
     }
 }
 
-extension MainViewController: MainCellBuilderProtocol {
-    func didClickOnButton() {
-        router?.routerToSafari()
-    }
-}
-
-extension MainViewController: FormCellBuilderProtocol {
+extension FormViewController: FormCellBuilderProtocol {
     func didClickButton() {
-        self.mainView?.contactView.setupStatus(status: .success)
+        router?.routerToMain()
     }
 }
 
-extension MainViewController: MainViewProtocol {
-    func didChangeTab(type: ScreenType) {
-        if type == .contact {
-            self.title = "Contato"
-        } else {
-            self.title = "Investimento"
+extension FormViewController: FormInfoProtocol {
+    func itemsInfoSections() -> [TableSectionable] {
+        guard let cellsBuilder = self.cellsBuilder else {
+            fatalError("CellsBuilder must be provided")
         }
+        return [cellsBuilder.build()]
     }
 }
+

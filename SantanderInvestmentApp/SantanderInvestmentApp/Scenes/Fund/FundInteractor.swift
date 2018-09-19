@@ -12,30 +12,22 @@
 
 import UIKit
 
-protocol FundBusinessLogic
-{
-  func doSomething(request: Fund.Something.Request)
-}
 
-protocol FundDataStore
-{
-  //var name: String { get set }
-}
 
-class FundInteractor: FundBusinessLogic, FundDataStore
-{
-  var presenter: FundPresentationLogic?
-  var worker: FundWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Fund.Something.Request)
-  {
-    worker = FundWorker()
-//    worker?.doSomeWork()
+class FundInteractor {
+    var worker: FundWorker
+    var presenter: FundPresenter?
     
-    let response = Fund.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    init(worker: FundWorker = FundWorker(), presenter: FundPresenter = FundPresenter()) {
+        self.worker = worker
+        self.presenter = presenter
+    }
+    
+    func fetchFund() {
+        worker.getFund(completion: { fund in
+            self.presenter?.presentFund(fund: fund)
+        }, failure: { error in
+            self.presenter?.presentError(error: error)
+        })
+    }
 }

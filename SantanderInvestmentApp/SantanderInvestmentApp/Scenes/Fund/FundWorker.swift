@@ -22,7 +22,7 @@ class FundWorker {
             fatalError("Must provide a URL")
         }
         
-        let resource = Resource<FundModel>.init(url: url, parseJSON: { result in
+        let resource = Resource<ScreenModel>.init(url: url, parseJSON: { result in
             return result
         })
         
@@ -30,8 +30,8 @@ class FundWorker {
         
         Request.load(session: session, resource: resource, completion: { result in
             switch result {
-            case let .success(fund):
-                completion(fund)
+            case let .success(screen):
+                completion(screen.screen)
             case let .failureNetwork(error):
                 failure(error)
             }

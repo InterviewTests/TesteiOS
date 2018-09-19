@@ -21,13 +21,13 @@ protocol FundCellBuilderProtocol: class {
 
 class FundCellBuilder: TableViewCellBuilder {
     let tableView: UITableView
-    let infoDetailItems: [InfoDetailModel]
+    let infoDetailItems: [InfoDetailModel?]
     let items: [InfoModel]
     let type: BuilderType
     
     weak var delegate: FundCellBuilderProtocol?
     
-    init(infoDetailItems: [InfoDetailModel], items: [InfoModel], type: BuilderType, tableView: UITableView) {
+    init(infoDetailItems: [InfoDetailModel?], items: [InfoModel], type: BuilderType, tableView: UITableView) {
         self.infoDetailItems = infoDetailItems
         self.items = items
         self.type = type
@@ -65,7 +65,12 @@ class FundCellBuilder: TableViewCellBuilder {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "YieldCell") as? YieldCell else {
                     fatalError("Must be provide a YieldCell")
                 }
-                cell.setup(title: item.title.orEmpty, fundo: item.fund.orZero, CDI: item.CDI.orZero)
+                
+                if let item = item {
+                    cell.setup(title: item.title.orEmpty, fundo: item.fund.orZero, CDI: item.CDI.orZero)
+                }
+                
+                
                 return cell
             }
         case .details:

@@ -147,57 +147,66 @@ extension FundViewController: FundViewControllerInput {
     
     func displayFunds(viewModel: FundViewModel) {
         ProgressView.shared.hideProgressView()
-        self.fundView?.setup(littleTitle: viewModel.fund.title, title: viewModel.fund.fundName, descriptionTitle: viewModel.fund.whatIs, descriptionText: viewModel.fund.definition, risk: viewModel.fund.riskTitle, riskSelected: viewModel.fund.risk, info: viewModel.fund.infoTitle)
+        self.fundView?.setup(littleTitle: viewModel.fund.title.orEmpty, title: viewModel.fund.fundName.orEmpty, descriptionTitle: viewModel.fund.whatIs.orEmpty, descriptionText: viewModel.fund.definition.orEmpty, risk: viewModel.fund.riskTitle.orEmpty, riskSelected: viewModel.fund.risk.orZero, info: viewModel.fund.infoTitle.orEmpty)
         guard let tableView = self.fundView?.investementView.tableView else {
             fatalError("Cells and tableView must be provided")
         }
         
         self.yieldBuilder = FundCellBuilder(infoDetailItems: viewModel.getMoreInfoDetails(), items: [], type: BuilderType.yield, tableView: tableView)
-        self.descriptionItemsBuilder = FundCellBuilder(infoDetailItems: [], items: viewModel.fund.info, type: BuilderType.details, tableView: tableView)
-        self.descriptionWithDownloadItemsBuilder = FundCellBuilder(infoDetailItems: [], items: viewModel.fund.downInfo, type: BuilderType.detailWithDownload, tableView: tableView)
+        if let info = viewModel.fund.info {
+            self.descriptionItemsBuilder = FundCellBuilder(infoDetailItems: [], items: info,
+                                                           type: BuilderType.details, tableView: tableView)
+        }
+        
+        if let downInfo = viewModel.fund.downInfo {
+            self.descriptionWithDownloadItemsBuilder = FundCellBuilder(infoDetailItems: [], items: downInfo,
+                                                                       type: BuilderType.detailWithDownload,
+                                                                       tableView: tableView)
+        }
+        
         
         self.descriptionWithDownloadItemsBuilder?.delegate = self
         self.setupDatasource()
     }
 }
 
-//extension FundViewController: FormInfoProtocol {
-//    func itemsInfoSections() -> [TableSectionable] {
-//        guard let yieldBuilder = self.yieldBuilder, let descriptionItemsBuilder = self.descriptionItemsBuilder, let descriptionWithDownloadItemsBuilder = self.descriptionWithDownloadItemsBuilder else {
-//            fatalError("YieldBuilder, DescriptionItemsBuilder amd DescriptionWithDownloadItemsBuilder must be provided")
-//        }
-//        return [yieldBuilder.build(), descriptionItemsBuilder.build(), descriptionWithDownloadItemsBuilder.build()]
-//    }
-//    
-//    func contactInfoSections() -> [TableSectionable] {
-//        let cells = [
-//            CellModel(id: 1, type: .field, message: "Nome Completo", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true),
-//            CellModel(id: 2, type: .field, message: "Email", typefield: .email, hidden: false, topSpacing: 18.0, show: nil, required: true),
-//            CellModel(id: 3, type: .field, message: "Telefone", typefield: .telNumber, hidden: false, topSpacing: 18.0, show: nil, required: true),
-//            CellModel(id: 4, type: .checkbox, message: "Gostaria de cadastrar meu email", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true),
-//            CellModel(id: 5, type: .send, message: "Enviar", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true)
-//        ]
-//        if let tableView = FundView?.contactView.tableView {
-//            let cellsBuilder = FormCellBuilder(items: cells, tableView: tableView)
-//            cellsBuilder.registerCell()
-//            cellsBuilder.delegate = self
-//            return [cellsBuilder.build()]
-//        }
-//        fatalError("Must implement a tableView for the builder")
-//    }
-//}
+extension FundViewController: FormInfoProtocol {
+    func itemsInfoSections() -> [TableSectionable] {
+        guard let yieldBuilder = self.yieldBuilder, let descriptionItemsBuilder = self.descriptionItemsBuilder, let descriptionWithDownloadItemsBuilder = self.descriptionWithDownloadItemsBuilder else {
+            fatalError("YieldBuilder, DescriptionItemsBuilder amd DescriptionWithDownloadItemsBuilder must be provided")
+        }
+        return [yieldBuilder.build(), descriptionItemsBuilder.build(), descriptionWithDownloadItemsBuilder.build()]
+    }
+    
+    func contactInfoSections() -> [TableSectionable] {
+        let cells = [
+            CellModel(id: 1, type: .field, message: "Nome Completo", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true),
+            CellModel(id: 2, type: .field, message: "Email", typefield: .email, hidden: false, topSpacing: 18.0, show: nil, required: true),
+            CellModel(id: 3, type: .field, message: "Telefone", typefield: .telNumber, hidden: false, topSpacing: 18.0, show: nil, required: true),
+            CellModel(id: 4, type: .checkbox, message: "Gostaria de cadastrar meu email", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true),
+            CellModel(id: 5, type: .send, message: "Enviar", typefield: .text, hidden: false, topSpacing: 18.0, show: nil, required: true)
+        ]
+        if let tableView = fundView?.contactView.tableView {
+            let cellsBuilder = FormCellBuilder(items: cells, tableView: tableView)
+            cellsBuilder.registerCell()
+            cellsBuilder.delegate = self
+            return [cellsBuilder.build()]
+        }
+        fatalError("Must implement a tableView for the builder")
+    }
+}
 
 extension FundViewController: FundCellBuilderProtocol {
     func didClickOnButton() {
         router?.routerToSafari()
     }
 }
-//
-//extension FundViewController: FormCellBuilderProtocol {
-//    func didClickButton() {
-//        self.fundView?.contactView.setupStatus(status: .success)
-//    }
-//}
+
+extension FundViewController: FormCellBuilderProtocol {
+    func didClickButton() {
+        self.fundView?.contactView.setupStatus(status: .success)
+    }
+}
 
 extension FundViewController: FundViewProtocol {
     func didChangeTab(type: ScreenType) {
@@ -208,4 +217,3 @@ extension FundViewController: FundViewProtocol {
         }
     }
 }
-

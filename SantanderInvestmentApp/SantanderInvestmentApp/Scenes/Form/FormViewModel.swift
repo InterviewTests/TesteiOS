@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+class FormViewModel {
+    var cells: [CellModel]
+    
+    init(cells: [CellModel]) {
+        self.cells = cells
+    }
+}

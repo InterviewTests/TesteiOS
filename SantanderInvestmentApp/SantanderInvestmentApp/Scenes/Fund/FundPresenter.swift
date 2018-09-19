@@ -12,20 +12,27 @@
 
 import UIKit
 
-protocol FundPresentationLogic
-{
-  func presentSomething(response: Fund.Something.Response)
+class FundPresenter {
+    weak var viewController: FundViewControllerInput?
+    
+    func presentFund(fund: FundModel) {
+        DispatchQueue.main.async {
+            let viewModel = FundViewModel(fund: fund)
+            self.viewController?.displayFunds(viewModel: viewModel)
+        }
+    }
+    
+    func presentError(error: NetworkErrorResponse) {
+        switch error{
+        case .noInternetConnection:
+            DispatchQueue.main.async {
+                self.viewController?.displayError(status: ViewStatus.internetError({}))
+            }
+        default:
+            DispatchQueue.main.async {
+                self.viewController?.displayError(status: ViewStatus.requestError({}))
+            }
+        }
+    }
 }
 
-class FundPresenter: FundPresentationLogic
-{
-  weak var viewController: FundDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: Fund.Something.Response)
-  {
-    let viewModel = Fund.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
-}

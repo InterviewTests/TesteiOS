@@ -18,10 +18,10 @@ class FormInteractor {
     }
     
     func fetchForm() {
-        worker.getForm(success: { (cells) in
+        worker.getForm(completion: { cells in
             self.presenter?.presentForm(cells: cells)
-        }) { (error) in
+        }, failure: { error in
             self.presenter?.presentError(error: error)
-        }
+        })
     }
 }
