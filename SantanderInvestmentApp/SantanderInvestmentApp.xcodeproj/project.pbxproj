@@ -1,0 +1,938 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18B0290D1E577449A38A16FE /* Pods_SantanderInvestmentApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0407B5E9FFD61E26F26DA6EC /* Pods_SantanderInvestmentApp.framework */; };
+		1F1BB61163D822A0349A4B2E /* Pods_SantanderInvestmentApp_SantanderInvestmentAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EDD72EDB496060A3D9BD961 /* Pods_SantanderInvestmentApp_SantanderInvestmentAppTests.framework */; };
+		6C6A822620B5CC87009223AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A822520B5CC87009223AE /* AppDelegate.swift */; };
+		6C6A822820B5CC87009223AE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A822720B5CC87009223AE /* ViewController.swift */; };
+		6C6A822B20B5CC87009223AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C6A822920B5CC87009223AE /* Main.storyboard */; };
+		6C6A822D20B5CC87009223AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C6A822C20B5CC87009223AE /* Assets.xcassets */; };
+		6C6A823020B5CC87009223AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C6A822E20B5CC87009223AE /* LaunchScreen.storyboard */; };
+		6C6A824720B5D0BE009223AE /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A824620B5D0BE009223AE /* Request.swift */; };
+		6C6A824920B5D0C5009223AE /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A824820B5D0C5009223AE /* Result.swift */; };
+		6C6A824B20B5D0D2009223AE /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A824A20B5D0D2009223AE /* Resource.swift */; };
+		6C6A824D20B5D262009223AE /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A824C20B5D262009223AE /* HTTPMethod.swift */; };
+		6C6A825520B60D9F009223AE /* FundInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A824F20B60D9F009223AE /* FundInteractor.swift */; };
+		6C6A825620B60D9F009223AE /* FundModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A825020B60D9F009223AE /* FundModels.swift */; };
+		6C6A825720B60D9F009223AE /* FundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A825120B60D9F009223AE /* FundPresenter.swift */; };
+		6C6A825820B60D9F009223AE /* FundRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A825220B60D9F009223AE /* FundRouter.swift */; };
+		6C6A825920B60D9F009223AE /* FundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A825320B60D9F009223AE /* FundViewController.swift */; };
+		6C6A825A20B60D9F009223AE /* FundWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A825420B60D9F009223AE /* FundWorker.swift */; };
+		6C6A825C20B6493A009223AE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6A825B20B6493A009223AE /* NetworkError.swift */; };
+		D6DEC7432150733600A0D019 /* Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7422150733600A0D019 /* Encoding.swift */; };
+		D6DEC7472150739C00A0D019 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7462150739C00A0D019 /* Dictionary+Extension.swift */; };
+		D6DEC74A2150823000A0D019 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7492150823000A0D019 /* URLSessionProtocol.swift */; };
+		D6DEC74C215082D500A0D019 /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC74B215082D500A0D019 /* URLSession+Extension.swift */; };
+		D6DEC74E215083D800A0D019 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC74D215083D800A0D019 /* MockURLSession.swift */; };
+		D6DEC7502150848A00A0D019 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC74F2150848A00A0D019 /* Constants.swift */; };
+		D6DEC752215089EF00A0D019 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC751215089EF00A0D019 /* Header.swift */; };
+		D6DEC75421508A2300A0D019 /* RequestHeaderMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC75321508A2300A0D019 /* RequestHeaderMethod.swift */; };
+		D6DEC75621508B7C00A0D019 /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC75521508B7C00A0D019 /* Optional+Extension.swift */; };
+		D6DEC7582151085600A0D019 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7572151085600A0D019 /* ContactView.swift */; };
+		D6DEC75B215108A800A0D019 /* ViewConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC75A215108A800A0D019 /* ViewConfigurationProtocol.swift */; };
+		D6DEC75D215108D100A0D019 /* TableViewDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC75C215108D100A0D019 /* TableViewDataSourceDelegate.swift */; };
+		D6DEC75F2151090400A0D019 /* TableViewCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC75E2151090400A0D019 /* TableViewCellBuilder.swift */; };
+		D6DEC7622151099C00A0D019 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7612151099C00A0D019 /* Status.swift */; };
+		D6DEC764215109F400A0D019 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC763215109F400A0D019 /* UIColor+Extension.swift */; };
+		D6DEC76621510A1200A0D019 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC76521510A1200A0D019 /* UIFont+Extension.swift */; };
+		D6DEC76821510B5200A0D019 /* InvestimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC76721510B5200A0D019 /* InvestimentView.swift */; };
+		D6DEC76B21510B9100A0D019 /* RiskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC76A21510B9100A0D019 /* RiskView.swift */; };
+		D6DEC76D21510BF600A0D019 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC76C21510BF600A0D019 /* Button.swift */; };
+		D6DEC76F21510E6D00A0D019 /* FundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC76E21510E6D00A0D019 /* FundView.swift */; };
+		D6DEC77121510EA300A0D019 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC77021510EA300A0D019 /* UIImage+Extension.swift */; };
+		D6DEC77321510ED800A0D019 /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC77221510ED800A0D019 /* SegmentControl.swift */; };
+		D6DEC7752151106C00A0D019 /* FundCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7742151106C00A0D019 /* FundCellBuilder.swift */; };
+		D6DEC778215110BD00A0D019 /* FirstYieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC777215110BD00A0D019 /* FirstYieldCell.swift */; };
+		D6DEC77A215110E400A0D019 /* YieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC779215110E400A0D019 /* YieldCell.swift */; };
+		D6DEC77C215110FF00A0D019 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC77B215110FF00A0D019 /* DescriptionCell.swift */; };
+		D6DEC77E2151135100A0D019 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC77D2151135100A0D019 /* ErrorView.swift */; };
+		D6DEC7812151CE3D00A0D019 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7802151CE3D00A0D019 /* FormViewController.swift */; };
+		D6DEC7852151CF3C00A0D019 /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7842151CF3C00A0D019 /* FormView.swift */; };
+		D6DEC7872151CF5800A0D019 /* FormCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7862151CF5800A0D019 /* FormCellBuilder.swift */; };
+		D6DEC7892151CF7400A0D019 /* FormInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7882151CF7300A0D019 /* FormInteractor.swift */; };
+		D6DEC78B2151CF8E00A0D019 /* FormPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC78A2151CF8E00A0D019 /* FormPresenter.swift */; };
+		D6DEC78D2151CFA500A0D019 /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC78C2151CFA500A0D019 /* FormViewModel.swift */; };
+		D6DEC78F2151CFBE00A0D019 /* FormWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC78E2151CFBE00A0D019 /* FormWorker.swift */; };
+		D6DEC7912151CFD900A0D019 /* FormRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7902151CFD900A0D019 /* FormRouter.swift */; };
+		D6DEC7942151D02D00A0D019 /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7932151D02D00A0D019 /* CellModel.swift */; };
+		D6DEC7962151E33100A0D019 /* InputTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7952151E33100A0D019 /* InputTextCell.swift */; };
+		D6DEC7982151E35900A0D019 /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7972151E35900A0D019 /* TextCell.swift */; };
+		D6DEC79A2151E3C400A0D019 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7992151E3C400A0D019 /* TextField.swift */; };
+		D6DEC79C2151E3E000A0D019 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC79B2151E3E000A0D019 /* Checkbox.swift */; };
+		D6DEC79E2151E42900A0D019 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC79D2151E42900A0D019 /* CardView.swift */; };
+		D6DEC7A02151E46F00A0D019 /* CheckboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC79F2151E46F00A0D019 /* CheckboxCell.swift */; };
+		D6DEC7A22151E4DE00A0D019 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7A12151E4DE00A0D019 /* String+Extension.swift */; };
+		D6DEC7A42151E50B00A0D019 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7A32151E50B00A0D019 /* ButtonCell.swift */; };
+		D6DEC7A92151E5BC00A0D019 /* NSStringMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7A82151E5BC00A0D019 /* NSStringMask.m */; };
+		D6DEC7AB2151E60300A0D019 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7AA2151E60300A0D019 /* ProgressView.swift */; };
+		D6DEC7AD2151E9CE00A0D019 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7AC2151E9CE00A0D019 /* NavigationController.swift */; };
+		D6DEC7B02152570300A0D019 /* cells.json in Resources */ = {isa = PBXBuildFile; fileRef = D6DEC7AF2152570300A0D019 /* cells.json */; };
+		D6DEC7B22152572700A0D019 /* fund.json in Resources */ = {isa = PBXBuildFile; fileRef = D6DEC7B12152572700A0D019 /* fund.json */; };
+		D6DEC7B52152585300A0D019 /* FundTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7B42152585300A0D019 /* FundTest.swift */; };
+		D6DEC7B721525AF700A0D019 /* UIWindowTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7B621525AF700A0D019 /* UIWindowTestHelper.swift */; };
+		D6DEC7B921525E9900A0D019 /* FormTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DEC7B821525E9900A0D019 /* FormTest.swift */; };
+		D6DEC7BA2152629E00A0D019 /* cells.json in Resources */ = {isa = PBXBuildFile; fileRef = D6DEC7AF2152570300A0D019 /* cells.json */; };
+		D6DEC7BB215262A100A0D019 /* fund.json in Resources */ = {isa = PBXBuildFile; fileRef = D6DEC7B12152572700A0D019 /* fund.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6C6A823720B5CC88009223AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6C6A821A20B5CC87009223AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6C6A822120B5CC87009223AE;
+			remoteInfo = SantanderInvestmentApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0407B5E9FFD61E26F26DA6EC /* Pods_SantanderInvestmentApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderInvestmentApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EDD72EDB496060A3D9BD961 /* Pods_SantanderInvestmentApp_SantanderInvestmentAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderInvestmentApp_SantanderInvestmentAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C6A822220B5CC87009223AE /* SantanderInvestmentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SantanderInvestmentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C6A822520B5CC87009223AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6C6A822720B5CC87009223AE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6C6A822A20B5CC87009223AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6C6A822C20B5CC87009223AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6C6A822F20B5CC87009223AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6C6A823120B5CC87009223AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C6A823620B5CC88009223AE /* SantanderInvestmentAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SantanderInvestmentAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C6A823C20B5CC88009223AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C6A824620B5D0BE009223AE /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		6C6A824820B5D0C5009223AE /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		6C6A824A20B5D0D2009223AE /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		6C6A824C20B5D262009223AE /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		6C6A824F20B60D9F009223AE /* FundInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundInteractor.swift; sourceTree = "<group>"; };
+		6C6A825020B60D9F009223AE /* FundModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundModels.swift; sourceTree = "<group>"; };
+		6C6A825120B60D9F009223AE /* FundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundPresenter.swift; sourceTree = "<group>"; };
+		6C6A825220B60D9F009223AE /* FundRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundRouter.swift; sourceTree = "<group>"; };
+		6C6A825320B60D9F009223AE /* FundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundViewController.swift; sourceTree = "<group>"; };
+		6C6A825420B60D9F009223AE /* FundWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundWorker.swift; sourceTree = "<group>"; };
+		6C6A825B20B6493A009223AE /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		AE67C0089A6F35352F06627D /* Pods-SantanderInvestmentApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderInvestmentApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderInvestmentApp/Pods-SantanderInvestmentApp.release.xcconfig"; sourceTree = "<group>"; };
+		C75B3B030137E3381BFD89CC /* Pods-SantanderInvestmentApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderInvestmentApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderInvestmentApp/Pods-SantanderInvestmentApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D6DEC7422150733600A0D019 /* Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encoding.swift; sourceTree = "<group>"; };
+		D6DEC7462150739C00A0D019 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		D6DEC7492150823000A0D019 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		D6DEC74B215082D500A0D019 /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
+		D6DEC74D215083D800A0D019 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		D6DEC74F2150848A00A0D019 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D6DEC751215089EF00A0D019 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		D6DEC75321508A2300A0D019 /* RequestHeaderMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHeaderMethod.swift; sourceTree = "<group>"; };
+		D6DEC75521508B7C00A0D019 /* Optional+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extension.swift"; sourceTree = "<group>"; };
+		D6DEC7572151085600A0D019 /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
+		D6DEC75A215108A800A0D019 /* ViewConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfigurationProtocol.swift; sourceTree = "<group>"; };
+		D6DEC75C215108D100A0D019 /* TableViewDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceDelegate.swift; sourceTree = "<group>"; };
+		D6DEC75E2151090400A0D019 /* TableViewCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellBuilder.swift; sourceTree = "<group>"; };
+		D6DEC7612151099C00A0D019 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		D6DEC763215109F400A0D019 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		D6DEC76521510A1200A0D019 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		D6DEC76721510B5200A0D019 /* InvestimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestimentView.swift; sourceTree = "<group>"; };
+		D6DEC76A21510B9100A0D019 /* RiskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskView.swift; sourceTree = "<group>"; };
+		D6DEC76C21510BF600A0D019 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		D6DEC76E21510E6D00A0D019 /* FundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundView.swift; sourceTree = "<group>"; };
+		D6DEC77021510EA300A0D019 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		D6DEC77221510ED800A0D019 /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
+		D6DEC7742151106C00A0D019 /* FundCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundCellBuilder.swift; sourceTree = "<group>"; };
+		D6DEC777215110BD00A0D019 /* FirstYieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstYieldCell.swift; sourceTree = "<group>"; };
+		D6DEC779215110E400A0D019 /* YieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YieldCell.swift; sourceTree = "<group>"; };
+		D6DEC77B215110FF00A0D019 /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
+		D6DEC77D2151135100A0D019 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		D6DEC7802151CE3D00A0D019 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		D6DEC7842151CF3C00A0D019 /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
+		D6DEC7862151CF5800A0D019 /* FormCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCellBuilder.swift; sourceTree = "<group>"; };
+		D6DEC7882151CF7300A0D019 /* FormInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormInteractor.swift; sourceTree = "<group>"; };
+		D6DEC78A2151CF8E00A0D019 /* FormPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPresenter.swift; sourceTree = "<group>"; };
+		D6DEC78C2151CFA500A0D019 /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
+		D6DEC78E2151CFBE00A0D019 /* FormWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormWorker.swift; sourceTree = "<group>"; };
+		D6DEC7902151CFD900A0D019 /* FormRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRouter.swift; sourceTree = "<group>"; };
+		D6DEC7932151D02D00A0D019 /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
+		D6DEC7952151E33100A0D019 /* InputTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextCell.swift; sourceTree = "<group>"; };
+		D6DEC7972151E35900A0D019 /* TextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
+		D6DEC7992151E3C400A0D019 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		D6DEC79B2151E3E000A0D019 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		D6DEC79D2151E42900A0D019 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		D6DEC79F2151E46F00A0D019 /* CheckboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxCell.swift; sourceTree = "<group>"; };
+		D6DEC7A12151E4DE00A0D019 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		D6DEC7A32151E50B00A0D019 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		D6DEC7A62151E5BB00A0D019 /* SantanderInvestmentApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SantanderInvestmentApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		D6DEC7A72151E5BC00A0D019 /* NSStringMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringMask.h; sourceTree = "<group>"; };
+		D6DEC7A82151E5BC00A0D019 /* NSStringMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringMask.m; sourceTree = "<group>"; };
+		D6DEC7AA2151E60300A0D019 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		D6DEC7AC2151E9CE00A0D019 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		D6DEC7AF2152570300A0D019 /* cells.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cells.json; sourceTree = "<group>"; };
+		D6DEC7B12152572700A0D019 /* fund.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fund.json; sourceTree = "<group>"; };
+		D6DEC7B42152585300A0D019 /* FundTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundTest.swift; sourceTree = "<group>"; };
+		D6DEC7B621525AF700A0D019 /* UIWindowTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowTestHelper.swift; sourceTree = "<group>"; };
+		D6DEC7B821525E9900A0D019 /* FormTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTest.swift; sourceTree = "<group>"; };
+		E96E1DEC2BCF56F0C8C5BCCB /* Pods-SantanderInvestmentApp-SantanderInvestmentAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderInvestmentApp-SantanderInvestmentAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderInvestmentApp-SantanderInvestmentAppTests/Pods-SantanderInvestmentApp-SantanderInvestmentAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F174D4B476D9C4638D4BAF45 /* Pods-SantanderInvestmentApp-SantanderInvestmentAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderInvestmentApp-SantanderInvestmentAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderInvestmentApp-SantanderInvestmentAppTests/Pods-SantanderInvestmentApp-SantanderInvestmentAppTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6C6A821F20B5CC87009223AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18B0290D1E577449A38A16FE /* Pods_SantanderInvestmentApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C6A823320B5CC88009223AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F1BB61163D822A0349A4B2E /* Pods_SantanderInvestmentApp_SantanderInvestmentAppTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6C6A821920B5CC87009223AE = {
+			isa = PBXGroup;
+			children = (
+				6C6A822420B5CC87009223AE /* SantanderInvestmentApp */,
+				6C6A823920B5CC88009223AE /* SantanderInvestmentAppTests */,
+				6C6A822320B5CC87009223AE /* Products */,
+				A19A5686613D3C0ADD6B58F1 /* Pods */,
+				ADC01177236992EB0A74C96E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6C6A822320B5CC87009223AE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6C6A822220B5CC87009223AE /* SantanderInvestmentApp.app */,
+				6C6A823620B5CC88009223AE /* SantanderInvestmentAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6C6A822420B5CC87009223AE /* SantanderInvestmentApp */ = {
+			isa = PBXGroup;
+			children = (
+				D6DEC7482150813D00A0D019 /* Scenes */,
+				D6DEC7442150737700A0D019 /* Shared */,
+				6C6A824520B5D0A1009223AE /* Request */,
+				6C6A822520B5CC87009223AE /* AppDelegate.swift */,
+				6C6A822720B5CC87009223AE /* ViewController.swift */,
+				6C6A822920B5CC87009223AE /* Main.storyboard */,
+				6C6A822C20B5CC87009223AE /* Assets.xcassets */,
+				6C6A822E20B5CC87009223AE /* LaunchScreen.storyboard */,
+				6C6A823120B5CC87009223AE /* Info.plist */,
+			);
+			path = SantanderInvestmentApp;
+			sourceTree = "<group>";
+		};
+		6C6A823920B5CC88009223AE /* SantanderInvestmentAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				D6DEC7AE215256EF00A0D019 /* Mock */,
+				6C6A823C20B5CC88009223AE /* Info.plist */,
+				D6DEC7B42152585300A0D019 /* FundTest.swift */,
+				D6DEC7B821525E9900A0D019 /* FormTest.swift */,
+				D6DEC7B621525AF700A0D019 /* UIWindowTestHelper.swift */,
+			);
+			path = SantanderInvestmentAppTests;
+			sourceTree = "<group>";
+		};
+		6C6A824520B5D0A1009223AE /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				6C6A824620B5D0BE009223AE /* Request.swift */,
+				6C6A824820B5D0C5009223AE /* Result.swift */,
+				6C6A824A20B5D0D2009223AE /* Resource.swift */,
+				6C6A824C20B5D262009223AE /* HTTPMethod.swift */,
+				6C6A825B20B6493A009223AE /* NetworkError.swift */,
+				D6DEC7422150733600A0D019 /* Encoding.swift */,
+				D6DEC7492150823000A0D019 /* URLSessionProtocol.swift */,
+				D6DEC74D215083D800A0D019 /* MockURLSession.swift */,
+				D6DEC751215089EF00A0D019 /* Header.swift */,
+				D6DEC75321508A2300A0D019 /* RequestHeaderMethod.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		6C6A824E20B60D6F009223AE /* Fund */ = {
+			isa = PBXGroup;
+			children = (
+				6C6A824F20B60D9F009223AE /* FundInteractor.swift */,
+				6C6A825020B60D9F009223AE /* FundModels.swift */,
+				6C6A825120B60D9F009223AE /* FundPresenter.swift */,
+				6C6A825220B60D9F009223AE /* FundRouter.swift */,
+				6C6A825320B60D9F009223AE /* FundViewController.swift */,
+				6C6A825420B60D9F009223AE /* FundWorker.swift */,
+				D6DEC7572151085600A0D019 /* ContactView.swift */,
+				D6DEC76721510B5200A0D019 /* InvestimentView.swift */,
+				D6DEC76E21510E6D00A0D019 /* FundView.swift */,
+				D6DEC7742151106C00A0D019 /* FundCellBuilder.swift */,
+			);
+			path = Fund;
+			sourceTree = "<group>";
+		};
+		A19A5686613D3C0ADD6B58F1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C75B3B030137E3381BFD89CC /* Pods-SantanderInvestmentApp.debug.xcconfig */,
+				AE67C0089A6F35352F06627D /* Pods-SantanderInvestmentApp.release.xcconfig */,
+				E96E1DEC2BCF56F0C8C5BCCB /* Pods-SantanderInvestmentApp-SantanderInvestmentAppTests.debug.xcconfig */,
+				F174D4B476D9C4638D4BAF45 /* Pods-SantanderInvestmentApp-SantanderInvestmentAppTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		ADC01177236992EB0A74C96E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0407B5E9FFD61E26F26DA6EC /* Pods_SantanderInvestmentApp.framework */,
+				1EDD72EDB496060A3D9BD961 /* Pods_SantanderInvestmentApp_SantanderInvestmentAppTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D6DEC7442150737700A0D019 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D6DEC7A52151E59300A0D019 /* Libraries */,
+				D6DEC7A72151E5BC00A0D019 /* NSStringMask.h */,
+				D6DEC7A82151E5BC00A0D019 /* NSStringMask.m */,
+				D6DEC7922151D02000A0D019 /* Models */,
+				D6DEC76921510B8000A0D019 /* Views */,
+				D6DEC7602151098C00A0D019 /* Enum */,
+				D6DEC7592151088600A0D019 /* Protocols */,
+				D6DEC7452150737F00A0D019 /* Extensions */,
+				D6DEC74F2150848A00A0D019 /* Constants.swift */,
+				D6DEC7A62151E5BB00A0D019 /* SantanderInvestmentApp-Bridging-Header.h */,
+				D6DEC7AC2151E9CE00A0D019 /* NavigationController.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		D6DEC7452150737F00A0D019 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D6DEC7462150739C00A0D019 /* Dictionary+Extension.swift */,
+				D6DEC74B215082D500A0D019 /* URLSession+Extension.swift */,
+				D6DEC75521508B7C00A0D019 /* Optional+Extension.swift */,
+				D6DEC763215109F400A0D019 /* UIColor+Extension.swift */,
+				D6DEC76521510A1200A0D019 /* UIFont+Extension.swift */,
+				D6DEC77021510EA300A0D019 /* UIImage+Extension.swift */,
+				D6DEC7A12151E4DE00A0D019 /* String+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D6DEC7482150813D00A0D019 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				D6DEC77F2151CD8800A0D019 /* Form */,
+				6C6A824E20B60D6F009223AE /* Fund */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		D6DEC7592151088600A0D019 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D6DEC75A215108A800A0D019 /* ViewConfigurationProtocol.swift */,
+				D6DEC75C215108D100A0D019 /* TableViewDataSourceDelegate.swift */,
+				D6DEC75E2151090400A0D019 /* TableViewCellBuilder.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D6DEC7602151098C00A0D019 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				D6DEC7612151099C00A0D019 /* Status.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		D6DEC76921510B8000A0D019 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D6DEC776215110A700A0D019 /* Cells */,
+				D6DEC76A21510B9100A0D019 /* RiskView.swift */,
+				D6DEC76C21510BF600A0D019 /* Button.swift */,
+				D6DEC77221510ED800A0D019 /* SegmentControl.swift */,
+				D6DEC77D2151135100A0D019 /* ErrorView.swift */,
+				D6DEC7992151E3C400A0D019 /* TextField.swift */,
+				D6DEC79B2151E3E000A0D019 /* Checkbox.swift */,
+				D6DEC79D2151E42900A0D019 /* CardView.swift */,
+				D6DEC7AA2151E60300A0D019 /* ProgressView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D6DEC776215110A700A0D019 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D6DEC777215110BD00A0D019 /* FirstYieldCell.swift */,
+				D6DEC779215110E400A0D019 /* YieldCell.swift */,
+				D6DEC77B215110FF00A0D019 /* DescriptionCell.swift */,
+				D6DEC7952151E33100A0D019 /* InputTextCell.swift */,
+				D6DEC7972151E35900A0D019 /* TextCell.swift */,
+				D6DEC79F2151E46F00A0D019 /* CheckboxCell.swift */,
+				D6DEC7A32151E50B00A0D019 /* ButtonCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D6DEC77F2151CD8800A0D019 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				D6DEC7802151CE3D00A0D019 /* FormViewController.swift */,
+				D6DEC7842151CF3C00A0D019 /* FormView.swift */,
+				D6DEC7862151CF5800A0D019 /* FormCellBuilder.swift */,
+				D6DEC7882151CF7300A0D019 /* FormInteractor.swift */,
+				D6DEC78A2151CF8E00A0D019 /* FormPresenter.swift */,
+				D6DEC78C2151CFA500A0D019 /* FormViewModel.swift */,
+				D6DEC78E2151CFBE00A0D019 /* FormWorker.swift */,
+				D6DEC7902151CFD900A0D019 /* FormRouter.swift */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
+		D6DEC7922151D02000A0D019 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D6DEC7932151D02D00A0D019 /* CellModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D6DEC7A52151E59300A0D019 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		D6DEC7AE215256EF00A0D019 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				D6DEC7AF2152570300A0D019 /* cells.json */,
+				D6DEC7B12152572700A0D019 /* fund.json */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6C6A822120B5CC87009223AE /* SantanderInvestmentApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C6A823F20B5CC88009223AE /* Build configuration list for PBXNativeTarget "SantanderInvestmentApp" */;
+			buildPhases = (
+				5306A0EFD996E56EBE3C8B14 /* [CP] Check Pods Manifest.lock */,
+				6C6A821E20B5CC87009223AE /* Sources */,
+				6C6A821F20B5CC87009223AE /* Frameworks */,
+				6C6A822020B5CC87009223AE /* Resources */,
+				2C09F8B854B28E2766ADBC52 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SantanderInvestmentApp;
+			productName = SantanderInvestmentApp;
+			productReference = 6C6A822220B5CC87009223AE /* SantanderInvestmentApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6C6A823520B5CC88009223AE /* SantanderInvestmentAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C6A824220B5CC88009223AE /* Build configuration list for PBXNativeTarget "SantanderInvestmentAppTests" */;
+			buildPhases = (
+				73D8AE856EE87E2DEDFFF7CD /* [CP] Check Pods Manifest.lock */,
+				6C6A823220B5CC88009223AE /* Sources */,
+				6C6A823320B5CC88009223AE /* Frameworks */,
+				6C6A823420B5CC88009223AE /* Resources */,
+				3591D5F87FA4454AA5F01C11 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6C6A823820B5CC88009223AE /* PBXTargetDependency */,
+			);
+			name = SantanderInvestmentAppTests;
+			productName = SantanderInvestmentAppTests;
+			productReference = 6C6A823620B5CC88009223AE /* SantanderInvestmentAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6C6A821A20B5CC87009223AE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Michel de Sousa Carvalho";
+				TargetAttributes = {
+					6C6A822120B5CC87009223AE = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+					};
+					6C6A823520B5CC88009223AE = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6C6A822120B5CC87009223AE;
+					};
+				};
+			};
+			buildConfigurationList = 6C6A821D20B5CC87009223AE /* Build configuration list for PBXProject "SantanderInvestmentApp" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6C6A821920B5CC87009223AE;
+			productRefGroup = 6C6A822320B5CC87009223AE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6C6A822120B5CC87009223AE /* SantanderInvestmentApp */,
+				6C6A823520B5CC88009223AE /* SantanderInvestmentAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6C6A822020B5CC87009223AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C6A823020B5CC87009223AE /* LaunchScreen.storyboard in Resources */,
+				D6DEC7BB215262A100A0D019 /* fund.json in Resources */,
+				D6DEC7BA2152629E00A0D019 /* cells.json in Resources */,
+				6C6A822D20B5CC87009223AE /* Assets.xcassets in Resources */,
+				6C6A822B20B5CC87009223AE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C6A823420B5CC88009223AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6DEC7B22152572700A0D019 /* fund.json in Resources */,
+				D6DEC7B02152570300A0D019 /* cells.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C09F8B854B28E2766ADBC52 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SantanderInvestmentApp/Pods-SantanderInvestmentApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SantanderInvestmentApp/Pods-SantanderInvestmentApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3591D5F87FA4454AA5F01C11 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SantanderInvestmentApp-SantanderInvestmentAppTests/Pods-SantanderInvestmentApp-SantanderInvestmentAppTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SantanderInvestmentApp-SantanderInvestmentAppTests/Pods-SantanderInvestmentApp-SantanderInvestmentAppTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5306A0EFD996E56EBE3C8B14 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SantanderInvestmentApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		73D8AE856EE87E2DEDFFF7CD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SantanderInvestmentApp-SantanderInvestmentAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6C6A821E20B5CC87009223AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6DEC752215089EF00A0D019 /* Header.swift in Sources */,
+				D6DEC78F2151CFBE00A0D019 /* FormWorker.swift in Sources */,
+				D6DEC75421508A2300A0D019 /* RequestHeaderMethod.swift in Sources */,
+				6C6A822820B5CC87009223AE /* ViewController.swift in Sources */,
+				D6DEC76D21510BF600A0D019 /* Button.swift in Sources */,
+				D6DEC7502150848A00A0D019 /* Constants.swift in Sources */,
+				6C6A824720B5D0BE009223AE /* Request.swift in Sources */,
+				D6DEC778215110BD00A0D019 /* FirstYieldCell.swift in Sources */,
+				D6DEC7A22151E4DE00A0D019 /* String+Extension.swift in Sources */,
+				D6DEC75621508B7C00A0D019 /* Optional+Extension.swift in Sources */,
+				D6DEC7432150733600A0D019 /* Encoding.swift in Sources */,
+				D6DEC75B215108A800A0D019 /* ViewConfigurationProtocol.swift in Sources */,
+				6C6A824D20B5D262009223AE /* HTTPMethod.swift in Sources */,
+				D6DEC75F2151090400A0D019 /* TableViewCellBuilder.swift in Sources */,
+				6C6A825820B60D9F009223AE /* FundRouter.swift in Sources */,
+				D6DEC764215109F400A0D019 /* UIColor+Extension.swift in Sources */,
+				D6DEC77C215110FF00A0D019 /* DescriptionCell.swift in Sources */,
+				D6DEC77E2151135100A0D019 /* ErrorView.swift in Sources */,
+				6C6A824920B5D0C5009223AE /* Result.swift in Sources */,
+				D6DEC74E215083D800A0D019 /* MockURLSession.swift in Sources */,
+				D6DEC7982151E35900A0D019 /* TextCell.swift in Sources */,
+				D6DEC7A92151E5BC00A0D019 /* NSStringMask.m in Sources */,
+				D6DEC7892151CF7400A0D019 /* FormInteractor.swift in Sources */,
+				D6DEC7872151CF5800A0D019 /* FormCellBuilder.swift in Sources */,
+				D6DEC78D2151CFA500A0D019 /* FormViewModel.swift in Sources */,
+				D6DEC76B21510B9100A0D019 /* RiskView.swift in Sources */,
+				D6DEC7582151085600A0D019 /* ContactView.swift in Sources */,
+				D6DEC7622151099C00A0D019 /* Status.swift in Sources */,
+				6C6A825720B60D9F009223AE /* FundPresenter.swift in Sources */,
+				D6DEC77321510ED800A0D019 /* SegmentControl.swift in Sources */,
+				D6DEC79E2151E42900A0D019 /* CardView.swift in Sources */,
+				D6DEC7752151106C00A0D019 /* FundCellBuilder.swift in Sources */,
+				6C6A825A20B60D9F009223AE /* FundWorker.swift in Sources */,
+				6C6A825620B60D9F009223AE /* FundModels.swift in Sources */,
+				D6DEC79A2151E3C400A0D019 /* TextField.swift in Sources */,
+				D6DEC76F21510E6D00A0D019 /* FundView.swift in Sources */,
+				D6DEC79C2151E3E000A0D019 /* Checkbox.swift in Sources */,
+				D6DEC7AD2151E9CE00A0D019 /* NavigationController.swift in Sources */,
+				6C6A825920B60D9F009223AE /* FundViewController.swift in Sources */,
+				D6DEC7912151CFD900A0D019 /* FormRouter.swift in Sources */,
+				D6DEC7A42151E50B00A0D019 /* ButtonCell.swift in Sources */,
+				6C6A824B20B5D0D2009223AE /* Resource.swift in Sources */,
+				D6DEC76621510A1200A0D019 /* UIFont+Extension.swift in Sources */,
+				D6DEC7852151CF3C00A0D019 /* FormView.swift in Sources */,
+				6C6A825C20B6493A009223AE /* NetworkError.swift in Sources */,
+				D6DEC77A215110E400A0D019 /* YieldCell.swift in Sources */,
+				D6DEC78B2151CF8E00A0D019 /* FormPresenter.swift in Sources */,
+				D6DEC74A2150823000A0D019 /* URLSessionProtocol.swift in Sources */,
+				6C6A825520B60D9F009223AE /* FundInteractor.swift in Sources */,
+				D6DEC7812151CE3D00A0D019 /* FormViewController.swift in Sources */,
+				D6DEC7AB2151E60300A0D019 /* ProgressView.swift in Sources */,
+				6C6A822620B5CC87009223AE /* AppDelegate.swift in Sources */,
+				D6DEC7A02151E46F00A0D019 /* CheckboxCell.swift in Sources */,
+				D6DEC77121510EA300A0D019 /* UIImage+Extension.swift in Sources */,
+				D6DEC7472150739C00A0D019 /* Dictionary+Extension.swift in Sources */,
+				D6DEC76821510B5200A0D019 /* InvestimentView.swift in Sources */,
+				D6DEC7942151D02D00A0D019 /* CellModel.swift in Sources */,
+				D6DEC75D215108D100A0D019 /* TableViewDataSourceDelegate.swift in Sources */,
+				D6DEC74C215082D500A0D019 /* URLSession+Extension.swift in Sources */,
+				D6DEC7962151E33100A0D019 /* InputTextCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C6A823220B5CC88009223AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6DEC7B921525E9900A0D019 /* FormTest.swift in Sources */,
+				D6DEC7B52152585300A0D019 /* FundTest.swift in Sources */,
+				D6DEC7B721525AF700A0D019 /* UIWindowTestHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6C6A823820B5CC88009223AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6C6A822120B5CC87009223AE /* SantanderInvestmentApp */;
+			targetProxy = 6C6A823720B5CC88009223AE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6C6A822920B5CC87009223AE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C6A822A20B5CC87009223AE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6C6A822E20B5CC87009223AE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C6A822F20B5CC87009223AE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6C6A823D20B5CC88009223AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6C6A823E20B5CC88009223AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6C6A824020B5CC88009223AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C75B3B030137E3381BFD89CC /* Pods-SantanderInvestmentApp.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SantanderInvestmentApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = app.SantanderInvestmentApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SantanderInvestmentApp/Shared/SantanderInvestmentApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6C6A824120B5CC88009223AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE67C0089A6F35352F06627D /* Pods-SantanderInvestmentApp.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SantanderInvestmentApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = app.SantanderInvestmentApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SantanderInvestmentApp/Shared/SantanderInvestmentApp-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6C6A824320B5CC88009223AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E96E1DEC2BCF56F0C8C5BCCB /* Pods-SantanderInvestmentApp-SantanderInvestmentAppTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SantanderInvestmentAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = app.SantanderInvestmentAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SantanderInvestmentApp.app/SantanderInvestmentApp";
+			};
+			name = Debug;
+		};
+		6C6A824420B5CC88009223AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F174D4B476D9C4638D4BAF45 /* Pods-SantanderInvestmentApp-SantanderInvestmentAppTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SantanderInvestmentAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = app.SantanderInvestmentAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SantanderInvestmentApp.app/SantanderInvestmentApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6C6A821D20B5CC87009223AE /* Build configuration list for PBXProject "SantanderInvestmentApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C6A823D20B5CC88009223AE /* Debug */,
+				6C6A823E20B5CC88009223AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6C6A823F20B5CC88009223AE /* Build configuration list for PBXNativeTarget "SantanderInvestmentApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C6A824020B5CC88009223AE /* Debug */,
+				6C6A824120B5CC88009223AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6C6A824220B5CC88009223AE /* Build configuration list for PBXNativeTarget "SantanderInvestmentAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C6A824320B5CC88009223AE /* Debug */,
+				6C6A824420B5CC88009223AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6C6A821A20B5CC87009223AE /* Project object */;
+}
