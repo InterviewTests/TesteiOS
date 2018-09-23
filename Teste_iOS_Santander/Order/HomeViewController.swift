@@ -86,6 +86,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func showForm(_ sender: Any) {
+        tableView.scrollsToTop = true
         viewButtonInvestSelected.isHidden = true
         viewButtonFormSelected.isHidden = false
         self.btInvestimento.isSelected = false
@@ -194,7 +195,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
             guard let unmaskedText = maskTextField.stringMask?.unmask(string: newText) else { return true }
 
-            if unmaskedText.characters.count >= 11 {
+            if unmaskedText.count >= 11 {
                 maskTextField.maskString = "(00) 00000-0000"
                 return true
             } else {
