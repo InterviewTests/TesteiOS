@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellText" rowHeight="79" id="KGk-i7-Jjw" customClass="CellTextField" customModule="Teste_iOS_Santander" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyl-Um-RRG">
+                        <rect key="frame" x="30" y="4" width="315" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wyW-Fd-1qR" customClass="JMMaskTextField" customModule="JMMaskTextField_Swift">
+                        <rect key="frame" x="30" y="26" width="315" height="39"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="39" id="E8b-0L-BQn"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wyp-Lf-UTL">
+                        <rect key="frame" x="30" y="72" width="315" height="1"/>
+                        <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="ePp-8l-DuJ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Wyp-Lf-UTL" firstAttribute="top" secondItem="wyW-Fd-1qR" secondAttribute="bottom" constant="7" id="6UM-sC-eOP"/>
+                    <constraint firstAttribute="trailing" secondItem="wyW-Fd-1qR" secondAttribute="trailing" constant="30" id="8O8-CV-bWr"/>
+                    <constraint firstItem="Wyp-Lf-UTL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="BHk-mJ-lI7"/>
+                    <constraint firstItem="wyW-Fd-1qR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="ED2-9P-kTq"/>
+                    <constraint firstAttribute="bottom" secondItem="Wyp-Lf-UTL" secondAttribute="bottom" constant="6.5" id="Khr-sJ-kTI"/>
+                    <constraint firstItem="wyW-Fd-1qR" firstAttribute="leading" secondItem="kyl-Um-RRG" secondAttribute="leading" id="Ktl-tk-pny"/>
+                    <constraint firstItem="wyW-Fd-1qR" firstAttribute="trailing" secondItem="kyl-Um-RRG" secondAttribute="trailing" id="Wfo-P3-saB"/>
+                    <constraint firstItem="wyW-Fd-1qR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="26" id="YIc-bf-8vU"/>
+                    <constraint firstItem="kyl-Um-RRG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="Z6e-Hn-Xpq"/>
+                    <constraint firstItem="wyW-Fd-1qR" firstAttribute="top" secondItem="kyl-Um-RRG" secondAttribute="bottom" constant="10" id="uQl-Xx-NAJ"/>
+                    <constraint firstAttribute="trailing" secondItem="Wyp-Lf-UTL" secondAttribute="trailing" constant="30" id="uqE-Ac-ZyO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="labelField" destination="kyl-Um-RRG" id="zoy-at-2sL"/>
+                <outlet property="lineView" destination="Wyp-Lf-UTL" id="030-yP-BLv"/>
+                <outlet property="textFieldForm" destination="wyW-Fd-1qR" id="S7E-Od-gCN"/>
+            </connections>
+            <point key="canvasLocation" x="61.5" y="56"/>
+        </tableViewCell>
+    </objects>
+</document>

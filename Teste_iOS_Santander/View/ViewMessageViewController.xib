@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewMessageViewController" customModule="Teste_iOS_Santander" customModuleProvider="target">
+            <connections>
+                <outlet property="bt" destination="mGd-pG-iMe" id="30c-bu-ujt"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="588"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contato" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqW-df-7qr">
+                    <rect key="frame" x="28" y="45" width="319" height="21"/>
+                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HU7-Jg-ruL">
+                    <rect key="frame" x="28" y="115" width="319" height="20"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <color key="textColor" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagem enviada com sucesso :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBB-JB-5aD">
+                    <rect key="frame" x="28" y="155" width="319" height="51.5"/>
+                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGd-pG-iMe">
+                    <rect key="frame" x="28" y="349.5" width="319" height="32"/>
+                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                    <state key="normal" title="Enviar nova mensagem">
+                        <color key="titleColor" red="0.78431372549019607" green="0.015686274509803921" blue="0.015686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="sendNewMessage:" destination="-1" eventType="touchUpInside" id="ltB-Zn-73F"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="nqW-df-7qr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="28" id="75B-Jr-CHv"/>
+                <constraint firstItem="nqW-df-7qr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="25" id="IA1-s8-pbl"/>
+                <constraint firstItem="mGd-pG-iMe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="28" id="IR0-oD-Be4"/>
+                <constraint firstItem="UBB-JB-5aD" firstAttribute="top" secondItem="HU7-Jg-ruL" secondAttribute="bottom" constant="20" id="KzK-bC-dA9"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="HU7-Jg-ruL" secondAttribute="trailing" constant="28" id="Of8-Or-VSc"/>
+                <constraint firstItem="mGd-pG-iMe" firstAttribute="top" secondItem="UBB-JB-5aD" secondAttribute="bottom" constant="143" id="SG0-F8-FjN"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nqW-df-7qr" secondAttribute="trailing" constant="28" id="YHj-8K-spH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mGd-pG-iMe" secondAttribute="trailing" constant="28" id="bdG-HS-5hp"/>
+                <constraint firstItem="HU7-Jg-ruL" firstAttribute="top" secondItem="nqW-df-7qr" secondAttribute="bottom" constant="49" id="kZp-gl-MWv"/>
+                <constraint firstItem="UBB-JB-5aD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="28" id="lfk-Ed-ld9"/>
+                <constraint firstItem="HU7-Jg-ruL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="28" id="nJA-ae-EWs"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UBB-JB-5aD" secondAttribute="trailing" constant="28" id="xhq-5X-E0q"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="-156.5" y="-27"/>
+        </view>
+    </objects>
+</document>
