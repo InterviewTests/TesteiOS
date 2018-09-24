@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Regular.otf">
+            <string>DINPro-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InvestmentFundMoreInfoTableViewCell" id="KGk-i7-Jjw" customClass="InvestmentFundMoreInfoTableViewCell" customModule="SantanderTesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No mês" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbS-E9-2gn">
+                        <rect key="frame" x="16" y="8" width="55" height="27.5"/>
+                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0,3%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="683-yT-sfd">
+                        <rect key="frame" x="129.5" y="12" width="34.5" height="20.5"/>
+                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0,3%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTa-Rh-dI2">
+                        <rect key="frame" x="244" y="12" width="60" height="20.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="iDy-Tj-d7d"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="gbS-E9-2gn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="XQN-Fe-nVD"/>
+                    <constraint firstAttribute="trailing" secondItem="cTa-Rh-dI2" secondAttribute="trailing" constant="16" id="esV-kE-0ud"/>
+                    <constraint firstItem="683-yT-sfd" firstAttribute="centerY" secondItem="gbS-E9-2gn" secondAttribute="centerY" id="jQ9-ED-ZLZ"/>
+                    <constraint firstItem="683-yT-sfd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gbS-E9-2gn" secondAttribute="trailing" constant="8" id="kz1-aU-iat"/>
+                    <constraint firstItem="cTa-Rh-dI2" firstAttribute="centerY" secondItem="683-yT-sfd" secondAttribute="centerY" id="nPe-lE-Ptx"/>
+                    <constraint firstItem="cTa-Rh-dI2" firstAttribute="leading" secondItem="683-yT-sfd" secondAttribute="trailing" constant="80" id="noB-3z-0U5"/>
+                    <constraint firstAttribute="bottom" secondItem="gbS-E9-2gn" secondAttribute="bottom" constant="8" id="pFe-Wg-n9P"/>
+                    <constraint firstItem="gbS-E9-2gn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="v4V-H5-OWD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="CDILabel" destination="cTa-Rh-dI2" id="JbQ-Ke-LvQ"/>
+                <outlet property="fundLabel" destination="683-yT-sfd" id="dbv-Gq-7Ti"/>
+                <outlet property="titleLabel" destination="gbS-E9-2gn" id="fWl-jg-0MJ"/>
+            </connections>
+            <point key="canvasLocation" x="5" y="33"/>
+        </tableViewCell>
+    </objects>
+</document>

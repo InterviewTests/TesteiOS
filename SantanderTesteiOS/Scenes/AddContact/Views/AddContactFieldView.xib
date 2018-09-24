@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Regular.otf">
+            <string>DINPro-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddContactFieldView" customModule="SantanderTesteiOS" customModuleProvider="target">
+            <connections>
+                <outlet property="placeholderLabel" destination="gJD-1d-8v5" id="PmX-5z-uiL"/>
+                <outlet property="textField" destination="Wd3-cF-FHT" id="r5t-oL-pBY"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJD-1d-8v5">
+                    <rect key="frame" x="0.0" y="8" width="375" height="19.5"/>
+                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="15"/>
+                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wd3-cF-FHT">
+                    <rect key="frame" x="0.0" y="35.5" width="375" height="39.5"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gJD-1d-8v5" secondAttribute="trailing" id="9H2-g4-Vzc"/>
+                <constraint firstItem="Wd3-cF-FHT" firstAttribute="trailing" secondItem="gJD-1d-8v5" secondAttribute="trailing" id="Cel-hq-f59"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Wd3-cF-FHT" secondAttribute="bottom" constant="8" id="NZ2-ct-jGK"/>
+                <constraint firstItem="Wd3-cF-FHT" firstAttribute="top" secondItem="gJD-1d-8v5" secondAttribute="bottom" constant="8" id="eeG-eJ-FCr"/>
+                <constraint firstItem="gJD-1d-8v5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="gNm-VZ-na1"/>
+                <constraint firstItem="Wd3-cF-FHT" firstAttribute="leading" secondItem="gJD-1d-8v5" secondAttribute="leading" id="hS7-09-8Aj"/>
+                <constraint firstItem="gJD-1d-8v5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="qrI-sQ-EO5"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="33.5" y="267.5"/>
+        </view>
+    </objects>
+</document>
