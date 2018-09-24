@@ -74,6 +74,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func showInvest(_ sender: Any) {
+        getInvest()
         viewButtonInvestSelected.isHidden = false
         viewButtonFormSelected.isHidden = true
         self.btContato.isSelected = false
@@ -86,6 +87,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func showForm(_ sender: Any) {
+        getForm()
         tableView.scrollsToTop = true
         viewButtonInvestSelected.isHidden = true
         viewButtonFormSelected.isHidden = false
