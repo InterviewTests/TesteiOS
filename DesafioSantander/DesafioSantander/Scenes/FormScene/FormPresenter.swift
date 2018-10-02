@@ -12,8 +12,7 @@
 
 import UIKit
 
-protocol FormPresentationLogic
-{
+protocol FormPresentationLogic{
   func presentFetchedForms(response: Form.FecthForm.Response)
 }
 
@@ -21,11 +20,17 @@ class FormPresenter: FormPresentationLogic
 {
   weak var viewController: FormDisplayLogic?
   
-  // MARK: Do something
+  // MARK: fetch form
   
-    func presentFetchedForms(response: Form.FecthForm.Response){
-    let viewModel = Form.FecthForm.ViewModel()
-    viewController?.displayFetchedForm(viewModel: viewModel)
+    func presentFetchedForms(response: Form.FecthForm.Response)
+    {
+        let displayedForm = convertForms(forms: response.formModal.cells!)
+        let viewModel = Form.FecthForm.ViewModel(displayedForm: displayedForm)
+        viewController?.displayFetchedForm(viewModel: viewModel)
+    }
     
+    private func convertForms(forms: [cellStruct]) -> [Form.FecthForm.ViewModel.DisplayedCell]
+    {
+        return forms.map { Form.FecthForm.ViewModel.DisplayedCell(id: $0.id!, message: $0.message!, type: $0.type!, typefield: $0.typefield, hidden: $0.hidden!, topSpacing: $0.topSpacing!, show: $0.show, required: $0.required!) }
     }
 }

@@ -12,34 +12,33 @@
 
 import UIKit
 
-protocol FormDisplayLogic: class
-{
+protocol FormDisplayLogic: class{
   func displayFetchedForm(viewModel: Form.FecthForm.ViewModel)
 }
 
-class FormViewController: UIViewController, FormDisplayLogic
-{
+class FormViewController: UIViewController, UITextFieldDelegate, FormDisplayLogic{
   var interactor: FormBusinessLogic?
   var router: (NSObjectProtocol & FormRoutingLogic & FormDataPassing)?
+    
+    var containerCell:[UIView] = []
+    var activeField: UITextField?
+    var messageAlert = ""
 
   // MARK: Object lifecycle
   
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?){
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
   }
   
-  required init?(coder aDecoder: NSCoder)
-  {
+  required init?(coder aDecoder: NSCoder){
     super.init(coder: aDecoder)
     setup()
   }
   
   // MARK: Setup
   
-  private func setup()
-  {
+  private func setup(){
     let viewController = self
     let interactor = FormInteractor()
     let presenter = FormPresenter()
@@ -54,8 +53,7 @@ class FormViewController: UIViewController, FormDisplayLogic
   
   // MARK: Routing
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?){
     if let scene = segue.identifier {
       let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
       if let router = router, router.responds(to: selector) {
@@ -64,35 +62,182 @@ class FormViewController: UIViewController, FormDisplayLogic
     }
   }
   
-  // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    fetchForm()
-  }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
+    // MARK: View lifecycle
 
-  
-//  func displaySomething(viewModel: Form.FecthForm.ViewModel)
-//  {
-//    //nameTextField.text = viewModel.name
-//  }
+    override func viewDidLoad(){
+        super.viewDidLoad()
+        fetchForm()
+    }
     
-    // MARK: - Fetch orders
+    // MARK: - Fetch form
     
-    func fetchForm()
-    {
+    var displayedForm: [Form.FecthForm.ViewModel.DisplayedCell] = []
+    
+    func fetchForm(){
         let request = Form.FecthForm.Request()
         interactor?.fetchForm(request: request)
     }
     
-    func displayFetchedForm(viewModel: Form.FecthForm.ViewModel)
-    {
-       print("viewModel \(viewModel.form)")
+    func displayFetchedForm(viewModel: Form.FecthForm.ViewModel){
+        displayedForm = viewModel.displayedForm
+        createCells()
     }
+    
+    private func createCells(){
+        let cellSorted = displayedForm.sorted(by: { $0.id < $1.id })
+        
+        for cell in cellSorted{
+            switch cell.type{
+            case 1: //textfield
+                let textField = UITextField()
+                textField.placeholder = cell.message
+                
+                if let typeField = cell.typefield{
+                    if typeField as? String == "telnumber"{
+                        textField.textContentType = UITextContentType.telephoneNumber
+                    }
+                    
+                    if typeField as? Int == 3{
+                        textField.textContentType = UITextContentType.emailAddress
+                    }
+                }
+                
+                textField.borderStyle = .roundedRect
+                textField.isHidden = cell.hidden
+                textField.delegate = self
+                textField.tag = cell.id - 1
+                containerCell.append(textField)
+                
+            case 2: //label
+                let label = UILabel()
+                label.text = cell.message
+                label.numberOfLines = 0
+                label.lineBreakMode = .byWordWrapping
+                label.isHidden = cell.hidden
+                label.textAlignment = .center
+                containerCell.append(label)
+                
+            case 3: //image
+                break
+                
+            case 4: //switch
+                let check = UISwitch()
+                check.tag = cell.show! - 1
+                check.addTarget(self, action: #selector(self.switchIsOn(_:)), for: .valueChanged)
+                check.onTintColor = .red
+                containerCell.append(check)
+                
+            case 5: //button
+                let button = UIButton()
+                button.setTitle(cell.message, for: .normal)
+                button.addTarget(self, action: #selector(self.validate(_:)), for: .touchUpInside)
+                button.layer.cornerRadius = min(UIScreen.main.bounds.width * 0.8, UIScreen.main.bounds.height * 0.05)/2
+                button.isHidden = cell.hidden
+                button.backgroundColor = .red
+                containerCell.append(button)
+                
+            default:
+                break
+            }
+        }
+        let width = UIScreen.main.bounds.width * 0.8
+        let height = UIScreen.main.bounds.height * 0.05
+        let x:CGFloat = 20
+        var y:CGFloat = 0
+        
+        for i in 0..<containerCell.count{
+            y += CGFloat((displayedForm[i].topSpacing))
+            containerCell[i].frame = CGRect(x: x, y: y, width: width, height: height)
+            
+            if let _ = containerCell[i] as? UISwitch{
+                let message = UILabel(frame: CGRect(x: x + 60, y: y, width: width, height: height))
+                message.text = cellSorted[i].message
+                message.adjustsFontSizeToFitWidth = true
+                self.view.addSubview(message)
+            }
+            
+            self.view.addSubview(containerCell[i])
+            y += height
+        }
+        
+        
+    }
+    
+    @objc func switchIsOn(_ sender:UISwitch){
+        containerCell[sender.tag].isHidden = !sender.isOn
+    }
+    
+    @objc func validate(_ sender:UIButton){
+        print("validate")
+        messageAlert = ""
+        
+        var cellFilterText = containerCell.filter { $0 is UITextField } as! [UITextField]
+        let cellFilterSwitch = containerCell.filter { $0 is UISwitch } as! [UISwitch]
+        
+        for check in cellFilterSwitch{
+            let text = cellFilterText.filter { $0.tag == check.tag}
+            if check.isOn{
+                print("check")
+                validateTextFielf(text.first!)
+            }
+            let index = cellFilterText.index(of: text.first!)
+            cellFilterText.remove(at: index!)
+        }
+        
+        for text in cellFilterText{
+            validateTextFielf(text)
+        }
+        
+        if messageAlert == ""{
+            print("proxima tela")
+//            let detail = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+//            present(detail, animated: true, completion: nil)
+            
+        }else{
+            let alert = UIAlertController(title: "Erro", message: "verificar campos \(messageAlert)", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func validateTextFielf(_ text:UITextField){
+        if text.textContentType == .emailAddress{
+            if validateEmail(enteredEmail: text.text!){
+            }else{
+                messageAlert = "\(messageAlert)e-mail, "
+            }
+            return
+        }
+        
+        if text.textContentType == .telephoneNumber{
+            if validatePhone(value: text.text!){
+            }else{
+                messageAlert = "\(messageAlert)telefone, "
+            }
+            return
+        }
+        
+        if !(text.text?.isEmpty)!{
+            return
+        }else{
+            messageAlert = "\(messageAlert)nome, "
+        }
+        
+    }
+    
+    func validateEmail(enteredEmail:String) -> Bool {
+        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+        return emailPredicate.evaluate(with: enteredEmail)
+    }
+    
+    func validatePhone(value: String) -> Bool {
+        let phone = "^\\d{2}-\\d{4}-\\d{4}$"
+        let cellPhone = "^\\d{2}-\\d{5}-\\d{4}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@ OR SELF MATCHES %@", phone,cellPhone)
+        let result =  phoneTest.evaluate(with: value)
+        return result
+    }
+
 }

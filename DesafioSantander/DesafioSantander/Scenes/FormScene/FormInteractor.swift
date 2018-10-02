@@ -12,32 +12,45 @@
 
 import UIKit
 
-protocol FormBusinessLogic
-{
+protocol FormBusinessLogic{
   func fetchForm(request: Form.FecthForm.Request)
 }
 
-protocol FormDataStore
-{
+protocol FormDataStore{
   //var name: String { get set }
 }
 
-class FormInteractor: FormBusinessLogic, FormDataStore{
-    
+class FormInteractor: FormBusinessLogic, FormDataStore, FormWorkerDelegate{
+
     var presenter: FormPresentationLogic?
-    var worker: FormWorker?
-    var forms: FormModal?
-  //var name: String = ""
+    var worker = FormWorker()
+    
+    enum AsyncOpKind {
+        case block, delegate
+    }
+    var asyncOpKind = AsyncOpKind.block
   
-  // MARK: Do something
+  // MARK: Fetch forms
   
     func fetchForm(request: Form.FecthForm.Request) {
-        worker = FormWorker(formStore: FormMemStore())
         
-        worker?.fetchForm(completionHandler: { (form) in
-            self.forms = form
-            let response = Form.FecthForm.Response(formModal: form)
-            self.presenter?.presentFetchedForms(response: response)
-        })
+        switch asyncOpKind {
+        case .block:
+            // MARK: Block implementation
+            worker.fetch { (form) in
+                let response = Form.FecthForm.Response(formModal: form)
+                self.presenter?.presentFetchedForms(response: response)
+            }
+            
+        case .delegate:
+            // MARK: Delegate method implementation
+            worker.delegate = self
+            worker.fetch()
+        }
+    }
+    
+    func formWorker(formWorker: FormWorker, didFetchForm form: FormModal) {
+        let response = Form.FecthForm.Response(formModal: form)
+        self.presenter?.presentFetchedForms(response: response)
     }
 }

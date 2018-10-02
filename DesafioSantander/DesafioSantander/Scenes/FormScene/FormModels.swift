@@ -26,16 +26,17 @@ enum Form
         var formModal:FormModal
     }
     struct ViewModel{
-        struct PropryCell{
+        struct DisplayedCell{
+            var id: Int
             var message: String
             var type: Int
-            var typefield: Int?
+            var typefield: Any?
             var hidden: Bool
             var topSpacing: Int
             var show:Int?
             var required:Bool
         }
-        var form:[PropryCell] = []
+        var displayedForm: [DisplayedCell]
     }
   }
 }

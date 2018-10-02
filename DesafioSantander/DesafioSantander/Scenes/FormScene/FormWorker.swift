@@ -12,37 +12,30 @@
 
 import UIKit
 
-class FormWorker{
-    var formStore: FormStoreProtocol
+protocol FormWorkerDelegate{
+    func formWorker(formWorker: FormWorker, didFetchForm form: FormModal)
+}
+
+class FormWorker : FormAPIDelegate{
+    var formAPI: FormAPIProtocol = FormAPI()
+    var delegate: FormWorkerDelegate?
     
-    init(formStore: FormStoreProtocol){
-        self.formStore = formStore
+    // MARK: Block implementation
+    func fetch(completion: @escaping (FormModal) -> Void)
+    {
+        formAPI.fetch { (forms) in
+            completion(forms)
+        }
     }
     
-    func fetchForm(completionHandler: @escaping (FormModal) -> Void){
-        formStore.fetchForms { (form, error) in
-            do {
-                DispatchQueue.main.async {
-                    completionHandler(form)
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    completionHandler(form )
-                }
-            }
-        }
-        
+    // MARK: Delegate implementation
+    func fetch(){
+        formAPI.delegate = self
+        formAPI.fetch()
+    }
+    
+    func formAPI(gistAPI: FormAPIProtocol, didFetchForm form: FormModal) {
+        delegate?.formWorker(formWorker: self, didFetchForm: form)
     }
   
 }
-
-
-// MARK: - Orders store API
-
-protocol FormStoreProtocol{
-    // MARK: CRUD operations - Optional error
-    func fetchForms(completionHandler: @escaping (FormModal, Error?) -> Void)
-    
-}
-
-

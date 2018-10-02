@@ -12,18 +12,16 @@
 
 import UIKit
 
-@objc protocol FormRoutingLogic
-{
+@objc protocol FormRoutingLogic{
   //func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
-protocol FormDataPassing
-{
+protocol FormDataPassing{
   var dataStore: FormDataStore? { get }
 }
 
-class FormRouter: NSObject, FormRoutingLogic, FormDataPassing
-{
+class FormRouter: NSObject, FormRoutingLogic, FormDataPassing{
+    
   weak var viewController: FormViewController?
   var dataStore: FormDataStore?
   
