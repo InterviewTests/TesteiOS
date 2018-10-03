@@ -14,11 +14,10 @@ import UIKit
 
 protocol FundDisplayLogic: class
 {
-  func displaySomething(viewModel: Fund.Something.ViewModel)
+  func displayFetchedFund(viewModel: Fund.FecthFund.ViewModel)
 }
 
-class FundViewController: UIViewController, FundDisplayLogic
-{
+class FundViewController: UIViewController, FundDisplayLogic{
   var interactor: FundBusinessLogic?
   var router: (NSObjectProtocol & FundRoutingLogic & FundDataPassing)?
 
@@ -69,21 +68,77 @@ class FundViewController: UIViewController, FundDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    doSomething()
+    
+    investirButton.layer.cornerRadius = min(investirButton.frame.width, investirButton.frame.height)/2
+    fetchFund()
   }
   
-  // MARK: Do something
+  // MARK: Fetch fund
+    var displayedFund : Fund.FecthFund.ViewModel.DisplayedScreen?
+    
+    func fetchFund(){
+        let request = Fund.FecthFund.Request()
+        interactor?.fetchFund(request: request)
+    }
   
   //@IBOutlet weak var nameTextField: UITextField!
+    
+    @IBOutlet weak var titlefund: UILabel!
+    @IBOutlet weak var fundName: UILabel!
+    @IBOutlet weak var whatIs: UILabel!
+    @IBOutlet weak var defination: UILabel!
+    @IBOutlet weak var riskTitle: UILabel!
+    
+    @IBOutlet weak var mesFund: UILabel!
+    @IBOutlet weak var mesCDI: UILabel!
+    @IBOutlet weak var anualFund: UILabel!
+    @IBOutlet weak var anualCDI: UILabel!
+    @IBOutlet weak var dozeFund: UILabel!
+    @IBOutlet weak var dozeCDI: UILabel!
+    
+    //infos
+    @IBOutlet var name: Array<UILabel>?
+    @IBOutlet var data: Array<UILabel>?
+    
+    //downInfo
+    @IBOutlet var nameDown: Array<UILabel>?
+    @IBOutlet weak var investirButton: UIButton!
+    
+    @IBAction func downloadActionButton(_ sender: Any) {
+        let url = URL(string: "https://www.google.com/")!
+        UIApplication.shared.openURL(url)
+    }
   
-  func doSomething()
-  {
-    let request = Fund.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: Fund.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+    
+    func displayFetchedFund(viewModel: Fund.FecthFund.ViewModel){
+        displayedFund = viewModel.displayedFund
+        preencherFundos()
+    }
+    
+    private func preencherFundos(){
+        if let screen = displayedFund{
+            titlefund.text = screen.title
+            fundName.text = screen.fundName
+            whatIs.text = screen.whatIs
+            defination.text = screen.definition
+            riskTitle.text = screen.riskTitle
+            mesFund.text = "\(screen.moreInfo?.month?.fund ?? 0)"
+            mesCDI.text = "\(screen.moreInfo?.month?.CDI ?? 0)"
+            anualFund.text = "\(screen.moreInfo?.year?.fund ?? 0)"
+            anualCDI.text = "\(screen.moreInfo?.year?.CDI ?? 0)"
+            dozeFund.text = "\(screen.moreInfo?.dozeMonths?.fund ?? 0)"
+            dozeCDI.text = "\(screen.moreInfo?.dozeMonths?.CDI ?? 0)"
+
+            for i in 0..<screen.info!.count{
+                name![i].text = screen.info![i].name
+                data![i].text = screen.info![i].data
+            }
+            
+            for i in 0..<screen.downInfo!.count{
+                nameDown![i].text = screen.downInfo![i].name
+            }
+            
+        }
+        
+    }
 }

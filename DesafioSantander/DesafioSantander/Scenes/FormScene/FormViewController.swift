@@ -94,11 +94,11 @@ class FormViewController: UIViewController, UITextFieldDelegate, FormDisplayLogi
                 
                 if let typeField = cell.typefield{
                     if typeField as? String == "telnumber"{
-                        textField.textContentType = UITextContentType.telephoneNumber
+                        textField.tag = 20
                     }
                     
                     if typeField as? Int == 3{
-                        textField.textContentType = UITextContentType.emailAddress
+                        textField.tag = 25
                     }
                 }
                 
@@ -190,8 +190,7 @@ class FormViewController: UIViewController, UITextFieldDelegate, FormDisplayLogi
         
         if messageAlert == ""{
             print("proxima tela")
-//            let detail = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
-//            present(detail, animated: true, completion: nil)
+            router?.routeToSucess(segue: nil)
             
         }else{
             let alert = UIAlertController(title: "Erro", message: "verificar campos \(messageAlert)", preferredStyle: .alert)
@@ -202,28 +201,25 @@ class FormViewController: UIViewController, UITextFieldDelegate, FormDisplayLogi
     }
     
     func validateTextFielf(_ text:UITextField){
-        if text.textContentType == .emailAddress{
-            if validateEmail(enteredEmail: text.text!){
-            }else{
+        if text.tag == 25{
+            if !validateEmail(enteredEmail: text.text!){
                 messageAlert = "\(messageAlert)e-mail, "
             }
             return
         }
-        
-        if text.textContentType == .telephoneNumber{
-            if validatePhone(value: text.text!){
-            }else{
+
+        if text.tag == 20{
+            if !validatePhone(value: text.text!){
                 messageAlert = "\(messageAlert)telefone, "
             }
             return
         }
         
-        if !(text.text?.isEmpty)!{
-            return
-        }else{
+        if (text.text?.isEmpty)!{
             messageAlert = "\(messageAlert)nome, "
         }
         
+        return
     }
     
     func validateEmail(enteredEmail:String) -> Bool {
@@ -238,6 +234,34 @@ class FormViewController: UIViewController, UITextFieldDelegate, FormDisplayLogi
         let phoneTest = NSPredicate(format: "SELF MATCHES %@ OR SELF MATCHES %@", phone,cellPhone)
         let result =  phoneTest.evaluate(with: value)
         return result
+    }
+    
+    //MARK: - text field masking
+    internal func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        //MARK:- If Delete button click
+        let  char = string.cString(using: String.Encoding.utf8)!
+        let isBackSpace = strcmp(char, "\\b")
+        
+        if (isBackSpace == -92) {
+            print("Backspace was pressed")
+            textField.text!.removeLast()
+            return false
+        }
+
+        if textField.tag == 5{
+            
+            if (textField.text?.count)! == 2{
+                textField.text = "\(textField.text!)-"  //There we are ading -
+            }
+            else if (textField.text?.count)! == 8 {
+                textField.text = "\(textField.text!)-" //there we are ading - in textfield
+            }
+            else if (textField.text?.count)! > 12{
+                return false
+            }
+        }
+        return true
     }
 
 }

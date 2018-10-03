@@ -34,7 +34,7 @@ class FormWorker : FormAPIDelegate{
         formAPI.fetch()
     }
     
-    func formAPI(gistAPI: FormAPIProtocol, didFetchForm form: FormModal) {
+    func formAPI(formAPI: FormAPIProtocol, didFetchForm form: FormModal) {
         delegate?.formWorker(formWorker: self, didFetchForm: form)
     }
   

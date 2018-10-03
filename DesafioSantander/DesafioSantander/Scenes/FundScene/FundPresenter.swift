@@ -12,20 +12,25 @@
 
 import UIKit
 
-protocol FundPresentationLogic
-{
-  func presentSomething(response: Fund.Something.Response)
+protocol FundPresentationLogic{
+  func presentFetchedFunds(response: Fund.FecthFund.Response)
 }
 
 class FundPresenter: FundPresentationLogic
 {
   weak var viewController: FundDisplayLogic?
   
-  // MARK: Do something
-  
-  func presentSomething(response: Fund.Something.Response)
-  {
-    let viewModel = Fund.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    // MARK: fetch form
+    
+    func presentFetchedFunds(response: Fund.FecthFund.Response)
+    {
+        let displayedFund = convertFunds(funds: response.fundModal.screen!)
+        let viewModel = Fund.FecthFund.ViewModel(displayedFund: displayedFund)
+        viewController?.displayFetchedFund(viewModel: viewModel)
+    }
+    
+    private func convertFunds(funds: Screen) -> Fund.FecthFund.ViewModel.DisplayedScreen
+    {
+        return Fund.FecthFund.ViewModel.DisplayedScreen(title: funds.title!, fundName: funds.fundName!, whatIs: funds.whatIs!, definition: funds.definition, riskTitle: funds.riskTitle!, risk: funds.risk!, infoTitle: funds.infoTitle!, moreInfo: funds.moreInfo!, info: funds.info!, downInfo: funds.downInfo!)
+    }
 }

@@ -12,30 +12,45 @@
 
 import UIKit
 
-protocol FundBusinessLogic
-{
-  func doSomething(request: Fund.Something.Request)
+protocol FundBusinessLogic{
+    func fetchFund(request: Fund.FecthFund.Request)
 }
 
-protocol FundDataStore
-{
-  //var name: String { get set }
+protocol FundDataStore{
+    //var name: String { get set }
 }
 
-class FundInteractor: FundBusinessLogic, FundDataStore
-{
-  var presenter: FundPresentationLogic?
-  var worker: FundWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Fund.Something.Request)
-  {
-    worker = FundWorker()
-    worker?.doSomeWork()
+class FundInteractor: FundBusinessLogic, FundDataStore, FundWorkerDelegate{
     
-    let response = Fund.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    var presenter: FundPresentationLogic?
+    var worker = FundWorker()
+    
+    enum AsyncOpKind {
+        case block, delegate
+    }
+    var asyncOpKind = AsyncOpKind.block
+    
+    // MARK: Fetch Funds
+    
+    func fetchFund(request: Fund.FecthFund.Request) {
+        
+        switch asyncOpKind {
+        case .block:
+            // MARK: Block implementation
+            worker.fetch { (fund) in
+                let response = Fund.FecthFund.Response(fundModal: fund)
+                self.presenter?.presentFetchedFunds(response: response)
+            }
+            
+        case .delegate:
+            // MARK: Delegate method implementation
+            worker.delegate = self
+            worker.fetch()
+        }
+    }
+    
+    func fundWorker(fundWorker: FundWorker, didFetchFund fund: FundModal) {
+        let response = Fund.FecthFund.Response(fundModal: fund)
+        self.presenter?.presentFetchedFunds(response: response)
+    }
 }

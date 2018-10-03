@@ -12,9 +12,30 @@
 
 import UIKit
 
-class FundWorker
-{
-  func doSomeWork()
-  {
-  }
+protocol FundWorkerDelegate{
+    func fundWorker(fundWorker: FundWorker, didFetchFund fund: FundModal)
+}
+
+class FundWorker : FundAPIDelegate{
+    var fundAPI: FundAPIProtocol = FundAPI()
+    var delegate: FundWorkerDelegate?
+    
+    // MARK: Block implementation
+    func fetch(completion: @escaping (FundModal) -> Void)
+    {
+        fundAPI.fetch { (funds) in
+            completion(funds)
+        }
+    }
+    
+    // MARK: Delegate implementation
+    func fetch(){
+        fundAPI.delegate = self
+        fundAPI.fetch()
+    }
+    
+    func fundAPI(fundAPI: FundAPIProtocol, didFetchFund fund: FundModal) {
+        delegate?.fundWorker(fundWorker: self, didFetchFund: fund)
+    }
+    
 }

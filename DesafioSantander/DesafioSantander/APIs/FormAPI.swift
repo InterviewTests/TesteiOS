@@ -3,7 +3,7 @@
 //  Bebida-Fractal
 //
 //  Created by Fernanda de Lima on 13/12/2017.
-//  Copyright © 2017 Empresinha. All rights reserved.
+//  Copyright © 2018 FeLima. All rights reserved.
 //
 
 import Foundation
@@ -17,7 +17,7 @@ protocol FormAPIProtocol{
 }
 
 protocol FormAPIDelegate{
-    func formAPI(gistAPI: FormAPIProtocol, didFetchForm form: FormModal)
+    func formAPI(formAPI: FormAPIProtocol, didFetchForm form: FormModal)
 }
 
 class FormAPI: FormAPIProtocol{
@@ -50,11 +50,11 @@ class FormAPI: FormAPIProtocol{
                 case .success(let cells):
                     print("==========> SAIDA")
                     print(cells)
-                    self.delegate?.formAPI(gistAPI: self, didFetchForm: cells)
+                    self.delegate?.formAPI(formAPI: self, didFetchForm: cells)
                     
                 case .failure( _):
                     let cell = FormModal(cells: [])
-                    self.delegate?.formAPI(gistAPI: self, didFetchForm: cell)
+                    self.delegate?.formAPI(formAPI: self, didFetchForm: cell)
                 }
             })
     }

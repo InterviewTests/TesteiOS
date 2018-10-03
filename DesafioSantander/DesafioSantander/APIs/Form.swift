@@ -9,8 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class cellStruct: Mappable  {
-    
+struct cellStruct {
     var id:Int?
     var type:Int?
     var message:String?
@@ -19,12 +18,23 @@ class cellStruct: Mappable  {
     var topSpacing: Int?
     var show:Int?
     var required:Bool?
-    
-    required init?(map: Map){
+}
+
+struct FormModal{
+    var cells:[cellStruct]?
+
+    init(cells: [cellStruct]) {
+        self.cells = cells
+    }
+}
+
+
+extension cellStruct: Mappable{
+    init?(map: Map){
         mapping(map: map)
     }
     
-    func mapping(map:Map){
+    mutating func mapping(map:Map){
         id          <- map["id"]
         type        <- map["type"]
         message     <- map["message"]
@@ -33,14 +43,6 @@ class cellStruct: Mappable  {
         topSpacing  <- map["topSpacing"]
         show        <- map["show"]
         required    <- map["required"]
-    }
-}
-
-struct FormModal{
-    var cells:[cellStruct]?
-
-    init(cells: [cellStruct]) {
-        self.cells = cells
     }
 }
 
@@ -54,48 +56,3 @@ extension FormModal:Mappable{
     }
 }
 
-//extension cellStruct: Equatable
-//{
-//    static func ==(lhs: cellStruct, rhs: cellStruct) -> Bool
-//    {
-//        return lhs.id == rhs.id &&
-//            lhs.type == rhs.type &&
-//            lhs.message == rhs.message &&
-//            lhs.hidden == rhs.hidden &&
-//            lhs.topSpacing == rhs.topSpacing &&
-//            lhs.show == rhs.show &&
-//            lhs.required == rhs.required &&
-//            lhs.typefield == rhs.typefield
-//    }
-//}
-//
-//extension cellStruct: Hashable
-//{
-//    var hashValue: Int
-//    {
-//        return id.hashValue
-//    }
-//}
-//
-//extension Form.FecthForm.ViewModel.DisplayedCell: Equatable
-//{
-//    static func ==(lhs: Form.FecthForm.ViewModel.DisplayedCell, rhs: Form.FecthForm.ViewModel.DisplayedCell) -> Bool
-//    {
-//        return lhs.id == rhs.id &&
-//            lhs.type == rhs.type &&
-//            lhs.message == rhs.message &&
-//            lhs.hidden == rhs.hidden &&
-//            lhs.topSpacing == rhs.topSpacing &&
-//            lhs.show == rhs.show &&
-//            lhs.required == rhs.required &&
-//            lhs.typefield == rhs.typefield
-//    }
-//}
-//
-//extension Form.FecthForm.ViewModel.DisplayedCell: Hashable
-//{
-//    var hashValue: Int
-//    {
-//        return id.hashValue
-//    }
-//}

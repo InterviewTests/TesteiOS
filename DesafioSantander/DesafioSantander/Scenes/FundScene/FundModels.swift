@@ -16,16 +16,30 @@ enum Fund
 {
   // MARK: Use cases
   
-  enum Something
+  enum FecthFund
   {
     struct Request
     {
     }
     struct Response
     {
+        var fundModal:FundModal
     }
     struct ViewModel
     {
+        struct DisplayedScreen{
+            var title:String?
+            var fundName:String?
+            var whatIs:String?
+            var definition:String?
+            var riskTitle:String?
+            var risk: Int?
+            var infoTitle:String?
+            var moreInfo:MoreInfo?
+            var info:[Infos]?
+            var downInfo:[Infos]?
+        }
+        var displayedFund: DisplayedScreen
     }
   }
 }

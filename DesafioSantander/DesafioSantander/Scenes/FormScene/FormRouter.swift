@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol FormRoutingLogic{
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+  func routeToSucess(segue: UIStoryboardSegue?)
 }
 
 protocol FormDataPassing{
@@ -27,27 +27,27 @@ class FormRouter: NSObject, FormRoutingLogic, FormDataPassing{
   
   // MARK: Routing
   
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
+  func routeToSucess(segue: UIStoryboardSegue?)
+  {
+    if let segue = segue {
+        _ = segue.destination as! ConfirmViewController
+//      var destinationDS = destinationVC.router!.dataStore!
+//      passDataToSucess(source: dataStore!, destination: &destinationDS)
+    } else {
+      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      let destinationVC = storyboard.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
+//      var destinationDS = destinationVC.router!.dataStore!
+//      passDataToSomewhere(source: dataStore!, destination: &destinationDS)
+      navigateToSucess(source: viewController!, destination: destinationVC)
+    }
+  }
 
   // MARK: Navigation
   
-  //func navigateToSomewhere(source: FormViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
+  func navigateToSucess(source: FormViewController, destination: ConfirmViewController)
+  {
+    source.present(destination, animated: true, completion: nil)
+  }
   
   // MARK: Passing data
   
