@@ -5,6 +5,9 @@ Esse repositório contem todo o material necessário para realizar o teste:
 
 - A especificação dos serviços (login e statements) está no arquivo BankApp.postman_collection.json ( é necessário instalar o postman e importar a colection https://www.getpostman.com/apps)
 
+
+![Image of Yaktocat](https://github.com/SantanderTecnologia/TesteiOS/blob/new_test/telas.png)
+
 ### # DESAFIO:
 
 Na primeira tela sera uma tela de login, o campo de 'user' deverá aceitar email ou cpf, o campo password deve validar se a senha tem pelo menos uma letra maiuscula, um caracter especial e um caracter alphanumerico, tambem deve ser validada.
