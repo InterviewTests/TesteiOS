@@ -16,8 +16,6 @@ O ultimo usuário logado deve ser salvo de forma segura localmente, e exibido na
 
 Na segunda tela será exibido os dados formatados do retorno do login e será necessário fazer um segundo request para obter os lançamentos do usuário, no endpoint https://bank-app-test.herokuapp.com/api/statements/{idUser} que retornará uma lista de lançamentos
 
-O teste é aberto para melhorias e sugestoes no layout
-
 ### # Avaliação
 
 Você será avaliado pela usabilidade, por respeitar o design e pela arquitetura do app. É esperado que você consiga explicar as decisões que tomou durante o desenvolvimento através de commits.
@@ -36,6 +34,9 @@ Obrigatórios:
 Adicione um arquivo [README.md](http://README.md) com os procedimentos para executar o projeto.
 Pedimos que trabalhe sozinho e não divulgue o resultado na internet.
 
-Faça um fork desse desse repositório em seu Github e nos envie um Pull Request com o resultado.
+Faça um fork desse desse repositório em seu Github e comece a partir da branch **new_test**.
+Ao finalizar nos envie um Pull Request com o resultado, por favor informe por qual empresa você esta se candidatando.
+
+# Importante: não há prazo de entrega, faça com qualidade!
 
 # BOA SORTE!
