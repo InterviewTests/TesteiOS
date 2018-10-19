@@ -1,20 +1,22 @@
 # Show me the code
 
 Esse repositório contem todo o material necessário para realizar o teste: 
-- A especificação do layot está na pasta 'bank_app_layout' abrindo o index.html, os icones estão na pasta 'assets'
+- A especificação do layout está na pasta 'bank_app_layout' abrindo o index.html, os icones estão na pasta 'assets'
 
 - A especificação dos serviços (login e statements) está no arquivo BankApp.postman_collection.json ( é necessário instalar o postman e importar a colection https://www.getpostman.com/apps)
-
 
 ![Image of Yaktocat](https://github.com/SantanderTecnologia/TesteiOS/blob/new_test/telas.png)
 
 ### # DESAFIO:
 
-Na primeira tela sera uma tela de login, o campo de 'user' deverá aceitar email ou cpf, o campo password deve validar se a senha tem pelo menos uma letra maiuscula, um caracter especial e um caracter alphanumerico, tambem deve ser validada.
-O ultimo usuario logado deve ser salvo de forma segura localmente, apos validado com sucesso devera realizar login no endpoint https://bank-app-test.herokuapp.com/api/login,
-os dados de retorno devem ser exibidos na próxima tela.
+Na primeira teremos um formulario de login, o campo user deve aceitar email ou cpf,
+o campo password deve validar se a senha tem pelo menos uma letra maiuscula, um caracter especial e um caracter alfanumérico.
+Apos a validação, realizar o login no endpoint https://bank-app-test.herokuapp.com/api/login e exibir os dados de retorno na próxima tela.
+O ultimo usuário logado deve ser salvo de forma segura localmente, e exibido na tela de login se houver algum salvo. 
 
-Na segunda tela será exibido os dados formatados do retorno do login e será necessário fazer um segundo request para obter os lançamentos do usuário, no endpoint https://bank-app-test.herokuapp.com/api/statements que retorna uma lista, para ser populada como é visto no layout, ao clicar no icone de sair retorna para a tela de login 
+Na segunda tela será exibido os dados formatados do retorno do login e será necessário fazer um segundo request para obter os lançamentos do usuário, no endpoint https://bank-app-test.herokuapp.com/api/statements/{idUser} que retornará uma lista de lançamentos
+
+O teste é aberto para melhorias e sugestoes no layout
 
 ### # Avaliação
 
