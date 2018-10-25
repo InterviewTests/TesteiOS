@@ -14,6 +14,7 @@ struct Login {
     static let placeholderPw = "Password"
     static let titleButtonLogin = "Login"
     static let imageLogo = "Logo"
+    static let imageSair = "logout 2"
 
 
 }
