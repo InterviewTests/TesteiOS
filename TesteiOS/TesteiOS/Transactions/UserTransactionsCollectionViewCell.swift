@@ -11,4 +11,9 @@ import UIKit
 
 class UserTransactionsCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var typeOfTransaction: UILabel!
+    @IBOutlet weak var nameOfTransaction: UILabel!
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var amount: UILabel!
+    
 }

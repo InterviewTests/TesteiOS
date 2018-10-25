@@ -6,7 +6,20 @@
 //  Copyright © 2018 Gabriel Sória Souza. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
+protocol GetTransactionsPresenter {
+    func getTransactions(statementRequestList: [StatementListRequest])
+}
 
+class TransactionsPresenter: GetTransactionsPresenter {
+
+    weak var viewController: UserTransactionsViewController?
+    
+    func getTransactions(statementRequestList: [StatementListRequest]) {
+        
+        viewController?.data = statementRequestList
+        viewController?.finishLoadingContent()
+        
+    }
+}

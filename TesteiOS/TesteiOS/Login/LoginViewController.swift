@@ -41,9 +41,13 @@ class LoginViewController: UIViewController, UserAndSafeDataDelegate {
         
         return stackView
     }()
+    let activityIndicator = UIActivityIndicatorView(style: .gray)
     var delegate: UserAndSafeDataDelegate?
-    var interacor: PostToEndpoint?
-    
+    var interactor: PostToEndpoint?
+    var routing: ShowTransacionsRouter?
+    var transactionsInteractor: GetTransactions?
+    var detailDataToBePosted: DetailDataToBePosted!
+    let router = UserTransactionsRouter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +66,7 @@ class LoginViewController: UIViewController, UserAndSafeDataDelegate {
         guard let userTF = self.userTextField.text else { return }
         self.userTextField.text = user
         
-        delegate?.loadKeys(user: userTF)
+        delegate?.loadPassword(account: userTF)
         
     }
     
@@ -86,7 +90,8 @@ class LoginViewController: UIViewController, UserAndSafeDataDelegate {
     func setup() {
         let viewController = self
         let interactor = PostDataInteractor()
-        viewController.interacor = interactor
+        viewController.interactor = interactor
+        viewController.routing = router
     }
     
     @objc func loginAction() {
@@ -96,17 +101,34 @@ class LoginViewController: UIViewController, UserAndSafeDataDelegate {
         
         if (safeDelegate.isValidEmail(email: userTF) || safeDelegate.isValidCPF(cpfInput: userTF)) && safeDelegate.isValidPassword(input: passwordTF) {
             UserDefaults.standard.set(userTF, forKey: "userData")
-            safeDelegate.saveKeys(user: userTF, pass: passwordTF)
+            //safeDelegate.saveKeys(user: userTF, pass: passwordTF)
+            safeDelegate.saveKeys(account: userTF, data: passwordTF)
             
-        let detailDataToBePosted = DetailDataToBePosted(userId: 1, name: "Jose da Silva Teste", bankAccount: "2050", agency: "012314564", balance: 3.3445)
-            
-            interacor?.post(dataToBePosted: detailDataToBePosted)
-            
+        detailDataToBePosted = DetailDataToBePosted(userId: 1, name: "Jose da Silva Teste", bankAccount: "2050", agency: "012314564", balance: 3.3445)
+            router.toBePosted = detailDataToBePosted
+            self.addActivityIndicator()
+            interactor?.post(dataToBePosted: detailDataToBePosted, viewController: self)
+            self.passwordTextField.text?.removeAll()
         } else {
         let alert = UIAlertController(title: "Dados inválidos", message: "Verifique seus dados", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segue" {
+            guard let vc = segue.destination as? UserTransactionsViewController else { return }
+            router.routeToTransactions(destination: vc)
+        }
+    }
+    
+    func addActivityIndicator() {
+        self.view.alpha = 0.5
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.startAnimating()
     }
 }

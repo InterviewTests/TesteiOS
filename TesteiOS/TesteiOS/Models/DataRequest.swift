@@ -12,6 +12,11 @@ public enum LoadError {
 struct StatementsRequest: Codable {
     let statementList: [StatementListRequest]
     let error: EmptyErrorData?
+    
+    init(statementList: [StatementListRequest], error: EmptyErrorData?) {
+        self.statementList = statementList
+        self.error = error
+    }
 }
 
 struct StatementListRequest: Codable {

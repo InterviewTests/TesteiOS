@@ -10,7 +10,21 @@ import Foundation
 import UIKit
 
 protocol ShowTransacionsRouter {
-    func routeToTransactions(segue: UIStoryboardSegue?)
+    func routeToTransactions(destination: UserTransactionsViewController)
 }
 
+protocol ShowTransactionsDataPassing {
+    var toBePosted: DetailDataToBePosted? { get }
+}
 
+class UserTransactionsRouter: ShowTransacionsRouter, ShowTransactionsDataPassing {
+    
+    var viewController: LoginViewController?
+    var toBePosted: DetailDataToBePosted?
+    var destinationInteractor: TransactionsInteractor?
+    
+    func routeToTransactions(destination: UserTransactionsViewController) {
+        destination.userData = toBePosted
+    }
+    
+}

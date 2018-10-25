@@ -8,7 +8,7 @@ class RequestAndPostData {
     }()
     private static let session = URLSession(configuration: configuration)
     
-    class func getData<T: Codable>(id: String, completion: @escaping (T) -> Void, onError: @escaping (LoadError) -> Void) {
+    class func getData<T: Codable>(id: Int, completion: @escaping (T) -> Void, onError: @escaping (LoadError) -> Void) {
         
         let path = "https://bank-app-test.herokuapp.com/api/statements/\(id)"
         
@@ -17,12 +17,14 @@ class RequestAndPostData {
         }
         
         let dataTask = session.dataTask(with: url) { (data, response, error) in
+            
             self.requestResponse(completion: completion, onError: onError)(data, response, error)
+            
         }
         dataTask.resume()
     }
     
-    class func postData(loginData: LoginData, completion: @escaping (Bool) -> Void, onError: @escaping (LoadError) -> Void) {
+     class func postData(loginData: LoginData, completion: @escaping (Bool) -> Void, onError: @escaping (LoadError) -> Void) {
         
         let path = "https://bank-app-test.herokuapp.com/api/login"
         
@@ -42,7 +44,9 @@ class RequestAndPostData {
         request.httpBody = data
         
         let dataTask = session.dataTask(with: request) { (data, response, error) in
+            
             self.postRequestResponse(completion: completion, onError: onError)(data, response, error)
+            
         }
         dataTask.resume()
         
@@ -60,7 +64,7 @@ class RequestAndPostData {
                     guard let data = data else { return }
                     do {
                         let returnData = try JSONDecoder().decode(T.self, from: data)
-                        print(returnData)
+                        print("return data \(returnData)")
                         completion(returnData)
                     } catch {
                         onError(.invalidJSON)

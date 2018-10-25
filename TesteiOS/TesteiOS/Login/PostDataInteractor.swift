@@ -11,7 +11,7 @@ import UIKit
 
 
 protocol PostToEndpoint {
-    func post(dataToBePosted: DetailDataToBePosted)
+    func post(dataToBePosted: DetailDataToBePosted, viewController: LoginViewController)
 }
 
 protocol ToBePosted {
@@ -23,15 +23,22 @@ class PostDataInteractor: PostToEndpoint, ToBePosted {
     var presenter: DataToBePostedPresenter?
     var data: DetailDataToBePosted!
     
-    func post(dataToBePosted: DetailDataToBePosted) {
+    func post(dataToBePosted: DetailDataToBePosted, viewController: LoginViewController) {
         let loginData = UserDataForLogin(userId: dataToBePosted.userId, name: dataToBePosted.name, bankAccount: dataToBePosted.bankAccount, agency: dataToBePosted.agency, balance: dataToBePosted.balance)
         let completeLoginData = LoginData.init(userData: loginData, error: nil)
         
         
         RequestAndPostData.postData(loginData: completeLoginData, completion: { (sucess) in
-            print(sucess)
+            DispatchQueue.main.async {
+                viewController.performSegue(withIdentifier: "segue", sender: nil)
+                viewController.activityIndicator.stopAnimating()
+                viewController.activityIndicator.removeFromSuperview()
+                viewController.view.alpha = 1.0
+            }
         }) { (error) in
-            print(error)
+            viewController.activityIndicator.stopAnimating()
+            viewController.activityIndicator.removeFromSuperview()
+            viewController.view.alpha = 1.0
         }
     }
 }

@@ -43,41 +43,84 @@ extension UserAndSafeDataDelegate {
         }
     }
     
-    @discardableResult
-    func saveKeys(user: String, pass: String) -> OSStatus {
-        guard let data = pass.data(using: .utf8) else { return errno }
-        let query = [
-            kSecClass as String : kSecClassGenericPassword as String,
-            kSecAttrAccount as String: user,
-            kSecValueData as String : data] as [String: Any]
-        
-        SecItemDelete(query as CFDictionary)
-
-        print("saved")
-        
-        return SecItemAdd(query as CFDictionary, nil)
+//    @discardableResult
+//    func saveKeys(user: String, pass: String) -> OSStatus {
+//        guard let data = pass.data(using: .utf8) else { return errno }
+//        let query = [
+//            kSecClass as String : kSecClassGenericPassword as String,
+//            kSecAttrAccount as String: user,
+//            kSecValueData as String : data] as [String: Any]
+//
+//        SecItemDelete(query as CFDictionary)
+//
+//        return SecItemAdd(query as CFDictionary, nil)
+//    }
+    
+    func saveKeys(account: String, data: String) {
+        if let dataFromString = data.data(using: String.Encoding.utf8, allowLossyConversion: false) {
+            let query = [
+                    kSecClass as String : kSecClassGenericPassword as String,
+                    kSecAttrAccount as String: account,
+                    kSecValueData as String : dataFromString] as [String: Any]
+            let status = SecItemAdd(query as CFDictionary, nil)
+            if (status != errSecSuccess) {    // Always check the status
+                if #available(iOS 11.3, *) {
+                    if let err = SecCopyErrorMessageString(status, nil) {
+                        print("Write failed: \(err)")
+                    }
+                } else {
+                    // Fallback on earlier versions
+                }
+            }
+        }
     }
     
-    @discardableResult
-    func loadKeys(user: String) -> Data? {
+//    @discardableResult
+//    func loadKeys(user: String) -> Data? {
+//        let query = [
+//            kSecClass as String : kSecClassGenericPassword,
+//            kSecAttrAccount as String : user,
+//            kSecReturnData as String : kCFBooleanTrue,
+//            kSecMatchLimit as String : kSecMatchLimitOne
+//        ] as [String : Any]
+//
+//        var dataTypeRef: AnyObject?
+//        let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
+//
+//        if status == noErr {
+//            print("loaded")
+//            return dataTypeRef as! Data?
+//        } else {
+//            print("nao carregou")
+//            return nil
+//        }
+//    }
+    
+    func loadPassword(account:String) -> String? {
+        // Instantiate a new default keychain query
+        // Tell the query to return a result
+        // Limit our results to one item
         let query = [
-            kSecClass as String : kSecClassGenericPassword,
-            kSecAttrAccount as String : user,
-            kSecReturnData as String : kCFBooleanTrue,
-            kSecMatchLimit as String : kSecMatchLimitOne
-        ] as [String : Any]
+                    kSecClass as String : kSecClassGenericPassword,
+                    kSecAttrAccount as String : account,
+                    kSecReturnData as String : kCFBooleanTrue,
+                    kSecMatchLimit as String : kSecMatchLimitOne] as [String : Any]
         
-        var dataTypeRef: AnyObject?
+        var dataTypeRef :AnyObject?
         
+        // Search for the keychain items
         let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
+        var contentsOfKeychain: String?
         
-        if status == noErr {
-            print("loaded")
-            return dataTypeRef as! Data?
+        if status == errSecSuccess {
+            if let retrievedData = dataTypeRef as? Data {
+                contentsOfKeychain = String(data: retrievedData, encoding: String.Encoding.utf8)
+            }
         } else {
-            print("nao carregou")
-            return nil
+            print("Nothing was retrieved from the keychain. Status code \(status)")
         }
+        
+        return contentsOfKeychain
     }
 }
 
