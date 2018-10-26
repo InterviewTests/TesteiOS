@@ -8,6 +8,17 @@
 
 import Foundation
 
+enum KeychainError: Error {
+    case noPassword
+    case unexpectedPasswordData
+    case unhandledError(status: OSStatus)
+}
+
+struct Credentials {
+    var username: String
+    var password: String
+}
+
 protocol UserAndSafeDataDelegate {
     func isValidPassword(input: String) -> Bool
     func isValidEmail(email: String) -> Bool
@@ -42,97 +53,42 @@ extension UserAndSafeDataDelegate {
             return true
         }
     }
-    
-//    @discardableResult
-//    func saveKeys(user: String, pass: String) -> OSStatus {
-//        guard let data = pass.data(using: .utf8) else { return errno }
-//        let query = [
-//            kSecClass as String : kSecClassGenericPassword as String,
-//            kSecAttrAccount as String: user,
-//            kSecValueData as String : data] as [String: Any]
-//
-//        SecItemDelete(query as CFDictionary)
-//
-//        return SecItemAdd(query as CFDictionary, nil)
-//    }
-    
-    func saveKeys(account: String, data: String) {
-        if let dataFromString = data.data(using: String.Encoding.utf8, allowLossyConversion: false) {
-            let query = [
-                    kSecClass as String : kSecClassGenericPassword as String,
-                    kSecAttrAccount as String: account,
-                    kSecValueData as String : dataFromString] as [String: Any]
-            let status = SecItemAdd(query as CFDictionary, nil)
-            if (status != errSecSuccess) {    // Always check the status
-                if #available(iOS 11.3, *) {
-                    if let err = SecCopyErrorMessageString(status, nil) {
-                        print("Write failed: \(err)")
-                    }
-                } else {
-                    // Fallback on earlier versions
-                }
-            }
-        }
+   
+    @discardableResult
+    func saveKeys(credentials: Credentials) throws -> OSStatus? {
+        guard let encodedPassword = credentials.password.data(using: String.Encoding.utf8) else { return nil }
+        let queryCredentials: [String: Any] = [
+            kSecClass as String : kSecClassGenericPassword,
+            kSecAttrAccount as String : credentials.username,
+            kSecAttrService as String: "SantanderTest",
+            kSecValueData as String : encodedPassword
+        ]
+        
+        SecItemDelete(queryCredentials as CFDictionary)
+        
+        let status = SecItemAdd(queryCredentials as CFDictionary, nil)
+        guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
+        return status
     }
     
-//    @discardableResult
-//    func loadKeys(user: String) -> Data? {
-//        let query = [
-//            kSecClass as String : kSecClassGenericPassword,
-//            kSecAttrAccount as String : user,
-//            kSecReturnData as String : kCFBooleanTrue,
-//            kSecMatchLimit as String : kSecMatchLimitOne
-//        ] as [String : Any]
-//
-//        var dataTypeRef: AnyObject?
-//        let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
-//
-//        if status == noErr {
-//            print("loaded")
-//            return dataTypeRef as! Data?
-//        } else {
-//            print("nao carregou")
-//            return nil
-//        }
-//    }
-    
-    func loadPassword(account:String) -> String? {
-        // Instantiate a new default keychain query
-        // Tell the query to return a result
-        // Limit our results to one item
-        let query = [
-                    kSecClass as String : kSecClassGenericPassword,
-                    kSecAttrAccount as String : account,
-                    kSecReturnData as String : kCFBooleanTrue,
-                    kSecMatchLimit as String : kSecMatchLimitOne] as [String : Any]
+    func loadKeys(credentials: String) -> Credentials? {
+
+        var passwordData: AnyObject?
+        var returnString: String
+        let queryCredentials: [String: Any] = [
+            kSecClass as String : kSecClassGenericPassword,
+            kSecAttrAccount as String : credentials,
+            kSecReturnData as String : kCFBooleanTrue,
+            kSecMatchLimit as String : kSecMatchLimitOne
+        ]
+        let status: OSStatus = SecItemCopyMatching(queryCredentials as CFDictionary, &passwordData)
         
-        var dataTypeRef :AnyObject?
-        
-        // Search for the keychain items
-        let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
-        var contentsOfKeychain: String?
-        
-        if status == errSecSuccess {
-            if let retrievedData = dataTypeRef as? Data {
-                contentsOfKeychain = String(data: retrievedData, encoding: String.Encoding.utf8)
+        if status == noErr {
+            if let retrievedData = passwordData as? Data {
+                returnString = String(data: retrievedData, encoding: String.Encoding.utf8)!
+                return Credentials(username: credentials, password: returnString)
             }
-        } else {
-            print("Nothing was retrieved from the keychain. Status code \(status)")
         }
-        
-        return contentsOfKeychain
+        return nil
     }
 }
-
-struct Credentials {
-    var username: String
-    var password: String
-}
-
-enum KeychainError: Error {
-    case noPassword
-    case unexpectedPasswordData
-    case unhandledError(status: OSStatus)
-}
-
-

@@ -45,7 +45,6 @@ class UserTransactionsViewController: UIViewController {
         userNameLabel.text = returnedUserData.name
         agencyAccountNumberLabel.text = "\(String(describing: returnedUserData.bankAccount)) / \(String(describing: returnedUserData.agency))"
         balanceLabel.text = "R$ " + convertDoubleFormat(input: returnedUserData.balance)
-        //balanceLabel.text = "R$ \(String(describing: returnedUserData.balance))"
     }
     
     override func viewDidLoad() {
