@@ -14,7 +14,7 @@ class UserDataViewController: UIViewController {
     @IBOutlet weak var labelNome: UILabel!
     @IBOutlet weak var labelConta: UILabel!
     @IBOutlet weak var labelSaldo: UILabel!
-    @IBOutlet weak var imageSair: UIImageView!
+    @IBOutlet weak var ButtonSair: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,19 +23,12 @@ class UserDataViewController: UIViewController {
     }
     
     private func setUp(){
-        self.imageSair.image = UIImage(named: Login.imageSair)
+        let image = UIImage(named: Login.imageSair)
+        self.ButtonSair.setImage(image, for: .normal)
     }
-    private func setUpHeader(headerView: UIView){
-        
-        headerView.backgroundColor = UIColor(red:0.97, green:0.98, blue:0.98, alpha:1.0)
-        let headerLabel = UILabel(frame: CGRect(x: 30, y: 0, width:
-            tableView.bounds.size.width, height: tableView.bounds.size.height))
-        headerLabel.font = UIFont(name: "HelveticaNeue", size: 17)
-        headerLabel.textColor = UIColor(red:0.28, green:0.33, blue:0.40, alpha:1.0)
-        headerLabel.text = "Recentes"
-        headerLabel.sizeToFit()
-        headerView.addSubview(headerLabel)
-        
+   
+    @IBAction func logout(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -56,7 +49,7 @@ extension UserDataViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        self.setUpHeader(headerView: headerView)
+        setUpHeader(headerView: headerView)
         return headerView
     }
     
