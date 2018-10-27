@@ -61,26 +61,48 @@ class LoginViewController: UIViewController {
         self.buttonLogin.layer.shadowColor = UIColor(red:0.23, green:0.28, blue:0.93, alpha:0.3).cgColor
     }
    
-    func checkLogin(user: String, pass: String, vc : UIViewController){
+    func checkLogin(user: String, pass: String){
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "UserDataViewController") as! UserDataViewController
         
         if checkPass(text: pass) && (checkEmail(user: user)||checkCPF(user: user)){
+            
             Defaults.clearUserData()
             Defaults.saveLogin(user, pass)
-            self.present(vc, animated: true, completion: nil)
             
+                BankAPI.getLoginData(user: user, pass: pass, onComplete: { (data) in
+                    vc.user = data
+                    if let id = data.userAccount.userId{
+                    
+                        BankAPI.loadUserData(session: id, onComplete: { (data) in
+                            vc.statements = data.statementList
+                            
+                            self.present(vc, animated: true, completion: nil)
+
+                        }) { (error) in
+                            if let currentError = error {
+                                self.presentAlert(error: currentError.rawValue)
+                            }
+                        }
+                        
+                    }
+                    
+                }) { (error) in
+                    if let currentError = error{
+                        self.presentAlert(error: currentError.rawValue)
+                    }
+                }
+
         }else{
-            let alert = UIAlertController(title: "Erro ao logar", message: "Usuário ou senha incorreto.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
-            self.present(alert, animated: true, completion: nil)
+            self.presentAlert(error: Login.erroSenha)
         }
     }
+    
 
     @IBAction func login(_ sender: Any) {
 
         if let pass = self.textFieldPw.text, let user = self.textFieldUser.text{
-            let vc = storyboard?.instantiateViewController(withIdentifier: "UserDataViewController") as! UserDataViewController
-            checkLogin(user: user, pass: pass, vc: vc)
+            checkLogin(user: user, pass: pass)
         }
 
     }

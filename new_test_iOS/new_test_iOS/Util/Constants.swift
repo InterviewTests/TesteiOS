@@ -15,6 +15,14 @@ struct Login {
     static let titleButtonLogin = "Login"
     static let imageLogo = "Logo"
     static let imageSair = "logout 2"
+    static let erroSenha = "Usuário ou senha incorreto."
 
 
+}
+
+struct Api {
+    
+    static let login = "https://bank-app-test.herokuapp.com/api/login"
+    static let statements = "https://bank-app-test.herokuapp.com/api/statements/"
+    
 }
