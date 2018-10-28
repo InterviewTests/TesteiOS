@@ -1,6 +1,6 @@
 import Foundation
 
-class RequestAndPostData {
+class RequestAndPostDataWorker {
     private static let configuration: URLSessionConfiguration = {
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 30.0

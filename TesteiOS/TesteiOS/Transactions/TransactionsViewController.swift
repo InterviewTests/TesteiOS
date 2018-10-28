@@ -12,7 +12,6 @@ import UIKit
 class UserTransactionsViewController: UIViewController {
     
     let accountInformationView = UIView()
-    let transactionsTableView = UITableView()
     var router: UserTransactionsRouter?
     var data: [StatementListRequest]?
     var userData: DetailDataToBePosted?
@@ -28,16 +27,6 @@ class UserTransactionsViewController: UIViewController {
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
-    
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         guard let returnedUserData = userData else { return }
@@ -72,7 +61,7 @@ class UserTransactionsViewController: UIViewController {
         interactor.presenter = presenter
         presenter.viewController = viewController
         interactor.id = userData?.userId
-        interactor.getTransactions()
+        interactor.getTransactions(userTransactionsViewController: self)
     }
     
     func finishLoadingContent() {

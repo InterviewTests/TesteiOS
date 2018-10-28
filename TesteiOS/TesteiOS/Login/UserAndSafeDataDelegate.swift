@@ -32,7 +32,11 @@ extension UserAndSafeDataDelegate {
         let setOfUppercase: CharacterSet = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         let setOfNumbersAndAlpha = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyz0123456789")
         let setOfUpperNormalandNumbers = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
-        if input.rangeOfCharacter(from: setOfUpperNormalandNumbers) == nil || input.rangeOfCharacter(from: setOfUppercase) == nil || input.rangeOfCharacter(from: setOfNumbersAndAlpha) == nil {
+        if input.rangeOfCharacter(from: setOfUpperNormalandNumbers.inverted) == nil {
+            return false
+        } else if input.rangeOfCharacter(from: setOfUppercase) == nil {
+            return false
+        } else if input.rangeOfCharacter(from: setOfNumbersAndAlpha) == nil {
             return false
         } else {
             return true

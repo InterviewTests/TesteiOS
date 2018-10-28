@@ -10,6 +10,7 @@ import UIKit
 
 protocol GetTransactionsPresenter {
     func getTransactions(statementRequestList: [StatementListRequest])
+    func dismissViewController(viewController: UserTransactionsViewController)
 }
 
 class TransactionsPresenter: GetTransactionsPresenter {
@@ -17,9 +18,11 @@ class TransactionsPresenter: GetTransactionsPresenter {
     weak var viewController: UserTransactionsViewController?
     
     func getTransactions(statementRequestList: [StatementListRequest]) {
-        
         viewController?.data = statementRequestList
         viewController?.finishLoadingContent()
-        
+    }
+    
+    func dismissViewController(viewController: UserTransactionsViewController) {
+        viewController.dismiss(animated: true, completion: nil)
     }
 }

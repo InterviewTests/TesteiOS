@@ -1,6 +1,5 @@
 import Foundation
 
-
 struct LoginData: Codable {
     let userData: UserDataForLogin
     let error: EmptyErrorData?

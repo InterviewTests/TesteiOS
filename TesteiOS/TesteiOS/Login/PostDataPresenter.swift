@@ -11,13 +11,26 @@ import UIKit
 
 protocol PresentPostData {
     func presentingPostData(data: DetailDataToBePosted)
+    func authenticateData(loginViewController: LoginViewController, credentialsDelegate: UserAndSafeDataDelegate)
+    func login(loginViewController: LoginViewController, delegate: UserAndSafeDataDelegate, router: UserTransactionsRouter)
 }
 
-class DataToBePostedPresenter: PresentPostData {
+class LoginPresenter: PresentPostData {
     
-    weak var viewController: LoginViewController?
-    
+    var viewController: LoginViewController?
+    var interactor: LoginInteractor?
     func presentingPostData(data: DetailDataToBePosted) {
         
     }
+    
+    func authenticateData(loginViewController: LoginViewController, credentialsDelegate: UserAndSafeDataDelegate) {
+        interactor = LoginInteractor()
+        interactor?.authentication(loginViewController: loginViewController, credentialsDelegate: credentialsDelegate)
+    }
+    
+    func login(loginViewController: LoginViewController, delegate: UserAndSafeDataDelegate, router: UserTransactionsRouter) {
+        interactor = LoginInteractor()
+        interactor?.login(loginViewController: loginViewController, delegate: delegate, router: router)
+    }
+    
 }

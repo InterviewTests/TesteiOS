@@ -9,7 +9,7 @@
 import UIKit
 
 protocol GetTransactions {
-    func getTransactions()
+    func getTransactions(userTransactionsViewController: UserTransactionsViewController)
 }
 
 protocol TransactionsOfUserWithId {
@@ -22,16 +22,20 @@ class TransactionsInteractor: GetTransactions, TransactionsOfUserWithId {
     var id: Int?
     var statementRequest: StatementsRequest?
     
-    func getTransactions() {
+    func getTransactions(userTransactionsViewController: UserTransactionsViewController) {
         guard let newId = id else { return }
-        RequestAndPostData.getData(id: newId, completion: { (statement: StatementsRequest) in
+        RequestAndPostDataWorker.getData(id: newId, completion: { (statement: StatementsRequest) in
                 self.statementRequest = StatementsRequest.init(statementList: statement.statementList, error: statement.error)
                 guard let list = self.statementRequest?.statementList else { return }
             DispatchQueue.main.async {
                 self.presenter?.getTransactions(statementRequestList: list)
             }
         }) { (error) in
-            print(error)
+            let ac = UIAlertController(title: "Ops!", message: "Erro ao carregar seus dados, verifique sua conexão ou tente mais tarde", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alert) in
+                self.presenter?.dismissViewController(viewController: userTransactionsViewController)
+                
+            }))
         }
     }
 }

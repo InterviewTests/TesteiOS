@@ -46,16 +46,17 @@ class LoginViewController: UIViewController, UserAndSafeDataDelegate {
         let image = UIImage(named: "auth")
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(authentication), for: .touchUpInside)
+        button.addTarget(self, action: #selector(authFromPresenter), for: .touchUpInside)
         return button
     }()
     let activityIndicator = UIActivityIndicatorView(style: .gray)
     var delegate: UserAndSafeDataDelegate?
-    var interactor: PostToEndpoint?
+    var interactor: PostAndAuthInteractorProtocol?
     var routing: ShowTransacionsRouter?
     var transactionsInteractor: GetTransactions?
     var detailDataToBePosted: DetailDataToBePosted!
     let router = UserTransactionsRouter()
+    var presenter: PresentPostData?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +76,8 @@ class LoginViewController: UIViewController, UserAndSafeDataDelegate {
         
         if !user.isEmpty {
             self.userTextField.text = user
-            self.authentication()
+            guard let safeDelegate = delegate else { return }
+            self.presenter?.authenticateData(loginViewController: self, credentialsDelegate: safeDelegate)
         }
     }
     
@@ -110,36 +112,16 @@ class LoginViewController: UIViewController, UserAndSafeDataDelegate {
     
     func setup() {
         let viewController = self
-        let interactor = PostDataInteractor()
+        let interactor = LoginInteractor()
+        let presenter = LoginPresenter()
         viewController.interactor = interactor
         viewController.routing = router
+        viewController.presenter = presenter
     }
     
     @objc func loginAction() {
-        guard let userTF = userTextField.text else { return }
-        guard let passwordTF = passwordTextField.text else { return }
         guard let safeDelegate = delegate else { return }
-        
-        if (safeDelegate.isValidEmail(email: userTF) || safeDelegate.isValidCPF(cpfInput: userTF)) && safeDelegate.isValidPassword(input: passwordTF) {
-            interactor?.lastUserLogged = userTF
-            UserDefaults.standard.set(userTF, forKey: "userData")
-            let credentials = Credentials(username: userTF, password: passwordTF)
-            do {
-                try safeDelegate.saveKeys(credentials: credentials)
-            } catch {
-                print(error)
-            }
-            
-        detailDataToBePosted = DetailDataToBePosted(userId: 1, name: "Jose da Silva Teste", bankAccount: "2050", agency: "012314564", balance: 3.3445)
-            router.toBePosted = detailDataToBePosted
-            self.addActivityIndicator()
-            interactor?.post(dataToBePosted: detailDataToBePosted, viewController: self)
-            self.passwordTextField.text?.removeAll()
-        } else {
-        let alert = UIAlertController(title: "Dados inválidos", message: "Verifique seus dados", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
+        self.presenter?.login(loginViewController: self, delegate: safeDelegate, router: router)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -149,40 +131,11 @@ class LoginViewController: UIViewController, UserAndSafeDataDelegate {
         }
     }
     
-    @objc func authentication() {
-        let context = LAContext()
-        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthentication, error: nil) {
-            self.evaluateAuthentication(context: context)
-        }
+    @objc func authFromPresenter() {
+        guard let safeDelegate = delegate else { return }
+        self.presenter?.authenticateData(loginViewController: self, credentialsDelegate: safeDelegate)
     }
-    
-    func evaluateAuthentication(context: LAContext) {
-        let reason = "Use suas credenciais para acessar sua conta"
-        var error: NSError?
-        
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [unowned self] (success, error) in
-                DispatchQueue.main.async {
-                    if success {
-                        guard let safeDelegate = self.delegate else { return }
-                        guard let user = UserDefaults.standard.string(forKey: "userData") else { return }
-                        let passwordReturn = safeDelegate.loadKeys(credentials: user)
-                        
-                        if let passwordData = passwordReturn {
-                            self.passwordTextField.text = passwordData.password
-                            self.loginAction()
-                        }
-                    } else {
-                        print("error")
-                    }
-                }
-            }
-        } else {
-            let ac = UIAlertController(title: "Biometria não disponível", message: "Seu aparelho não está configurado para autenticar com biometria", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(ac, animated: true)
-        }
-    }
+
     
     func addActivityIndicator() {
         self.view.alpha = 0.5
