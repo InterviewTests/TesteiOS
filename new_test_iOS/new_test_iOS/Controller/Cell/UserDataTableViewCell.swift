@@ -49,7 +49,7 @@ class UserDataTableViewCell: UITableViewCell {
         self.labelDataPagamento.text = values.date
         if let value = values.value {
             self.labelValorPagamento.text = "R$ \(String(format:"%.2f", value))"
-            setColor(value: value)
+            //setColor(value: value)
         }
         self.labelTitle.text = values.title
         self.labelDesc.text = values.desc
