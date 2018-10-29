@@ -102,7 +102,7 @@ class LoginInteractor: PostAndAuthInteractorProtocol, ToBePosted {
                 loginViewController.present(alert, animated: true, completion: nil)
             }
             
-        self.data = DetailDataToBePosted(userId: 1, name: "Jose da Silva Teste", bankAccount: "2050", agency: "012314564", balance: 3.3445)
+        self.data = DetailDataToBePosted(userId: 1, name: "Jose da Silva Teste", bankAccount: "2050", agency: "01.231456-4", balance: 3.3445)
         router.toBePosted = data
         loginViewController.addActivityIndicator()
         self.post(dataToBePosted: data, viewController: loginViewController)
