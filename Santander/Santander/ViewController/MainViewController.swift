@@ -19,20 +19,28 @@ class MainViewController: UITabBarController {
     private func setupTabBarController(){
         
         /// Sets the selected colour for the icons and the
-//        self.tabBar.tintColor       = .appColor
-        self.tabBar.backgroundColor = .white
+        self.tabBar.barTintColor      = .red
         self.hidesBottomBarWhenPushed = true
+        
+        UITabBarItem.appearance().setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont(name: "Avenir-Black", size:12)!,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+        ], for: .normal)
+        
+        UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -14)
+
+
         
         /// Creates instances of the View Controllers
         let contactController = ContactViewController()
         let productController = ProductViewController()
         
         /// Sets the names for the tabs, the images and their index
-        contactController.tabBarItem = UITabBarItem(title: "Contato"       , image: nil, tag: 0)
-        productController.tabBarItem = UITabBarItem(title: "Investimento" , image: nil, tag: 1)
+        productController.tabBarItem = UITabBarItem(title: "Investimento" , image: UIImage(), tag: 0)
+        contactController.tabBarItem = UITabBarItem(title: "Contato"      , image: UIImage(), tag: 1)
         
         /// Adds the ViewControllers to the TabBarController
-        self.viewControllers = [contactController, productController].map {
+        self.viewControllers = [productController, contactController].map {
             UINavigationController(rootViewController: $0)
         }
     }

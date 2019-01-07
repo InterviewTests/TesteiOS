@@ -20,5 +20,4 @@ class RequestService: RequestBase {
     func productDetail() -> DataRequest{
         return get(endpoint: .product)
     }
-    
 }

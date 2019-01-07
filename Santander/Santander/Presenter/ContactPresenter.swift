@@ -6,6 +6,8 @@
 //  Copyright © 2019 Surrey. All rights reserved.
 //
 
+import Foundation
+
 class ContactPresenter{
     
     private var view:ContactViewDelegate?
@@ -27,7 +29,13 @@ class ContactPresenter{
     
     ///
     func requestForm(){
-        
+        RequestService().formList().responseJSON { [weak self] response in
+            if let data = response.data{
+                if let root = try? JSONDecoder().decode(Root.self, from: data), let items = root.cells{
+                    self?.view?.updateTableViewItems(items: items)
+                }
+            }
+        }
     }
     
     ///

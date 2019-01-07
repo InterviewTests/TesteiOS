@@ -21,13 +21,20 @@ protocol ContactViewDelegate {
 
 class ContactView: UIView {
     
+    var formItems:[FormItem] = []
+    
     /// The list of items for the form
     let tableView:UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle  = .none
-        tableView.tableFooterView = UIView()
         tableView.backgroundColor = .white
-        //tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.identifier)
+        tableView.tableFooterView = UIView()
+        tableView.registerCell(UILabelCell.self)
+        tableView.registerCell(UIButtonCell.self)
+        tableView.registerCell(UICheckBoxCell.self)
+        tableView.registerCell(UITextFieldCell.self)
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -62,13 +69,15 @@ class ContactView: UIView {
     
     /// Sets up the constraints for the views
     private func setupConstraints(){
+        
         self.addSubview(buttonNewMessage)
         self.addSubview(staticLabel1)
         self.addSubview(staticLabel2)
         self.addSubview(tableView)
         
+        self.backgroundColor = .white
         NSLayoutConstraint.activate([
-            tableView.topAnchor     .constraint(equalTo: self.topAnchor),
+            tableView.topAnchor     .constraint(equalTo: self.topAnchor, constant:30),
             tableView.bottomAnchor  .constraint(equalTo: self.bottomAnchor),
             tableView.leadingAnchor .constraint(equalTo: self.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -97,34 +106,35 @@ class ContactView: UIView {
 extension ContactView: ContactViewDelegate{
     
     func userCheckedToReceiveEmail() {
-        <#code#>
+        
     }
     
     func userUncheckedToReceiveEmail() {
-        <#code#>
+        
     }
     
     func updateTableViewItems(items: [FormItem]) {
-        <#code#>
+        formItems = items
+        tableView.reloadData()
     }
     
     func showSuccessPage() {
-        <#code#>
+        
     }
     
     func hideSuccessPage() {
-        <#code#>
+        
     }
     
     func updateContactName(name: String?) {
-        <#code#>
+        
     }
     
     func updateContactEmail(email: String?) {
-        <#code#>
+        
     }
     
     func updateContactPhone(phone: String?) {
-        <#code#>
+        
     }
 }

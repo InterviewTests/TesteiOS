@@ -28,21 +28,13 @@ class ProductView: UIView {
     private func setupConstraints(){
         self.addSubview(tableView)
         
-        if #available(iOS 11.0, *) {
-            NSLayoutConstraint.activate([
-                tableView.topAnchor     .constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-                tableView.bottomAnchor  .constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
-                tableView.leadingAnchor .constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-                tableView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            ])
-        } else {
-            NSLayoutConstraint.activate([
-                tableView.topAnchor     .constraint(equalTo: self.topAnchor),
-                tableView.bottomAnchor  .constraint(equalTo: self.bottomAnchor),
-                tableView.leadingAnchor .constraint(equalTo: self.leadingAnchor),
-                tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            ])
-        }
+        self.backgroundColor = .white
+        NSLayoutConstraint.activate([
+            tableView.topAnchor     .constraint(equalTo: self.topAnchor, constant: 100),
+            tableView.bottomAnchor  .constraint(equalTo: self.bottomAnchor),
+            tableView.leadingAnchor .constraint(equalTo: self.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+        ])
     }
     
     override init(frame: CGRect) {
