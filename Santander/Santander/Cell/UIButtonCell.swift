@@ -32,7 +32,6 @@ class UIButtonCell: BaseCell {
             button.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
             button.widthAnchor  .constraint(equalTo: self.contentView.widthAnchor, multiplier: 1/1.2),
             topSpacing!
-            //button.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant:15),
         ])
     }
     
@@ -46,7 +45,17 @@ class UIButtonCell: BaseCell {
     }
     
     ///
-    func setupCell(item:FormItem){
-        topSpacing?.constant = CGFloat(item.topSpacing ?? 0)
+    func setupCell(_ item:FormItem, callback:(()->Void)? = nil){
+        setupTopSpace(item)
+        self.item     = item
+        self.callback = callback
+        
+        button.addTarget(self, action: #selector(buttonClicked), for: UIControl.Event.touchUpInside)
+    }
+    
+    ///
+    private var callback:(()->Void)?
+    @objc private func buttonClicked(myButton: UIButton) {
+        callback?()
     }
 }

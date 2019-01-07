@@ -15,6 +15,7 @@ protocol ContactViewDelegate {
     func userCheckedToReceiveEmail()
     func userUncheckedToReceiveEmail()
     func updateTableViewItems(items:[FormItem])
+    func updateTableViewItems()
     func showSuccessPage()
     func hideSuccessPage()
 }
@@ -118,12 +119,16 @@ extension ContactView: ContactViewDelegate{
         tableView.reloadData()
     }
     
+    func updateTableViewItems() {
+        tableView.reloadData()
+    }
+    
     func showSuccessPage() {
-        
+        tableView.isHidden = true
     }
     
     func hideSuccessPage() {
-        
+        tableView.isHidden = false
     }
     
     func updateContactName(name: String?) {

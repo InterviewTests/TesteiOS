@@ -10,6 +10,7 @@ import UIKit
 
 class BaseCell: UITableViewCell {
     
+    var item:FormItem?
     var topSpacing:NSLayoutConstraint?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -21,6 +22,11 @@ class BaseCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    ///
+    func setupTopSpace(_ item:FormItem){
+        topSpacing?.constant = CGFloat(item.topSpacing ?? 0)
     }
 }
 

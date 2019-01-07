@@ -11,6 +11,7 @@ import Foundation
 class ContactPresenter{
     
     private var view:ContactViewDelegate?
+    private var items:[FormItem] = []
     
     ///
     init(bindTo view:ContactViewDelegate) {
@@ -24,7 +25,12 @@ class ContactPresenter{
     
     ///
     func sendContact(){
-        
+        view?.showSuccessPage()
+    }
+    
+    ///
+    func returnToContactForm(){
+        view?.hideSuccessPage()
     }
     
     ///
@@ -32,6 +38,7 @@ class ContactPresenter{
         RequestService().formList().responseJSON { [weak self] response in
             if let data = response.data{
                 if let root = try? JSONDecoder().decode(Root.self, from: data), let items = root.cells{
+                    self?.items = items
                     self?.view?.updateTableViewItems(items: items)
                 }
             }
@@ -53,4 +60,8 @@ class ContactPresenter{
         
     }
     
+    ///
+    func checkSwitch(){
+        self.view?.updateTableViewItems()
+    }
 }

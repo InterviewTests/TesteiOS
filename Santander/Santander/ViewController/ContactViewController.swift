@@ -24,14 +24,20 @@ class ContactViewController: BaseViewController {
         
         _view.tableView.delegate   = self
         _view.tableView.dataSource = self
-        presenter = ContactPresenter(bindTo: _view)
+        _view.buttonNewMessage.addTarget(self, action: #selector(hideSuccessPage), for: UIControl.Event.touchUpInside)
         
+        presenter = ContactPresenter(bindTo: _view)
         presenter.requestForm()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         presenter.destroy()
+    }
+    
+    ///
+    @objc private func hideSuccessPage(){
+        presenter.returnToContactForm()
     }
 }
 
@@ -51,27 +57,26 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
         switch item.type {
             case .field:
                 let cell = _view.tableView.getCell(indexPath, UITextFieldCell.self)
-                cell?.setupCell(item: item)
+                cell?.setupCell(item)
                 return cell
             case .text:
                 let cell = _view.tableView.getCell(indexPath, UILabelCell.self)
-                cell?.setupCell(item: item)
+                cell?.setupCell(item)
                 return cell
             case .checkbox:
                 let cell = _view.tableView.getCell(indexPath, UICheckBoxCell.self)
-                cell?.setupCell(item: item)
+                cell?.setupCell(item, callback: { [weak self] in
+                    self?.presenter.checkSwitch()
+                })
                 return cell
             case .send:
                 let cell = _view.tableView.getCell(indexPath, UIButtonCell.self)
-                cell?.setupCell(item: item)
+                cell?.setupCell(item, callback: { [unowned self] in
+                    self.presenter.sendContact()
+                })
                 return cell
             default:
                 return nil
         }
     }
-}
-
-/// Manage the TextField delegates and Keyboard actions
-extension ContactViewController: UITextFieldDelegate {
-    
 }

@@ -44,6 +44,8 @@ class FormItem: Decodable {
     var topSpacing:Int?
     var show:Int?
     var required:Bool = false
+    var dataText:String?
+    var isSuccess:Bool = false
     
     private enum CodingKeys: String, CodingKey {
         case id         = "id"
@@ -63,10 +65,10 @@ class FormItem: Decodable {
         self.type         = try container.decodeIfPresent(Type.self     , forKey: .type)      ?? .unknown
         self.message      = try container.decodeIfPresent(String.self   , forKey: .message)
         if let value = try? container.decode(TypeField.self, forKey: .typefield) {
-            self.typefield = TypeField(rawValue: value.rawValue) ?? .unknown
+            self.typefield = TypeField(rawValue: value.rawValue) ?? .telNumber
         }
         else{
-            self.typefield = .unknown
+            self.typefield = .telNumber
         }
         self.hidden       = try container.decodeIfPresent(Bool.self     , forKey: .hidden)    ?? false
         self.topSpacing   = try container.decodeIfPresent(Int.self      , forKey: .topSpacing)

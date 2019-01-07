@@ -38,9 +38,8 @@ class UICheckBoxCell: BaseCell {
         
         topSpacing = switchEmail.topAnchor.constraint(equalTo: self.contentView.topAnchor)
         NSLayoutConstraint.activate([
-            switchEmail.widthAnchor  .constraint(equalToConstant: 50),
             topSpacing!,
-            //switchEmail.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant:15),
+            switchEmail.widthAnchor  .constraint(equalToConstant: 50),
             switchEmail.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 30),
             
             switchLabel.centerYAnchor .constraint(equalTo: switchEmail.centerYAnchor),
@@ -60,7 +59,20 @@ class UICheckBoxCell: BaseCell {
     }
     
     ///
-    func setupCell(item:FormItem){
-        topSpacing?.constant = CGFloat(item.topSpacing ?? 0)
+    func setupCell(_ item:FormItem, callback:(()->Void)? = nil){
+        setupTopSpace(item)
+        
+        self.item     = item
+        self.callback = callback
+        
+        switchLabel.text = item.message
+        switchEmail.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
+    }
+    
+    ///
+    private var callback:(()->Void)?
+    @objc private func switchChanged(mySwitch: UISwitch) {
+        item?.hidden = mySwitch.isOn
+        callback?()
     }
 }
