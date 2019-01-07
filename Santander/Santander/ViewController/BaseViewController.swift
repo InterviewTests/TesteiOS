@@ -18,7 +18,7 @@ class BaseViewController: UIViewController {
     /// Changes the navigation bar colour
     private func setNavigationBarColour(){
         self.navigationController?.navigationBar.isTranslucent   = true
-        self.navigationController?.navigationBar.barTintColor    = .red
-        self.navigationController?.navigationBar.backgroundColor = .red
+        self.navigationController?.navigationBar.barTintColor    = .white
+        self.navigationController?.navigationBar.backgroundColor = .white
     }
 }
