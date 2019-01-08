@@ -8,18 +8,20 @@
 
 import Foundation
 
-class ProductPresenter{
+class ProductPresenter:BasePresenter<ProductViewDelegate>{
     
-    private var view:ProductViewDelegate?
+    private var items:[FormItem] = []
     
     ///
-    init(bindTo view:ProductViewDelegate) {
-        self.view = view
+    var numberOfItems:Int {
+        get{
+            return items.count
+        }
     }
     
     ///
-    func destroy(){
-        view = nil
+    override init(bindTo view: ProductViewDelegate) {
+        super.init(bindTo: view)
     }
     
     ///
@@ -27,7 +29,8 @@ class ProductPresenter{
         RequestService().productDetail().responseJSON { [weak self] response in
             if let data = response.data{
                 if let root = try? JSONDecoder().decode(Root.self, from: data), let items = root.cells{
-                    self?.view?.updateTableViewItems(items: items)
+                    self?.items = items
+                    self?.view?.updateTableViewItems(items)
                 }
             }
         }

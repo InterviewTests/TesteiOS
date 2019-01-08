@@ -59,7 +59,7 @@ class UICheckBoxCell: BaseCell {
     }
     
     ///
-    func setupCell(_ item:FormItem, callback:(()->Void)? = nil){
+    func setupCell(_ item:FormItem, callback:((_ isSelected: Bool, _ item:FormItem)->())? = nil){
         setupTopSpace(item)
         
         self.item     = item
@@ -70,9 +70,9 @@ class UICheckBoxCell: BaseCell {
     }
     
     ///
-    private var callback:(()->Void)?
+    private var callback:((_ isSelected: Bool, _ item:FormItem)->())?
     @objc private func switchChanged(mySwitch: UISwitch) {
-        item?.hidden = mySwitch.isOn
-        callback?()
+        guard let item = item else { return }
+        callback?(mySwitch.isOn, item)
     }
 }

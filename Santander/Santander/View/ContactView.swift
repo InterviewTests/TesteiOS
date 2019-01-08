@@ -9,21 +9,13 @@
 import UIKit
 
 protocol ContactViewDelegate {
-    func updateContactName(name:String?)
-    func updateContactEmail(email:String?)
-    func updateContactPhone(phone:String?)
-    func userCheckedToReceiveEmail()
-    func userUncheckedToReceiveEmail()
     func updateTableViewItems(items:[FormItem])
-    func updateTableViewItems()
     func showSuccessPage()
     func hideSuccessPage()
 }
 
 class ContactView: UIView {
-    
-    var formItems:[FormItem] = []
-    
+
     /// The list of items for the form
     let tableView:UITableView = {
         let tableView = UITableView()
@@ -106,20 +98,7 @@ class ContactView: UIView {
 
 extension ContactView: ContactViewDelegate{
     
-    func userCheckedToReceiveEmail() {
-        
-    }
-    
-    func userUncheckedToReceiveEmail() {
-        
-    }
-    
     func updateTableViewItems(items: [FormItem]) {
-        formItems = items
-        tableView.reloadData()
-    }
-    
-    func updateTableViewItems() {
         tableView.reloadData()
     }
     
@@ -129,17 +108,5 @@ extension ContactView: ContactViewDelegate{
     
     func hideSuccessPage() {
         tableView.isHidden = false
-    }
-    
-    func updateContactName(name: String?) {
-        
-    }
-    
-    func updateContactEmail(email: String?) {
-        
-    }
-    
-    func updateContactPhone(phone: String?) {
-        
     }
 }

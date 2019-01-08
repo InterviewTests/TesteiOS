@@ -44,7 +44,7 @@ class ContactViewController: BaseViewController {
 extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return _view.formItems.count
+        return presenter.numberOfItems
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,7 +53,7 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
     
     private func getInfoCellFor(_ indexPath: IndexPath) -> UITableViewCell?{
         
-        let item = _view.formItems[indexPath.row]
+        let item = presenter.itemForRow(indexPath.row)
         switch item.type {
             case .field:
                 let cell = _view.tableView.getCell(indexPath, UITextFieldCell.self)
@@ -65,8 +65,8 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             case .checkbox:
                 let cell = _view.tableView.getCell(indexPath, UICheckBoxCell.self)
-                cell?.setupCell(item, callback: { [weak self] in
-                    self?.presenter.checkSwitch()
+                cell?.setupCell(item, callback: { [unowned self] (isSelected, item) in
+                    self.presenter.onSwitchSelected(isSelected, item)
                 })
                 return cell
             case .send:

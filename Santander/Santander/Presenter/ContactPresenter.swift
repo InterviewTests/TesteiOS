@@ -8,19 +8,20 @@
 
 import Foundation
 
-class ContactPresenter{
+class ContactPresenter:BasePresenter<ContactViewDelegate>{
     
-    private var view:ContactViewDelegate?
     private var items:[FormItem] = []
     
     ///
-    init(bindTo view:ContactViewDelegate) {
-        self.view = view
+    var numberOfItems:Int {
+        get{
+            return items.count
+        }
     }
     
     ///
-    func destroy(){
-        view = nil
+    override init(bindTo view: ContactViewDelegate) {
+        super.init(bindTo: view)
     }
     
     ///
@@ -46,22 +47,12 @@ class ContactPresenter{
     }
     
     ///
-    func isNameValid(name:String?){
-        
+    func itemForRow(_ row:Int)->FormItem{
+        return items[row]
     }
     
     ///
-    func isEmailValid(email:String?){
+    func onSwitchSelected(_ isSelected:Bool, _ item:FormItem){
         
-    }
-    
-    ///
-    func isPhoneValid(phone:String?){
-        
-    }
-    
-    ///
-    func checkSwitch(){
-        self.view?.updateTableViewItems()
     }
 }
