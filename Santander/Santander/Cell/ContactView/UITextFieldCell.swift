@@ -68,7 +68,7 @@ class UITextFieldCell: BaseCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupConstraints()
-        textField.delegate = self
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -100,11 +100,11 @@ class UITextFieldCell: BaseCell {
 }
 
 /// Manage the TextField delegates
-extension UITextFieldCell: UITextFieldDelegate {
+extension UITextFieldCell {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let _item = item else { return true}
-        _item.dataText = string
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        guard let _item = item else { return }
+        _item.dataText = textField.text
         
         switch _item.typefield {
             case .text:
@@ -112,12 +112,28 @@ extension UITextFieldCell: UITextFieldDelegate {
             case .email:
                 validateEmail(item?.dataText ?? "")
             case .telNumber:
-              validatePhone(item?.dataText ?? "")
+                validatePhone(item?.dataText ?? "")
             default:
-                return true
-            }
-        return true
+                return
+        }
     }
+    
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        guard let _item = item else { return true}
+//        _item.dataText = string
+//
+//        switch _item.typefield {
+//            case .text:
+//                validateName(item?.dataText ?? "")
+//            case .email:
+//                validateEmail(item?.dataText ?? "")
+//            case .telNumber:
+//              validatePhone(item?.dataText ?? "")
+//            default:
+//                return true
+//            }
+//        return true
+//    }
     
     ///
     private func validateEmail(_ email:String){

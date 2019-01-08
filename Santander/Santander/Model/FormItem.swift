@@ -31,7 +31,6 @@ struct Root:Decodable {
     private enum CodingKeys: String, CodingKey {
         case cells = "cells"
     }
-    
 }
 
 class FormItem: Decodable {

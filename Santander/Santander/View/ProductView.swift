@@ -8,8 +8,9 @@
 
 import UIKit
 
-protocol ProductViewDelegate {
-    func updateTableViewItems(_ items:[FormItem])
+protocol ProductViewDelegate:NSObjectProtocol {
+    func updateTableViewItems()
+    func openWebView(site:String)
 }
 
 class ProductView: UIView {
@@ -20,11 +21,9 @@ class ProductView: UIView {
         tableView.separatorStyle  = .none
         tableView.backgroundColor = .white
         tableView.tableFooterView = UIView()
-        tableView.registerCell(RiskCell.self)
         tableView.registerCell(HeaderCell.self)
         tableView.registerCell(UIButtonCell.self)
         tableView.registerCell(DownloadCell.self)
-        tableView.registerCell(DescriptionCell.self)
         tableView.registerCell(MoreInfoDoubleCell.self)
         tableView.registerCell(MoreInfoSingleCell.self)
         tableView.estimatedRowHeight = 100
@@ -53,11 +52,5 @@ class ProductView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension ProductView: ProductViewDelegate{
-    func updateTableViewItems(_ items: [FormItem]) {
-        <#code#>
     }
 }

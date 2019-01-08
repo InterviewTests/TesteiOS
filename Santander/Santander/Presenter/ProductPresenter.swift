@@ -8,32 +8,73 @@
 
 import Foundation
 
-class ProductPresenter:BasePresenter<ProductViewDelegate>{
-    
-    private var items:[FormItem] = []
+class ProductPresenter{
     
     ///
-    var numberOfItems:Int {
-        get{
-            return items.count
+    private weak var view:ProductViewDelegate?
+    
+    ///
+    var screen:Screen?
+    
+    ///
+    func numberOfItems(in section:Int)->Int{
+        if(section == 0){
+             return 1
+        }
+        else if(section == 1){
+            return screen?.profitabilities.count ?? 0
+        }
+        else if(section == 2){
+            return screen?.info?.count ?? 0
+        }
+        else{
+             return screen?.downInfo?.count ?? 0
         }
     }
     
     ///
-    override init(bindTo view: ProductViewDelegate) {
-        super.init(bindTo: view)
+    var numberOfSections:Int{
+        get{
+            return 3
+        }
+    }
+    
+    ///
+    func bindTo(view: ProductViewDelegate) {
+        self.view = view
+    }
+    
+    ///
+    func destroy() {
+        self.view = nil
     }
     
     ///
     func requestInfo(){
         RequestService().productDetail().responseJSON { [weak self] response in
             if let data = response.data{
-                if let root = try? JSONDecoder().decode(Root.self, from: data), let items = root.cells{
-                    self?.items = items
-                    self?.view?.updateTableViewItems(items)
+                if let root = try? JSONDecoder().decode(RootScreen.self, from: data), let screen = root.screen{
+                    screen.profitabilityToArray()
+                    self?.screen = screen
+                    self?.view?.updateTableViewItems()
                 }
             }
         }
+    }
+    
+    ///
+    func infoForRow(_ row:Int)->Info?{
+        return screen?.info?[row]
+    }
+    
+    ///
+    func downInfoForRow(_ row:Int)->Info?{
+        return screen?.downInfo?[row]
+    }
+    
+    ///
+    func profitabilityForRow(_ row:Int)->Profitability?{
+        return screen?.profitabilities[row]
     }
     
     func share(){
@@ -41,7 +82,7 @@ class ProductPresenter:BasePresenter<ProductViewDelegate>{
     }
     
     func download(){
-        
+        view?.openWebView(site: "www.google.com")
     }
     
     func invest(){

@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import SafariServices
 
 class ProductViewController: BaseViewController {
     
     private unowned var _view:ProductView { return self.view as! ProductView }
-    
-    private var presenter:ProductPresenter!
+    private var presenter:ProductPresenter = ProductPresenter()
     
     override func loadView() {
         self.view = ProductView()
@@ -25,7 +25,7 @@ class ProductViewController: BaseViewController {
         _view.tableView.delegate   = self
         _view.tableView.dataSource = self
 
-        presenter = ProductPresenter(bindTo: _view)
+        presenter.bindTo(view: self)
         presenter.requestInfo()
     }
     
@@ -37,8 +37,12 @@ class ProductViewController: BaseViewController {
 
 extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return presenter.numberOfSections
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.numberOfItems
+        return presenter.numberOfItems(in: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,6 +50,49 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     private func getInfoCellFor(_ indexPath: IndexPath) -> UITableViewCell?{
-        return nil
+        switch indexPath.section {
+            case 0:
+                let cell = _view.tableView.getCell(indexPath, HeaderCell.self)
+                cell?.setupHeader(for: presenter.screen)
+                return cell
+            case 1:
+                let item = presenter.profitabilityForRow(indexPath.row)
+                let cell = _view.tableView.getCell(indexPath, MoreInfoDoubleCell.self)
+                cell?.setupCell(for: indexPath.row, profitability: item)
+                return cell
+            case 2:
+                let item = presenter.infoForRow(indexPath.row)
+                let cell = _view.tableView.getCell(indexPath, MoreInfoSingleCell.self)
+                cell?.setupCell(for: item)
+                return cell
+            case 3:
+                let item = presenter.downInfoForRow(indexPath.row)
+                let cell = _view.tableView.getCell(indexPath, DownloadCell.self)
+                cell?.setupCell(for: item, callback: { [unowned self] in
+                    self.presenter.download()
+                })
+                return cell
+            default:
+                return nil
+        }
+    }
+}
+
+extension ProductViewController: ProductViewDelegate, SFSafariViewControllerDelegate {
+    
+    func openWebView(site: String) {
+        if let url = URL(string: site) {
+            let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+            vc.delegate = self
+            present(vc, animated: true)
+        }
+    }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        dismiss(animated: true)
+    }
+    
+    func updateTableViewItems() {
+        _view.tableView.reloadData()
     }
 }

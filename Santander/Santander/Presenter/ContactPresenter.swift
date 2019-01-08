@@ -8,7 +8,10 @@
 
 import Foundation
 
-class ContactPresenter:BasePresenter<ContactViewDelegate>{
+class ContactPresenter{
+    
+    ///
+    private weak var view:ContactViewDelegate?
     
     private var items:[FormItem] = []
     
@@ -20,8 +23,13 @@ class ContactPresenter:BasePresenter<ContactViewDelegate>{
     }
     
     ///
-    override init(bindTo view: ContactViewDelegate) {
-        super.init(bindTo: view)
+    func bindTo(view: ContactViewDelegate) {
+        self.view = view
+    }
+    
+    ///
+    func destroy() {
+        self.view = nil
     }
     
     ///

@@ -21,11 +21,3 @@ extension UITableView{
         self.register(T.self, forCellReuseIdentifier: String(describing: T.self))
     }
 }
-
-//extension UITableViewCell{
-//
-//    /// Removes the separator from the cell
-//    func removeSeparator(){
-//        self.separatorInset = UIEdgeInsets(top: 0, left: 10000, bottom: 0, right: 0)
-//    }
-//}

@@ -8,7 +8,8 @@
 
 import UIKit
 
-protocol ContactViewDelegate {
+protocol ContactViewDelegate:NSObjectProtocol{
+    
     func updateTableViewItems(items:[FormItem])
     func showSuccessPage()
     func hideSuccessPage()
@@ -45,6 +46,8 @@ class ContactView: UIView {
     private let staticLabel2:UILabel = {
         let label = UILabel()
         label.text = "Mensagem enviada\ncom sucesso :)"
+        label.numberOfLines = 0
+        label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -56,6 +59,7 @@ class ContactView: UIView {
         button.backgroundColor = .clear
         button.setTitle("Enviar nova mensagem", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.red, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -76,13 +80,15 @@ class ContactView: UIView {
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             
             staticLabel1.centerXAnchor.constraint(equalTo: staticLabel2.centerXAnchor),
-            staticLabel1.bottomAnchor.constraint(equalTo: staticLabel2.topAnchor, constant: 14),
+            staticLabel1.bottomAnchor.constraint(equalTo: staticLabel2.topAnchor, constant: -14),
             
             staticLabel2.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             staticLabel2.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             
+            buttonNewMessage.widthAnchor.constraint(equalToConstant: 200),
+            buttonNewMessage.heightAnchor.constraint(equalToConstant: 45),
             buttonNewMessage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            buttonNewMessage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 20),
+            buttonNewMessage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -100),
         ])
     }
     
@@ -93,20 +99,5 @@ class ContactView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension ContactView: ContactViewDelegate{
-    
-    func updateTableViewItems(items: [FormItem]) {
-        tableView.reloadData()
-    }
-    
-    func showSuccessPage() {
-        tableView.isHidden = true
-    }
-    
-    func hideSuccessPage() {
-        tableView.isHidden = false
     }
 }

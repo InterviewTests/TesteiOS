@@ -10,7 +10,7 @@ import UIKit
 
 class UILabelCell: BaseCell {
     
-    /// The UiLabel
+    /// The UILabel
     private let label: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0

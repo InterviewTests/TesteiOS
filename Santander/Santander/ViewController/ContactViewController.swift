@@ -11,8 +11,7 @@ import UIKit
 class ContactViewController: BaseViewController {
     
     private unowned var _view:ContactView { return self.view as! ContactView }
-    
-    private var presenter:ContactPresenter!
+    private var presenter:ContactPresenter = ContactPresenter()
     
     override func loadView() {
         self.view = ContactView()
@@ -24,9 +23,9 @@ class ContactViewController: BaseViewController {
         
         _view.tableView.delegate   = self
         _view.tableView.dataSource = self
-        _view.buttonNewMessage.addTarget(self, action: #selector(hideSuccessPage), for: UIControl.Event.touchUpInside)
+        _view.buttonNewMessage.addTarget(self, action: #selector(returnToContactFormAction), for: UIControl.Event.touchUpInside)
         
-        presenter = ContactPresenter(bindTo: _view)
+        presenter.bindTo(view: self)
         presenter.requestForm()
     }
     
@@ -36,7 +35,7 @@ class ContactViewController: BaseViewController {
     }
     
     ///
-    @objc private func hideSuccessPage(){
+    @objc func returnToContactFormAction(){
         presenter.returnToContactForm()
     }
 }
@@ -78,5 +77,20 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
             default:
                 return nil
         }
+    }
+}
+
+extension ContactViewController: ContactViewDelegate {
+
+    func updateTableViewItems(items: [FormItem]) {
+        _view.tableView.reloadData()
+    }
+    
+    func showSuccessPage() {
+        _view.tableView.isHidden = true
+    }
+    
+    func hideSuccessPage() {
+        _view.tableView.isHidden = false
     }
 }
