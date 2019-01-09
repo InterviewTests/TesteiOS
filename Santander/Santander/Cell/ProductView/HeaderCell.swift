@@ -35,7 +35,7 @@ class HeaderCell: BaseCell {
     /// The top divider
     private let divider:UIView = {
         let divider = UIView()
-        divider.backgroundColor = .lightGray
+        divider.backgroundColor = UIColor.init(hexString: "#20C0C0C0")
         divider.translatesAutoresizingMaskIntoConstraints = false
         return divider
     }()
@@ -76,7 +76,7 @@ class HeaderCell: BaseCell {
     ///
     private let indicator:UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = .darkGray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -152,9 +152,9 @@ class HeaderCell: BaseCell {
         self.contentView.addSubview(staticLabelFund)
         
         NSLayoutConstraint.activate([
-            title.leadingAnchor  .constraint(equalTo: self.contentView.leadingAnchor, constant:10),
-            title.trailingAnchor .constraint(equalTo: self.contentView.trailingAnchor, constant:-15),
-            title.topAnchor      .constraint(equalTo: self.contentView.topAnchor, constant:15),
+            title.widthAnchor  .constraint(equalTo: self.contentView.widthAnchor, multiplier: 1/1.3),
+            title.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            title.topAnchor    .constraint(equalTo: self.contentView.topAnchor, constant:30),
             
             fundName.leadingAnchor  .constraint(equalTo: title.leadingAnchor),
             fundName.trailingAnchor .constraint(equalTo: title.trailingAnchor),
@@ -177,11 +177,11 @@ class HeaderCell: BaseCell {
             riskTitle.trailingAnchor .constraint(equalTo: definition.trailingAnchor),
             riskTitle.topAnchor      .constraint(equalTo: definition.bottomAnchor, constant:30),
             
-            indicator.heightAnchor.constraint(equalToConstant: 7),
-            indicator.widthAnchor.constraint(equalToConstant:  7),
+            indicator.widthAnchor.constraint(equalToConstant:  5),
+            indicator.heightAnchor.constraint(equalToConstant: 5),
             indicator.bottomAnchor.constraint(equalTo:  stackView.topAnchor, constant:-5),
            
-            stackView.topAnchor     .constraint(equalTo:  riskTitle.bottomAnchor, constant:20),
+            stackView.topAnchor  .constraint(equalTo:  riskTitle.bottomAnchor, constant:20),
             stackView.leadingAnchor  .constraint(equalTo: riskTitle.leadingAnchor),
             stackView.trailingAnchor .constraint(equalTo: riskTitle.trailingAnchor),
             
@@ -189,14 +189,14 @@ class HeaderCell: BaseCell {
             infoTitle.trailingAnchor .constraint(equalTo: stackView.trailingAnchor),
             infoTitle.topAnchor      .constraint(equalTo: stackView.bottomAnchor, constant:30),
             
+            staticLabelCDI.widthAnchor    .constraint(equalToConstant: 70),
+            staticLabelCDI.trailingAnchor .constraint(equalTo: self.contentView.trailingAnchor, constant:-15),
+            staticLabelCDI.topAnchor      .constraint(equalTo: infoTitle.bottomAnchor, constant:20),
+            staticLabelCDI.bottomAnchor   .constraint(equalTo: self.contentView.bottomAnchor, constant:-10),
+            
             staticLabelFund.widthAnchor   .constraint(equalTo: staticLabelCDI.widthAnchor),
             staticLabelFund.trailingAnchor.constraint(equalTo: staticLabelCDI.leadingAnchor),
             staticLabelFund.centerYAnchor .constraint(equalTo: staticLabelCDI.centerYAnchor),
-            
-            staticLabelCDI.widthAnchor    .constraint(equalToConstant: 70),
-            staticLabelCDI.trailingAnchor .constraint(equalTo: infoTitle.trailingAnchor),
-            staticLabelCDI.topAnchor      .constraint(equalTo: infoTitle.bottomAnchor, constant:20),
-            staticLabelCDI.bottomAnchor   .constraint(equalTo: self.contentView.bottomAnchor, constant:-10),
         ])
     }
     
@@ -214,13 +214,18 @@ class HeaderCell: BaseCell {
         infoTitle.text = screen?.infoTitle
         
         if let risk = screen?.risk{
-            let stackViewWidth     = (UIScreen.main.bounds.width - 30)
+            let stackViewWidth     = (UIScreen.main.bounds.width/(1.3))
             let stackViewItemWidth = stackViewWidth/5
             
             let x = (stackViewItemWidth * CGFloat(risk)) - (stackViewItemWidth/2)
+            let leading = indicator.leadingAnchor.constraint(equalTo: stackView.leadingAnchor)
             NSLayoutConstraint.activate([
-                indicator.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: x),
+                leading,
             ])
+            leading.constant = x
+            UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseIn, animations: {
+                self.contentView.layoutIfNeeded()
+            }, completion: nil)
         }
     }
 }

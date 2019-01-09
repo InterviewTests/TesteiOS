@@ -68,8 +68,14 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
             case 3:
                 let item = presenter.downInfoForRow(indexPath.row)
                 let cell = _view.tableView.getCell(indexPath, DownloadCell.self)
-                cell?.setupCell(for: item, callback: { [unowned self] in
-                    self.presenter.download()
+                cell?.setupCell(for: item, callback: { [weak self] in
+                    self?.presenter.download()
+                })
+                return cell
+            case 4:
+                let cell = _view.tableView.getCell(indexPath, UIButtonCell.self)
+                cell?.setCallback({ [weak self] in
+                    self?.presenter.invest()
                 })
                 return cell
             default:
@@ -79,6 +85,10 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ProductViewController: ProductViewDelegate, SFSafariViewControllerDelegate {
+    
+    func displayPopup(title: String, message: String) {
+        showAlert(title: title, message: message)
+    }
     
     func openWebView(site: String) {
         if let url = URL(string: site) {
@@ -94,5 +104,6 @@ extension ProductViewController: ProductViewDelegate, SFSafariViewControllerDele
     
     func updateTableViewItems() {
         _view.tableView.reloadData()
+        _view.tableView.isHidden = false
     }
 }

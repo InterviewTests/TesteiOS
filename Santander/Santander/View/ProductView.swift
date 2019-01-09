@@ -11,6 +11,7 @@ import UIKit
 protocol ProductViewDelegate:NSObjectProtocol {
     func updateTableViewItems()
     func openWebView(site:String)
+    func displayPopup(title:String, message:String)
 }
 
 class ProductView: UIView {
@@ -21,6 +22,7 @@ class ProductView: UIView {
         tableView.separatorStyle  = .none
         tableView.backgroundColor = .white
         tableView.tableFooterView = UIView()
+        tableView.isHidden = true
         tableView.registerCell(HeaderCell.self)
         tableView.registerCell(UIButtonCell.self)
         tableView.registerCell(DownloadCell.self)

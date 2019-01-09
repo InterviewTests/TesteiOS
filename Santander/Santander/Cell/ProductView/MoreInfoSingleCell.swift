@@ -41,7 +41,7 @@ class MoreInfoSingleCell: BaseCell {
         
         NSLayoutConstraint.activate([
             labelLeft.topAnchor    .constraint(equalTo: self.contentView.topAnchor    , constant:5),
-            labelLeft.bottomAnchor .constraint(equalTo: self.contentView.bottomAnchor , constant:-5),
+            labelLeft.bottomAnchor .constraint(equalTo: self.contentView.bottomAnchor , constant:-10),
             labelLeft.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant:15),
             
             labelRight.centerYAnchor.constraint(equalTo: labelLeft.centerYAnchor),

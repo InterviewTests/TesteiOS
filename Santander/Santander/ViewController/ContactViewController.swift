@@ -64,14 +64,14 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             case .checkbox:
                 let cell = _view.tableView.getCell(indexPath, UICheckBoxCell.self)
-                cell?.setupCell(item, callback: { [unowned self] (isSelected, item) in
-                    self.presenter.onSwitchSelected(isSelected, item)
+                cell?.setupCell(item, callback: { [weak self] (isSelected, item) in
+                    self?.presenter.onSwitchSelected(isSelected, item)
                 })
                 return cell
             case .send:
                 let cell = _view.tableView.getCell(indexPath, UIButtonCell.self)
-                cell?.setupCell(item, callback: { [unowned self] in
-                    self.presenter.sendContact()
+                cell?.setupCell(item, callback: { [weak self] in
+                    self?.presenter.sendContact()
                 })
                 return cell
             default:

@@ -18,24 +18,24 @@ class ProductPresenter{
     
     ///
     func numberOfItems(in section:Int)->Int{
-        if(section == 0){
-             return 1
-        }
-        else if(section == 1){
+        if(section == 1){
             return screen?.profitabilities.count ?? 0
         }
         else if(section == 2){
             return screen?.info?.count ?? 0
         }
+        else if(section == 3){
+            return screen?.downInfo?.count ?? 0
+        }
         else{
-             return screen?.downInfo?.count ?? 0
+             return 1
         }
     }
     
     ///
     var numberOfSections:Int{
         get{
-            return 3
+            return 5
         }
     }
     
@@ -77,15 +77,18 @@ class ProductPresenter{
         return screen?.profitabilities[row]
     }
     
+    ///
     func share(){
         
     }
     
+    ///
     func download(){
-        view?.openWebView(site: "www.google.com")
+        view?.openWebView(site: "https://www.google.com")
     }
     
+    ///
     func invest(){
-        
+        print("Investidor")
     }
 }

@@ -13,7 +13,6 @@ class UIButtonCell: BaseCell {
     /// The Button
     let button: UIButton = {
         let button = UIButton()
-        button.setTitle("Enviar", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.cornerRadius = 15
         button.backgroundColor = .red
@@ -29,8 +28,9 @@ class UIButtonCell: BaseCell {
         topSpacing = button.topAnchor.constraint(equalTo: self.contentView.topAnchor)
         NSLayoutConstraint.activate([
             button.heightAnchor .constraint(equalToConstant: 35),
+            button.bottomAnchor .constraint(equalTo: self.contentView.bottomAnchor, constant: -30),
             button.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            button.widthAnchor  .constraint(equalTo: self.contentView.widthAnchor, multiplier: 1/1.2),
+            button.widthAnchor  .constraint(equalTo: self.contentView.widthAnchor, multiplier: 1/1.3),
             topSpacing!
         ])
     }
@@ -50,6 +50,16 @@ class UIButtonCell: BaseCell {
         self.item     = item
         self.callback = callback
         
+        button.setTitle("Enviar", for: .normal)
+        button.addTarget(self, action: #selector(buttonClicked), for: UIControl.Event.touchUpInside)
+    }
+    
+    ///
+    func setCallback(_ callback:@escaping (()->Void)){
+        self.callback = callback
+        
+        topSpacing?.constant = 20
+        button.setTitle("Investir", for: .normal)
         button.addTarget(self, action: #selector(buttonClicked), for: UIControl.Event.touchUpInside)
     }
     
