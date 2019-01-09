@@ -44,7 +44,7 @@ class Screen: Decodable {
         case downInfo   = "downInfo"
     }
     
-    ///
+    /// Converts the "moreInfo" attribute to an array
     func profitabilityToArray(){
         profitabilities.append(moreInfo?.month        ?? Profitability())
         profitabilities.append(moreInfo?.year         ?? Profitability())

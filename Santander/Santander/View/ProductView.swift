@@ -9,8 +9,14 @@
 import UIKit
 
 protocol ProductViewDelegate:NSObjectProtocol {
+    
+    /// Notifies to update the datasource
     func updateTableViewItems()
+    
+    /// Notifies to open a webview with a given URL
     func openWebView(site:String)
+    
+    /// Notifies to display a title and a message
     func displayPopup(title:String, message:String)
 }
 

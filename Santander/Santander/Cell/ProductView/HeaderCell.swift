@@ -10,7 +10,7 @@ import UIKit
 
 class HeaderCell: BaseCell {
     
-    /// The
+    /// The title of the page
     private let title:UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
@@ -21,7 +21,7 @@ class HeaderCell: BaseCell {
         return label
     }()
     
-    /// The
+    /// The name of the fund
     private let fundName:UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -40,7 +40,7 @@ class HeaderCell: BaseCell {
         return divider
     }()
     
-    /// The
+    /// Label "O que é"
     private let whatIs:UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
@@ -51,7 +51,7 @@ class HeaderCell: BaseCell {
         return label
     }()
     
-    ///
+    /// The description of he fund
     private let definition:UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
@@ -62,7 +62,7 @@ class HeaderCell: BaseCell {
         return label
     }()
     
-    ///
+    /// Label "Grau de investimento"
     private let riskTitle:UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
@@ -73,10 +73,11 @@ class HeaderCell: BaseCell {
         return label
     }()
     
-    ///
-    private let indicator:UIView = {
-        let view = UIView()
-        view.backgroundColor = .darkGray
+    /// INdicates the risk of the investment
+    private let indicator:UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "arrow")
+        view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -101,7 +102,7 @@ class HeaderCell: BaseCell {
         return stackView
     }()
     
-    ///
+    /// Label "Mais informações"
     private let infoTitle:UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -112,7 +113,7 @@ class HeaderCell: BaseCell {
         return label
     }()
     
-    ///
+    /// Label FUNDO
     private let staticLabelFund:UILabel = {
         let label = UILabel()
         label.text = "Fundo"
@@ -124,7 +125,7 @@ class HeaderCell: BaseCell {
         return label
     }()
     
-    ///
+    /// Label CDI
     private let staticLabelCDI:UILabel = {
         let label = UILabel()
         label.text = "CDI"
@@ -177,9 +178,9 @@ class HeaderCell: BaseCell {
             riskTitle.trailingAnchor .constraint(equalTo: definition.trailingAnchor),
             riskTitle.topAnchor      .constraint(equalTo: definition.bottomAnchor, constant:30),
             
-            indicator.widthAnchor.constraint(equalToConstant:  5),
-            indicator.heightAnchor.constraint(equalToConstant: 5),
-            indicator.bottomAnchor.constraint(equalTo:  stackView.topAnchor, constant:-5),
+            indicator.widthAnchor.constraint(equalToConstant:  15),
+            indicator.heightAnchor.constraint(equalToConstant: 15),
+            indicator.bottomAnchor.constraint(equalTo:  stackView.topAnchor),
            
             stackView.topAnchor  .constraint(equalTo:  riskTitle.bottomAnchor, constant:20),
             stackView.leadingAnchor  .constraint(equalTo: riskTitle.leadingAnchor),
@@ -204,28 +205,24 @@ class HeaderCell: BaseCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    ///
+    /// Sets the information of the header
     func setupHeader(for screen:Screen?){
-        title.text = screen?.title
-        fundName.text = screen?.fundName
-        whatIs.text = screen?.whatIs
+        title.text      = screen?.title
+        fundName.text   = screen?.fundName
+        whatIs.text     = screen?.whatIs
         definition.text = screen?.definition
-        riskTitle.text = screen?.riskTitle
-        infoTitle.text = screen?.infoTitle
+        riskTitle.text  = screen?.riskTitle
+        infoTitle.text  = screen?.infoTitle
         
+        /// Calculates where the risk indicator should be placed according to the risk level (1 to 5)
         if let risk = screen?.risk{
             let stackViewWidth     = (UIScreen.main.bounds.width/(1.3))
             let stackViewItemWidth = stackViewWidth/5
             
             let x = (stackViewItemWidth * CGFloat(risk)) - (stackViewItemWidth/2)
-            let leading = indicator.leadingAnchor.constraint(equalTo: stackView.leadingAnchor)
             NSLayoutConstraint.activate([
-                leading,
+                indicator.centerXAnchor.constraint(equalTo: stackView.leadingAnchor, constant: x)
             ])
-            leading.constant = x
-            UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseIn, animations: {
-                self.contentView.layoutIfNeeded()
-            }, completion: nil)
         }
     }
 }

@@ -28,11 +28,6 @@ class ProductViewController: BaseViewController {
         presenter.bindTo(view: self)
         presenter.requestInfo()
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        presenter.destroy()
-    }
 }
 
 extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
@@ -49,6 +44,7 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
         return getInfoCellFor(indexPath) ?? UITableViewCell()
     }
     
+    /// Returns an UITableViewCell according to the section of the UITableView
     private func getInfoCellFor(_ indexPath: IndexPath) -> UITableViewCell?{
         switch indexPath.section {
             case 0:

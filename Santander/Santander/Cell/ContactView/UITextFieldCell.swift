@@ -10,7 +10,7 @@ import UIKit
 
 class UITextFieldCell: BaseCell {
     
-    /// The UiLabel
+    /// The UILabel
     private let label: UILabel = {
         let label = UILabel()
         label.text = "-"
@@ -46,7 +46,6 @@ class UITextFieldCell: BaseCell {
         self.contentView.addSubview(textField)
         self.contentView.addSubview(divider)
         
-        
         topSpacing = label.topAnchor.constraint(equalTo: self.contentView.topAnchor)
         NSLayoutConstraint.activate([
             topSpacing!,
@@ -75,7 +74,7 @@ class UITextFieldCell: BaseCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    ///
+    /// Sets up the cell according to the type of the field
     func setupCell(_ item:FormItem){
         setupTopSpace(item)
         self.item = item
@@ -118,24 +117,7 @@ extension UITextFieldCell {
         }
     }
     
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        guard let _item = item else { return true}
-//        _item.dataText = string
-//
-//        switch _item.typefield {
-//            case .text:
-//                validateName(item?.dataText ?? "")
-//            case .email:
-//                validateEmail(item?.dataText ?? "")
-//            case .telNumber:
-//              validatePhone(item?.dataText ?? "")
-//            default:
-//                return true
-//            }
-//        return true
-//    }
-    
-    ///
+    /// Validates if the text typed is an email
     private func validateEmail(_ email:String){
         if(isEmailValid(email)){
             item?.isSuccess = true
@@ -147,7 +129,7 @@ extension UITextFieldCell {
         }
     }
     
-    ///
+    /// Regex function to allow only email
     private func isEmailValid(_ email:String)->Bool{
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
@@ -155,7 +137,7 @@ extension UITextFieldCell {
         return emailTest.evaluate(with: email)
     }
     
-    ///
+    /// Checks if the text typed has 10 or 11 digits
     private func validatePhone(_ phone:String){
         if(phone.count == 10) || phone.count == 11{
             item?.isSuccess = true
@@ -167,7 +149,7 @@ extension UITextFieldCell {
         }
     }
     
-    ///
+    /// Checks if the text is not empty
     private func validateName(_ name:String){
         
         if(name.count < 1){

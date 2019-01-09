@@ -22,7 +22,7 @@ class BaseViewController: UIViewController {
         self.navigationController?.navigationBar.backgroundColor = .white
     }
     
-    ///
+    /// Displays an alert
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Entendi", style: .default, handler: nil))

@@ -71,13 +71,14 @@ class DownloadCell: BaseCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// Sets up the cell information
     func setupCell(for info:Info?, callback:(()->Void)?=nil){
         self.callback  = callback
         labelLeft.text = info?.name
         button.addTarget(self, action: #selector(buttonClicked), for: UIControl.Event.touchUpInside)
     }
     
-    ///
+    /// Callback to notify the Controller when the button is clicked
     private var callback:(()->Void)?
     @objc private func buttonClicked(myButton: UIButton) {
         callback?()

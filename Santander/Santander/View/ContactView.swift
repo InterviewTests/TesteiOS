@@ -10,9 +10,17 @@ import UIKit
 
 protocol ContactViewDelegate:NSObjectProtocol{
     
+    /// Notifies to update the datasource of [FormItem]
     func updateTableViewItems(items:[FormItem])
+    
+    /// Notifies toDisplays the success page
     func showSuccessPage()
+    
+    /// Notifies to Hides the success page
     func hideSuccessPage()
+    
+    /// Notifies to display a title and a message
+    func displayPopup(title:String, message:String)
 }
 
 class ContactView: UIView {

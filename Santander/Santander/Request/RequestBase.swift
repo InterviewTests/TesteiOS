@@ -15,6 +15,7 @@ class RequestBase {
     /// Holds any parameters that the requests may need
     var parameters:[String:Any] = [:]
     
+    /// Controls the session configuration
     private static let session: SessionManager = {
         let configuration = URLSessionConfiguration.default
         configuration.urlCache = nil

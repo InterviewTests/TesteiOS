@@ -58,6 +58,7 @@ class MoreInfoSingleCell: BaseCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// Sets up the cell information
     func setupCell(for info:Info?){
         labelLeft .text = info?.name
         labelRight.text = info?.data

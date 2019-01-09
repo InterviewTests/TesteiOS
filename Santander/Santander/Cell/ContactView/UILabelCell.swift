@@ -43,6 +43,7 @@ class UILabelCell: BaseCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// Sets up the cell information
     func setupCell(_ item:FormItem){
         topSpacing?.constant = CGFloat(item.topSpacing ?? 0)
         label.text = item.message

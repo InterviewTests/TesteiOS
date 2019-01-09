@@ -76,9 +76,8 @@ class MoreInfoDoubleCell: BaseCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    ///
+    /// Sets up the cell information
     func setupCell(for index:Int, profitability:Profitability?){
-        
         switch index {
             case 0:
                 labelLeft.text = "No mês"

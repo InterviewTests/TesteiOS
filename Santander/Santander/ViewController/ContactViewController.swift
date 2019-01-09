@@ -29,12 +29,7 @@ class ContactViewController: BaseViewController {
         presenter.requestForm()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        presenter.destroy()
-    }
-    
-    ///
+    /// Action to display the contact form
     @objc func returnToContactFormAction(){
         presenter.returnToContactForm()
     }
@@ -50,6 +45,7 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
         return getInfoCellFor(indexPath) ?? UITableViewCell()
     }
     
+    /// Returns an UITableViewCell according to the model type
     private func getInfoCellFor(_ indexPath: IndexPath) -> UITableViewCell?{
         
         let item = presenter.itemForRow(indexPath.row)
@@ -81,6 +77,10 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ContactViewController: ContactViewDelegate {
+    
+    func displayPopup(title: String, message: String) {
+        showAlert(title: title, message: message)
+    }
 
     func updateTableViewItems(items: [FormItem]) {
         _view.tableView.reloadData()

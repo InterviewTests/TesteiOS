@@ -58,7 +58,7 @@ class UICheckBoxCell: BaseCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    ///
+    /// Sets up the cell
     func setupCell(_ item:FormItem, callback:((_ isSelected: Bool, _ item:FormItem)->())? = nil){
         setupTopSpace(item)
         
@@ -69,7 +69,7 @@ class UICheckBoxCell: BaseCell {
         switchEmail.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
     }
     
-    ///
+    /// Callback to notify the Controller when the switch activated
     private var callback:((_ isSelected: Bool, _ item:FormItem)->())?
     @objc private func switchChanged(mySwitch: UISwitch) {
         guard let item = item else { return }

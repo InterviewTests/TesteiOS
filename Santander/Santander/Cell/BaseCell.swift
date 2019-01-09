@@ -24,7 +24,7 @@ class BaseCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    ///
+    /// The space between the cells and the views inside them
     func setupTopSpace(_ item:FormItem){
         topSpacing?.constant = CGFloat(item.topSpacing ?? 0)
     }

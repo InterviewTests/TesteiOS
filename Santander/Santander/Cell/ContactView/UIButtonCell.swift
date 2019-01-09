@@ -44,7 +44,7 @@ class UIButtonCell: BaseCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    ///
+    /// Sets up the cell information
     func setupCell(_ item:FormItem, callback:(()->Void)? = nil){
         setupTopSpace(item)
         self.item     = item
@@ -54,7 +54,7 @@ class UIButtonCell: BaseCell {
         button.addTarget(self, action: #selector(buttonClicked), for: UIControl.Event.touchUpInside)
     }
     
-    ///
+    /// Sets the callback to notify the controller
     func setCallback(_ callback:@escaping (()->Void)){
         self.callback = callback
         
@@ -63,7 +63,7 @@ class UIButtonCell: BaseCell {
         button.addTarget(self, action: #selector(buttonClicked), for: UIControl.Event.touchUpInside)
     }
     
-    ///
+    /// Callback to notify the Controller when the button is clicked
     private var callback:(()->Void)?
     @objc private func buttonClicked(myButton: UIButton) {
         callback?()
