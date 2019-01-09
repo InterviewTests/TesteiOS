@@ -20,6 +20,7 @@ class ContactViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Contato"
+        dismissKeyboard()
         
         _view.tableView.delegate   = self
         _view.tableView.dataSource = self
@@ -27,6 +28,18 @@ class ContactViewController: BaseViewController {
         
         presenter.bindTo(view: self)
         presenter.requestForm()
+    }
+    
+    /// Configures the view to dismiss the keyboard on click
+    func dismissKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardAction))
+        tap.cancelsTouchesInView = false
+        _view.addGestureRecognizer(tap)
+    }
+    
+    /// Dismiss the keyboard
+    @objc private func dismissKeyboardAction(){
+        _view.endEditing(true)
     }
     
     /// Action to display the contact form

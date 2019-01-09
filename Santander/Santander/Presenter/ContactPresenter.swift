@@ -68,6 +68,10 @@ class ContactPresenter{
         }
     }
     
+    func dismissKeyboard(){
+
+    }
+    
     /// Returns an item for a given index
     func itemForRow(_ row:Int)->FormItem{
         return items[row]
