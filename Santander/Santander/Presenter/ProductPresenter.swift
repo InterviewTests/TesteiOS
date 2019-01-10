@@ -8,7 +8,18 @@
 
 import Foundation
 
-class ProductPresenter{
+protocol ProductPresenterDelegate {
+    func bindTo(view: ProductViewDelegate)
+    func requestInfo()
+    func infoForRow(_ row:Int)->Info?
+    func downInfoForRow(_ row:Int)->Info?
+    func profitabilityForRow(_ row:Int)->Profitability?
+    func share()
+    func download()
+    func invest()
+}
+
+class ProductPresenter: ProductPresenterDelegate{
     
     /// Instance of the Controller's view
     private weak var view:ProductViewDelegate?
