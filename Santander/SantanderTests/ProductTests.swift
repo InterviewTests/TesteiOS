@@ -34,12 +34,11 @@ class ProductViewMock:NSObject, ProductViewDelegate{
 /// Mocked ProductPresenter for test
 class ProductPresenterMock:NSObject, ProductPresenterDelegate{
     
-    var productView:ProductViewDelegate? = nil
+    var productView:ProductViewDelegate?
     var requestInfoWasCalled = false
     var infoForRowWasCalled = false
     var downInfoForRowWasCalled = false
     var profitabilityForRowWasCalled = false
-    var shareWasCalled = false
     var downloadWasCalled = false
     var investWasCalled = false
     
@@ -64,10 +63,6 @@ class ProductPresenterMock:NSObject, ProductPresenterDelegate{
     func profitabilityForRow(_ row: Int) -> Profitability? {
         profitabilityForRowWasCalled = true
         return nil
-    }
-    
-    func share() {
-        shareWasCalled = true
     }
     
     func download() {
@@ -115,11 +110,16 @@ class ProductTests: XCTestCase {
         XCTAssertEqual(productView.popupMessage, message)
     }
     
-    func testBindTo(){
+    func testViewBound(){
         let productView      = ProductViewMock()
         let productPresenter = ProductPresenterMock()
         
         productPresenter.bindTo(view: productView)
         XCTAssertNotNil(productPresenter.productView)
+    }
+    
+    func testNotBound(){
+        let productPresenter = ProductPresenterMock()
+        XCTAssertNil(productPresenter.productView)
     }
 }

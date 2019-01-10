@@ -14,7 +14,6 @@ protocol ProductPresenterDelegate {
     func infoForRow(_ row:Int)->Info?
     func downInfoForRow(_ row:Int)->Info?
     func profitabilityForRow(_ row:Int)->Profitability?
-    func share()
     func download()
     func invest()
 }
@@ -81,11 +80,6 @@ class ProductPresenter: ProductPresenterDelegate{
     /// Returns a Profitability object for a given index
     func profitabilityForRow(_ row:Int)->Profitability?{
         return screen?.profitabilities[row]
-    }
-    
-    /// Notifies the view that the share action was clicked
-    func share(){
-        
     }
     
     /// Notifies the view that the action "Baixar" was clicked
