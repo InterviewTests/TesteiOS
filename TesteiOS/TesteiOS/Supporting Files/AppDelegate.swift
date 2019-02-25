@@ -19,12 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window = UIWindow(frame: UIScreen.main.bounds)
     self.window?.backgroundColor = UIColor.white
     
-    let tabController = TabBarViewController()
+    let tabBarController = TabBarViewController()
+    let fundsVC = FundsViewController()
+    let contactVC = ContactViewController()
     
+    let fundsNavigationController = UINavigationController(rootViewController: fundsVC)
+    let contactNavigationController = UINavigationController(rootViewController: contactVC)
     
-    self.window?.rootViewController = tabController
+    tabBarController.viewControllers = [fundsNavigationController, contactNavigationController]
     
+    self.window?.rootViewController = tabBarController
     self.window?.makeKeyAndVisible()
+    
+    AppearanceProxyHelper.customizeNavigationBar()
     
     return true
   }
