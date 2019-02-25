@@ -41,5 +41,8 @@ class TabBarViewController: UITabBarController {
     selectedIndex = sender.tag
     tabBarView.button1.isSelected = tabBarView.button1.tag == sender.tag
     tabBarView.button2.isSelected = tabBarView.button2.tag == sender.tag
+    
+    tabBarView.button1.isUserInteractionEnabled = !tabBarView.button1.isSelected
+    tabBarView.button2.isUserInteractionEnabled = !tabBarView.button2.isSelected
   }
 }

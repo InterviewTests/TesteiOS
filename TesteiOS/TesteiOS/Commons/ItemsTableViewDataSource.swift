@@ -1,6 +1,6 @@
 //
 //  ItemsTableViewDataSource.swift
-//  Movs
+//  TesteiOS
 //
 //  Created by Brendoon Ryos on 04/02/19.
 //  Copyright © 2019 Brendoon Ryos. All rights reserved.
@@ -25,9 +25,8 @@ extension ItemsTableViewDataSource {
     registerTableView()
     self.tableView?.dataSource = self
     self.tableView?.delegate = self.delegate
+    self.tableView?.reloadData()
   }
   
-  func registerTableView() {
-    
-  }
+  func registerTableView() {}
 }
