@@ -12,18 +12,15 @@
 
 import UIKit
 
-@objc protocol ContactRoutingLogic
-{
+@objc protocol ContactRoutingLogic {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
-protocol ContactDataPassing
-{
+protocol ContactDataPassing {
   var dataStore: ContactDataStore? { get }
 }
 
-class ContactRouter: NSObject, ContactRoutingLogic, ContactDataPassing
-{
+class ContactRouter: NSObject, ContactRoutingLogic, ContactDataPassing {
   weak var viewController: ContactViewController?
   var dataStore: ContactDataStore?
   

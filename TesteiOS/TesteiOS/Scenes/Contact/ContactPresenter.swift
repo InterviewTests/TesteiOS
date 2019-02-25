@@ -12,20 +12,30 @@
 
 import UIKit
 
-protocol ContactPresentationLogic
-{
-  func presentSomething(response: Contact.Something.Response)
+protocol ContactPresentationLogic {
+  func presentForm(response: Contact.Form.Response)
+  func presentSuccesseMessage(response: Contact.Send.Response)
+  func presentErrorMessage(response: Contact.Form.Response)
 }
 
-class ContactPresenter: ContactPresentationLogic
-{
+class ContactPresenter: ContactPresentationLogic {
   weak var viewController: ContactDisplayLogic?
   
-  // MARK: Do something
+  // MARK: Present Form
+  func presentForm(response: Contact.Form.Response) {
+    let viewModel = Contact.Form.ViewModel(cells: response.cells)
+    viewController?.displayForm(viewModel: viewModel)
+  }
   
-  func presentSomething(response: Contact.Something.Response)
-  {
-    let viewModel = Contact.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+  // MARK: Present Success Message
+  func presentSuccesseMessage(response: Contact.Send.Response) {
+    let viewModel = Contact.Send.ViewModel()
+    viewController?.displaySuccessMessage(viewModel: viewModel)
+  }
+  
+  // MARK: Present Error Message
+  func presentErrorMessage(response: Contact.Form.Response) {
+    let viewModel = Contact.Form.ViewModel(error: response.error)
+    viewController?.displayErrorMessage(viewModel: viewModel)
   }
 }

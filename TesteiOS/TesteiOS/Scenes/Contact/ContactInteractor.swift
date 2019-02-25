@@ -12,30 +12,39 @@
 
 import UIKit
 
-protocol ContactBusinessLogic
-{
-  func doSomething(request: Contact.Something.Request)
+protocol ContactBusinessLogic {
+  func fetchForm(request: Contact.Form.Request)
+  func sendFormData(request: Contact.Send.Request)
 }
 
-protocol ContactDataStore
-{
+protocol ContactDataStore {
   //var name: String { get set }
 }
 
-class ContactInteractor: ContactBusinessLogic, ContactDataStore
-{
+class ContactInteractor: ContactBusinessLogic, ContactDataStore {
   var presenter: ContactPresentationLogic?
   var worker: ContactWorker?
   //var name: String = ""
   
-  // MARK: Do something
-  
-  func doSomething(request: Contact.Something.Request)
-  {
+  // MARK: Fetch Form
+  func fetchForm(request: Contact.Form.Request) {
     worker = ContactWorker()
-    worker?.doSomeWork()
-    
-    let response = Contact.Something.Response()
-    presenter?.presentSomething(response: response)
+    worker?.fetchForm(request: request, completion: { result in
+      switch result {
+      case .success(let data):
+        let response = Contact.Form.Response(cells: data.cells)
+        self.presenter?.presentForm(response: response)
+      case .failure(let error):
+        let response = Contact.Form.Response(error: error)
+        self.presenter?.presentErrorMessage(response: response)
+      }
+    })
+  }
+  
+  // MARK: Send form data
+  func sendFormData(request: Contact.Send.Request) {
+    let response = Contact.Send.Response()
+    presenter?.presentSuccesseMessage(response: response)
+    // TODO: Send form data
   }
 }

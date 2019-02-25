@@ -11,10 +11,19 @@
 //
 
 import UIKit
+import Alamofire
 
-class ContactWorker
-{
-  func doSomeWork()
-  {
+class ContactWorker {
+  
+  private let networkManager: NetworkManager
+  
+  init(networkManager: NetworkManager = NetworkManager()) {
+    self.networkManager = networkManager
+  }
+  
+  func fetchForm(request: Contact.Form.Request, completion: @escaping (Result<FormData>) -> ()) {
+    networkManager.fetchForm(request: request) { result in
+      completion(result)
+    }
   }
 }

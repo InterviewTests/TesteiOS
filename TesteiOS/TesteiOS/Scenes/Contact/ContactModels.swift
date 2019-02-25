@@ -12,20 +12,37 @@
 
 import UIKit
 
-enum Contact
-{
+enum Contact {
   // MARK: Use cases
+  enum Send {
+    struct Request{
+      let values: [Value]
+    }
+    struct Response {}
+    struct ViewModel {}
+  }
   
-  enum Something
-  {
-    struct Request
-    {
+  enum Form {
+    struct Request{}
+    
+    struct Response {
+      let cells: [Cell]
+      let error: Error?
+      
+      init(cells: [Cell] = [], error: Error? = .none) {
+        self.cells = cells
+        self.error = error
+      }
     }
-    struct Response
-    {
-    }
-    struct ViewModel
-    {
+    struct ViewModel {
+      let cells: [Cell]
+      let error: Error?
+      
+      init(cells: [Cell] = [], error: Error? = .none) {
+        self.cells = cells
+        self.error = error
+      }
     }
   }
+  
 }

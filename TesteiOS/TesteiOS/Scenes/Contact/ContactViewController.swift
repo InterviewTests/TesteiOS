@@ -12,34 +12,32 @@
 
 import UIKit
 
-protocol ContactDisplayLogic: class
-{
-  func displaySomething(viewModel: Contact.Something.ViewModel)
+protocol ContactDisplayLogic: class {
+  func displayForm(viewModel: Contact.Form.ViewModel)
+  func displayErrorMessage(viewModel: Contact.Form.ViewModel)
+  func displaySuccessMessage(viewModel: Contact.Send.ViewModel)
 }
 
-class ContactViewController: UIViewController, ContactDisplayLogic
-{
+class ContactViewController: UIViewController {
   var interactor: ContactBusinessLogic?
   var router: (NSObjectProtocol & ContactRoutingLogic & ContactDataPassing)?
+  
+  let contactView = ContactView()
 
   // MARK: Object lifecycle
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+  init() {
+    super.init(nibName: .none, bundle: .none)
+    title = "Contato"
     setup()
   }
   
-  required init?(coder aDecoder: NSCoder)
-  {
+  required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setup()
   }
   
   // MARK: Setup
-  
-  private func setup()
-  {
+  private func setup() {
     let viewController = self
     let interactor = ContactInteractor()
     let presenter = ContactPresenter()
@@ -52,38 +50,54 @@ class ContactViewController: UIViewController, ContactDisplayLogic
     router.dataStore = interactor
   }
   
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
-    }
-  }
-  
   // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
+  override func viewDidLoad() {
     super.viewDidLoad()
-    doSomething()
+    setupView()
+    fetchForm()
   }
   
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = Contact.Something.Request()
-    interactor?.doSomething(request: request)
+  override func loadView() {
+    view = contactView
   }
   
-  func displaySomething(viewModel: Contact.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
+  func setupView() {
+    let tapGeture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+    view.addGestureRecognizer(tapGeture)
+    contactView.tableView.setSendHandler(sendButtonPressed)
+  }
+  
+  @objc func hideKeyboard() {
+    view.endEditing(true)
+  }
+  
+  func sendButtonPressed(_ values: [Value]) {
+    print(values)
+    let request = Contact.Send.Request(values: values)
+    interactor?.sendFormData(request: request)
+  }
+  
+  // MARK: Fetch Form
+  func fetchForm() {
+    let request = Contact.Form.Request()
+    interactor?.fetchForm(request: request)
+    contactView.activityIndicator.startAnimating()
+  }
+}
+
+extension ContactViewController: ContactDisplayLogic {
+  func displayForm(viewModel: Contact.Form.ViewModel) {
+    contactView.activityIndicator.stopAnimating()
+    contactView.tableView.update(with: viewModel.cells)
+  }
+  
+  func displaySuccessMessage(viewModel: Contact.Send.ViewModel) {
+    contactView.showFeedbackView()
+    contactView.tableView.reloadData()
+  }
+  
+  func displayErrorMessage(viewModel: Contact.Form.ViewModel) {
+    
+    contactView.activityIndicator.stopAnimating()
   }
 }
