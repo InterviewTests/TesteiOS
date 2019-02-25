@@ -59,9 +59,13 @@ final class TextFieldTableViewCell: ContactBaseTableViewCell {
   }
   
   private func checkTextField(_ textField: UITextField) {
-    guard let text = textField.text else { return }
+    guard var text = textField.text else { return }
     switch textField.textContentType! {
     case .name:
+      if text.last == " " {
+        text.removeLast()
+        textField.text = text
+      }
       isTextValid = text.count >= 5
     case .telephoneNumber:
       isTextValid = text.count >= 10

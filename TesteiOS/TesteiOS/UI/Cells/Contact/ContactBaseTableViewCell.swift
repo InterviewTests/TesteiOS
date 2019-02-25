@@ -13,7 +13,8 @@ class ContactBaseTableViewCell: UITableViewCell, NibReusable {
   
   @IBOutlet weak var topSpacingConstraint: NSLayoutConstraint!
   
-  var callback: (((String, Any)) -> ())?
+  var callback: ((Value) -> ())?
+  var sendAction: (() -> ())?
   
   override func awakeFromNib() {
     super.awakeFromNib()

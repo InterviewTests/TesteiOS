@@ -12,6 +12,12 @@ final class CheckboxTableViewCell: ContactBaseTableViewCell {
 
   @IBOutlet weak var checkboxButton: UIButton!
   
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    checkboxButton.titleLabel?.adjustsFontSizeToFitWidth = true
+    checkboxButton.titleLabel?.minimumScaleFactor = 0.5
+  }
+  
   override func setup(with item: Cell) {
     super.setup(with: item)
     checkboxButton.isSelected = false
