@@ -38,6 +38,7 @@ class ContactDataSourceSpec: QuickSpec {
         let count = dataSource.tableView(tableView, numberOfRowsInSection: 0)
         expect(count).to(equal(6))
       }
+      
       it("should have be able to update items") {
         let items = [cells[0], cells[0]]
         dataSource.update(with: items)
@@ -47,6 +48,23 @@ class ContactDataSourceSpec: QuickSpec {
       it("should return the expected cell") {
         let cell = dataSource.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
         expect(cell).to(beAKindOf(ContactBaseTableViewCell.self))
+      }
+      it("should have be able to update values") {
+        dataSource.sendButtonPressed()
+        expect(dataSource.values).to(be([]))
+      }
+      it("should have the expected number of values") {
+        dataSource.validValue(("Email", "test@test.com"))
+        expect(dataSource.values.count).to(equal(1))
+      }
+      it("should have upadeted the value data") {
+        dataSource.validValue(("Email", "test2@test.com"))
+        let data = dataSource.values[0].data as! String
+        expect(data).to(equal("test2@test.com"))
+      }
+      it("should remove the value") {
+        dataSource.validValue(("Email", ""))
+        expect(dataSource.values[0]).toNot(be(("Email", "")))
       }
     }
   }
