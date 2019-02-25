@@ -21,7 +21,7 @@ class ContactDelegate: NSObject, UITableViewDelegate {
   }
   
   func update(with items: [Cell]) {
-    self.items = items
+    self.items = items.filter { !$0.hidden }
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -34,7 +34,7 @@ class ContactDataSource: NSObject, ItemsTableViewDataSource {
   }
   
   func update(with items: [Cell]) {
-    self.items = items
+    self.items = items.filter { !$0.hidden }
     self.registerTableView()
     self.tableView?.reloadData()
   }
@@ -59,7 +59,7 @@ class ContactDataSource: NSObject, ItemsTableViewDataSource {
     } else {
       values.append(value)
     }
-    enableSendButton?(values.count == 4)
+    enableSendButton?(values.count == items.count - 2)
   }
 }
 
