@@ -26,9 +26,12 @@ class FundsInteractor: FundsBusinessLogic, FundsDataStore {
   var worker: FundsWorker?
   var url: String = ""
   
+  init(worker: FundsWorker? = FundsWorker()) {
+    self.worker = worker
+  }
+  
   // MARK: Fetch fund
   func fetchFund(request: Funds.Get.Request) {
-    worker = FundsWorker()
     worker?.fetchFund(request: request, completion: { result in
       switch result {
       case .success(let data):

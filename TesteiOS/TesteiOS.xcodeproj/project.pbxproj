@@ -90,6 +90,8 @@
 		65EF262D221CC3E700014212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65EF262C221CC3E700014212 /* Assets.xcassets */; };
 		65EF2630221CC3E700014212 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65EF262E221CC3E700014212 /* LaunchScreen.storyboard */; };
 		65EF2646221CC3E700014212 /* TesteiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EF2645221CC3E700014212 /* TesteiOSUITests.swift */; };
+		65F791642223C5E400F1058A /* ContactWorkerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F791632223C5E400F1058A /* ContactWorkerSpec.swift */; };
+		65F791662223D01600F1058A /* FundsInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F791652223D01600F1058A /* FundsInteractorSpec.swift */; };
 		BF30F532668E8706D861BA2D /* Pods_TesteiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53AA491062BDD9DF858AB8E /* Pods_TesteiOSTests.framework */; };
 		DAC11BD224CBF944124D26B8 /* Pods_TesteiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C7FB9A50E98EBED4E7C177 /* Pods_TesteiOS.framework */; };
 /* End PBXBuildFile section */
@@ -202,6 +204,8 @@
 		65EF2641221CC3E700014212 /* TesteiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TesteiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65EF2645221CC3E700014212 /* TesteiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesteiOSUITests.swift; sourceTree = "<group>"; };
 		65EF2647221CC3E700014212 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65F791632223C5E400F1058A /* ContactWorkerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactWorkerSpec.swift; sourceTree = "<group>"; };
+		65F791652223D01600F1058A /* FundsInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsInteractorSpec.swift; sourceTree = "<group>"; };
 		90D2E8A002C9BD53CCDBA5FB /* Pods-TesteiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesteiOS.release.xcconfig"; path = "Target Support Files/Pods-TesteiOS/Pods-TesteiOS.release.xcconfig"; sourceTree = "<group>"; };
 		AC1FED7AFFCC9F0BB4F951CF /* Pods-TesteiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesteiOS.debug.xcconfig"; path = "Target Support Files/Pods-TesteiOS/Pods-TesteiOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C2C7FB9A50E98EBED4E7C177 /* Pods_TesteiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TesteiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -578,6 +582,7 @@
 		65B2BBC72223A14B009A5A7B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				65F791672223D01C00F1058A /* Funds */,
 				65B2BBC82223A152009A5A7B /* Contact */,
 			);
 			path = Scenes;
@@ -587,6 +592,7 @@
 			isa = PBXGroup;
 			children = (
 				65B2BBC92223A168009A5A7B /* ContactInteractSpec.swift */,
+				65F791632223C5E400F1058A /* ContactWorkerSpec.swift */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -646,6 +652,14 @@
 				65EF2647221CC3E700014212 /* Info.plist */,
 			);
 			path = TesteiOSUITests;
+			sourceTree = "<group>";
+		};
+		65F791672223D01C00F1058A /* Funds */ = {
+			isa = PBXGroup;
+			children = (
+				65F791652223D01600F1058A /* FundsInteractorSpec.swift */,
+			);
+			path = Funds;
 			sourceTree = "<group>";
 		};
 		F27A8A997A75DFBE5CC78888 /* Frameworks */ = {
@@ -977,7 +991,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65F791662223D01600F1058A /* FundsInteractorSpec.swift in Sources */,
 				65B2BBC2222390F6009A5A7B /* ContactDataSourceSpec.swift in Sources */,
+				65F791642223C5E400F1058A /* ContactWorkerSpec.swift in Sources */,
 				65B2BBCA2223A168009A5A7B /* ContactInteractSpec.swift in Sources */,
 				65B2BBC622239D1C009A5A7B /* StringValidatorSpec.swift in Sources */,
 				65B2BBBF22238E5A009A5A7B /* FormDataSpec.swift in Sources */,

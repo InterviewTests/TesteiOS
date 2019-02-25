@@ -15,11 +15,11 @@ class ContactInteractorSpec: QuickSpec {
   override func spec() {
     describe("a ContactInteractor") {
       var interact: ContactInteractor!
-      var request: Contact.Form.Request!
       
       beforeEach {
-        request = Contact.Form.Request()
-        interact = ContactInteractor()
+        let request = Contact.Form.Request()
+        let worker = ContactWorker(networkManager: NetworkManagerMock())
+        interact = ContactInteractor(worker: worker)
         interact.fetchForm(request: request)
         interact.sendFormData(request: Contact.Send.Request(values: []))
       }

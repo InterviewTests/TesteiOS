@@ -26,9 +26,12 @@ class ContactInteractor: ContactBusinessLogic, ContactDataStore {
   var worker: ContactWorker?
   //var name: String = ""
   
+  init(worker: ContactWorker? = ContactWorker()) {
+    self.worker = worker
+  }
+  
   // MARK: Fetch Form
   func fetchForm(request: Contact.Form.Request) {
-    worker = ContactWorker()
     worker?.fetchForm(request: request, completion: { result in
       switch result {
       case .success(let data):

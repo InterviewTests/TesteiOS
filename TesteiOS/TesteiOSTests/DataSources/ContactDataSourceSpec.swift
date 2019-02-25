@@ -36,9 +36,15 @@ class ContactDataSourceSpec: QuickSpec {
       }
       it("should have the expected number of items") {
         let count = dataSource.tableView(tableView, numberOfRowsInSection: 0)
-        expect(count).to(equal(6))
+        expect(count).to(equal(5))
       }
-      
+      it("should show only the not hidden cells") {
+        let items = [cells[2], cells[0]]
+        dataSource.update(with: items)
+        let count = dataSource.tableView(tableView, numberOfRowsInSection: 0)
+        expect(cells[2].hidden).to(beTrue())
+        expect(count).to(equal(1))
+      }
       it("should have be able to update items") {
         let items = [cells[0], cells[0]]
         dataSource.update(with: items)

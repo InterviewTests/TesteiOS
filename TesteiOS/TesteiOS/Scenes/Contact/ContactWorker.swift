@@ -15,9 +15,9 @@ import Alamofire
 
 class ContactWorker {
   
-  private let networkManager: NetworkManager
+  private let networkManager: Networkable
   
-  init(networkManager: NetworkManager = NetworkManager()) {
+  init(networkManager: Networkable = NetworkManager()) {
     self.networkManager = networkManager
   }
   
