@@ -7,3 +7,23 @@
 //
 
 import Foundation
+
+struct Info {
+  let name: String
+  let data: String?
+}
+
+extension Info: Decodable {
+  private enum CodingKeys: String, CodingKey {
+    case name
+    case data
+  }
+  
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    name = try container.decode(String.self, forKey: .name)
+    data = try? container.decode(String.self, forKey: .data)
+  }
+}
+
+
