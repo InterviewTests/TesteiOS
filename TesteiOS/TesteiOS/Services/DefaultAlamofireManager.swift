@@ -1,6 +1,6 @@
 //
 //  DefaultAlamofireManager.swift
-//  TesteiOSv2
+//  TesteiOS
 //
 //  Created by Brendoon Ryos on 13/01/19.
 //  Copyright © 2019 Brendoon Ryos. All rights reserved.
