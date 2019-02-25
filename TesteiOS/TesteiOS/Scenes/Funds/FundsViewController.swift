@@ -1,5 +1,5 @@
 //
-//  FundViewController.swift
+//  FundsViewController.swift
 //  TesteiOS
 //
 //  Created by Brendoon Ryos on 21/02/19.
@@ -12,19 +12,23 @@
 
 import UIKit
 
-protocol FundDisplayLogic: class {
-  func displaySomething(viewModel: Fund.ViewModel)
+protocol FundsDisplayLogic: class {
+  func displayFund(viewModel: Funds.Get.ViewModel)
+  func displayDownloadedData(viewModel: Funds.Download.ViewModel)
+  func displayErrorMessage(viewModel: Funds.Get.ViewModel)
 }
 
-class FundViewController: UIViewController, FundDisplayLogic {
-  var interactor: FundBusinessLogic?
-  var router: (NSObjectProtocol & FundRoutingLogic & FundDataPassing)?
+class FundsViewController: UIViewController {
+  var interactor: FundsBusinessLogic?
+  var router: (NSObjectProtocol & FundsRoutingLogic & FundsDataPassing)?
+  
+  let fundsView = FundsView()
 
   // MARK: Object lifecycle
   init() {
     super.init(nibName: .none, bundle: .none)
     title = "Investimento"
-    navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: nil, action: nil)
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: .none, action: .none)
     setup()
   }
   
@@ -34,12 +38,11 @@ class FundViewController: UIViewController, FundDisplayLogic {
   }
   
   // MARK: Setup
-  
   private func setup() {
     let viewController = self
-    let interactor = FundInteractor()
-    let presenter = FundPresenter()
-    let router = FundRouter()
+    let interactor = FundsInteractor()
+    let presenter = FundsPresenter()
+    let router = FundsRouter()
     viewController.interactor = interactor
     viewController.router = router
     interactor.presenter = presenter
@@ -51,19 +54,48 @@ class FundViewController: UIViewController, FundDisplayLogic {
   // MARK: View lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    doSomething()
+    setupView()
+    fetchFund()
   }
   
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething() {
-    let request = Fund.Request()
-    interactor?.doSomething(request: request)
+  override func loadView() {
+    view = fundsView
   }
   
-  func displaySomething(viewModel: Fund.ViewModel) {
-    //nameTextField.text = viewModel.name
+  func setupView() {
+    fundsView.tableView.setInvestHandler(investButtonPressed)
+    fundsView.tableView.setDownloadHandler(downloadButtonPressed)
+  }
+  
+  func investButtonPressed() {
+    // TODO: Invest Button pressed action
+    print("Investir")
+  }
+  
+  func downloadButtonPressed(_ url: String?) {
+    let request = Funds.Download.Request(url: url)
+    interactor?.downloadData(request: request)
+  }
+  
+  // MARK: Fetch Fund
+  func fetchFund() {
+    let request = Funds.Get.Request()
+    interactor?.fetchFund(request: request)
+    fundsView.activityIndicator.startAnimating()
+  }
+}
+
+extension FundsViewController: FundsDisplayLogic {
+  func displayFund(viewModel: Funds.Get.ViewModel) {
+    fundsView.tableView.update(with: viewModel.fund!)
+    fundsView.activityIndicator.stopAnimating()
+  }
+  
+  func displayDownloadedData(viewModel: Funds.Download.ViewModel) {
+    router?.routeToDownloadData()
+  }
+  
+  func displayErrorMessage(viewModel: Funds.Get.ViewModel) {
+    fundsView.activityIndicator.stopAnimating()
   }
 }

@@ -1,5 +1,5 @@
 //
-//  FundRouter.swift
+//  FundsRouter.swift
 //  TesteiOS
 //
 //  Created by Brendoon Ryos on 21/02/19.
@@ -11,50 +11,34 @@
 //
 
 import UIKit
+import SafariServices
 
-@objc protocol FundRoutingLogic
-{
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+@objc protocol FundsRoutingLogic {
+  func routeToDownloadData()
 }
 
-protocol FundDataPassing
-{
-  var dataStore: FundDataStore? { get }
+protocol FundsDataPassing {
+  var dataStore: FundsDataStore? { get }
 }
 
-class FundRouter: NSObject, FundRoutingLogic, FundDataPassing
-{
-  weak var viewController: FundViewController?
-  var dataStore: FundDataStore?
+class FundsRouter: NSObject, FundsRoutingLogic, FundsDataPassing {
+  weak var viewController: FundsViewController?
+  var dataStore: FundsDataStore?
   
   // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
+  func routeToDownloadData() {
+    guard let string = dataStore?.url, let url = URL(string: string) else { return }
+    let safariViewController = SFSafariViewController(url: url)
+    navigateToDownloadData(source: viewController!, destination: safariViewController)
+  }
 
   // MARK: Navigation
-  
-  //func navigateToSomewhere(source: FundsViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
+  func navigateToDownloadData(source: FundsViewController, destination: SFSafariViewController) {
+    source.present(destination, animated: true)
+  }
   
   // MARK: Passing data
-  
-  //func passDataToSomewhere(source: FundsDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+//  func passDataToSomewhere(source: FundsDataStore, destination: inout SomewhereDataStore) {
+//    destination.name = source.name
+//  }
 }

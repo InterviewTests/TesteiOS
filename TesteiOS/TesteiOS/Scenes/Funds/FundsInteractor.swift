@@ -12,30 +12,39 @@
 
 import UIKit
 
-protocol FundBusinessLogic
-{
-  func doSomething(request: Fund.Request)
+protocol FundsBusinessLogic {
+  func fetchFund(request: Funds.Get.Request)
+  func downloadData(request: Funds.Download.Request)
 }
 
-protocol FundDataStore
-{
-  //var name: String { get set }
+protocol FundsDataStore {
+  var url: String { get set }
 }
 
-class FundInteractor: FundBusinessLogic, FundDataStore
-{
-  var presenter: FundPresentationLogic?
-  var worker: FundWorker?
-  //var name: String = ""
+class FundsInteractor: FundsBusinessLogic, FundsDataStore {
+  var presenter: FundsPresentationLogic?
+  var worker: FundsWorker?
+  var url: String = ""
   
-  // MARK: Do something
+  // MARK: Fetch fund
+  func fetchFund(request: Funds.Get.Request) {
+    worker = FundsWorker()
+    worker?.fetchFund(request: request, completion: { result in
+      switch result {
+      case .success(let data):
+        let response = Funds.Get.Response(fund: data.fund)
+        self.presenter?.presentFund(response: response)
+      case .failure(let error):
+        let response = Funds.Get.Response(error: error)
+        self.presenter?.presentErrorMessage(response: response)
+      }
+    })
+  }
   
-  func doSomething(request: Fund.Request)
-  {
-    worker = FundWorker()
-    worker?.doSomeWork()
-    
-    let response = Fund.Response()
-    presenter?.presentSomething(response: response)
+  // MARK: Fetch data
+  func downloadData(request: Funds.Download.Request) {
+    url = request.url ?? "https://www.google.com/"
+    let response = Funds.Download.Response()
+    presenter?.presentDownloadedData(response: response)
   }
 }

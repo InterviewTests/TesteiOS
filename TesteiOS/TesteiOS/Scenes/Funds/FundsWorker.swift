@@ -1,5 +1,5 @@
 //
-//  FundWorker.swift
+//  FundsWorker.swift
 //  TesteiOS
 //
 //  Created by Brendoon Ryos on 21/02/19.
@@ -11,10 +11,19 @@
 //
 
 import UIKit
+import Alamofire
 
-class FundWorker
-{
-  func doSomeWork()
-  {
+class FundsWorker {
+  
+  private let networkManager: NetworkManager
+  
+  init(networkManager: NetworkManager = NetworkManager()) {
+    self.networkManager = networkManager
+  }
+  
+  func fetchFund(request: Funds.Get.Request, completion: @escaping (Result<FundsData>) -> ()) {
+    networkManager.fetchFund(request: request) { result in
+      completion(result)
+    }
   }
 }

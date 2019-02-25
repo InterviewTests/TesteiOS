@@ -12,17 +12,35 @@
 
 import UIKit
 
-enum Funds
-{
+enum Funds {
   // MARK: Use cases
+  enum Download {
+    struct Request {
+      let url: String?
+    }
+    struct Response {}
+    struct ViewModel {}
+  }
   
-  struct Request
-  {
-  }
-  struct Response
-  {
-  }
-  struct ViewModel
-  {
+  enum Get {
+    struct Request {}
+    struct Response {
+      let fund: Fund?
+      let error: Error?
+      
+      init(fund: Fund? = .none, error: Error? = .none) {
+        self.fund = fund
+        self.error = error
+      }
+    }
+    struct ViewModel {
+      let fund: Fund?
+      let error: Error?
+      
+      init(fund: Fund? = .none, error: Error? = .none) {
+        self.fund = fund
+        self.error = error
+      }
+    }
   }
 }

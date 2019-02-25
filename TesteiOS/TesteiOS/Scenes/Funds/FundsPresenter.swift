@@ -1,5 +1,5 @@
 //
-//  FundPresenter.swift
+//  FundsPresenter.swift
 //  TesteiOS
 //
 //  Created by Brendoon Ryos on 21/02/19.
@@ -12,20 +12,30 @@
 
 import UIKit
 
-protocol FundPresentationLogic
-{
-  func presentSomething(response: Fund.Response)
+protocol FundsPresentationLogic {
+  func presentFund(response: Funds.Get.Response)
+  func presentDownloadedData(response: Funds.Download.Response)
+  func presentErrorMessage(response: Funds.Get.Response)
 }
 
-class FundPresenter: FundPresentationLogic
-{
-  weak var viewController: FundDisplayLogic?
+class FundsPresenter: FundsPresentationLogic {
+  weak var viewController: FundsDisplayLogic?
   
-  // MARK: Do something
+  // MARK: Present Fund
+  func presentFund(response: Funds.Get.Response) {
+    let viewModel = Funds.Get.ViewModel(fund: response.fund)
+    viewController?.displayFund(viewModel: viewModel)
+  }
   
-  func presentSomething(response: Fund.Response)
-  {
-    let viewModel = Fund.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+  // MARK: Present Data
+  func presentDownloadedData(response: Funds.Download.Response) {
+    let viewModel = Funds.Download.ViewModel()
+    viewController?.displayDownloadedData(viewModel: viewModel)
+  }
+  
+  // MARK: Present Error Message
+  func presentErrorMessage(response: Funds.Get.Response) {
+    let viewModel = Funds.Get.ViewModel(error: response.error)
+    viewController?.displayErrorMessage(viewModel: viewModel)
   }
 }
