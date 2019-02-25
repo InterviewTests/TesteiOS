@@ -16,7 +16,6 @@ class FundHeaderTableViewCell: FundBaseTableViewCell {
   @IBOutlet weak var definitionLabel: UILabel!
   @IBOutlet weak var riskTitleLabel: UILabel!
   @IBOutlet weak var riskView: RiskView!
-  @IBOutlet weak var infoTitleLabel: UILabel!
   
   override func setup(with fund: Fund) {
     titleLabel.text = fund.title
@@ -25,7 +24,6 @@ class FundHeaderTableViewCell: FundBaseTableViewCell {
     definitionLabel.text = fund.definition
     riskTitleLabel.text = fund.riskTitle
     riskView.setRist(risk: fund.risk)
-    infoTitleLabel.text = fund.infoTitle
   }
 
 }

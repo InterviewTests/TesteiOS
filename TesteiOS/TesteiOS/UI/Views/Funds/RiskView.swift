@@ -54,7 +54,7 @@ class RiskView: UIView {
   }
   
   private func configureVImageView(risk: Int) {
-    let factor = self.frame.width / 5
+    let factor = (UIScreen.main.bounds.width - 70) / 5
     let value = defaultVImageViewLeadingConstraintValue + (CGFloat(risk - 1) * factor)
     vImageViewLeadingConstraint.constant = value
   }
@@ -81,7 +81,7 @@ class RiskView: UIView {
     
     lastBar.layer.cornerRadius = lastBar.frame.height / 2
     lastBar.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-    
+    vImageViewLeadingConstraint.constant = ((UIScreen.main.bounds.width - 70) / 5) / 2
     defaultVImageViewLeadingConstraintValue = vImageViewLeadingConstraint.constant
   }
   

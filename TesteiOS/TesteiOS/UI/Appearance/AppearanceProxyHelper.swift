@@ -12,18 +12,13 @@ struct AppearanceProxyHelper {
   
   private init() {}
   
-  static let collectionViewSpacing: CGFloat = 15
-  
-  static func customizeTabBar(){
-    let tabBarAppearance = UITabBar.appearance()
-    tabBarAppearance.tintColor = ColorPalette.black
-    tabBarAppearance.barTintColor = ColorPalette.white
-  }
-  
   static func customizeNavigationBar(){
     let navBarAppearance = UINavigationBar.appearance()
-    navBarAppearance.tintColor = ColorPalette.black
+    navBarAppearance.isTranslucent = false
+    navBarAppearance.shadowImage = UIImage()
+    navBarAppearance.setBackgroundImage(UIImage(), for: .default)
     navBarAppearance.barTintColor = ColorPalette.white
-    navBarAppearance.prefersLargeTitles = true
+    navBarAppearance.tintColor = ColorPalette.rossoCorsa
+    navBarAppearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: FontNames.medium, size: 16)!, NSAttributedString.Key.foregroundColor: ColorPalette.jet]
   }  
 }

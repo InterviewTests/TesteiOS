@@ -9,13 +9,51 @@
 import UIKit
 
 class TabBarView: UIView {
+  
+  lazy var button1: TabBarButton = {
+    let button = TabBarButton(frame: .zero)
+    button.tag = 0
+    button.setTitle("Investimento", for: .normal)
+    return button
+  }()
+  
+  lazy var button2: TabBarButton = {
+    let button = TabBarButton(frame: .zero)
+    button.tag = 1
+    button.setTitle("Contato", for: .normal)
+    return button
+  }()
+  
+  lazy var containerView: UIStackView = {
+    let view = UIStackView(frame: .zero)
+    view.axis = .horizontal
+    view.distribution = .fillEqually
+    return view
+  }()
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    setupViewCode()
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+}
+
+extension TabBarView: ViewCode {
+  func buildViewHierarchy() {
+    addSubview(containerView)
+  }
+  
+  func setupConstraints() {
+    containerView.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
     }
-    */
-
+  }
+  
+  func configureViews() {
+    containerView.addArrangedSubview(button1)
+    containerView.addArrangedSubview(button2)
+  }
 }

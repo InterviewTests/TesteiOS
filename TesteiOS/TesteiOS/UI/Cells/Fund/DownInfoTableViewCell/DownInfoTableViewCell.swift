@@ -1,5 +1,5 @@
 //
-//  InfoDownTableViewCell.swift
+//  DownInfoTableViewCell.swift
 //  TesteiOS
 //
 //  Created by Brendoon Ryos on 22/02/19.
@@ -8,20 +8,19 @@
 
 import UIKit
 
-class InfoDownTableViewCell: FundBaseTableViewCell {
+class DownInfoTableViewCell: FundBaseTableViewCell {
     
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var downloadButton: UIButton!
-
-  override func awakeFromNib() {
-      super.awakeFromNib()
-  }
+  
+  var data: String? = .none
   
   override func setup(with fund: Fund) {
     nameLabel.text = fund.downInfo[tag].name
+    data = fund.downInfo[tag].data
   }
     
   @IBAction func downloadData(_ sender: UIButton){
-      UIApplication.shared.openURL(NSURL(string: "http://www.google.com")! as URL)
+    self.downloadAction?(data)
   }
 }

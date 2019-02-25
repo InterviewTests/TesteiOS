@@ -7,18 +7,10 @@
 //
 
 import UIKit
+import Reusable
 
-class FundBaseTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+class FundBaseTableViewCell: UITableViewCell, NibReusable {
+  func setup(with fund: Fund) {}
+  var investAction: (() -> ())?
+  var downloadAction: ((String?) -> ())?
 }
