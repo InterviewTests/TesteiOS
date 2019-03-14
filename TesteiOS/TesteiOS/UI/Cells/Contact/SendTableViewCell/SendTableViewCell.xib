@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Medium.otf">
+            <string>DINPro-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SendTableViewCell" rowHeight="50" id="KGk-i7-Jjw" customClass="SendTableViewCell" customModule="TesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beF-3M-uGE">
+                        <rect key="frame" x="30" y="0.0" width="315" height="50"/>
+                        <color key="backgroundColor" red="0.85490196078431369" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="BrZ-VQ-nug"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="16"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="beF-3M-uGE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="NK9-3d-AoP"/>
+                    <constraint firstItem="beF-3M-uGE" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="WFq-Eo-gIs"/>
+                    <constraint firstAttribute="trailing" secondItem="beF-3M-uGE" secondAttribute="trailing" constant="30" id="Ybv-A4-9hW"/>
+                    <constraint firstItem="beF-3M-uGE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="xaN-gc-BxL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="sendButton" destination="beF-3M-uGE" id="4AO-6v-De3"/>
+                <outlet property="topSpacingConstraint" destination="NK9-3d-AoP" id="gpP-KA-sKu"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="64.5"/>
+        </tableViewCell>
+    </objects>
+</document>
