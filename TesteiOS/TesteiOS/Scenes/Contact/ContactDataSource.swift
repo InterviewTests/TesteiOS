@@ -59,7 +59,7 @@ class ContactDataSource: NSObject, ItemsTableViewDataSource {
     } else {
       values.append(value)
     }
-    enableSendButton?(values.count == items.count - 2)
+    enableSendButton?(values.count == items.filter{ $0.required }.count)
   }
 }
 
