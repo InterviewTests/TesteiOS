@@ -145,27 +145,27 @@
 <tr class="covered">
 <td class="num">27</td>
 <td class="src"><pre><code class="objc">  func registerTableView() {</code></pre></td>
-<td class="coverage">4x</td>
+<td class="coverage">3x</td>
 </tr>
 <tr class="covered">
 <td class="num">28</td>
 <td class="src"><pre><code class="objc">    for item in items {</code></pre></td>
-<td class="coverage">10x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">29</td>
 <td class="src"><pre><code class="objc">      self.tableView?.register(item.getNib(), forCellReuseIdentifier: item.getIdentifier())</code></pre></td>
-<td class="coverage">10x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">30</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">10x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">31</td>
 <td class="src"><pre><code class="objc">  }</code></pre></td>
-<td class="coverage">4x</td>
+<td class="coverage">3x</td>
 </tr>
 <tr class="never">
 <td class="num">32</td>
@@ -175,32 +175,32 @@
 <tr class="covered">
 <td class="num">33</td>
 <td class="src"><pre><code class="objc">  func update(with fund: Fund) {</code></pre></td>
-<td class="coverage">2x</td>
+<td class="coverage">1x</td>
 </tr>
 <tr class="covered">
 <td class="num">34</td>
 <td class="src"><pre><code class="objc">    self.fund = fund</code></pre></td>
-<td class="coverage">2x</td>
+<td class="coverage">1x</td>
 </tr>
 <tr class="covered">
 <td class="num">35</td>
 <td class="src"><pre><code class="objc">    self.items = [.fundHeader, .moreInfo, .info, .downInfo, .invest]</code></pre></td>
-<td class="coverage">2x</td>
+<td class="coverage">1x</td>
 </tr>
 <tr class="covered">
 <td class="num">36</td>
 <td class="src"><pre><code class="objc">    self.registerTableView()</code></pre></td>
-<td class="coverage">2x</td>
+<td class="coverage">1x</td>
 </tr>
 <tr class="covered">
 <td class="num">37</td>
 <td class="src"><pre><code class="objc">    self.tableView?.reloadData()</code></pre></td>
-<td class="coverage">2x</td>
+<td class="coverage">1x</td>
 </tr>
 <tr class="covered">
 <td class="num">38</td>
 <td class="src"><pre><code class="objc">  }</code></pre></td>
-<td class="coverage">2x</td>
+<td class="coverage">1x</td>
 </tr>
 <tr class="never">
 <td class="num">39</td>
@@ -225,17 +225,17 @@
 <tr class="covered">
 <td class="num">43</td>
 <td class="src"><pre><code class="objc">  func numberOfSections(in tableView: UITableView) -&gt; Int {</code></pre></td>
-<td class="coverage">10x</td>
+<td class="coverage">9x</td>
 </tr>
 <tr class="covered">
 <td class="num">44</td>
 <td class="src"><pre><code class="objc">    return items.count</code></pre></td>
-<td class="coverage">10x</td>
+<td class="coverage">9x</td>
 </tr>
 <tr class="covered">
 <td class="num">45</td>
 <td class="src"><pre><code class="objc">  }</code></pre></td>
-<td class="coverage">10x</td>
+<td class="coverage">9x</td>
 </tr>
 <tr class="never">
 <td class="num">46</td>
@@ -245,47 +245,47 @@
 <tr class="covered">
 <td class="num">47</td>
 <td class="src"><pre><code class="objc">  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int {</code></pre></td>
-<td class="coverage">10x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">48</td>
 <td class="src"><pre><code class="objc">    switch section {</code></pre></td>
-<td class="coverage">10x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">49</td>
 <td class="src"><pre><code class="objc">    case 0, 1, 4 :</code></pre></td>
-<td class="coverage">10x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">50</td>
 <td class="src"><pre><code class="objc">      return 1</code></pre></td>
-<td class="coverage">6x</td>
+<td class="coverage">3x</td>
 </tr>
 <tr class="covered">
 <td class="num">51</td>
 <td class="src"><pre><code class="objc">    case 2:</code></pre></td>
-<td class="coverage">10x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">52</td>
 <td class="src"><pre><code class="objc">      return fund!.info.count</code></pre></td>
-<td class="coverage">2x</td>
+<td class="coverage">1x</td>
 </tr>
 <tr class="covered">
 <td class="num">53</td>
 <td class="src"><pre><code class="objc">    case 3:</code></pre></td>
-<td class="coverage">10x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">54</td>
 <td class="src"><pre><code class="objc">      return fund!.downInfo.count</code></pre></td>
-<td class="coverage">2x</td>
+<td class="coverage">1x</td>
 </tr>
 <tr class="covered">
 <td class="num">55</td>
 <td class="src"><pre><code class="objc">    default:</code></pre></td>
-<td class="coverage">10x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="missed">
 <td class="num">56</td>
@@ -295,12 +295,12 @@
 <tr class="covered">
 <td class="num">57</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">10x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">58</td>
 <td class="src"><pre><code class="objc">  }</code></pre></td>
-<td class="coverage">10x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="never">
 <td class="num">59</td>
@@ -310,57 +310,57 @@
 <tr class="covered">
 <td class="num">60</td>
 <td class="src"><pre><code class="objc">  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell {</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">11x</td>
 </tr>
 <tr class="covered">
 <td class="num">61</td>
 <td class="src"><pre><code class="objc">    let type = items[indexPath.section]</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">11x</td>
 </tr>
 <tr class="covered">
 <td class="num">62</td>
 <td class="src"><pre><code class="objc">    let cell = tableView.dequeueReusableCell(withIdentifier: type.getIdentifier(), for: indexPath) as! FundBaseTableViewCell</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">11x</td>
 </tr>
 <tr class="covered">
 <td class="num">63</td>
 <td class="src"><pre><code class="objc">    </code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">11x</td>
 </tr>
 <tr class="covered">
 <td class="num">64</td>
 <td class="src"><pre><code class="objc">    cell.tag = indexPath.row</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">11x</td>
 </tr>
 <tr class="covered">
 <td class="num">65</td>
 <td class="src"><pre><code class="objc">    cell.investAction = investAction</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">11x</td>
 </tr>
 <tr class="covered">
 <td class="num">66</td>
 <td class="src"><pre><code class="objc">    cell.downloadAction = downloadAction</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">11x</td>
 </tr>
 <tr class="covered">
 <td class="num">67</td>
 <td class="src"><pre><code class="objc">    cell.setup(with: fund!)</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">11x</td>
 </tr>
 <tr class="covered">
 <td class="num">68</td>
 <td class="src"><pre><code class="objc">    </code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">11x</td>
 </tr>
 <tr class="covered">
 <td class="num">69</td>
 <td class="src"><pre><code class="objc">    return cell</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">11x</td>
 </tr>
 <tr class="covered">
 <td class="num">70</td>
 <td class="src"><pre><code class="objc">  }</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">11x</td>
 </tr>
 <tr class="never">
 <td class="num">71</td>
