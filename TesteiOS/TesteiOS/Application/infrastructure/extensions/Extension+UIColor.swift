@@ -58,4 +58,12 @@ extension UIColor {
     static func swColorFive() -> UIColor {
         return UIColor(red: 255/255.0, green: 54/255.0, blue: 52/255.0, alpha: 1.0)
     }
+    
+    static func tabbarSelectedColor() -> UIColor {
+        return UIColor(red: 218/255.0, green: 1/255.0, blue: 1/255.0, alpha: 0.1)
+    }
+    
+    static func tabbarDefaultColor() -> UIColor {
+        return UIColor(red: 218/255.0, green: 1/255.0, blue: 1/255.0, alpha: 1.0)
+    }
 }

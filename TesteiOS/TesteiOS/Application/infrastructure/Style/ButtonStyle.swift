@@ -12,6 +12,25 @@ import UIKit
 class ButtonStyle : UIButton {
     
     let gradientLayer = CAGradientLayer()
+    var status:Bool = false
+    
+    func disableButton(){
+        self.backgroundColor = UIColor.tabbarDefaultColor()
+    }
+    
+    func usedButton(){
+        self.status = !status
+        
+        if status{
+            self.disableButton()
+        }else{
+            self.enableButton()
+        }
+    }
+    
+    func enableButton(){
+        self.backgroundColor = UIColor.tabbarSelectedColor()
+    }
     
     @IBInspectable var cornerRadius : CGFloat = 0{
         didSet{

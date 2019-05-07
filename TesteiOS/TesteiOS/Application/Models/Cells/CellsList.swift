@@ -27,7 +27,7 @@ public final class CellList: Mappable, NSCoding {
     public var id:Int?
     public var type:Int?
     public var message:String?
-    public var typefield:Int?
+    public var typefield:Any?
     public var hidden:Bool?
     public var topSpacing:Int?
     public var show:Int?
@@ -76,7 +76,7 @@ public final class CellList: Mappable, NSCoding {
         self.id = aDecoder.decodeObject(forKey: SerializationKeys.id) as? Int
         self.type = aDecoder.decodeObject(forKey: SerializationKeys.type) as? Int
         self.message = aDecoder.decodeObject(forKey: SerializationKeys.message) as? String
-        self.typefield = aDecoder.decodeObject(forKey: SerializationKeys.typefield) as? Int
+        self.typefield = aDecoder.decodeObject(forKey: SerializationKeys.typefield) as Any
         self.hidden = aDecoder.decodeObject(forKey: SerializationKeys.hidden) as? Bool
         self.topSpacing = aDecoder.decodeObject(forKey: SerializationKeys.topSpacing) as? Int
         self.show = aDecoder.decodeObject(forKey: SerializationKeys.show) as? Int
