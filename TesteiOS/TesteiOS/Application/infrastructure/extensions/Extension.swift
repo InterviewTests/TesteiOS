@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 extension UIViewController {
     
@@ -28,4 +29,21 @@ extension UIViewController {
         view.endEditing(true)
     }
     
+    func alertMesage(title:String, msg:String, btn:String){
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: btn, style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showLoading(){
+        DispatchQueue.main.async {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+        }
+    }
+    
+    func hideLoading(){
+        DispatchQueue.main.async {
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
+    }
 }
