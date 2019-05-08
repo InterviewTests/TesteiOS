@@ -11,6 +11,7 @@ import UIKit
 class DetailViewController: UIViewController {
 
     var interactor: DetailInteractorInput!
+    var router: DetailRouterProtocol!
     var sectionScreens:[SectionScreens]?
     
     @IBOutlet weak var tbView: UITableView!
