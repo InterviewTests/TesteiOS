@@ -16,11 +16,11 @@ enum TypeField:Int {
     
     static func fromString(_ str: String) -> TypeField {
         switch str.lowercased() {
-        case "text":
+        case "1":
             return self.text
         case "telnumber":
             return self.telNumber
-        case "email":
+        case "3":
             return self.email
         case "":
             return self.null
@@ -35,8 +35,10 @@ enum TypeField:Int {
             return "Telefone"
         case .email:
             return "Email"
-        default:
+        case .text:
             return "Nome completo"
+        default:
+            return "Telefone"
         }
     }
 }
