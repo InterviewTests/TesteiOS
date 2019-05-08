@@ -9,15 +9,16 @@
 import UIKit
 
 protocol CheckFormTableViewCellDelegate:class {
-    func removeCEll()
-    func showCELL()
-    var state:Bool{get set}
+    func removeCEll(show:Int, check:Bool, row:Int)
+    func showCELL(check:Bool, row:Int)
 }
 
 class CheckFormTableViewCell: UITableViewCell {
 
     @IBOutlet weak var btnCheck: UIButton!
-    var check:Bool = false
+    var check:Bool = true
+    private var show:Int!
+    private var row:Int!
     
     weak var delegate:CheckFormTableViewCellDelegate?
     
@@ -32,18 +33,28 @@ class CheckFormTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setup(cell:CellList) {
-        self.btnCheck.setImage(UIImage(named: "unchecked"), for: .normal)
-        self.check = false
+    func setup(cell:CellList, _ check:Bool = true, row:Int) {
+        self.row = row
+        guard let value = cell.show else {
+            return
+        }
+        self.show = value
+        self.check = check
+        self.btnCheck.setImage(UIImage(named: "checked"), for: .normal)
+        if !check {
+            self.btnCheck.setImage(UIImage(named: "unchecked"), for: .normal)
+        }
     }
     
     @IBAction func btnCheckTapped(_ sender: Any) {
-        self.btnCheck.setImage(UIImage(named: "unchecked"), for: .normal)
-        self.delegate?.removeCEll()
         if !self.check {
             self.btnCheck.setImage(UIImage(named: "checked"), for: .normal)
-            self.delegate?.state = true
-            self.delegate?.showCELL()
+            self.check = true
+            self.delegate?.showCELL(check: self.check, row: self.row)
+        }else{
+            self.check = false
+            self.btnCheck.setImage(UIImage(named: "unchecked"), for: .normal)
+            self.delegate?.removeCEll(show: self.show, check: self.check, row: self.row)
         }
     }
     
