@@ -9,7 +9,7 @@
 import Foundation
 
 protocol FormPresenterProtocol: class {
-    func loadForm(listCell:[CellList])
+    func loadForm(listCell:[CellList])    
     func failureView(msg:String)
 }
 
@@ -19,10 +19,7 @@ class FormPresenter: NSObject, FormInteractorOutput {
     
     //MARK: FormInteractorOutput
     func resultForm(cellList:[CellList]) {
-        if cellList.count > 0 {
-            self.output?.loadForm(listCell: cellList)
-        }
-        self.output?.failureView(msg: "Ops... Aconteceu alguma coisa de errada.")
+        self.output?.loadForm(listCell: cellList)
     }
     
     func failure(msg:String) {
