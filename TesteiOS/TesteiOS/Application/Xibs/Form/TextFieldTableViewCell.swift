@@ -9,6 +9,15 @@
 import UIKit
 import MaterialComponents
 
+struct ValidateValues {
+    var value:String
+    var type:TypeField
+}
+
+protocol TextFieldTableViewCellDelegate: class {
+    func sendFields(validateValues:ValidateValues)
+}
+
 class TextFieldTableViewCell: UITableViewCell {
 
     @IBOutlet weak var txField: MDCTextField!
@@ -17,6 +26,8 @@ class TextFieldTableViewCell: UITableViewCell {
     private var type:Type!
     private var typeField:TypeField!
     private var validator:Validator!
+    
+    weak var delegate:TextFieldTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -86,6 +97,23 @@ extension TextFieldTableViewCell: UITextFieldDelegate {
                 self.txFieldController?.activeColor = UIColor.textFieldFailure()
             }
         }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        var validateValues:ValidateValues!
+        switch self.validator.typefield {
+        case .email:
+            let text = textField.text ?? ""
+            validateValues = ValidateValues(value: text, type: TypeField.email)
+        case .telNumber:
+            let text = textField.text ?? ""
+            validateValues = ValidateValues(value: text, type: TypeField.telNumber)
+        default:
+            let text = textField.text ?? ""
+            validateValues = ValidateValues(value: text, type: TypeField.text)
+        }
+        
+        self.delegate?.sendFields(validateValues: validateValues)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

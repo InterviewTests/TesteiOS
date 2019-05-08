@@ -11,6 +11,7 @@ import Foundation
 protocol FormPresenterProtocol: class {
     func loadForm(listCell:[CellList])    
     func failureView(msg:String)
+    func successValidate()
 }
 
 class FormPresenter: NSObject, FormInteractorOutput {
@@ -24,6 +25,10 @@ class FormPresenter: NSObject, FormInteractorOutput {
     
     func failure(msg:String) {
         self.output?.failureView(msg: msg)
+    }
+    
+    func validateSuccess() {
+        self.output?.successValidate()
     }
     
 }
