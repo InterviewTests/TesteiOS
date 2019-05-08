@@ -9,7 +9,7 @@
 import Foundation
 
 protocol DetailPresenterProtocol: class {
-    func loadDetail(screen:Screen)
+    func loadDetail(sectionScreen:[SectionScreens])
     func failureView(msg:String)
 }
 
@@ -18,8 +18,8 @@ class DetailPresenter: NSObject, DetailInteractorOutput {
     weak var output: DetailPresenterProtocol?
     
     //MARK: DetailInteractorOutput
-    func resultDetail(screen:Screen) {
-        self.output?.loadDetail(screen: screen)
+    func resultDetail(sectionScreen:[SectionScreens]) {
+        self.output?.loadDetail(sectionScreen: sectionScreen)
     }
     
     func failure(msg:String) {

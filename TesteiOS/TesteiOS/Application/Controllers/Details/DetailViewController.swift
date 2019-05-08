@@ -11,6 +11,9 @@ import UIKit
 class DetailViewController: UIViewController {
 
     var interactor: DetailInteractorInput!
+    var sectionScreens:[SectionScreens]?
+    
+    @IBOutlet weak var tbView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +23,12 @@ class DetailViewController: UIViewController {
         self.interactor.loadDetail()
     }
     
-
+    @IBAction func btnInvestTapped(_ sender: ButtonStyle) {
+    }
+    
+    @IBAction func btnFormTapped(_ sender: ButtonStyle) {
+        performSegue(withIdentifier: "sgForm", sender: nil)
+    }
     /*
     // MARK: - Navigation
 
@@ -34,12 +42,12 @@ class DetailViewController: UIViewController {
 }
 extension DetailViewController: DetailPresenterProtocol {
     
-    func loadDetail(screen:Screen) {
-        
+    func loadDetail(sectionScreen:[SectionScreens]) {
+        self.sectionScreens = sectionScreen
     }
     
     func failureView(msg:String) {
-        
+        self.alertMesage(title: "Teste", msg: msg, btn: "OK")
     }
     
 }
