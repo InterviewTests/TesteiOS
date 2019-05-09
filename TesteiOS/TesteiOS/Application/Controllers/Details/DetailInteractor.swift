@@ -52,35 +52,35 @@ class DetailInteractor: NSObject, DetailInteractorInput {
                 //FUND NAME
                 if let title = screen.title, let fundName = screen.fundName {
                     nameFund = FundName(title: title, name: fundName)
-                    sectionScreens.append(SectionScreens(fundName: nameFund!, whatId: nil, riskScreen: nil, moreInformation: nil, info: nil, downInfo: nil))
+                    sectionScreens.append(SectionScreens(fundName: nameFund!, whatId: nil, riskScreen: nil, moreInformation: nil, info: nil, downInfo: nil, rows: 1))
                 }
                 
                 //WHAT IS
                 if let whatIs = screen.whatIs, let definition = screen.definition {
                     what = WhatIs(title: whatIs, definition: definition)
-                    sectionScreens.append(SectionScreens(fundName: nil, whatId: what!, riskScreen: nil, moreInformation: nil, info: nil, downInfo: nil))
+                    sectionScreens.append(SectionScreens(fundName: nil, whatId: what!, riskScreen: nil, moreInformation: nil, info: nil, downInfo: nil, rows: 1))
                 }
                 
                 //RISK SCREEN
                 if let titleRisk = screen.riskTitle, let risk = screen.risk {
                     riskScreen = RiskScreen(title: titleRisk, risk: risk)
-                    sectionScreens.append(SectionScreens(fundName: nil, whatId: nil, riskScreen: riskScreen, moreInformation: nil, info: nil, downInfo: nil))
+                    sectionScreens.append(SectionScreens(fundName: nil, whatId: nil, riskScreen: riskScreen, moreInformation: nil, info: nil, downInfo: nil, rows: 1))
                 }
                 
                 //MORE INFORMATION
                 if let titleMore = screen.infoTitle, let infoM = screen.moreInfo {
                     moreInfo = MoreInformation(title: titleMore, more: infoM)
-                    sectionScreens.append(SectionScreens(fundName: nil, whatId: nil, riskScreen: nil, moreInformation: moreInfo, info: nil, downInfo: nil))
+                    sectionScreens.append(SectionScreens(fundName: nil, whatId: nil, riskScreen: nil, moreInformation: moreInfo, info: nil, downInfo: nil, rows: 1))
                 }
                 
                 //INFO
                 if let info = screen.info {
-                    sectionScreens.append(SectionScreens(fundName: nil, whatId: nil, riskScreen: nil, moreInformation: nil, info: info, downInfo: nil))
+                    sectionScreens.append(SectionScreens(fundName: nil, whatId: nil, riskScreen: nil, moreInformation: nil, info: info, downInfo: nil, rows: info.count))
                 }
                 
                 //DOWNINFO
                 if let downInfo = screen.downInfo {
-                    sectionScreens.append(SectionScreens(fundName: nil, whatId: nil, riskScreen: nil, moreInformation: nil, info: nil, downInfo: downInfo))
+                    sectionScreens.append(SectionScreens(fundName: nil, whatId: nil, riskScreen: nil, moreInformation: nil, info: nil, downInfo: downInfo, rows: downInfo.count))
                 }
                 
                 
