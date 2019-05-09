@@ -14,7 +14,7 @@ public final class Month: Mappable, NSCoding {
     // MARK: Declaration for string constants to be used to decode and also serialize.
     private struct SerializationKeys {
         static let fund = "fund"
-        static let cDI = "cDI"
+        static let cDI = "CDI"
     }
     
     // MARK: Properties

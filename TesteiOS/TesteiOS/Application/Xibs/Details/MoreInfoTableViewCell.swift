@@ -37,14 +37,29 @@ class MoreInfoTableViewCell: UITableViewCell {
     
     func setup(obj:MoreInformation) {
         
-        self.title.text = obj.title
-        self.next12MonthsCDI.text = "\(String(describing: obj.more.months12?.cDI))%"
-        self.monthCDI.text        = "\(String(describing: obj.more.month?.cDI))%"
-        self.yearCDI.text         = "\(String(describing: obj.more.year?.cDI))%"
+        guard let month12 = obj.more.months12 else { return }
+        guard let month = obj.more.month else { return }
+        guard let year  = obj.more.year else { return }
         
-        self.next12MonthsFund.text = "\(String(describing: obj.more.months12?.fund))%"
-        self.monthFund.text        = "\(String(describing: obj.more.month?.fund))%"
-        self.yearFund.text         = "\(String(describing: obj.more.year?.fund))%"
+        guard let next12MonthsCDI  = month12.cDI else { return }
+        guard let next12MonthsFund = month12.fund else { return }
+        
+        guard let monthCDI  = month.cDI else { return }
+        guard let monthFund = month.fund else { return }
+        
+        guard let yearCDI   = year.cDI else { return }
+        guard let yearFund  = year.fund else { return }
+        
+        
+        
+        self.title.text = obj.title
+        self.next12MonthsCDI.text = "\(String(describing: next12MonthsCDI))%"
+        self.monthCDI.text        = "\(String(describing: monthCDI))%"
+        self.yearCDI.text         = "\(String(describing: yearCDI))%"
+        
+        self.next12MonthsFund.text = "\(String(describing: next12MonthsFund))%"
+        self.monthFund.text        = "\(String(describing: monthFund))%"
+        self.yearFund.text         = "\(String(describing: yearFund))%"
         
     }
     

@@ -35,4 +35,5 @@ struct SectionScreens {
     var moreInformation:MoreInformation?
     var info:[Info]?
     var downInfo:[DownInfo]?
+    var rows:Int
 }
