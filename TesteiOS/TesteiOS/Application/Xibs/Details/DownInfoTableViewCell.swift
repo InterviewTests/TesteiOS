@@ -32,4 +32,15 @@ class DownInfoTableViewCell: UITableViewCell {
     @IBAction func btnDownloadTapped(_ sender: Any) {
         self.delegate?.openSafari()
     }
+    
+    static func register(to tableView:UITableView) {
+        let nib = UINib(nibName: "DownInfoTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "DownInfoTableViewCell")
+    }
+    
+    func setup(obj:DownInfo) {        
+        if let name = obj.name {
+            self.titleLabel.text = name
+        }
+    }
 }
