@@ -21,6 +21,7 @@ class DetailWireframe {
         let router     = DetailRouter()
         
         viewcontroller.interactor = interactor
+        viewcontroller.router     = router
         interactor.presentOutput  = presenter
         presenter.output          = viewcontroller
         router.VC                 = viewcontroller

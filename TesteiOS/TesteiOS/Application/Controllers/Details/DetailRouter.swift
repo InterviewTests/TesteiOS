@@ -25,7 +25,7 @@ class DetailRouter:DetailRouterProtocol {
                 config.entersReaderIfAvailable = true
                 
                 let view = SFSafariViewController(url: url, configuration: config)
-                self.VC?.present(view, animated: true, completion: nil)
+                self.VC.present(view, animated: true, completion: nil)
             }else if #available(iOS 10.0, *){
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }else{
