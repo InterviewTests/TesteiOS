@@ -42,11 +42,11 @@ class RiskTableViewCell: UITableViewCell {
         case 2:
             self.imageRisk2.image = UIImage(named: "selectedGreenRisk2")
         case 3:
-            self.imageRisk3.image = UIImage(named: "selectedGreenRisk3")
+            self.imageRisk3.image = UIImage(named: "selectedOrangeRisk3")
         case 4:
-            self.imageRisk4.image = UIImage(named: "selectedGreenRisk4")
+            self.imageRisk4.image = UIImage(named: "selectedOrangeRisk4")
         case 5:
-            self.imageRisk5.image = UIImage(named: "selectedGreenRisk5")
+            self.imageRisk5.image = UIImage(named: "selectedRedRisk5")
         default:
             self.imageRisk1.image = UIImage(named: "selectedGreenRisk1")
         }
