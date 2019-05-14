@@ -16,11 +16,7 @@ class ViewController: UIViewController {
         let apiManager = FundsServiceApiManager.shared
         
         apiManager.getCellsList { (formCellsList, error) in
-            print(formCellsList)
-        }
-        
-        apiManager.getFundsList { (fundsList, error) in
-            print(fundsList)
+            print(formCellsList!.cells.map({$0.typefield}))
         }
         
     }
