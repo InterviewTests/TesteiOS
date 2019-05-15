@@ -14,6 +14,12 @@ class SendCell: UITableViewCell {
     
     static let reuseIdentifier = "SendCell"
     
+    var viewModel: SendCell.ViewModel? {
+        didSet {
+            didSetViewModel()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -23,5 +29,16 @@ class SendCell: UITableViewCell {
     private func configureLayout() {
         button.backgroundColor = UIColor.darkRedColor
         button.layer.cornerRadius = 25
+    }
+    
+    private func didSetViewModel() {
+        guard let viewModel = viewModel else { return }
+        button.setTitle(viewModel.message ?? "-", for: .normal)
+    }
+}
+
+extension SendCell {
+    struct ViewModel {
+        let message: String?
     }
 }

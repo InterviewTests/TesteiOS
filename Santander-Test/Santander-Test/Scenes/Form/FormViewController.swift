@@ -126,20 +126,25 @@ extension FormViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch displayedFormCells[indexPath.row].type {
+        let formCell = displayedFormCells[indexPath.row]
+        switch formCell.type {
         case Type.field:
             let cell = tableView.dequeueReusableCell(withIdentifier: FieldCell.reuseIdentifier) as! FieldCell
+            cell.viewModel = FieldCell.ViewModel(message: formCell.message)
             return cell
         case Type.text:
             let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.reuseIdentifier) as! TextCell
+            cell.viewModel = TextCell.ViewModel(message: formCell.message)
             return cell
         case Type.image:
             return UITableViewCell()
         case Type.checkbox:
             let cell = tableView.dequeueReusableCell(withIdentifier: CheckboxCell.reuseIdentifier) as! CheckboxCell
+            cell.viewModel = CheckboxCell.ViewModel(message: formCell.message)
             return cell
         case Type.send:
             let cell = tableView.dequeueReusableCell(withIdentifier: SendCell.reuseIdentifier) as! SendCell
+            cell.viewModel = SendCell.ViewModel(message: formCell.message)
             return cell
         }
     }

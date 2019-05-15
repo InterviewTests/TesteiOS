@@ -16,6 +16,12 @@ class FieldCell: UITableViewCell {
     
     static let reuseIdentifier = "FieldCell"
     
+    var viewModel: FieldCell.ViewModel? {
+        didSet {
+            didSetViewModel()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -25,5 +31,16 @@ class FieldCell: UITableViewCell {
     private func configureLayout() {
         label.textColor = UIColor.lightGrayColor
     }
+    
+    private func didSetViewModel() {
+        guard let viewModel = viewModel else { return }
+        label.text = viewModel.message ?? "-"
+    }
 
+}
+
+extension FieldCell {
+    struct ViewModel {
+        let message: String?
+    }
 }

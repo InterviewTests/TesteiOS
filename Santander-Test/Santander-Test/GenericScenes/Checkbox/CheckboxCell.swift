@@ -16,6 +16,12 @@ class CheckboxCell: UITableViewCell {
     
     static let reuseIdentifier = "CheckboxCell"
     
+    var viewModel: CheckboxCell.ViewModel? {
+        didSet {
+            didSetViewModel()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -32,5 +38,16 @@ class CheckboxCell: UITableViewCell {
         checkboxInnerView.layer.cornerRadius = 2
         
         label.textColor = UIColor.lightGrayColor
+    }
+    
+    private func didSetViewModel() {
+        guard let viewModel = viewModel else { return }
+        label.text = viewModel.message ?? "-"
+    }
+}
+
+extension CheckboxCell {
+    struct ViewModel {
+        let message: String?
     }
 }

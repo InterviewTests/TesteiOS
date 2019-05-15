@@ -14,8 +14,25 @@ class TextCell: UITableViewCell {
     
     static let reuseIdentifier = "TextCell"
     
+    var viewModel: TextCell.ViewModel? {
+        didSet {
+            didSetViewModel()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
+    }
+    
+    private func didSetViewModel() {
+        guard let viewModel = viewModel else { return }
+        label.text = viewModel.message ?? "-"
+    }
+}
+
+extension TextCell {
+    struct ViewModel {
+        let message: String?
     }
 }
