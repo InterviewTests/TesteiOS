@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		493342D14E83E8F2E5CA3C31 /* Pods_Santander_TestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0815CC0FAEEAF8D6E86F6807 /* Pods_Santander_TestTests.framework */; };
 		965C2F0722895E2500015140 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F0622895E2500015140 /* AppDelegate.swift */; };
-		965C2F0922895E2500015140 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F0822895E2500015140 /* ViewController.swift */; };
-		965C2F0C22895E2500015140 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 965C2F0A22895E2500015140 /* Main.storyboard */; };
 		965C2F0E22895E2800015140 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 965C2F0D22895E2800015140 /* Assets.xcassets */; };
 		965C2F1122895E2800015140 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 965C2F0F22895E2800015140 /* LaunchScreen.storyboard */; };
 		965C2F1C22895E2800015140 /* Santander_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F1B22895E2800015140 /* Santander_TestTests.swift */; };
@@ -20,6 +18,22 @@
 		965C2F3B228974F500015140 /* FundsServiceApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F3A228974F500015140 /* FundsServiceApiManager.swift */; };
 		965C2F3E2289776F00015140 /* FormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F3D2289776F00015140 /* FormCell.swift */; };
 		965C2F4022897AF800015140 /* Fund.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F3F22897AF800015140 /* Fund.swift */; };
+		965C2F55228A891900015140 /* FormPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F4F228A891900015140 /* FormPresenter.swift */; };
+		965C2F56228A891900015140 /* FormWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F50228A891900015140 /* FormWorker.swift */; };
+		965C2F57228A891900015140 /* FormRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F51228A891900015140 /* FormRouter.swift */; };
+		965C2F58228A891900015140 /* FormModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F52228A891900015140 /* FormModels.swift */; };
+		965C2F59228A891900015140 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F53228A891900015140 /* FormViewController.swift */; };
+		965C2F5A228A891900015140 /* FormInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F54228A891900015140 /* FormInteractor.swift */; };
+		965C2F5C228A8CC200015140 /* Form.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 965C2F5B228A8CC200015140 /* Form.storyboard */; };
+		965C2F64228A9B5800015140 /* FieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 965C2F63228A9B5800015140 /* FieldCell.xib */; };
+		965C2F66228A9DFC00015140 /* FieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F65228A9DFC00015140 /* FieldCell.swift */; };
+		965C2F69228B6D6400015140 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 965C2F68228B6D6400015140 /* TextCell.xib */; };
+		965C2F6B228B6E1E00015140 /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F6A228B6E1E00015140 /* TextCell.swift */; };
+		965C2F6E228B6EB100015140 /* CheckboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 965C2F6D228B6EB100015140 /* CheckboxCell.xib */; };
+		965C2F70228B6EBE00015140 /* CheckboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F6F228B6EBE00015140 /* CheckboxCell.swift */; };
+		965C2F73228B9A4C00015140 /* SendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F72228B9A4C00015140 /* SendCell.swift */; };
+		965C2F75228B9A8000015140 /* SendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 965C2F74228B9A8000015140 /* SendCell.xib */; };
+		965C2F78228BBDB300015140 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C2F77228BBDB300015140 /* UIColorExtensions.swift */; };
 		973161DFBDDB30BB534A86DA /* Pods_Santander_TestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 878E0A16E793237D34137EC7 /* Pods_Santander_TestUITests.framework */; };
 		C4FCFE13C06111F180515DFA /* Pods_Santander_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F563E135B794CADBF7401F8 /* Pods_Santander_Test.framework */; };
 /* End PBXBuildFile section */
@@ -52,8 +66,6 @@
 		944E346D8B737070B6AC9E04 /* Pods-Santander-TestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Santander-TestUITests.debug.xcconfig"; path = "Target Support Files/Pods-Santander-TestUITests/Pods-Santander-TestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		965C2F0322895E2500015140 /* Santander-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Santander-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		965C2F0622895E2500015140 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		965C2F0822895E2500015140 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		965C2F0B22895E2500015140 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		965C2F0D22895E2800015140 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		965C2F1022895E2800015140 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		965C2F1222895E2800015140 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,6 +80,22 @@
 		965C2F3A228974F500015140 /* FundsServiceApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsServiceApiManager.swift; sourceTree = "<group>"; };
 		965C2F3D2289776F00015140 /* FormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCell.swift; sourceTree = "<group>"; };
 		965C2F3F22897AF800015140 /* Fund.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fund.swift; sourceTree = "<group>"; };
+		965C2F4F228A891900015140 /* FormPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPresenter.swift; sourceTree = "<group>"; };
+		965C2F50228A891900015140 /* FormWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormWorker.swift; sourceTree = "<group>"; };
+		965C2F51228A891900015140 /* FormRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRouter.swift; sourceTree = "<group>"; };
+		965C2F52228A891900015140 /* FormModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModels.swift; sourceTree = "<group>"; };
+		965C2F53228A891900015140 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		965C2F54228A891900015140 /* FormInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormInteractor.swift; sourceTree = "<group>"; };
+		965C2F5B228A8CC200015140 /* Form.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Form.storyboard; sourceTree = "<group>"; };
+		965C2F63228A9B5800015140 /* FieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FieldCell.xib; sourceTree = "<group>"; };
+		965C2F65228A9DFC00015140 /* FieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldCell.swift; sourceTree = "<group>"; };
+		965C2F68228B6D6400015140 /* TextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextCell.xib; sourceTree = "<group>"; };
+		965C2F6A228B6E1E00015140 /* TextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
+		965C2F6D228B6EB100015140 /* CheckboxCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckboxCell.xib; sourceTree = "<group>"; };
+		965C2F6F228B6EBE00015140 /* CheckboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxCell.swift; sourceTree = "<group>"; };
+		965C2F72228B9A4C00015140 /* SendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCell.swift; sourceTree = "<group>"; };
+		965C2F74228B9A8000015140 /* SendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendCell.xib; sourceTree = "<group>"; };
+		965C2F77228BBDB300015140 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		A512F1F10FEC63C067350139 /* Pods-Santander-Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Santander-Test.debug.xcconfig"; path = "Target Support Files/Pods-Santander-Test/Pods-Santander-Test.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,11 +162,11 @@
 		965C2F0522895E2500015140 /* Santander-Test */ = {
 			isa = PBXGroup;
 			children = (
+				965C2F5D228A8EDF00015140 /* GenericScenes */,
+				965C2F4D228A848400015140 /* Scenes */,
 				965C2F3C2289767900015140 /* Models */,
 				965C2F342289668000015140 /* Supporting Files */,
 				965C2F0622895E2500015140 /* AppDelegate.swift */,
-				965C2F0822895E2500015140 /* ViewController.swift */,
-				965C2F0A22895E2500015140 /* Main.storyboard */,
 				965C2F0D22895E2800015140 /* Assets.xcassets */,
 				965C2F0F22895E2800015140 /* LaunchScreen.storyboard */,
 				965C2F1222895E2800015140 /* Info.plist */,
@@ -167,6 +195,7 @@
 		965C2F342289668000015140 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				965C2F76228BBDA100015140 /* Extensions */,
 				965C2F392289682900015140 /* FundsServiceApi */,
 				965C2F35228966AF00015140 /* Constants.swift */,
 			);
@@ -189,6 +218,83 @@
 				965C2F3F22897AF800015140 /* Fund.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		965C2F4D228A848400015140 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				965C2F4E228A848E00015140 /* Form */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		965C2F4E228A848E00015140 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				965C2F4F228A891900015140 /* FormPresenter.swift */,
+				965C2F50228A891900015140 /* FormWorker.swift */,
+				965C2F51228A891900015140 /* FormRouter.swift */,
+				965C2F52228A891900015140 /* FormModels.swift */,
+				965C2F53228A891900015140 /* FormViewController.swift */,
+				965C2F54228A891900015140 /* FormInteractor.swift */,
+				965C2F5B228A8CC200015140 /* Form.storyboard */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
+		965C2F5D228A8EDF00015140 /* GenericScenes */ = {
+			isa = PBXGroup;
+			children = (
+				965C2F71228B9A2500015140 /* Send */,
+				965C2F6C228B6E8C00015140 /* Checkbox */,
+				965C2F67228B6C4300015140 /* Text */,
+				965C2F5E228A8EF200015140 /* Field */,
+			);
+			path = GenericScenes;
+			sourceTree = "<group>";
+		};
+		965C2F5E228A8EF200015140 /* Field */ = {
+			isa = PBXGroup;
+			children = (
+				965C2F63228A9B5800015140 /* FieldCell.xib */,
+				965C2F65228A9DFC00015140 /* FieldCell.swift */,
+			);
+			path = Field;
+			sourceTree = "<group>";
+		};
+		965C2F67228B6C4300015140 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				965C2F68228B6D6400015140 /* TextCell.xib */,
+				965C2F6A228B6E1E00015140 /* TextCell.swift */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
+		965C2F6C228B6E8C00015140 /* Checkbox */ = {
+			isa = PBXGroup;
+			children = (
+				965C2F6D228B6EB100015140 /* CheckboxCell.xib */,
+				965C2F6F228B6EBE00015140 /* CheckboxCell.swift */,
+			);
+			path = Checkbox;
+			sourceTree = "<group>";
+		};
+		965C2F71228B9A2500015140 /* Send */ = {
+			isa = PBXGroup;
+			children = (
+				965C2F72228B9A4C00015140 /* SendCell.swift */,
+				965C2F74228B9A8000015140 /* SendCell.xib */,
+			);
+			path = Send;
+			sourceTree = "<group>";
+		};
+		965C2F76228BBDA100015140 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				965C2F77228BBDB300015140 /* UIColorExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C03B33535A1371552140448D /* Pods */ = {
@@ -312,9 +418,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				965C2F75228B9A8000015140 /* SendCell.xib in Resources */,
 				965C2F1122895E2800015140 /* LaunchScreen.storyboard in Resources */,
+				965C2F5C228A8CC200015140 /* Form.storyboard in Resources */,
+				965C2F69228B6D6400015140 /* TextCell.xib in Resources */,
 				965C2F0E22895E2800015140 /* Assets.xcassets in Resources */,
-				965C2F0C22895E2500015140 /* Main.storyboard in Resources */,
+				965C2F6E228B6EB100015140 /* CheckboxCell.xib in Resources */,
+				965C2F64228A9B5800015140 /* FieldCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,10 +546,20 @@
 			files = (
 				965C2F3B228974F500015140 /* FundsServiceApiManager.swift in Sources */,
 				965C2F3E2289776F00015140 /* FormCell.swift in Sources */,
-				965C2F0922895E2500015140 /* ViewController.swift in Sources */,
+				965C2F70228B6EBE00015140 /* CheckboxCell.swift in Sources */,
+				965C2F73228B9A4C00015140 /* SendCell.swift in Sources */,
+				965C2F55228A891900015140 /* FormPresenter.swift in Sources */,
 				965C2F0722895E2500015140 /* AppDelegate.swift in Sources */,
 				965C2F36228966AF00015140 /* Constants.swift in Sources */,
+				965C2F59228A891900015140 /* FormViewController.swift in Sources */,
+				965C2F78228BBDB300015140 /* UIColorExtensions.swift in Sources */,
+				965C2F66228A9DFC00015140 /* FieldCell.swift in Sources */,
+				965C2F57228A891900015140 /* FormRouter.swift in Sources */,
+				965C2F5A228A891900015140 /* FormInteractor.swift in Sources */,
+				965C2F58228A891900015140 /* FormModels.swift in Sources */,
+				965C2F6B228B6E1E00015140 /* TextCell.swift in Sources */,
 				965C2F382289681F00015140 /* FundsServiceApi.swift in Sources */,
+				965C2F56228A891900015140 /* FormWorker.swift in Sources */,
 				965C2F4022897AF800015140 /* Fund.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,14 +596,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		965C2F0A22895E2500015140 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				965C2F0B22895E2500015140 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		965C2F0F22895E2800015140 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
