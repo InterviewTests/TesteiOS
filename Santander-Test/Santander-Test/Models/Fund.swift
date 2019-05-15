@@ -27,9 +27,9 @@ struct Fund: Decodable {
 }
 
 struct FundMoreInfo: Decodable {
-    let month: FundMoreInfoMonth?
-    let year: FundMoreInfoYear?
-    let twelveMonths: FundMoreInfo12Months?
+    let month: FundMoreInfoPeriod?
+    let year: FundMoreInfoPeriod?
+    let twelveMonths: FundMoreInfoPeriod?
     
     enum CodingKeys: String, CodingKey {
         case month
@@ -38,19 +38,7 @@ struct FundMoreInfo: Decodable {
     }
 }
 
-// TODO
-
-struct FundMoreInfoMonth: Decodable {
-    let fund: Float?
-    let CDI: Float?
-}
-
-struct FundMoreInfoYear: Decodable {
-    let fund: Float?
-    let CDI: Float?
-}
-
-struct FundMoreInfo12Months: Decodable {
+struct FundMoreInfoPeriod: Decodable {
     let fund: Float?
     let CDI: Float?
 }

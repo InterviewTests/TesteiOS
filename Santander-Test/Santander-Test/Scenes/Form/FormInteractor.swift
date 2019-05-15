@@ -14,6 +14,7 @@ import UIKit
 
 protocol FormBusinessLogic {
     func getFormCells(request: Form.GetFormCells.Request)
+    func validateField(request: Form.FieldValidation.Request)
 }
 
 protocol FormDataStore {
@@ -43,5 +44,12 @@ class FormInteractor: FormBusinessLogic, FormDataStore {
             let response = Form.GetFormCells.Response(formCells: formCells)
             self.presenter?.presentFormCells(response: response)
         })
+    }
+    
+    func validateField(request: Form.FieldValidation.Request) {
+        worker = FormWorker()
+        let isValid = worker?.validateField(text: request.text, typeField: request.typeField) ?? false
+        let response = Form.FieldValidation.Response(indexPath: request.indexPath, isValid: isValid)
+        presenter?.presentFieldValidation(response: response)
     }
 }

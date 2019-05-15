@@ -25,4 +25,15 @@ class FormWorker {
             completion(formCells, nil)
         }
     }
+    
+    func validateField(text: String, typeField: TypeField) -> Bool {
+        switch typeField {
+        case .email:
+            return FieldValidation.isValid(email: text)
+        case .telNumber:
+            return FieldValidation.isValid(phoneNumber: text)
+        case .text:
+            return FieldValidation.isValid(text: text)
+        }
+    }
 }

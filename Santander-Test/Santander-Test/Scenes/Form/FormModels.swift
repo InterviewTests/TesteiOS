@@ -51,6 +51,22 @@ enum Form {
         }
     }
     
+    enum FieldValidation {
+        struct Request {
+            let text: String
+            let indexPath: IndexPath
+            let typeField: TypeField
+        }
+        struct Response {
+            let indexPath: IndexPath
+            let isValid: Bool
+        }
+        struct ViewModel {
+            let indexPath: IndexPath
+            let isValid: Bool
+        }
+    }
+    
     enum Something {
         struct Request {
         }

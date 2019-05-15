@@ -77,7 +77,7 @@ class FundsServiceApiManager {
                     switch typeFieldString {
                     case "email":
                         return TypeField.email
-                    case "telNumber":
+                    case "telnumber":
                         return TypeField.telNumber
                     case "text":
                         return TypeField.text

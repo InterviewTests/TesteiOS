@@ -16,6 +16,7 @@ protocol FormDisplayLogic: class {
     func displaySomething(viewModel: Form.Something.ViewModel)
     func displayFormCells(viewModel: Form.GetFormCells.ViewModel)
     func displayError(viewModel: Form.FormError.ViewModel)
+    func displayFieldValidation(viewModel: Form.FieldValidation.ViewModel)
 }
 
 class FormViewController: UIViewController {
@@ -117,6 +118,16 @@ extension FormViewController: FormDisplayLogic {
         // TODO
         print(viewModel.message)
     }
+    
+    func displayFieldValidation(viewModel: Form.FieldValidation.ViewModel) {
+        if let cell = tableView.cellForRow(at: viewModel.indexPath) as? FieldCell {
+            if viewModel.isValid {
+                cell.lineView.backgroundColor = UIColor.lightGreenColor
+            } else {
+                cell.lineView.backgroundColor = UIColor.darkRedColor
+            }
+        }
+    }
 }
 
 extension FormViewController: UITableViewDataSource {
@@ -130,24 +141,44 @@ extension FormViewController: UITableViewDataSource {
         switch formCell.type {
         case Type.field:
             let cell = tableView.dequeueReusableCell(withIdentifier: FieldCell.reuseIdentifier) as! FieldCell
-            cell.viewModel = FieldCell.ViewModel(message: formCell.message, topSpace: formCell.topSpacing)
+            cell.viewModel = FieldCell.ViewModel(
+                message: formCell.message,
+                topSpace: formCell.topSpacing,
+                typeField: formCell.typeField,
+                indexPath: indexPath
+            )
+            cell.delegate = self
             return cell
         case Type.text:
             let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.reuseIdentifier) as! TextCell
-            cell.viewModel = TextCell.ViewModel(message: formCell.message, topSpace: formCell.topSpacing)
+            cell.viewModel = TextCell.ViewModel(
+                message: formCell.message,
+                topSpace: formCell.topSpacing
+            )
             return cell
         case Type.image:
             return UITableViewCell()
         case Type.checkbox:
             let cell = tableView.dequeueReusableCell(withIdentifier: CheckboxCell.reuseIdentifier) as! CheckboxCell
-            cell.viewModel = CheckboxCell.ViewModel(message: formCell.message, topSpace: formCell.topSpacing)
+            cell.viewModel = CheckboxCell.ViewModel(
+                message: formCell.message,
+                topSpace: formCell.topSpacing
+            )
             return cell
         case Type.send:
             let cell = tableView.dequeueReusableCell(withIdentifier: SendCell.reuseIdentifier) as! SendCell
-            cell.viewModel = SendCell.ViewModel(message: formCell.message, topSpace: formCell.topSpacing)
+            cell.viewModel = SendCell.ViewModel(
+                message: formCell.message,
+                topSpace: formCell.topSpacing
+            )
             return cell
         }
     }
-    
-    
+}
+
+extension FormViewController: FieldCellDelegate {
+    func textDidChange(for indexPath: IndexPath, text: String, typeField: TypeField) {
+        let request = Form.FieldValidation.Request(text: text, indexPath: indexPath, typeField: typeField)
+        interactor?.validateField(request: request)
+    }
 }
