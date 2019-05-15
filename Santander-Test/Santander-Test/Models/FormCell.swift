@@ -8,11 +8,36 @@
 
 import Foundation
 
-struct FormCellsList: Decodable {
-    let cells: [FormCell]
+enum TypeField: Int {
+    case text = 1
+    case telNumber = 2
+    case email = 3
 }
 
-struct FormCell: Decodable {
+enum Type: Int {
+    case field = 1
+    case text = 2
+    case image = 3
+    case checkbox = 4
+    case send = 5
+}
+
+struct FormCell {
+    let id: Int?
+    let type: Type?
+    let message: String?
+    let typefield: TypeField?
+    let hidden: Bool?
+    let topSpacing: Int?
+    let show: Int?
+    let required: Bool?
+}
+
+struct FormCellsList: Decodable {
+    let cells: [FormCellModel]
+}
+
+struct FormCellModel: Decodable {
     let id: Int?
     let type: Int?
     let message: String?

@@ -13,7 +13,7 @@
 import UIKit
 
 protocol FormBusinessLogic {
-    func doSomething(request: Form.Something.Request)
+    func getFormCells(request: Form.GetFormCells.Request)
 }
 
 protocol FormDataStore {
@@ -25,13 +25,23 @@ class FormInteractor: FormBusinessLogic, FormDataStore {
     var worker: FormWorker?
     //var name: String = ""
     
-    // MARK: Do something
-    
-    func doSomething(request: Form.Something.Request) {
+    func getFormCells(request: Form.GetFormCells.Request) {
         worker = FormWorker()
-        worker?.doSomeWork()
-        
-        let response = Form.Something.Response()
-        presenter?.presentSomething(response: response)
+        worker?.getFormCells(completion: { [unowned self] (formCells, error) in
+            guard let formCells = formCells else {
+                guard let error = error else {
+                    let domain = "Ocorreu um erro inesperado!"
+                    let error = NSError(domain: domain, code: 200, userInfo: nil)
+                    let response = Form.FormError.Response(error: error, errorType: .missingCells)
+                    self.presenter?.presentError(response: response)
+                    return
+                }
+                let response = Form.FormError.Response(error: error as NSError, errorType: .getFormCells)
+                self.presenter?.presentError(response: response)
+                return
+            }
+            let response = Form.GetFormCells.Response(formCells: formCells)
+            self.presenter?.presentFormCells(response: response)
+        })
     }
 }

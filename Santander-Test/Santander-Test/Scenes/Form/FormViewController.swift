@@ -14,11 +14,15 @@ import UIKit
 
 protocol FormDisplayLogic: class {
     func displaySomething(viewModel: Form.Something.ViewModel)
+    func displayFormCells(viewModel: Form.GetFormCells.ViewModel)
+    func displayError(viewModel: Form.FormError.ViewModel)
 }
 
 class FormViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    private var displayedFormCells: [Form.GetFormCells.ViewModel.DisplayViewModel] = []
     
     var interactor: FormBusinessLogic?
     var router: (NSObjectProtocol & FormRoutingLogic & FormDataPassing)?
@@ -59,11 +63,16 @@ class FormViewController: UIViewController {
     super.viewDidLoad()
         
         setupTableView()
-        
+        requestData()
     }
     
     private func setupTableView() {
         registerTableViewCells()
+    }
+    
+    private func requestData() {
+        let request = Form.GetFormCells.Request()
+        interactor?.getFormCells(request: request)
     }
     
     private func registerTableViewCells() {
@@ -73,7 +82,7 @@ class FormViewController: UIViewController {
             forCellReuseIdentifier: SendCell.reuseIdentifier
         )
         
-        let checkboxCell = UINib(nibName: "CheckBoxCell", bundle: nil)
+        let checkboxCell = UINib(nibName: "CheckboxCell", bundle: nil)
         tableView.register(
             checkboxCell,
             forCellReuseIdentifier: CheckboxCell.reuseIdentifier
@@ -98,17 +107,41 @@ extension FormViewController: FormDisplayLogic {
     func displaySomething(viewModel: Form.Something.ViewModel) {
         //nameTextField.text = viewModel.name
     }
+    
+    func displayFormCells(viewModel: Form.GetFormCells.ViewModel) {
+        displayedFormCells = viewModel.displayedFormCells
+        tableView.reloadData()
+    }
+    
+    func displayError(viewModel: Form.FormError.ViewModel) {
+        // TODO
+        print(viewModel.message)
+    }
 }
 
 extension FormViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return displayedFormCells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FieldCell") as! FieldCell
         
-        return cell
+        switch displayedFormCells[indexPath.row].type {
+        case Type.field:
+            let cell = tableView.dequeueReusableCell(withIdentifier: FieldCell.reuseIdentifier) as! FieldCell
+            return cell
+        case Type.text:
+            let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.reuseIdentifier) as! TextCell
+            return cell
+        case Type.image:
+            return UITableViewCell()
+        case Type.checkbox:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CheckboxCell.reuseIdentifier) as! CheckboxCell
+            return cell
+        case Type.send:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SendCell.reuseIdentifier) as! SendCell
+            return cell
+        }
     }
     
     

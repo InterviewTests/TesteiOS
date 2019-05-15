@@ -13,6 +13,16 @@
 import UIKit
 
 class FormWorker {
-    func doSomeWork() {
+    
+    func getFormCells(completion: @escaping ([FormCell]?, Error?) -> Void) {
+        let apiManager = FundsServiceApiManager.shared
+        apiManager.getFormCells { (formCells, error) in
+            guard let formCells = formCells else {
+                completion(nil, error)
+                return
+            }
+            
+            completion(formCells, nil)
+        }
     }
 }
