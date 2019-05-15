@@ -13,25 +13,27 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TextCell" customModule="Santander_Test" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIu-ei-Wez">
-                    <rect key="frame" x="16" y="29" width="343" height="21"/>
+                    <rect key="frame" x="16" y="0.0" width="343" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <constraints>
-                <constraint firstItem="SIu-ei-Wez" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="5TJ-cc-ihQ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="SIu-ei-Wez" secondAttribute="bottom" id="CdX-u6-FSe"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SIu-ei-Wez" secondAttribute="trailing" constant="16" id="Xt0-re-kP9"/>
+                <constraint firstItem="SIu-ei-Wez" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="gVq-qe-pmr"/>
                 <constraint firstItem="SIu-ei-Wez" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="qDo-X5-xDG"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="label" destination="SIu-ei-Wez" id="Bag-WY-6FV"/>
+                <outlet property="topConstraint" destination="gVq-qe-pmr" id="hsQ-Ip-3Vh"/>
             </connections>
         </view>
     </objects>

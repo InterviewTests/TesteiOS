@@ -13,11 +13,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CheckboxCell" customModule="Santander_Test" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="19"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8iV-db-DE3">
-                    <rect key="frame" x="16" y="20.5" width="19" height="19"/>
+                    <rect key="frame" x="16" y="0.0" width="19" height="19"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UPM-Dq-pIc">
                             <rect key="frame" x="2" y="2" width="15" height="15"/>
@@ -37,7 +37,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aS-If-rzD">
-                    <rect key="frame" x="49" y="19.5" width="8" height="21"/>
+                    <rect key="frame" x="49" y="-1" width="8" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -45,9 +45,10 @@
             </subviews>
             <constraints>
                 <constraint firstItem="8iV-db-DE3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="N0y-Nm-lbz"/>
-                <constraint firstItem="8iV-db-DE3" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="dFF-1p-9PK"/>
+                <constraint firstItem="8iV-db-DE3" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="aNY-m1-d0k"/>
                 <constraint firstItem="7aS-If-rzD" firstAttribute="leading" secondItem="UPM-Dq-pIc" secondAttribute="trailing" constant="16" id="eIg-sw-Y1a"/>
                 <constraint firstItem="7aS-If-rzD" firstAttribute="centerY" secondItem="8iV-db-DE3" secondAttribute="centerY" id="ej9-ma-PWZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="8iV-db-DE3" secondAttribute="bottom" id="s04-jC-iZP"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -55,6 +56,7 @@
                 <outlet property="checkboxInnerView" destination="UPM-Dq-pIc" id="dbE-BK-PKW"/>
                 <outlet property="checkboxOuterView" destination="8iV-db-DE3" id="xn4-bG-YyH"/>
                 <outlet property="label" destination="7aS-If-rzD" id="R7H-lD-tp8"/>
+                <outlet property="topConstraint" destination="aNY-m1-d0k" id="XL4-8d-MIe"/>
             </connections>
             <point key="canvasLocation" x="84" y="48.575712143928037"/>
         </view>

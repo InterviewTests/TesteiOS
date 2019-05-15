@@ -14,6 +14,8 @@ class FieldCell: UITableViewCell {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var lineView: UIView!
     
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    
     static let reuseIdentifier = "FieldCell"
     
     var viewModel: FieldCell.ViewModel? {
@@ -35,6 +37,7 @@ class FieldCell: UITableViewCell {
     private func didSetViewModel() {
         guard let viewModel = viewModel else { return }
         label.text = viewModel.message ?? "-"
+        topConstraint.constant = CGFloat(viewModel.topSpace ?? 8)
     }
 
 }
@@ -42,5 +45,6 @@ class FieldCell: UITableViewCell {
 extension FieldCell {
     struct ViewModel {
         let message: String?
+        let topSpace: Int?
     }
 }

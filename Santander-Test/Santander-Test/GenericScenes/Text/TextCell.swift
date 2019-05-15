@@ -12,6 +12,8 @@ class TextCell: UITableViewCell {
     
     @IBOutlet weak var label: UILabel!
     
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    
     static let reuseIdentifier = "TextCell"
     
     var viewModel: TextCell.ViewModel? {
@@ -28,11 +30,13 @@ class TextCell: UITableViewCell {
     private func didSetViewModel() {
         guard let viewModel = viewModel else { return }
         label.text = viewModel.message ?? "-"
+        topConstraint.constant = CGFloat(viewModel.topSpace ?? 8)
     }
 }
 
 extension TextCell {
     struct ViewModel {
         let message: String?
+        let topSpace: Int?
     }
 }

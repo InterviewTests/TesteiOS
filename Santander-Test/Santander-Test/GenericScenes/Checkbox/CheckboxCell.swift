@@ -14,6 +14,8 @@ class CheckboxCell: UITableViewCell {
     @IBOutlet weak var checkboxInnerView: UIView!
     @IBOutlet weak var label: UILabel!
     
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    
     static let reuseIdentifier = "CheckboxCell"
     
     var viewModel: CheckboxCell.ViewModel? {
@@ -43,11 +45,13 @@ class CheckboxCell: UITableViewCell {
     private func didSetViewModel() {
         guard let viewModel = viewModel else { return }
         label.text = viewModel.message ?? "-"
+        topConstraint.constant = CGFloat(viewModel.topSpace ?? 8)
     }
 }
 
 extension CheckboxCell {
     struct ViewModel {
         let message: String?
+        let topSpace: Int?
     }
 }

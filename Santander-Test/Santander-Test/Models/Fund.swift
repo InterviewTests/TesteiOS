@@ -38,6 +38,8 @@ struct FundMoreInfo: Decodable {
     }
 }
 
+// TODO
+
 struct FundMoreInfoMonth: Decodable {
     let fund: Float?
     let CDI: Float?
