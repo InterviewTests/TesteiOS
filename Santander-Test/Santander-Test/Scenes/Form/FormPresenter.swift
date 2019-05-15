@@ -13,7 +13,6 @@
 import UIKit
 
 protocol FormPresentationLogic {
-    func presentSomething(response: Form.Something.Response)
     func presentFormCells(response: Form.GetFormCells.Response)
     func presentError(response: Form.FormError.Response)
     func presentFieldValidation(response: Form.FieldValidation.Response)
@@ -21,11 +20,6 @@ protocol FormPresentationLogic {
 
 class FormPresenter: FormPresentationLogic {
     weak var viewController: FormDisplayLogic?
-    
-    func presentSomething(response: Form.Something.Response) {
-        let viewModel = Form.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
-    }
     
     func presentFormCells(response: Form.GetFormCells.Response) {
         

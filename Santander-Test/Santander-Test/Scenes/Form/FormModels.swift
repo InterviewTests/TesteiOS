@@ -66,13 +66,4 @@ enum Form {
             let isValid: Bool
         }
     }
-    
-    enum Something {
-        struct Request {
-        }
-        struct Response {
-        }
-        struct ViewModel {
-        }
-    }
 }
