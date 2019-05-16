@@ -14,7 +14,7 @@ protocol SendCellDelegate: class {
 
 class SendCell: UITableViewCell {
     
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var button: SendButton!
     
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
@@ -30,13 +30,7 @@ class SendCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        configureLayout()
-    }
-    
-    private func configureLayout() {
-        button.backgroundColor = UIColor.darkRedColor
-        button.layer.cornerRadius = 25
+        button.delegate = self
     }
     
     private func didSetViewModel() {
@@ -44,8 +38,10 @@ class SendCell: UITableViewCell {
         button.setTitle(viewModel.message ?? "-", for: .normal)
         topConstraint.constant = CGFloat(viewModel.topSpace ?? 8)
     }
-    
-    @IBAction func buttonPressed(_ sender: Any) {
+}
+
+extension SendCell: SendButtonDelegate {
+    func buttonPressed() {
         delegate?.buttonPressed()
     }
 }
