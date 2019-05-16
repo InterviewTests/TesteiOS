@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol FormRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToSuccess(segue: UIStoryboardSegue?)
 }
 
 protocol FormDataPassing {
@@ -24,34 +24,13 @@ class FormRouter: NSObject, FormRoutingLogic, FormDataPassing {
     weak var viewController: FormViewController?
     var dataStore: FormDataStore?
     
-    // MARK: Routing
+    func routeToSuccess(segue: UIStoryboardSegue?) {
+        let storyboard = UIStoryboard(name: "Success", bundle: nil)
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: "Success") as! SuccessViewController
+        navigateToSuccess(source: viewController!, destination: destinationVC)
+    }
     
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
-    //{
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
-    
-    // MARK: Navigation
-    
-    //func navigateToSomewhere(source: FormViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
-    
-    // MARK: Passing data
-    
-    //func passDataToSomewhere(source: FormDataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
+    func navigateToSuccess(source: FormViewController, destination: SuccessViewController) {
+        source.show(destination, sender: nil)
+    }
 }

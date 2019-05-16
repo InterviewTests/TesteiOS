@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SendCellDelegate: class {
+    func buttonPressed()
+}
+
 class SendCell: UITableViewCell {
     
     @IBOutlet weak var button: UIButton!
@@ -15,6 +19,8 @@ class SendCell: UITableViewCell {
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
     static let reuseIdentifier = "SendCell"
+    
+    weak var delegate: SendCellDelegate?
     
     var viewModel: SendCell.ViewModel? {
         didSet {
@@ -37,6 +43,10 @@ class SendCell: UITableViewCell {
         guard let viewModel = viewModel else { return }
         button.setTitle(viewModel.message ?? "-", for: .normal)
         topConstraint.constant = CGFloat(viewModel.topSpace ?? 8)
+    }
+    
+    @IBAction func buttonPressed(_ sender: Any) {
+        delegate?.buttonPressed()
     }
 }
 

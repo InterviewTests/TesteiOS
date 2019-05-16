@@ -175,6 +175,7 @@ extension FormViewController: UITableViewDataSource {
                 message: formCell.message,
                 topSpace: formCell.topSpacing
             )
+            cell.delegate = self
             return cell
         }
     }
@@ -184,5 +185,11 @@ extension FormViewController: FieldCellDelegate {
     func textDidChange(for indexPath: IndexPath, text: String, typeField: TypeField) {
         let request = Form.FieldValidation.Request(text: text, indexPath: indexPath, typeField: typeField)
         interactor?.validateField(request: request)
+    }
+}
+
+extension FormViewController: SendCellDelegate {
+    func buttonPressed() {
+        router?.routeToSuccess(segue: nil)
     }
 }
