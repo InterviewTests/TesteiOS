@@ -1,0 +1,49 @@
+//
+//  DetailTestCase.swift
+//  TesteiOSTests
+//
+//  Created by anderson.jesus.silva on 09/05/19.
+//  Copyright © 2019 anderson.jesus.silva. All rights reserved.
+//
+
+import XCTest
+
+class DetailTestCase: XCTestCase {
+    
+    var provider:DetailProvider!
+
+    override func setUp() {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+        provider = DetailProvider()
+        // In UI tests it is usually best to stop immediately when a failure occurs.
+        continueAfterFailure = false
+
+        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
+        XCUIApplication().launch()
+
+        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+    }
+
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+
+    func testRequestSuccess() {
+        let teste = expectation(description: "Inicio do teste")
+        self.provider.getDetails { (baseClass, error) in
+            XCTAssertNotNil(baseClass)
+            teste.fulfill()
+        }
+        waitForExpectations(timeout: 40.0)
+    }
+    
+    func testRequestFailed() {
+        let teste = expectation(description: "Inicio do teste")
+        self.provider.getDetails { (baseClass, error) in
+            XCTAssertNotNil(error)
+            teste.fulfill()
+        }
+        waitForExpectations(timeout: 40.0)
+    }
+
+}
