@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Medium.otf">
+            <string>DINPro-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Success View Controller-->
         <scene sceneID="3yt-Bl-EHq">
@@ -19,30 +24,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contato" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBt-Pa-KLz">
-                                <rect key="frame" x="157" y="44" width="61.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="158" y="44" width="59.5" height="22"/>
+                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DFC-hS-nwT">
-                                <rect key="frame" x="108.5" y="557" width="158" height="30"/>
+                                <rect key="frame" x="98.5" y="553" width="178" height="34"/>
+                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
                                 <state key="normal" title="Enviar nova mensagem"/>
                                 <connections>
                                     <action selector="sendNewMessageButton:" destination="ov9-fs-hOz" eventType="touchUpInside" id="pxq-jk-U1w"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="06w-Zs-J32">
-                                <rect key="frame" x="53.5" y="237.5" width="268.5" height="92"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="06w-Zs-J32">
+                                <rect key="frame" x="66.5" y="231.5" width="242" height="104"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RlQ-kv-et4">
-                                        <rect key="frame" x="96" y="0.0" width="76.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="83.5" y="0.0" width="75" height="22"/>
+                                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagem enviada com sucesso :)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3x-6E-Oix">
-                                        <rect key="frame" x="0.0" y="71.5" width="268.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagem enviada com sucesso :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3x-6E-Oix">
+                                        <rect key="frame" x="0.0" y="32" width="242" height="72"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="242" id="ldd-RG-R6G"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -60,6 +69,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="400-dV-5KZ"/>
                     </view>
+                    <connections>
+                        <outlet property="sendNewMessageButton" destination="DFC-hS-nwT" id="QVg-vn-SA4"/>
+                        <outlet property="thankYouLabel" destination="RlQ-kv-et4" id="Dfm-Zz-ded"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nb-Em-bYd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

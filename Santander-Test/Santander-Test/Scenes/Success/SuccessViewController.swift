@@ -13,6 +13,10 @@
 import UIKit
 
 class SuccessViewController: UIViewController {
+    
+    @IBOutlet weak var thankYouLabel: UILabel!
+    @IBOutlet weak var sendNewMessageButton: UIButton!
+    
     var router: (NSObjectProtocol & SuccessRoutingLogic)?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -43,7 +47,12 @@ class SuccessViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureLayout()
+    }
+    
+    private func configureLayout() {
+        thankYouLabel.textColor = UIColor.darkGrayColor
+        sendNewMessageButton.tintColor = UIColor.darkRedColor
     }
     
     @IBAction func sendNewMessageButton(_ sender: Any) {
