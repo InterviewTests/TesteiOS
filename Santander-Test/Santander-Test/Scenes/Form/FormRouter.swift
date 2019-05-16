@@ -31,6 +31,6 @@ class FormRouter: NSObject, FormRoutingLogic, FormDataPassing {
     }
     
     func navigateToSuccess(source: FormViewController, destination: SuccessViewController) {
-        source.show(destination, sender: nil)
+        viewController?.navigationController?.pushViewController(destination, animated: true)
     }
 }

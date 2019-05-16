@@ -16,13 +16,8 @@ import UIKit
     func routeToForm(segue: UIStoryboardSegue?)
 }
 
-protocol SuccessDataPassing {
-    var dataStore: SuccessDataStore? { get }
-}
-
-class SuccessRouter: NSObject, SuccessRoutingLogic, SuccessDataPassing {
+class SuccessRouter: NSObject, SuccessRoutingLogic {
     weak var viewController: SuccessViewController?
-    var dataStore: SuccessDataStore?
     
     func routeToForm(segue: UIStoryboardSegue?) {
         let storyboard = UIStoryboard(name: "Form", bundle: nil)
@@ -31,6 +26,6 @@ class SuccessRouter: NSObject, SuccessRoutingLogic, SuccessDataPassing {
     }
     
     func navigateToForm(source: SuccessViewController, destination: FormViewController) {
-        source.show(destination, sender: nil)
+        viewController?.navigationController?.popViewController(animated: true)
     }
 }

@@ -12,13 +12,8 @@
 
 import UIKit
 
-protocol SuccessDisplayLogic: class {
-    
-}
-
-class SuccessViewController: UIViewController, SuccessDisplayLogic {
-    var interactor: SuccessBusinessLogic?
-    var router: (NSObjectProtocol & SuccessRoutingLogic & SuccessDataPassing)?
+class SuccessViewController: UIViewController {
+    var router: (NSObjectProtocol & SuccessRoutingLogic)?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -32,15 +27,9 @@ class SuccessViewController: UIViewController, SuccessDisplayLogic {
     
     private func setup() {
         let viewController = self
-        let interactor = SuccessInteractor()
-        let presenter = SuccessPresenter()
         let router = SuccessRouter()
-        viewController.interactor = interactor
         viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
         router.viewController = viewController
-        router.dataStore = interactor
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -60,5 +49,4 @@ class SuccessViewController: UIViewController, SuccessDisplayLogic {
     @IBAction func sendNewMessageButton(_ sender: Any) {
         router?.routeToForm(segue: nil)
     }
-    
 }
