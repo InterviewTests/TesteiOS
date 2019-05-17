@@ -17,6 +17,7 @@ class SendCell: UITableViewCell {
     @IBOutlet weak var button: SendButton!
     
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     static let reuseIdentifier = "SendCell"
     
@@ -37,6 +38,7 @@ class SendCell: UITableViewCell {
         guard let viewModel = viewModel else { return }
         button.setTitle(viewModel.message ?? "-", for: .normal)
         topConstraint.constant = CGFloat(viewModel.topSpace ?? 8)
+        bottomConstraint.constant = CGFloat(viewModel.bottomSpace)
     }
 }
 
@@ -50,5 +52,12 @@ extension SendCell {
     struct ViewModel {
         let message: String?
         let topSpace: Int?
+        let bottomSpace: Int
+        
+        init(message: String?, topSpace: Int?, bottomSpace: Int = 16) {
+            self.message = message
+            self.topSpace = topSpace
+            self.bottomSpace = bottomSpace
+        }
     }
 }

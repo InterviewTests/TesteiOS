@@ -23,6 +23,17 @@ class FundHeader: UITableViewCell {
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        configureLayout()
+    }
+    
+    private func configureLayout() {
+        title.textColor = UIColor.darkGrayColor
+        whatIs.textColor = UIColor.darkGrayColor
+        definition.textColor = UIColor.darkGrayColor
+    }
+    
     private func didSetViewModel() {
         guard let viewModel = viewModel else { return }
         

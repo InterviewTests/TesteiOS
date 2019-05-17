@@ -82,17 +82,50 @@ class FundDetailViewController: UIViewController, FundDetailDisplayLogic {
             fundMoreInfoCell,
             forCellReuseIdentifier: FundMoreInfoCell.reuseIdentifier
         )
+        
+        let fundInfoCell = UINib(nibName: "FundInfoCell", bundle: nil)
+        tableView.register(
+            fundInfoCell,
+            forCellReuseIdentifier: FundInfoCell.reuseIdentifier
+        )
+        
+        let fundDownInfoCell = UINib(nibName: "FundDownInfoCell", bundle: nil)
+        tableView.register(
+            fundDownInfoCell,
+            forCellReuseIdentifier: FundDownInfoCell.reuseIdentifier
+        )
+        
+        let sendCell = UINib(nibName: "SendCell", bundle: nil)
+        tableView.register(
+            sendCell,
+            forCellReuseIdentifier: SendCell.reuseIdentifier
+        )
     }
 }
 
 extension FundDetailViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 6
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        switch section {
+        case 0, 1, 2:
+            return 1
+        case 3:
+            return 5
+        case 4:
+            return 5
+        case 5:
+            return 1
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
+        switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: FundHeader.reuseIdentifier) as! FundHeader
             return cell
@@ -102,9 +135,19 @@ extension FundDetailViewController: UITableViewDataSource {
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: FundMoreInfoCell.reuseIdentifier) as! FundMoreInfoCell
             return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: FundInfoCell.reuseIdentifier) as! FundInfoCell
+            return cell
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: FundDownInfoCell.reuseIdentifier) as! FundDownInfoCell
+            return cell
+        case 5:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SendCell.reuseIdentifier) as! SendCell
+            // TODO
+            cell.viewModel = SendCell.ViewModel(message: "Investir", topSpace: 45)
+            return cell
         default:
             return UITableViewCell()
         }
     }
-    
 }

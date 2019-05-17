@@ -10,6 +10,8 @@ import UIKit
 
 class FundRisk: UITableViewCell {
     
+    @IBOutlet weak var label: UILabel!
+    
     @IBOutlet weak var lightGreenView: UIView!
     @IBOutlet weak var darkGreenView: UIView!
     @IBOutlet weak var yellowView: UIView!
@@ -22,6 +24,15 @@ class FundRisk: UITableViewCell {
         didSet {
             didSetViewModel()
         }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        configureLayout()
+    }
+    
+    private func configureLayout() {
+        label.textColor = UIColor.darkGrayColor
     }
     
     private func didSetViewModel() {

@@ -18,7 +18,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FundMoreInfoCell" customModule="Santander_Test" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="226"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="252"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZZi-AA-Jfg">
@@ -101,8 +101,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcY-3S-n3q">
-                    <rect key="frame" x="335" y="89" width="24" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CDI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcY-3S-n3q">
+                    <rect key="frame" x="331" y="89" width="28" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -113,37 +113,49 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxt-N3-lxr">
+                    <rect key="frame" x="16" y="251" width="343" height="1"/>
+                    <color key="backgroundColor" white="0.45000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="rpG-Nt-VIX"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="UUU-lr-5ak" firstAttribute="top" secondItem="vcY-3S-n3q" secondAttribute="bottom" constant="15" id="4cZ-Gm-Ywe"/>
                 <constraint firstItem="vcY-3S-n3q" firstAttribute="trailing" secondItem="q99-ab-cK4" secondAttribute="trailing" id="9L9-ic-4iP"/>
+                <constraint firstItem="bxt-N3-lxr" firstAttribute="leading" secondItem="ZZi-AA-Jfg" secondAttribute="leading" id="M25-xo-OQo"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="UUU-lr-5ak" secondAttribute="trailing" constant="16" id="Mp2-3A-4Fk"/>
+                <constraint firstItem="bxt-N3-lxr" firstAttribute="trailing" secondItem="UUU-lr-5ak" secondAttribute="trailing" id="Pqg-o3-n2b"/>
+                <constraint firstItem="bxt-N3-lxr" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="ShR-GE-Qil"/>
                 <constraint firstItem="ZZi-AA-Jfg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="TXg-qG-u8a"/>
                 <constraint firstItem="7Im-UR-FZL" firstAttribute="top" secondItem="y57-wF-PsV" secondAttribute="bottom" constant="20" id="Xf3-pa-0YR"/>
                 <constraint firstItem="vcY-3S-n3q" firstAttribute="top" secondItem="7Im-UR-FZL" secondAttribute="top" id="aGC-7t-5HO"/>
                 <constraint firstItem="y57-wF-PsV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="47" id="gHj-Zi-Ove"/>
-                <constraint firstItem="UUU-lr-5ak" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="o8l-Jc-El8"/>
                 <constraint firstItem="7Im-UR-FZL" firstAttribute="trailing" secondItem="uBn-BK-VMD" secondAttribute="trailing" id="qTJ-YC-Z0x"/>
+                <constraint firstItem="q99-ab-cK4" firstAttribute="top" secondItem="vcY-3S-n3q" secondAttribute="bottom" constant="15" id="sNd-D5-sXd"/>
                 <constraint firstItem="ZZi-AA-Jfg" firstAttribute="top" secondItem="UUU-lr-5ak" secondAttribute="top" id="tXu-Ci-FcW"/>
                 <constraint firstItem="y57-wF-PsV" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="wzK-Nm-Tsf"/>
+                <constraint firstItem="bxt-N3-lxr" firstAttribute="top" secondItem="UUU-lr-5ak" secondAttribute="bottom" constant="25" id="yyF-Jn-OY5"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="FundLabel" destination="7Im-UR-FZL" id="wT0-jR-rDX"/>
-                <outlet property="cdLabel" destination="vcY-3S-n3q" id="v9a-Ui-Yom"/>
-                <outlet property="monthCdLabel" destination="q99-ab-cK4" id="ObP-fJ-qcJ"/>
+                <outlet property="cdiLabel" destination="vcY-3S-n3q" id="9tH-rV-25O"/>
+                <outlet property="lineView" destination="bxt-N3-lxr" id="ZDo-0X-Awi"/>
+                <outlet property="monthCdiLabel" destination="q99-ab-cK4" id="AmK-9f-Uqe"/>
                 <outlet property="monthFundLabel" destination="uBn-BK-VMD" id="PPv-op-Z6K"/>
                 <outlet property="monthLabel" destination="gnV-di-POV" id="rhq-DL-3qY"/>
                 <outlet property="moreInfoTitleLabel" destination="y57-wF-PsV" id="2yu-pl-xcS"/>
-                <outlet property="twelveMonthsCdLabel" destination="XRx-dL-U42" id="QDd-Sx-S2q"/>
+                <outlet property="twelveMonthsCdiLabel" destination="XRx-dL-U42" id="TyM-2j-sZJ"/>
                 <outlet property="twelveMonthsFundLabel" destination="Jdx-c3-p6g" id="Pny-LU-HVs"/>
                 <outlet property="twelveMonthsLabel" destination="ehy-sd-fgl" id="2Ef-9J-4xE"/>
-                <outlet property="yearCdLabel" destination="7eD-IQ-vNJ" id="Gdz-Fw-fOx"/>
+                <outlet property="yearCdiLabel" destination="7eD-IQ-vNJ" id="W4i-Md-B7u"/>
                 <outlet property="yearFundLabel" destination="hQc-xD-pvh" id="rBd-Bt-kwA"/>
                 <outlet property="yearLabel" destination="JtQ-9K-4Us" id="crb-ZS-5qY"/>
             </connections>
+            <point key="canvasLocation" x="138.40000000000001" y="124.13793103448276"/>
         </view>
     </objects>
 </document>
