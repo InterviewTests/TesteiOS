@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Medium.otf">
+            <string>DINPro-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FundRisk" customModule="Santander_Test" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grau de Risco do investimento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwg-JK-Elt">
+                    <rect key="frame" x="72.5" y="30" width="230" height="22"/>
+                    <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="xwK-cR-TXn">
+                    <rect key="frame" x="38" y="87" width="299" height="10"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7b4-XL-wCJ">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
+                            <color key="backgroundColor" red="0.034737332947457844" green="1" blue="0.042803541185714167" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nAb-k5-Rbd">
+                            <rect key="frame" x="60" y="0.0" width="59.5" height="10"/>
+                            <color key="backgroundColor" red="0.0" green="0.73385945431472077" blue="0.15078443125359506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qH2-aF-NaY">
+                            <rect key="frame" x="119.5" y="0.0" width="60" height="10"/>
+                            <color key="backgroundColor" red="1" green="0.9815514487444289" blue="0.081050554095711269" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zVO-P0-j9o">
+                            <rect key="frame" x="179.5" y="0.0" width="59.5" height="10"/>
+                            <color key="backgroundColor" red="1" green="0.50423569441954119" blue="0.058467320768315512" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUO-Ag-pWb">
+                            <rect key="frame" x="239" y="0.0" width="60" height="10"/>
+                            <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="jIy-xA-3Uw"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="xwK-cR-TXn" firstAttribute="top" secondItem="uwg-JK-Elt" secondAttribute="bottom" constant="35" id="1CD-Uh-c0o"/>
+                <constraint firstItem="uwg-JK-Elt" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="5Id-nk-5ie"/>
+                <constraint firstItem="xwK-cR-TXn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="38" id="Aem-1w-Mlm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xwK-cR-TXn" secondAttribute="trailing" constant="38" id="KWF-sT-i1c"/>
+                <constraint firstItem="uwg-JK-Elt" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="ej5-m8-hJ8"/>
+                <constraint firstItem="xwK-cR-TXn" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="up9-vf-VEc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="darkGreenView" destination="nAb-k5-Rbd" id="vIV-oz-Cl2"/>
+                <outlet property="darkRedView" destination="MUO-Ag-pWb" id="DBm-eV-pvb"/>
+                <outlet property="lightGreenView" destination="7b4-XL-wCJ" id="oLs-Uj-Yun"/>
+                <outlet property="orangeView" destination="zVO-P0-j9o" id="P3c-Y4-Gex"/>
+                <outlet property="yellowView" destination="qH2-aF-NaY" id="pbI-WG-UnP"/>
+            </connections>
+            <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
+        </view>
+    </objects>
+</document>
