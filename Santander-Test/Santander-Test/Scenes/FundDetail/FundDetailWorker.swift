@@ -12,9 +12,25 @@
 
 import UIKit
 
-class FundDetailWorker
-{
-  func doSomeWork()
-  {
-  }
+class FundDetailWorker {
+    
+    func getFund(completion: @escaping (Fund?, Error?) -> Void) {
+        let apiManager = FundsServiceApiManager.shared
+        apiManager.getFundsList { (fundsList, error) in
+            
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            
+            guard let fund = fundsList?.screen else {
+                let domain = "Ocorreu um erro inesperado!"
+                let responseError = NSError(domain: domain, code: 200, userInfo: nil)
+                completion(nil, responseError)
+                return
+            }
+            
+            completion(fund, nil)
+        }
+    }
 }

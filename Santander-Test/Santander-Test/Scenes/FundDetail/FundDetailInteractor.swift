@@ -12,30 +12,28 @@
 
 import UIKit
 
-protocol FundDetailBusinessLogic
-{
-//  func doSomething(request: FundDetail.Something.Request)
+protocol FundDetailBusinessLogic {
+    func getFundDetail(request: FundDetail.GetFundDetail.Request)
 }
 
-protocol FundDetailDataStore
-{
-  //var name: String { get set }
-}
+protocol FundDetailDataStore {}
 
-class FundDetailInteractor: FundDetailBusinessLogic, FundDetailDataStore
-{
-  var presenter: FundDetailPresentationLogic?
-  var worker: FundDetailWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-//  func doSomething(request: FundDetail.Something.Request)
-//  {
-//    worker = FundDetailWorker()
-//    worker?.doSomeWork()
-//    
-//    let response = FundDetail.Something.Response()
-//    presenter?.presentSomething(response: response)
-//  }
+class FundDetailInteractor: FundDetailBusinessLogic, FundDetailDataStore {
+    var presenter: FundDetailPresentationLogic?
+    var worker: FundDetailWorker?
+    
+    func getFundDetail(request: FundDetail.GetFundDetail.Request) {
+        worker = FundDetailWorker()
+        worker?.getFund(completion: { [unowned self] (fund, error) in
+            guard let fund = fund else {
+                let domain = "Não há fundo de investimento a ser exibido"
+                let responseError = NSError(domain: domain, code: 200, userInfo: nil)
+                let response = FundDetail.FundDetailError.Response(error: responseError, errorType: .getFundDetail)
+                self.presenter?.presentError(response: response)
+                return
+            }
+            let response = FundDetail.GetFundDetail.Response(fund: fund)
+            self.presenter?.presentFundDetail(response: response)
+        })
+    }
 }

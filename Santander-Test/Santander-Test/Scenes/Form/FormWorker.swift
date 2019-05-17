@@ -17,8 +17,16 @@ class FormWorker {
     func getFormCells(completion: @escaping ([FormCell]?, Error?) -> Void) {
         let apiManager = FundsServiceApiManager.shared
         apiManager.getFormCells { (formCells, error) in
-            guard let formCells = formCells else {
+            
+            guard error == nil else {
                 completion(nil, error)
+                return
+            }
+            
+            guard let formCells = formCells else {
+                let domain = "Ocorreu um erro inesperado!"
+                let responseError = NSError(domain: domain, code: 200, userInfo: nil)
+                completion(nil, responseError)
                 return
             }
             

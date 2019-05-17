@@ -107,6 +107,6 @@ class FundMoreInfoCell: UITableViewCell {
 
 extension FundMoreInfoCell {
     struct ViewModel {
-        let fundMoreInfo: FundMoreInfo
+        let fundMoreInfo: FundMoreInfo?
     }
 }

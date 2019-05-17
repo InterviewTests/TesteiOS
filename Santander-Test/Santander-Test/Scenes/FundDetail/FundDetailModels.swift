@@ -12,19 +12,42 @@
 
 import UIKit
 
-enum FundDetail
-{
-    // MARK: Use cases
+enum FundDetail {
     
-//    enum Something {
-//        struct Request
-//        {
-//        }
-//        struct Response
-//        {
-//        }
-//        struct ViewModel
-//        {
-//        }
-//    }
+    enum ErrorType {
+        case getFundDetail
+    }
+    
+    enum GetFundDetail {
+        struct Request {}
+        struct Response {
+            let fund: Fund
+        }
+        struct ViewModel {
+            let title: String
+            let fundName: String
+            let whatIs: String
+            let definition: String
+            let riskTitle: String
+            let risk: Int?
+            let infoTitle: String
+            let moreInfo: FundMoreInfo?
+            let info: [FundInfo]
+            let downInfo: [FundInfo]
+            let buttonMessage: String
+            let buttonTopSpace: Int
+        }
+    }
+    
+    enum FundDetailError {
+        struct Request {}
+        struct Response {
+            let error: NSError
+            let errorType: ErrorType
+        }
+        struct ViewModel {
+            let message: String
+            let errorType: ErrorType
+        }
+    }
 }

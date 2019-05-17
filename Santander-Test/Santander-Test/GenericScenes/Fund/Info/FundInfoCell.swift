@@ -33,14 +33,14 @@ class FundInfoCell: UITableViewCell {
     
     private func didSetViewModel() {
         guard let viewModel = viewModel else { return }
-        infoName.text = viewModel.infoName
-        infoData.text = viewModel.infoData
+        infoName.text = viewModel.infoName ?? "-"
+        infoData.text = viewModel.infoData ?? "-"
     }
 }
 
 extension FundInfoCell {
     struct ViewModel {
-        let infoName: String
-        let infoData: String
+        let infoName: String?
+        let infoData: String?
     }
 }

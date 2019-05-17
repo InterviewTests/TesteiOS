@@ -37,8 +37,8 @@ class FundRisk: UITableViewCell {
     
     private func didSetViewModel() {
         guard
-            let viewModel = viewModel,
-            1...5 ~= viewModel.risk
+            let viewModelRisk = viewModel?.risk,
+            1...5 ~= viewModelRisk
         else { return }
         
 //        switch viewModel.risk {
@@ -53,6 +53,6 @@ class FundRisk: UITableViewCell {
 
 extension FundRisk {
     struct ViewModel {
-        let risk: Int
+        let risk: Int?
     }
 }

@@ -40,7 +40,7 @@ class FundDownInfoCell: UITableViewCell {
     
     private func didSetViewModel() {
         guard let viewModel = viewModel else { return }
-        downInfoNameLabel.text = viewModel.downInfoName
+        downInfoNameLabel.text = viewModel.downInfoName ?? "-"
     }
     
     @IBAction func downloadButton(_ sender: Any) {
@@ -50,6 +50,6 @@ class FundDownInfoCell: UITableViewCell {
 
 extension FundDownInfoCell {
     struct ViewModel {
-        let downInfoName: String
+        let downInfoName: String?
     }
 }

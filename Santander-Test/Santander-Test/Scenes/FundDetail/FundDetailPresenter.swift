@@ -12,20 +12,42 @@
 
 import UIKit
 
-protocol FundDetailPresentationLogic
-{
-//  func presentSomething(response: FundDetail.Something.Response)
+protocol FundDetailPresentationLogic {
+    //  func presentSomething(response: FundDetail.Something.Response)
+    func presentFundDetail(response: FundDetail.GetFundDetail.Response)
+    func presentError(response: FundDetail.FundDetailError.Response)
 }
 
-class FundDetailPresenter: FundDetailPresentationLogic
-{
-  weak var viewController: FundDetailDisplayLogic?
-  
-  // MARK: Do something
-  
-//  func presentSomething(response: FundDetail.Something.Response)
-//  {
-//    let viewModel = FundDetail.Something.ViewModel()
-//    viewController?.displaySomething(viewModel: viewModel)
-//  }
+class FundDetailPresenter: FundDetailPresentationLogic {
+    weak var viewController: FundDetailDisplayLogic?
+    
+    func presentFundDetail(response: FundDetail.GetFundDetail.Response) {
+        
+        let fund = response.fund
+        let viewModel = FundDetail.GetFundDetail.ViewModel(
+            title: fund.title ?? "-",
+            fundName: fund.fundName ?? "-",
+            whatIs: fund.whatIs ?? "-",
+            definition: fund.definition ?? "-",
+            riskTitle: fund.riskTitle ?? "-",
+            risk: fund.risk,
+            infoTitle: fund.infoTitle ?? "-",
+            moreInfo: fund.moreInfo,
+            info: fund.info ?? [],
+            downInfo: fund.downInfo ?? [],
+            buttonMessage: "Investir",
+            buttonTopSpace: 45
+        )
+        viewController?.displayFundDetail(viewModel: viewModel)
+    }
+    
+    func presentError(response: FundDetail.FundDetailError.Response) {
+        var message: String!
+        switch response.errorType {
+        case .getFundDetail:
+            message = response.error.domain
+        }
+        let viewModel = FundDetail.FundDetailError.ViewModel(message: message, errorType: response.errorType)
+        viewController?.displayError(viewModel: viewModel)
+    }
 }

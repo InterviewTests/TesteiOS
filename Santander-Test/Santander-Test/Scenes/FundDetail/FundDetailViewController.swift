@@ -13,12 +13,15 @@
 import UIKit
 
 protocol FundDetailDisplayLogic: class {
-//    func displaySomething(viewModel: FundDetail.Something.ViewModel)
+    func displayFundDetail(viewModel: FundDetail.GetFundDetail.ViewModel)
+    func displayError(viewModel: FundDetail.FundDetailError.ViewModel)
 }
 
-class FundDetailViewController: UIViewController, FundDetailDisplayLogic {
+class FundDetailViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var displayedFund: FundDetail.GetFundDetail.ViewModel?
     
     var interactor: FundDetailBusinessLogic?
     var router: (NSObjectProtocol & FundDetailRoutingLogic & FundDetailDataPassing)?
@@ -58,10 +61,16 @@ class FundDetailViewController: UIViewController, FundDetailDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        requestData()
     }
     
     private func setupTableView() {
         registerTableViewCells()
+    }
+    
+    private func requestData() {
+        let request = FundDetail.GetFundDetail.Request()
+        interactor?.getFundDetail(request: request)
     }
     
     private func registerTableViewCells() {
@@ -111,14 +120,14 @@ extension FundDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0, 1, 2:
+        case 0, 1, 2, 5:
             return 1
         case 3:
-            return 5
+            guard let info = displayedFund?.info else { return 0 }
+            return info.count
         case 4:
-            return 5
-        case 5:
-            return 1
+            guard let downInfo = displayedFund?.downInfo else { return 0 }
+            return downInfo.count
         default:
             return 0
         }
@@ -127,27 +136,85 @@ extension FundDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: FundHeader.reuseIdentifier) as! FundHeader
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: FundHeader.reuseIdentifier
+                ) as! FundHeader
+            if let displayedFund = displayedFund {
+                cell.viewModel = FundHeader.ViewModel(
+                    title: displayedFund.title,
+                    fundName: displayedFund.fundName,
+                    whatIs: displayedFund.whatIs,
+                    definition: displayedFund.definition
+                )
+            }
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: FundRisk.reuseIdentifier) as! FundRisk
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: FundRisk.reuseIdentifier
+                ) as! FundRisk
+            if let displayedFund = displayedFund {
+                cell.viewModel = FundRisk.ViewModel(
+                    risk: displayedFund.risk
+                )
+            }
             return cell
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: FundMoreInfoCell.reuseIdentifier) as! FundMoreInfoCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: FundMoreInfoCell.reuseIdentifier
+                ) as! FundMoreInfoCell
+            if let displayedFund = displayedFund {
+                cell.viewModel = FundMoreInfoCell.ViewModel(
+                    fundMoreInfo: displayedFund.moreInfo
+                )
+            }
             return cell
         case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: FundInfoCell.reuseIdentifier) as! FundInfoCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: FundInfoCell.reuseIdentifier
+                ) as! FundInfoCell
+            if let displayedFund = displayedFund {
+                cell.viewModel = FundInfoCell.ViewModel(
+                    infoName: displayedFund.info[indexPath.row].name,
+                    infoData: displayedFund.info[indexPath.row].data
+                )
+            }
             return cell
         case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: FundDownInfoCell.reuseIdentifier) as! FundDownInfoCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: FundDownInfoCell.reuseIdentifier
+                ) as! FundDownInfoCell
+            if let displayedFund = displayedFund {
+                cell.viewModel = FundDownInfoCell.ViewModel(
+                    downInfoName: displayedFund.downInfo[indexPath.row].name
+                )
+            }
             return cell
         case 5:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SendCell.reuseIdentifier) as! SendCell
-            // TODO
-            cell.viewModel = SendCell.ViewModel(message: "Investir", topSpace: 45)
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: SendCell.reuseIdentifier
+                ) as! SendCell
+//            cell.viewModel = SendCell.ViewModel(message: "Investir", topSpace: 45) TODO
+            if let displayedFund = displayedFund {
+                cell.viewModel = SendCell.ViewModel(
+                    message: displayedFund.buttonMessage,
+                    topSpace: displayedFund.buttonTopSpace
+                )
+            }
             return cell
         default:
             return UITableViewCell()
         }
+    }
+}
+
+extension FundDetailViewController: FundDetailDisplayLogic {
+    
+    func displayFundDetail(viewModel: FundDetail.GetFundDetail.ViewModel) {
+        displayedFund = viewModel
+        tableView.reloadData()
+    }
+    
+    func displayError(viewModel: FundDetail.FundDetailError.ViewModel) {
+        print(viewModel.message)
     }
 }
