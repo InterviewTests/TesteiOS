@@ -193,7 +193,6 @@ extension FundDetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: SendCell.reuseIdentifier
                 ) as! SendCell
-//            cell.viewModel = SendCell.ViewModel(message: "Investir", topSpace: 45) TODO
             if let displayedFund = displayedFund {
                 cell.viewModel = SendCell.ViewModel(
                     message: displayedFund.buttonMessage,
@@ -215,6 +214,6 @@ extension FundDetailViewController: FundDetailDisplayLogic {
     }
     
     func displayError(viewModel: FundDetail.FundDetailError.ViewModel) {
-        print(viewModel.message)
+        showErrorFeedback(viewModel.message)
     }
 }

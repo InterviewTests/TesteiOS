@@ -45,6 +45,8 @@ class FundDetailPresenter: FundDetailPresentationLogic {
         var message: String!
         switch response.errorType {
         case .getFundDetail:
+            message = response.error.localizedDescription
+        case .missingFund:
             message = response.error.domain
         }
         let viewModel = FundDetail.FundDetailError.ViewModel(message: message, errorType: response.errorType)

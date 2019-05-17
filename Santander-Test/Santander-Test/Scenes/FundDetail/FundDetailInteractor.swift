@@ -25,10 +25,16 @@ class FundDetailInteractor: FundDetailBusinessLogic, FundDetailDataStore {
     func getFundDetail(request: FundDetail.GetFundDetail.Request) {
         worker = FundDetailWorker()
         worker?.getFund(completion: { [unowned self] (fund, error) in
+            guard error == nil else {
+                let response = FundDetail.FundDetailError.Response(error: error! as NSError, errorType: .getFundDetail)
+                self.presenter?.presentError(response: response)
+                return
+            }
+            
             guard let fund = fund else {
                 let domain = "Não há fundo de investimento a ser exibido"
                 let responseError = NSError(domain: domain, code: 200, userInfo: nil)
-                let response = FundDetail.FundDetailError.Response(error: responseError, errorType: .getFundDetail)
+                let response = FundDetail.FundDetailError.Response(error: responseError, errorType: .missingFund)
                 self.presenter?.presentError(response: response)
                 return
             }

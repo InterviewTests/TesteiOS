@@ -111,8 +111,7 @@ extension FormViewController: FormDisplayLogic {
     }
     
     func displayError(viewModel: Form.FormError.ViewModel) {
-        // TODO
-        print(viewModel.message)
+        showErrorFeedback(viewModel.message)
     }
     
     func displayFieldValidation(viewModel: Form.FieldValidation.ViewModel) {

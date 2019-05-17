@@ -16,6 +16,7 @@ enum FundDetail {
     
     enum ErrorType {
         case getFundDetail
+        case missingFund
     }
     
     enum GetFundDetail {
