@@ -10,7 +10,7 @@ import UIKit
 
 public class SAButton: UIButton {
     
-    private let loaderView: UIActivityIndicatorView = {
+    private lazy var loaderView: UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView()
         activityIndicatorView.hidesWhenStopped = true
         return activityIndicatorView
