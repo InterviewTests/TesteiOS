@@ -17,9 +17,11 @@ class SAButtonSpec: QuickSpec {
     override func spec() {
         
         var sut: SAButton!
+        var titleButton: String!
         
         beforeEach {
-            sut = SAButton(titled: "santander button")
+            titleButton = "Call to action"
+            sut = SAButton(titled: titleButton)
             sut.frame = CGRect(x: 0, y: 0, width: 320, height: 40)
             sut.isRounded = true
         }
@@ -30,6 +32,12 @@ class SAButtonSpec: QuickSpec {
                 expect(sut).to(haveValidSnapshot(named: "SAButtonSpec"))
             })
             
+        }
+        
+        context("when title is inject") {
+            it("should be set", closure: {
+                expect(sut.titleLabel?.text).to(equal(titleButton))
+            })
         }
         
     }
