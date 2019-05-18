@@ -16,9 +16,10 @@ public class SAButton: UIButton {
         return activityIndicatorView
     }()
     
-    public var cornerRadius: CGFloat? {
+    public var isRounded: Bool = false {
         didSet {
-            self.layer.cornerRadius = cornerRadius ?? 0
+            self.layer.cornerRadius = isRounded ?
+                self.layer.frame.height / 2 : 0
         }
     }
     

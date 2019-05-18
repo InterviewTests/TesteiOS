@@ -9,5 +9,5 @@ end
 target 'santanderTests' do
   pod 'Quick', '~>2.1'
   pod 'Nimble', '~>8.0'
-  pod 'iOSSnapshotTestCase', '~>5.0'
+  pod 'Nimble-Snapshots'
 end
