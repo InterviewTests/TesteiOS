@@ -49,6 +49,7 @@ public class SAButton: UIButton {
     private func setup() {
         // TODO: Use colors custom
         backgroundColor = .red
+        titleLabel?.font = Resource.Font.medium.of(size: 16)
     }
     
 }
