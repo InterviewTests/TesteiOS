@@ -18,7 +18,6 @@ class FundsHeaderViewCellSpec: QuickSpec {
         
         var sut: FundsHeaderViewCell!
         var configuration: FundsHeaderViewCell.Configuration!
-        var reuseIdentifier: String!
         
         beforeEach {
             configuration = .init(title: "Fundos de investimento",
@@ -36,19 +35,6 @@ class FundsHeaderViewCellSpec: QuickSpec {
             })
             
         })
-        
-        context("when reuseIdentifier is inject") {
-            
-            beforeEach {
-                reuseIdentifier = "FundsHeaderViewCell"
-                sut = FundsHeaderViewCell(style: .default,
-                                          reuseIdentifier: reuseIdentifier)
-            }
-            
-            it("should bet set correctly", closure: {
-                expect(sut.reuseIdentifier).to(equal(reuseIdentifier))
-            })
-        }
         
     }
     

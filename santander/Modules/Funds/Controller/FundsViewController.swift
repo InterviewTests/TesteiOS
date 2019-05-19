@@ -58,11 +58,12 @@ extension FundsViewController: TableViewing {
     
     public func buildTableViewSections() -> [TableViewSectionBuilder] {
         var sections = [TableViewSectionBuilder]()
-        sections.append(TableViewStaticSection(cellBuilders: buildTableViewCellBuilders()))
+        sections.append(TableViewStaticSection(cellBuilders: buildIntroCellBuilders()))
+        sections.append(TableViewStaticSection(cellBuilders: buildFundsRiskCellBuilders()))
         return sections
     }
     
-    public func buildTableViewCellBuilders() -> [TableViewCellBuilder] {
+    public func buildIntroCellBuilders() -> [TableViewCellBuilder] {
         var builders = [TableViewCellBuilder]()
         
         let headerCellBuilder =
@@ -70,8 +71,36 @@ extension FundsViewController: TableViewing {
                 .init(title: "Fundos de investimento",
                       subtitle: "Vinci Valorem FI Multimercado"))
         
+        
+        let explanationTextCellBuilder =
+            FundsTextCellBuilder(configuration:
+                .init(titleText: "O que é?",
+                      titleFont: Resource.Font.medium.of(size: 16),
+                      subtitleText: """
+                                        O Fundo tem por objetivo proporcionar
+                                        aos seus cotistas rentabilidade no longo
+                                        prazo através de investimentos.
+                                    """,
+                      subtitleFont: Resource.Font.light.of(size: 16)))
+        
         builders.append(headerCellBuilder)
         builders.append(SeparatorInlineCellBuilder(spaced: 21))
+        builders.append(explanationTextCellBuilder)
+        
+        return builders
+    }
+    
+    public func buildFundsRiskCellBuilders() -> [TableViewCellBuilder] {
+        var builders = [TableViewCellBuilder]()
+        
+        let riskTextCellBuilder =
+            FundsTextCellBuilder(configuration:
+                .init(titleText: "Grau de risco do investimento",
+                      titleFont: Resource.Font.medium.of(size: 16),
+                      subtitleText: "",
+                      subtitleFont: Resource.Font.light.of(size: 16)))
+        
+        builders.append(riskTextCellBuilder)
         
         return builders
     }

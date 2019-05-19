@@ -10,6 +10,4 @@ import Foundation
 
 public protocol TableViewing: AnyObject {
     func buildTableView()
-    func buildTableViewSections() -> [TableViewSectionBuilder]
-    func buildTableViewCellBuilders() -> [TableViewCellBuilder]
 }
