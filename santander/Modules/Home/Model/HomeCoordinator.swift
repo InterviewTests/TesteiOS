@@ -22,8 +22,15 @@ public class HomeCoordinator: Coordinator {
     
     init(viewControllers: [UIViewController]? = nil) {
         guard let viewControllers = viewControllers else {
-            self.viewControllers = [FundsViewController(),
-                                    ContactViewController()]
+            
+            let fundsNavigationController =
+                SANavigationViewController(rootViewController: FundsViewController())
+            
+            let contactNavigationController =
+                SANavigationViewController(rootViewController: ContactViewController())
+            
+            self.viewControllers = [fundsNavigationController,
+                                    contactNavigationController]
             return
         }
         self.viewControllers = viewControllers

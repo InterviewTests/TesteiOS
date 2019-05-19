@@ -33,6 +33,13 @@ public class FundsViewController: UIViewController {
         super.viewDidLoad()
         title = "Investimento"
         buildTableView()
+        
+        let shareBarItem =
+            UIBarButtonItem(image: Resource.Image.share.image,
+                            style: .plain,
+                            target: self, action: #selector(didShareSelected))
+        
+        navigationItem.rightBarButtonItem = shareBarItem
     }
     
 }
@@ -66,6 +73,15 @@ extension FundsViewController: TableViewing {
         builders.append(headerCellBuilder)
         
         return builders
+    }
+    
+}
+
+extension FundsViewController {
+    
+    @objc
+    func didShareSelected() {
+        // TODO: Implment share bar button action
     }
     
 }
