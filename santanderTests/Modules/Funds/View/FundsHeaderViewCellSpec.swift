@@ -23,7 +23,8 @@ class FundsHeaderViewCellSpec: QuickSpec {
         beforeEach {
             configuration = .init(title: "Fundos de investimento",
                                   subtitle: "Vinci Valorem FI Multimercado")
-            sut = FundsHeaderViewCell(configuration: configuration)
+            sut = FundsHeaderViewCell()
+            sut.configure(data: configuration)
             sut.frame = CGRect(x: 0, y: 0, width: 212, height: 108)
             sut.backgroundColor = .white
         }
@@ -40,7 +41,7 @@ class FundsHeaderViewCellSpec: QuickSpec {
             
             beforeEach {
                 reuseIdentifier = "FundsHeaderViewCell"
-                sut = FundsHeaderViewCell(configuration: configuration,
+                sut = FundsHeaderViewCell(style: .default,
                                           reuseIdentifier: reuseIdentifier)
             }
             

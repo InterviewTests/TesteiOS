@@ -42,6 +42,9 @@
 		125930742291C831009532FA /* FundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125930732291C831009532FA /* FundsView.swift */; };
 		125930762291CADE009532FA /* TableViewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125930752291CADE009532FA /* TableViewing.swift */; };
 		125930782291D058009532FA /* SANavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125930772291D058009532FA /* SANavigationViewController.swift */; };
+		1259307A2291DECF009532FA /* SeparatorInlineViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125930792291DECF009532FA /* SeparatorInlineViewCell.swift */; };
+		1259307E2291E03A009532FA /* SeparatorInlineCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1259307D2291E03A009532FA /* SeparatorInlineCellBuilder.swift */; };
+		125930812291E112009532FA /* SeparatorInlineViewCellSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125930802291E112009532FA /* SeparatorInlineViewCellSpec.swift */; };
 		5680801E7DC6C71B320798F0 /* libPods-santanderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF017D3A40074F14E0C6CF96 /* libPods-santanderTests.a */; };
 		B843527DD4ABDF1642F53AA3 /* Pods_santander.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E66321D9668214C4D4F1862 /* Pods_santander.framework */; };
 /* End PBXBuildFile section */
@@ -96,6 +99,9 @@
 		125930732291C831009532FA /* FundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsView.swift; sourceTree = "<group>"; };
 		125930752291CADE009532FA /* TableViewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewing.swift; sourceTree = "<group>"; };
 		125930772291D058009532FA /* SANavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SANavigationViewController.swift; sourceTree = "<group>"; };
+		125930792291DECF009532FA /* SeparatorInlineViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorInlineViewCell.swift; sourceTree = "<group>"; };
+		1259307D2291E03A009532FA /* SeparatorInlineCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorInlineCellBuilder.swift; sourceTree = "<group>"; };
+		125930802291E112009532FA /* SeparatorInlineViewCellSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorInlineViewCellSpec.swift; sourceTree = "<group>"; };
 		723F549A92AF2A0590E05459 /* Pods-santander.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-santander.release.xcconfig"; path = "Pods/Target Support Files/Pods-santander/Pods-santander.release.xcconfig"; sourceTree = "<group>"; };
 		7E66321D9668214C4D4F1862 /* Pods_santander.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_santander.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF017D3A40074F14E0C6CF96 /* libPods-santanderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-santanderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,32 +130,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1205869522908F1400C5236E /* View */ = {
+		1205869522908F1400C5236E /* Component */ = {
 			isa = PBXGroup;
 			children = (
 				1205869622908F1400C5236E /* SAButton.swift */,
 				120586B322916D4400C5236E /* SACheckbox.swift */,
 				120586AE229098CC00C5236E /* SATextField.swift */,
+				1259307C2291E020009532FA /* Separator */,
 			);
-			path = View;
+			path = Component;
 			sourceTree = "<group>";
 		};
 		1205869D2290904400C5236E /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				1205869E2290904A00C5236E /* View */,
+				1205869E2290904A00C5236E /* Component */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		1205869E2290904A00C5236E /* View */ = {
+		1205869E2290904A00C5236E /* Component */ = {
 			isa = PBXGroup;
 			children = (
 				1205869822908F6700C5236E /* SAButtonSpec.swift */,
-				120586B122909FC900C5236E /* SATextFieldSpec.swift */,
 				120586B52291704000C5236E /* SACheckboxSpec.swift */,
+				120586B122909FC900C5236E /* SATextFieldSpec.swift */,
+				1259307F2291E0F6009532FA /* Separator */,
 			);
-			path = View;
+			path = Component;
 			sourceTree = "<group>";
 		};
 		1205869F229091BD00C5236E /* Fonts */ = {
@@ -369,7 +377,7 @@
 				120586AA2290924500C5236E /* Class */,
 				1259306C2291C201009532FA /* Extension */,
 				121E23352290365B00BF38C9 /* Protocol */,
-				1205869522908F1400C5236E /* View */,
+				1205869522908F1400C5236E /* Component */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -409,6 +417,23 @@
 				1259306F2291C361009532FA /* UITableView+Dequeue.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		1259307C2291E020009532FA /* Separator */ = {
+			isa = PBXGroup;
+			children = (
+				1259307D2291E03A009532FA /* SeparatorInlineCellBuilder.swift */,
+				125930792291DECF009532FA /* SeparatorInlineViewCell.swift */,
+			);
+			path = Separator;
+			sourceTree = "<group>";
+		};
+		1259307F2291E0F6009532FA /* Separator */ = {
+			isa = PBXGroup;
+			children = (
+				125930802291E112009532FA /* SeparatorInlineViewCellSpec.swift */,
+			);
+			path = Separator;
 			sourceTree = "<group>";
 		};
 		12678E052291A7AE00E2C5E2 /* Funds */ = {
@@ -630,11 +655,13 @@
 			files = (
 				1259306B2291C13B009532FA /* FundsHeaderViewCellBuilder.swift in Sources */,
 				125930742291C831009532FA /* FundsView.swift in Sources */,
+				1259307A2291DECF009532FA /* SeparatorInlineViewCell.swift in Sources */,
 				120586AC2290925500C5236E /* Resource.swift in Sources */,
 				120586B422916D4400C5236E /* SACheckbox.swift in Sources */,
 				125930782291D058009532FA /* SANavigationViewController.swift in Sources */,
 				120586BA2291746500C5236E /* Resource+Font.swift in Sources */,
 				125930662291BBA9009532FA /* FundsHeaderViewCell.swift in Sources */,
+				1259307E2291E03A009532FA /* SeparatorInlineCellBuilder.swift in Sources */,
 				121E23372290366500BF38C9 /* Coordinator.swift in Sources */,
 				12059FC6228ECD06001ACEB5 /* AppDelegate.swift in Sources */,
 				120586AF229098CC00C5236E /* SATextField.swift in Sources */,
@@ -661,6 +688,7 @@
 			files = (
 				120586B62291704000C5236E /* SACheckboxSpec.swift in Sources */,
 				120586B222909FC900C5236E /* SATextFieldSpec.swift in Sources */,
+				125930812291E112009532FA /* SeparatorInlineViewCellSpec.swift in Sources */,
 				1205869922908F6700C5236E /* SAButtonSpec.swift in Sources */,
 				125930682291BBEA009532FA /* FundsHeaderViewCellSpec.swift in Sources */,
 			);

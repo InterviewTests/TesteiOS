@@ -15,6 +15,7 @@ extension Resource {
         case checkbox
         case checkboxFilled = "checkbox_filled"
         case share
+        case separatorInline = "separator_inline"
         
         var image: UIImage {
             guard let image = UIImage(named: self.rawValue) else {

@@ -71,6 +71,7 @@ extension FundsViewController: TableViewing {
                       subtitle: "Vinci Valorem FI Multimercado"))
         
         builders.append(headerCellBuilder)
+        builders.append(SeparatorInlineCellBuilder(spaced: 21))
         
         return builders
     }
