@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol Funding: AnyObject {
+public protocol Funding: AnyObject {
     func invest()
 }
 
-protocol Contacting: AnyObject {
+public protocol Contacting: AnyObject {
     func contact()
 }
 
@@ -35,14 +35,14 @@ public class HomeCoordinator: Coordinator {
 
 extension HomeCoordinator: Funding {
     
-    func invest() {
+    public func invest() {
         // TODO: Start funds coordinator
     }
     
 }
 
 extension HomeCoordinator: Contacting {
-    func contact() {
+    public func contact() {
         // TODO: Start contact coordinator
     }
     
