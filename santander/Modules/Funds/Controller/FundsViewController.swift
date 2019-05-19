@@ -100,7 +100,10 @@ extension FundsViewController: TableViewing {
                       subtitleText: "",
                       subtitleFont: Resource.Font.light.of(size: 16)))
         
+        let thermometerCellBuilder = ThermometerViewCellBuilder()
+        
         builders.append(riskTextCellBuilder)
+        builders.append(thermometerCellBuilder)
         
         return builders
     }
