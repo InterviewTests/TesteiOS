@@ -18,6 +18,10 @@
 		120586AC2290925500C5236E /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120586AB2290925500C5236E /* Resource.swift */; };
 		120586AF229098CC00C5236E /* SATextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120586AE229098CC00C5236E /* SATextField.swift */; };
 		120586B222909FC900C5236E /* SATextFieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120586B122909FC900C5236E /* SATextFieldSpec.swift */; };
+		120586B422916D4400C5236E /* SACheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120586B322916D4400C5236E /* SACheckbox.swift */; };
+		120586B62291704000C5236E /* SACheckboxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120586B52291704000C5236E /* SACheckboxSpec.swift */; };
+		120586B82291744500C5236E /* Resource+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120586B72291744500C5236E /* Resource+Image.swift */; };
+		120586BA2291746500C5236E /* Resource+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120586B92291746500C5236E /* Resource+Font.swift */; };
 		12059FC6228ECD06001ACEB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12059FC5228ECD06001ACEB5 /* AppDelegate.swift */; };
 		12059FCD228ECD07001ACEB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12059FCC228ECD07001ACEB5 /* Assets.xcassets */; };
 		12059FD0228ECD07001ACEB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12059FCE228ECD07001ACEB5 /* LaunchScreen.storyboard */; };
@@ -49,9 +53,13 @@
 		120586A2229091D100C5236E /* DINPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Bold.otf"; sourceTree = "<group>"; };
 		120586A3229091D100C5236E /* DINPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Regular.otf"; sourceTree = "<group>"; };
 		120586A4229091D100C5236E /* DINPro-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Black.otf"; sourceTree = "<group>"; };
-		120586AB2290925500C5236E /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
-		120586AE229098CC00C5236E /* SATextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SATextField.swift; sourceTree = "<group>"; };
-		120586B122909FC900C5236E /* SATextFieldSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SATextFieldSpec.swift; sourceTree = "<group>"; };
+		120586AB2290925500C5236E /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Resource.swift; path = ../Resource.swift; sourceTree = "<group>"; };
+		120586AE229098CC00C5236E /* SATextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SATextField.swift; path = SATextField/SATextField.swift; sourceTree = "<group>"; };
+		120586B122909FC900C5236E /* SATextFieldSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SATextFieldSpec.swift; path = SATextField/SATextFieldSpec.swift; sourceTree = "<group>"; };
+		120586B322916D4400C5236E /* SACheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SACheckbox.swift; sourceTree = "<group>"; };
+		120586B52291704000C5236E /* SACheckboxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SACheckboxSpec.swift; sourceTree = "<group>"; };
+		120586B72291744500C5236E /* Resource+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Resource+Image.swift"; path = "../Resource+Image.swift"; sourceTree = "<group>"; };
+		120586B92291746500C5236E /* Resource+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Resource+Font.swift"; path = "../Resource+Font.swift"; sourceTree = "<group>"; };
 		12059FC2228ECD05001ACEB5 /* santander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = santander.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12059FC5228ECD06001ACEB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12059FCC228ECD07001ACEB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -96,7 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				1205869622908F1400C5236E /* SAButton.swift */,
-				120586AD229098B700C5236E /* SATextField */,
+				120586AE229098CC00C5236E /* SATextField.swift */,
+				120586B322916D4400C5236E /* SACheckbox.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -113,7 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				1205869822908F6700C5236E /* SAButtonSpec.swift */,
-				120586B022909FBA00C5236E /* SATextField */,
+				120586B122909FC900C5236E /* SATextFieldSpec.swift */,
+				120586B52291704000C5236E /* SACheckboxSpec.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -133,25 +143,19 @@
 		120586AA2290924500C5236E /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				120586AB2290925500C5236E /* Resource.swift */,
+				120586BB2291746800C5236E /* Resource */,
 			);
 			path = Class;
 			sourceTree = "<group>";
 		};
-		120586AD229098B700C5236E /* SATextField */ = {
+		120586BB2291746800C5236E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				120586AE229098CC00C5236E /* SATextField.swift */,
+				120586AB2290925500C5236E /* Resource.swift */,
+				120586B72291744500C5236E /* Resource+Image.swift */,
+				120586B92291746500C5236E /* Resource+Font.swift */,
 			);
-			path = SATextField;
-			sourceTree = "<group>";
-		};
-		120586B022909FBA00C5236E /* SATextField */ = {
-			isa = PBXGroup;
-			children = (
-				120586B122909FC900C5236E /* SATextFieldSpec.swift */,
-			);
-			path = SATextField;
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		12059FB9228ECD05001ACEB5 = {
@@ -412,6 +416,7 @@
 				TargetAttributes = {
 					12059FC1228ECD05001ACEB5 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 					121E233F2290423700BF38C9 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -540,9 +545,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				120586AC2290925500C5236E /* Resource.swift in Sources */,
+				120586B422916D4400C5236E /* SACheckbox.swift in Sources */,
+				120586BA2291746500C5236E /* Resource+Font.swift in Sources */,
 				121E23372290366500BF38C9 /* Coordinator.swift in Sources */,
 				12059FC6228ECD06001ACEB5 /* AppDelegate.swift in Sources */,
 				120586AF229098CC00C5236E /* SATextField.swift in Sources */,
+				120586B82291744500C5236E /* Resource+Image.swift in Sources */,
 				1205869C22908F8100C5236E /* ViewCoding.swift in Sources */,
 				121E233922903B4300BF38C9 /* FundsViewController.swift in Sources */,
 				1205869A22908F6B00C5236E /* SAButton.swift in Sources */,
@@ -556,6 +564,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				120586B62291704000C5236E /* SACheckboxSpec.swift in Sources */,
 				120586B222909FC900C5236E /* SATextFieldSpec.swift in Sources */,
 				1205869922908F6700C5236E /* SAButtonSpec.swift in Sources */,
 			);
@@ -712,7 +721,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.anonymous.santander;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -730,7 +739,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.anonymous.santander;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
