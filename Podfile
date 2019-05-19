@@ -1,5 +1,7 @@
 platform :ios, '9.0'
 
+inhibit_all_warnings!
+
 target 'santander' do
   use_frameworks!
   pod 'Alamofire', '~>4.0'
