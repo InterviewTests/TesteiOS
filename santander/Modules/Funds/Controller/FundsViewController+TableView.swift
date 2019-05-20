@@ -172,6 +172,10 @@ extension FundsViewController: TableViewing {
             FundsResourceCellBuilder(configuration:
                 .init(title: "Adesão", resource: resource))
         
+        let buttonCellBuilder =
+            FundsButtonCellBuilder(configuration:
+                .init(title: "Investir"))
+        
         builders.append(moreInfoTextCellBuilder)
         builders.append(headerTextCellBuilder)
         builders.append(monthlyTextCellBuilder)
@@ -191,7 +195,9 @@ extension FundsViewController: TableViewing {
         builders.append(complementaryCellBuilder)
         builders.append(regulationCellBuilder)
         builders.append(accessionCellBuilder)
-        
+        builders.append(SeparatorInlineCellBuilder(spaced: 45))
+        builders.append(buttonCellBuilder)
+        builders.append(SeparatorInlineCellBuilder(spaced: 42))
         
         return builders
     }

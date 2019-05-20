@@ -21,7 +21,19 @@ public final class SeparatorInlineCellBuilder: TableViewCellBuilder {
     }
     
     public var cellHeight: CGFloat {
-        return spaced + SeparatorInlineViewCell.height
+        
+        var height: CGFloat
+        
+        switch style {
+        case .none:
+            height = 0
+        case .line:
+            height = 0
+        case .arrow:
+            height = SeparatorInlineViewCell.height
+        }
+        
+        return spaced + height
     }
     
     public func registerCellIdentifier(in tableView: UITableView) {
