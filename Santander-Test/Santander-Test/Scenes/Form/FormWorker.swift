@@ -44,4 +44,45 @@ class FormWorker {
             return FieldValidation.isValid(text: text)
         }
     }
+    
+    func validateAllFields(
+        displayedFormCells: [Form.GetFormCells.ViewModel.DisplayViewModel],
+        tableView: UITableView,
+        completion: (Bool, IndexPath?, String?) -> Void) {
+        
+        var response: Bool = true
+        var responseIndexPath: IndexPath?
+        var responseMessage: String?
+        
+        for count in 0..<displayedFormCells.count {
+            let displayedFormCell = displayedFormCells[count]
+            guard displayedFormCell.type == .field else { continue }
+            
+            let indexPath = IndexPath(row: count, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) as? FieldCell {
+                guard let typeField = cell.viewModel?.typeField else { return }
+                let text = cell.textField.text ?? ""
+                let isValid = validateField(text: text, typeField: typeField)
+                
+                if !isValid {
+                    switch typeField {
+                    case .text:
+                        responseMessage = "Preencha com seu nome"
+                    case .email:
+                        responseMessage = "Insira um e-mail válido"
+                    case .telNumber:
+                        responseMessage = "Número de telefone deve ser (##) #####-#### ou (##) ####-####"
+                    }
+                    response = false
+                    responseIndexPath = indexPath
+                    break
+                }
+            }
+        }
+        if response {
+            completion(true, nil, nil)
+        } else {
+            completion(false, responseIndexPath, responseMessage)
+        }
+    }
 }

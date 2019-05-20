@@ -66,4 +66,21 @@ enum Form {
             let isValid: Bool
         }
     }
+    
+    enum AllFieldsValidation {
+        struct Request {
+            let displayedFormCells: [Form.GetFormCells.ViewModel.DisplayViewModel]
+            let tableView: UITableView
+        }
+        struct Response {
+            let isValid: Bool
+            let indexPath: IndexPath?
+            let message: String?
+        }
+        struct ViewModel {
+            let isValid: Bool
+            let indexPath: IndexPath?
+            let message: String?
+        }
+    }
 }

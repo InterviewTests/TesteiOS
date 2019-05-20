@@ -15,6 +15,7 @@ import UIKit
 protocol FormBusinessLogic {
     func getFormCells(request: Form.GetFormCells.Request)
     func validateField(request: Form.FieldValidation.Request)
+    func validateAllFields(request: Form.AllFieldsValidation.Request)
 }
 
 protocol FormDataStore {
@@ -51,5 +52,24 @@ class FormInteractor: FormBusinessLogic, FormDataStore {
         let isValid = worker?.validateField(text: request.text, typeField: request.typeField) ?? false
         let response = Form.FieldValidation.Response(indexPath: request.indexPath, isValid: isValid)
         presenter?.presentFieldValidation(response: response)
+    }
+    
+    func validateAllFields(request: Form.AllFieldsValidation.Request) {
+        worker = FormWorker()
+        
+        let displayedFormCells = request.displayedFormCells
+        let tableView = request.tableView
+        
+        worker?.validateAllFields(
+            displayedFormCells: displayedFormCells,
+            tableView: tableView,
+            completion: { (isValid, indexPath, message) in
+                let response = Form.AllFieldsValidation.Response(
+                    isValid: isValid,
+                    indexPath: indexPath,
+                    message: message
+                )
+                presenter?.presentAllFieldsValidation(response: response)
+        })
     }
 }

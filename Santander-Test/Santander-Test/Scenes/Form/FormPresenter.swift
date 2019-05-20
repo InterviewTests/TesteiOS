@@ -16,6 +16,7 @@ protocol FormPresentationLogic {
     func presentFormCells(response: Form.GetFormCells.Response)
     func presentError(response: Form.FormError.Response)
     func presentFieldValidation(response: Form.FieldValidation.Response)
+    func presentAllFieldsValidation(response: Form.AllFieldsValidation.Response)
 }
 
 class FormPresenter: FormPresentationLogic {
@@ -55,6 +56,18 @@ class FormPresenter: FormPresentationLogic {
     func presentFieldValidation(response: Form.FieldValidation.Response) {
         let viewModel = Form.FieldValidation.ViewModel(indexPath: response.indexPath, isValid: response.isValid)
         viewController?.displayFieldValidation(viewModel: viewModel)
+    }
+    
+    func presentAllFieldsValidation(response: Form.AllFieldsValidation.Response) {
+        let isValid = response.isValid
+        let indexPath = response.indexPath
+        let message = response.message
+        let viewModel = Form.AllFieldsValidation.ViewModel(
+            isValid: isValid,
+            indexPath: indexPath,
+            message: message
+        )
+        viewController?.displayAllFieldsValidation(viewModel: viewModel)
     }
     
     func presentError(response: Form.FormError.Response) {

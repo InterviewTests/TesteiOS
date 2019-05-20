@@ -16,6 +16,7 @@ protocol FormDisplayLogic: class {
     func displayFormCells(viewModel: Form.GetFormCells.ViewModel)
     func displayError(viewModel: Form.FormError.ViewModel)
     func displayFieldValidation(viewModel: Form.FieldValidation.ViewModel)
+    func displayAllFieldsValidation(viewModel: Form.AllFieldsValidation.ViewModel)
 }
 
 class FormViewController: UIViewController {
@@ -133,6 +134,14 @@ extension FormViewController: FormDisplayLogic {
             }
         }
     }
+    
+    func displayAllFieldsValidation(viewModel: Form.AllFieldsValidation.ViewModel) {
+        if viewModel.isValid {
+            router?.routeToSuccess(segue: nil)
+        } else {
+            print("message: \(viewModel.message) indexPath: \(viewModel.indexPath?.row)")
+        }
+    }
 }
 
 extension FormViewController: UITableViewDataSource {
@@ -199,6 +208,10 @@ extension FormViewController: FieldCellDelegate {
 
 extension FormViewController: SendCellDelegate {
     func buttonPressed() {
-        router?.routeToSuccess(segue: nil)
+        let request = Form.AllFieldsValidation.Request(
+            displayedFormCells: displayedFormCells,
+            tableView: tableView
+        )
+        interactor?.validateAllFields(request: request)
     }
 }
