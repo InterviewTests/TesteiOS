@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ov9-fs-hOz">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Medium.otf">
+            <string>DINPro-Medium</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Success View Controller-->
+        <scene sceneID="3yt-Bl-EHq">
+            <objects>
+                <viewController storyboardIdentifier="Success" id="ov9-fs-hOz" customClass="SuccessViewController" customModule="Santander_Test" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="for-JZ-kpx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contato" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBt-Pa-KLz">
+                                <rect key="frame" x="158" y="44" width="59.5" height="22"/>
+                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DFC-hS-nwT">
+                                <rect key="frame" x="98.5" y="553" width="178" height="34"/>
+                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
+                                <state key="normal" title="Enviar nova mensagem"/>
+                                <connections>
+                                    <action selector="sendNewMessageButton:" destination="ov9-fs-hOz" eventType="touchUpInside" id="pxq-jk-U1w"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="06w-Zs-J32">
+                                <rect key="frame" x="66.5" y="231.5" width="242" height="104"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RlQ-kv-et4">
+                                        <rect key="frame" x="83.5" y="0.0" width="75" height="22"/>
+                                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagem enviada com sucesso :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3x-6E-Oix">
+                                        <rect key="frame" x="0.0" y="32" width="242" height="72"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="242" id="ldd-RG-R6G"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="400-dV-5KZ" firstAttribute="bottom" secondItem="DFC-hS-nwT" secondAttribute="bottom" constant="80" id="1y8-8f-BWg"/>
+                            <constraint firstItem="06w-Zs-J32" firstAttribute="centerY" secondItem="for-JZ-kpx" secondAttribute="centerY" constant="-50" id="Oik-lF-mdq"/>
+                            <constraint firstItem="sBt-Pa-KLz" firstAttribute="centerX" secondItem="400-dV-5KZ" secondAttribute="centerX" id="SZN-wJ-OXY"/>
+                            <constraint firstItem="DFC-hS-nwT" firstAttribute="centerX" secondItem="400-dV-5KZ" secondAttribute="centerX" id="Tj5-gM-4P0"/>
+                            <constraint firstItem="sBt-Pa-KLz" firstAttribute="top" secondItem="400-dV-5KZ" secondAttribute="top" constant="24" id="eLB-4m-FUD"/>
+                            <constraint firstItem="06w-Zs-J32" firstAttribute="centerX" secondItem="for-JZ-kpx" secondAttribute="centerX" id="lRX-s4-2ro"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="400-dV-5KZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="sendNewMessageButton" destination="DFC-hS-nwT" id="QVg-vn-SA4"/>
+                        <outlet property="thankYouLabel" destination="RlQ-kv-et4" id="Dfm-Zz-ded"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1nb-Em-bYd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="26" y="124"/>
+        </scene>
+    </scenes>
+</document>
