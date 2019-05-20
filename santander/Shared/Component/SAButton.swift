@@ -10,6 +10,8 @@ import UIKit
 
 public class SAButton: UIButton {
     
+    public var buttonAction: (() -> Void)?
+    
     private lazy var loaderView: UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView()
         activityIndicatorView.hidesWhenStopped = true
@@ -50,6 +52,12 @@ public class SAButton: UIButton {
         // TODO: Use colors custom
         backgroundColor = .red
         titleLabel?.font = Resource.Font.medium.of(size: 16)
+        self.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+    }
+    
+    @objc
+    private func didTapButton() {
+        buttonAction?()
     }
     
 }

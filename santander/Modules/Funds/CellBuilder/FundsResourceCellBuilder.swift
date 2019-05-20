@@ -10,14 +10,18 @@ import UIKit
 
 public final class FundsResourceCellBuilder {
     
+    public var tapAction: (() -> Void)?
+    
     var configuration: FundsResourceCell.Configuration
     var isSelectable: Bool
     
     init(configuration: FundsResourceCell.Configuration,
+         tapAction: (() -> Void)?,
          isSelectable: Bool = false) {
         
         self.configuration = configuration
         self.isSelectable = isSelectable
+        self.tapAction = tapAction
     }
     
 }
@@ -38,6 +42,7 @@ extension FundsResourceCellBuilder: TableViewCellBuilder {
         
         let cell: FundsResourceCell = tableView.dequeue(indexPath: indexPath)
         cell.configure(data: configuration)
+        cell.tapAction = self.tapAction
         
         return cell
     }

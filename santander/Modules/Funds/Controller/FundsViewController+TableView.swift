@@ -152,29 +152,38 @@ extension FundsViewController: TableViewing {
         
         let resource = ("Baixar", Resource.Image.download.image)
         
+        let resourceTapAction: (() -> Void) = {
+            print("Clicked")
+        }
+        
         let essentialsCellBuilder =
             FundsResourceCellBuilder(configuration:
-                .init(title: "Essenciais", resource: resource))
+                .init(title: "Essenciais", resource: resource),
+                                     tapAction: resourceTapAction)
         
         let performanceCellBuilder =
             FundsResourceCellBuilder(configuration:
-                .init(title: "Desempenho", resource: resource))
+                .init(title: "Desempenho", resource: resource),
+                                     tapAction: resourceTapAction)
         
         let complementaryCellBuilder =
             FundsResourceCellBuilder(configuration:
-                .init(title: "Complementares", resource: resource))
+                .init(title: "Complementares", resource: resource),
+                                     tapAction: resourceTapAction)
         
         let regulationCellBuilder =
             FundsResourceCellBuilder(configuration:
-                .init(title: "Regulamento", resource: resource))
+                .init(title: "Regulamento", resource: resource),
+                                     tapAction: resourceTapAction)
         
         let accessionCellBuilder =
             FundsResourceCellBuilder(configuration:
-                .init(title: "Adesão", resource: resource))
+                .init(title: "Adesão", resource: resource),
+                                     tapAction: resourceTapAction)
         
         let buttonCellBuilder =
-            FundsButtonCellBuilder(configuration:
-                .init(title: "Investir"))
+            FundsButtonCellBuilder(configuration: .init(title: "Investir"),
+                                   tapAction: nil)
         
         builders.append(moreInfoTextCellBuilder)
         builders.append(headerTextCellBuilder)

@@ -10,14 +10,17 @@ import UIKit
 
 public final class FundsButtonCellBuilder {
     
-    var configuration: FundsButtonCell.Configuration
-    var isSelectable: Bool
     private var cell: FundsButtonCell?
+    private var isSelectable: Bool
+    private var actionClosure: (() -> Void)?
+    private var configuration: FundsButtonCell.Configuration
     
     init(configuration: FundsButtonCell.Configuration,
+         tapAction: (() -> Void)?,
          isSelectable: Bool = false) {
         
         self.configuration = configuration
+        self.actionClosure = tapAction
         self.isSelectable = isSelectable
     }
     
@@ -39,6 +42,7 @@ extension FundsButtonCellBuilder: TableViewCellBuilder {
         
         let cell: FundsButtonCell = tableView.dequeue(indexPath: indexPath)
         cell.configure(data: configuration)
+        cell.button.buttonAction = actionClosure
         return cell
     }
     

@@ -12,6 +12,8 @@ import UIKit
 
 public class FundsResourceCell: UITableViewCell {
     
+    public var tapAction: (() -> Void)?
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = Resource.Font.regular.of(size: 14)
@@ -97,5 +99,20 @@ extension FundsResourceCell: ViewCoding {
         
     }
     
+    public func setupViews() {
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                             action: #selector(didTapAction))
+        resourceStackView.isUserInteractionEnabled = true
+        resourceStackView.addGestureRecognizer(tapGesture)
+    }
+    
 }
 
+extension FundsResourceCell {
+    
+    @objc
+    private func didTapAction() {
+        tapAction?()
+    }
+    
+}

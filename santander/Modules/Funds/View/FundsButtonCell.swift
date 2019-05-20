@@ -55,4 +55,3 @@ extension FundsButtonCell: ViewCoding {
     }
     
 }
-
