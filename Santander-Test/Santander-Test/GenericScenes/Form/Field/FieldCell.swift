@@ -62,7 +62,6 @@ class FieldCell: UITableViewCell {
     }
     
     private func convertNumberToPhoneFormat(number: String) -> String {
-        
         var text = number.replacingOccurrences(of: "(", with: "")
         text = text.replacingOccurrences(of: ")", with: "")
         text = text.replacingOccurrences(of: "-", with: "")
@@ -70,42 +69,24 @@ class FieldCell: UITableViewCell {
         
         let textLenght = text.count
         
-        if textLenght == 1 {
+        switch textLenght {
+        case 1, 2:
             return "(\(text)"
-        } else if textLenght == 2 {
-            return "(\(text)"
-        } else if textLenght == 3 {
-            return "(\(text.prefix(2))) \(text.suffix(1))"
-        } else if textLenght == 4 {
-            return "(\(text.prefix(2))) \(text.suffix(2))"
-        } else if textLenght == 5 {
-            return "(\(text.prefix(2))) \(text.suffix(3))"
-        } else if textLenght == 6 {
-            return "(\(text.prefix(2))) \(text.suffix(4))"
-        } else if textLenght == 7 {
-            return "(\(text.prefix(2))) \(text.suffix(5))"
-        } else if textLenght == 8 {
+        case 3, 4, 5, 6, 7:
+            return "(\(text.prefix(2))) \(text.suffix(textLenght - 2))"
+        case 8, 9:
             let start = text.index(text.startIndex, offsetBy: 2)
-            let end = text.index(text.endIndex, offsetBy: -1)
+            let end = text.index(text.endIndex, offsetBy: 7 - textLenght)
             let range = start..<end
-            return "(\(text.prefix(2))) \(text[range])-\(text.suffix(1))"
-        } else if textLenght == 9 {
-            let start = text.index(text.startIndex, offsetBy: 2)
-            let end = text.index(text.endIndex, offsetBy: -2)
-            let range = start..<end
-            return "(\(text.prefix(2))) \(text[range])-\(text.suffix(2))"
-        } else if textLenght == 10 {
+            return "(\(text.prefix(2))) \(text[range])-\(text.suffix(textLenght - 7))"
+        case 10, 11:
             let start = text.index(text.startIndex, offsetBy: 2)
             let end = text.index(text.endIndex, offsetBy: -4)
             let range = start..<end
             return "(\(text.prefix(2))) \(text[range])-\(text.suffix(4))"
-        } else if textLenght == 11 {
-            let start = text.index(text.startIndex, offsetBy: 2)
-            let end = text.index(text.endIndex, offsetBy: -4)
-            let range = start..<end
-            return "(\(text.prefix(2))) \(text[range])-\(text.suffix(4))"
+        default:
+            return "\(number.prefix(15))"
         }
-        return "\(number.prefix(15))"
     }
     
 }
