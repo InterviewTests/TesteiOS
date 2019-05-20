@@ -8,12 +8,11 @@
 
 import UIKit
 
-class MainTabBar: UITabBarController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tabBar.barTintColor = UIColor.darkRedColor
+class MainTabBar: UITabBarController {}
+
+extension MainTabBar {
+    enum BackgroundImageName: String {
+        case form = "tab_bar_contato"
+        case fundDetails = "tab_bar_investimento"
     }
-    
 }

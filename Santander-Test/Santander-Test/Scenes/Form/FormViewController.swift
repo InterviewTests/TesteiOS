@@ -60,14 +60,24 @@ class FormViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-    super.viewDidLoad()
-        
+        super.viewDidLoad()
         setupTableView()
+        setupTabBar()
         requestData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupTabBar()
     }
     
     private func setupTableView() {
         registerTableViewCells()
+    }
+    
+    private func setupTabBar() {
+        tabBarController?.tabBar.backgroundImage = UIImage(
+            named: MainTabBar.BackgroundImageName.form.rawValue
+        )
     }
     
     private func requestData() {
