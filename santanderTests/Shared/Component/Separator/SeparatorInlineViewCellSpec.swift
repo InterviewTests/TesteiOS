@@ -26,7 +26,31 @@ class SeparatorInlineViewCellSpec: QuickSpec {
         describe("when it is instantiate") {
             
             it("hould have properly layout", closure: {
-                expect(sut).to(haveValidSnapshot(named: "SeparatorInlineViewCellSpec"))
+                expect(sut).to(haveValidSnapshot(named: "SeparatorInlineViewCellSpec_none"))
+            })
+            
+        }
+        
+        context("when setup style for line") {
+            
+            beforeEach {
+                sut.style = .line
+            }
+            
+            it("hould have properly layout", closure: {
+                expect(sut).to(haveValidSnapshot(named: "SeparatorInlineViewCellSpec_line"))
+            })
+            
+        }
+        
+        context("when setup style for arrow") {
+            
+            beforeEach {
+                sut.style = .arrow
+            }
+            
+            it("hould have properly layout", closure: {
+                expect(sut).to(haveValidSnapshot(named: "SeparatorInlineViewCellSpec_arrow"))
             })
             
         }

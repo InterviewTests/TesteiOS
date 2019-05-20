@@ -10,10 +10,16 @@ import UIKit
 
 public class SeparatorInlineViewCell: UITableViewCell {
     
-    static let height: CGFloat = 5
+    static var height: CGFloat = 5
+    
+    var style: Style = .none {
+        didSet {
+            update(style: style)
+        }
+    }
     
     private lazy var separatorImage: UIImageView = {
-        let image = UIImageView(image: Resource.Image.separatorInline.image)
+        let image = UIImageView()
         return image
     }()
     
@@ -41,19 +47,54 @@ extension SeparatorInlineViewCell: ViewCoding {
     }
     
     public func setupConstraints() {
-        containerWallView.snp.makeConstraints { make in
+        containerWallView.snp.remakeConstraints { make in
             make.top.greaterThanOrEqualToSuperview()
             make.left.right.equalToSuperview()
             make.height.equalTo(0)
         }
         
-        separatorImage.snp.makeConstraints { make in
+        separatorImage.snp.remakeConstraints { make in
             make.top.equalTo(containerWallView.snp.bottom)
-            make.height.equalTo(SeparatorInlineViewCell.height)
             make.bottom.equalToSuperview()
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().inset(30)
+            
+            switch style {
+            case .none:
+                make.height.equalTo(0)
+            case .line:
+                make.height.equalTo(1)
+            case .arrow:
+                make.height.equalTo(SeparatorInlineViewCell.height)
+            }
+            
         }
+    }
+    
+}
+
+extension SeparatorInlineViewCell {
+    
+    internal enum Style {
+        case none
+        case line
+        case arrow
+    }
+    
+    func update(style: Style) {
+        
+        switch style {
+            
+        case .none:
+            separatorImage.image = nil
+        case .line:
+            separatorImage.image = Resource.Image.selectorSingle.image
+        case .arrow:
+            separatorImage.image = Resource.Image.separatorInline.image
+        }
+        
+        setupConstraints()
+        
     }
     
 }

@@ -11,9 +11,13 @@ import UIKit
 public final class SeparatorInlineCellBuilder: TableViewCellBuilder {
     
     private var spaced: CGFloat
+    private var style: SeparatorInlineViewCell.Style
     
-    init(spaced: CGFloat) {
+    init(style: SeparatorInlineViewCell.Style = .none,
+         spaced: CGFloat) {
+        
         self.spaced = spaced
+        self.style = style
     }
     
     public var cellHeight: CGFloat {
@@ -29,6 +33,7 @@ public final class SeparatorInlineCellBuilder: TableViewCellBuilder {
                               on tableView: UITableView) -> UITableViewCell {
         
         let cell: SeparatorInlineViewCell = tableView.dequeue(indexPath: indexPath)
+        cell.style = style
         return cell
     }
     

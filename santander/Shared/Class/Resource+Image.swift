@@ -17,6 +17,7 @@ extension Resource {
         case share
         case separatorInline = "separator_inline"
         case selector
+        case selectorSingle = "separator_single"
         
         var image: UIImage {
             guard let image = UIImage(named: self.rawValue) else {

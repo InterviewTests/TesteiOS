@@ -13,7 +13,7 @@ public class FundsViewController: UIViewController {
     public var dataSource: TableViewDataSource?
     public weak var coordinator: (Funding & Contacting)?
     
-    private var fundsView: FundsView
+    internal var fundsView: FundsView
     
     init() {
         self.fundsView = FundsView()
@@ -40,117 +40,6 @@ public class FundsViewController: UIViewController {
                             target: self, action: #selector(didShareSelected))
         
         navigationItem.rightBarButtonItem = shareBarItem
-    }
-    
-}
-
-extension FundsViewController: TableViewing {
-    
-    public func buildTableView() {
-        let sections = buildTableViewSections()
-        dataSource = TableViewDataSource(sections: sections,
-                                         tableView: fundsView.tableView)
-        
-        fundsView.tableView.dataSource = dataSource
-        fundsView.tableView.delegate = dataSource
-        fundsView.tableView.reloadData()
-    }
-    
-    public func buildTableViewSections() -> [TableViewSectionBuilder] {
-        var sections = [TableViewSectionBuilder]()
-        sections.append(TableViewStaticSection(cellBuilders: buildIntroCellBuilders()))
-        sections.append(TableViewStaticSection(cellBuilders: buildFundsRiskCellBuilders()))
-        sections.append(TableViewStaticSection(cellBuilders: buildMoreInfoCellBuilders()))
-        return sections
-    }
-    
-    public func buildIntroCellBuilders() -> [TableViewCellBuilder] {
-        var builders = [TableViewCellBuilder]()
-        
-        let headerCellBuilder =
-            FundsHeaderViewCellBuilder(configuration:
-                .init(title: "Fundos de investimento",
-                      subtitle: "Vinci Valorem FI Multimercado"))
-        
-        
-        let explanationTextCellBuilder =
-            FundsTextCellBuilder(configuration:
-                .init(titleText: "O que é?",
-                      titleFont: Resource.Font.medium.of(size: 16),
-                      subtitleText: """
-                                        O Fundo tem por objetivo proporcionar
-                                        aos seus cotistas rentabilidade no longo
-                                        prazo através de investimentos.
-                                    """,
-                      subtitleFont: Resource.Font.light.of(size: 16)))
-        
-        builders.append(headerCellBuilder)
-        builders.append(SeparatorInlineCellBuilder(spaced: 21))
-        builders.append(explanationTextCellBuilder)
-        
-        return builders
-    }
-    
-    public func buildFundsRiskCellBuilders() -> [TableViewCellBuilder] {
-        var builders = [TableViewCellBuilder]()
-        
-        let riskTextCellBuilder =
-            FundsTextCellBuilder(configuration:
-                .init(titleText: "Grau de risco do investimento",
-                      titleFont: Resource.Font.medium.of(size: 16),
-                      subtitleText: "",
-                      subtitleFont: Resource.Font.light.of(size: 16)),
-                                 cellHeight: 70)
-        
-        let thermometerCellBuilder = ThermometerViewCellBuilder()
-        
-        builders.append(riskTextCellBuilder)
-        builders.append(thermometerCellBuilder)
-        
-        return builders
-    }
-    
-    public func buildMoreInfoCellBuilders() -> [TableViewCellBuilder] {
-        var builders = [TableViewCellBuilder]()
-        
-        let moreInfoTextCellBuilder =
-            FundsTextCellBuilder(configuration:
-                .init(titleText: "Mais informações sobre o investimento",
-                      titleFont: Resource.Font.medium.of(size: 16),
-                      subtitleText: "",
-                      subtitleFont: Resource.Font.light.of(size: 16)))
-        
-        let headerTextCellBuilder =
-            FundsThreeColumnsCellBuilder(configuration:
-                .init(firstColumn: nil,
-                      secondColumn: ("Fundo", .lightGray),
-                      thirdColumn: ("CDI", .lightGray)))
-        
-        let monthlyTextCellBuilder =
-            FundsThreeColumnsCellBuilder(configuration:
-                .init(firstColumn: ("No mês", .lightGray),
-                      secondColumn: ("0,3%", .black),
-                      thirdColumn: ("0,3%", .black)))
-        
-        let annuallyTextCellBuilder =
-            FundsThreeColumnsCellBuilder(configuration:
-                .init(firstColumn: ("No ano", .lightGray),
-                      secondColumn: ("13,01%", .black),
-                      thirdColumn: ("12,08%", .black)))
-        
-        let twelveMonthsTextCellBuilder =
-            FundsThreeColumnsCellBuilder(configuration:
-                .init(firstColumn: ("12 meses", .lightGray),
-                      secondColumn: ("17,9%", .black),
-                      thirdColumn: ("17,6%", .black)))
-        
-        builders.append(moreInfoTextCellBuilder)
-        builders.append(headerTextCellBuilder)
-        builders.append(monthlyTextCellBuilder)
-        builders.append(annuallyTextCellBuilder)
-        builders.append(twelveMonthsTextCellBuilder)
-        
-        return builders
     }
     
 }
