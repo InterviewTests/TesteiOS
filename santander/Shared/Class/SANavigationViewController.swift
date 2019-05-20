@@ -28,12 +28,11 @@ public class SANavigationViewController: UINavigationController {
 public extension SANavigationViewController {
     
     func prepare() {
-        
         self.navigationBar.shadowImage = UIImage()
-        self.navigationBar.setBackgroundImage(UIImage(), for: .default)
         
-        self.navigationBar.barTintColor = .white
         self.navigationBar.tintColor = .red
+        self.navigationBar.barTintColor = .white
+        self.navigationBar.backgroundColor = .white
         self.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.font: Resource.Font.medium.of(size: 16),
             NSAttributedString.Key.foregroundColor: UIColor.black]

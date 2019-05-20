@@ -60,6 +60,7 @@ extension FundsViewController: TableViewing {
         var sections = [TableViewSectionBuilder]()
         sections.append(TableViewStaticSection(cellBuilders: buildIntroCellBuilders()))
         sections.append(TableViewStaticSection(cellBuilders: buildFundsRiskCellBuilders()))
+        sections.append(TableViewStaticSection(cellBuilders: buildMoreInfoCellBuilders()))
         return sections
     }
     
@@ -98,12 +99,56 @@ extension FundsViewController: TableViewing {
                 .init(titleText: "Grau de risco do investimento",
                       titleFont: Resource.Font.medium.of(size: 16),
                       subtitleText: "",
-                      subtitleFont: Resource.Font.light.of(size: 16)))
+                      subtitleFont: Resource.Font.light.of(size: 16)),
+                                 cellHeight: 70)
         
         let thermometerCellBuilder = ThermometerViewCellBuilder()
         
         builders.append(riskTextCellBuilder)
         builders.append(thermometerCellBuilder)
+        
+        return builders
+    }
+    
+    public func buildMoreInfoCellBuilders() -> [TableViewCellBuilder] {
+        var builders = [TableViewCellBuilder]()
+        
+        let moreInfoTextCellBuilder =
+            FundsTextCellBuilder(configuration:
+                .init(titleText: "Mais informações sobre o investimento",
+                      titleFont: Resource.Font.medium.of(size: 16),
+                      subtitleText: "",
+                      subtitleFont: Resource.Font.light.of(size: 16)))
+        
+        let headerTextCellBuilder =
+            FundsThreeColumnsCellBuilder(configuration:
+                .init(firstColumn: nil,
+                      secondColumn: ("Fundo", .lightGray),
+                      thirdColumn: ("CDI", .lightGray)))
+        
+        let monthlyTextCellBuilder =
+            FundsThreeColumnsCellBuilder(configuration:
+                .init(firstColumn: ("No mês", .lightGray),
+                      secondColumn: ("0,3%", .black),
+                      thirdColumn: ("0,3%", .black)))
+        
+        let annuallyTextCellBuilder =
+            FundsThreeColumnsCellBuilder(configuration:
+                .init(firstColumn: ("No ano", .lightGray),
+                      secondColumn: ("13,01%", .black),
+                      thirdColumn: ("12,08%", .black)))
+        
+        let twelveMonthsTextCellBuilder =
+            FundsThreeColumnsCellBuilder(configuration:
+                .init(firstColumn: ("12 meses", .lightGray),
+                      secondColumn: ("17,9%", .black),
+                      thirdColumn: ("17,6%", .black)))
+        
+        builders.append(moreInfoTextCellBuilder)
+        builders.append(headerTextCellBuilder)
+        builders.append(monthlyTextCellBuilder)
+        builders.append(annuallyTextCellBuilder)
+        builders.append(twelveMonthsTextCellBuilder)
         
         return builders
     }

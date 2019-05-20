@@ -1,5 +1,5 @@
 //
-//  FundsTextCellBuilder.swift
+//  FundsThreeColumnsCellBuilder.swift
 //  santander
 //
 //  Created by Jonatha Lima on 19/05/19.
@@ -8,38 +8,35 @@
 
 import UIKit
 
-public final class FundsTextCellBuilder {
+public final class FundsThreeColumnsCellBuilder {
     
-    var configuration: FundsTextCell.Configuration
+    var configuration: FundsThreeColumnsCell.Configuration
     var isSelectable: Bool
-    var height: CGFloat?
     
-    init(configuration: FundsTextCell.Configuration,
-         isSelectable: Bool = false,
-         cellHeight: CGFloat? = nil) {
+    init(configuration: FundsThreeColumnsCell.Configuration,
+         isSelectable: Bool = false) {
         
         self.configuration = configuration
         self.isSelectable = isSelectable
-        self.height = cellHeight
     }
     
 }
 
-extension FundsTextCellBuilder: TableViewCellBuilder {
+extension FundsThreeColumnsCellBuilder: TableViewCellBuilder {
     
     public var cellHeight: CGFloat {
-        return self.height ?? 97
+        return 32
     }
     
     public func registerCellIdentifier(in tableView: UITableView) {
-        tableView.register(FundsTextCell.self,
-                           forCellReuseIdentifier: FundsTextCell.identifier)
+        tableView.register(FundsThreeColumnsCell.self,
+                           forCellReuseIdentifier: FundsThreeColumnsCell.identifier)
     }
     
     public func tableViewCell(at indexPath: IndexPath,
                               on tableView: UITableView) -> UITableViewCell {
         
-        let cell: FundsTextCell = tableView.dequeue(indexPath: indexPath)
+        let cell: FundsThreeColumnsCell = tableView.dequeue(indexPath: indexPath)
         cell.configure(data: configuration)
         
         return cell
