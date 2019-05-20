@@ -57,39 +57,11 @@ class FieldCell: UITableViewCell {
         else { return }
         
         if typeField == .telNumber {
-            let convertedText = convertNumberToPhoneFormat(number: text)
+            let convertedText = text.convertToPhoneNumberFormat() ?? text
             textField.text = convertedText
             delegate?.textDidChange(for: indexPath, text: convertedText, typeField: typeField)
         } else {
             delegate?.textDidChange(for: indexPath, text: text, typeField: typeField)
-        }
-    }
-    
-    private func convertNumberToPhoneFormat(number: String) -> String {
-        var text = number.replacingOccurrences(of: "(", with: "")
-        text = text.replacingOccurrences(of: ")", with: "")
-        text = text.replacingOccurrences(of: "-", with: "")
-        text = text.replacingOccurrences(of: " ", with: "")
-        
-        let textLenght = text.count
-        
-        switch textLenght {
-        case 1, 2:
-            return "(\(text)"
-        case 3, 4, 5, 6, 7:
-            return "(\(text.prefix(2))) \(text.suffix(textLenght - 2))"
-        case 8, 9:
-            let start = text.index(text.startIndex, offsetBy: 2)
-            let end = text.index(text.endIndex, offsetBy: 7 - textLenght)
-            let range = start..<end
-            return "(\(text.prefix(2))) \(text[range])-\(text.suffix(textLenght - 7))"
-        case 10, 11:
-            let start = text.index(text.startIndex, offsetBy: 2)
-            let end = text.index(text.endIndex, offsetBy: -4)
-            let range = start..<end
-            return "(\(text.prefix(2))) \(text[range])-\(text.suffix(4))"
-        default:
-            return "\(number.prefix(15))"
         }
     }
     
