@@ -167,7 +167,7 @@ extension FormViewController: FormDisplayLogic {
     }
 }
 
-extension FormViewController: UITableViewDataSource {
+extension FormViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayedFormCells.count
     }
@@ -225,6 +225,15 @@ extension FormViewController: UITableViewDataSource {
             cell.isHidden = formCell.hidden
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let displayedFormCell = displayedFormCells[indexPath.row]
+        
+        if displayedFormCell.hidden {
+            return 0
+        }
+        return tableView.estimatedRowHeight
     }
 }
 
