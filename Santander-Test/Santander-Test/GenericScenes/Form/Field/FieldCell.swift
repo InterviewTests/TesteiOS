@@ -44,6 +44,9 @@ class FieldCell: UITableViewCell {
         guard let viewModel = viewModel else { return }
         label.text = viewModel.message ?? "-"
         topConstraint.constant = CGFloat(viewModel.topSpace ?? 8)
+        if viewModel.typeField == .telNumber {
+            textField.keyboardType = .decimalPad
+        }
     }
     
     @IBAction func textFieldDidChange(_ sender: Any) {
@@ -52,7 +55,57 @@ class FieldCell: UITableViewCell {
             let text = textField.text,
             let typeField = viewModel?.typeField
         else { return }
-        delegate?.textDidChange(for: indexPath, text: text, typeField: typeField)
+        
+        let convertedText = convertNumberToPhoneFormat(number: text)
+        textField.text = convertedText
+        delegate?.textDidChange(for: indexPath, text: convertedText, typeField: typeField)
+    }
+    
+    private func convertNumberToPhoneFormat(number: String) -> String {
+        
+        var text = number.replacingOccurrences(of: "(", with: "")
+        text = text.replacingOccurrences(of: ")", with: "")
+        text = text.replacingOccurrences(of: "-", with: "")
+        text = text.replacingOccurrences(of: " ", with: "")
+        
+        let textLenght = text.count
+        
+        if textLenght == 1 {
+            return "(\(text)"
+        } else if textLenght == 2 {
+            return "(\(text)"
+        } else if textLenght == 3 {
+            return "(\(text.prefix(2))) \(text.suffix(1))"
+        } else if textLenght == 4 {
+            return "(\(text.prefix(2))) \(text.suffix(2))"
+        } else if textLenght == 5 {
+            return "(\(text.prefix(2))) \(text.suffix(3))"
+        } else if textLenght == 6 {
+            return "(\(text.prefix(2))) \(text.suffix(4))"
+        } else if textLenght == 7 {
+            return "(\(text.prefix(2))) \(text.suffix(5))"
+        } else if textLenght == 8 {
+            let start = text.index(text.startIndex, offsetBy: 2)
+            let end = text.index(text.endIndex, offsetBy: -1)
+            let range = start..<end
+            return "(\(text.prefix(2))) \(text[range])-\(text.suffix(1))"
+        } else if textLenght == 9 {
+            let start = text.index(text.startIndex, offsetBy: 2)
+            let end = text.index(text.endIndex, offsetBy: -2)
+            let range = start..<end
+            return "(\(text.prefix(2))) \(text[range])-\(text.suffix(2))"
+        } else if textLenght == 10 {
+            let start = text.index(text.startIndex, offsetBy: 2)
+            let end = text.index(text.endIndex, offsetBy: -4)
+            let range = start..<end
+            return "(\(text.prefix(2))) \(text[range])-\(text.suffix(4))"
+        } else if textLenght == 11 {
+            let start = text.index(text.startIndex, offsetBy: 2)
+            let end = text.index(text.endIndex, offsetBy: -4)
+            let range = start..<end
+            return "(\(text.prefix(2))) \(text[range])-\(text.suffix(4))"
+        }
+        return "\(number.prefix(15))"
     }
     
 }
