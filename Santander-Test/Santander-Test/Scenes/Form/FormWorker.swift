@@ -46,7 +46,6 @@ class FormWorker {
     }
     
     func validateAllFields(
-        displayedFormCells: [Form.GetFormCells.ViewModel.DisplayViewModel],
         tableView: UITableView,
         completion: (Bool, IndexPath?, String?) -> Void) {
         
@@ -54,10 +53,7 @@ class FormWorker {
         var responseIndexPath: IndexPath?
         var responseMessage: String?
         
-        for count in 0..<displayedFormCells.count {
-            let displayedFormCell = displayedFormCells[count]
-            guard displayedFormCell.type == .field else { continue }
-            
+        for count in 0..<tableView.numberOfRows(inSection: 0) {
             let indexPath = IndexPath(row: count, section: 0)
             if let cell = tableView.cellForRow(at: indexPath) as? FieldCell {
                 guard let typeField = cell.viewModel?.typeField else { return }

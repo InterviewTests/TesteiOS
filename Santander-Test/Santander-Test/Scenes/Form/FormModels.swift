@@ -69,7 +69,6 @@ enum Form {
     
     enum AllFieldsValidation {
         struct Request {
-            let displayedFormCells: [Form.GetFormCells.ViewModel.DisplayViewModel]
             let tableView: UITableView
         }
         struct Response {

@@ -56,12 +56,8 @@ class FormInteractor: FormBusinessLogic, FormDataStore {
     
     func validateAllFields(request: Form.AllFieldsValidation.Request) {
         worker = FormWorker()
-        
-        let displayedFormCells = request.displayedFormCells
         let tableView = request.tableView
-        
         worker?.validateAllFields(
-            displayedFormCells: displayedFormCells,
             tableView: tableView,
             completion: { (isValid, indexPath, message) in
                 let response = Form.AllFieldsValidation.Response(

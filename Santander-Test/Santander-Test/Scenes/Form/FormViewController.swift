@@ -209,7 +209,6 @@ extension FormViewController: FieldCellDelegate {
 extension FormViewController: SendCellDelegate {
     func buttonPressed() {
         let request = Form.AllFieldsValidation.Request(
-            displayedFormCells: displayedFormCells,
             tableView: tableView
         )
         interactor?.validateAllFields(request: request)
