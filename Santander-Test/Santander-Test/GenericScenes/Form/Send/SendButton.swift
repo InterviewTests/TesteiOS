@@ -25,7 +25,7 @@ class SendButton: UIButton {
     }
     
     private func configureLayout() {
-        backgroundColor = UIColor.darkRedColor
+        backgroundColor = UIColor.getColorDarkRed
         layer.cornerRadius = 25
     }
     
@@ -38,7 +38,7 @@ class SendButton: UIButton {
         frame.size = CGSize(width: originalWidth * 0.9, height: originalHeight * 0.9)
         center = buttonCenter
         layer.cornerRadius = 22.5
-        backgroundColor = UIColor.lightRedColor
+        backgroundColor = UIColor.getColorLightRed
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -47,7 +47,7 @@ class SendButton: UIButton {
         frame.size = CGSize(width: originalWidth, height: originalHeight)
         center = buttonCenter
         layer.cornerRadius = 25
-        backgroundColor = UIColor.darkRedColor
+        backgroundColor = UIColor.getColorDarkRed
         delegate?.buttonPressed()
     }
 }

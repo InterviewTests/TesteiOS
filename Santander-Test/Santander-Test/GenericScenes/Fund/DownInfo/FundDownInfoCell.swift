@@ -34,8 +34,8 @@ class FundDownInfoCell: UITableViewCell {
     }
     
     private func configureLayout() {
-        downInfoNameLabel.textColor = UIColor.darkGrayColor
-        button.tintColor = UIColor.darkRedColor
+        downInfoNameLabel.textColor = UIColor.getColorDarkGray
+        button.tintColor = UIColor.getColorDarkRed
     }
     
     private func didSetViewModel() {

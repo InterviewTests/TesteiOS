@@ -36,8 +36,8 @@ class FieldCell: UITableViewCell {
     }
     
     private func configureLayout() {
-        label.textColor = UIColor.darkGrayColor
-        lineView.backgroundColor = UIColor.lightGrayColor
+        label.textColor = UIColor.getColorDarkGray
+        lineView.backgroundColor = UIColor.getColorLightGray
     }
     
     private func didSetViewModel() {

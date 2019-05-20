@@ -31,15 +31,15 @@ class CheckboxCell: UITableViewCell {
     }
     
     private func configureLayout() {
-        checkboxOuterView.layer.borderColor = UIColor.darkGrayColor.cgColor
+        checkboxOuterView.layer.borderColor = UIColor.getColorDarkGray.cgColor
         checkboxOuterView.layer.borderWidth = 1
         checkboxOuterView.layer.cornerRadius = 3
         checkboxOuterView.backgroundColor = nil
         
-        checkboxInnerView.backgroundColor = UIColor.darkRedColor
+        checkboxInnerView.backgroundColor = UIColor.getColorDarkRed
         checkboxInnerView.layer.cornerRadius = 2
         
-        label.textColor = UIColor.darkGrayColor
+        label.textColor = UIColor.getColorDarkGray
     }
     
     private func didSetViewModel() {

@@ -127,9 +127,9 @@ extension FormViewController: FormDisplayLogic {
     func displayFieldValidation(viewModel: Form.FieldValidation.ViewModel) {
         if let cell = tableView.cellForRow(at: viewModel.indexPath) as? FieldCell {
             if viewModel.isValid {
-                cell.lineView.backgroundColor = UIColor.lightGreenColor
+                cell.lineView.backgroundColor = UIColor.getColorLightGreen
             } else {
-                cell.lineView.backgroundColor = UIColor.darkRedColor
+                cell.lineView.backgroundColor = UIColor.getColorDarkRed
             }
         }
     }

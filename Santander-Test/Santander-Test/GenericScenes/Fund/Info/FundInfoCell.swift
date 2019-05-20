@@ -28,7 +28,7 @@ class FundInfoCell: UITableViewCell {
     }
     
     private func configureLayout() {
-        infoName.textColor = UIColor.darkGrayColor
+        infoName.textColor = UIColor.getColorDarkGray
     }
     
     private func didSetViewModel() {

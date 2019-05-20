@@ -14,8 +14,8 @@ class FundRisk: UITableViewCell {
     
     @IBOutlet weak var lightGreenView: UIView!
     @IBOutlet weak var darkGreenView: UIView!
-    @IBOutlet weak var yellowView: UIView!
-    @IBOutlet weak var orangeView: UIView!
+    @IBOutlet weak var darkYellowView: UIView!
+    @IBOutlet weak var darkOrangeView: UIView!
     @IBOutlet weak var darkRedView: UIView!
     
     static let reuseIdentifier = "FundRisk"
@@ -32,23 +32,51 @@ class FundRisk: UITableViewCell {
     }
     
     private func configureLayout() {
-        label.textColor = UIColor.darkGrayColor
+        label.textColor = UIColor.getColorDarkGray
+        lightGreenView.backgroundColor = UIColor.getColorRiskLightGreen
+        darkGreenView.backgroundColor = UIColor.getColorRiskDarkGreen
+        darkYellowView.backgroundColor = UIColor.getColorRiskDarkYellow
+        darkOrangeView.backgroundColor = UIColor.getColorRiskDarkOrange
+        darkRedView.backgroundColor = UIColor.getColorRiskDarkRed
+        lightGreenView.roundCorners(corners: [.bottomLeft, .topLeft], radius: 3.0)
+        darkRedView.roundCorners(corners: [.bottomRight, .topRight], radius: 3.0)
     }
     
     private func didSetViewModel() {
+        
+        selectRiskView()
+    }
+    
+    private func selectRiskView() {
         guard
             let viewModelRisk = viewModel?.risk,
             1...5 ~= viewModelRisk
-        else { return }
+            else { return }
         
-//        switch viewModel.risk {
-//        case 1:
-//
-//        default:
-//            darkRedView
-//        }
+        switch viewModelRisk {
+        case 1:
+            highlightRiskView(riskView: lightGreenView)
+        case 2:
+            highlightRiskView(riskView: darkGreenView)
+        case 3:
+            highlightRiskView(riskView: darkYellowView)
+        case 4:
+            highlightRiskView(riskView: darkOrangeView)
+        case 5:
+            highlightRiskView(riskView: darkRedView)
+        default:
+            return
+        }
+        
     }
     
+    private func highlightRiskView(riskView: UIView) {
+        riskView.constraints.forEach { (constraint) in
+            if constraint.firstAttribute == .height {
+                constraint.constant = 10
+            }
+        }
+    }
 }
 
 extension FundRisk {

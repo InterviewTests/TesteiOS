@@ -42,13 +42,13 @@ class FundMoreInfoCell: UITableViewCell {
     }
     
     private func configureLayout() {
-        moreInfoTitleLabel.textColor = UIColor.darkGrayColor
-        monthLabel.textColor = UIColor.darkGrayColor
-        yearLabel.textColor = UIColor.darkGrayColor
-        twelveMonthsLabel.textColor = UIColor.darkGrayColor
-        FundLabel.textColor = UIColor.darkGrayColor
-        cdiLabel.textColor = UIColor.darkGrayColor
-        lineView.backgroundColor = UIColor.lightGrayColor
+        moreInfoTitleLabel.textColor = UIColor.getColorDarkGray
+        monthLabel.textColor = UIColor.getColorDarkGray
+        yearLabel.textColor = UIColor.getColorDarkGray
+        twelveMonthsLabel.textColor = UIColor.getColorDarkGray
+        FundLabel.textColor = UIColor.getColorDarkGray
+        cdiLabel.textColor = UIColor.getColorDarkGray
+        lineView.backgroundColor = UIColor.getColorLightGray
     }
     
     private func didSetViewModel() {

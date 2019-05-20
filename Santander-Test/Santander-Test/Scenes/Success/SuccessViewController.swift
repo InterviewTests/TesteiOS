@@ -51,8 +51,8 @@ class SuccessViewController: UIViewController {
     }
     
     private func configureLayout() {
-        thankYouLabel.textColor = UIColor.darkGrayColor
-        sendNewMessageButton.tintColor = UIColor.darkRedColor
+        thankYouLabel.textColor = UIColor.getColorDarkGray
+        sendNewMessageButton.tintColor = UIColor.getColorDarkRed
     }
     
     @IBAction func sendNewMessageButton(_ sender: Any) {

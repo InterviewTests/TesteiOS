@@ -29,9 +29,9 @@ class FundHeader: UITableViewCell {
     }
     
     private func configureLayout() {
-        title.textColor = UIColor.darkGrayColor
-        whatIs.textColor = UIColor.darkGrayColor
-        definition.textColor = UIColor.darkGrayColor
+        title.textColor = UIColor.getColorDarkGray
+        whatIs.textColor = UIColor.getColorDarkGray
+        definition.textColor = UIColor.getColorDarkGray
     }
     
     private func didSetViewModel() {
