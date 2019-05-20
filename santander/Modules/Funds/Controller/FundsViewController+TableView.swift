@@ -150,6 +150,28 @@ extension FundsViewController: TableViewing {
                       secondColumn: nil,
                       thirdColumn: ("value", .black)))
         
+        let resource = ("Baixar", Resource.Image.download.image)
+        
+        let essentialsCellBuilder =
+            FundsResourceCellBuilder(configuration:
+                .init(title: "Essenciais", resource: resource))
+        
+        let performanceCellBuilder =
+            FundsResourceCellBuilder(configuration:
+                .init(title: "Desempenho", resource: resource))
+        
+        let complementaryCellBuilder =
+            FundsResourceCellBuilder(configuration:
+                .init(title: "Complementares", resource: resource))
+        
+        let regulationCellBuilder =
+            FundsResourceCellBuilder(configuration:
+                .init(title: "Regulamento", resource: resource))
+        
+        let accessionCellBuilder =
+            FundsResourceCellBuilder(configuration:
+                .init(title: "Adesão", resource: resource))
+        
         builders.append(moreInfoTextCellBuilder)
         builders.append(headerTextCellBuilder)
         builders.append(monthlyTextCellBuilder)
@@ -164,6 +186,12 @@ extension FundsViewController: TableViewing {
         builders.append(rescueCellBuilder)
         builders.append(quotaCellBuilder)
         builders.append(paymentCellBuilder)
+        builders.append(essentialsCellBuilder)
+        builders.append(performanceCellBuilder)
+        builders.append(complementaryCellBuilder)
+        builders.append(regulationCellBuilder)
+        builders.append(accessionCellBuilder)
+        
         
         return builders
     }

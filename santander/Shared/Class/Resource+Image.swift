@@ -18,6 +18,7 @@ extension Resource {
         case separatorInline = "separator_inline"
         case selector
         case selectorSingle = "separator_single"
+        case download
         
         var image: UIImage {
             guard let image = UIImage(named: self.rawValue) else {

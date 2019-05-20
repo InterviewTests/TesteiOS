@@ -47,25 +47,25 @@ extension SeparatorInlineViewCell: ViewCoding {
     }
     
     public func setupConstraints() {
-        containerWallView.snp.remakeConstraints { make in
-            make.top.greaterThanOrEqualToSuperview()
-            make.left.right.equalToSuperview()
-            make.height.equalTo(0)
+        containerWallView.snp.remakeConstraints { remake in
+            remake.top.greaterThanOrEqualToSuperview()
+            remake.left.right.equalToSuperview()
+            remake.height.equalTo(0)
         }
         
-        separatorImage.snp.remakeConstraints { make in
-            make.top.equalTo(containerWallView.snp.bottom)
-            make.bottom.equalToSuperview()
-            make.left.equalToSuperview().offset(30)
-            make.right.equalToSuperview().inset(30)
+        separatorImage.snp.remakeConstraints { remake in
+            remake.top.equalTo(containerWallView.snp.bottom)
+            remake.bottom.equalToSuperview()
+            remake.left.equalToSuperview().offset(30)
+            remake.right.equalToSuperview().inset(30)
             
             switch style {
             case .none:
-                make.height.equalTo(0)
+                remake.height.equalTo(0)
             case .line:
-                make.height.equalTo(1)
+                remake.height.equalTo(1)
             case .arrow:
-                make.height.equalTo(SeparatorInlineViewCell.height)
+                remake.height.equalTo(SeparatorInlineViewCell.height)
             }
             
         }
