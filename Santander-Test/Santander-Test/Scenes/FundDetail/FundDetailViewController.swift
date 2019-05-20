@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol FundDetailDisplayLogic: class {
     func displayFundDetail(viewModel: FundDetail.GetFundDetail.ViewModel)
@@ -122,6 +123,12 @@ class FundDetailViewController: UIViewController {
             forCellReuseIdentifier: SendCell.reuseIdentifier
         )
     }
+    
+    private func showSafariVC(for url: String) {
+        guard let url = URL(string: url) else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
+    }
 }
 
 extension FundDetailViewController: UITableViewDataSource {
@@ -200,6 +207,7 @@ extension FundDetailViewController: UITableViewDataSource {
                     downInfoName: displayedFund.downInfo[indexPath.row].name
                 )
             }
+            cell.delegate = self
             return cell
         case 5:
             let cell = tableView.dequeueReusableCell(
@@ -227,5 +235,11 @@ extension FundDetailViewController: FundDetailDisplayLogic {
     
     func displayError(viewModel: FundDetail.FundDetailError.ViewModel) {
         showErrorFeedback(viewModel.message)
+    }
+}
+
+extension FundDetailViewController: FundDownInfoCellDelegate {
+    func buttonPressed() {
+        showSafariVC(for: "https://www.google.com")
     }
 }
