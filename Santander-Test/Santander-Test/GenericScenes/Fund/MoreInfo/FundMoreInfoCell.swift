@@ -55,45 +55,57 @@ class FundMoreInfoCell: UITableViewCell {
         guard let fundMoreInfo = viewModel?.fundMoreInfo else { return }
         
         let monthFund: String = {
-            guard let monthFund = fundMoreInfo.month?.fund else {
+            guard
+                let monthFund = fundMoreInfo.month?.fund,
+                let monthFundFormatted = monthFund.getBrazilianPercentFormat() else {
                 return "-"
             }
-            return String(monthFund)
+            return monthFundFormatted
         }()
         
         let yearFund: String = {
-            guard let yearFund = fundMoreInfo.year?.fund else {
+            guard
+                let yearFund = fundMoreInfo.year?.fund,
+                let yearFundFormatted = yearFund.getBrazilianPercentFormat() else {
                 return "-"
             }
-            return String(yearFund)
+            return yearFundFormatted
         }()
         
         let twelveMonthsFund: String = {
-            guard let twelveMonthsFund = fundMoreInfo.twelveMonths?.fund else {
+            guard
+                let twelveMonthsFund = fundMoreInfo.twelveMonths?.fund,
+                let twelveMonthsFundFormatted = twelveMonthsFund.getBrazilianPercentFormat() else {
                 return "-"
             }
-            return String(twelveMonthsFund)
+            return twelveMonthsFundFormatted
         }()
         
         let monthCdi: String = {
-            guard let monthCdi = fundMoreInfo.month?.CDI else {
+            guard
+                let monthCdi = fundMoreInfo.month?.CDI,
+                let monthCdiFormatted = monthCdi.getBrazilianPercentFormat() else {
                 return "-"
             }
-            return String(monthCdi)
+            return monthCdiFormatted
         }()
         
         let yearCdi: String = {
-            guard let yearCdi = fundMoreInfo.year?.CDI else {
+            guard
+                let yearCdi = fundMoreInfo.year?.CDI,
+                let yearCdiFormatted = yearCdi.getBrazilianPercentFormat() else {
                 return "-"
             }
-            return String(yearCdi)
+            return yearCdiFormatted
         }()
         
         let twelveMonthsCdi: String = {
-            guard let twelveMonthsCdi = fundMoreInfo.twelveMonths?.CDI else {
+            guard
+                let twelveMonthsCdi = fundMoreInfo.twelveMonths?.CDI,
+                let twelveMonthsCdiFormatted = twelveMonthsCdi.getBrazilianPercentFormat() else {
                 return "-"
             }
-            return String(twelveMonthsCdi)
+            return twelveMonthsCdiFormatted
         }()
         
         monthFundLabel.text = monthFund
