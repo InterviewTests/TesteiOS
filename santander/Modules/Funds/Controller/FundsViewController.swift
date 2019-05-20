@@ -11,7 +11,7 @@ import UIKit
 public class FundsViewController: UIViewController {
     
     public var dataSource: TableViewDataSource?
-    public weak var coordinator: (Funding & Contacting)?
+    public weak var delegate: (Funding & Contacting & Browsing)?
     
     internal var fundsView: FundsView
     

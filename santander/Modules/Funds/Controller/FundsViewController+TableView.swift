@@ -153,7 +153,7 @@ extension FundsViewController: TableViewing {
         let resource = ("Baixar", Resource.Image.download.image)
         
         let resourceTapAction: (() -> Void) = {
-            print("Clicked")
+            self.delegate?.navigate(to: "https://google.com")
         }
         
         let essentialsCellBuilder =

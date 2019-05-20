@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 public protocol Funding: AnyObject {
     func invest()
@@ -16,24 +17,34 @@ public protocol Contacting: AnyObject {
     func contact()
 }
 
+public protocol Browsing {
+    func navigate(to url: String)
+}
+
 public class HomeCoordinator: Coordinator {
     
     public var viewControllers: [UIViewController]
     
-    init(viewControllers: [UIViewController]? = nil) {
-        guard let viewControllers = viewControllers else {
-            
-            let fundsNavigationController =
-                SANavigationViewController(rootViewController: FundsViewController())
-            
-            let contactNavigationController =
-                SANavigationViewController(rootViewController: ContactViewController())
-            
-            self.viewControllers = [fundsNavigationController,
-                                    contactNavigationController]
-            return
-        }
-        self.viewControllers = viewControllers
+    private var homeController: HomeTabViewController
+    
+    init(homeController: HomeTabViewController) {
+        self.homeController = homeController
+        
+        let fundsController = FundsViewController()
+        
+        let fundsNavigationController =
+            SANavigationViewController(rootViewController: fundsController)
+        
+        let contactController = ContactViewController()
+        
+        let contactNavigationController =
+            SANavigationViewController(rootViewController: contactController)
+        
+        self.viewControllers = [fundsNavigationController,
+                                contactNavigationController]
+        
+        fundsController.delegate = self
+        
     }
     
     public func start() {}
@@ -53,5 +64,21 @@ extension HomeCoordinator: Contacting {
         // TODO: Start contact coordinator
     }
     
+}
+
+extension HomeCoordinator: Browsing {
+    
+    public func navigate(to url: String) {
+        
+        guard let url = URL(string: url) else {
+            return
+        }
+        
+        let safariController = SFSafariViewController(url: url)
+        
+        homeController.present(safariController,
+                               animated: true,
+                               completion: nil)
+    }
     
 }
