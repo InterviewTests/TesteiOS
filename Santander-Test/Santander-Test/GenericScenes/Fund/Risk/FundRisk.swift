@@ -18,6 +18,9 @@ class FundRisk: UITableViewCell {
     @IBOutlet weak var darkOrangeView: UIView!
     @IBOutlet weak var darkRedView: UIView!
     
+    @IBOutlet weak var riskPointer: UIImageView!
+    @IBOutlet weak var riskPointerCenterConstraint: NSLayoutConstraint!
+    
     static let reuseIdentifier = "FundRisk"
     
     var viewModel: FundRisk.ViewModel? {
@@ -56,14 +59,19 @@ class FundRisk: UITableViewCell {
         switch viewModelRisk {
         case 1:
             highlightRiskView(riskView: lightGreenView)
+            setupRiskPointer(aboveRiskView: lightGreenView)
         case 2:
             highlightRiskView(riskView: darkGreenView)
+            setupRiskPointer(aboveRiskView: darkGreenView)
         case 3:
             highlightRiskView(riskView: darkYellowView)
+            setupRiskPointer(aboveRiskView: darkYellowView)
         case 4:
             highlightRiskView(riskView: darkOrangeView)
+            setupRiskPointer(aboveRiskView: darkOrangeView)
         case 5:
             highlightRiskView(riskView: darkRedView)
+            setupRiskPointer(aboveRiskView: darkRedView)
         default:
             return
         }
@@ -76,6 +84,10 @@ class FundRisk: UITableViewCell {
                 constraint.constant = 10
             }
         }
+    }
+    
+    private func setupRiskPointer(aboveRiskView riskView: UIView) {
+        riskPointerCenterConstraint.constant = riskView.frame.midX - darkYellowView.frame.midX
     }
 }
 
