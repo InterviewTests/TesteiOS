@@ -26,10 +26,11 @@ enum Form {
         }
         struct ViewModel {
             struct DisplayViewModel {
+                let id: Int
                 let type: Type
                 let message: String?
                 let typeField: TypeField?
-                let hidden: Bool
+                var hidden: Bool
                 let topSpacing: Int
                 let show: Int?
                 let required: Bool

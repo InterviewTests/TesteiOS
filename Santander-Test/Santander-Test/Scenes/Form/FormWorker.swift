@@ -55,7 +55,9 @@ class FormWorker {
         
         for count in 0..<tableView.numberOfRows(inSection: 0) {
             let indexPath = IndexPath(row: count, section: 0)
-            if let cell = tableView.cellForRow(at: indexPath) as? FieldCell {
+            if
+                let cell = tableView.cellForRow(at: indexPath) as? FieldCell,
+                !cell.isHidden {
                 guard let typeField = cell.viewModel?.typeField else { return }
                 let text = cell.textField.text ?? ""
                 let isValid = validateField(text: text, typeField: typeField)

@@ -117,6 +117,18 @@ class FormViewController: UIViewController {
         let superView = view.superview!
         PopTip().show(text: tip, direction: .up, maxWidth: 250, in: superView, from: view.frame, duration: 4)
     }
+    
+    private func hideAndDishideFields(value: Bool, _ cell: CheckboxCell) {
+        guard let cellToHide = cell.viewModel?.show else { return }
+        for count in 0..<displayedFormCells.count {
+            let displayedCell = displayedFormCells[count]
+            if displayedCell.id == cellToHide {
+                displayedFormCells[count].hidden = value ? false : true
+                let indexPath = IndexPath(row: count, section: 0)
+                tableView.reloadRows(at: [indexPath], with: .none)
+            }
+        }
+    }
 
 }
 
@@ -175,6 +187,7 @@ extension FormViewController: UITableViewDataSource {
                 indexPath: indexPath
             )
             cell.delegate = self
+            cell.isHidden = formCell.hidden
             return cell
         case Type.text:
             let cell = tableView.dequeueReusableCell(
@@ -184,6 +197,7 @@ extension FormViewController: UITableViewDataSource {
                 message: formCell.message,
                 topSpace: formCell.topSpacing
             )
+            cell.isHidden = formCell.hidden
             return cell
         case Type.image:
             return UITableViewCell()
@@ -193,8 +207,11 @@ extension FormViewController: UITableViewDataSource {
                 ) as! CheckboxCell
             cell.viewModel = CheckboxCell.ViewModel(
                 message: formCell.message,
-                topSpace: formCell.topSpacing
+                topSpace: formCell.topSpacing,
+                show: formCell.show
             )
+            cell.delegate = self
+            cell.isHidden = formCell.hidden
             return cell
         case Type.send:
             let cell = tableView.dequeueReusableCell(
@@ -205,6 +222,7 @@ extension FormViewController: UITableViewDataSource {
                 topSpace: formCell.topSpacing
             )
             cell.delegate = self
+            cell.isHidden = formCell.hidden
             return cell
         }
     }
@@ -223,5 +241,11 @@ extension FormViewController: SendCellDelegate {
             tableView: tableView
         )
         interactor?.validateAllFields(request: request)
+    }
+}
+
+extension FormViewController: CheckboxCellDelegate {
+    func didChoose(value: Bool, _ cell: CheckboxCell) {
+        hideAndDishideFields(value: value, cell)
     }
 }

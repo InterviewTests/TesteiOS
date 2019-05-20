@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CheckboxCellDelegate: class {
+    func didChoose(value: Bool, _ cell: CheckboxCell)
+}
+
 class CheckboxCell: UITableViewCell {
     
     @IBOutlet weak var checkboxOuterView: CheckBox!
@@ -16,6 +20,8 @@ class CheckboxCell: UITableViewCell {
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
     static let reuseIdentifier = "CheckboxCell"
+    
+    weak var delegate: CheckboxCellDelegate?
     
     var viewModel: CheckboxCell.ViewModel? {
         didSet {
@@ -39,7 +45,7 @@ class CheckboxCell: UITableViewCell {
     }
     
     private func didSetViewModel() {
-        checkboxOuterView.isChecked = true
+        checkboxOuterView.isChecked = false
         guard let viewModel = viewModel else { return }
         label.text = viewModel.message ?? "-"
         topConstraint.constant = CGFloat(viewModel.topSpace ?? 8)
@@ -48,7 +54,7 @@ class CheckboxCell: UITableViewCell {
 
 extension CheckboxCell: CheckBoxDelegate {
     func valueDidChange(value: Bool) {
-        print("dscsd")
+        delegate?.didChoose(value: value, self)
     }
     
 }
@@ -57,5 +63,6 @@ extension CheckboxCell {
     struct ViewModel {
         let message: String?
         let topSpace: Int?
+        let show: Int?
     }
 }

@@ -56,9 +56,13 @@ class FieldCell: UITableViewCell {
             let typeField = viewModel?.typeField
         else { return }
         
-        let convertedText = convertNumberToPhoneFormat(number: text)
-        textField.text = convertedText
-        delegate?.textDidChange(for: indexPath, text: convertedText, typeField: typeField)
+        if typeField == .telNumber {
+            let convertedText = convertNumberToPhoneFormat(number: text)
+            textField.text = convertedText
+            delegate?.textDidChange(for: indexPath, text: convertedText, typeField: typeField)
+        } else {
+            delegate?.textDidChange(for: indexPath, text: text, typeField: typeField)
+        }
     }
     
     private func convertNumberToPhoneFormat(number: String) -> String {

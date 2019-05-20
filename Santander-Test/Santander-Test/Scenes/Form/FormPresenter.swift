@@ -27,7 +27,10 @@ class FormPresenter: FormPresentationLogic {
         var displayedCells: [Form.GetFormCells.ViewModel.DisplayViewModel] = []
         for formCell in response.formCells {
             
-            guard let type = formCell.type else {
+            guard
+                let type = formCell.type,
+                let id = formCell.id
+                else {
                 continue
             }
             let message = formCell.message
@@ -38,6 +41,7 @@ class FormPresenter: FormPresentationLogic {
             let required = formCell.required ?? false
             
             let displayedCell = Form.GetFormCells.ViewModel.DisplayViewModel(
+                id: id,
                 type: type,
                 message: message,
                 typeField: typeField,
