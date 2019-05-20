@@ -51,26 +51,23 @@ extension SACheckbox {
         
         guard let currentImage = checkboxButton.currentImage,
             currentImage == Resource.Image.checkbox.image else {
-                setCheckbox(filled: true)
+                setCheckbox(filled: false)
                 return
         }
         
-        setCheckbox(filled: false)
+        setCheckbox(filled: true)
     }
     
     func setCheckbox(filled: Bool) {
         
         guard filled else {
-            checkboxButton.setImage(Resource.Image.checkbox.image, for: .normal)
+            checkboxButton
+                .setImage(Resource.Image.checkbox.image, for: .normal)
             return
         }
         
-        checkboxButton.setImage(Resource.Image.checkboxFilled.image, for: .normal)
-        
-        UIView.animate(withDuration: 0.3) {
-            self.layoutIfNeeded()
-        }
-        
+        self.checkboxButton
+            .setImage(Resource.Image.checkboxFilled.image, for: .normal)
     }
     
 }

@@ -38,7 +38,7 @@ public class SAButton: UIButton {
     
     override public var isHighlighted: Bool {
         didSet {
-            UIView.animate(withDuration: 0.25,
+            UIView.animate(withDuration: 0.3,
                            delay: 0,
                            options: [.beginFromCurrentState, .allowUserInteraction],
                            animations: {
