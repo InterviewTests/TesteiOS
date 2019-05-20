@@ -62,11 +62,11 @@ class FundDetailViewController: UIViewController {
         super.viewDidLoad()
         
         setupTableView()
-        setupTabBar()
         requestData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupTabBar()
     }
     

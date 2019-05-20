@@ -18,9 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FKh-6s-B9G">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FKh-6s-B9G">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="wx9-Yb-d9K" id="5Rn-7J-xg8"/>
@@ -28,6 +27,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FKh-6s-B9G" firstAttribute="trailing" secondItem="oLe-0X-jlI" secondAttribute="trailing" id="77d-F2-B9X"/>
+                            <constraint firstItem="FKh-6s-B9G" firstAttribute="leading" secondItem="oLe-0X-jlI" secondAttribute="leading" id="Tq4-57-Jm9"/>
+                            <constraint firstItem="FKh-6s-B9G" firstAttribute="bottom" secondItem="oLe-0X-jlI" secondAttribute="bottom" id="fSG-yY-9lD"/>
+                            <constraint firstItem="FKh-6s-B9G" firstAttribute="top" secondItem="oLe-0X-jlI" secondAttribute="top" id="ipF-Af-kWY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="oLe-0X-jlI"/>
                     </view>
                     <connections>
