@@ -8,7 +8,28 @@
 
 import UIKit
 
-class MainTabBar: UITabBarController {}
+class MainTabBar: UITabBarController {
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupTabBar()
+    }
+    
+    private func setupTabBar() {
+        tabBar.barTintColor = UIColor.getColorDarkRed
+        tabBar.items?.forEach({ (item) in
+            item.setTitleTextAttributes(
+                [NSAttributedString.Key.foregroundColor: UIColor.white,
+                 NSAttributedString.Key.font: UIFont(name: "DINPro-Medium", size: 19) as Any],
+                for: .normal
+            )
+        })
+        
+        tabBar.items?.first?.title = "Investimento"
+        tabBar.items?[1].title = "Contato"
+    }
+    
+}
 
 extension MainTabBar {
     enum BackgroundImageName: String {
