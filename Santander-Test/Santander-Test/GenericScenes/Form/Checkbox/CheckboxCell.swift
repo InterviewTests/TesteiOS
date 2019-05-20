@@ -10,8 +10,7 @@ import UIKit
 
 class CheckboxCell: UITableViewCell {
     
-    @IBOutlet weak var checkboxOuterView: UIView!
-    @IBOutlet weak var checkboxInnerView: UIView!
+    @IBOutlet weak var checkboxOuterView: CheckBox!
     @IBOutlet weak var label: UILabel!
     
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
@@ -28,25 +27,30 @@ class CheckboxCell: UITableViewCell {
         super.awakeFromNib()
         
         configureLayout()
+        setupCheckboxDelegate()
     }
     
     private func configureLayout() {
-        checkboxOuterView.layer.borderColor = UIColor.getColorDarkGray.cgColor
-        checkboxOuterView.layer.borderWidth = 1
-        checkboxOuterView.layer.cornerRadius = 3
-        checkboxOuterView.backgroundColor = nil
-        
-        checkboxInnerView.backgroundColor = UIColor.getColorDarkRed
-        checkboxInnerView.layer.cornerRadius = 2
-        
         label.textColor = UIColor.getColorDarkGray
     }
     
+    private func setupCheckboxDelegate() {
+        checkboxOuterView.delegate = self
+    }
+    
     private func didSetViewModel() {
+        checkboxOuterView.isChecked = true
         guard let viewModel = viewModel else { return }
         label.text = viewModel.message ?? "-"
         topConstraint.constant = CGFloat(viewModel.topSpace ?? 8)
     }
+}
+
+extension CheckboxCell: CheckBoxDelegate {
+    func valueDidChange(value: Bool) {
+        print("dscsd")
+    }
+    
 }
 
 extension CheckboxCell {

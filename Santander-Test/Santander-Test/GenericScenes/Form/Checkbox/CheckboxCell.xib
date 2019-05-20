@@ -21,23 +21,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="19"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8iV-db-DE3">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8iV-db-DE3" customClass="CheckBox" customModule="Santander_Test" customModuleProvider="target">
                     <rect key="frame" x="16" y="0.0" width="19" height="19"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UPM-Dq-pIc">
-                            <rect key="frame" x="2" y="2" width="15" height="15"/>
-                            <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="15" id="5St-ZA-5qX"/>
-                                <constraint firstAttribute="height" constant="15" id="w6Q-Pc-0aU"/>
-                            </constraints>
-                        </view>
-                    </subviews>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="UPM-Dq-pIc" firstAttribute="centerY" secondItem="8iV-db-DE3" secondAttribute="centerY" id="8on-wQ-zyY"/>
                         <constraint firstAttribute="height" constant="19" id="CuP-u8-boZ"/>
-                        <constraint firstItem="UPM-Dq-pIc" firstAttribute="centerX" secondItem="8iV-db-DE3" secondAttribute="centerX" id="pf1-OK-KI8"/>
                         <constraint firstAttribute="width" constant="19" id="sDe-Dt-jwK"/>
                     </constraints>
                 </view>
@@ -51,15 +39,14 @@
             <constraints>
                 <constraint firstItem="8iV-db-DE3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="N0y-Nm-lbz"/>
                 <constraint firstItem="8iV-db-DE3" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="aNY-m1-d0k"/>
-                <constraint firstItem="7aS-If-rzD" firstAttribute="leading" secondItem="UPM-Dq-pIc" secondAttribute="trailing" constant="16" id="eIg-sw-Y1a"/>
                 <constraint firstItem="7aS-If-rzD" firstAttribute="centerY" secondItem="8iV-db-DE3" secondAttribute="centerY" id="ej9-ma-PWZ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="8iV-db-DE3" secondAttribute="bottom" id="s04-jC-iZP"/>
+                <constraint firstItem="7aS-If-rzD" firstAttribute="leading" secondItem="8iV-db-DE3" secondAttribute="trailing" constant="14" id="w2V-Hj-68c"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="checkboxInnerView" destination="UPM-Dq-pIc" id="dbE-BK-PKW"/>
-                <outlet property="checkboxOuterView" destination="8iV-db-DE3" id="xn4-bG-YyH"/>
+                <outlet property="checkboxOuterView" destination="8iV-db-DE3" id="L7X-Tv-o3V"/>
                 <outlet property="label" destination="7aS-If-rzD" id="R7H-lD-tp8"/>
                 <outlet property="topConstraint" destination="aNY-m1-d0k" id="XL4-8d-MIe"/>
             </connections>
