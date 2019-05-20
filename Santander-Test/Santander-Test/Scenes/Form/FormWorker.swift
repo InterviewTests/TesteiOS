@@ -67,7 +67,7 @@ class FormWorker {
                     case .email:
                         responseMessage = "Insira um e-mail válido"
                     case .telNumber:
-                        responseMessage = "Número de telefone deve ser (##) #####-#### ou (##) ####-####"
+                        responseMessage = "(##) #####-#### ou (##) ####-####"
                     }
                     response = false
                     responseIndexPath = indexPath

@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import AMPopTip
 
 protocol FormDisplayLogic: class {
     func displayFormCells(viewModel: Form.GetFormCells.ViewModel)
@@ -111,6 +112,11 @@ class FormViewController: UIViewController {
             forCellReuseIdentifier: FieldCell.reuseIdentifier
         )
     }
+    
+    private func showPopUpTip(_ tip: String, inView view: UIView) {
+        let superView = view.superview!
+        PopTip().show(text: tip, direction: .up, maxWidth: 250, in: superView, from: view.frame, duration: 4)
+    }
 
 }
 
@@ -139,7 +145,12 @@ extension FormViewController: FormDisplayLogic {
         if viewModel.isValid {
             router?.routeToSuccess(segue: nil)
         } else {
-            print("message: \(viewModel.message) indexPath: \(viewModel.indexPath?.row)")
+            guard
+                let message = viewModel.message,
+                let indexPath = viewModel.indexPath,
+                let cell = tableView.cellForRow(at: indexPath) as? FieldCell
+            else { return }
+            showPopUpTip(message, inView: cell.textField)
         }
     }
 }
