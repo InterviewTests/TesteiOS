@@ -21,7 +21,6 @@ class SAButtonSpec: QuickSpec {
         beforeEach {
             sut = SAButton(titled: "Call to action")
             sut.frame = CGRect(x: 0, y: 0, width: 320, height: 40)
-            sut.isRounded = true
         }
         
         describe("when it is instantiate") {

@@ -55,6 +55,25 @@ public class ThermometerViewCell: UITableViewCell {
         return view
     }()
     
+    public override var frame: CGRect {
+        didSet {
+            goodEnoughLevelView.layer.cornerRadius =
+                goodEnoughLevelView.frame.height / 2
+            
+            goodEnoughLevelView.layer.masksToBounds = true
+            
+            riskedEnoughLevelView.layer.cornerRadius =
+                riskedEnoughLevelView.frame.height / 2
+            
+            riskedEnoughLevelView.layer.masksToBounds = true
+            
+            if #available(iOS 11.0, *) {
+                goodEnoughLevelView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+                riskedEnoughLevelView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+            }
+        }
+    }
+    
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         buildViewCode()
@@ -120,12 +139,6 @@ extension ThermometerViewCell: ViewCoding {
             make.centerY.equalToSuperview()
         }
         
-    }
-    
-    public func setupViews() {
-        containerStackView.layer.cornerRadius = 5
-        containerStackView.layer.masksToBounds = true
-        containerStackView.clipsToBounds = true
     }
     
 }

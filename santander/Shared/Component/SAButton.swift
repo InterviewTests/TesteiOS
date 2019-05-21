@@ -18,13 +18,6 @@ public class SAButton: UIButton {
         return activityIndicatorView
     }()
     
-    public var isRounded: Bool = false {
-        didSet {
-            self.layer.cornerRadius = isRounded ?
-                self.layer.frame.height / 2 : 0
-        }
-    }
-    
     init(titled text: String) {
         super.init(frame: .zero)
         setTitle(text, for: .normal)
@@ -38,13 +31,20 @@ public class SAButton: UIButton {
     
     override public var isHighlighted: Bool {
         didSet {
-            UIView.animate(withDuration: 0.3,
+            UIView.animate(withDuration: 0.2,
                            delay: 0,
                            options: [.beginFromCurrentState, .allowUserInteraction],
                            animations: {
                             
                             self.alpha = self.isHighlighted ? 0.5 : 1
             }, completion: nil)
+        }
+    }
+    
+    public override var bounds: CGRect {
+        didSet {
+            self.layer.cornerRadius = self.layer.frame.height / 2
+            self.layer.masksToBounds = true
         }
     }
     
