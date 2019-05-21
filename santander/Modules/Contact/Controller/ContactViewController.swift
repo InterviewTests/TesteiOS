@@ -34,7 +34,6 @@ class ContactViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Contato"
         self.getForm()
     }
 

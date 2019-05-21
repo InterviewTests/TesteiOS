@@ -31,7 +31,6 @@ public class FundsViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        title = "Investimento"
         buildTableView()
         
         let shareBarItem =

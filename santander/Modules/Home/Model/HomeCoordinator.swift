@@ -31,11 +31,13 @@ public class HomeCoordinator: Coordinator {
         self.homeController = homeController
         
         let fundsController = FundsViewController()
+        fundsController.title = "Investimento"
         
         let fundsNavigationController =
             SANavigationViewController(rootViewController: fundsController)
         
         let contactController = ContactViewController()
+        contactController.title = "Contato"
         
         let contactNavigationController =
             SANavigationViewController(rootViewController: contactController)
