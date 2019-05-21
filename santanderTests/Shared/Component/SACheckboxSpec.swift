@@ -19,8 +19,8 @@ class SACheckboxSpec: QuickSpec {
         var sut: SACheckbox!
         
         beforeEach {
-            sut = SACheckbox()
-            sut.frame = CGRect(x: 0, y: 0, width: 19, height: 19)
+            sut = SACheckbox(configuration: .init(title: "Checkbox"))
+            sut.frame = CGRect(x: 0, y: 0, width: 100, height: 19)
         }
         
         describe("when it is instantiate") {

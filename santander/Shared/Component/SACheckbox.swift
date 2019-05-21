@@ -19,8 +19,16 @@ public class SACheckbox: UIView {
         return button
     }()
     
-    init() {
+    private lazy var checkboxTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = Resource.Font.regular.of(size: 16)
+        label.textColor = .lightGray
+        return label
+    }()
+    
+    init(configuration: Configuration) {
         super.init(frame: .zero)
+        configure(data: configuration)
         buildViewCode()
     }
     
@@ -34,12 +42,30 @@ extension SACheckbox: ViewCoding {
     
     public func insertViews() {
         addSubview(checkboxButton)
+        addSubview(checkboxTitleLabel)
     }
     
     public func setupConstraints() {
         checkboxButton.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.top.bottom.equalToSuperview()
+            make.width.equalTo(19)
         }
+        checkboxTitleLabel.snp.makeConstraints { make in
+            make.left.equalTo(checkboxButton.snp.right).offset(9)
+            make.top.right.bottom.equalToSuperview()
+        }
+    }
+    
+}
+
+extension SACheckbox {
+    
+    internal struct Configuration {
+        var title: String
+    }
+    
+    private func configure(data: Configuration) {
+        checkboxTitleLabel.text = data.title
     }
     
 }

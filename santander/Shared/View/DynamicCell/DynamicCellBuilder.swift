@@ -26,7 +26,7 @@ public class DynamicCellBuilder: TableViewCellBuilder {
         case .image:
             return 0
         case .checkbox:
-            return 21
+            return 19
         case .send:
             return 50
         }
@@ -46,12 +46,16 @@ public class DynamicCellBuilder: TableViewCellBuilder {
         switch response.field {
         case .field:
             view = SATextField(titled: response.message)
+            (view as? SATextField)?.keyboardType =
+                getKeyboardType(from: response.fieldType)
         case .text:
-            view = SATextField(titled: response.message)
+            view = SimpleTextView(configuration:
+                .init(title: response.message))
         case .image:
             view = nil
         case .checkbox:
-            view = SACheckbox()
+            view = SACheckbox(configuration:
+                .init(title: response.message))
         case .send:
             view = SAButton(titled: response.message)
         }
@@ -63,6 +67,27 @@ public class DynamicCellBuilder: TableViewCellBuilder {
     
     public func tableViewShouldSelectCell(_ tableView: UITableView) -> Bool {
         return false
+    }
+    
+}
+
+extension DynamicCellBuilder {
+    
+    private func getKeyboardType(from fieldType: FormFieldType?) -> UIKeyboardType? {
+        
+        guard let fieldType = fieldType else {
+            return .default
+        }
+        
+        switch fieldType {
+        case .text:
+            return .default
+        case .telNumber:
+            return .phonePad
+        case .email:
+            return .emailAddress
+        }
+        
     }
     
 }

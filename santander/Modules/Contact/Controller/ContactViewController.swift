@@ -81,6 +81,8 @@ extension ContactViewController: TableViewing {
         
         for cell in cells {
             if !cell.hidden {
+                let topSpacing = CGFloat(cell.topSpacing)
+                builders.append(SeparatorInlineCellBuilder(spaced: topSpacing))
                 builders.append(DynamicCellBuilder(response: cell))
             }
         }
