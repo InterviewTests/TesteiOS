@@ -22,7 +22,7 @@ public class SACheckbox: UIView {
     private lazy var checkboxTitleLabel: UILabel = {
         let label = UILabel()
         label.font = Resource.Font.regular.of(size: 16)
-        label.textColor = .lightGray
+        label.textColor = Resource.Color.lightGray
         return label
     }()
     

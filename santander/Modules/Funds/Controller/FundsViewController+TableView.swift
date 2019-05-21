@@ -87,68 +87,68 @@ extension FundsViewController: TableViewing {
         let headerTextCellBuilder =
             FundsThreeColumnsCellBuilder(configuration:
                 .init(firstColumn: nil,
-                      secondColumn: ("Fundo", .lightGray),
-                      thirdColumn: ("CDI", .lightGray)))
+                      secondColumn: ("Fundo", Resource.Color.lightGray),
+                      thirdColumn: ("CDI", Resource.Color.lightGray)))
         
         let monthlyTextCellBuilder =
             FundsThreeColumnsCellBuilder(configuration:
-                .init(firstColumn: ("No mês", .lightGray),
-                      secondColumn: ("0,3%", .black),
-                      thirdColumn: ("0,3%", .black)))
+                .init(firstColumn: ("No mês", Resource.Color.lightGray),
+                      secondColumn: ("0,3%", Resource.Color.black),
+                      thirdColumn: ("0,3%", Resource.Color.black)))
         
         let annuallyTextCellBuilder =
             FundsThreeColumnsCellBuilder(configuration:
-                .init(firstColumn: ("No ano", .lightGray),
-                      secondColumn: ("13,01%", .black),
-                      thirdColumn: ("12,08%", .black)))
+                .init(firstColumn: ("No ano", Resource.Color.lightGray),
+                      secondColumn: ("13,01%", Resource.Color.black),
+                      thirdColumn: ("12,08%", Resource.Color.black)))
         
         let twelveMonthsTextCellBuilder =
             FundsThreeColumnsCellBuilder(configuration:
-                .init(firstColumn: ("12 meses", .lightGray),
-                      secondColumn: ("17,9%", .black),
-                      thirdColumn: ("17,6%", .black)))
+                .init(firstColumn: ("12 meses", Resource.Color.lightGray),
+                      secondColumn: ("17,9%", Resource.Color.black),
+                      thirdColumn: ("17,6%", Resource.Color.black)))
         
         let administrationTaxCellBuilder =
             FundsThreeColumnsCellBuilder(configuration:
-                .init(firstColumn: ("Taxa de administração", .lightGray),
+                .init(firstColumn: ("Taxa de administração", Resource.Color.lightGray),
                       secondColumn: nil,
-                      thirdColumn: ("0,50%", .black)))
+                      thirdColumn: ("0,50%", Resource.Color.black)))
         
         let initialApplicationCellBuilder =
             FundsThreeColumnsCellBuilder(configuration:
-                .init(firstColumn: ("Aplicação inicial", .lightGray),
+                .init(firstColumn: ("Aplicação inicial", Resource.Color.lightGray),
                       secondColumn: nil,
-                      thirdColumn: ("R$ 10.000,00", .black)))
+                      thirdColumn: ("R$ 10.000,00", Resource.Color.black)))
         
         let minimalMovimentCellBuilder =
             FundsThreeColumnsCellBuilder(configuration:
-                .init(firstColumn: ("Movimentação mínima", .lightGray),
+                .init(firstColumn: ("Movimentação mínima", Resource.Color.lightGray),
                       secondColumn: nil,
-                      thirdColumn: ("R$ 1.000,00", .black)))
+                      thirdColumn: ("R$ 1.000,00", Resource.Color.black)))
         
         let minimunBalanceCellBuilder =
             FundsThreeColumnsCellBuilder(configuration:
-                .init(firstColumn: ("Saldo mínino", .lightGray),
+                .init(firstColumn: ("Saldo mínino", Resource.Color.lightGray),
                       secondColumn: nil,
-                      thirdColumn: ("R$ 5.000,00", .black)))
+                      thirdColumn: ("R$ 5.000,00", Resource.Color.black)))
         
         let rescueCellBuilder =
             FundsThreeColumnsCellBuilder(configuration:
-                .init(firstColumn: ("Resgate (valor bruto)", .lightGray),
+                .init(firstColumn: ("Resgate (valor bruto)", Resource.Color.lightGray),
                       secondColumn: nil,
-                      thirdColumn: ("D+0", .black)))
+                      thirdColumn: ("D+0", Resource.Color.black)))
         
         let quotaCellBuilder =
             FundsThreeColumnsCellBuilder(configuration:
-                .init(firstColumn: ("Cota (valor bruto)", .lightGray),
+                .init(firstColumn: ("Cota (valor bruto)", Resource.Color.lightGray),
                       secondColumn: nil,
-                      thirdColumn: ("D+1", .black)))
+                      thirdColumn: ("D+1", Resource.Color.black)))
         
         let paymentCellBuilder =
             FundsThreeColumnsCellBuilder(configuration:
-                .init(firstColumn: ("Pagamento (valor bruto)", .lightGray),
+                .init(firstColumn: ("Pagamento (valor bruto)", Resource.Color.lightGray),
                       secondColumn: nil,
-                      thirdColumn: ("D+2", .black)))
+                      thirdColumn: ("D+2", Resource.Color.black)))
         
         let resource = ("Baixar", Resource.Image.download.image)
         

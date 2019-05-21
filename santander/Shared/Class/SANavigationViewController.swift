@@ -30,7 +30,7 @@ public extension SANavigationViewController {
     func prepare() {
         self.navigationBar.shadowImage = UIImage()
         
-        self.navigationBar.tintColor = .red
+        self.navigationBar.tintColor = Resource.Color.red
         self.navigationBar.barTintColor = .white
         self.navigationBar.backgroundColor = .white
         self.navigationBar.titleTextAttributes = [

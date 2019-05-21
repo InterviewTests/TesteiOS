@@ -13,7 +13,7 @@ public class FundsHeaderViewCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = Resource.Font.medium.of(size: 14)
-        label.textColor = .lightGray
+        label.textColor = Resource.Color.lightGray
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         return label
@@ -22,7 +22,7 @@ public class FundsHeaderViewCell: UITableViewCell {
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.font = Resource.Font.medium.of(size: 28)
-        label.textColor = .gray
+        label.textColor = Resource.Color.gray
         label.numberOfLines = 2
         label.textAlignment = .center
         return label

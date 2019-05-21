@@ -69,24 +69,24 @@ extension FundsThreeColumnsCell.Configuration {
     static func mockWithoutFirstColumn() -> FundsThreeColumnsCell.Configuration {
         
         return .init(firstColumn: nil,
-                     secondColumn: ("Fundo", .lightGray),
-                     thirdColumn: ("CDI", .lightGray))
+                     secondColumn: ("Fundo", Resource.Color.lightGray),
+                     thirdColumn: ("CDI", Resource.Color.lightGray))
         
     }
     
     static func mockFull() -> FundsThreeColumnsCell.Configuration {
         
-        return .init(firstColumn: ("No mês", .lightGray),
-                     secondColumn: ("0,3%", .black),
-                     thirdColumn: ("0,3%", .black))
+        return .init(firstColumn: ("No mês", Resource.Color.lightGray),
+                     secondColumn: ("0,3%", Resource.Color.black),
+                     thirdColumn: ("0,3%", Resource.Color.black))
         
     }
     
     static func mockKeyVakue() -> FundsThreeColumnsCell.Configuration {
         
-        return .init(firstColumn: ("Movimentação mínima", .lightGray),
+        return .init(firstColumn: ("Movimentação mínima", Resource.Color.lightGray),
                      secondColumn: nil,
-                     thirdColumn: ("R$ 1.000,00", .black))
+                     thirdColumn: ("R$ 1.000,00", Resource.Color.black))
         
     }
     

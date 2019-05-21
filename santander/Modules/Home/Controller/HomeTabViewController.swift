@@ -24,9 +24,8 @@ class HomeTabViewController: UITabBarController {
     }
     
     private func setup() {
-        // TODO: Change red color to custom red color
         tabBar.tintColor = .white
-        tabBar.barTintColor = .red
+        tabBar.barTintColor = Resource.Color.red
         
         UITabBarItem.appearance()
             .setTitleTextAttributes([NSAttributedString.Key

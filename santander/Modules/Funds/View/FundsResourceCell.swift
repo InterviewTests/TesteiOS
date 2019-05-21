@@ -17,7 +17,7 @@ public class FundsResourceCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = Resource.Font.regular.of(size: 14)
-        label.textColor = .lightGray
+        label.textColor = Resource.Color.lightGray
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
         return label
@@ -34,7 +34,7 @@ public class FundsResourceCell: UITableViewCell {
     private lazy var resourceLabel: UILabel = {
         let label = UILabel()
         label.font = Resource.Font.regular.of(size: 14)
-        label.textColor = .red
+        label.textColor = Resource.Color.red
         label.textAlignment = .right
         label.adjustsFontSizeToFitWidth = true
         return label

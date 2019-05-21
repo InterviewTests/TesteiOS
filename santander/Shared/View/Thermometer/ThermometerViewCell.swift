@@ -27,31 +27,31 @@ public class ThermometerViewCell: UITableViewCell {
     
     private lazy var goodLevelView: UIView = {
         let view = UIView()
-        view.backgroundColor = .green
+        view.backgroundColor = Resource.Color.lightGreen
         return view
     }()
     
     private lazy var goodEnoughLevelView: UIView = {
         let view = UIView()
-        view.backgroundColor = .green
+        view.backgroundColor = Resource.Color.green
         return view
     }()
     
     private lazy var balancedLevelView: UIView = {
         let view = UIView()
-        view.backgroundColor = .yellow
+        view.backgroundColor = Resource.Color.yellow
         return view
     }()
     
     private lazy var riskedLevelView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orange
+        view.backgroundColor = Resource.Color.orange
         return view
     }()
     
     private lazy var riskedEnoughLevelView: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = Resource.Color.darkRed
         return view
     }()
     

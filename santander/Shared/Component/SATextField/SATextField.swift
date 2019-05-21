@@ -21,17 +21,15 @@ class SATextField: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = Resource.Font.regular.of(size: 16)
-        // TODO: Use custom colors
-        label.textColor = .gray
+        label.textColor = Resource.Color.gray
         return label
     }()
     
     private lazy var inputField: UITextField = {
         let textField = UITextField()
         textField.font = Resource.Font.medium.of(size: 18)
-        // TODO: Use custom colors
-        textField.textColor = .black
-        textField.tintColor = .blue
+        textField.textColor = Resource.Color.black
+        textField.tintColor = Resource.Color.blue
         textField.clearButtonMode = .whileEditing
         textField.autocorrectionType = .no
         textField.delegate = self
@@ -40,7 +38,7 @@ class SATextField: UIView {
     
     private lazy var bottomLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = Resource.Color.lightGray
         return view
     }()
     
@@ -102,12 +100,12 @@ extension SATextField {
 private extension SATextField {
     
     func didBeginEditing() {
-        bottomLine.backgroundColor = .gray
+        bottomLine.backgroundColor = Resource.Color.gray
         titleLabel.font = Resource.Font.regular.of(size: 11)
         titleLabel.snp.updateConstraints { update in
             update.height.equalTo(11)
         }
-        // TODO: Animate constraints update
+        
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
             self.layoutIfNeeded()
         })
@@ -116,7 +114,7 @@ private extension SATextField {
     func didClearField() {}
     
     func didFinishEditing() {
-        bottomLine.backgroundColor = .lightGray
+        bottomLine.backgroundColor = Resource.Color.lightGray
         titleLabel.font = Resource.Font.regular.of(size: 16)
         titleLabel.snp.updateConstraints { update in
             update.height.equalTo(21)

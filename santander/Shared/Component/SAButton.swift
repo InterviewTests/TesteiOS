@@ -49,8 +49,7 @@ public class SAButton: UIButton {
     }
     
     private func setup() {
-        // TODO: Use colors custom
-        backgroundColor = .red
+        backgroundColor = Resource.Color.red
         titleLabel?.font = Resource.Font.medium.of(size: 16)
         self.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
     }

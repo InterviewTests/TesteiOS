@@ -13,7 +13,7 @@ public class SimpleTextView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = Resource.Font.medium.of(size: 16)
-        label.textColor = .gray
+        label.textColor = Resource.Color.gray
         label.numberOfLines = 0
         return label
     }()
