@@ -110,7 +110,7 @@ import UIKit
     }
     
     override open func prepareForInterfaceBuilder() {
-        setTitle("", for: UIControl.State())
+        setTitle("", for: UIControlState())
     }
     
 }
@@ -121,7 +121,7 @@ public extension UICheckbox {
 
     fileprivate func initDefaultParams() {
         addTarget(self, action: #selector(UICheckbox.checkboxTapped), for: .touchUpInside)
-        setTitle(nil, for: UIControl.State())
+        setTitle(nil, for: UIControlState())
 
         clipsToBounds = true
 
@@ -135,7 +135,7 @@ public extension UICheckbox {
         let image = UIImage(named: "ic_check_3x", in: resourceBundle, compatibleWith: nil)
         imageView?.contentMode = .scaleAspectFit
 
-        setImage(nil, for: UIControl.State())
+        setImage(nil, for: UIControlState())
         setImage(image, for: .selected)
         setImage(image, for:  .highlighted)
 

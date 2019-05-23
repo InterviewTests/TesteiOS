@@ -34,7 +34,6 @@ import UIKit
         }
     }
     
-    
     /**
      The color of the placeholder text.
 
@@ -70,7 +69,7 @@ import UIKit
         }
     }
     
-    private let borderThickness: (active: CGFloat, inactive: CGFloat) = (active: 1, inactive: 0.5)
+    private let borderThickness: (active: CGFloat, inactive: CGFloat) = (active: 2, inactive: 0.5)
     private let placeholderInsets = CGPoint(x: 0, y: 6)
     private let textFieldInsets = CGPoint(x: 0, y: 12)
     private let inactiveBorderLayer = CALayer()
