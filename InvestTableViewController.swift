@@ -49,7 +49,7 @@ class InvestTableViewController: UITableViewController {
     
     
     @IBAction func desempenhoBaixar(_ sender: UIButton) {
-        let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=")!, entersReaderIfAvailable: true)
+        let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=Santander")!, entersReaderIfAvailable: true)
         svc.delegate = self
         //        svc.preferredBarTintColor = .orange
         //        svc.preferredControlTintColor = .black
@@ -58,7 +58,7 @@ class InvestTableViewController: UITableViewController {
     }
     
     @IBAction func CompBaixar(_ sender: UIButton) {
-        let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=")!, entersReaderIfAvailable: true)
+        let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=Santander")!, entersReaderIfAvailable: true)
         svc.delegate = self
         //        svc.preferredBarTintColor = .orange
         //        svc.preferredControlTintColor = .black
@@ -66,7 +66,7 @@ class InvestTableViewController: UITableViewController {
     }
     
     @IBAction func regulamentoBaixar(_ sender: UIButton) {
-        let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=")!, entersReaderIfAvailable: true)
+        let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=Santander")!, entersReaderIfAvailable: true)
         svc.delegate = self
         //        svc.preferredBarTintColor = .orange
         //        svc.preferredControlTintColor = .black
@@ -75,7 +75,7 @@ class InvestTableViewController: UITableViewController {
     
     
     @IBAction func adesaoBaixar(_ sender: UIButton) {
-        let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=")!, entersReaderIfAvailable: true)
+        let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=SantanderGeracaoDigital")!, entersReaderIfAvailable: true)
         svc.delegate = self
         //        svc.preferredBarTintColor = .orange
         //        svc.preferredControlTintColor = .black
