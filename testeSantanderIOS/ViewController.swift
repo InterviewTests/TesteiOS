@@ -21,6 +21,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tfEmail: HoshiTextField!
     @IBOutlet weak var tfTelefone: HoshiTextField!
     
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -31,6 +34,33 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
             print("[VIEWCONRTOLLER] \(form?.cells)")
         }
+    }
+    
+    public func validarTextfield (textFields: [UITextField]) -> Bool {
+        
+        var allOk : Bool = true
+        
+        for textField in textFields {
+            
+            if textField.text == "" {
+                allOk = false
+                let alert: UIAlertController = UIAlertController(title: "Campos não preenchidos", message: "Preencha os campos corretamente", preferredStyle: .alert)
+                
+                let actionOk: UIAlertAction = UIAlertAction(title: "Ok", style: .default) { (acao) in
+                    
+                    
+                }
+                
+                alert.addAction(actionOk)
+                self.present(alert, animated: true, completion: nil)
+                break
+            }
+            
+            
+        }
+        
+        return allOk
+        
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -149,31 +179,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func checkBoxSelected(_ sender: UICheckbox) {
         
-           
+       
        
     }
     
    
     @IBAction func btnEnviar(_ sender: UIButton) {
         
-        if (tfNome.text == "" || tfEmail.text == "" || tfTelefone.text == "") {
-            
-            let alert: UIAlertController = UIAlertController(title: "Campos não preenchidos", message: "Preencha os campos corretamente", preferredStyle: .alert)
-            
-            let actionOk: UIAlertAction = UIAlertAction(title: "Ok", style: .default) { (acao) in
-               
-    
-            }
-            
-            alert.addAction(actionOk)
-            self.present(alert, animated: true, completion: nil)
-            
-        }else {
-            
+        if validarTextfield(textFields: [tfNome, tfEmail, tfTelefone]) == true {
             self.viewMensagem.isHidden = false
-           
-            }
         }
+        
+    
+    }
     
     
     @IBAction func novaMensagem(_ sender: UIButton) {

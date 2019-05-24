@@ -55,8 +55,7 @@ class InvestTableViewController: UITableViewController {
     @IBAction func EssenciaisBaixar(_ sender: UIButton) {
         let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=")!, entersReaderIfAvailable: true)
         svc.delegate = self
-//        svc.preferredBarTintColor = .orange
-//        svc.preferredControlTintColor = .black
+
         present(svc, animated: true, completion: nil)
     }
 
@@ -65,8 +64,7 @@ class InvestTableViewController: UITableViewController {
     @IBAction func desempenhoBaixar(_ sender: UIButton) {
         let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=Santander")!, entersReaderIfAvailable: true)
         svc.delegate = self
-        //        svc.preferredBarTintColor = .orange
-        //        svc.preferredControlTintColor = .black
+      
         present(svc, animated: true, completion: nil)
         
     }
@@ -74,16 +72,14 @@ class InvestTableViewController: UITableViewController {
     @IBAction func CompBaixar(_ sender: UIButton) {
         let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=Santander")!, entersReaderIfAvailable: true)
         svc.delegate = self
-        //        svc.preferredBarTintColor = .orange
-        //        svc.preferredControlTintColor = .black
+      
         present(svc, animated: true, completion: nil)
     }
     
     @IBAction func regulamentoBaixar(_ sender: UIButton) {
         let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=Santander")!, entersReaderIfAvailable: true)
         svc.delegate = self
-        //        svc.preferredBarTintColor = .orange
-        //        svc.preferredControlTintColor = .black
+   
         present(svc, animated: true, completion: nil)
     }
     
@@ -91,8 +87,7 @@ class InvestTableViewController: UITableViewController {
     @IBAction func adesaoBaixar(_ sender: UIButton) {
         let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=SantanderGeracaoDigital")!, entersReaderIfAvailable: true)
         svc.delegate = self
-        //        svc.preferredBarTintColor = .orange
-        //        svc.preferredControlTintColor = .black
+     
         present(svc, animated: true, completion: nil)
     }
     

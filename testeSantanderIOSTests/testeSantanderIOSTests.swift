@@ -9,10 +9,12 @@
 import XCTest
 @testable import testeSantanderIOS
 
-class testeSantanderIOSTests: XCTestCase {
-
+class ViewControllerTest: XCTestCase {
+    
+    var viewcontroller: UIViewController!
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        
     }
 
     override func tearDown() {
@@ -30,5 +32,14 @@ class testeSantanderIOSTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testvalidarTextfield () {
+        
+        
+       
+        
+    }
+    
+    
 
 }
