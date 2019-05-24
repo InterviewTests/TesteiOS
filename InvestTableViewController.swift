@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 
 class InvestTableViewController: UITableViewController {
@@ -33,10 +34,53 @@ class InvestTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return 1
+        return 3
         
     }
+    
+    @IBAction func EssenciaisBaixar(_ sender: UIButton) {
+        let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=")!, entersReaderIfAvailable: true)
+        svc.delegate = self
+//        svc.preferredBarTintColor = .orange
+//        svc.preferredControlTintColor = .black
+        present(svc, animated: true, completion: nil)
+    }
 
+    
+    
+    @IBAction func desempenhoBaixar(_ sender: UIButton) {
+        let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=")!, entersReaderIfAvailable: true)
+        svc.delegate = self
+        //        svc.preferredBarTintColor = .orange
+        //        svc.preferredControlTintColor = .black
+        present(svc, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func CompBaixar(_ sender: UIButton) {
+        let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=")!, entersReaderIfAvailable: true)
+        svc.delegate = self
+        //        svc.preferredBarTintColor = .orange
+        //        svc.preferredControlTintColor = .black
+        present(svc, animated: true, completion: nil)
+    }
+    
+    @IBAction func regulamentoBaixar(_ sender: UIButton) {
+        let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=")!, entersReaderIfAvailable: true)
+        svc.delegate = self
+        //        svc.preferredBarTintColor = .orange
+        //        svc.preferredControlTintColor = .black
+        present(svc, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func adesaoBaixar(_ sender: UIButton) {
+        let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=")!, entersReaderIfAvailable: true)
+        svc.delegate = self
+        //        svc.preferredBarTintColor = .orange
+        //        svc.preferredControlTintColor = .black
+        present(svc, animated: true, completion: nil)
+    }
     
 //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
@@ -94,3 +138,20 @@ class InvestTableViewController: UITableViewController {
     */
 
 }
+
+extension InvestTableViewController: SFSafariViewControllerDelegate {
+    
+    func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
+        if didLoadSuccessfully {
+            print("Página carregada com sucesso")
+        } else {
+            print("Erro ao carregar a página")
+        }
+    }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        view.backgroundColor = .black
+        dismiss(animated: true, completion: nil)
+    }
+}
+
