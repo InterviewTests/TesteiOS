@@ -37,6 +37,20 @@ class InvestTableViewController: UITableViewController {
         return 3
         
     }
+    @IBAction func btnInvestir(_ sender: UIButton) {
+        
+    
+        let alert: UIAlertController = UIAlertController(title: "Invetimento", message: "Parabéns investimento realizado com sucesso !", preferredStyle: .alert)
+        
+        let actionOk: UIAlertAction = UIAlertAction(title: "Ok", style: .default) { (acao) in
+            
+            
+            
+        }
+        
+        alert.addAction(actionOk)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     @IBAction func EssenciaisBaixar(_ sender: UIButton) {
         let svc = SFSafariViewController(url: URL(string: "https://www.google.com.br/search?q=")!, entersReaderIfAvailable: true)
