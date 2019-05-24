@@ -21,7 +21,7 @@ struct Cell: Codable{
 }
 
 struct Form: Codable {
-    var cells: [Cell]?
+    var cells: [Cell]
     
     enum CodingKeys: String, CodingKey {
         case cells = "cells"
@@ -45,11 +45,6 @@ struct Form: Codable {
 
 class REST {
     
-//
-//    enum RestError : Error{
-//
-//        case responseError
-//    }
     
     private static let basePath = "https://floating-mountain-50292.herokuapp.com/cells.json"
     
@@ -127,6 +122,8 @@ class REST {
                                         return
                                     }
                                     
+                                    
+                                    
                                     guard let type = cellDictionary["type"] as? Int else{
                                         DispatchQueue.main.async {
                                             completion(nil)
@@ -136,35 +133,40 @@ class REST {
                                     
                                     guard let message = cellDictionary["message"] as? String else{
                                         DispatchQueue.main.async {
-                                        completion(nil)
-                                        }
-                                       return
-                                    }
-                                    guard let typefield = cellDictionary["typefield"] as? Int else{
-                                        DispatchQueue.main.async {
                                             completion(nil)
                                         }
                                         return
                                     }
+                                    
+                                    guard let typefield = cellDictionary["typefield"] as? Int else{
+                                        DispatchQueue.main.async {
+                                        completion(nil)
+                                        }
+                                        return
+                                    }
+                                    
                                     guard let hidden = cellDictionary["hidden"] as? Bool else{
                                         DispatchQueue.main.async {
                                             completion(nil)
                                         }
                                         return
                                     }
+                                    
                                     guard let topSpacing = cellDictionary["topSpacing"] as? Double else{
                                         DispatchQueue.main.async {
                                             completion(nil)
                                         }
                                         return
                                     }
+                                    
                                     guard let show = cellDictionary["show"] as? Int else{
                                         DispatchQueue.main.async {
                                             completion(nil)
                                         }
                                         return
                                     }
-                                    guard let required = cellDictionary["required"] as? Bool else{
+                                    
+                                    guard let require = cellDictionary["require"] as? Bool else{
                                         DispatchQueue.main.async {
                                             completion(nil)
                                         }
@@ -172,10 +174,11 @@ class REST {
                                     }
                                     
                                     
-                                    
-                                    let cell = Cell(id: id, type: type, message: message, typefield: typefield, hidden: hidden, topSpacing: topSpacing, show: show, required: required)
+                                    let cell = Cell(id: id, type: type, message: message, typefield: typefield, hidden: hidden, topSpacing: topSpacing, show: show, required: require)
                                     
                                     myCells += [cell]
+                                    
+                                    
                                 }else{
                                     
                                     DispatchQueue.main.async {
@@ -189,8 +192,7 @@ class REST {
 
                             let form = Form(cells: myCells)
                             DispatchQueue.main.async {
-                            completion(form)
-//                                completion(nil)
+                                completion(form)
                             }
                             
                             
@@ -199,6 +201,13 @@ class REST {
                             print("Não converteu")
                         }
 
+                        
+
+
+//
+//                        for cells in formulario.cells{
+//                            print("- \(cells.id)")
+//                        }
 
                     }catch{
                         print(error.localizedDescription)
