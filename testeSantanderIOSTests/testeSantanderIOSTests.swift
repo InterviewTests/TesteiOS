@@ -36,8 +36,7 @@ class ViewControllerTest: XCTestCase {
     func testvalidarTextfield () {
         
         
-       
-        
+    
     }
     
     
