@@ -11,6 +11,8 @@
 //
 
 import UIKit
+import UICheckbox_Swift
+
 
 protocol ContactsDisplayLogic: class
 {
@@ -78,6 +80,8 @@ class ContactsViewController: UITableViewController, ContactsDisplayLogic, UITex
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPhone: UITextField!
     
+    @IBOutlet weak var checkButton: UICheckbox!
+    @IBOutlet weak var viewMessage: UIView!
     @IBOutlet var textFields: [UITextField]!
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -127,11 +131,26 @@ class ContactsViewController: UITableViewController, ContactsDisplayLogic, UITex
     @IBAction func sendBtn(_ sender: UIButton) {
         
         if validarTextField(textFields: textFields) == true {
+            self.viewMessage.isHidden = false
             
         }
         
     }
     
+    @IBAction func newMessageBtn(_ sender: UIButton) {
+        
+        self.viewMessage.isHidden = true
+        self.tfName.text = ""
+        self.tfEmail.text = ""
+        self.tfPhone.text = ""
+        
+        if checkButton.isSelected == true {
+            checkButton.isSelected = false
+        }
+        
+        
+        
+    }
     
     func doSomething()
   {
