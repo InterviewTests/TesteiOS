@@ -80,10 +80,12 @@ Faça um fork desse desse repositório em seu Github e nos envie um Pull Request
 
 ### # Importante: não há prazo de entrega, faça com qualidade!
 
-### Para rodar o projeto.
-Faça um git clone em um repositorio local.
-Rode o comando "pod install" para instalar os pods.
-Abra a workspace no xcode 
-Execute o projeto no botão run do xcode.
-
 # BOA SORTE!
+
+### Para rodar o projeto.
+* Faça um git clone em um repositorio local.
+* Rode o comando "pod install" para instalar os pods.
+* Abra a workspace no xcode 
+* Execute o projeto no botão run do xcode.
+
+
