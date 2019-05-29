@@ -13,12 +13,13 @@
         <scene sceneID="XmV-6u-p2l">
             <objects>
                 <tabBarController id="cwG-5f-wDT" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UAr-gj-qGb">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="UAr-gj-qGb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="PVL-R0-kIY" kind="relationship" relationship="viewControllers" id="zkZ-xy-Mcg"/>
@@ -34,7 +35,7 @@
             <objects>
                 <tableViewController id="Loe-CS-lgh" customClass="investmentoViewController" customModule="SantanderIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Gxy-EV-ClX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
@@ -500,7 +501,9 @@
                             <outlet property="delegate" destination="Loe-CS-lgh" id="Sjw-jy-GJM"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Investimento" id="cLI-I6-fhX"/>
+                    <tabBarItem key="tabBarItem" title="Investimento" id="cLI-I6-fhX">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dBw-d2-MWW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -511,7 +514,7 @@
             <objects>
                 <tableViewController id="PVL-R0-kIY" customClass="ContactsViewController" customModule="SantanderIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0OM-oC-0Wl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
@@ -685,7 +688,9 @@
                             <outlet property="delegate" destination="PVL-R0-kIY" id="5DB-bP-kwY"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Contato" id="sO0-v0-jls"/>
+                    <tabBarItem key="tabBarItem" title="Contato" id="sO0-v0-jls">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="checkButton" destination="MUs-db-XBb" id="hwC-cP-PhJ"/>
                         <outlet property="tfEmail" destination="KKW-78-bH7" id="521-xx-Gyy"/>
