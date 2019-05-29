@@ -1,19 +1,18 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'santanderTest' do
+target 'SantanderIOS' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-	 pod 'UICheckbox.Swift'
+  pod 'UICheckbox.Swift'
+  # Pods for SantanderIOS
 
-  # Pods for santanderTest
-
-  target 'santanderTestTests' do
+  target 'SantanderIOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'santanderTestUITests' do
+  target 'SantanderIOSUITests' do
     inherit! :search_paths
     # Pods for testing
   end
