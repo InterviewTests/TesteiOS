@@ -27,5 +27,5 @@ Faça um fork desse desse repositório em seu Github e nos envie um Pull Request
 * Rode o comando "pod install" para instalar os pods.
 * Abra a workspace no xcode 
 * Execute o projeto no botão run do xcode.
-
+* Para Rodar o test usar as teclas Command + U
 
