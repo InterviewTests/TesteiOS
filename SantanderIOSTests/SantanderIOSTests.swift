@@ -12,7 +12,7 @@ import XCTest
 class SantanderIOSTests: XCTestCase {
 
     override func setUp() {
-        testValidarTextField()
+    
     }
 
     override func tearDown() {
@@ -30,37 +30,7 @@ class SantanderIOSTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
-    func testValidarTextField() {
-        
-        var allOk = true
-        
-        let tfName = UITextField()
-        let tfEmail = UITextField()
-        let tfPhone = UITextField()
-        
-        
-        tfName.text = "Adauto"
-        tfEmail.text = "adauto.oliveira@me.com"
-        tfPhone.text = "11-99227-8799"
-        
-        
-        let textFields: [UITextField] = [tfName, tfEmail, tfPhone]
-       
-        for tfs in textFields {
-            
-            if tfs.text == "" {
-                allOk = false
-            }
-            
-        }
-        
-        XCTAssertEqual(allOk, true)
-        
-    }
-    
-    
-    
-  
+
+
 
 }

@@ -14,7 +14,7 @@ target 'SantanderIOS' do
 
   target 'SantanderIOSUITests' do
     inherit! :search_paths
-    # Pods for testing
+    pod 'UICheckbox.Swift'
   end
 
 end
