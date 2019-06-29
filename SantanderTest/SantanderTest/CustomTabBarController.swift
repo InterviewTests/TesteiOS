@@ -36,7 +36,7 @@ class CustomTabBarController: UITabBarController
         
         // Calculo para criar imagem do tamanho BarItem
 
-        var tabBarItemSize: CGSize = .init(width: tabBar.frame.width / CGFloat(self.tabBar.items?.count ?? 1), height: tabBar.frame.height + 5.0)
+        var tabBarItemSize: CGSize = .init(width: self.tabBar.frame.width / CGFloat(self.tabBar.items?.count ?? 1), height: self.tabBar.frame.height + 10.0)
         
         // Correção para layout com SafeArea
         if #available(iOS 11.0, *)

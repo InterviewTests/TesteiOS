@@ -10,15 +10,13 @@ import UIKit
 
 extension UIImage
 {
-    class func imageWith(color: UIColor, size: CGSize) -> UIImage
+    class func imageWith(color: UIColor, size: CGSize) -> UIImage?
     {
-        let rect: CGRect = .init(origin: .zero, size: size)
-        
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         color.setFill()
-        UIRectFill(rect)
+        UIRectFill(.init(origin: .zero, size: size))
         
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext() ?? .init()
+        let image: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         return image

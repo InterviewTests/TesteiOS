@@ -10,6 +10,14 @@ import UIKit
 
 class InvestmentViewController: UIViewController
 {
+    private var model: InvestmentScreen?
+    {
+        didSet
+        {
+            
+        }
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -18,6 +26,18 @@ class InvestmentViewController: UIViewController
         self.navigationController?.navigationBar.backIndicatorImage = .init()
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.shadowImage = .init()
+        
+        SantanderApiClient.request(operation: .investiment) { (response: Result<InvestmentScreen,NSError>) in
+            
+            switch response
+            {
+                case .success(let result):
+                    self.model = result
+                
+                case .failure(let error):
+                    print(error)
+            }
+        }
     }
 }
 
