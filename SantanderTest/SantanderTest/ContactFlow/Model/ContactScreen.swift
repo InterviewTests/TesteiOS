@@ -22,14 +22,14 @@ struct ContactScreen: Decodable
     
     struct Cells: Decodable
     {
-        var id: UInt8?
-        var type: UIType?
-        var message: String?
-        var typefield: UITypeField?
-        var hidden: Bool?
-        var topSpacing: Float?
-        var show: UInt8?
-        var required: Bool?
+        let id: UInt8?
+        let type: UIType?
+        let message: String?
+        let typefield: UITypeField?
+        let hidden: Bool?
+        let topSpacing: Float?
+        let show: UInt8?
+        let required: Bool?
         
         enum CodingKeys: String, CodingKey
         {
@@ -67,5 +67,5 @@ struct ContactScreen: Decodable
         }
     }
     
-    var cells: [Cells]?
+    let cells: [Cells]?
 }

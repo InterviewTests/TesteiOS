@@ -130,7 +130,10 @@ final class SantanderApiClient
 //                    uRq.httpBody
 //                }
                 
-                dataTask = URLSession.shared.dataTask(with: uRq) { (data, response, error) in
+                let config: URLSessionConfiguration = .default
+                config.requestCachePolicy = .reloadIgnoringLocalCacheData
+                
+                dataTask = URLSession(configuration: config).dataTask(with: uRq) { (data, response, error) in
                     
                     debug(objects: [operation.rawValue, uCp.queryItems, data, response, error])
                     

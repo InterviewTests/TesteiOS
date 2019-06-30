@@ -16,8 +16,8 @@ struct InvestmentScreen: Decodable
         {
             struct FundCDI: Decodable
             {
-                var fund: Double?
-                var cdi: Double?
+                let fund: Float?
+                let cdi: Float?
                 
                 // nome de variavel com caixa alta =P
                 enum CodingKeys: String, CodingKey
@@ -42,17 +42,17 @@ struct InvestmentScreen: Decodable
 
         struct Info: Decodable
         {
-            var name: String?
-            var data: String?
+            let name: String?
+            let data: String?
         }
         
-        var title: String?
-        var fundName: String?
-        var whatIs: String?
-        var definition: String?
-        var riskTitle: String?
+        let title: String?
+        let fundName: String?
+        let whatIs: String?
+        let definition: String?
+        let riskTitle: String?
         var risk: UInt8? // range de valor baixo
-        var infoTitle: String?
+        let infoTitle: String?
         var moreInfo: MoreInfo?
         var info: [Info]?
         var downInfo: [Info]?
