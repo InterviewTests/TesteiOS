@@ -1,0 +1,38 @@
+//
+//  SantanderTestTests.swift
+//  SantanderTestTests
+//
+//  Created by Filipe Oliveira on 27/06/19.
+//  Copyright © 2019 Filipe Oliveira. All rights reserved.
+//
+
+import XCTest
+@testable import SantanderTest
+
+class SantanderTestTests: XCTestCase {
+
+    override func setUp() {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+        testExample()
+    }
+
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+
+    func testExample() {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        XCTAssertTrue("fdso@outlook.com".isValidEmail, "Email Correto")
+        XCTAssertFalse("fdso@outlook.c".isValidEmail, "Email Incorreto")
+    }
+
+    func testPerformanceExample() {
+        // This is an example of a performance test case.
+        self.measure {
+            // Put the code you want to measure the time of here.
+        }
+    }
+
+}
