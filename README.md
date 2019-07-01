@@ -81,3 +81,9 @@ Faça um fork desse desse repositório em seu Github e nos envie um Pull Request
 ### # Importante: não há prazo de entrega, faça com qualidade!
 
 # BOA SORTE!
+
+### Execução do projeto.
+
+* git clone em um repositorio local.
+* Abrir workspace no Xcode 
+* Execute o projeto em dispositivo fisico para desfrutar do layout.
