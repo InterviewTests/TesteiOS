@@ -21,7 +21,7 @@ extension InvestmentTableViewController: InvestmentDownInfoCellDelegate
 {
     func onDownload()
     {
-        if let url = URL(string: "https://www.google.com.br")
+        if let url = URL(string: "https://www.google.com")
         {
             let controller: SFSafariViewController = .init(url: url, entersReaderIfAvailable: true)
 
@@ -32,9 +32,9 @@ extension InvestmentTableViewController: InvestmentDownInfoCellDelegate
     }
 }
 
-extension InvestmentTableViewController: InvestimentButtonCellDelegate
+extension InvestmentTableViewController: ButtonCellDelegate
 {
-    func onInvest()
+    func onAction()
     {
         showAlert(title: "Filipe Oliveira", message: "Investimento feito com sucesso ;)")
     }
@@ -52,8 +52,6 @@ class InvestmentTableViewController: UITableViewController
             self.tableView.backgroundView = nil
             
             self.navigationItem.rightBarButtonItem?.isEnabled = model != nil
-            
-//            self.tableView.reloadData()
         }
     }
     
@@ -81,8 +79,15 @@ class InvestmentTableViewController: UITableViewController
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.shadowImage = .init()
         
-        Server_Request()
+        reloadAction()
     }
+    
+//    override func viewDidAppear(_ animated: Bool)
+//    {
+//        super.viewDidAppear(animated)
+//        
+//        reloadAction()
+//    }
 
     override func numberOfSections(in tableView: UITableView) -> Int
     {
@@ -192,7 +197,7 @@ class InvestmentTableViewController: UITableViewController
                 return cell
             }
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath) as? InvestimentButtonTableViewCell else
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath) as? ButtonTableViewCell else
             {
                 return .init()
             }
@@ -216,7 +221,7 @@ class InvestmentTableViewController: UITableViewController
                 return cell
             }
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath) as? InvestimentButtonTableViewCell else
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath) as? ButtonTableViewCell else
             {
                 return .init()
             }
@@ -227,11 +232,12 @@ class InvestmentTableViewController: UITableViewController
         }
         else if indexPath.section == 3
         {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath) as? InvestimentButtonTableViewCell else
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath) as? ButtonTableViewCell else
             {
                 return .init()
             }
             
+            cell.applyContent(text: "Investir")
             cell.delegate = self
             
             return cell
@@ -243,6 +249,8 @@ class InvestmentTableViewController: UITableViewController
     private func Server_Request()
     {
         model = nil
+        
+        tableView.reloadData()
         
         if #available(iOS 10.0, *)
         {

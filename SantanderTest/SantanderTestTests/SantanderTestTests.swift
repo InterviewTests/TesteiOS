@@ -13,6 +13,7 @@ class SantanderTestTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        testExample()
     }
 
     override func tearDown() {
@@ -22,6 +23,9 @@ class SantanderTestTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        XCTAssertTrue("fdso@outlook.com".isValidEmail, "Email Correto")
+        XCTAssertFalse("fdso@outlook.c".isValidEmail, "Email Incorreto")
     }
 
     func testPerformanceExample() {

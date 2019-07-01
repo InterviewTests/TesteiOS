@@ -8,25 +8,25 @@
 
 import Foundation
 
+enum CustomTypeField: UInt8, Decodable
+{
+    case text = 1, telNumber, email
+}
+
 struct ContactScreen: Decodable
 {
-    enum UIType: UInt8, Decodable
+    enum CustomType: UInt8, Decodable
     {
         case field = 1, text, image, checkbox, send
-    }
-    
-    enum UITypeField: UInt8, Decodable
-    {
-        case text = 1, telNumber, email
     }
     
     struct Cells: Decodable
     {
         let id: UInt8?
-        let type: UIType?
+        let type: CustomType?
         let message: String?
-        let typefield: UITypeField?
-        let hidden: Bool?
+        let typefield: CustomTypeField?
+        var hidden: Bool?
         let topSpacing: Float?
         let show: UInt8?
         let required: Bool?
@@ -41,7 +41,7 @@ struct ContactScreen: Decodable
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             id = try? container.decode(UInt8.self, forKey: .id)
-            type = try? container.decode(UIType.self, forKey: .type)
+            type = try? container.decode(CustomType.self, forKey: .type)
             message = try? container.decode(String.self, forKey: .message)
             
             // conversão para tipo comum
@@ -57,7 +57,7 @@ struct ContactScreen: Decodable
             }
             else
             {
-                typefield = try? container.decode(UITypeField.self, forKey: .typefield)
+                typefield = try? container.decode(CustomTypeField.self, forKey: .typefield)
             }
             
             hidden = try? container.decode(Bool.self, forKey: .hidden)
@@ -67,5 +67,5 @@ struct ContactScreen: Decodable
         }
     }
     
-    let cells: [Cells]?
+    var cells: [Cells]?
 }
