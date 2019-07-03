@@ -1,78 +1,230 @@
 import UIKit
 
 @objc public protocol AnimatedTextInputDelegate: class {
-
-    optional func animatedTextInputDidBeginEditing(animatedTextInput: AnimatedTextInput)
-    optional func animatedTextInputDidEndEditing(animatedTextInput: AnimatedTextInput)
-    optional func animatedTextInputDidChange(animatedTextInput: AnimatedTextInput)
-    optional func animatedTextInput(animatedTextInput: AnimatedTextInput, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
-    optional func animatedTextInputShouldBeginEditing(animatedTextInput: AnimatedTextInput) -> Bool
-    optional func animatedTextInputShouldEndEditing(animatedTextInput: AnimatedTextInput) -> Bool
-    optional func animatedTextInputShouldReturn(animatedTextInput: AnimatedTextInput) -> Bool
+    @objc optional func animatedTextInputDidBeginEditing(animatedTextInput: AnimatedTextInput)
+    @objc optional func animatedTextInputDidEndEditing(animatedTextInput: AnimatedTextInput)
+    @objc optional func animatedTextInputDidChange(animatedTextInput: AnimatedTextInput)
+    @objc optional func animatedTextInput(animatedTextInput: AnimatedTextInput, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
+    @objc optional func animatedTextInputShouldBeginEditing(animatedTextInput: AnimatedTextInput) -> Bool
+    @objc optional func animatedTextInputShouldEndEditing(animatedTextInput: AnimatedTextInput) -> Bool
+    @objc optional func animatedTextInputShouldReturn(animatedTextInput: AnimatedTextInput) -> Bool
 }
 
-public class AnimatedTextInput: UIControl {
+open class AnimatedTextInput: UIControl {
 
     public typealias AnimatedTextInputType = AnimatedTextInputFieldConfigurator.AnimatedTextInputType
 
-    public var tapAction: (Void -> Void)?
-    public  weak var delegate: AnimatedTextInputDelegate?
-    public private(set) var isActive = false
+    open var tapAction: (() -> Void)?
+    open  weak var delegate: AnimatedTextInputDelegate?
+    open fileprivate(set) var isActive = false
 
-    public var type: AnimatedTextInputType = .standard {
+    open var type: AnimatedTextInputType = .standard {
         didSet {
             configureType()
         }
     }
-
-    public var placeHolderText = "Test" {
+    
+    open var autocorrection: UITextAutocorrectionType = .no {
         didSet {
-            placeholderLayer.string = placeHolderText
+            textInput.autocorrection = autocorrection
+        }
+    }
+    
+    open var returnKeyType: UIReturnKeyType = .default {
+        didSet {
+            textInput.changeReturnKeyType(with: returnKeyType)
         }
     }
 
-    public var style: AnimatedTextInputStyle = AnimatedTextInputStyleBlue() {
+    open var keyboardAppearance: UIKeyboardAppearance {
+        get { return textInput.currentKeyboardAppearance }
+        set { textInput.currentKeyboardAppearance = newValue }
+    }
+    
+    open var clearButtonMode: UITextField.ViewMode = .whileEditing {
+        didSet {
+            textInput.changeClearButtonMode(with: clearButtonMode)
+        }
+    }
+
+    open var placeHolderText = "Test" {
+        didSet {
+            placeholderLayer.string = placeHolderText
+            textInput.view.accessibilityLabel = placeHolderText
+        }
+    }
+    
+    // Some letters like 'g' or 'á' were not rendered properly, the frame need to be about 20% higher than the font size
+
+    open var frameHeightCorrectionFactor : Double = 1.2 {
+        didSet {
+            layoutPlaceholderLayer()
+        }
+
+    }
+    
+    open var placeholderAlignment: CATextLayer.Alignment = .natural {
+        didSet {
+            placeholderLayer.alignmentMode = CATextLayerAlignmentMode(rawValue: String(describing: placeholderAlignment))
+        }
+    }
+
+    open var style: AnimatedTextInputStyle = AnimatedTextInputStyleBlue() {
         didSet {
             configureStyle()
         }
     }
 
-    public var text: String? {
+    open var text: String? {
         get {
             return textInput.currentText
         }
         set {
-            if !textInput.view.isFirstResponder() {
-                (newValue != nil) ? configurePlaceholderAsInactiveHint() : configurePlaceholderAsDefault()
-            }
+            (newValue != nil && !newValue!.isEmpty) ? configurePlaceholderAsInactiveHint() : configurePlaceholderAsDefault()
             textInput.currentText = newValue
         }
     }
 
-    private let lineView = AnimatedLine()
-    private let placeholderLayer = CATextLayer()
-    private let counterLabel = UILabel()
-    private let lineWidth: CGFloat = 1
-    private let counterLabelRightMargin: CGFloat = 15
-    private let counterLabelTopMargin: CGFloat = 5
+    open var selectedTextRange: UITextRange? {
+        get { return textInput.currentSelectedTextRange }
+        set { textInput.currentSelectedTextRange = newValue }
+    }
 
-    private var isResigningResponder = false
-    private var isPlaceholderAsHint = false
-    private var hasCounterLabel = false
-    private var textInput: TextInput!
-    private var placeholderErrorText: String?
-    private var lineToBottomConstraint: NSLayoutConstraint!
+    open var beginningOfDocument: UITextPosition? {
+        get { return textInput.currentBeginningOfDocument }
+    }
 
-    private var placeholderPosition: CGPoint {
-        let hintPosition = CGPoint(x: style.leftMargin, y: style.yHintPositionOffset)
-        let defaultPosition = CGPoint(x: style.leftMargin, y: style.topMargin + style.yPlaceholderPositionOffset)
+    open var font: UIFont? {
+        get { return textInput.font }
+        set { textAttributes = [NSAttributedString.Key.font: newValue as Any] }
+    }
+
+    open var textColor: UIColor? {
+        get { return textInput.textColor }
+        set { textAttributes = [NSAttributedString.Key.foregroundColor: newValue as Any] }
+    }
+
+    open var lineSpacing: CGFloat? {
+        get {
+            guard let paragraph = textAttributes?[NSAttributedString.Key.paragraphStyle] as? NSParagraphStyle else { return nil }
+            return paragraph.lineSpacing
+        }
+        set {
+            guard let spacing = newValue else { return }
+            let paragraphStyle = textAttributes?[NSAttributedString.Key.paragraphStyle] as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = spacing
+            textAttributes = [NSAttributedString.Key.paragraphStyle: paragraphStyle]
+        }
+    }
+
+    open var textAlignment: NSTextAlignment? {
+        get {
+            guard let paragraph = textInput.textAttributes?[NSAttributedString.Key.paragraphStyle] as? NSParagraphStyle else { return nil }
+            return paragraph.alignment
+        }
+        set {
+            guard let alignment = newValue else { return }
+            let paragraphStyle = textAttributes?[NSAttributedString.Key.paragraphStyle] as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
+            paragraphStyle.alignment = alignment
+            textAttributes = [NSAttributedString.Key.paragraphStyle: paragraphStyle]
+        }
+    }
+
+    open var tailIndent: CGFloat? {
+        get {
+            guard let paragraph = textAttributes?[NSAttributedString.Key.paragraphStyle] as? NSParagraphStyle else { return nil }
+            return paragraph.tailIndent
+        }
+        set {
+            guard let indent = newValue else { return }
+            let paragraphStyle = textAttributes?[NSAttributedString.Key.paragraphStyle] as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
+            paragraphStyle.tailIndent = indent
+            textAttributes = [NSAttributedString.Key.paragraphStyle: paragraphStyle]
+        }
+    }
+
+    open var headIndent: CGFloat? {
+        get {
+            guard let paragraph = textAttributes?[NSAttributedString.Key.paragraphStyle] as? NSParagraphStyle else { return nil }
+            return paragraph.headIndent
+        }
+        set {
+            guard let indent = newValue else { return }
+            let paragraphStyle = textAttributes?[NSAttributedString.Key.paragraphStyle] as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
+            paragraphStyle.headIndent = indent
+            textAttributes = [NSAttributedString.Key.paragraphStyle: paragraphStyle]
+        }
+    }
+
+    open var textAttributes: [NSAttributedString.Key: Any]? {
+        didSet {
+            guard var textInputAttributes = textInput.textAttributes else {
+                textInput.textAttributes = textAttributes
+                return
+            }
+            guard textAttributes != nil else {
+                textInput.textAttributes = nil
+                return
+            }
+            textInput.textAttributes = textInputAttributes.merge(dict: textAttributes!)
+        }
+    }
+
+    private var _inputAccessoryView: UIView?
+
+    open override var inputAccessoryView: UIView? {
+        set {
+            _inputAccessoryView = newValue
+        }
+
+        get {
+            return _inputAccessoryView
+        }
+    }
+
+    open var contentInset: UIEdgeInsets? {
+        didSet {
+            guard let insets = contentInset else { return }
+            textInput.contentInset = insets
+        }
+    }
+
+    fileprivate let lineView = AnimatedLine()
+    fileprivate let placeholderLayer = CATextLayer()
+    fileprivate let counterLabel = UILabel()
+    fileprivate let counterLabelRightMargin: CGFloat = 15
+    fileprivate let counterLabelTopMargin: CGFloat = 5
+
+    fileprivate var isResigningResponder = false
+    fileprivate var isPlaceholderAsHint = false
+    fileprivate var hasCounterLabel = false
+    fileprivate var textInput: TextInput!
+    fileprivate var lineToBottomConstraint: NSLayoutConstraint!
+    fileprivate var textInputTrailingConstraint: NSLayoutConstraint!
+    fileprivate var disclosureViewWidthConstraint: NSLayoutConstraint!
+    fileprivate var disclosureView: UIView?
+    fileprivate var placeholderErrorText: String?
+
+    fileprivate var placeholderPosition: CGPoint {
+        let hintPosition = CGPoint(
+            x: placeholderAlignment != .natural ? 0 : style.leftMargin,
+            y: style.yHintPositionOffset
+        )
+        let defaultPosition = CGPoint(
+            x: placeholderAlignment != .natural ? 0 : style.leftMargin,
+            y: style.topMargin + style.yPlaceholderPositionOffset
+        )
         return isPlaceholderAsHint ? hintPosition : defaultPosition
     }
 
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
 
         setupCommonElements()
+    }
+
+    public func configureInputView(inputiew: UIView!) {
+        textInput.configureInputView(newInputView : inputiew)
     }
 
     required public init?(coder aDecoder: NSCoder) {
@@ -81,143 +233,148 @@ public class AnimatedTextInput: UIControl {
         setupCommonElements()
     }
 
-    override public func intrinsicContentSize() -> CGSize {
-        let normalHeight = textInput.view.intrinsicContentSize().height
-        return CGSize(width: UIViewNoIntrinsicMetric, height: normalHeight + style.topMargin + style.bottomMargin)
+    override open var intrinsicContentSize: CGSize {
+        let normalHeight = textInput.view.intrinsicContentSize.height
+        return CGSize(width: UIView.noIntrinsicMetric, height: normalHeight + style.topMargin + style.bottomMargin)
     }
 
-    public override func updateConstraints() {
+    open override func updateConstraints() {
         addLineViewConstraints()
         addTextInputConstraints()
+        addCharacterCounterConstraints()
         super.updateConstraints()
     }
 
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         layoutPlaceholderLayer()
     }
 
-    private func layoutPlaceholderLayer() {
-        // Some letters like 'g' or 'á' were not rendered properly, the frame need to be about 20% higher than the font size
-        let frameHeightCorrectionFactor: CGFloat = 1.2
-        placeholderLayer.frame = CGRect(origin: placeholderPosition, size: CGSize(width: bounds.width, height: style.textInputFont.pointSize * frameHeightCorrectionFactor))
+    fileprivate func layoutPlaceholderLayer() {
+        placeholderLayer.frame = CGRect(origin: placeholderPosition, size: CGSize(width: bounds.width, height: (style.textInputFont.pointSize * CGFloat(self.frameHeightCorrectionFactor)) ))
     }
 
     // mark: Configuration
 
-    private func addLineViewConstraints() {
+    fileprivate func addLineViewConstraints() {
+        removeConstraints(constraints)
+        lineView.removeConstraints(lineView.constraints)
         pinLeading(toLeadingOf: lineView, constant: style.leftMargin)
         pinTrailing(toTrailingOf: lineView, constant: style.rightMargin)
-        lineView.setHeight(to: lineWidth / UIScreen.mainScreen().scale)
-        let constant = hasCounterLabel ? -counterLabel.intrinsicContentSize().height - counterLabelTopMargin : 0
-        pinBottom(toBottomOf: lineView, constant: constant)
+        lineView.setHeight(to: style.lineHeight)
+        let constant = hasCounterLabel ? -counterLabel.intrinsicContentSize.height - counterLabelTopMargin : 0
+        lineToBottomConstraint = pinBottom(toBottomOf: lineView, constant: constant)
     }
 
-    private func addTextInputConstraints() {
+    fileprivate func addTextInputConstraints() {
         pinLeading(toLeadingOf: textInput.view, constant: style.leftMargin)
-        pinTrailing(toTrailingOf: textInput.view, constant: style.rightMargin)
+        if disclosureView == nil {
+            textInputTrailingConstraint = pinTrailing(toTrailingOf: textInput.view, constant: style.rightMargin)
+        }
         pinTop(toTopOf: textInput.view, constant: style.topMargin)
         textInput.view.pinBottom(toTopOf: lineView, constant: style.bottomMargin)
     }
 
-    private func setupCommonElements() {
+    fileprivate func setupCommonElements() {
         addLine()
         addPlaceHolder()
         addTapGestureRecognizer()
         addTextInput()
     }
 
-    private func addLine() {
+    fileprivate func addLine() {
         lineView.defaultColor = style.lineInactiveColor
         lineView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(lineView)
     }
 
-    private func addPlaceHolder() {
+    fileprivate func addPlaceHolder() {
         placeholderLayer.masksToBounds = false
         placeholderLayer.string = placeHolderText
-        placeholderLayer.foregroundColor = style.inactiveColor.CGColor
+        placeholderLayer.foregroundColor = style.placeholderInactiveColor.cgColor
         placeholderLayer.fontSize = style.textInputFont.pointSize
         placeholderLayer.font = style.textInputFont
-        placeholderLayer.contentsScale = UIScreen.mainScreen().scale
-        placeholderLayer.backgroundColor = UIColor.clearColor().CGColor
+        placeholderLayer.contentsScale = UIScreen.main.scale
+        placeholderLayer.backgroundColor = UIColor.clear.cgColor
         layoutPlaceholderLayer()
         layer.addSublayer(placeholderLayer)
     }
 
-    private func addTapGestureRecognizer() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(viewWasTapped(_:)))
+    fileprivate func addTapGestureRecognizer() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(viewWasTapped))
         addGestureRecognizer(tap)
     }
 
-    private func addTextInput() {
+    fileprivate func addTextInput() {
         textInput = AnimatedTextInputFieldConfigurator.configure(with: type)
         textInput.textInputDelegate = self
         textInput.view.tintColor = style.activeColor
         textInput.textColor = style.textInputFontColor
         textInput.font = style.textInputFont
+        textInput.autocorrection = autocorrection
         textInput.view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textInput.view)
         invalidateIntrinsicContentSize()
     }
 
-    private func updateCounter() {
+    fileprivate func updateCounter() {
         guard let counterText = counterLabel.text else { return }
-        let components = counterText.componentsSeparatedByString("/")
-        let characters = (text != nil) ? text!.characters.count : 0
+        let components = counterText.components(separatedBy: "/")
+        let characters = (text != nil) ? text!.count : 0
         counterLabel.text = "\(characters)/\(components[1])"
     }
 
-    //mark: States and animations
+    // mark: States and animations
 
-    private func configurePlaceholderAsActiveHint() {
+    fileprivate func configurePlaceholderAsActiveHint() {
         isPlaceholderAsHint = true
         configurePlaceholderWith(fontSize: style.placeholderMinFontSize,
-                                 foregroundColor: style.activeColor.CGColor,
+                                 foregroundColor: style.activeColor.cgColor,
                                  text: placeHolderText)
-        lineView.fillLine(with: style.activeColor)
+        lineView.fillLine(with: style.lineActiveColor)
     }
 
-    private func configurePlaceholderAsInactiveHint() {
+    fileprivate func configurePlaceholderAsInactiveHint() {
         isPlaceholderAsHint = true
         configurePlaceholderWith(fontSize: style.placeholderMinFontSize,
-                                 foregroundColor: style.inactiveColor.CGColor,
+                                 foregroundColor: style.inactiveColor.cgColor,
                                  text: placeHolderText)
         lineView.animateToInitialState()
     }
 
-    private func configurePlaceholderAsDefault() {
+    fileprivate func configurePlaceholderAsDefault() {
         isPlaceholderAsHint = false
         configurePlaceholderWith(fontSize: style.textInputFont.pointSize,
-                                 foregroundColor: style.inactiveColor.CGColor,
+                                 foregroundColor: style.placeholderInactiveColor.cgColor,
                                  text: placeHolderText)
         lineView.animateToInitialState()
     }
 
-    private func configurePlaceholderAsErrorHint() {
+    fileprivate func configurePlaceholderAsErrorHint() {
         isPlaceholderAsHint = true
         configurePlaceholderWith(fontSize: style.placeholderMinFontSize,
-                                 foregroundColor: style.errorColor.CGColor,
+                                 foregroundColor: style.errorColor.cgColor,
                                  text: placeholderErrorText)
         lineView.fillLine(with: style.errorColor)
     }
 
-    private func configurePlaceholderWith(fontSize fontSize: CGFloat, foregroundColor: CGColor, text: String?) {
+    fileprivate func configurePlaceholderWith(fontSize: CGFloat, foregroundColor: CGColor, text: String?) {
         placeholderLayer.fontSize = fontSize
         placeholderLayer.foregroundColor = foregroundColor
         placeholderLayer.string = text
-        placeholderLayer.frame = CGRect(origin: placeholderPosition, size: placeholderLayer.frame.size)
+        textInput.view.accessibilityLabel = text
+        layoutPlaceholderLayer()
     }
 
-    private func animatePlaceholder(to applyConfiguration: Void -> Void) {
+    fileprivate func animatePlaceholder(to applyConfiguration: () -> Void) {
         let duration = 0.2
         let function = CAMediaTimingFunction(controlPoints: 0.3, 0.0, 0.5, 0.95)
         transactionAnimation(with: duration, timingFuncion: function, animations: applyConfiguration)
     }
 
-    //MARK: Behaviours
+    // mark: Behaviours
 
-    @objc private func viewWasTapped(sender: UIGestureRecognizer) {
+    @objc fileprivate func viewWasTapped(sender: UIGestureRecognizer) {
         if let tapAction = tapAction {
             tapAction()
         } else {
@@ -225,13 +382,12 @@ public class AnimatedTextInput: UIControl {
         }
     }
 
-    private func styleDidChange() {
+    fileprivate func styleDidChange() {
         lineView.defaultColor = style.lineInactiveColor
-        placeholderLayer.foregroundColor = style.inactiveColor.CGColor
+        placeholderLayer.foregroundColor = style.placeholderInactiveColor.cgColor
         let fontSize = style.textInputFont.pointSize
         placeholderLayer.fontSize = fontSize
         placeholderLayer.font = style.textInputFont
-        layoutPlaceholderLayer()
         textInput.view.tintColor = style.activeColor
         textInput.textColor = style.textInputFontColor
         textInput.font = style.textInputFont
@@ -239,20 +395,24 @@ public class AnimatedTextInput: UIControl {
         layoutIfNeeded()
     }
 
-    override public func becomeFirstResponder() -> Bool {
+    @discardableResult override open func becomeFirstResponder() -> Bool {
         isActive = true
-        textInput.view.becomeFirstResponder()
+        let firstResponder = textInput.view.becomeFirstResponder()
         counterLabel.textColor = style.activeColor
         placeholderErrorText = nil
         animatePlaceholder(to: configurePlaceholderAsActiveHint)
-        return true
+        return firstResponder
     }
 
-    override public func resignFirstResponder() -> Bool {
+    override open var isFirstResponder: Bool {
+        return textInput.view.isFirstResponder
+    }
+
+    @discardableResult override open func resignFirstResponder() -> Bool {
         guard !isResigningResponder else { return true }
         isActive = false
         isResigningResponder = true
-        textInput.view.resignFirstResponder()
+        let resignFirstResponder = textInput.view.resignFirstResponder()
         isResigningResponder = false
         counterLabel.textColor = style.inactiveColor
 
@@ -264,27 +424,30 @@ public class AnimatedTextInput: UIControl {
         if placeholderErrorText == nil {
             animateToInactiveState()
         }
-        return true
+        return resignFirstResponder
     }
 
-    private func animateToInactiveState() {
-        guard let text = textInput.currentText where !text.isEmpty else {
+    fileprivate func animateToInactiveState() {
+        guard let text = textInput.currentText, !text.isEmpty else {
             animatePlaceholder(to: configurePlaceholderAsDefault)
             return
         }
         animatePlaceholder(to: configurePlaceholderAsInactiveHint)
     }
 
-    override public func canResignFirstResponder() -> Bool {
-        return textInput.view.canResignFirstResponder()
+    override open var canResignFirstResponder: Bool {
+        return textInput.view.canResignFirstResponder
     }
 
-    override public func canBecomeFirstResponder() -> Bool {
+    override open var canBecomeFirstResponder: Bool {
         guard !isResigningResponder else { return false }
-        return textInput.view.canBecomeFirstResponder()
+        if let disclosureView = disclosureView, disclosureView.isFirstResponder {
+            return false
+        }
+        return textInput.view.canBecomeFirstResponder
     }
 
-    public func show(error errorMessage: String, placeholderText: String? = nil) {
+    open func show(error errorMessage: String, placeholderText: String? = nil) {
         placeholderErrorText = errorMessage
         if let textInput = textInput as? TextInputError {
             textInput.configureErrorState(with: placeholderText)
@@ -292,7 +455,7 @@ public class AnimatedTextInput: UIControl {
         animatePlaceholder(to: configurePlaceholderAsErrorHint)
     }
 
-    public func clearError() {
+    open func clearError() {
         placeholderErrorText = nil
         if let textInputError = textInput as? TextInputError {
             textInputError.removeErrorHintMessage()
@@ -304,12 +467,12 @@ public class AnimatedTextInput: UIControl {
         }
     }
 
-    private func configureType() {
+    fileprivate func configureType() {
         textInput.view.removeFromSuperview()
         addTextInput()
     }
 
-    private func configureStyle() {
+    fileprivate func configureStyle() {
         styleDidChange()
         if isActive {
             configurePlaceholderAsActiveHint()
@@ -318,61 +481,94 @@ public class AnimatedTextInput: UIControl {
         }
     }
 
-    public func showCharacterCounterLabel(with maximum: Int) {
-        let characters = (text != nil) ? text!.characters.count : 0
-        counterLabel.text = "\(characters)/\(maximum)"
+    open func showCharacterCounterLabel(with maximum: Int? = nil) {
+        hasCounterLabel = true
+        let characters = (text != nil) ? text!.count : 0
+        if let maximumValue = maximum {
+            counterLabel.text = "\(characters)/\(maximumValue)"
+        } else {
+            counterLabel.text = "\(characters)"
+        }
         counterLabel.textColor = isActive ? style.activeColor : style.inactiveColor
         counterLabel.font = style.counterLabelFont
         counterLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(counterLabel)
-        addCharacterCounterConstraints()
         invalidateIntrinsicContentSize()
     }
 
-    private func addCharacterCounterConstraints() {
+    fileprivate func addCharacterCounterConstraints() {
+        guard hasCounterLabel else { return }
+        lineToBottomConstraint.constant = -counterLabel.intrinsicContentSize.height - counterLabelTopMargin
         lineView.pinBottom(toTopOf: counterLabel, constant: counterLabelTopMargin)
         pinTrailing(toTrailingOf: counterLabel, constant: counterLabelRightMargin)
     }
 
-    public func removeCharacterCounterLabel() {
+    open func removeCharacterCounterLabel() {
+        hasCounterLabel = false
         counterLabel.removeConstraints(counterLabel.constraints)
         counterLabel.removeFromSuperview()
         lineToBottomConstraint.constant = 0
         invalidateIntrinsicContentSize()
     }
+
+    open func addDisclosureView(disclosureView: UIView) {
+        if let constraint = textInputTrailingConstraint {
+            removeConstraint(constraint)
+        }
+        self.disclosureView?.removeFromSuperview()
+        self.disclosureView = disclosureView
+        addSubview(disclosureView)
+        textInputTrailingConstraint = textInput.view.pinTrailing(toLeadingOf: disclosureView, constant: 0)
+        disclosureView.alignHorizontalAxis(toSameAxisOfView: textInput.view)
+        disclosureView.pinBottom(toBottomOf: self, constant: 12)
+        disclosureView.pinTrailing(toTrailingOf: self, constant: 16)
+    }
+
+    open func removeDisclosureView() {
+        guard disclosureView != nil else { return }
+        disclosureView?.removeFromSuperview()
+        disclosureView = nil
+        textInput.view.removeConstraint(textInputTrailingConstraint)
+        textInputTrailingConstraint = pinTrailing(toTrailingOf: textInput.view, constant: style.rightMargin)
+    }
+
+    open func position(from: UITextPosition, offset: Int) -> UITextPosition? {
+        return textInput.currentPosition(from: from, offset: offset)
+    }
 }
 
 extension AnimatedTextInput: TextInputDelegate {
 
-    public func textInputDidBeginEditing(textInput: TextInput) {
+    open func textInputDidBeginEditing(textInput: TextInput) {
         becomeFirstResponder()
-        delegate?.animatedTextInputDidBeginEditing?(self)
+        delegate?.animatedTextInputDidBeginEditing?(animatedTextInput: self)
     }
 
-    public func textInputDidEndEditing(textInput: TextInput) {
+    open func textInputDidEndEditing(textInput: TextInput) {
         resignFirstResponder()
-        delegate?.animatedTextInputDidEndEditing?(self)
+        delegate?.animatedTextInputDidEndEditing?(animatedTextInput: self)
     }
 
-    public func textInputDidChange(textInput: TextInput) {
+    open func textInputDidChange(textInput: TextInput) {
         updateCounter()
-        delegate?.animatedTextInputDidChange?(self)
+        sendActions(for: .editingChanged)
+        delegate?.animatedTextInputDidChange?(animatedTextInput: self)
     }
 
-    public func textInput(textInput: TextInput, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        return delegate?.animatedTextInput?(self, shouldChangeCharactersInRange: range, replacementString: string) ?? true
+    open func textInput(textInput: TextInput, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        return delegate?.animatedTextInput?(animatedTextInput: self, shouldChangeCharactersInRange: range, replacementString: string) ?? true
     }
 
-    public func textInputShouldBeginEditing(textInput: TextInput) -> Bool {
-        return delegate?.animatedTextInputShouldBeginEditing?(self) ?? true
+    open func textInputShouldBeginEditing(textInput: TextInput) -> Bool {
+        return delegate?.animatedTextInputShouldBeginEditing?(animatedTextInput: self) ?? true
     }
 
-    public func textInputShouldEndEditing(textInput: TextInput) -> Bool {
-        return delegate?.animatedTextInputShouldEndEditing?(self) ?? true
+    open func textInputShouldEndEditing(textInput: TextInput) -> Bool {
+        return delegate?.animatedTextInputShouldEndEditing?(animatedTextInput: self) ?? true
     }
 
-    public func textInputShouldReturn(textInput: TextInput) -> Bool {
-        return delegate?.animatedTextInputShouldReturn?(self) ?? true
+    open func textInputShouldReturn(textInput: TextInput) -> Bool {
+        return delegate?.animatedTextInputShouldReturn?(animatedTextInput: self) ?? true
     }
 }
 
@@ -381,7 +577,25 @@ public protocol TextInput {
     var currentText: String? { get set }
     var font: UIFont? { get set }
     var textColor: UIColor? { get set }
-    weak var textInputDelegate: TextInputDelegate? { get set }
+    var textAttributes: [NSAttributedString.Key: Any]? { get set }
+    var textInputDelegate: TextInputDelegate? { get set }
+    var currentSelectedTextRange: UITextRange? { get set }
+    var currentBeginningOfDocument: UITextPosition? { get }
+    var currentKeyboardAppearance: UIKeyboardAppearance { get set }
+    var contentInset: UIEdgeInsets { get set }
+    var autocorrection: UITextAutocorrectionType {get set}
+
+
+    func configureInputView(newInputView: UIView)
+    func changeReturnKeyType(with newReturnKeyType: UIReturnKeyType)
+    func currentPosition(from: UITextPosition, offset: Int) -> UITextPosition?
+    func changeClearButtonMode(with newClearButtonMode: UITextField.ViewMode)
+}
+
+public extension TextInput where Self: UIView {
+    var view: UIView {
+        return self
+    }
 }
 
 public protocol TextInputDelegate: class {
@@ -398,3 +612,28 @@ public protocol TextInputError {
     func configureErrorState(with message: String?)
     func removeErrorHintMessage()
 }
+
+public extension CATextLayer {
+    /// Describes how individual lines of text are aligned within the layer.
+    ///
+    /// - natural: Natural alignment.
+    /// - left: Left alignment.
+    /// - right: Right alignment.
+    /// - center: Center alignment.
+    /// - justified: Justified alignment.
+    enum Alignment {
+        case natural
+        case left
+        case right
+        case center
+        case justified
+    }
+}
+
+fileprivate extension Dictionary {
+    mutating func merge(dict: [Key: Value]) -> Dictionary {
+        for (key, value) in dict { self[key] = value }
+        return self
+    }
+}
+

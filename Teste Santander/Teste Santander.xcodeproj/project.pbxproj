@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,8 @@
 		A4D9AFB622CD11900001EEA7 /* Teste_SantanderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D9AFB522CD11900001EEA7 /* Teste_SantanderTests.swift */; };
 		A4D9AFC122CD11900001EEA7 /* Teste_SantanderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D9AFC022CD11900001EEA7 /* Teste_SantanderUITests.swift */; };
 		A4D9AFD022CD19950001EEA7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D9AFCF22CD19950001EEA7 /* Enums.swift */; };
+		A4D9AFD322CD2D970001EEA7 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D9AFD222CD2D970001EEA7 /* UIViewController.swift */; };
+		A4D9AFD522CD38590001EEA7 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D9AFD422CD38590001EEA7 /* String.swift */; };
 		F4BCB172F0574BAE3B65CA8A /* Pods_Teste_SantanderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC8BE2682C7C5A0123A672E /* Pods_Teste_SantanderUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		A4D9AFC022CD11900001EEA7 /* Teste_SantanderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teste_SantanderUITests.swift; sourceTree = "<group>"; };
 		A4D9AFC222CD11900001EEA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4D9AFCF22CD19950001EEA7 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		A4D9AFD222CD2D970001EEA7 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		A4D9AFD422CD38590001EEA7 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		B1393F0E602F51AB22DAC6C1 /* Pods-Teste SantanderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Teste SantanderUITests.release.xcconfig"; path = "Target Support Files/Pods-Teste SantanderUITests/Pods-Teste SantanderUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B7BDBE1B5B88428A09A227D5 /* Pods_Teste_SantanderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Teste_SantanderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD13B8CA372DFB21B4903709 /* Pods-Teste Santander.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Teste Santander.release.xcconfig"; path = "Target Support Files/Pods-Teste Santander/Pods-Teste Santander.release.xcconfig"; sourceTree = "<group>"; };
@@ -101,7 +105,6 @@
 				0C11EDEF299E4189D372284C /* Pods-Teste SantanderUITests.debug.xcconfig */,
 				B1393F0E602F51AB22DAC6C1 /* Pods-Teste SantanderUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -130,6 +133,7 @@
 		A4D9AF9F22CD118D0001EEA7 /* Teste Santander */ = {
 			isa = PBXGroup;
 			children = (
+				A4D9AFD122CD2D8A0001EEA7 /* Extension */,
 				A4D9AFCE22CD196B0001EEA7 /* Model */,
 				A4D9AFA022CD118D0001EEA7 /* AppDelegate.swift */,
 				A4D9AFA222CD118D0001EEA7 /* ViewController.swift */,
@@ -167,6 +171,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A4D9AFD122CD2D8A0001EEA7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A4D9AFD222CD2D970001EEA7 /* UIViewController.swift */,
+				A4D9AFD422CD38590001EEA7 /* String.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		CF77D33EA97F1CD6DD2057B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,7 +201,7 @@
 				A4D9AF9922CD118D0001EEA7 /* Sources */,
 				A4D9AF9A22CD118D0001EEA7 /* Frameworks */,
 				A4D9AF9B22CD118D0001EEA7 /* Resources */,
-				185D6ECF7EF6FD1036E95EB8 /* [CP] Embed Pods Frameworks */,
+				B7B651895C969F2FFCA7E1F1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -308,23 +321,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		185D6ECF7EF6FD1036E95EB8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Teste Santander/Pods-Teste Santander-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Teste Santander/Pods-Teste Santander-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Teste Santander/Pods-Teste Santander-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		46BC08E334F883BC8919FAE8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -391,6 +387,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B7B651895C969F2FFCA7E1F1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Teste Santander/Pods-Teste Santander-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Teste Santander/Pods-Teste Santander-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Teste Santander/Pods-Teste Santander-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -400,7 +413,9 @@
 			files = (
 				A4D9AFA322CD118D0001EEA7 /* ViewController.swift in Sources */,
 				A4D9AFD022CD19950001EEA7 /* Enums.swift in Sources */,
+				A4D9AFD322CD2D970001EEA7 /* UIViewController.swift in Sources */,
 				A4D9AFA122CD118D0001EEA7 /* AppDelegate.swift in Sources */,
+				A4D9AFD522CD38590001EEA7 /* String.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,7 +600,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "app.luannluna.Teste-Santander";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -604,7 +619,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "app.luannluna.Teste-Santander";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

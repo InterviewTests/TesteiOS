@@ -1,8 +1,23 @@
 import UIKit
 
-final internal class AnimatedTextView: UITextView {
+final public class AnimatedTextView: UITextView {
 
-    weak var textInputDelegate: TextInputDelegate?
+    public var textAttributes: [NSAttributedString.Key: Any]? {
+        didSet {
+            guard let attributes = textAttributes else { return }
+            typingAttributes = Dictionary(uniqueKeysWithValues: attributes.lazy.map { ($0.key, $0.value) })
+        }
+    }
+
+    public override var font: UIFont? {
+        didSet {
+            var attributes = typingAttributes
+            attributes[NSAttributedString.Key.font] = font
+            textAttributes = Dictionary(uniqueKeysWithValues: attributes.lazy.map { ($0.key, $0.value)})
+        }
+    }
+
+    public weak var textInputDelegate: TextInputDelegate?
 
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
@@ -10,62 +25,93 @@ final internal class AnimatedTextView: UITextView {
         setup()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
         setup()
     }
 
-    private func setup() {
+    fileprivate func setup() {
+        contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
         delegate = self
     }
 
-    override func resignFirstResponder() -> Bool {
+    public override func resignFirstResponder() -> Bool {
         return super.resignFirstResponder()
     }
 }
 
 extension AnimatedTextView: TextInput {
+    public func configureInputView(newInputView: UIView) {
+        inputView = newInputView
+    }
 
-    var view: UIView { return self }
-
-    var currentText: String? {
+    public var currentText: String? {
         get { return text }
         set { self.text = newValue }
     }
 
-    var textAttributes: [String: AnyObject] {
-        get { return typingAttributes }
-        set { self.typingAttributes = textAttributes }
+    public var currentSelectedTextRange: UITextRange? {
+        get { return self.selectedTextRange }
+        set { self.selectedTextRange = newValue }
     }
+
+    public var currentBeginningOfDocument: UITextPosition? {
+        return self.beginningOfDocument
+    }
+    
+    public var currentKeyboardAppearance: UIKeyboardAppearance {
+        get { return self.keyboardAppearance }
+        set { self.keyboardAppearance = newValue}
+    }
+
+    public var autocorrection: UITextAutocorrectionType {
+        get { return self.autocorrectionType }
+        set { self.autocorrectionType = newValue }
+    }
+    
+    public func changeReturnKeyType(with newReturnKeyType: UIReturnKeyType) {
+        returnKeyType = newReturnKeyType
+    }
+    
+    public func currentPosition(from: UITextPosition, offset: Int) -> UITextPosition? {
+        return position(from: from, offset: offset)
+    }
+    
+    public func changeClearButtonMode(with newClearButtonMode: UITextField.ViewMode) {}
+    
 }
 
 extension AnimatedTextView: UITextViewDelegate {
 
-    func textViewDidBeginEditing(textView: UITextView) {
-        textInputDelegate?.textInputDidBeginEditing(self)
+    public func textViewDidBeginEditing(_ textView: UITextView) {
+        textInputDelegate?.textInputDidBeginEditing(textInput: self)
     }
 
-    func textViewDidEndEditing(textView: UITextView) {
-        textInputDelegate?.textInputDidEndEditing(self)
+    public func textViewDidEndEditing(_ textView: UITextView) {
+        textInputDelegate?.textInputDidEndEditing(textInput: self)
     }
 
-    func textViewDidChange(textView: UITextView) {
-        textInputDelegate?.textInputDidChange(self)
+    public func textViewDidChange(_ textView: UITextView) {
+        let range = textView.selectedRange
+        textView.attributedText = NSAttributedString(string: textView.text, attributes: textAttributes)
+        textView.selectedRange = range
+
+        textInputDelegate?.textInputDidChange(textInput: self)
     }
 
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
-            return textInputDelegate?.textInputShouldReturn(self) ?? true
+            return textInputDelegate?.textInputShouldReturn(textInput: self) ?? true
         }
-        return textInputDelegate?.textInput(self, shouldChangeCharactersInRange: range, replacementString: text) ?? true
+        return textInputDelegate?.textInput(textInput: self, shouldChangeCharactersInRange: range, replacementString: text) ?? true
     }
 
-    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-        return textInputDelegate?.textInputShouldBeginEditing(self) ?? true
+    public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        return textInputDelegate?.textInputShouldBeginEditing(textInput: self) ?? true
     }
 
-    func textViewShouldEndEditing(textView: UITextView) -> Bool {
-        return textInputDelegate?.textInputShouldEndEditing(self) ?? true
+    public func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        return textInputDelegate?.textInputShouldEndEditing(textInput: self) ?? true
     }
 }
