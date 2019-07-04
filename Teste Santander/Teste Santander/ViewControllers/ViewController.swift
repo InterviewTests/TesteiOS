@@ -13,7 +13,7 @@ import DLRadioButton
 
 struct CustomTextInputStyle: AnimatedTextInputStyle {
     let placeholderInactiveColor = UIColor.gray
-    let activeColor = UIColor.orange
+    let activeColor = UIColor.red.withAlphaComponent(0.3)
     let inactiveColor = UIColor.gray.withAlphaComponent(0.3)
     let lineInactiveColor = UIColor.gray.withAlphaComponent(0.3)
     let lineActiveColor = UIColor.green
@@ -45,6 +45,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.hideKeyboardWhenTappedAround()
         btSaveEmail.isMultipleSelectionEnabled = true
         
@@ -63,12 +64,48 @@ class ViewController: UIViewController {
         tfPhone.delegate = self
         // Do any additional setup after loading the view.
     }
-    @IBAction func send(_ sender: UIButton) {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        tabBarController?.navigationItem.title = "Contato"
+        tabBarController?.navigationItem.rightBarButtonItem = nil
+        
+        clearTextFills()
+    }
+    
+    @IBAction func send(_ sender: Any?) {
+        if tfName.text!.isEmpty {
+            tfName.becomeFirstResponder()
+            return
+        }
+        if tfEmail.text!.isEmpty && !tfEmail.text!.isValidEmail() {
+            tfEmail.becomeFirstResponder()
+            return
+        }
+        if tfPhone.text!.isEmpty {
+            tfPhone.becomeFirstResponder()
+            return
+        }
+        
+        performSegue(withIdentifier: "validSegue", sender: nil)
     }
     @IBAction func check(_ sender: DLRadioButton) {
         sender.isIconOnRight = !sender.isIconOnRight
         print("isSelected: \(sender.isIconOnRight)")
+    }
+    
+    func clearTextFills() {
+        tfName.text = nil
+        tfEmail.text = nil
+        tfPhone.text = nil
+        
+        tfName.style = AnimatedTextInputStyleBlue()
+        tfEmail.style = AnimatedTextInputStyleBlue()
+        tfPhone.style = AnimatedTextInputStyleBlue()
+        
+        btSaveEmail.isIconOnRight = false
+        
     }
     
 }
@@ -83,7 +120,7 @@ extension ViewController: AnimatedTextInputDelegate {
             tfPhone.becomeFirstResponder()
         }
         if animatedTextInput == tfPhone {
-            print("GOO!!!")
+            send(nil)
         }
         return true
     }

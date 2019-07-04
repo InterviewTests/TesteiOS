@@ -8,17 +8,17 @@
 
 import UIKit
 
-//enum Type: Int {
-//    case field = 1
-//    case text = 2
-//    case image = 3
-//    case checkbox = 4
-//    case send = 5
-//}
-//
-//
-//enum TypeField: Int {
-//    case text = 1
-//    case telNumber = 2
-//    case email = 3
-//}
+enum Type: Int {
+    case field = 1
+    case text = 2
+    case image = 3
+    case checkbox = 4
+    case send = 5
+}
+
+
+enum TypeField: Int {
+    case text = 1
+    case telNumber = 2
+    case email = 3
+}
