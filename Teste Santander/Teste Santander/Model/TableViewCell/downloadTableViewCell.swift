@@ -24,7 +24,12 @@ class downloadTableViewCell: UITableViewCell {
     
     @IBAction func download(_ sender: Any) {
         guard let url = URL(string: "https://www.google.com/") else { return }
-        UIApplication.shared.open(url)
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+        } else {
+            // Fallback on earlier versions
+            UIApplication.shared.openURL(url)
+        }
     }
 
 }
