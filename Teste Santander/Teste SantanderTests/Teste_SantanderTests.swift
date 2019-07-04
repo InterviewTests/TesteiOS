@@ -2,12 +2,11 @@
 //  Teste_SantanderTests.swift
 //  Teste SantanderTests
 //
-//  Created by Luann Marques Luna on 03/07/19.
+//  Created by Luann Marques Luna on 04/07/19.
 //  Copyright © 2019 Luann Luna. All rights reserved.
 //
 
 import XCTest
-@testable import Teste_Santander
 
 class Teste_SantanderTests: XCTestCase {
 
