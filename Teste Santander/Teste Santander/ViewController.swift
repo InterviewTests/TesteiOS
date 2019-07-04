@@ -9,6 +9,7 @@
 import UIKit
 import AnimatedTextInput
 import JMMaskTextField_Swift
+import DLRadioButton
 
 struct CustomTextInputStyle: AnimatedTextInputStyle {
     let placeholderInactiveColor = UIColor.gray
@@ -18,10 +19,10 @@ struct CustomTextInputStyle: AnimatedTextInputStyle {
     let lineActiveColor = UIColor.green
     let lineHeight: CGFloat = 3
     let errorColor = UIColor.red
-    let textInputFont = UIFont.systemFont(ofSize: 14)
+    var textInputFont = UIFont(name: "DINPro-Regular", size: 14)!
     let textInputFontColor = UIColor.black
     let placeholderMinFontSize: CGFloat = 9
-    let counterLabelFont: UIFont? = UIFont.systemFont(ofSize: 9)
+    let counterLabelFont: UIFont? = UIFont(name: "DINPro-Regular", size: 9)
     let leftMargin: CGFloat = 25
     let topMargin: CGFloat = 20
     let rightMargin: CGFloat = 0
@@ -37,6 +38,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tfName: AnimatedTextInput!
     @IBOutlet weak var tfEmail: AnimatedTextInput!
     @IBOutlet weak var tfPhone: AnimatedTextInput!
+    @IBOutlet weak var btSaveEmail: DLRadioButton!
     
     //    MARK:- Parameters
     fileprivate var isBlue = true
@@ -44,6 +46,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        btSaveEmail.isMultipleSelectionEnabled = true
         
         tfName.placeHolderText = "Nome"
         tfName.returnKeyType = .next
@@ -62,6 +65,10 @@ class ViewController: UIViewController {
     }
     @IBAction func send(_ sender: UIButton) {
         
+    }
+    @IBAction func check(_ sender: DLRadioButton) {
+        sender.isIconOnRight = !sender.isIconOnRight
+        print("isSelected: \(sender.isIconOnRight)")
     }
     
 }
@@ -113,7 +120,5 @@ extension ViewController: AnimatedTextInputDelegate {
             }
         }
         
-        
-//        animatedTextInput.style = isBlue ? CustomTextInputStyle() : AnimatedTextInputStyleBlue()
     }
 }
