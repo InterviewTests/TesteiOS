@@ -13,9 +13,13 @@ class tabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tabBar.tintColor = .white
+        
         let appearance = UITabBarItem.appearance()
-        let attributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font:UIFont(name: "DINPro-Regular", size: 17)!]
+        let attributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font:UIFont(name: "DINPro-Regular", size: 20)!]
         appearance.setTitleTextAttributes(attributes, for: .normal)
+        
+        
     }
     
 

@@ -129,7 +129,7 @@ extension InvestmentViewController: UITabBarDelegate, UITableViewDataSource {
     @objc func investing() {
         let alert = UIAlertController(title: "Sucesso!", message: "Investimento realizado com sucesso!", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.view.tintColor = .black
+//        alert.view.tintColor = .black
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }

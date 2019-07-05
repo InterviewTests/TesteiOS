@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UILabel.appearance().font = UIFont(name: "DINPro-Regular", size: 17)
-        window?.tintColor = .white
+//        window?.tintColor = .white
         
         return true
     }
