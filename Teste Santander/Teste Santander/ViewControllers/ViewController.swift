@@ -40,8 +40,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var tfPhone: AnimatedTextInput!
     @IBOutlet weak var btSaveEmail: DLRadioButton!
     
-    //    MARK:- Parameters
-    fileprivate var isBlue = true
     
     override func viewDidLoad() {
         super.viewDidLoad()

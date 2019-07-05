@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5B6641706D245A5A1FE6BD5A /* Pods_Teste_Santander.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F1CFA8FA431018C11CA297 /* Pods_Teste_Santander.framework */; };
+		9B5E06C0EF52E050D9A0D7A7 /* Pods_Teste_SantanderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BDBE1B5B88428A09A227D5 /* Pods_Teste_SantanderTests.framework */; };
 		A43805DC22CD842E00DE33CA /* ResendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43805DB22CD842E00DE33CA /* ResendViewController.swift */; };
 		A43805E722CD88A500DE33CA /* DINEngschriftStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = A43805DE22CD88A500DE33CA /* DINEngschriftStd.otf */; };
 		A43805EA22CD88A500DE33CA /* DINPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A43805DF22CD88A500DE33CA /* DINPro-Regular.otf */; };
@@ -110,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B5E06C0EF52E050D9A0D7A7 /* Pods_Teste_SantanderTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,9 +275,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A45FCFA422CEA49000A37002 /* Build configuration list for PBXNativeTarget "Teste SantanderTests" */;
 			buildPhases = (
+				B9F2B9DE1CFFF3DDE5E2EBB1 /* [CP] Check Pods Manifest.lock */,
 				A45FCF9922CEA49000A37002 /* Sources */,
 				A45FCF9A22CEA49000A37002 /* Frameworks */,
 				A45FCF9B22CEA49000A37002 /* Resources */,
+				0A9491EE9DD0A486BB45EBF8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -374,6 +378,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0A9491EE9DD0A486BB45EBF8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Teste SantanderTests/Pods-Teste SantanderTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Teste SantanderTests/Pods-Teste SantanderTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Teste SantanderTests/Pods-Teste SantanderTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B27585DD4FA2EE556A0C0C9F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -390,6 +411,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Teste Santander-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9F2B9DE1CFFF3DDE5E2EBB1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Teste SantanderTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -484,6 +527,7 @@
 /* Begin XCBuildConfiguration section */
 		A45FCFA522CEA49000A37002 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D2FC29D42761F74DA482BCF /* Pods-Teste SantanderTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -496,7 +540,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "app.luannluna.Teste-SantanderTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teste Santander.app/Teste Santander";
 			};
@@ -504,6 +548,7 @@
 		};
 		A45FCFA622CEA49000A37002 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF234E0B78F6F375BA8B72B6 /* Pods-Teste SantanderTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -516,7 +561,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "app.luannluna.Teste-SantanderTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teste Santander.app/Teste Santander";
 			};
