@@ -12,7 +12,7 @@ class FormCell: Decodable {
     let type: CellType?
     let message: String?
     let fieldType: FieldType?
-    let hidden: Bool?
+    var hidden: Bool?
     let topSpacing: Double?
     let fieldToPresent: Int?
     let required: Bool?

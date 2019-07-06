@@ -18,6 +18,14 @@ class FormViewController: UIViewController {
     
     fileprivate var interactor: FormInteractor?
     fileprivate var cells: [FormCell] = []
+    fileprivate var visibleCells: [FormCell] {
+        return cells.compactMap { cell -> FormCell? in
+            if cell.hidden == false {
+                return cell
+            }
+            return nil
+        }
+    }
     
     lazy var blankView: UIView = {
         return UIView()
@@ -69,7 +77,7 @@ extension FormViewController: FormPresentableProtocol {
 extension FormViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return cells.count
+        return visibleCells.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,7 +85,7 @@ extension FormViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = cells[indexPath.section]
+        let cell = visibleCells[indexPath.section]
         guard let type = cell.type else { return UITableViewCell() }
         
         switch type {
@@ -103,7 +111,7 @@ extension FormViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(cells[section].topSpacing ?? 0.0)
+        return CGFloat(visibleCells[section].topSpacing ?? 0.0)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
