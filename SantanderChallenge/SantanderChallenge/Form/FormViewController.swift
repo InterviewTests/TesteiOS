@@ -19,6 +19,10 @@ class FormViewController: UIViewController {
     fileprivate var interactor: FormInteractor?
     fileprivate var cells: [FormCell] = []
     
+    lazy var blankView: UIView = {
+        return UIView()
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +43,8 @@ class FormViewController: UIViewController {
              ActionButtonTableViewCell.self
             ]
         )
+        
+        tableView.tableFooterView = blankView
     }
     
     private func setupInteractor() {
@@ -94,6 +100,14 @@ extension FormViewController: UITableViewDataSource {
 extension FormViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(cells[section].topSpacing ?? 0.0)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return blankView
     }
 }
 
