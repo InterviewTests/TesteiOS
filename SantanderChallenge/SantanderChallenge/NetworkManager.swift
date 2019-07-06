@@ -23,8 +23,11 @@ class NetworkManager {
         guard let environment = EnvironmentManager.shared.environmentId else {
             fatalError("Environment not found")
         }
+        
         switch environment {
-        default:
+        case .development:
+            provider = DevelopmentNetworkProvider()
+        case .production:
             provider = ProductionNetworkProvider()
         }
     }
