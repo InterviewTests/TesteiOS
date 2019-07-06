@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CellType: Int {
+enum CellType: Int, Decodable {
     case field = 1
     case text = 2
     case image = 3
