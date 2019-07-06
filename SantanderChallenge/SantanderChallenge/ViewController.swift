@@ -23,16 +23,20 @@ class ViewController: UIViewController {
         let presenter = FormPresenter(view: self)
         self.interactor = FormInteractor(presenter: presenter)
         
-        interactor?.fetchForm()
-    }
-
-    @IBAction func didTouchRequest(_ button: UIButton) {
-        let a = ProductionNetworkProvider.init()
+//        interactor?.fetchForm()
+        
+        let a = DevelopmentNetworkProvider()
         a.fetchFormData { (result) in
             print(result)
+            let data = try! result.get()
+            do {
+                let cells = try JSONDecoder().decode(FormCellsResponse.self, from: data)
+                self.textView.text = "\(cells)"
+            } catch {
+                print(error)
+            }
         }
     }
-
 }
 
 extension ViewController: FormPresentableProtocol {
