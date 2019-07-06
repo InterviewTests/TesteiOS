@@ -37,6 +37,8 @@
 		2C78DB3422D0F0E30092DE8C /* DINPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2C78DB2B22D0F0E30092DE8C /* DINPro-Light.otf */; };
 		2C78DB3522D0F0E30092DE8C /* DINNeuzeitGroteskStd-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2C78DB2C22D0F0E30092DE8C /* DINNeuzeitGroteskStd-Light.otf */; };
 		2C78DB3622D0F0E30092DE8C /* DINPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2C78DB2D22D0F0E30092DE8C /* DINPro-Bold.otf */; };
+		2C78DB3B22D0F53D0092DE8C /* InputTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78DB3A22D0F53D0092DE8C /* InputTextTableViewCell.swift */; };
+		2C78DB3D22D0F5520092DE8C /* InputTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C78DB3C22D0F5520092DE8C /* InputTextTableViewCell.xib */; };
 		2CB34CF722CED1A200D4C74C /* Development.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CB34CF622CED1A200D4C74C /* Development.plist */; };
 		2CB34CF922CED1BB00D4C74C /* Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CB34CF822CED1BB00D4C74C /* Production.plist */; };
 		2CB34CFB22CED3F400D4C74C /* EnvironmentManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB34CFA22CED3F400D4C74C /* EnvironmentManger.swift */; };
@@ -75,6 +77,8 @@
 		2C78DB2B22D0F0E30092DE8C /* DINPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Light.otf"; sourceTree = "<group>"; };
 		2C78DB2C22D0F0E30092DE8C /* DINNeuzeitGroteskStd-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINNeuzeitGroteskStd-Light.otf"; sourceTree = "<group>"; };
 		2C78DB2D22D0F0E30092DE8C /* DINPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Bold.otf"; sourceTree = "<group>"; };
+		2C78DB3A22D0F53D0092DE8C /* InputTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextTableViewCell.swift; sourceTree = "<group>"; };
+		2C78DB3C22D0F5520092DE8C /* InputTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputTextTableViewCell.xib; sourceTree = "<group>"; };
 		2CB34CF022CED0C600D4C74C /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		2CB34CF322CED0FE00D4C74C /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		2CB34CF622CED1A200D4C74C /* Development.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Development.plist; sourceTree = "<group>"; };
@@ -245,8 +249,8 @@
 		2C78DB1E22D0F02F0092DE8C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				2C78DB1F22D0F04B0092DE8C /* TitleTableViewCell.swift */,
-				2C78DB2022D0F04B0092DE8C /* TitleTableViewCell.xib */,
+				2C78DB3922D0F5060092DE8C /* InputTextTableViewCell */,
+				2C78DB3822D0F4FC0092DE8C /* TitleTableViewCell */,
 			);
 			name = Cells;
 			path = Models;
@@ -264,6 +268,14 @@
 		2C78DB2422D0F0A30092DE8C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				2C78DB3722D0F4EC0092DE8C /* DIN */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		2C78DB3722D0F4EC0092DE8C /* DIN */ = {
+			isa = PBXGroup;
+			children = (
 				2C78DB2622D0F0E30092DE8C /* DINEngschriftStd.otf */,
 				2C78DB2722D0F0E30092DE8C /* DINMittelschriftStd.otf */,
 				2C78DB2822D0F0E30092DE8C /* DINNeuzeitGroteskStd-BdCond.otf */,
@@ -274,7 +286,25 @@
 				2C78DB2522D0F0E30092DE8C /* DINPro-Medium.otf */,
 				2C78DB2922D0F0E30092DE8C /* DINPro-Regular.otf */,
 			);
-			name = Fonts;
+			path = DIN;
+			sourceTree = "<group>";
+		};
+		2C78DB3822D0F4FC0092DE8C /* TitleTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				2C78DB1F22D0F04B0092DE8C /* TitleTableViewCell.swift */,
+				2C78DB2022D0F04B0092DE8C /* TitleTableViewCell.xib */,
+			);
+			name = TitleTableViewCell;
+			sourceTree = "<group>";
+		};
+		2C78DB3922D0F5060092DE8C /* InputTextTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				2C78DB3A22D0F53D0092DE8C /* InputTextTableViewCell.swift */,
+				2C78DB3C22D0F5520092DE8C /* InputTextTableViewCell.xib */,
+			);
+			path = InputTextTableViewCell;
 			sourceTree = "<group>";
 		};
 		2CB34CF122CED0DB00D4C74C /* BaseConfig */ = {
@@ -373,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C78DB3222D0F0E30092DE8C /* DINPro-Regular.otf in Resources */,
+				2C78DB3D22D0F5520092DE8C /* InputTextTableViewCell.xib in Resources */,
 				2C3BCA5222CECB810064EC0D /* LaunchScreen.storyboard in Resources */,
 				2C78DB3422D0F0E30092DE8C /* DINPro-Light.otf in Resources */,
 				2C78DB3522D0F0E30092DE8C /* DINNeuzeitGroteskStd-Light.otf in Resources */,
@@ -403,6 +434,7 @@
 				2C78DB1622D0E08E0092DE8C /* FormCell.swift in Sources */,
 				2C3BCA4822CECB800064EC0D /* AppDelegate.swift in Sources */,
 				2C114F0822D03A35009D49E9 /* DevelopmentNetworkProvider.swift in Sources */,
+				2C78DB3B22D0F53D0092DE8C /* InputTextTableViewCell.swift in Sources */,
 				2C78DB1822D0E1130092DE8C /* CellType.swift in Sources */,
 				2C114F0B22D03AE1009D49E9 /* Bundle+Extension.swift in Sources */,
 				2C114EF522D018A3009D49E9 /* ProductionNetworkProvider.swift in Sources */,
