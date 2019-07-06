@@ -8,7 +8,7 @@
 import Foundation
 
 protocol FormPresenterProtocol {
-    func presentForm(_ form: String)
+    func presentFormData(_ formData: Data)
     func presentError(_ error: String)
 }
 
@@ -19,9 +19,20 @@ class FormPresenter: FormPresenterProtocol {
         self.view = view
     }
     
-    func presentForm(_ form: String) {
-        DispatchQueue.main.async {
-            self.view?.displayForm(form)
+    func presentFormData(_ formData: Data) {
+        
+        do {
+            let response = try JSONDecoder().decode(FormCellsResponse.self, from: formData)
+            guard let cells = response.cells else {
+                self.view?.displayError("Invalid Response")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.view?.displayForm(cells)
+            }
+        } catch {
+            self.view?.displayError(error.localizedDescription)
         }
     }
     

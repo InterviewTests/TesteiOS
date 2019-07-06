@@ -35,11 +35,11 @@ class NetworkManager {
 
 extension NetworkManager {
     
-    func fetchFormFields(_ completion: @escaping (Result<String, Error>) -> Void) {
+    func fetchFormFields(_ completion: @escaping (Result<Data, Error>) -> Void) {
         provider.fetchFormData { (response) in
             switch response {
             case .success(let data):
-                completion(.success(String(data: data, encoding: .utf8)!))
+                completion(.success(data))
             case .failure(let error):
                 completion(.failure(error))
                 print(error.localizedDescription)

@@ -22,7 +22,7 @@ class FormInteractor {
         networkManager.fetchFormFields { (result) in
             switch result {
             case .success(let form):
-                self.presenter.presentForm(form)
+                self.presenter.presentFormData(form)
             case .failure(let error):
                 self.presenter.presentError(error.localizedDescription)
             }
