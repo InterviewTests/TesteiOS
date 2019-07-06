@@ -75,8 +75,14 @@ extension FormViewController: UITableViewDataSource {
         guard let type = cell.type else { return UITableViewCell() }
         
         switch type {
+        case .text:
+            return generateTextCell(for: tableView, with: cell)
         case .field:
             return generateFieldCell(for: tableView, with: cell)
+        case .checkbox:
+            return generateCheckboxCell(for: tableView, with: cell)
+        case .send:
+            return generateActionButtonCell(for: tableView, with: cell)
         default:
             return UITableViewCell()
         }
@@ -93,11 +99,50 @@ extension FormViewController: UITableViewDelegate {
 
 // MARK: - Cells creation
 fileprivate extension FormViewController {
-    func generateFieldCell(for tableView: UITableView, with cellData: FormCell) -> UITableViewCell {
+    func generateTextCell(for tableView: UITableView, with cellData: FormCell) -> UITableViewCell {
         guard let cell: TitleTableViewCell = tableView.dequeueReusableCell(cellType: TitleTableViewCell.self) else { return UITableViewCell()
         }
         
         cell.titleLabel.text = cellData.message
+        
+        return cell
+    }
+    
+    func generateFieldCell(for tableView: UITableView, with cellData: FormCell) -> UITableViewCell {
+        
+        guard let fieldType = cellData.fieldType else { return UITableViewCell() }
+        let cell: InputTextFieldTableViewCell?
+        
+        switch fieldType {
+        case .text:
+            cell = tableView.dequeueReusableCell(cellType: InputTextTableViewCell.self)
+        case .email:
+            cell = tableView.dequeueReusableCell(cellType: InputEmailTableViewCell.self)
+        case .phone:
+            cell = tableView.dequeueReusableCell(cellType: InputPhoneTableViewCell.self)
+        default:
+            return UITableViewCell()
+        }
+        
+        cell?.set(placeholder: cellData.message)
+        
+        return cell ?? UITableViewCell()
+    }
+    
+    func generateCheckboxCell(for tableView: UITableView, with cellData: FormCell) -> UITableViewCell {
+        guard let cell: CheckboxTableViewCell = tableView.dequeueReusableCell(cellType: CheckboxTableViewCell.self) else { return UITableViewCell()
+        }
+        
+        cell.checkBoxTextLabel.text = cellData.message
+        
+        return cell
+    }
+    
+    func generateActionButtonCell(for tableView: UITableView, with cellData: FormCell) -> UITableViewCell {
+        guard let cell: ActionButtonTableViewCell = tableView.dequeueReusableCell(cellType: ActionButtonTableViewCell.self) else { return UITableViewCell()
+        }
+        
+        cell.actionButton.setTitle(cellData.message, for: .normal)
         
         return cell
     }
