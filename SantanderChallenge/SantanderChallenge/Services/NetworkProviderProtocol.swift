@@ -11,5 +11,5 @@ typealias NetworkResponse = Result<Data, NetworkError>
 
 protocol NetworkProviderProtocol {
     func fetchFormData(_ completion: @escaping (NetworkResponse) -> Void)
-    func fetchFundsFields(_ completion: @escaping (NetworkResponse) -> Void)
+    func fetchFundsData(_ completion: @escaping (NetworkResponse) -> Void)
 }

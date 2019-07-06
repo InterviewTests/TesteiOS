@@ -19,7 +19,7 @@ class ProductionNetworkProvider: NetworkProviderProtocol {
         }
     }
     
-    func fetchFundsFields(_ completion: @escaping (NetworkResponse) -> Void) {
+    func fetchFundsData(_ completion: @escaping (NetworkResponse) -> Void) {
     }
 }
 
