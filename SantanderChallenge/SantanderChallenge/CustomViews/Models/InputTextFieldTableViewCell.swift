@@ -23,7 +23,7 @@ class InputTextFieldTableViewCell: UITableViewCell {
         textField.addTarget(self, action: #selector(editingChanged), for: UIControl.Event.editingChanged)
     }
 
-    @objc private func editingChanged() {
+    @objc func editingChanged() {
         let text = textField.text ?? ""
         delegate?.editingChanged(text: text, atCell: self)
     }
