@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CheckBoxTableViewDelegate: AnyObject {
+    func checkboxUpdated(status: CheckBoxSelectionStatus, atCell cell: CheckboxTableViewCell)
+}
+
 enum CheckBoxSelectionStatus {
     case selected
     case unselected
@@ -17,7 +21,15 @@ class CheckboxTableViewCell: UITableViewCell {
     @IBOutlet weak var checkBoxIndicatorView: UIView!
     @IBOutlet weak var checkBoxTextLabel: UILabel!
     
-    var checkBoxStatus: CheckBoxSelectionStatus = .unselected {
+    weak var delegate: CheckBoxTableViewDelegate?
+    
+    var cellData: FormCell? {
+        didSet {
+            checkBoxTextLabel.text = cellData?.message
+        }
+    }
+    
+    var checkBoxStatus: CheckBoxSelectionStatus = .unselected{
         didSet {
             setCheckBoxUI(status: self.checkBoxStatus)
         }
@@ -42,7 +54,7 @@ class CheckboxTableViewCell: UITableViewCell {
         checkBoxIndicatorView.layer.cornerRadius = 3.0
     }
     
-    private func addGestures() {
+     func addGestures() {
         checkBoxTextLabel.isUserInteractionEnabled = true
         
         addGestureToToggleCheckBox(inView: checkBoxContainerView)
@@ -62,9 +74,11 @@ class CheckboxTableViewCell: UITableViewCell {
         case .unselected:
             checkBoxStatus = .selected
         }
+        
+        delegate?.checkboxUpdated(status: checkBoxStatus, atCell: self)
     }
     
-    func setCheckBoxUI(status: CheckBoxSelectionStatus) {
+    private func setCheckBoxUI(status: CheckBoxSelectionStatus) {
         switch status {
         case .selected:
             checkBoxIndicatorView.isHidden = false

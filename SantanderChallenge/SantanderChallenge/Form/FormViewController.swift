@@ -154,8 +154,19 @@ fileprivate extension FormViewController {
     func generateCheckboxCell(for tableView: UITableView, with cellData: FormCell) -> UITableViewCell {
         guard let cell: CheckboxTableViewCell = tableView.dequeueReusableCell(cellType: CheckboxTableViewCell.self) else { return UITableViewCell()
         }
+        cell.cellData = cellData
+        cell.delegate = self
         
-        cell.checkBoxTextLabel.text = cellData.message
+        // Current status
+        guard let targetId = cell.cellData?.fieldToPresent,
+            let index = formCellIndex(withId: targetId) else { return UITableViewCell() }
+        let targetFormCell = cells[index]
+        
+        if targetFormCell.hidden == true {
+            cell.checkBoxStatus = .unselected
+        } else {
+            cell.checkBoxStatus = .selected
+        }
         
         return cell
     }
@@ -167,5 +178,28 @@ fileprivate extension FormViewController {
         cell.actionButton.setTitle(cellData.message, for: .normal)
         
         return cell
+    }
+}
+
+extension FormViewController: CheckBoxTableViewDelegate {
+    func checkboxUpdated(status: CheckBoxSelectionStatus, atCell cell: CheckboxTableViewCell) {
+        guard let targetId = cell.cellData?.fieldToPresent,
+            let index = formCellIndex(withId: targetId) else { return }
+        let targetFormCell = cells[index]
+        
+        switch status {
+        case .selected:
+            targetFormCell.hidden = false
+        case .unselected:
+            targetFormCell.hidden = true
+        }
+        tableView.reloadData()
+        
+    }
+    
+    private func formCellIndex(withId targetId: Int) -> Int? {
+        return cells.firstIndex(where: {
+            return $0.id == targetId
+        })
     }
 }
