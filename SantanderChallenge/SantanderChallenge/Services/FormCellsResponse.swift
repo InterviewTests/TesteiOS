@@ -7,6 +7,6 @@
 
 import Foundation
 
-class FormCellsResponse: Decodable {
-    let cells: [FormCell]?
+struct FormCellsResponse: Decodable {
+    let cells: [FormCell]
 }

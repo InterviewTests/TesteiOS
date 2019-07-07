@@ -23,11 +23,7 @@ class FormPresenter: FormPresenterProtocol {
         
         do {
             let response = try JSONDecoder().decode(FormCellsResponse.self, from: formData)
-            guard let cells = response.cells else {
-                self.view?.displayError("Invalid Response")
-                return
-            }
-            
+            let cells = response.cells
             DispatchQueue.main.async {
                 self.view?.displayForm(cells)
             }

@@ -12,15 +12,15 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var fundsButton: UIButton!
     @IBOutlet weak var formButton: UIButton!
-    @IBOutlet weak var indicatorView: UIView!
+    @IBOutlet weak var indicatorViewConstraint: NSLayoutConstraint!
     
     private var currentSelectedButton: UIButton?
     
     // MARK: - Child controllers
-    lazy var fundsViewController: UIViewController = {
+    lazy var fundsViewController: FundsViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "FundsViewController")
-        guard let fundsController = controller as? UIViewController else { return UIViewController() }
+        guard let fundsController = controller as? FundsViewController else { return FundsViewController() }
         return fundsController
     }()
     
@@ -33,10 +33,8 @@ class ContainerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         addControllerToContainer(controllerToAdd: formViewController)
-        addControllerToContainer(controllerToAdd: fundsViewController)
-        
         didTouchAt(formButton)
     }
     
@@ -51,15 +49,34 @@ class ContainerViewController: UIViewController {
         controller.didMove(toParent: self)
     }
     
+    private func removeControllerFromContainer(controllerToRemove controller: UIViewController) {
+        controller.willMove(toParent: nil)
+        controller.view.removeFromSuperview()
+        controller.removeFromParent()
+    }
+    
     private func updateContainerView() {
-        formViewController.view.isHidden = !(currentSelectedButton == formButton)
-        fundsViewController.view.isHidden = currentSelectedButton == formButton
+        if currentSelectedButton == formButton {
+            if containerView.subviews.contains(fundsViewController.view) {
+                removeControllerFromContainer(controllerToRemove: fundsViewController)
+                addControllerToContainer(controllerToAdd: formViewController)
+            }
+        } else {
+            if containerView.subviews.contains(formViewController.view) {
+                removeControllerFromContainer(controllerToRemove: formViewController)
+                addControllerToContainer(controllerToAdd: fundsViewController)
+            }
+        }
     }
     
     private func updateIndicatorView() {
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+
         guard let currentButton = currentSelectedButton else { return }
+        indicatorViewConstraint.constant = currentButton.frame.origin.x
         UIView.animate(withDuration: 0.5) {
-            self.indicatorView.frame.origin.x = currentButton.frame.origin.x
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -73,8 +90,7 @@ class ContainerViewController: UIViewController {
         updateButtonsBackgroundColor(button: button)
         
         currentSelectedButton = button
-        
-        updateContainerView()
         updateIndicatorView()
+        updateContainerView()
     }
 }

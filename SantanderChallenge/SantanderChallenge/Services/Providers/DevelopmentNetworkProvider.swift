@@ -20,7 +20,7 @@ class DevelopmentNetworkProvider: NetworkProviderProtocol {
     }
     
     func fetchFundsData(_ completion: @escaping (NetworkResponse) -> Void) {
-        guard let data = Bundle.loadJSONFromBundle(resourceName: "funds") else {
+        guard let data = Bundle.loadJSONFromBundle(resourceName: "fund") else {
             completion(.failure(.missingResponseData))
             return
         }

@@ -27,10 +27,6 @@ class FormViewController: UIViewController {
         }
     }
     
-    lazy var blankView: UIView = {
-        return UIView()
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +34,10 @@ class FormViewController: UIViewController {
         setupInteractor()
         
         interactor?.fetchForm()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
     
     private func setupTableView() {
@@ -52,7 +52,7 @@ class FormViewController: UIViewController {
             ]
         )
         
-        tableView.tableFooterView = blankView
+        tableView.tableFooterView = UIViewController.blankView
     }
     
     private func setupInteractor() {
@@ -69,7 +69,12 @@ extension FormViewController: FormPresentableProtocol {
     }
     
     func displayError(_ error: String) {
-        // Present an alert
+        let alert = UIAlertController(title: "🤨", message: error, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alert.addAction(okAction)
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -115,7 +120,7 @@ extension FormViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return blankView
+        return UIViewController.blankView
     }
 }
 

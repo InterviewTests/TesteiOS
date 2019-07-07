@@ -10,19 +10,22 @@ import Foundation
 class FundsInteractor {
 
     private let networkManager: NetworkManager
+    private let presenter: FundsPresenterProtocol
     
-    init(networkManager: NetworkManager = NetworkManager()) {
+    init(presenter: FundsPresenterProtocol,
+         networkManager: NetworkManager = NetworkManager()) {
         self.networkManager = networkManager
+        self.presenter = presenter
     }
     
     func fetchFunds() {
-//        networkManager.fetchFunds { result in
-//            switch result {
-//            case .success(let funds):
-//                self.presenter.presentFundsData(funds)
-//            case .failure(let error):
-//                self.presenter.presentError(error.localizedDescription)
-//            }
-//        }
+        networkManager.fetchFunds { result in
+            switch result {
+            case .success(let funds):
+                self.presenter.presentFundsData(funds)
+            case .failure(let error):
+                self.presenter.presentError(error.localizedDescription)
+            }
+        }
     }
 }

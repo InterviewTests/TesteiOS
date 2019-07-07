@@ -18,10 +18,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Funds View Controller-->
         <scene sceneID="dSa-Ym-eKx">
             <objects>
-                <viewController storyboardIdentifier="FundsViewController" id="nKI-qW-zZI" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FundsViewController" id="nKI-qW-zZI" customClass="FundsViewController" customModule="SantanderChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ulY-mh-8dj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,16 +40,31 @@
                                 </constraints>
                                 <state key="normal" image="share"/>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TnX-Ou-B8z">
+                                <rect key="frame" x="0.0" y="94.5" width="414" height="767.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="nKI-qW-zZI" id="0fX-tR-dRN"/>
+                                    <outlet property="delegate" destination="nKI-qW-zZI" id="ygI-pW-vv9"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="fyK-l4-1tV" firstAttribute="bottom" secondItem="TnX-Ou-B8z" secondAttribute="bottom" id="0Ob-EV-UQe"/>
+                            <constraint firstItem="TnX-Ou-B8z" firstAttribute="leading" secondItem="ulY-mh-8dj" secondAttribute="leading" id="4Ai-Rx-q7I"/>
+                            <constraint firstItem="fyK-l4-1tV" firstAttribute="trailing" secondItem="TnX-Ou-B8z" secondAttribute="trailing" id="Bro-Oe-HBd"/>
                             <constraint firstItem="gXn-YC-5AY" firstAttribute="top" secondItem="fyK-l4-1tV" secondAttribute="top" constant="20" id="FkJ-4R-QBw"/>
                             <constraint firstItem="gXn-YC-5AY" firstAttribute="centerX" secondItem="ulY-mh-8dj" secondAttribute="centerX" id="Fkc-3W-olR"/>
                             <constraint firstItem="fyK-l4-1tV" firstAttribute="trailing" secondItem="Wg7-lJ-WYx" secondAttribute="trailing" constant="40" id="Ghd-3R-Ufv"/>
                             <constraint firstItem="Wg7-lJ-WYx" firstAttribute="centerY" secondItem="gXn-YC-5AY" secondAttribute="centerY" id="JgO-gt-MxO"/>
+                            <constraint firstItem="TnX-Ou-B8z" firstAttribute="top" secondItem="Wg7-lJ-WYx" secondAttribute="bottom" id="vTP-rJ-Br8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fyK-l4-1tV"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="TnX-Ou-B8z" id="5N5-yc-MgV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cuQ-P3-c1s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,7 +79,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dYR-rO-y6Q" userLabel="IndicatorView">
-                                <rect key="frame" x="207" y="805" width="207" height="2"/>
+                                <rect key="frame" x="0.0" y="805" width="207" height="2"/>
                                 <color key="backgroundColor" red="0.70588235294117641" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="peI-Fn-5E1"/>
@@ -110,8 +125,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="qsT-eL-z6K" firstAttribute="top" secondItem="kxc-oh-ic5" secondAttribute="top" id="6kq-Fr-Fiy"/>
-                            <constraint firstAttribute="trailing" secondItem="dYR-rO-y6Q" secondAttribute="trailing" id="71U-JI-BsB"/>
                             <constraint firstItem="qsT-eL-z6K" firstAttribute="leading" secondItem="kxc-oh-ic5" secondAttribute="leading" id="9cF-Yk-Npd"/>
+                            <constraint firstItem="dYR-rO-y6Q" firstAttribute="leading" secondItem="bru-BQ-lqn" secondAttribute="leading" id="REd-eI-SS2"/>
                             <constraint firstItem="zjQ-Zt-dSS" firstAttribute="leading" secondItem="kxc-oh-ic5" secondAttribute="leading" id="ZfI-Fb-jTW"/>
                             <constraint firstItem="kxc-oh-ic5" firstAttribute="trailing" secondItem="qsT-eL-z6K" secondAttribute="trailing" id="brG-Mw-ler"/>
                             <constraint firstItem="kxc-oh-ic5" firstAttribute="trailing" secondItem="zjQ-Zt-dSS" secondAttribute="trailing" id="eWa-As-cGo"/>
@@ -126,7 +141,7 @@
                         <outlet property="containerView" destination="qsT-eL-z6K" id="Cmt-zL-8fh"/>
                         <outlet property="formButton" destination="7yw-BV-NGR" id="AZX-Pl-DlS"/>
                         <outlet property="fundsButton" destination="q5h-6V-hzy" id="BeL-be-bY7"/>
-                        <outlet property="indicatorView" destination="dYR-rO-y6Q" id="gjE-tA-MNJ"/>
+                        <outlet property="indicatorViewConstraint" destination="REd-eI-SS2" id="Dsx-44-Ix4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q0i-r0-750" userLabel="First Responder" sceneMemberID="firstResponder"/>
