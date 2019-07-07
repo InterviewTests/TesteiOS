@@ -25,13 +25,35 @@
                     <view key="view" contentMode="scaleToFill" id="ulY-mh-8dj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Investimento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXn-YC-5AY">
+                                <rect key="frame" x="161.5" y="64" width="91.5" height="20.5"/>
+                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wg7-lJ-WYx">
+                                <rect key="frame" x="334" y="54.5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Wg7-lJ-WYx" secondAttribute="height" multiplier="1:1" id="7kx-g0-utL"/>
+                                    <constraint firstAttribute="height" constant="40" id="vU4-B7-4eX"/>
+                                </constraints>
+                                <state key="normal" image="share"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gXn-YC-5AY" firstAttribute="top" secondItem="fyK-l4-1tV" secondAttribute="top" constant="20" id="FkJ-4R-QBw"/>
+                            <constraint firstItem="gXn-YC-5AY" firstAttribute="centerX" secondItem="ulY-mh-8dj" secondAttribute="centerX" id="Fkc-3W-olR"/>
+                            <constraint firstItem="fyK-l4-1tV" firstAttribute="trailing" secondItem="Wg7-lJ-WYx" secondAttribute="trailing" constant="40" id="Ghd-3R-Ufv"/>
+                            <constraint firstItem="Wg7-lJ-WYx" firstAttribute="centerY" secondItem="gXn-YC-5AY" secondAttribute="centerY" id="JgO-gt-MxO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fyK-l4-1tV"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cuQ-P3-c1s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-675" y="174"/>
+            <point key="canvasLocation" x="-675.36231884057975" y="173.4375"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="FcY-dR-yea">
@@ -216,4 +238,7 @@ mensagem </string>
             <point key="canvasLocation" x="2525" y="155"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="share" width="19" height="24"/>
+    </resources>
 </document>
