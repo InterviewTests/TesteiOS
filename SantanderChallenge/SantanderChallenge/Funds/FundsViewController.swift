@@ -34,6 +34,18 @@ class FundsViewController: UIViewController {
     
     private func setupTableView() {
         // Register cells
+        tableView.registerCellsNib(cellsClass: [
+            FundTitleTableViewCell.self,
+            FundNameTableViewCell.self,
+            FundDefinitionTableViewCell.self,
+            FundRiskTableViewCell.self,
+            FundInfoTitleTableViewCell.self,
+            FundMoreInfoTableViewCell.self,
+            SeparatorTableViewCell.self,
+            FundInfoTableViewCell.self,
+            FundDownInfoTableViewCell.self,
+            ActionButtonTableViewCell.self
+        ])
         
         tableView.tableFooterView = UIViewController.blankView
     }
@@ -70,18 +82,33 @@ extension FundsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       
+        let content = cells[indexPath.row]
         
-        let cell: UITableViewCell = {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
-                return cell
-            }
-            return UITableViewCell(style: .default, reuseIdentifier: "Cell")
-        }()
-        cell.textLabel?.text = "\(cells[indexPath.row])"
-        return cell
+        switch content {
+        case .title:
+            return generateTitleCell(for: tableView, with: content)
+        case .fundName:
+            return generateFundNameCell(for: tableView, with: content)
+        case .definition:
+            return generateFundDefinitionCell(for: tableView, with: content)
+        case .risk:
+            return generateFundRiskCell(for: tableView, with: content)
+        case .infoTitle:
+            return generateFundInfoTitleCell(for: tableView, with: content)
+        case .moreInfo:
+            return generateFundMoreInfoCell(for: tableView, with: content)
+        case .separator:
+            return generateSeparatorCell(for: tableView)
+        case .info:
+            return generateFundInfoCell(for: tableView, with: content)
+        case .downInfo:
+            return generateFundDownInfoCell(for: tableView, with: content)
+        case .actionButton:
+            return generateActionButtonCell(for: tableView, with: content)
+        }
+        
     }
-    
-    
 }
 
 extension FundsViewController: UITableViewDelegate {
@@ -133,6 +160,17 @@ extension FundsViewController {
         if case let FundContentData.risk(title, level) = content {
             cell.titleLabel.text = title
             cell.set(level: level)
+        }
+        
+        return cell
+    }
+    
+    func generateFundInfoTitleCell(for tableView: UITableView, with content: FundContentData) -> UITableViewCell {
+        
+        let cell: FundInfoTitleTableViewCell = tableView.dequeueReusableCell(cellType: FundInfoTitleTableViewCell.self)
+        
+        if case let FundContentData.infoTitle(title) = content {
+            cell.infoTitleLabel.text = title
         }
         
         return cell
