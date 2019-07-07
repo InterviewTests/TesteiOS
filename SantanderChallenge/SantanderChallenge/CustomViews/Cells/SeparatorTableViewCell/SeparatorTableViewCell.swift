@@ -1,5 +1,5 @@
 //
-// FundDefinitionTableViewCell.swift
+// SeparatorTableViewCell.swift
 // SantanderChallenge
 //
 // Created for SantanderChallenge on 07/07/19.
@@ -7,11 +7,8 @@
 
 import UIKit
 
-class FundDefinitionTableViewCell: UITableViewCell {
+class SeparatorTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var topLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

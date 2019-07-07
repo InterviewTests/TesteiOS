@@ -20,8 +20,11 @@ extension UITableView {
         }
     }
     
-    func dequeueReusableCell<CellType>(cellType: UITableViewCell.Type) -> CellType? {
-        return dequeueReusableCell(withIdentifier: cellType.reusableIdentifier) as? CellType
+    func dequeueReusableCell<CellType>(cellType: UITableViewCell.Type) -> CellType {
+        guard let cell = dequeueReusableCell(withIdentifier: cellType.reusableIdentifier) as? CellType else {
+            fatalError("⚠️ Verify the Type of the cell you are trying to cast")
+        }
+        return cell
     }
 }
 

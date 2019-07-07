@@ -72,6 +72,7 @@ extension FundsPresenter {
         content.append(.risk(title: funds.riskTitle, level: funds.risk))
         content.append(.infoTitle(funds.infoTitle))
         content.append(.moreInfo(funds.moreInfo))
+        content.append(.seprator)
         
         // Convert each info into a content row
         let infos = funds.info.map {

@@ -124,7 +124,7 @@ extension FormViewController: UITableViewDelegate {
     }
 }
 
-// MARK: - Cells creation
+// MARK: - Cells Generation
 fileprivate extension FormViewController {
     func generateTextCell(for tableView: UITableView, with cellData: FormCell) -> UITableViewCell {
         guard let cell: TitleTableViewCell = tableView.dequeueReusableCell(cellType: TitleTableViewCell.self) else { return UITableViewCell()
