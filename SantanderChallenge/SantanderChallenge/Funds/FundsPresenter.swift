@@ -21,6 +21,7 @@ enum FundContentData {
     case moreInfo(FundMoreInfo)
     case info(FundInfo)
     case downInfo(DownInfo)
+    case actionButton(String)
     case seprator
 }
 
@@ -84,6 +85,7 @@ extension FundsPresenter {
         }
         content.append(contentsOf: downInfos)
         
+        content.append(.actionButton("Investir"))
         return content
     }
 }
