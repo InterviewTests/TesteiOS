@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WkU-fO-Uj1">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,10 +18,103 @@
         </array>
     </customFonts>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="dSa-Ym-eKx">
+            <objects>
+                <viewController storyboardIdentifier="FundsViewController" id="nKI-qW-zZI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ulY-mh-8dj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="fyK-l4-1tV"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cuQ-P3-c1s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-675" y="174"/>
+        </scene>
+        <!--Container View Controller-->
+        <scene sceneID="FcY-dR-yea">
+            <objects>
+                <viewController storyboardIdentifier="ContainerViewController" id="WkU-fO-Uj1" customClass="ContainerViewController" customModule="SantanderChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bru-BQ-lqn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dYR-rO-y6Q" userLabel="IndicatorView">
+                                <rect key="frame" x="207" y="805" width="207" height="2"/>
+                                <color key="backgroundColor" red="0.70588235294117641" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="peI-Fn-5E1"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zjQ-Zt-dSS">
+                                <rect key="frame" x="0.0" y="807" width="414" height="55"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5h-6V-hzy">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="55"/>
+                                        <color key="backgroundColor" red="0.85490196078431369" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                                        <state key="normal" title="Investimento">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTouchAt:" destination="WkU-fO-Uj1" eventType="touchUpInside" id="xTF-tM-CXy"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yw-BV-NGR">
+                                        <rect key="frame" x="207" y="0.0" width="207" height="55"/>
+                                        <color key="backgroundColor" red="0.85490196080000003" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                                        <state key="normal" title="Contato">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTouchAt:" destination="WkU-fO-Uj1" eventType="touchUpInside" id="ASy-nM-SJm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="q5h-6V-hzy" firstAttribute="height" secondItem="zjQ-Zt-dSS" secondAttribute="height" id="czn-oB-Uhq"/>
+                                    <constraint firstAttribute="height" constant="55" id="nwn-QA-E3N"/>
+                                    <constraint firstItem="7yw-BV-NGR" firstAttribute="height" secondItem="zjQ-Zt-dSS" secondAttribute="height" id="tLp-RZ-nLI"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsT-eL-z6K" userLabel="ContainerView">
+                                <rect key="frame" x="0.0" y="44" width="414" height="761"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qsT-eL-z6K" firstAttribute="top" secondItem="kxc-oh-ic5" secondAttribute="top" id="6kq-Fr-Fiy"/>
+                            <constraint firstAttribute="trailing" secondItem="dYR-rO-y6Q" secondAttribute="trailing" id="71U-JI-BsB"/>
+                            <constraint firstItem="qsT-eL-z6K" firstAttribute="leading" secondItem="kxc-oh-ic5" secondAttribute="leading" id="9cF-Yk-Npd"/>
+                            <constraint firstItem="zjQ-Zt-dSS" firstAttribute="leading" secondItem="kxc-oh-ic5" secondAttribute="leading" id="ZfI-Fb-jTW"/>
+                            <constraint firstItem="kxc-oh-ic5" firstAttribute="trailing" secondItem="qsT-eL-z6K" secondAttribute="trailing" id="brG-Mw-ler"/>
+                            <constraint firstItem="kxc-oh-ic5" firstAttribute="trailing" secondItem="zjQ-Zt-dSS" secondAttribute="trailing" id="eWa-As-cGo"/>
+                            <constraint firstItem="dYR-rO-y6Q" firstAttribute="top" secondItem="qsT-eL-z6K" secondAttribute="bottom" id="g9H-dI-DPN"/>
+                            <constraint firstItem="zjQ-Zt-dSS" firstAttribute="top" secondItem="dYR-rO-y6Q" secondAttribute="bottom" id="hwU-2M-Vf6"/>
+                            <constraint firstItem="dYR-rO-y6Q" firstAttribute="width" secondItem="bru-BQ-lqn" secondAttribute="width" multiplier="0.5" id="iOF-2B-3UT"/>
+                            <constraint firstItem="kxc-oh-ic5" firstAttribute="bottom" secondItem="zjQ-Zt-dSS" secondAttribute="bottom" id="lqm-Hw-le0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kxc-oh-ic5"/>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="qsT-eL-z6K" id="Cmt-zL-8fh"/>
+                        <outlet property="formButton" destination="7yw-BV-NGR" id="AZX-Pl-DlS"/>
+                        <outlet property="fundsButton" destination="q5h-6V-hzy" id="BeL-be-bY7"/>
+                        <outlet property="indicatorView" destination="dYR-rO-y6Q" id="gjE-tA-MNJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q0i-r0-750" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="500.00000000000006" y="-596.65178571428567"/>
+        </scene>
         <!--Form View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="FormViewController" customModule="SantanderChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FormViewController" id="BYZ-38-t0r" customClass="FormViewController" customModule="SantanderChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,12 +147,12 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="NgU-yU-C5Z" id="ofM-Hy-vUf"/>
-                        <segue destination="90j-hE-GXw" kind="presentation" identifier="showSuccess" id="q81-1j-vPm"/>
+                        <segue destination="90j-hE-GXw" kind="presentation" identifier="showSuccess" modalPresentationStyle="overFullScreen" modalTransitionStyle="coverVertical" id="q81-1j-vPm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="47.826086956521742" y="20.758928571428569"/>
+            <point key="canvasLocation" x="1590" y="155"/>
         </scene>
         <!--Success View Controller-->
         <scene sceneID="A3O-fo-vxY">
@@ -120,7 +213,7 @@ mensagem </string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a9W-gA-kzW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="984" y="21"/>
+            <point key="canvasLocation" x="2525" y="155"/>
         </scene>
     </scenes>
 </document>
