@@ -35,15 +35,11 @@ class NetworkManager {
 
 extension NetworkManager {
     
-    func fetchFormFields(_ completion: @escaping (Result<Data, Error>) -> Void) {
-        provider.fetchFormData { (response) in
-            switch response {
-            case .success(let data):
-                completion(.success(data))
-            case .failure(let error):
-                completion(.failure(error))
-                print(error.localizedDescription)
-            }
-        }
+    func fetchFormFields(_ completion: @escaping (NetworkResponse) -> Void) {
+        provider.fetchFormData(completion)
+    }
+    
+    func fetchFunds(_ completion: @escaping (NetworkResponse) -> Void) {
+        provider.fetchFundsData(completion)
     }
 }

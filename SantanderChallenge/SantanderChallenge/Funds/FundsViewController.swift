@@ -9,6 +9,10 @@ import UIKit
 
 class FundsViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    fileprivate var interactor: FundsInteractor?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

@@ -13,8 +13,9 @@ class FormInteractor {
     
     var presenter: FormPresenterProtocol
 
-    init(presenter: FormPresenterProtocol) {
-        networkManager = NetworkManager()
+    init(presenter: FormPresenterProtocol,
+         networkManager: NetworkManager = NetworkManager()) {
+        self.networkManager = networkManager
         self.presenter = presenter
     }
     
