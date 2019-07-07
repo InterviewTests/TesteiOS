@@ -176,7 +176,7 @@ fileprivate extension FormViewController {
         }
         
         cell.actionButton.setTitle(cellData.message, for: .normal)
-        
+        cell.delegate = self
         return cell
     }
 }
@@ -230,5 +230,11 @@ extension FormViewController: InputTextFieldTableViewCellDelegate {
     
     private func validate(email: String, cell: InputTextFieldTableViewCell) -> Bool {
         return interactor?.isValid(email: email) == true
+    }
+}
+
+extension FormViewController: ActionButtonTableViewCellDelegate {
+    func didTouchActionButton(atCell cell: ActionButtonTableViewCell) {
+        performSegue(withIdentifier: "showSuccess", sender: nil)
     }
 }

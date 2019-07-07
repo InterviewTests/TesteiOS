@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol ActionButtonTableViewCellDelegate: AnyObject {
+    func didTouchActionButton(atCell cell: ActionButtonTableViewCell)
+}
+
 class ActionButtonTableViewCell: UITableViewCell {
 
     @IBOutlet weak var actionButton: UIButton!
+    
+    weak var delegate: ActionButtonTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +33,7 @@ class ActionButtonTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func didTouchAt(_ button: UIButton) {
-        print(#function)
+        delegate?.didTouchActionButton(atCell: self)
     }
     
     private func setupButtonLayout() {
