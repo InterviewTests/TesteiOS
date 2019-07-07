@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Medium.otf">
+            <string>DINPro-Medium</string>
+        </array>
+        <array key="DINPro-Regular.otf">
+            <string>DINPro-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FundDefinitionTableViewCell" rowHeight="92" id="KGk-i7-Jjw" customClass="FundDefinitionTableViewCell" customModule="SantanderChallenge" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="91.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4z-rd-Wnh">
+                        <rect key="frame" x="24.5" y="10" width="271" height="20.5"/>
+                        <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="16"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCS-hs-RJu">
+                        <rect key="frame" x="24.5" y="40.5" width="271" height="20.5"/>
+                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="GCS-hs-RJu" firstAttribute="top" secondItem="R4z-rd-Wnh" secondAttribute="bottom" constant="10" id="9KO-jx-4nQ"/>
+                    <constraint firstItem="GCS-hs-RJu" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="bfH-ws-O5s"/>
+                    <constraint firstItem="GCS-hs-RJu" firstAttribute="width" secondItem="R4z-rd-Wnh" secondAttribute="width" id="hk5-TZ-Avu"/>
+                    <constraint firstItem="R4z-rd-Wnh" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="iE1-27-Ss4"/>
+                    <constraint firstItem="R4z-rd-Wnh" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="318/375" id="jbg-vm-cGn"/>
+                    <constraint firstItem="R4z-rd-Wnh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="n9n-Wv-KhU"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GCS-hs-RJu" secondAttribute="bottom" constant="10" id="teq-1e-wzD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="GCS-hs-RJu" id="pia-aj-sFp"/>
+                <outlet property="tapLabel" destination="R4z-rd-Wnh" id="JUv-x5-vtm"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="150.66964285714286"/>
+        </tableViewCell>
+    </objects>
+</document>
