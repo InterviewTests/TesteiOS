@@ -17,20 +17,21 @@ class CheckboxTableViewCell: UITableViewCell {
     @IBOutlet weak var checkBoxIndicatorView: UIView!
     @IBOutlet weak var checkBoxTextLabel: UILabel!
     
+    var checkBoxStatus: CheckBoxSelectionStatus = .unselected {
+        didSet {
+            setCheckBoxUI(status: self.checkBoxStatus)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupLayout()
+        addGestures()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        setCheckBoxSelection(status: .unselected)
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        checkBoxStatus = .unselected
     }
     
     private func setupLayout() {
@@ -41,12 +42,34 @@ class CheckboxTableViewCell: UITableViewCell {
         checkBoxIndicatorView.layer.cornerRadius = 3.0
     }
     
-    func setCheckBoxSelection(status: CheckBoxSelectionStatus) {
+    private func addGestures() {
+        checkBoxTextLabel.isUserInteractionEnabled = true
+        
+        addGestureToToggleCheckBox(inView: checkBoxContainerView)
+        addGestureToToggleCheckBox(inView: checkBoxIndicatorView)
+        addGestureToToggleCheckBox(inView: checkBoxTextLabel)
+    }
+    
+    private func addGestureToToggleCheckBox(inView view: UIView) {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(toggleCheckbox))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func toggleCheckbox() {
+        switch checkBoxStatus {
+        case .selected:
+            checkBoxStatus = .unselected
+        case .unselected:
+            checkBoxStatus = .selected
+        }
+    }
+    
+    func setCheckBoxUI(status: CheckBoxSelectionStatus) {
         switch status {
         case .selected:
-            checkBoxIndicatorView.isHidden = true
-        case .unselected:
             checkBoxIndicatorView.isHidden = false
+        case .unselected:
+            checkBoxIndicatorView.isHidden = true
         }
     }
 }
