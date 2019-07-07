@@ -29,3 +29,20 @@ class FormInteractor {
         }
     }
 }
+
+
+// MARK: - Validators
+extension FormInteractor {
+    func isValid(name: String) -> Bool {
+        return !name.isEmpty
+    }
+    
+    func isValid(phone: String) -> Bool {
+        let raw = phone.removingNonDigitCharacters
+        return 10...11 ~= raw.count
+    }
+    
+    func isValid(email: String) -> Bool {
+        return email.validEmail
+    }
+}

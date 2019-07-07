@@ -147,7 +147,7 @@ fileprivate extension FormViewController {
         }
         
         cell?.set(placeholder: cellData.message)
-        
+        cell?.delegate = self
         return cell ?? UITableViewCell()
     }
     
@@ -201,5 +201,34 @@ extension FormViewController: CheckBoxTableViewDelegate {
         return cells.firstIndex(where: {
             return $0.id == targetId
         })
+    }
+}
+
+extension FormViewController: InputTextFieldTableViewCellDelegate {
+    func editingChanged(text: String, atCell cell: InputTextFieldTableViewCell) {
+        let valid: Bool
+        switch cell {
+        case is InputTextTableViewCell:
+            valid = validate(name: text, cell: cell)
+        case is InputPhoneTableViewCell:
+            valid = validate(phone: text, cell: cell)
+        case is InputEmailTableViewCell:
+            valid = validate(email: text, cell: cell)
+        default:
+            return
+        }
+        cell.setValidIndicatorColor(valid: valid)
+    }
+    
+    private func validate(name: String, cell: InputTextFieldTableViewCell) -> Bool {
+        return interactor?.isValid(name: name) == true
+    }
+    
+    private func validate(phone: String, cell: InputTextFieldTableViewCell) -> Bool {
+        return interactor?.isValid(phone: phone) == true
+    }
+    
+    private func validate(email: String, cell: InputTextFieldTableViewCell) -> Bool {
+        return interactor?.isValid(email: email) == true
     }
 }
