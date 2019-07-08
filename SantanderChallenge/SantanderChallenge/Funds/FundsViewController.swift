@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol FundsPresentableProtocol: AnyObject {
     func displayFunds(_ cells: [FundContentData])
@@ -211,6 +212,7 @@ extension FundsViewController {
         if case let FundContentData.downInfo(info) = content {
             cell.leftLabel.text = info.name
         }
+        cell.delegate = self
         
         return cell
     }
@@ -223,5 +225,20 @@ extension FundsViewController {
         }
         
         return cell
+    }
+}
+
+extension FundsViewController: FundDownInfoTableViewCellDelegate {
+    func didTouchDownload(at cell: FundDownInfoTableViewCell) {
+        guard let googleURL = URL(string: "https://google.com") else { return }
+        let safari = SFSafariViewController(url: googleURL)
+        safari.delegate = self
+        self.present(safari, animated: true, completion: nil)
+    }
+}
+
+extension FundsViewController: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
