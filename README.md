@@ -6,8 +6,7 @@ Link para o desafio: [https://github.com/SantanderTecnologia/TesteiOS](https://g
 
 1. Clone ou baixe o repositório
 2. Abra o arquivo `SantanderChallenge.xcodeproj`
-3. Verifique se há algum time selecionado, caso não haja selecione o que costuma utilizar
-4. Execute a aplicação: `cmd + R`. 
+3. Execute a aplicação: `cmd + R`. 
 
 ## Environments
 Há dois ambientes configurados.
@@ -19,3 +18,5 @@ No ambiente `Development` os dados serão recuperados do Bundle, ou seja, mock.
 Para alterar o ambiente escolha entre os schemas, ao lado do botão de parar a execução.
 
 ### Candidato pela: [Zup](https://www.zup.com.br/)
+
+### Dúvidas / Sugestões: _luizfelipeap.contato@gmail.com_
