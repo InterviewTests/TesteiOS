@@ -14,7 +14,7 @@ enum EnvironmentIdentifier: String {
 
 enum EnvironmentKey: String {
     case environmentName = "ENVIRONMENT_NAME"
-    case apiURL = "api_url"
+    case test = "test_key"
 }
 
 class EnvironmentManager {

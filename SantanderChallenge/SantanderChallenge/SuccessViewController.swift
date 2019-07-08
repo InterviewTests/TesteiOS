@@ -9,6 +9,8 @@ import UIKit
 
 class SuccessViewController: UIViewController {
 
+    var willDismiss: (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,6 +18,7 @@ class SuccessViewController: UIViewController {
     }
     
     @IBAction func didTouchAt(button: UIButton) {
+        willDismiss?()
         dismiss(animated: true, completion: nil)
     }
 

@@ -8,18 +8,22 @@
 import Foundation
 
 fileprivate enum Path: String {
-    case register = "https://floating-mountain-50292.herokuapp.com/cells.json"
+    case form = "https://floating-mountain-50292.herokuapp.com/cells.json"
+    case fund = "https://floating-mountain-50292.herokuapp.com/fund.json"
 }
 
 class ProductionNetworkProvider: NetworkProviderProtocol {
     
     func fetchFormData(_ completion: @escaping (NetworkResponse) -> Void) {
-        request(at: Path.register.rawValue) { (result) in
+        request(at: Path.form.rawValue) { (result) in
             completion(result)
         }
     }
     
     func fetchFundsData(_ completion: @escaping (NetworkResponse) -> Void) {
+        request(at: Path.fund.rawValue) { (result) in
+            completion(result)
+        }
     }
 }
 

@@ -27,6 +27,8 @@ class FormViewController: BaseViewController {
         }
     }
     
+    fileprivate var contactData: ContactData!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,21 +38,22 @@ class FormViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        contactData = ContactData(name: "", phone: "")
+        
         startLoading()
         interactor?.fetchForm()
     }
     
     private func setupTableView() {
-        // Register cells
-        tableView.registerCellsNib(cellsClass:
-            [TitleTableViewCell.self,
-             InputTextTableViewCell.self,
-             InputEmailTableViewCell.self,
-             InputPhoneTableViewCell.self,
-             CheckboxTableViewCell.self,
-             ActionButtonTableViewCell.self
-            ]
-        )
+        
+        tableView.registerCellsNib(cellsClass: [
+            TitleTableViewCell.self,
+            InputTextTableViewCell.self,
+            InputEmailTableViewCell.self,
+            InputPhoneTableViewCell.self,
+            CheckboxTableViewCell.self,
+            ActionButtonTableViewCell.self
+            ])
         
         tableView.tableFooterView = UIViewController.blankView
     }
@@ -58,6 +61,18 @@ class FormViewController: BaseViewController {
     private func setupInteractor() {
         let presenter = FormPresenter(view: self)
         interactor = FormInteractor(presenter: presenter)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        let destination = segue.destination as? SuccessViewController
+        destination?.willDismiss = willDismissSuccessController
+    }
+    
+    private func willDismissSuccessController() {
+        contactData = ContactData(name: "", phone: "")
+        tableView.reloadData()
     }
 }
 
@@ -111,8 +126,6 @@ extension FormViewController: UITableViewDataSource {
             return UITableViewCell()
         }
     }
-    
-    
 }
 
 extension FormViewController: UITableViewDelegate {
@@ -136,7 +149,7 @@ fileprivate extension FormViewController {
         }
         
         cell.titleLabel.text = cellData.message
-        
+
         return cell
     }
     
@@ -148,14 +161,18 @@ fileprivate extension FormViewController {
         switch fieldType {
         case .text:
             cell = tableView.dequeueReusableCell(cellType: InputTextTableViewCell.self)
+            cell?.textField.text = contactData.name
         case .email:
             cell = tableView.dequeueReusableCell(cellType: InputEmailTableViewCell.self)
+            cell?.textField.text = contactData.email
         case .phone:
             cell = tableView.dequeueReusableCell(cellType: InputPhoneTableViewCell.self)
+            cell?.textField.text = contactData.phone
         default:
             return UITableViewCell()
         }
         
+        cell?.setValidIndicatorColor(status: .notChecked)
         cell?.set(placeholder: cellData.message)
         cell?.delegate = self
         return cell ?? UITableViewCell()
@@ -200,8 +217,10 @@ extension FormViewController: CheckBoxTableViewDelegate {
         switch status {
         case .selected:
             targetFormCell.hidden = false
+            contactData.email = ""
         case .unselected:
             targetFormCell.hidden = true
+            contactData.email = nil
         }
         tableView.reloadData()
         
@@ -217,34 +236,39 @@ extension FormViewController: CheckBoxTableViewDelegate {
 extension FormViewController: InputTextFieldTableViewCellDelegate {
     func editingChanged(text: String, atCell cell: InputTextFieldTableViewCell) {
         let valid: Bool
+        
         switch cell {
         case is InputTextTableViewCell:
-            valid = validate(name: text, cell: cell)
+            valid = interactor?.isValid(name: text) == true
+            contactData.name = text
         case is InputPhoneTableViewCell:
-            valid = validate(phone: text, cell: cell)
+            valid = interactor?.isValid(phone: text) == true
+            contactData.phone = text
         case is InputEmailTableViewCell:
-            valid = validate(email: text, cell: cell)
+            valid = interactor?.isValid(email: text) == true
+            contactData.email = text
         default:
             return
         }
-        cell.setValidIndicatorColor(valid: valid)
-    }
-    
-    private func validate(name: String, cell: InputTextFieldTableViewCell) -> Bool {
-        return interactor?.isValid(name: name) == true
-    }
-    
-    private func validate(phone: String, cell: InputTextFieldTableViewCell) -> Bool {
-        return interactor?.isValid(phone: phone) == true
-    }
-    
-    private func validate(email: String, cell: InputTextFieldTableViewCell) -> Bool {
-        return interactor?.isValid(email: email) == true
+        
+        if valid {
+            cell.setValidIndicatorColor(status: .valid)
+        } else {
+            cell.setValidIndicatorColor(status: .invalid)
+        }
     }
 }
 
 extension FormViewController: ActionButtonTableViewCellDelegate {
     func didTouchActionButton(atCell cell: ActionButtonTableViewCell) {
-        performSegue(withIdentifier: "showSuccess", sender: nil)
+        
+        guard let result = interactor?.isContactDataValid(contactData) else { return }
+        
+        switch result {
+        case .success:
+            performSegue(withIdentifier: "showSuccess", sender: nil)
+        case .failure(let error):
+            displayError(error.detail)    
+        }
     }
 }
