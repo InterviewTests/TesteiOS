@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINPro-Medium.otf">
+            <string>DINPro-Medium</string>
+        </array>
+        <array key="DINPro-Regular.otf">
+            <string>DINPro-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FundInfoTableViewCell" id="KGk-i7-Jjw" customClass="FundInfoTableViewCell" customModule="SantanderChallenge" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4Iv-Cf-KkP">
+                        <rect key="frame" x="24.5" y="5" width="271" height="33.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9F-Ve-8fi">
+                                <rect key="frame" x="0.0" y="8" width="135.5" height="18"/>
+                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
+                                <color key="textColor" red="0.4941176471" green="0.4941176471" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PM-nV-h8B">
+                                <rect key="frame" x="135.5" y="8" width="135.5" height="18"/>
+                                <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="14"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4Iv-Cf-KkP" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Egq-Q5-UH3"/>
+                    <constraint firstItem="4Iv-Cf-KkP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="LXY-Mx-QCn"/>
+                    <constraint firstItem="4Iv-Cf-KkP" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="318/375" id="naa-70-7wR"/>
+                    <constraint firstAttribute="bottom" secondItem="4Iv-Cf-KkP" secondAttribute="bottom" constant="5" id="yTL-Bz-ER3"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="leftLabel" destination="t9F-Ve-8fi" id="tnU-E5-h1u"/>
+                <outlet property="rightLabel" destination="3PM-nV-h8B" id="HQp-LV-U96"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

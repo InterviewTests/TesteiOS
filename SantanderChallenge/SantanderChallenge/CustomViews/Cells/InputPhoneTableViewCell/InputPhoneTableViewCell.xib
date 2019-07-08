@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="InputPhoneTableViewCell" rowHeight="84" id="JPE-7L-P8M" customClass="InputPhoneTableViewCell" customModule="SantanderChallenge" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JPE-7L-P8M" id="DeK-fm-sCM">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="83.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dvm-JQ-onZ">
+                        <rect key="frame" x="44" y="0.0" width="326" height="31"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VES-US-mAB" customClass="SwiftMaskField" customModule="SantanderChallenge" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="326" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="iHH-9S-0Kp"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="maskString" value="(NN) NNNN-NNNN"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVW-GM-Y8f">
+                                <rect key="frame" x="0.0" y="30" width="326" height="1"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="G5W-qv-tCh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="dvm-JQ-onZ" firstAttribute="centerX" secondItem="DeK-fm-sCM" secondAttribute="centerX" id="0Ck-4O-86x"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dvm-JQ-onZ" secondAttribute="bottom" id="1s7-pH-h9m"/>
+                    <constraint firstItem="dvm-JQ-onZ" firstAttribute="top" secondItem="DeK-fm-sCM" secondAttribute="top" id="qEg-DC-dqJ"/>
+                    <constraint firstItem="dvm-JQ-onZ" firstAttribute="width" secondItem="DeK-fm-sCM" secondAttribute="width" multiplier="295/375" id="uvE-WZ-GPO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="separatorView" destination="IVW-GM-Y8f" id="48b-Xc-okQ"/>
+                <outlet property="textField" destination="VES-US-mAB" id="462-Lq-zhc"/>
+            </connections>
+            <point key="canvasLocation" x="-563.768115942029" y="-115.17857142857142"/>
+        </tableViewCell>
+    </objects>
+</document>
