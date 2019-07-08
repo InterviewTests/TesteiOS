@@ -17,6 +17,11 @@
 		2C3BCA4822CECB800064EC0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3BCA4722CECB800064EC0D /* AppDelegate.swift */; };
 		2C3BCA4D22CECB800064EC0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C3BCA4B22CECB800064EC0D /* Main.storyboard */; };
 		2C3BCA5222CECB810064EC0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C3BCA5022CECB810064EC0D /* LaunchScreen.storyboard */; };
+		2C4787D122D306BD00366259 /* EnvironmentManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4787D022D306BC00366259 /* EnvironmentManger.swift */; };
+		2C4787D422D3070C00366259 /* Development.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C4787D222D3070C00366259 /* Development.plist */; };
+		2C4787D522D3070C00366259 /* Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C4787D322D3070C00366259 /* Production.plist */; };
+		2C4787D822D3071600366259 /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2C4787D622D3071600366259 /* Development.xcconfig */; };
+		2C4787D922D3071600366259 /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2C4787D722D3071600366259 /* Production.xcconfig */; };
 		2C62613F22D2A8A500AE3303 /* FundDefinitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62613D22D2A8A500AE3303 /* FundDefinitionTableViewCell.swift */; };
 		2C62614022D2A8A500AE3303 /* FundDefinitionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C62613E22D2A8A500AE3303 /* FundDefinitionTableViewCell.xib */; };
 		2C62614422D2A9E300AE3303 /* FundInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62614222D2A9E300AE3303 /* FundInfoTableViewCell.swift */; };
@@ -81,16 +86,10 @@
 		2C78DB9322D1A79B0092DE8C /* IQUIView+Hierarchy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78DB8222D1A79B0092DE8C /* IQUIView+Hierarchy.swift */; };
 		2C78DB9422D1A79B0092DE8C /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78DB8322D1A79B0092DE8C /* IQNSArray+Sort.swift */; };
 		2C78DB9822D1AD490092DE8C /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78DB9722D1AD490092DE8C /* SuccessViewController.swift */; };
-		2CB34CF722CED1A200D4C74C /* Development.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CB34CF622CED1A200D4C74C /* Development.plist */; };
-		2CB34CF922CED1BB00D4C74C /* Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CB34CF822CED1BB00D4C74C /* Production.plist */; };
-		2CB34CFB22CED3F400D4C74C /* EnvironmentManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB34CFA22CED3F400D4C74C /* EnvironmentManger.swift */; };
 		2CD9394922D2B14E0066E958 /* SeparatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9394722D2B14E0066E958 /* SeparatorTableViewCell.swift */; };
 		2CD9394A22D2B14E0066E958 /* SeparatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CD9394822D2B14E0066E958 /* SeparatorTableViewCell.xib */; };
 		2CD9394C22D2DB220066E958 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9394B22D2DB220066E958 /* BaseViewController.swift */; };
 		2CD9394E22D2DF780066E958 /* ContactData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9394D22D2DF780066E958 /* ContactData.swift */; };
-		2CD9395F22D2E9750066E958 /* EnvironmentManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB34CFA22CED3F400D4C74C /* EnvironmentManger.swift */; };
-		2CD9396022D2E9870066E958 /* Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CB34CF822CED1BB00D4C74C /* Production.plist */; };
-		2CD9396122D2E98B0066E958 /* Development.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CB34CF622CED1A200D4C74C /* Development.plist */; };
 		2CD9396322D2EA290066E958 /* EnvironmentManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9396222D2EA290066E958 /* EnvironmentManagerTests.swift */; };
 		2CD9396922D2EC740066E958 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9396822D2EC740066E958 /* StringTests.swift */; };
 		2CD9396A22D2ECD50066E958 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78DB5F22D19A960092DE8C /* String+Extension.swift */; };
@@ -142,6 +141,11 @@
 		2C3BCA4C22CECB800064EC0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C3BCA5122CECB810064EC0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C3BCA5322CECB810064EC0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C4787D022D306BC00366259 /* EnvironmentManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentManger.swift; sourceTree = "<group>"; };
+		2C4787D222D3070C00366259 /* Development.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Development.plist; sourceTree = "<group>"; };
+		2C4787D322D3070C00366259 /* Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Production.plist; sourceTree = "<group>"; };
+		2C4787D622D3071600366259 /* Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
+		2C4787D722D3071600366259 /* Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		2C62613D22D2A8A500AE3303 /* FundDefinitionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundDefinitionTableViewCell.swift; sourceTree = "<group>"; };
 		2C62613E22D2A8A500AE3303 /* FundDefinitionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FundDefinitionTableViewCell.xib; sourceTree = "<group>"; };
 		2C62614222D2A9E300AE3303 /* FundInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -207,11 +211,6 @@
 		2C78DB8222D1A79B0092DE8C /* IQUIView+Hierarchy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIView+Hierarchy.swift"; sourceTree = "<group>"; };
 		2C78DB8322D1A79B0092DE8C /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQNSArray+Sort.swift"; sourceTree = "<group>"; };
 		2C78DB9722D1AD490092DE8C /* SuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SuccessViewController.swift; path = Scenes/Success/SuccessViewController.swift; sourceTree = "<group>"; };
-		2CB34CF022CED0C600D4C74C /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Development.xcconfig; path = ../Base/Environment/ConfigFiles/Development.xcconfig; sourceTree = "<group>"; };
-		2CB34CF322CED0FE00D4C74C /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Production.xcconfig; path = ../Base/Environment/ConfigFiles/Production.xcconfig; sourceTree = "<group>"; };
-		2CB34CF622CED1A200D4C74C /* Development.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Development.plist; path = ../../Base/Environment/Plist/Development.plist; sourceTree = "<group>"; };
-		2CB34CF822CED1BB00D4C74C /* Production.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Production.plist; path = ../../Base/Environment/Plist/Production.plist; sourceTree = "<group>"; };
-		2CB34CFA22CED3F400D4C74C /* EnvironmentManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EnvironmentManger.swift; path = ../Base/Environment/EnvironmentManger.swift; sourceTree = "<group>"; };
 		2CD9394722D2B14E0066E958 /* SeparatorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorTableViewCell.swift; sourceTree = "<group>"; };
 		2CD9394822D2B14E0066E958 /* SeparatorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeparatorTableViewCell.xib; sourceTree = "<group>"; };
 		2CD9394B22D2DB220066E958 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = Scenes/BaseViewController.swift; sourceTree = "<group>"; };
@@ -350,6 +349,35 @@
 				2C114EF222D01874009D49E9 /* Services */,
 			);
 			path = SantanderChallenge;
+			sourceTree = "<group>";
+		};
+		2C4787CD22D306AC00366259 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				2C4787D022D306BC00366259 /* EnvironmentManger.swift */,
+				2C4787CE22D306AC00366259 /* Plist */,
+				2C4787CF22D306AC00366259 /* ConfigFiles */,
+			);
+			name = Environment;
+			path = Base/Environment;
+			sourceTree = "<group>";
+		};
+		2C4787CE22D306AC00366259 /* Plist */ = {
+			isa = PBXGroup;
+			children = (
+				2C4787D222D3070C00366259 /* Development.plist */,
+				2C4787D322D3070C00366259 /* Production.plist */,
+			);
+			path = Plist;
+			sourceTree = "<group>";
+		};
+		2C4787CF22D306AC00366259 /* ConfigFiles */ = {
+			isa = PBXGroup;
+			children = (
+				2C4787D622D3071600366259 /* Development.xcconfig */,
+				2C4787D722D3071600366259 /* Production.xcconfig */,
+			);
+			path = ConfigFiles;
 			sourceTree = "<group>";
 		};
 		2C62613C22D2A88600AE3303 /* FundDefinitionTableViewCell */ = {
@@ -641,38 +669,10 @@
 			children = (
 				2C3BCA5322CECB810064EC0D /* Info.plist */,
 				2C3BCA4722CECB800064EC0D /* AppDelegate.swift */,
-				2CB34CF222CED0E600D4C74C /* Environment */,
 				2C3BCA5022CECB810064EC0D /* LaunchScreen.storyboard */,
+				2C4787CD22D306AC00366259 /* Environment */,
 			);
 			name = Base;
-			sourceTree = "<group>";
-		};
-		2CB34CF222CED0E600D4C74C /* Environment */ = {
-			isa = PBXGroup;
-			children = (
-				2CB34CF522CED19200D4C74C /* Plist */,
-				2CB34CF422CED18200D4C74C /* ConfigFiles */,
-				2CB34CFA22CED3F400D4C74C /* EnvironmentManger.swift */,
-			);
-			path = Environment;
-			sourceTree = "<group>";
-		};
-		2CB34CF422CED18200D4C74C /* ConfigFiles */ = {
-			isa = PBXGroup;
-			children = (
-				2CB34CF022CED0C600D4C74C /* Development.xcconfig */,
-				2CB34CF322CED0FE00D4C74C /* Production.xcconfig */,
-			);
-			name = ConfigFiles;
-			sourceTree = "<group>";
-		};
-		2CB34CF522CED19200D4C74C /* Plist */ = {
-			isa = PBXGroup;
-			children = (
-				2CB34CF622CED1A200D4C74C /* Development.plist */,
-				2CB34CF822CED1BB00D4C74C /* Production.plist */,
-			);
-			path = Plist;
 			sourceTree = "<group>";
 		};
 		2CD9394622D2B13E0066E958 /* SeparatorTableViewCell */ = {
@@ -871,8 +871,6 @@
 				2C3BCA5222CECB810064EC0D /* LaunchScreen.storyboard in Resources */,
 				2CD939A722D3030E0066E958 /* DINPro-Light.otf in Resources */,
 				2CD939A022D3030E0066E958 /* DINNeuzeitGroteskStd-Light.otf in Resources */,
-				2CB34CF922CED1BB00D4C74C /* Production.plist in Resources */,
-				2CB34CF722CED1A200D4C74C /* Development.plist in Resources */,
 				2CD939A822D3030E0066E958 /* DINMittelschriftStd.otf in Resources */,
 				2C639C7022D2A68D00986F4C /* InputPhoneTableViewCell.xib in Resources */,
 				2C62614522D2A9E300AE3303 /* FundInfoTableViewCell.xib in Resources */,
@@ -880,21 +878,25 @@
 				2C639C6B22D2A68D00986F4C /* InputTextTableViewCell.xib in Resources */,
 				2CD939A222D3030E0066E958 /* DINPro-Bold.otf in Resources */,
 				2C62614A22D2AAC900AE3303 /* FundDownInfoTableViewCell.xib in Resources */,
+				2C4787D522D3070C00366259 /* Production.plist in Resources */,
 				2CD939A122D3030E0066E958 /* DINPro-Medium.otf in Resources */,
 				2C639C6122D2A68D00986F4C /* FundInfoTitleTableViewCell.xib in Resources */,
 				2C3BCA4D22CECB800064EC0D /* Main.storyboard in Resources */,
+				2C4787D422D3070C00366259 /* Development.plist in Resources */,
 				2CD9399D22D3030E0066E958 /* fund.json in Resources */,
 				2C639C6922D2A68D00986F4C /* CheckboxTableViewCell.xib in Resources */,
 				2C639C7522D2A68D00986F4C /* ActionButtonTableViewCell.xib in Resources */,
 				2C62614022D2A8A500AE3303 /* FundDefinitionTableViewCell.xib in Resources */,
 				2CD939A522D3030E0066E958 /* DINEngschriftStd.otf in Resources */,
 				2CD939A322D3030E0066E958 /* DINNeuzeitGroteskStd-BdCond.otf in Resources */,
+				2C4787D822D3071600366259 /* Development.xcconfig in Resources */,
 				2CD9399E22D3030E0066E958 /* cells.json in Resources */,
 				2C639C5E22D2A68D00986F4C /* FundRiskTableViewCell.xib in Resources */,
 				2C639C6522D2A68D00986F4C /* FundMoreInfoTableViewCell.xib in Resources */,
 				2C639C6722D2A68D00986F4C /* FundTitleTableViewCell.xib in Resources */,
 				2CD939A422D3030E0066E958 /* DINPro-Black.otf in Resources */,
 				2C639C6E22D2A68D00986F4C /* TitleTableViewCell.xib in Resources */,
+				2C4787D922D3071600366259 /* Production.xcconfig in Resources */,
 				2C639C6422D2A68D00986F4C /* FundNameTableViewCell.xib in Resources */,
 				2CD9394A22D2B14E0066E958 /* SeparatorTableViewCell.xib in Resources */,
 				2CD939A622D3030E0066E958 /* DINPro-Regular.otf in Resources */,
@@ -905,8 +907,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CD9396122D2E98B0066E958 /* Development.plist in Resources */,
-				2CD9396022D2E9870066E958 /* Production.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -958,6 +958,7 @@
 				2CD9399F22D3030E0066E958 /* Colors.swift in Sources */,
 				2C78DB8822D1A79B0092DE8C /* IQToolbar.swift in Sources */,
 				2C639C5D22D2A68D00986F4C /* FundRiskTableViewCell.swift in Sources */,
+				2C4787D122D306BD00366259 /* EnvironmentManger.swift in Sources */,
 				2C26FF6922D294FC0001E250 /* UIView+Extension.swift in Sources */,
 				2CD939AD22D303DB0066E958 /* FormInteractor.swift in Sources */,
 				2CD939AF22D303DB0066E958 /* FormPresenter.swift in Sources */,
@@ -969,7 +970,6 @@
 				2C639C6222D2A68D00986F4C /* FundInfoTitleTableViewCell.swift in Sources */,
 				2C78DB9822D1AD490092DE8C /* SuccessViewController.swift in Sources */,
 				2C78DB8622D1A79B0092DE8C /* IQTitleBarButtonItem.swift in Sources */,
-				2CB34CFB22CED3F400D4C74C /* EnvironmentManger.swift in Sources */,
 				2C78DB5522D1006A0092DE8C /* UITableView+Extension.swift in Sources */,
 				2C78DB5322D100070092DE8C /* UITableViewCell+Extension.swift in Sources */,
 				2CD939B422D303F10066E958 /* FundsInteractor.swift in Sources */,
@@ -995,7 +995,6 @@
 				2CD9396A22D2ECD50066E958 /* String+Extension.swift in Sources */,
 				2CD9396322D2EA290066E958 /* EnvironmentManagerTests.swift in Sources */,
 				2CD9396922D2EC740066E958 /* StringTests.swift in Sources */,
-				2CD9395F22D2E9750066E958 /* EnvironmentManger.swift in Sources */,
 				2CD9397122D2EE680066E958 /* NetworkProviderProtocol.swift in Sources */,
 				2CD9396F22D2EE510066E958 /* ProductionNetworkProvider.swift in Sources */,
 				2CD9398922D2F7AB0066E958 /* FundInteractorTests.swift in Sources */,
@@ -1036,7 +1035,7 @@
 /* Begin XCBuildConfiguration section */
 		2C3BCA5422CECB810064EC0D /* Debug (Development) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CB34CF022CED0C600D4C74C /* Development.xcconfig */;
+			baseConfigurationReference = 2C4787D622D3071600366259 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1098,7 +1097,7 @@
 		};
 		2C3BCA5522CECB810064EC0D /* Release (Development) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CB34CF022CED0C600D4C74C /* Development.xcconfig */;
+			baseConfigurationReference = 2C4787D622D3071600366259 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1154,7 +1153,7 @@
 		};
 		2C3BCA5722CECB810064EC0D /* Debug (Development) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CB34CF022CED0C600D4C74C /* Development.xcconfig */;
+			baseConfigurationReference = 2C4787D622D3071600366259 /* Development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1173,7 +1172,7 @@
 		};
 		2C3BCA5822CECB810064EC0D /* Release (Development) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CB34CF022CED0C600D4C74C /* Development.xcconfig */;
+			baseConfigurationReference = 2C4787D622D3071600366259 /* Development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1192,7 +1191,7 @@
 		};
 		2CB34CEC22CECFF000D4C74C /* Debug (Production) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CB34CF322CED0FE00D4C74C /* Production.xcconfig */;
+			baseConfigurationReference = 2C4787D722D3071600366259 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1254,7 +1253,7 @@
 		};
 		2CB34CED22CECFF000D4C74C /* Debug (Production) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CB34CF322CED0FE00D4C74C /* Production.xcconfig */;
+			baseConfigurationReference = 2C4787D722D3071600366259 /* Production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1273,7 +1272,7 @@
 		};
 		2CB34CEE22CECFF700D4C74C /* Release (Production) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CB34CF322CED0FE00D4C74C /* Production.xcconfig */;
+			baseConfigurationReference = 2C4787D722D3071600366259 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1329,7 +1328,7 @@
 		};
 		2CB34CEF22CECFF700D4C74C /* Release (Production) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CB34CF322CED0FE00D4C74C /* Production.xcconfig */;
+			baseConfigurationReference = 2C4787D722D3071600366259 /* Production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1348,6 +1347,7 @@
 		};
 		2CD9395A22D2E9420066E958 /* Debug (Development) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C4787D622D3071600366259 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1423,6 +1423,7 @@
 		};
 		2CD9395B22D2E9420066E958 /* Debug (Production) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C4787D722D3071600366259 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1498,6 +1499,7 @@
 		};
 		2CD9395C22D2E9420066E958 /* Release (Development) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C4787D622D3071600366259 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1567,6 +1569,7 @@
 		};
 		2CD9395D22D2E9420066E958 /* Release (Production) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C4787D722D3071600366259 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
