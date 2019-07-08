@@ -12,29 +12,32 @@ class FundRiskTableViewCell: UITableViewCell {
     @IBOutlet weak var indicatorConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var levelViews: [UIView]!
+    @IBOutlet var levelsViewHeightConstraints: [NSLayoutConstraint]!
+    @IBOutlet weak var container: UIStackView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        layoutBorders()
     }
     
     func set(level: Int) {
-        let view = levelViews[level]
-        let position = view.frame.origin
-        let size = CGSize(width: view.frame.width, height: 10)
+        
+        let index = level - 1
+        
+        let view = levelViews[index]
+        let constraint = levelsViewHeightConstraints[index]
+        constraint.constant = 10
+        
         UIView.animate(withDuration: 0.3) {
-            view.frame = CGRect(origin: position, size: size)
+            self.layoutIfNeeded()
         }
         
-        indicatorConstraint.constant = view.frame.midX
-    }
-    
-    private func layoutBorders() {
-        guard let first = levelViews.first, let last = levelViews.last else { return }
+        let gaps = CGFloat(index)
         
-        let radius: CGFloat = first.frame.height / 2.0
-        first.roundCorners(corners: [.topLeft, .bottomLeft], radius: radius)
-        last.roundCorners(corners: [.topRight, .bottomRight], radius: radius)
+        let originX = container.frame.origin.x
+        let jumps = gaps * view.frame.width
+        let midView = view.frame.width / 2.0
+        let total = originX + jumps + midView - gaps
+        
+        indicatorConstraint.constant = total
     }
 }

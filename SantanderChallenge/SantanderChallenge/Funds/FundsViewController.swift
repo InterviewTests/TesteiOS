@@ -21,14 +21,15 @@ class FundsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.superview?.layoutIfNeeded()
+
         
         setupTableView()
         setupInteractor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+        self.view.setNeedsUpdateConstraints()
         interactor?.fetchFunds()
     }
     

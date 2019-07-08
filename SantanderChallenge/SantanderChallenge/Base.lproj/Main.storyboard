@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WkU-fO-Uj1">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina6_1" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -23,17 +23,17 @@
             <objects>
                 <viewController storyboardIdentifier="FundsViewController" id="nKI-qW-zZI" customClass="FundsViewController" customModule="SantanderChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ulY-mh-8dj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Investimento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXn-YC-5AY">
-                                <rect key="frame" x="161.5" y="64" width="91.5" height="20.5"/>
+                                <rect key="frame" x="402.5" y="20" width="91.5" height="20.5"/>
                                 <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wg7-lJ-WYx">
-                                <rect key="frame" x="334" y="54.5" width="40" height="40"/>
+                                <rect key="frame" x="772" y="10.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Wg7-lJ-WYx" secondAttribute="height" multiplier="1:1" id="7kx-g0-utL"/>
                                     <constraint firstAttribute="height" constant="40" id="vU4-B7-4eX"/>
@@ -41,7 +41,7 @@
                                 <state key="normal" image="share"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TnX-Ou-B8z">
-                                <rect key="frame" x="0.0" y="94.5" width="414" height="767.5"/>
+                                <rect key="frame" x="0.0" y="50.5" width="852" height="342.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="nKI-qW-zZI" id="0fX-tR-dRN"/>
@@ -75,21 +75,21 @@
             <objects>
                 <viewController storyboardIdentifier="ContainerViewController" id="WkU-fO-Uj1" customClass="ContainerViewController" customModule="SantanderChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bru-BQ-lqn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dYR-rO-y6Q" userLabel="IndicatorView">
-                                <rect key="frame" x="0.0" y="805" width="207" height="2"/>
+                                <rect key="frame" x="44" y="336" width="404" height="2"/>
                                 <color key="backgroundColor" red="0.70588235294117641" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="peI-Fn-5E1"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zjQ-Zt-dSS">
-                                <rect key="frame" x="0.0" y="807" width="414" height="55"/>
+                                <rect key="frame" x="44" y="338" width="808" height="55"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5h-6V-hzy">
-                                        <rect key="frame" x="0.0" y="0.0" width="207" height="55"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="404" height="55"/>
                                         <color key="backgroundColor" red="0.85490196078431369" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
                                         <state key="normal" title="Investimento">
@@ -100,7 +100,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yw-BV-NGR">
-                                        <rect key="frame" x="207" y="0.0" width="207" height="55"/>
+                                        <rect key="frame" x="404" y="0.0" width="404" height="55"/>
                                         <color key="backgroundColor" red="0.85490196080000003" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
                                         <state key="normal" title="Contato">
@@ -118,7 +118,7 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsT-eL-z6K" userLabel="ContainerView">
-                                <rect key="frame" x="0.0" y="44" width="414" height="761"/>
+                                <rect key="frame" x="44" y="0.0" width="808" height="336"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -126,13 +126,13 @@
                         <constraints>
                             <constraint firstItem="qsT-eL-z6K" firstAttribute="top" secondItem="kxc-oh-ic5" secondAttribute="top" id="6kq-Fr-Fiy"/>
                             <constraint firstItem="qsT-eL-z6K" firstAttribute="leading" secondItem="kxc-oh-ic5" secondAttribute="leading" id="9cF-Yk-Npd"/>
-                            <constraint firstItem="dYR-rO-y6Q" firstAttribute="leading" secondItem="bru-BQ-lqn" secondAttribute="leading" id="REd-eI-SS2"/>
+                            <constraint firstItem="dYR-rO-y6Q" firstAttribute="width" secondItem="q5h-6V-hzy" secondAttribute="width" id="Toh-zJ-ytc"/>
                             <constraint firstItem="zjQ-Zt-dSS" firstAttribute="leading" secondItem="kxc-oh-ic5" secondAttribute="leading" id="ZfI-Fb-jTW"/>
                             <constraint firstItem="kxc-oh-ic5" firstAttribute="trailing" secondItem="qsT-eL-z6K" secondAttribute="trailing" id="brG-Mw-ler"/>
                             <constraint firstItem="kxc-oh-ic5" firstAttribute="trailing" secondItem="zjQ-Zt-dSS" secondAttribute="trailing" id="eWa-As-cGo"/>
                             <constraint firstItem="dYR-rO-y6Q" firstAttribute="top" secondItem="qsT-eL-z6K" secondAttribute="bottom" id="g9H-dI-DPN"/>
+                            <constraint firstItem="dYR-rO-y6Q" firstAttribute="leading" secondItem="zjQ-Zt-dSS" secondAttribute="leading" id="gNc-o9-vCz"/>
                             <constraint firstItem="zjQ-Zt-dSS" firstAttribute="top" secondItem="dYR-rO-y6Q" secondAttribute="bottom" id="hwU-2M-Vf6"/>
-                            <constraint firstItem="dYR-rO-y6Q" firstAttribute="width" secondItem="bru-BQ-lqn" secondAttribute="width" multiplier="0.5" id="iOF-2B-3UT"/>
                             <constraint firstItem="kxc-oh-ic5" firstAttribute="bottom" secondItem="zjQ-Zt-dSS" secondAttribute="bottom" id="lqm-Hw-le0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kxc-oh-ic5"/>
@@ -141,7 +141,7 @@
                         <outlet property="containerView" destination="qsT-eL-z6K" id="Cmt-zL-8fh"/>
                         <outlet property="formButton" destination="7yw-BV-NGR" id="AZX-Pl-DlS"/>
                         <outlet property="fundsButton" destination="q5h-6V-hzy" id="BeL-be-bY7"/>
-                        <outlet property="indicatorViewConstraint" destination="REd-eI-SS2" id="Dsx-44-Ix4"/>
+                        <outlet property="indicatorViewConstraint" destination="gNc-o9-vCz" id="uom-di-zTv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q0i-r0-750" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -153,11 +153,11 @@
             <objects>
                 <viewController storyboardIdentifier="FormViewController" id="BYZ-38-t0r" customClass="FormViewController" customModule="SantanderChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NgU-yU-C5Z">
-                                <rect key="frame" x="0.0" y="84.5" width="414" height="777.5"/>
+                                <rect key="frame" x="44" y="40.5" width="808" height="352.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="Tdt-Hy-UXN"/>
@@ -165,7 +165,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contato" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfK-5b-0cU">
-                                <rect key="frame" x="179.5" y="64" width="55" height="20.5"/>
+                                <rect key="frame" x="420.5" y="20" width="55" height="20.5"/>
                                 <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -196,26 +196,26 @@
             <objects>
                 <viewController id="90j-hE-GXw" customClass="SuccessViewController" customModule="SantanderChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Nl-BH-NzF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contato" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLM-QH-ddi">
-                                <rect key="frame" x="179.5" y="64" width="55" height="20.5"/>
+                                <rect key="frame" x="420.5" y="20" width="55" height="20.5"/>
                                 <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="OMX-1C-JZ5">
-                                <rect key="frame" x="77.5" y="400.5" width="259" height="95"/>
+                                <rect key="frame" x="167.5" y="177.5" width="561" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4o-VL-sOL">
-                                        <rect key="frame" x="99" y="0.0" width="61" height="18"/>
+                                        <rect key="frame" x="250" y="0.0" width="61" height="18"/>
                                         <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="14"/>
                                         <color key="textColor" red="0.49411764705882355" green="0.49411764705882355" blue="0.49411764705882355" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensagem enviada com sucesso :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fHa-kR-yPL">
-                                        <rect key="frame" x="5.5" y="23" width="248" height="72"/>
+                                        <rect key="frame" x="64.5" y="23" width="432.5" height="36"/>
                                         <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -223,7 +223,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="KTR-BA-vFy">
-                                <rect key="frame" x="160.5" y="756" width="93" height="56"/>
+                                <rect key="frame" x="401.5" y="287" width="93" height="56"/>
                                 <fontDescription key="fontDescription" name="DINPro-Medium" family="DINPro" pointSize="17"/>
                                 <state key="normal">
                                     <string key="title">Enviar nova 
