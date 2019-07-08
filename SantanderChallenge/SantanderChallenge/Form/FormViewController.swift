@@ -12,7 +12,7 @@ protocol FormPresentableProtocol: AnyObject {
     func displayError(_ error: String)
 }
 
-class FormViewController: UIViewController {
+class FormViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -32,12 +32,12 @@ class FormViewController: UIViewController {
         
         setupTableView()
         setupInteractor()
-        
-        interactor?.fetchForm()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        startLoading()
+        interactor?.fetchForm()
     }
     
     private func setupTableView() {
@@ -64,11 +64,16 @@ class FormViewController: UIViewController {
 
 extension FormViewController: FormPresentableProtocol {
     func displayForm(_ cells: [FormCell]) {
+        defer {
+            stopLoading()
+        }
+        
         self.cells = cells
         tableView.reloadData()
     }
     
     func displayError(_ error: String) {
+        stopLoading()
         let alert = UIAlertController(title: "🤨", message: error, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         

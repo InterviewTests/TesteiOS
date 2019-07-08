@@ -13,7 +13,7 @@ protocol FundsPresentableProtocol: AnyObject {
     func displayError(_ error: String)
 }
 
-class FundsViewController: UIViewController {
+class FundsViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,13 +24,14 @@ class FundsViewController: UIViewController {
         super.viewDidLoad()
         view.superview?.layoutIfNeeded()
 
-        
         setupTableView()
         setupInteractor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.view.setNeedsUpdateConstraints()
+        
+        startLoading()
         interactor?.fetchFunds()
     }
     
@@ -61,11 +62,18 @@ class FundsViewController: UIViewController {
 extension FundsViewController: FundsPresentableProtocol {
     
     func displayFunds(_ cells: [FundContentData]) {
+        
+        defer {
+            stopLoading()
+        }
+        
         self.cells = cells
         tableView.reloadData()
     }
     
     func displayError(_ error: String) {
+        stopLoading()
+        
         func displayError(_ error: String) {
             let alert = UIAlertController(title: "🤨", message: error, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
