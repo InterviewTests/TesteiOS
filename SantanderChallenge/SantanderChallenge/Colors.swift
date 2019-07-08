@@ -13,4 +13,6 @@ class Colors {
     
     static let unselectedRed: UIColor = UIColor(red: 218/255, green: 1/255, blue: 1/255, alpha: 1.0)
     static let selectedRed: UIColor = UIColor(red: 180/255, green: 1/255, blue: 1/255, alpha: 1.0)
+    
+    static let shallowGray: UIColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1.0)
 }

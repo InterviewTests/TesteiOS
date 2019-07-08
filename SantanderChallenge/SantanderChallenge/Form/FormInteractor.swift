@@ -7,6 +7,23 @@
 
 import Foundation
 
+enum ValidationError: Error {
+    case invalidName
+    case invalidPhone
+    case invalidEmail
+    
+    var detail: String {
+        switch self {
+        case .invalidName:
+            return "Check your name"
+        case .invalidPhone:
+            return "Check your phone"
+        case .invalidEmail:
+            return "Check your email"
+        }
+    }
+}
+
 class FormInteractor {
     
     private let networkManager: NetworkManager
@@ -45,5 +62,23 @@ extension FormInteractor {
     
     func isValid(email: String) -> Bool {
         return email.validEmail
+    }
+    
+    func isContactDataValid(_ contactData: ContactData) -> Result<Bool, ValidationError> {
+        
+        if !isValid(name: contactData.name) {
+            return .failure(.invalidName)
+        }
+        
+        if !isValid(phone: contactData.phone) {
+            return .failure(.invalidPhone)
+        }
+        
+        if let email = contactData.email {
+            if !isValid(email: email) {
+                return .failure(.invalidEmail)
+            }
+        }
+        return .success(true)
     }
 }

@@ -11,6 +11,12 @@ protocol InputTextFieldTableViewCellDelegate: AnyObject {
     func editingChanged(text: String, atCell cell: InputTextFieldTableViewCell)
 }
 
+enum ValidIndicator {
+    case valid
+    case invalid
+    case notChecked
+}
+
 class InputTextFieldTableViewCell: UITableViewCell {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var separatorView: UIView!
@@ -32,11 +38,14 @@ class InputTextFieldTableViewCell: UITableViewCell {
         self.textField.placeholder = placeholder
     }
     
-    func setValidIndicatorColor(valid: Bool) {
-        if valid {
+    func setValidIndicatorColor(status: ValidIndicator) {
+        switch status {
+        case .valid:
             separatorView.backgroundColor = Colors.goodGreen
-        } else {
+        case .invalid:
             separatorView.backgroundColor = Colors.badRed
+        case .notChecked:
+            separatorView.backgroundColor = Colors.shallowGray
         }
     }
 }
