@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="StatementCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatementCell" rowHeight="80" id="4d0-Wo-dow" customClass="StatementCellTableViewCell" customModule="TesteMarcio" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="382" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4d0-Wo-dow" id="6ab-mt-OPb">
+                <rect key="frame" x="0.0" y="0.0" width="382" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pagamento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuH-vq-z3j">
+                        <rect key="frame" x="20" y="11" width="82" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conta de Luz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQ9-PL-JoJ">
+                        <rect key="frame" x="20" y="48.5" width="102" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/12/2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s95-5E-3M1">
+                        <rect key="frame" x="287" y="11" width="75" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R$ 1.000,00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQL-Zk-m4n">
+                        <rect key="frame" x="270" y="48.5" width="92" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="PuH-vq-z3j" firstAttribute="leading" secondItem="6ab-mt-OPb" secondAttribute="leading" constant="20" id="33T-iU-f32"/>
+                    <constraint firstAttribute="bottom" secondItem="bQ9-PL-JoJ" secondAttribute="bottom" constant="10" id="NOZ-x9-WQM"/>
+                    <constraint firstAttribute="trailing" secondItem="s95-5E-3M1" secondAttribute="trailing" constant="20" id="SME-tO-sLQ"/>
+                    <constraint firstAttribute="bottom" secondItem="lQL-Zk-m4n" secondAttribute="bottom" constant="10" id="WML-lk-Oz4"/>
+                    <constraint firstAttribute="trailing" secondItem="lQL-Zk-m4n" secondAttribute="trailing" constant="20" id="YTf-dc-V71"/>
+                    <constraint firstItem="bQ9-PL-JoJ" firstAttribute="leading" secondItem="6ab-mt-OPb" secondAttribute="leading" constant="20" id="bUN-Ac-S3b"/>
+                    <constraint firstItem="PuH-vq-z3j" firstAttribute="top" secondItem="6ab-mt-OPb" secondAttribute="top" constant="11" id="fPN-Zz-Tm5"/>
+                    <constraint firstItem="s95-5E-3M1" firstAttribute="top" secondItem="6ab-mt-OPb" secondAttribute="top" constant="11" id="hyl-LS-DaB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="s95-5E-3M1" id="LjU-qD-Qqu"/>
+                <outlet property="descLabel" destination="bQ9-PL-JoJ" id="7Et-2M-I3e"/>
+                <outlet property="titleLabel" destination="PuH-vq-z3j" id="MY8-s3-ZzX"/>
+                <outlet property="valueLabel" destination="lQL-Zk-m4n" id="o8V-Pu-p61"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

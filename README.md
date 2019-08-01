@@ -40,3 +40,7 @@ Ao finalizar nos envie um Pull Request com o resultado, por favor informe por qu
 # Importante: não há prazo de entrega, faça com qualidade!
 
 # BOA SORTE!
+
+Teste feito pela zup
+
+Infelizmente nao consegui utilizar o git durante o processo pq minha vm nao funcionava direito, tive que copiar o projeto para fora da vm e entao conseguir usar o git
