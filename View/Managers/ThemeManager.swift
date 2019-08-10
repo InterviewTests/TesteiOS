@@ -89,7 +89,7 @@ class ThemeManager {
         UINavigationBar.appearance().backgroundColor = theme.primaryColor
         UINavigationBar.appearance().tintColor = theme.titleTextColor  // NavBar Items Color
         UINavigationBar.appearance().barTintColor = theme.primaryColor // NavBar Color
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: theme.titleTextColor] // NavBar Title Color
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.titleTextColor] // NavBar Title Color
 //                                                            NSAttributedStringKey.font: MDCTypography.subheadFont()]
 //        MDCNavigationBar.appearance().tintColor = theme.titleTextColor
         UICollectionView.appearance().backgroundColor = theme.titleTextColor

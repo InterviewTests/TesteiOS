@@ -58,7 +58,7 @@ extension UIViewController {
                                       message: errorMessage,
                                       preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok",
-                                   style: UIAlertActionStyle.cancel,
+                                   style: UIAlertAction.Style.cancel,
                                    handler: nil)
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
