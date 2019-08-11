@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		304626AB2FB80E114C6FE78B /* Pods_Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6212F99226D89A14034E1293 /* Pods_Domain.framework */; };
 		305A8CFD0645AB77AAFF26EB /* Pods_TesteiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8920050411DDA82B21D7A55 /* Pods_TesteiOS.framework */; };
+		3F30230F22FF019300CD98AF /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F30230E22FF019300CD98AF /* DomainError.swift */; };
+		3F30231322FF14B400CD98AF /* UseCaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F30231222FF14B400CD98AF /* UseCaseError.swift */; };
+		3F30231422FF386200CD98AF /* UseCaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F30231022FF13C500CD98AF /* UseCaseManager.swift */; };
 		3F34766D2141F2C100D7B4FC /* Domain.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F34766B2141F2C100D7B4FC /* Domain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F3476702141F2C100D7B4FC /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3476692141F2C100D7B4FC /* Domain.framework */; };
 		3F3476712141F2C100D7B4FC /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3476692141F2C100D7B4FC /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -77,6 +80,9 @@
 /* Begin PBXFileReference section */
 		1421F059DFB238FCB394B0AA /* Pods-Platform.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Platform.release.xcconfig"; path = "Pods/Target Support Files/Pods-Platform/Pods-Platform.release.xcconfig"; sourceTree = "<group>"; };
 		2A0C839DD581C93AA270927F /* Pods-Domain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Domain.release.xcconfig"; path = "Pods/Target Support Files/Pods-Domain/Pods-Domain.release.xcconfig"; sourceTree = "<group>"; };
+		3F30230E22FF019300CD98AF /* DomainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainError.swift; sourceTree = "<group>"; };
+		3F30231022FF13C500CD98AF /* UseCaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseManager.swift; sourceTree = "<group>"; };
+		3F30231222FF14B400CD98AF /* UseCaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseError.swift; sourceTree = "<group>"; };
 		3F3476692141F2C100D7B4FC /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F34766B2141F2C100D7B4FC /* Domain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Domain.h; sourceTree = "<group>"; };
 		3F34766C2141F2C100D7B4FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -150,14 +156,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3F34766A2141F2C100D7B4FC /* Domain */ = {
+		3F30230C22FF016400CD98AF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3F41D0C622F60BA5008D21A0 /* ApiUseCase.swift */,
 				3F3476A62141F9D900D7B4FC /* Fund.swift */,
 				3F41D0C822F610AE008D21A0 /* FormCell.swift */,
 				3F41D0CA22F611C0008D21A0 /* CellType.swift */,
 				3F41D0CC22F611DE008D21A0 /* FieldType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3F30230D22FF017500CD98AF /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				3F30230E22FF019300CD98AF /* DomainError.swift */,
+				3F41D0C622F60BA5008D21A0 /* ApiUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		3F34766A2141F2C100D7B4FC /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				3F30230D22FF017500CD98AF /* UseCases */,
+				3F30230C22FF016400CD98AF /* Model */,
 				3F34766B2141F2C100D7B4FC /* Domain.h */,
 				3F34766C2141F2C100D7B4FC /* Info.plist */,
 			);
@@ -200,7 +223,9 @@
 		3F3476992141F4EC00D7B4FC /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				3F30231022FF13C500CD98AF /* UseCaseManager.swift */,
 				3F34769C2141F4EC00D7B4FC /* ApiUseCase.swift */,
+				3F30231222FF14B400CD98AF /* UseCaseError.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -555,6 +580,7 @@
 				3F41D0CD22F611DE008D21A0 /* FieldType.swift in Sources */,
 				3F3476A72141F9D900D7B4FC /* Fund.swift in Sources */,
 				3F41D0CB22F611C0008D21A0 /* CellType.swift in Sources */,
+				3F30230F22FF019300CD98AF /* DomainError.swift in Sources */,
 				3F41D0C922F610AE008D21A0 /* FormCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -570,6 +596,8 @@
 				3F34769F2141F4EC00D7B4FC /* RunLoopThreadScheduler.swift in Sources */,
 				3F3476A12141F4EC00D7B4FC /* DomainConvertibleType.swift in Sources */,
 				3F34769E2141F4EC00D7B4FC /* Observable+ext.swift in Sources */,
+				3F30231422FF386200CD98AF /* UseCaseManager.swift in Sources */,
+				3F30231322FF14B400CD98AF /* UseCaseError.swift in Sources */,
 				3F3476A22141F4EC00D7B4FC /* Realm+ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

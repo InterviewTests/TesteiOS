@@ -7,14 +7,20 @@
 //
 
 import UIKit
+import Domain
+//import RxSwift
+//import Platform
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+//    let disposeBag = DisposeBag()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+//        let api = UseCaseManager.getApiUseCase()
+//        api.getFundInfo().subscribe(onNext: nil).disposed(by: disposeBag)
         return true
     }
 

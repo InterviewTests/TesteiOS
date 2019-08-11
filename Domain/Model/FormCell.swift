@@ -11,15 +11,17 @@ import Foundation
 
 public struct FormCell {
     public var id: Int
-    public var cellType: String
-    public var fieldType: String
+    public var cellType: CellType
+    public var fieldType: FieldType
     public var message: String
     public var topSpacing: Double
     public var show: Int
     public var hidden: Bool
     public var required: Bool
 
-    public init(id: Int, cellType: String, fieldType: String, message: String, topSpacing: Double, show: Int, hidden: Bool, required: Bool) {
+    public init(id: Int, cellType: Int, fieldType: Int, message: String, topSpacing: Double, show: Int, hidden: Bool, required: Bool) throws {
+        guard let cellType = CellType(rawValue: cellType) else { throw DomainError.invalidCellType }
+        guard let fieldType = FieldType(rawValue: fieldType) else { throw DomainError.invalidFieldType }
         self.id = id
         self.cellType = cellType
         self.fieldType = fieldType

@@ -1,5 +1,5 @@
 //
-//  CellType.swift
+//  FieldType.swift
 //  Domain
 //
 //  Created by Erika de Almeida Segatto on 03/08/19.
@@ -8,10 +8,8 @@
 
 import Foundation
 
-enum CellType: Int {
-    case field = 1
-    case text = 2
-    case image = 3
-    case checkbox = 4
-    case send = 5
+public enum FieldType: Int {
+    case text = 1
+    case telNumber = 2
+    case email = 3
 }

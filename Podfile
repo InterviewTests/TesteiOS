@@ -10,12 +10,12 @@ end
 target 'TesteiOS' do
 
     # UI
-    pod 'MaterialComponents/TextFields'
-    pod 'MaterialComponents/TextFields+Theming'
-    pod 'MaterialComponents/TextFields+TypographyThemer'
-    pod 'MaterialComponents/Buttons'
-    pod 'MaterialComponents/Buttons+Theming'
-    pod 'MaterialComponents/Tabs'
+    pod 'MaterialComponents/TextFields', '~> 83.0.1'
+    pod 'MaterialComponents/TextFields+Theming', '~> 83.0.1'
+    pod 'MaterialComponents/TextFields+TypographyThemer', '~> 83.0.1'
+    pod 'MaterialComponents/Buttons', '~> 83.0.1'
+    pod 'MaterialComponents/Buttons+Theming', '~> 83.0.1'
+    pod 'MaterialComponents/Tabs', '~> 83.0.1'
 
 end
 
@@ -29,4 +29,7 @@ target 'Platform' do
     # Database
     pod 'RealmSwift', '~> 3.10.0'
     pod 'RxRealm', '~> 0.7.5'
+    
+    # HTTP
+    pod 'RxAlamofire', '~> 4.4'
 end
