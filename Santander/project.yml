@@ -1,0 +1,25 @@
+name: Santander
+options:
+  bundleIdPrefix: br.com.santander.Santander
+targets:
+  Santander:
+    type: application
+    platform: iOS
+    deploymentTarget: 9.0
+    sources: [Santander]
+    scheme: 
+      environmentVariables:
+        OS_ACTIVITY_MODE: disable
+    settings:
+      base:
+        SWIFT_VERSION: 5.0
+        TARGETED_DEVICE_FAMILY: 1
+  SantanderTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: 9.0 
+    scheme: {}
+    sources:
+      - path: SantanderTests/
+    dependencies:
+      - target: Santander
