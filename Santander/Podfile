@@ -1,0 +1,19 @@
+use_frameworks!
+inhibit_all_warnings!
+platform :ios, '9.0'
+
+def app_pods
+  pod 'SnapKit'
+  pod 'Eureka'
+  pod 'TLCustomMask'
+  pod 'Moya/RxSwift', '~> 13.0'
+  pod 'JGProgressHUD', '~> 2.0'
+end
+
+target 'Santander' do
+  app_pods
+end
+
+target 'SantanderTests' do
+
+end
