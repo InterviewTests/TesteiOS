@@ -77,6 +77,13 @@ public class _FloatLabelCell<T>: Cell<T>, UITextFieldDelegate, TextFieldCell whe
         floatTextField.translatesAutoresizingMaskIntoConstraints = false
         floatTextField.titleFont = UIFont.santander(type: .regular, with: 11.0)
         floatTextField.font = UIFont.santander(type: .medium, with: 18.0)
+        floatTextField.delegate = self
+        floatTextField.addTarget(self, action: #selector(_FloatLabelCell.textFieldDidChange(_:)), for: .editingChanged)
+        floatTextField.titleTextColour = UIColor.Santander.silverChalice
+        floatTextField.titleActiveTextColour = UIColor.Santander.silverChalice
+        floatTextField.borderWidth = 1
+        floatTextField.borderColor = UIColor.Santander.gallery
+        floatTextField.tintColor = UIColor.Santander.havelockBlue
         return floatTextField
     }()
     
@@ -103,22 +110,12 @@ public class _FloatLabelCell<T>: Cell<T>, UITextFieldDelegate, TextFieldCell whe
             make.leading.trailing.equalToSuperview().inset(40.0)
             make.bottom.equalToSuperview()
         }
-    
-        floatLabelTextField.delegate = self
-        floatLabelTextField.addTarget(self, action: #selector(_FloatLabelCell.textFieldDidChange(_:)), for: .editingChanged)
-        
-        floatLabelTextField.titleTextColour = UIColor.Santander.silverChalice
-        floatLabelTextField.titleActiveTextColour = UIColor.Santander.silverChalice
-        floatLabelTextField.borderWidth = 1
-        floatLabelTextField.borderColor = UIColor.Santander.gallery
     }
-    
     
     open override func update() {
         super.update()
         textLabel?.text = nil
         detailTextLabel?.text = nil
-        floatLabelTextField.tintColor = UIColor.Santander.havelockBlue
         floatLabelTextField.attributedPlaceholder = NSAttributedString(string: row.title ?? "", attributes: [.foregroundColor: UIColor.Santander.silverChalice,
                                                                                                              .font: UIFont.santander(type: .regular, with: 16.0)])
         floatLabelTextField.text =  row.displayValueFor?(row.value)
