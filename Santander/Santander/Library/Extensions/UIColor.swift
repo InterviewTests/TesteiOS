@@ -19,6 +19,8 @@ extension UIColor {
         static let gallery = UIColor(hexString: "#EFEEED")
         static let torchRed = UIColor(hexString: "#FF1F1F")
         static let sushi = UIColor(hexString: "#65BE30")
+        static let gray = UIColor(hexString: "#7E7E7E")
+        static let mineShaft = UIColor(hexString: "#333333")
     }
     
     convenience init(hexString: String, alpha: CGFloat? = 1.0) {
