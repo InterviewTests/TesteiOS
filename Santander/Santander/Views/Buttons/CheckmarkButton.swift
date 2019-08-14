@@ -28,9 +28,9 @@ class CheckmarkButton: UIView {
     private(set) var state: State
     
     // MARK: - Views
-    private var checkmarkButton: UIButton = {
-        var button = UIButton()
-        return button
+    private var checkmarkImage: UIImageView = {
+        var imageView = UIImageView()
+        return imageView
     }()
     
     private var textLabel: UILabel = {
@@ -64,8 +64,8 @@ class CheckmarkButton: UIView {
     }
     
     private func addCheckmarkButton() {
-        addSubview(checkmarkButton)
-        checkmarkButton.snp.makeConstraints { make in
+        addSubview(checkmarkImage)
+        checkmarkImage.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview()
             make.height.width.equalTo(19.0)
@@ -78,8 +78,8 @@ class CheckmarkButton: UIView {
             guard let self = self else {
                 return
             }
-            make.centerY.equalTo(self.checkmarkButton.snp.centerY)
-            make.leading.equalTo(self.checkmarkButton.snp.trailing).inset(-9.0)
+            make.centerY.equalTo(self.checkmarkImage.snp.centerY)
+            make.leading.equalTo(self.checkmarkImage.snp.trailing).inset(-9.0)
             make.trailing.equalToSuperview()
         }
     }
@@ -103,7 +103,7 @@ class CheckmarkButton: UIView {
     
     private func update(to state: State) {
         self.state = state
-        checkmarkButton.setImage(state.image, for: .normal)
+        checkmarkImage.image = state.image
     }
 }
 
