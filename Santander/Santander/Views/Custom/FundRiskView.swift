@@ -11,32 +11,8 @@ import SnapKit
 class FundRiskView: UIView {
     
     static let arrowWidth: CGFloat = 13.0
-    
-    enum RiskLevel: Int, CaseIterable {
         
-        case one = 1
-        case two = 2
-        case three = 3
-        case four = 4
-        case five = 5
-        
-        var color: UIColor {
-            switch self {
-            case .one:
-                return UIColor.Santander.pastelGreen
-            case .two:
-                return UIColor.Santander.emerald
-            case .three:
-                return UIColor.Santander.lightningYellow
-            case .four:
-                return UIColor.Santander.burningOrange
-            case .five:
-                return UIColor.Santander.redOrange
-            }
-        }
-    }
-    
-    let riskLevel: RiskLevel
+    let risk: Funds.Risk
     
     var textLabel: UILabel = {
         let label = UILabel()
@@ -63,8 +39,8 @@ class FundRiskView: UIView {
     
     var arrowLeadingConstraint: Constraint?
     
-    init(text: String, riskLevel: RiskLevel, frame: CGRect = .zero) {
-        self.riskLevel = riskLevel
+    init(text: String, risk: Funds.Risk, frame: CGRect = .zero) {
+        self.risk = risk
         super.init(frame: frame)
         textLabel.text = text
         setupView()
@@ -112,11 +88,11 @@ class FundRiskView: UIView {
     
     private func setupRiskLevel() {
         stackView.removeAllArrangedSubviews()
-        RiskLevel.allCases.forEach { riskLevel in
-            let riskView = makeRiskView(for: riskLevel)
+        Funds.Risk.allCases.forEach { risk in
+            let riskView = makeRiskView(for: risk)
             stackView.addArrangedSubview(riskView)
             riskView.snp.makeConstraints { make in
-                if self.riskLevel == riskLevel {
+                if self.risk == risk {
                     make.top.equalToSuperview()
                     make.bottom.equalTo(self.snp.bottom)
                 } else {
@@ -129,29 +105,29 @@ class FundRiskView: UIView {
     
     private func setupArrow() {
         let arrowMiddleWidth = FundRiskView.arrowWidth / 2
-        let riskLevelWidth = frame.size.width / CGFloat(RiskLevel.allCases.count)
+        let riskLevelWidth = frame.size.width / CGFloat(Funds.Risk.allCases.count)
         let middleRiskLevelWidth = riskLevelWidth / CGFloat(2)
-        let arrowPosition = ((riskLevelWidth * CGFloat(riskLevel.rawValue)) - middleRiskLevelWidth) - arrowMiddleWidth
+        let arrowPosition = ((riskLevelWidth * CGFloat(risk.rawValue)) - middleRiskLevelWidth) - arrowMiddleWidth
         arrowLeadingConstraint?.update(inset: arrowPosition)
     }
 }
 
 // MARK: - Factory
 extension FundRiskView {
-    private func makeRiskView(for type: RiskLevel) -> UIView {
+    private func makeRiskView(for risk: Funds.Risk) -> UIView {
         let view = UIView()
-        view.tag = type.rawValue
-        view.backgroundColor = type.color
+        view.tag = risk.rawValue
+        view.backgroundColor = risk.color
         
-        let radius: CGFloat = type == self.riskLevel ? 5.0 : 3.0
-        if type == .one {
+        let radius: CGFloat = risk == self.risk ? 5.0 : 3.0
+        if risk == .one {
             if #available(iOS 11.0, *) {
                 view.round(corners: [.layerMinXMinYCorner, .layerMinXMaxYCorner], radius: radius)
             } else {
                 view.round(corners: [.bottomLeft, .topLeft], radius: radius)
             }
         }
-        if type == .five {
+        if risk == .five {
             if #available(iOS 11.0, *) {
                 view.round(corners: [.layerMaxXMaxYCorner, .layerMaxXMinYCorner], radius: radius)
             } else {
