@@ -26,6 +26,7 @@ extension UIColor {
         static let lightningYellow = UIColor(hexString: "#FFC011")
         static let burningOrange = UIColor(hexString: "#FF742C")
         static let redOrange = UIColor(hexString: "#FF3634")
+        static let cloudy = UIColor(hexString: "#AFA9A3")
     }
     
     convenience init(hexString: String, alpha: CGFloat? = 1.0) {
