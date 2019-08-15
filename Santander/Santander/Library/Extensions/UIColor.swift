@@ -21,6 +21,11 @@ extension UIColor {
         static let sushi = UIColor(hexString: "#65BE30")
         static let gray = UIColor(hexString: "#7E7E7E")
         static let mineShaft = UIColor(hexString: "#333333")
+        static let pastelGreen = UIColor(hexString: "#74DA61")
+        static let emerald = UIColor(hexString: "#4AC16C")
+        static let lightningYellow = UIColor(hexString: "#FFC011")
+        static let burningOrange = UIColor(hexString: "#FF742C")
+        static let redOrange = UIColor(hexString: "#FF3634")
     }
     
     convenience init(hexString: String, alpha: CGFloat? = 1.0) {
