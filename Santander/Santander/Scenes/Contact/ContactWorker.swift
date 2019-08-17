@@ -12,7 +12,6 @@
 
 import UIKit
 import Moya
-import RxSwift
 
 protocol ContactStoreProtocol {
     func getForm(result: @escaping (Result<ContactForm, Error>) -> Void)
@@ -20,9 +19,7 @@ protocol ContactStoreProtocol {
 
 class ContactWorker {
     
-    private let provider = MoyaProvider<ContactTarget>()
-    var disposeBag: DisposeBag = DisposeBag()
-    
+    private let provider = MoyaProvider<ContactTarget>()    
     var contactStore: ContactStoreProtocol
     
     init(contactStore: ContactStoreProtocol) {

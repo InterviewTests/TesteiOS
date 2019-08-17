@@ -12,7 +12,6 @@
 
 import UIKit
 import Moya
-import RxSwift
 
 protocol InvestmentStoreProtocol {
     func getFunds(result: @escaping (Result<Investment.Funds.Response, Error>) -> Void)
@@ -21,7 +20,6 @@ protocol InvestmentStoreProtocol {
 class InvestmentWorker {
     
     private let provider = MoyaProvider<ContactTarget>()
-    var disposeBag: DisposeBag = DisposeBag()
     
     var investmentStore: InvestmentStoreProtocol
     

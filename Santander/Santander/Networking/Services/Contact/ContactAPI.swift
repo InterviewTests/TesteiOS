@@ -8,19 +8,21 @@
 
 import UIKit
 import Moya
-import RxSwift
 
 class ContactAPI: ContactStoreProtocol {
     
     private let provider = MoyaProvider<ContactTarget>()
-    var disposeBag: DisposeBag = DisposeBag()
-    
+    var cancelable: Cancellable?
+
     func getForm(result: @escaping (Result<ContactForm, Error>) -> Void) {
-        disposeBag = DisposeBag()
-        provider.rx.request(.getForm).map(ContactForm.self).asObservable().subscribe(onNext: { contactForm in
-            result(.success(contactForm))
-        }, onError: { error in
-            result(.failure(error))
-        }).disposed(by: disposeBag)
+        cancelable?.cancel()
+        cancelable = provider.request(.getForm, decodeType: ContactForm.self) { responseResult in
+            switch responseResult {
+            case .success(let contactForm):
+                result(.success(contactForm))
+            case .failure(let error):
+                result(.failure(error))
+            }
+        }
     }
 }

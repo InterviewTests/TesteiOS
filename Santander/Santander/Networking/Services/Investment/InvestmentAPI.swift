@@ -7,19 +7,21 @@
 
 import UIKit
 import Moya
-import RxSwift
 
 class InvestmentAPI: InvestmentStoreProtocol {
     
     private let provider = MoyaProvider<InvestmentTarget>()
-    var disposeBag: DisposeBag = DisposeBag()
+    var cancelable: Cancellable?
     
     func getFunds(result: @escaping (Result<Investment.Funds.Response, Error>) -> Void) {
-        disposeBag = DisposeBag()
-        provider.rx.request(.getFunds).map(Investment.Funds.Response.self).asObservable().subscribe(onNext: { funds in
-            result(.success(funds))
-        }, onError: { error in
-            result(.failure(error))
-        }).disposed(by: disposeBag)
+        cancelable?.cancel()
+        cancelable = provider.request(.getFunds, decodeType: Investment.Funds.Response.self) { responseResult in
+            switch responseResult {
+            case .success(let funds):
+                result(.success(funds))
+            case .failure(let error):
+                result(.failure(error))
+            }
+        }
     }
 }
