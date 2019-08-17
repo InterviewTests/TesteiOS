@@ -13,16 +13,16 @@
 import UIKit
 
 enum Contact {
-  // MARK: Use cases
-  enum Form {
-    struct Request {
-        var sendFormData: ContactFormDataRequest
+    // MARK: Use cases
+    enum Form {
+        struct Request {
+            var sendFormData: ContactFormDataRequest
+        }
+        struct Response {
+            var result: Result<ContactForm, Error>
+        }
+        struct ViewModel {
+    
+        }
     }
-    struct Response {
-        var result: Result<ContactForm, Error>
-    }
-    struct ViewModel {
-        
-    }
-  }
 }
