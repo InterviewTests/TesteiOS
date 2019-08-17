@@ -8,25 +8,15 @@
 import UIKit
 import Eureka
 
-class DownloadButton: UIView {
-    
-    // MARK: - Views
-    private var downloadImage: UIImageView = {
-        var imageView = UIImageView(image: UIImage(named: "download-icon"))
-        return imageView
-    }()
-    
-    private var textLabel: UILabel = {
-        var label = UILabel()
-        label.font = UIFont.santander(type: .regular, with: 14.0)
-        label.textColor = UIColor.Santander.monza
-        label.text = "Baixar"
-        return label
-    }()
+class DownloadButton: UIButton {
     
     // MARK: - Vars
     typealias ButtonBlock = () -> Void
-    private var block: ButtonBlock?
+    private var block: ButtonBlock? {
+        didSet {
+            self.addTarget(self, action: #selector(onTapAction), for: .touchUpInside)
+        }
+    }
     
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
@@ -40,29 +30,26 @@ class DownloadButton: UIView {
     }
     
     private func setupView() {
-        addCheckmarkButton()
-        addTextLabel()
+        setupDownloadImageButton()
+        setupTitleLabel()
+        setupEdges()
     }
     
-    private func addCheckmarkButton() {
-        addSubview(downloadImage)
-        downloadImage.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.height.width.equalTo(13.0)
-        }
+    private func setupDownloadImageButton() {
+        setImage(UIImage(named: "download-icon"), for: .normal)
+        imageView?.contentMode = .scaleAspectFit
     }
     
-    private func addTextLabel() {
-        addSubview(textLabel)
-        textLabel.snp.makeConstraints { [weak self] make in
-            guard let self = self else {
-                return
-            }
-            make.centerY.equalTo(self.downloadImage.snp.centerY)
-            make.leading.equalTo(self.downloadImage.snp.trailing).inset(-8.0)
-            make.trailing.equalToSuperview()
-        }
+    private func setupTitleLabel() {
+        setTitle("Baixar", for: .normal)
+        setTitleColor(UIColor.Santander.monza, for: .normal)
+        titleLabel?.font = UIFont.santander(type: .regular, with: 14.0)
+    }
+    
+    private func setupEdges() {
+        let insetAmount: CGFloat = 8.0 / 2
+        imageEdgeInsets = UIEdgeInsets(top: 0, left: -insetAmount, bottom: 0, right: insetAmount)
+        titleEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: -insetAmount)
     }
     
     // MARK: - Actions
