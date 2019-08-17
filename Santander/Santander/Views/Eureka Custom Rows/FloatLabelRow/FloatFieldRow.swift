@@ -19,16 +19,7 @@ public class _FloatLabelCell<T>: Cell<T>, UITextFieldDelegate, TextFieldCell whe
     
     public enum MaskType {
         case phone
-        case custom(String)
-        
-        var mask: String {
-            switch self {
-            case .phone:
-                return "($$) $$$$$-$$$$"
-            case .custom(let mask):
-                return mask
-            }
-        }
+        case none
     }
     
     private lazy var clearButton: UIButton = {
@@ -45,13 +36,11 @@ public class _FloatLabelCell<T>: Cell<T>, UITextFieldDelegate, TextFieldCell whe
         }
     }
     
-    public var customMaskType: MaskType? {
+    public var customMaskType: MaskType = .none {
         didSet {
-            guard let customMaskType = customMaskType else {
+            if customMaskType == .none {
                 customMask.formattingPattern = ""
-                return
             }
-            customMask.formattingPattern = customMaskType.mask
         }
     }
     
@@ -213,7 +202,7 @@ public class _FloatLabelCell<T>: Cell<T>, UITextFieldDelegate, TextFieldCell whe
             return textField?.isFirstResponder == true ? formatter.editingString(for: v) : formatter.string(for: v)
         }
         let text = String(describing: v)
-        if customMaskType != nil {
+        if customMaskType != .none {
             return customMask.formatString(string: text)
         } else {
             return text
@@ -240,23 +229,31 @@ public class _FloatLabelCell<T>: Cell<T>, UITextFieldDelegate, TextFieldCell whe
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         setClearButtonImage()
-        guard customMaskType != nil else {
+        switch customMaskType {
+        case .phone:
+            return managePhoneMask(textField, shouldChangeCharactersIn: range, replacementString: string)
+        default:
             return true
         }
-        row.value = nil
-        let phone = customMask.formatStringWithRange(range: range, string: string)
-        textField.text = phone
-        let textValue = phone
-        guard !textValue.isEmpty else {
-            row.value = nil
-            setClearButtonImage()
-            return false
+    }
+}
+
+extension _FloatLabelCell {
+    private func managePhoneMask(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text as NSString? else { return true }
+        var newText = text.replacingCharacters(in: range, with: string)
+        if newText.count >= 15 {
+            customMask.formattingPattern = "($$) $$$$$-$$$$"
+        } else {
+            customMask.formattingPattern = "($$) $$$$-$$$$"
         }
-        guard let newValue = T.init(string: textValue) else {
+        newText = customMask.formatString(string: newText)
+        guard let newValue = T.init(string: newText) else {
+            row.value = nil
             return false
         }
         row.value = newValue
-        row.updateCell()
+        textField.text = newText
         setClearButtonImage()
         return false
     }
