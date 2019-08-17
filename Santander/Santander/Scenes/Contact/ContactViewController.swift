@@ -76,6 +76,7 @@ class ContactViewController: SantanderBaseFormViewController, ContactDisplayLogi
     
     // MARK: Setup View
     private func setupView() {
+        tableView.keyboardDismissMode = .interactive
         addSuccssView()
         setupSuccessView()
     }
@@ -313,7 +314,7 @@ extension ContactViewController {
             row.validationOptions = .validatesAlways
         }
 
-        let sendButton = SantanderButton(title: "Enviar",frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50.0))
+        let sendButton = SantanderButton(title: "Enviar", frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50.0))
 
         row.cellSetup { cell, row in
             cell.view = sendButton
@@ -333,8 +334,6 @@ extension ContactViewController {
         
         return row
     }
-    
-    
 }
 
 extension ContactViewController {
