@@ -18,14 +18,20 @@ class ContainerViewController: UIViewController {
         return segmentedControl
     }()
     
-    private lazy var fundsViewController: ContactViewController = {
-        let viewController = ContactViewController()
+    private lazy var investmentViewController: InvestmentViewController = {
+        let viewController = InvestmentViewController()
         return viewController
     }()
     
     private lazy var contactViewController: ContactViewController = {
         let viewController = ContactViewController()
         return viewController
+    }()
+    
+    private lazy var shareButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.image = UIImage(named: "share-icon")
+        return button
     }()
 
     enum ContainerType: Int {
@@ -63,7 +69,7 @@ class ContainerViewController: UIViewController {
             return
         }
         navigationController.navigationBar.titleTextAttributes =
-            [.foregroundColor: UIColor.red,
+            [.foregroundColor: UIColor.Santander.mineShaft,
              .font: UIFont.santander(type: .medium, with: 16.0)]
         if #available(iOS 11.0, *) {
             navigationController.navigationBar.prefersLargeTitles = false
@@ -72,7 +78,7 @@ class ContainerViewController: UIViewController {
         navigationController.navigationBar.shadowImage = UIImage()
         navigationController.navigationBar.isTranslucent = false
         navigationController.view.backgroundColor = .white
-        navigationController.navigationBar.tintColor = .white
+        navigationController.navigationBar.tintColor = UIColor.Santander.monza
     }
     
     private func addContainedSegmentedView() {
@@ -98,11 +104,12 @@ class ContainerViewController: UIViewController {
     }
     
     private func select(type: ContainerType) {
-        let viewControllers = [fundsViewController, contactViewController]
+        let viewControllers = [investmentViewController, contactViewController]
         removeChildVc(viewControllers[type.rawValue])
         addChildVc(viewControllers[type.rawValue])
         title = type.title
         selectedType = type
+        managerNavigationButton(type: type)
     }
     
     private func addChildVc(_ child: UIViewController) {
@@ -119,5 +126,14 @@ class ContainerViewController: UIViewController {
         child.willMove(toParent: self)
         child.removeFromParent()
         child.view.removeFromSuperview()
+    }
+    
+    private func managerNavigationButton(type: ContainerType) {
+        switch type {
+        case .funds:
+            navigationItem.setRightBarButtonItems([shareButton], animated: false)
+        case .contact:
+            navigationItem.setRightBarButtonItems([], animated: false)
+        }
     }
 }
