@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Funds {
+extension Investment.Funds.Response.Screen {
     struct Info: Decodable {
         let name: String
         let data: String

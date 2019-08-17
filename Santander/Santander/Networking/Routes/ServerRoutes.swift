@@ -17,8 +17,8 @@ struct ServerRoutes {
         static let getForm = "cells.json"
     }
     
-    // Founds
-    struct Funds {
+    // Investment
+    struct Investment {
         static let getFunds = "fund.json"
     }
 }

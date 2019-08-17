@@ -7,8 +7,8 @@
 
 import Foundation
 
-extension Funds {
-    struct MoreInfo {
+extension Investment.Funds.Response.Screen {
+    struct MoreInfo: Decodable {
         let month: Percentages
         let year: Percentages
         let twelveMonths: Percentages
