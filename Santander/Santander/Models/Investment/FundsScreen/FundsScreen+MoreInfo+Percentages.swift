@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Investment.Funds.Response.Screen.MoreInfo {
+extension FundsScreen.MoreInfo {
     struct Percentages: Decodable {
         let fund: Double
         let cdi: Double

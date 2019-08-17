@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension Investment.Funds.Response.Screen {
+extension FundsScreen {
     enum Risk: Int, CaseIterable, Decodable {
         case one = 1
         case two = 2

@@ -12,7 +12,7 @@ class FundRiskView: UIView {
     
     static let arrowWidth: CGFloat = 13.0
         
-    let risk: Investment.Funds.Response.Screen.Risk
+    let risk: FundsScreen.Risk
     
     var textLabel: UILabel = {
         let label = UILabel()
@@ -39,7 +39,7 @@ class FundRiskView: UIView {
     
     var arrowLeadingConstraint: Constraint?
     
-    init(text: String, risk: Investment.Funds.Response.Screen.Risk, frame: CGRect = .zero) {
+    init(text: String, risk: FundsScreen.Risk, frame: CGRect = .zero) {
         self.risk = risk
         super.init(frame: frame)
         textLabel.text = text
@@ -93,7 +93,7 @@ class FundRiskView: UIView {
     
     private func setupRiskLevel() {
         stackView.removeAllArrangedSubviews()
-        Investment.Funds.Response.Screen.Risk.allCases.forEach { risk in
+        FundsScreen.Risk.allCases.forEach { risk in
             let riskView = makeRiskView(for: risk)
             stackView.addArrangedSubview(riskView)
             riskView.snp.makeConstraints { make in
@@ -110,7 +110,7 @@ class FundRiskView: UIView {
     
     private func setupArrow() {
         let arrowMiddleWidth = FundRiskView.arrowWidth / 2
-        let riskLevelWidth = frame.size.width / CGFloat(Investment.Funds.Response.Screen.Risk.allCases.count)
+        let riskLevelWidth = frame.size.width / CGFloat(FundsScreen.Risk.allCases.count)
         let middleRiskLevelWidth = riskLevelWidth / CGFloat(2)
         let arrowPosition = ((riskLevelWidth * CGFloat(risk.rawValue)) - middleRiskLevelWidth) - arrowMiddleWidth
         arrowLeadingConstraint?.update(inset: arrowPosition)
@@ -119,7 +119,7 @@ class FundRiskView: UIView {
 
 // MARK: - Factory
 extension FundRiskView {
-    private func makeRiskView(for risk: Investment.Funds.Response.Screen.Risk) -> UIView {
+    private func makeRiskView(for risk: FundsScreen.Risk) -> UIView {
         let view = UIView()
         view.tag = risk.rawValue
         view.backgroundColor = risk.color

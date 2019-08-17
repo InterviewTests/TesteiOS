@@ -10,9 +10,9 @@ import SnapKit
 
 class MoreInfoPercentagesView: UIView {
     
-    let moreInfo: Investment.Funds.Response.Screen.MoreInfo
+    let moreInfo: FundsScreen.MoreInfo
     
-    init(moreInfo: Investment.Funds.Response.Screen.MoreInfo, frame: CGRect = .zero) {
+    init(moreInfo: FundsScreen.MoreInfo, frame: CGRect = .zero) {
         self.moreInfo = moreInfo
         super.init(frame: frame)
         setupView()
@@ -42,7 +42,7 @@ extension MoreInfoPercentagesView {
         }
         
         var lastPercentagesView: UIView?
-        let allCases = Investment.Funds.Response.Screen.MoreInfo.CodingKeys.allCases
+        let allCases = FundsScreen.MoreInfo.CodingKeys.allCases
         allCases.forEach { key in
             let percentagesView = makePercentagesView(with: key, percentages: moreInfo.value(for: key))
             addSubview(percentagesView)
@@ -83,10 +83,10 @@ extension MoreInfoPercentagesView {
         return headerView
     }
     
-    private func makePercentagesView(with key: Investment.Funds.Response.Screen.MoreInfo.CodingKeys, percentages: Investment.Funds.Response.Screen.MoreInfo.Percentages) -> UIView {
+    private func makePercentagesView(with key: FundsScreen.MoreInfo.CodingKeys, percentages: FundsScreen.MoreInfo.Percentages) -> UIView {
         let percentageView = UIView()
         
-        let titleLabel = makeTitleLabel(with: Investment.Funds.Response.Screen.MoreInfo.title(for: key), textAlignment: .left)
+        let titleLabel = makeTitleLabel(with: FundsScreen.MoreInfo.title(for: key), textAlignment: .left)
         percentageView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
