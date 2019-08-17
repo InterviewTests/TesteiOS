@@ -8,11 +8,11 @@
 
 import Moya
 
-enum FundsTarget {
+enum InvestmentTarget {
     case getFunds
 }
 
-extension FundsTarget: TargetType {
+extension InvestmentTarget: TargetType {
 
     var baseURL: URL {
         return try! ServerRoutes.baseRoute.asURL()
@@ -21,7 +21,7 @@ extension FundsTarget: TargetType {
     var path: String {
         switch self {
         case .getFunds:
-            return ServerRoutes.Funds.getFunds
+            return ServerRoutes.Investment.getFunds
         }
     }
     

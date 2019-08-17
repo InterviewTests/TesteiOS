@@ -77,12 +77,12 @@ extension SantanderButton: SectionHeaderFooterRenderable {
             NSLayoutConstraint.activate([
                 self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30.0),
                 self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
-                self.topAnchor.constraint(equalTo: view.topAnchor, constant: 0.0),
-                self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0.0)
+                self.topAnchor.constraint(equalTo: view.topAnchor, constant: 45.0),
+                self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40.0)
                 ])
         }
         footerView.height = {
-            50.0
+            45.0 + 50.0 + 40.0
         }
         return footerView
     }
