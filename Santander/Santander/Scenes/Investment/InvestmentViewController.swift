@@ -16,7 +16,8 @@ import JGProgressHUD
 import SafariServices
 
 protocol InvestmentDisplayLogic: class {
-    func presentScreen(viewModel: Investment.Funds.ViewModel)
+    func setupScreen(viewModel: Investment.Funds.ViewModel)
+    func presentError(_ error: String)
 }
 
 class InvestmentViewController: SantanderBaseFormViewController, InvestmentDisplayLogic {
@@ -61,33 +62,34 @@ class InvestmentViewController: SantanderBaseFormViewController, InvestmentDispl
         interactor?.getFunds()
     }
     
-    func presentScreen(viewModel: Investment.Funds.ViewModel) {
+    func setupScreen(viewModel: Investment.Funds.ViewModel) {
         progressHud.dismiss()
-        switch viewModel.result {
-        case .success(let screen):
-            form.removeAll()
-            var rows: [BaseRow] = []
-            rows.append(makeFundNameRow(title: screen.title, name: screen.fundName))
-            rows.append(makeSeparatorArrowLineRow())
-            rows.append(makeWhatIsRow(title: screen.whatIs, detail: screen.definition))
-            rows.append(makeRiskViewRow(title: screen.riskTitle, risk: screen.risk))
-            rows.append(makeMoreInfoTitleRow(title: screen.infoTitle))
-            rows.append(makeMoreInfoPercentagesViewRow(moreInfo: screen.moreInfo))
-            rows.append(makeSeparatorLineRow())
-            
-            screen.info.forEach { info in
-                rows.append(makeMoreInfoRow(title: info.name, value: info.data))
-            }
-            screen.downInfo.forEach { downInfo in
-                rows.append(makeMoreInfoDownloadRow(title: downInfo.name))
-            }
-            rows.append(makeInvestButtonRow())
-            // Make the section
-            makeSection(rows: rows)
-        case .failure(let error):
-            showAlert(title: "Atenção", message: error.localizedDescription)
+        form.removeAll()
+        var rows: [BaseRow] = []
+        rows.append(makeFundNameRow(title: viewModel.screen.title, name: viewModel.screen.fundName))
+        rows.append(makeSeparatorArrowLineRow())
+        rows.append(makeWhatIsRow(title: viewModel.screen.whatIs, detail: viewModel.screen.definition))
+        rows.append(makeRiskViewRow(title: viewModel.screen.riskTitle, risk: viewModel.screen.risk))
+        rows.append(makeMoreInfoTitleRow(title: viewModel.screen.infoTitle))
+        rows.append(makeMoreInfoPercentagesViewRow(moreInfo: viewModel.screen.moreInfo))
+        rows.append(makeSeparatorLineRow())
+        
+        viewModel.screen.info.forEach { info in
+            rows.append(makeMoreInfoRow(title: info.name, value: info.data))
         }
+        viewModel.screen.downInfo.forEach { downInfo in
+            rows.append(makeMoreInfoDownloadRow(title: downInfo.name))
+        }
+        rows.append(makeInvestButtonRow())
+        // Make the section
+        makeSection(rows: rows)
     }
+    
+    func presentError(_ error: String) {
+        progressHud.dismiss()
+        showAlert(title: "Atenção", message: error)
+    }
+
 }
 
 // MARK: Factory

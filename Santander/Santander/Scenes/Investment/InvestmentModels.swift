@@ -25,7 +25,7 @@ enum Investment {
         }
         
         struct ViewModel {
-            let result: Result<FundsScreen, Error>
+            let screen: FundsScreen
         }
     }
 }

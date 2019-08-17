@@ -24,11 +24,10 @@ class InvestmentPresenter: InvestmentPresentationLogic {
     func presentScreen(response: Result<Investment.Funds.Response, Error>) {
         switch response {
         case .success(let result):
-            let viewModel = Investment.Funds.ViewModel(result: .success(result.screen))
-            viewController?.presentScreen(viewModel: viewModel)
+            let viewModel = Investment.Funds.ViewModel(screen: result.screen)
+            viewController?.setupScreen(viewModel: viewModel)
         case .failure(let error):
-            let viewModel = Investment.Funds.ViewModel(result: .failure(error))
-            viewController?.presentScreen(viewModel: viewModel)
+            viewController?.presentError(error.localizedDescription)
         }
     }
 }
