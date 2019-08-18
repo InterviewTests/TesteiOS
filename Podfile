@@ -10,13 +10,18 @@ end
 target 'TesteiOS' do
 
     # UI
-    pod 'MaterialComponents/TextFields', '~> 83.0.1'
-    pod 'MaterialComponents/TextFields+Theming', '~> 83.0.1'
-    pod 'MaterialComponents/TextFields+TypographyThemer', '~> 83.0.1'
-    pod 'MaterialComponents/Buttons', '~> 83.0.1'
-    pod 'MaterialComponents/Buttons+Theming', '~> 83.0.1'
-    pod 'MaterialComponents/Tabs', '~> 83.0.1'
-
+    pod 'MaterialComponents/TextFields', '~> 84.0.0'
+    pod 'MaterialComponents/TextFields+Theming', '~> 84.0.0'
+    pod 'MaterialComponents/TextFields+TypographyThemer', '~> 84.0.0'
+    pod 'MaterialComponents/Buttons', '~> 84.0.0'
+    pod 'MaterialComponents/Buttons+Theming', '~> 84.0.0'
+    pod 'MaterialComponents/Tabs', '~> 84.0.0'
+    pod 'MaterialComponents/Tabs+Theming', '~> 84.0.0'
+    pod 'MaterialComponents/Tabs+TypographyThemer', '~> 84.0.0'
+    
+    # dependency injection
+    pod 'Swinject', '~> 2.6.2'
+    pod 'SwinjectStoryboard', '~> 2.2.0'
 end
 
 target 'Domain' do
@@ -32,4 +37,8 @@ target 'Platform' do
     
     # HTTP
     pod 'RxAlamofire', '~> 4.4'
+end
+
+target 'Tests' do
+  shared_pods
 end

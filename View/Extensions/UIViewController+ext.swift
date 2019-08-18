@@ -26,27 +26,12 @@ extension UIViewController: UITextFieldDelegate {
 
 extension UIViewController {
     
-    // MARK: logout()
-    fileprivate func doLogout() {
-//        let initialNavigationController = (self.navigationController as? InitialNavigationController) ?? (self.parent?.navigationController as? InitialNavigationController)
-//        initialNavigationController?.presenter.logOut()
-    }
-    
-    func logOut() {
-        if let currentAlert = self.presentedViewController as? UIAlertController {
-            currentAlert.dismiss(animated: true, completion: {self.doLogout()})
-        }
-        else {
-            self.doLogout()
-        }
-    }
-
     // MARK: showError
-    func showError(error: Error) {
-        self.showError(title: "Erro", error: error)
+    func showError(_ error: Error) {
+        self.showError(error, title: "Erro")
     }
     
-    func showError(title: String, error: Error) {
+    func showError(_ error: Error, title: String) {
         let errorMessage = error.localizedDescription
         
         if let currentAlert = self.presentedViewController as? UIAlertController {

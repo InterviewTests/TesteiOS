@@ -9,9 +9,8 @@
 import Foundation
 
 protocol BasicView: class {
-    func showError(title: String, error: Error)
-    func showError(error: Error)
-    func logOut()
+    func showError(_ error: Error, title: String)
+    func showError(_ error: Error)
 }
 
 

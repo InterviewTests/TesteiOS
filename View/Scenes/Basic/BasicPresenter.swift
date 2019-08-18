@@ -12,8 +12,6 @@ protocol BasicPresenter : class {
     func viewDidLoad()
     func viewWillAppear()
     func viewWillDisappear()
-    
-    func handleError(_ view: BasicView?, error: Error)
 }
 
 extension BasicPresenter {
