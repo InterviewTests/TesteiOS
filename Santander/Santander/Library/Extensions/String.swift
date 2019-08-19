@@ -14,18 +14,3 @@ extension String: SectionHeaderFooterRenderable {
         return HeaderFooterView(stringLiteral: self)
     }
 }
-
-extension String {
-    
-    var isPhone: Bool {
-        let regex = "^[0-9+]{0,1}+[0-9]{5,16}$"
-        let test = NSPredicate(format: "SELF MATCHES %@", regex)
-        return test.evaluate(with: self)
-    }
-    
-    var isEmail: Bool {
-        let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let test = NSPredicate(format: "SELF MATCHES %@", regex)
-        return test.evaluate(with: self)
-    }
-}
