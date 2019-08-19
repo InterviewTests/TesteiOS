@@ -175,17 +175,13 @@ extension ContactViewController {
         if isRequired {
             row.add(rule: RuleRequired())
         }
-        row.validationOptions = .validatesOnChange
+        row.validationOptions = .validatesAlways
 
         row.onRowValidationChanged { [weak self] cell, row in
             guard let self = self, !self.isResetingForm else {
                 return
             }
-            guard let value = row.value, !value.isEmpty else {
-                cell.floatLabelTextField.borderColor = UIColor.Santander.torchRed
-                return
-            }
-            cell.floatLabelTextField.borderColor = UIColor.Santander.sushi
+            cell.floatLabelTextField.borderColor = row.isValid ? UIColor.Santander.sushi : UIColor.Santander.torchRed
         }
         
         row.onChange { [weak self] row in
@@ -194,11 +190,9 @@ extension ContactViewController {
             }
             self.sendFormRequest.name = row.value
             
-            guard let value = row.value, !value.isEmpty else {
+            if row.value == nil {
                 row.cell.floatLabelTextField.borderColor = UIColor.Santander.gallery
-                return
             }
-            row.cell.floatLabelTextField.borderColor = UIColor.Santander.sushi
         }
         return row
     }
@@ -212,14 +206,10 @@ extension ContactViewController {
             row.add(rule: RuleRequired())
         }
         row.add(rule: RuleEmail())
-        row.validationOptions = .validatesOnChangeAfterBlurred
+        row.validationOptions = .validatesAlways
         
         row.onRowValidationChanged { [weak self] cell, row in
             guard let self = self, !self.isResetingForm else {
-                return
-            }
-            guard let value = row.value, !value.isEmpty else {
-                cell.floatLabelTextField.borderColor = UIColor.Santander.torchRed
                 return
             }
             cell.floatLabelTextField.borderColor = row.isValid ? UIColor.Santander.sushi : UIColor.Santander.torchRed
@@ -232,11 +222,9 @@ extension ContactViewController {
             }
             self.sendFormRequest.email = row.value
             
-            guard let value = row.value, !value.isEmpty else {
+            if row.value == nil {
                 row.cell.floatLabelTextField.borderColor = UIColor.Santander.gallery
-                return
             }
-            row.cell.floatLabelTextField.borderColor = row.isValid ? UIColor.Santander.sushi : UIColor.Santander.torchRed
         }
         return row
     }
@@ -250,14 +238,10 @@ extension ContactViewController {
             row.add(rule: RuleRequired())
         }
         row.add(rule: RulePhoneNumber())
-        row.validationOptions = .validatesOnChange
+        row.validationOptions = .validatesAlways
 
         row.onRowValidationChanged { [weak self] cell, row in
             guard let self = self, !self.isResetingForm else {
-                return
-            }
-            guard let value = row.value, !value.isEmpty else {
-                cell.floatLabelTextField.borderColor = UIColor.Santander.torchRed
                 return
             }
             cell.floatLabelTextField.borderColor = row.isValid ? UIColor.Santander.sushi : UIColor.Santander.torchRed
@@ -269,23 +253,21 @@ extension ContactViewController {
             }
             self.sendFormRequest.phone = row.value
             
-            guard let value = row.value, !value.isEmpty else {
+            if row.value == nil {
                 row.cell.floatLabelTextField.borderColor = UIColor.Santander.gallery
-                return
             }
-            row.cell.floatLabelTextField.borderColor = row.isValid ? UIColor.Santander.sushi : UIColor.Santander.torchRed
         }
         return row
     }
     
     private func makeCheckboxRow(tag: Int, title: String, isHidden: Bool, isRequired: Bool, topSpacing: CGFloat, fieldToPresent: Int? = nil) -> BaseRow {
         let row = ViewRow<CheckmarkButton>(tag: String(tag))
-        if isRequired {
-            row.add(rule: RuleRequired())
-            row.validationOptions = .validatesAlways
+        var state: CheckmarkButton.State = .unselected
+        if let fieldToPresent = fieldToPresent, let row = self.form.rowBy(tag: String(fieldToPresent)) {
+            state = row.isHidden ? .unselected : .selected
         }
         
-        let checkmarkButton = CheckmarkButton(text: title, state: .unselected, frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 21.0))
+        let checkmarkButton = CheckmarkButton(text: title, state: state, frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 21.0))
         checkmarkButton.onTap { [weak self] state in
             guard let fieldToPresent = fieldToPresent, let self = self, let row = self.form.rowBy(tag: String(fieldToPresent)) else {
                 return
@@ -293,8 +275,10 @@ extension ContactViewController {
             let isHidden = state == .unselected
             let condition = Condition(booleanLiteral: isHidden)
             row.hidden = condition
+            row.validationOptions = .validatesOnDemand
             row.baseValue = nil
             row.evaluateHidden()
+            row.validationOptions = .validatesAlways
         }
         
         row.cellSetup { cell, row in
@@ -312,10 +296,6 @@ extension ContactViewController {
     private func makeSendButtonRow(tag: Int, title: String, isHidden: Bool, isRequired: Bool, topSpacing: CGFloat) -> BaseRow {
         let row = ViewRow<SantanderButton>(tag: String(tag))
         row.value = "Enviar"
-        if isRequired {
-            row.add(rule: RuleRequired())
-            row.validationOptions = .validatesAlways
-        }
 
         let sendButton = SantanderButton(title: "Enviar", frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50.0))
 
@@ -356,4 +336,3 @@ extension ContactViewController {
         })
     }
 }
-
