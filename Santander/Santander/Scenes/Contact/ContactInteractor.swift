@@ -34,11 +34,9 @@ class ContactInteractor: ContactBusinessLogic, ContactDataStore {
             }
             switch result {
             case .success(let contactForm):
-                let response = Contact.Form.Response(result: .success(contactForm))
-                presenter.presentForm(response: response)
+                presenter.presentForm(contactForm)
             case .failure(let error):
-                let response = Contact.Form.Response(result: .failure(error))
-                presenter.presentForm(response: response)
+                presenter.presentError(error)
             }
         }
     }

@@ -15,12 +15,12 @@ import Eureka
 import JGProgressHUD
 
 protocol ContactDisplayLogic: class {
-    func setupForm(response: Contact.Form.Response)
-    func presentSuccess()
+    func displayForm(_ form: ContactForm)
+    func displayError(_ error: Error)
+    func displaySuccess()
 }
 
-class ContactViewController: SantanderBaseFormViewController, ContactDisplayLogic {
-
+class ContactViewController: SantanderBaseFormViewController {
 
     var interactor: ContactBusinessLogic?
     var router: (NSObjectProtocol & ContactRoutingLogic & ContactDataPassing)?
@@ -101,18 +101,6 @@ class ContactViewController: SantanderBaseFormViewController, ContactDisplayLogi
         progressHud.show(in: view)
         interactor?.getForm()
     }
-
-    func setupForm(response: Contact.Form.Response) {
-        progressHud.dismiss()
-        switch response.result {
-        case .success(let contactForm):
-            form.removeAll()
-            let rows = contactForm.cells.compactMap({ makeRow(with: $0) })
-            makeSection(rows: rows)
-        case .failure(let error):
-            showAlert(title: "Atenção", message: error.localizedDescription)
-        }
-    }
     
     func sendForm() {
         guard form.validate(includeHidden: false, includeDisabled: false).isEmpty else {
@@ -123,8 +111,23 @@ class ContactViewController: SantanderBaseFormViewController, ContactDisplayLogi
         let requestData = Contact.Form.Request(sendFormData: sendFormRequest)
         interactor?.sendForm(data: requestData)
     }
+}
+
+extension ContactViewController: ContactDisplayLogic {
     
-    func presentSuccess() {
+    func displayForm(_ form: ContactForm) {
+        progressHud.dismiss()
+        self.form.removeAll()
+        let rows = form.cells.compactMap({ makeRow(with: $0) })
+        makeSection(rows: rows)
+    }
+    
+    func displayError(_ error: Error) {
+        progressHud.dismiss()
+        showAlert(title: "Atenção", message: error.localizedDescription)
+    }
+    
+    func displaySuccess() {
         isResetingForm = true
         form.rows.forEach({ $0.baseValue = nil })
         form.rows.forEach({ $0.reload() })

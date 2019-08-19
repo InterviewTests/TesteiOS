@@ -13,7 +13,8 @@
 import UIKit
 
 protocol ContactPresentationLogic {
-    func presentForm(response: Contact.Form.Response)
+    func presentForm(_ form: ContactForm)
+    func presentError(_ error: Error)
     func presentSuccess()
 }
 
@@ -22,12 +23,17 @@ class ContactPresenter: ContactPresentationLogic {
     weak var viewController: ContactDisplayLogic?
   
     // MARK: Present Form
-    func presentForm(response: Contact.Form.Response) {
-        viewController?.setupForm(response: response)
+    func presentForm(_ form: ContactForm) {
+        viewController?.displayForm(form)
+    }
+    
+    // MARK: Present Error
+    func presentError(_ error: Error) {
+        viewController?.displayError(error)
     }
     
     // MARK: Present Success
     func presentSuccess() {
-        viewController?.presentSuccess()
+        viewController?.displaySuccess()
     }
 }
