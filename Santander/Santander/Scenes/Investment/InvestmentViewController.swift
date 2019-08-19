@@ -16,8 +16,8 @@ import JGProgressHUD
 import SafariServices
 
 protocol InvestmentDisplayLogic: class {
-    func setupScreen(viewModel: Investment.Funds.ViewModel)
-    func presentError(_ error: String)
+    func displayScreen(viewModel: Investment.Funds.ViewModel)
+    func displayError(_ error: String)
 }
 
 class InvestmentViewController: SantanderBaseFormViewController, InvestmentDisplayLogic {
@@ -62,7 +62,7 @@ class InvestmentViewController: SantanderBaseFormViewController, InvestmentDispl
         interactor?.getFunds()
     }
     
-    func setupScreen(viewModel: Investment.Funds.ViewModel) {
+    func displayScreen(viewModel: Investment.Funds.ViewModel) {
         progressHud.dismiss()
         form.removeAll()
         var rows: [BaseRow] = []
@@ -85,7 +85,7 @@ class InvestmentViewController: SantanderBaseFormViewController, InvestmentDispl
         makeSection(rows: rows)
     }
     
-    func presentError(_ error: String) {
+    func displayError(_ error: String) {
         progressHud.dismiss()
         showAlert(title: "Atenção", message: error)
     }

@@ -36,9 +36,9 @@ class InvestmentInteractor: InvestmentBusinessLogic, InvestmentDataStore {
             }
             switch result {
             case .success(let response):
-                presenter.presentScreen(response: .success(response))
+                presenter.presentScreen(response: response)
             case .failure(let error):
-                presenter.presentScreen(response: .failure(error))
+                presenter.presentError(error)
             }
         }
     }

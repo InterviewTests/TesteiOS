@@ -13,7 +13,8 @@
 import UIKit
 
 protocol InvestmentPresentationLogic {
-    func presentScreen(response: Result<Investment.Funds.Response, Error>)
+    func presentScreen(response: Investment.Funds.Response)
+    func presentError(_ error: Error)
 }
 
 class InvestmentPresenter: InvestmentPresentationLogic {
@@ -21,13 +22,13 @@ class InvestmentPresenter: InvestmentPresentationLogic {
     weak var viewController: InvestmentDisplayLogic?
   
     // MARK: Present Screen
-    func presentScreen(response: Result<Investment.Funds.Response, Error>) {
-        switch response {
-        case .success(let result):
-            let viewModel = Investment.Funds.ViewModel(screen: result.screen)
-            viewController?.setupScreen(viewModel: viewModel)
-        case .failure(let error):
-            viewController?.presentError(error.localizedDescription)
-        }
+    func presentScreen(response: Investment.Funds.Response) {
+        let viewModel = Investment.Funds.ViewModel(screen: response.screen)
+        viewController?.displayScreen(viewModel: viewModel)
+    }
+    
+    // MARK: Present Error
+    func presentError(_ error: Error) {
+        viewController?.displayError(error.localizedDescription)
     }
 }
