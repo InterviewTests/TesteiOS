@@ -6,20 +6,20 @@ targets:
     type: application
     platform: iOS
     deploymentTarget: 9.0
-    sources: [Santander]
-    scheme: 
+    sources: Santander
+    scheme:
       environmentVariables:
         OS_ACTIVITY_MODE: disable
+      gatherCoverageData: true
+      testTargets:
+        - SantanderUnitTests
     settings:
-      base:
-        SWIFT_VERSION: 5.0
-        TARGETED_DEVICE_FAMILY: 1
-  SantanderTests:
+      SWIFT_VERSION: 5.0
+      TARGETED_DEVICE_FAMILY: 1
+  SantanderUnitTests:
     type: bundle.unit-test
     platform: iOS
-    deploymentTarget: 9.0 
-    scheme: {}
-    sources:
-      - path: SantanderTests/
-    dependencies:
-      - target: Santander
+    sources: SantanderUnitTests
+    settings:
+      SWIFT_VERSION: 5.0
+      TEST_HOST: $(BUILT_PRODUCTS_DIR)/Santander.app/Santander
