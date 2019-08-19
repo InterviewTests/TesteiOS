@@ -14,27 +14,10 @@ class StringExtensionsTests: XCTestCase {
     // be avoided, but in unit tests it can be a good idea for
     // properties (only!) in order to avoid unnecessary boilerplate.
     private var rule: RulePhoneNumber!
-    private var baseValidPhoneNumbers: [String]!
-    private var baseInvalidPhoneNumbers: [String]!
 
     override func setUp() {
         super.setUp()
         rule = RulePhoneNumber()
-        baseValidPhoneNumbers = ["(31) 4633-9632",
-                                 "(31) 9633-9632"]
-        
-        baseInvalidPhoneNumbers = ["(31) 9484-82080",
-                                   "(11)9678-07500",
-                                   "+55 (12) 1212-1212",
-                                   "+55 (021 12) 91212-2124",
-                                   "(12) 9 21212-12124",
-                                   "1212-1124",
-                                   "12121124",
-                                   "12956789123",
-                                   " "]
-        
-        testRulePhoneNumberAllowsEmpty()
-        testRulePhoneNumberNotAllowsEmpty()
     }
 
     override func tearDown() {
@@ -42,30 +25,50 @@ class StringExtensionsTests: XCTestCase {
         super.tearDown()
     }
     
-    func testRulePhoneNumberAllowsEmpty() {
+    // MARK: - Valid numbers allowing empty
+    func testRuleValidPhoneNumberAllowingEmpty() {
         rule.allowsEmpty = true
-        let validPhoneNumbers = baseValidPhoneNumbers + [""]
 
-        validPhoneNumbers.forEach { number in
-            XCTAssertNil(rule.isValid(value: number))
-        }
-        
-        baseInvalidPhoneNumbers.forEach { number in
-            XCTAssertNotNil(rule.isValid(value: number))
-        }
+        XCTAssertNil(rule.isValid(value: "(31) 4633-9632"), "Is valid number without digit 9")
+        XCTAssertNil(rule.isValid(value: "(31) 99633-9632"), "Is valid number with digit 9")
+        XCTAssertNil(rule.isValid(value: ""), "Is valid empty number")
     }
     
-    func testRulePhoneNumberNotAllowsEmpty() {
+    // MARK: - Inalid numbers allowing empty
+    func testRuleInvalidPhoneNumberAllowingEmpty() {
+        rule.allowsEmpty = true
+        
+        XCTAssertNotNil(rule.isValid(value: "(31) 9484-82080"), "Is invalid phone number with 5 digits after -")
+        XCTAssertNotNil(rule.isValid(value: "(11)9678-0750"), "Is invalid phone number without spacing after )")
+        XCTAssertNotNil(rule.isValid(value: "(021 12) 91212-2124"), "Is invalid phone number with carrier code")
+        XCTAssertNotNil(rule.isValid(value: "(12) 9 1212-1212"), "Is invalid phone number with spacing between the 9 digit and the rest of number")
+        XCTAssertNotNil(rule.isValid(value: "1212-1124"), "Is invalid phone number without the state code")
+        XCTAssertNotNil(rule.isValid(value: "319484-8208"), "Is invalid phone number without () between the state code")
+        XCTAssertNotNil(rule.isValid(value: "3194848208"), "Is invalid phone number without () between the state code and - between numbers")
+        XCTAssertNotNil(rule.isValid(value: " "), "Is invalid phone number with space")
+    }
+    
+    
+    // MARK: - Valid numbers not allowing empty
+    func testRuleValidPhoneNumberNotAllowingEmpty() {
         rule.allowsEmpty = false
         
-        baseValidPhoneNumbers.forEach { number in
-            XCTAssertNil(rule.isValid(value: number))
-        }
+        XCTAssertNil(rule.isValid(value: "(31) 4633-9632"), "Is valid number without digit 9")
+        XCTAssertNil(rule.isValid(value: "(31) 99633-9632"), "Is valid number with digit 9")
+    }
+    
+    // MARK: - Invalid numbers not allowing empty
+    func testRuleInvalidPhoneNumberNotAllowingEmpty() {
+        rule.allowsEmpty = false
         
-        let invalidPhoneNumbers = baseInvalidPhoneNumbers + [""]
-
-        invalidPhoneNumbers.forEach { number in
-            XCTAssertNotNil(rule.isValid(value: number))
-        }
+        XCTAssertNotNil(rule.isValid(value: "(31) 9484-82080"), "Is invalid phone number with 5 digits after -")
+        XCTAssertNotNil(rule.isValid(value: "(11)9678-0750"), "Is invalid phone number without spacing after )")
+        XCTAssertNotNil(rule.isValid(value: "(021 12) 91212-2124"), "Is invalid phone number with carrier code")
+        XCTAssertNotNil(rule.isValid(value: "(12) 9 1212-1212"), "Is invalid phone number with spacing between the 9 digit and the rest of number")
+        XCTAssertNotNil(rule.isValid(value: "1212-1124"), "Is invalid phone number without the state code")
+        XCTAssertNotNil(rule.isValid(value: "319484-8208"), "Is invalid phone number without () between the state code")
+        XCTAssertNotNil(rule.isValid(value: "3194848208"), "Is invalid phone number without () between the state code and - between numbers")
+        XCTAssertNotNil(rule.isValid(value: " "), "Is invalid phone number with space")
+        XCTAssertNotNil(rule.isValid(value: ""), "Is invalid empty number")
     }
 }
