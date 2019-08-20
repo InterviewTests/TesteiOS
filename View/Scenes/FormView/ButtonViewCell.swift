@@ -53,4 +53,7 @@ class ButtonViewCell: UITableViewCell, FormViewCell {
         buttonDelegate?.sendButtonPressed()
     }
     
+    func setEnabled(_ bool: Bool) {
+        button.isEnabled = bool
+    }
 }

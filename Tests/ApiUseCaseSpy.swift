@@ -15,14 +15,13 @@ extension Domain.FormCell {
     static func newList(count: Int) -> [Domain.FormCell] {
         var list = [Domain.FormCell]()
         guard count > 0 else { return list }
-        var i = 0
-        while i < (count-1) {
-            i += 1
+        
+        for i in 1...(count-1) {
             let cellType = (i % 4) + 1
             let object = try! Domain.FormCell(id: i, cellType: cellType, fieldType: "\((i % 3) + 1)", message: "message message message message message", topSpacing: 10, show: nil, hidden: ((i > 15) && cellType == 2), required: true)
             list.append(object)
         }
-        let object = try! Domain.FormCell(id: i, cellType: 5, fieldType: "", message: "send", topSpacing: 10, show: nil, hidden: false, required: true)
+        let object = try! Domain.FormCell(id: count, cellType: 5, fieldType: "", message: "send", topSpacing: 10, show: nil, hidden: false, required: true)
         list.append(object)
         return list
     }
@@ -34,7 +33,7 @@ enum TestError: Error {
 
 class ApiUseCaseSpy: Domain.ApiUseCase {
     
-    var formCellList = Domain.FormCell.newList(count: 15)
+    var formCellList = Domain.FormCell.newList(count: 5)
     var fund = Domain.Fund(
         id: "1",
         title: "title title title title",
@@ -52,6 +51,7 @@ class ApiUseCaseSpy: Domain.ApiUseCase {
 
     var getFundInfoCalled = false
     var getFormFieldsCalled = false
+    var sendFormCalled = false
     var forceError = false
     
     
@@ -61,6 +61,8 @@ class ApiUseCaseSpy: Domain.ApiUseCase {
             return Observable.error(TestError.forceError)
         }
         return Observable.just(formCellList)
+            .subscribeOn(ConcurrentMainScheduler.instance)
+            .observeOn(MainScheduler.instance)
     }
     
     func getFundInfo() -> Observable<Fund> {
@@ -69,6 +71,24 @@ class ApiUseCaseSpy: Domain.ApiUseCase {
             return Observable.error(TestError.forceError)
         }
         return Observable.just(fund)
+            .subscribeOn(ConcurrentMainScheduler.instance)
+            .observeOn(MainScheduler.instance)
     }
     
+    
+    func sendForm() -> Observable<Void> {
+        sendFormCalled = true
+        guard forceError == false else {
+            return Observable.error(TestError.forceError)
+        }
+        
+        return Observable.create { observer in
+            sleep(2)
+            observer.onNext(Void())
+            observer.onCompleted()
+            return Disposables.create()
+        }
+            .subscribeOn(ConcurrentMainScheduler.instance)
+            .observeOn(MainScheduler.instance)
+    }
 }

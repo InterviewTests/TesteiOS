@@ -89,6 +89,8 @@ class ThemeManager {
         MDCButtonColorThemer.applySemanticColorScheme(buttonColorScheme, to: MDCButton.appearance())
         MDCButtonTypographyThemer.applyTypographyScheme(typographyScheme, to: MDCButton.appearance())
         
+        UIButton.appearance().tintColor = theme.primaryColor
+        
         // MARK: TabBar
         MDCTabBar.appearance().selectedItemTintColor = theme.textColor
         MDCTabBar.appearance().unselectedItemTintColor = theme.textColor

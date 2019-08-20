@@ -57,4 +57,8 @@ class CheckBoxViewCell: UITableViewCell, FormViewCell {
     func updateCheckedButton() {
         checkButton.backgroundColor = self.isChecked ? ThemeManager.current().primaryColor : UIColor.white
     }
+    
+    func setEnabled(_ bool: Bool) {
+        checkButton.isEnabled = bool
+    }
 }

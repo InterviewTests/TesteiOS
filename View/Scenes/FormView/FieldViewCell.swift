@@ -56,6 +56,9 @@ class FieldViewCell: UITableViewCell, FormViewCell {
     }
 
     
+    func setEnabled(_ bool: Bool) {
+        textField.isEnabled = bool
+    }
     
 }
 

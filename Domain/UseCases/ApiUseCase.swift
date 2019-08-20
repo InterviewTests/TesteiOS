@@ -13,4 +13,5 @@ import RxSwift
 public protocol ApiUseCase {
     func getFormFields() -> Observable<[FormCell]>
     func getFundInfo() -> Observable<Fund>
+    func sendForm() -> Observable<Void>
 }

@@ -19,14 +19,16 @@ protocol FormViewCellDelegate: class {
 
 protocol FormViewCell {
     func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?)
+    func setEnabled(_ bool: Bool) 
 }
 
 extension FormViewCell {
-    func getUserInput() -> Any? { return nil }
+    func setEnabled(_ bool: Bool) {}
 }
 
 protocol FormView: BasicView {
     func refresh()
+    func goToFormSentSuccesfullyPage()
 }
 
 protocol FormViewPresenter: BasicPresenter {
@@ -35,7 +37,7 @@ protocol FormViewPresenter: BasicPresenter {
     func getRowCount() -> Int
     func setRowUserInput(_ input: Any, at row: Int)
     
-    func sendForm()
+    func clearUserInput()
     func validateFormInput(_ text: String, fieldType: FieldType) -> Bool
 }
 
@@ -81,21 +83,26 @@ class FormViewPresenterImplementation: FormViewPresenter {
         list[row].input = input
     }
     
-    func sendForm() {
-        // validate form
+    func clearUserInput() {
+        for cell in list {
+            cell.input = nil
+        }
+    }
+    
+    private func validateForm() -> Bool {
         for cell in list {
             guard (cell.cellType != .field) || (!cell.required) || (cell.required && (cell.input != nil)) else {
                 self.view?.showError(ViewError.formIncomplete(cell.message))
-                return
+                return false
             }
             if let text = cell.input as? String {
                 if !(validateFormInput(text, fieldType: cell.fieldType)) {
                     self.view?.showError(ViewError.formInvalid(cell.message))
-                    return
+                    return false
                 }
             }
         }
-        // send form
+        return true
     }
     
     // MARK: Validate Field Functions
@@ -113,6 +120,18 @@ class FormViewPresenterImplementation: FormViewPresenter {
             .subscribe(onNext: { [weak self] result in
                 self?.list = result
                 self?.view?.refresh()
+            }, onError: { [weak self] error in
+                self?.view?.showError(error)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func sendForm() {
+        guard validateForm() else { return }
+        
+        apiUseCase.sendForm()
+            .subscribe(onNext: { [weak self] _ in
+                self?.view?.goToFormSentSuccesfullyPage()
             }, onError: { [weak self] error in
                 self?.view?.showError(error)
             })
