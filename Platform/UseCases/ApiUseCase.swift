@@ -115,7 +115,7 @@ final class ApiUseCaseImplementation: ApiUseCase {
     }
     
     
-    func sendForm() -> Observable<Void> {
+    func sendForm(_ form: [FormCell]) -> Observable<Void> {
         return Observable.just(Void())
             .subscribeOn(ConcurrentMainScheduler.instance)
             .observeOn(MainScheduler.instance)

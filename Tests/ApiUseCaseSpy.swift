@@ -76,18 +76,18 @@ class ApiUseCaseSpy: Domain.ApiUseCase {
     }
     
     
-    func sendForm() -> Observable<Void> {
+    func sendForm(_ form: [FormCell]) -> Observable<Void> {
         sendFormCalled = true
         guard forceError == false else {
             return Observable.error(TestError.forceError)
         }
         
         return Observable.create { observer in
-            sleep(2)
             observer.onNext(Void())
             observer.onCompleted()
             return Disposables.create()
         }
+            .delay(0.7, scheduler: ConcurrentMainScheduler.instance)
             .subscribeOn(ConcurrentMainScheduler.instance)
             .observeOn(MainScheduler.instance)
     }

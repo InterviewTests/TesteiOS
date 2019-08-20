@@ -35,13 +35,15 @@ class FieldViewCell: UITableViewCell, FormViewCell {
         textField.delegate = self
     }
     
-    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?) {
+    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, enabled: Bool, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?) {
         self.id = id
         self.fieldType = fieldType
         
         textField.text = userInput as? String
         updateFieldOnUserInput(textField.text ?? "")
         textField.placeholder = message
+        
+        textField.isEnabled = enabled
         textField.isHidden = hidden
         
         switch fieldType {
@@ -53,11 +55,6 @@ class FieldViewCell: UITableViewCell, FormViewCell {
         topConstraint.constant = CGFloat(topSpacing)
         
         fieldDelegate = delegate
-    }
-
-    
-    func setEnabled(_ bool: Bool) {
-        textField.isEnabled = bool
     }
     
 }
@@ -76,12 +73,12 @@ extension FieldViewCell: UITextFieldDelegate {
         fieldDelegate?.saveUserInput(text, id: id)
         
         let theme = ThemeManager.current()
-        guard let validateFieldDelegate = fieldDelegate, let fieldType = fieldType, text.count > 0 else {
+        guard let fieldType = fieldType, text.count > 0 else {
             textFieldController?.activeColor = theme.fieldNeutralColor
             textFieldController?.setErrorText(nil, errorAccessibilityValue: nil)
             return
         }
-        if validateFieldDelegate.validateInput(text, fieldType: fieldType) {
+        if fieldType.isValid(text) {
             textFieldController?.activeColor = theme.fieldValidColor
             textFieldController?.setErrorText(nil, errorAccessibilityValue: nil)
         } else {

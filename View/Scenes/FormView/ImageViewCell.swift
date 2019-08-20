@@ -24,7 +24,7 @@ class ImageViewCell: UITableViewCell, FormViewCell {
     }
     
     
-    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?) {
+    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, enabled: Bool, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?) {
         self.id = id
         
         topConstraint.constant = CGFloat(topSpacing)

@@ -15,6 +15,7 @@ import Domain
 class ButtonViewCell: UITableViewCell, FormViewCell {
     
     
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var button: MDCRaisedButton!
     @IBOutlet var topConstraint: NSLayoutConstraint!
     
@@ -32,7 +33,7 @@ class ButtonViewCell: UITableViewCell, FormViewCell {
         buttonDelegate = nil
     }
     
-    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?) {
+    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, enabled: Bool, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?) {
         self.id = id
         
         button.setTitle(message, for: .normal)
@@ -42,6 +43,12 @@ class ButtonViewCell: UITableViewCell, FormViewCell {
         button.setTitle(message, for: .selected)
         
         button.isHidden = hidden
+        if enabled {
+            activityIndicator.stopAnimating()
+        } else {
+            activityIndicator.startAnimating()
+        }
+        button.isEnabled = enabled
         
         topConstraint.constant = CGFloat(topSpacing)
         
@@ -52,8 +59,5 @@ class ButtonViewCell: UITableViewCell, FormViewCell {
     @IBAction func buttonPressed(_ sender: Any) {
         buttonDelegate?.sendButtonPressed()
     }
-    
-    func setEnabled(_ bool: Bool) {
-        button.isEnabled = bool
-    }
+
 }

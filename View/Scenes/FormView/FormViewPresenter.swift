@@ -12,18 +12,12 @@ import Domain
 
 
 protocol FormViewCellDelegate: class {
-    func validateInput(_ text: String, fieldType: FieldType) -> Bool
     func sendButtonPressed()
     func saveUserInput(_ text: Any, id: Int)
 }
 
 protocol FormViewCell {
-    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?)
-    func setEnabled(_ bool: Bool) 
-}
-
-extension FormViewCell {
-    func setEnabled(_ bool: Bool) {}
+    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, enabled: Bool, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?)
 }
 
 protocol FormView: BasicView {
@@ -38,7 +32,6 @@ protocol FormViewPresenter: BasicPresenter {
     func setRowUserInput(_ input: Any, at row: Int)
     
     func clearUserInput()
-    func validateFormInput(_ text: String, fieldType: FieldType) -> Bool
 }
 
 class FormViewPresenterImplementation: FormViewPresenter {
@@ -47,6 +40,7 @@ class FormViewPresenterImplementation: FormViewPresenter {
     //    private let listName = "main"
     private var list = [FormCell]()
     private var apiUseCase: ApiUseCase!
+    private var isWaitingServer = false
     
     private weak var view: FormView?
     
@@ -74,7 +68,7 @@ class FormViewPresenterImplementation: FormViewPresenter {
         guard row >= 0 else { return }
         guard row < list.count else { return }
         let cell = list[row]
-        cellview.configure(id: cell.id, message: cell.message, fieldType: cell.fieldType, userInput: cell.input, hidden: cell.hidden, topSpacing: cell.topSpacing, delegate: self)
+        cellview.configure(id: cell.id, message: cell.message, fieldType: cell.fieldType, userInput: cell.input, enabled: !isWaitingServer, hidden: cell.hidden, topSpacing: cell.topSpacing, delegate: self)
     }
     
     func setRowUserInput(_ input: Any, at row: Int) {
@@ -89,29 +83,21 @@ class FormViewPresenterImplementation: FormViewPresenter {
         }
     }
     
-    private func validateForm() -> Bool {
-        for cell in list {
+    // MARK: Validate All Form
+    private func validateForm(_ form: [FormCell]) -> Bool {
+        for cell in form {
             guard (cell.cellType != .field) || (!cell.required) || (cell.required && (cell.input != nil)) else {
                 self.view?.showError(ViewError.formIncomplete(cell.message))
                 return false
             }
             if let text = cell.input as? String {
-                if !(validateFormInput(text, fieldType: cell.fieldType)) {
+                if !(cell.fieldType.isValid(text)) {
                     self.view?.showError(ViewError.formInvalid(cell.message))
                     return false
                 }
             }
         }
         return true
-    }
-    
-    // MARK: Validate Field Functions
-    func validateFormInput(_ text: String, fieldType: FieldType) -> Bool {
-        switch fieldType {
-        case .email: return text.isValidEmail()
-        case .telNumber: return text.isValidPhone()
-        case .text: return (text.count >= 1)
-        }
     }
     
     // MARK: Use Case
@@ -127,12 +113,18 @@ class FormViewPresenterImplementation: FormViewPresenter {
     }
     
     private func sendForm() {
-        guard validateForm() else { return }
+        let form = list
+        isWaitingServer = true
+        view?.refresh()
+        guard validateForm(form) else { isWaitingServer = false; view?.refresh(); return }
         
-        apiUseCase.sendForm()
+        apiUseCase.sendForm(form)
             .subscribe(onNext: { [weak self] _ in
+                self?.isWaitingServer = false
                 self?.view?.goToFormSentSuccesfullyPage()
             }, onError: { [weak self] error in
+                self?.isWaitingServer = false
+                self?.view?.refresh()
                 self?.view?.showError(error)
             })
             .disposed(by: disposeBag)
@@ -144,10 +136,6 @@ class FormViewPresenterImplementation: FormViewPresenter {
 
 // MARK: FormViewCellDelegate
 extension FormViewPresenterImplementation: FormViewCellDelegate {
-    
-    func validateInput(_ text: String, fieldType: FieldType) -> Bool {
-        return self.validateFormInput(text, fieldType: fieldType)
-    }
     
     func sendButtonPressed() {
         self.sendForm()

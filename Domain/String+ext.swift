@@ -73,13 +73,13 @@ extension String {
     
     // MARK: is Valid
     
-    public func isValidEmail() -> Bool {
+    func isValidEmail() -> Bool {
         let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
         return emailPredicate.evaluate(with: self)
     }
     
-    public func isValidPhone() -> Bool {
+    func isValidPhone() -> Bool {
         let cleanString = self.formatAsNumeric()
         if (cleanString.count < 10) || (cleanString.count > 11) {
             return false

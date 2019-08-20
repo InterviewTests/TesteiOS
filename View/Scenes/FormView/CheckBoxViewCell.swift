@@ -32,9 +32,12 @@ class CheckBoxViewCell: UITableViewCell, FormViewCell {
         checkButton.layer.cornerRadius = checkButton.frame.height / 7.5
     }
     
-    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?) {
+    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, enabled: Bool, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?) {
         self.id = id
         label.text = message
+        
+        checkButton.isEnabled = enabled
+        
         label.isHidden = hidden
         checkButton.isHidden = hidden
         outCheckView.isHidden = hidden
@@ -56,9 +59,5 @@ class CheckBoxViewCell: UITableViewCell, FormViewCell {
     
     func updateCheckedButton() {
         checkButton.backgroundColor = self.isChecked ? ThemeManager.current().primaryColor : UIColor.white
-    }
-    
-    func setEnabled(_ bool: Bool) {
-        checkButton.isEnabled = bool
     }
 }

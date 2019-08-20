@@ -28,4 +28,13 @@ public enum FieldType: Int {
         }
         return .text
     }
+    
+    public func isValid(_ text: String) -> Bool {
+        switch self {
+        case .email: return text.isValidEmail()
+        case .telNumber: return text.isValidPhone()
+        case .text: return (text.count >= 1)
+        }
+    }
 }
+
