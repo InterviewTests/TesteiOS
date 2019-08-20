@@ -46,8 +46,13 @@ final class ApiUseCaseImplementation: ApiUseCase {
                     guard let topSpacing = cell["topSpacing"] as? Double else { throw UseCaseError.invalidAttribute("topSpacing", cell["topSpacing"]) }
                     guard let hidden = cell["hidden"] as? Bool else { throw UseCaseError.invalidAttribute("hidden", cell["hidden"]) }
                     guard let required = cell["required"] as? Bool else { throw UseCaseError.invalidAttribute("required", cell["required"]) }
-                    let fieldType = (cell["typefield"] as? Int) ?? 1
-                    let show = (cell["show"] as? Int) ?? 0
+                    var fieldType = ""
+                    if let fieldTypeInt = cell["typefield"] as? Int {
+                        fieldType = String(fieldTypeInt)
+                    } else {
+                        fieldType = cell["typefield"] as? String ?? ""
+                    }
+                    let show = cell["show"] as? Int
                     
                     let formcell = try FormCell(id: id, cellType: type, fieldType: fieldType, message: message, topSpacing: topSpacing, show: show, hidden: hidden, required: required)
                     result.append(formcell)

@@ -9,9 +9,9 @@
 import Foundation
 
 public struct FundValueInfo {
-    public var month: (fund: Double, cdi: Double)
-    public var year: (fund: Double, cdi: Double)
-    public var twelveMonths: (fund: Double, cdi: Double)
+    public let month: (fund: Double, cdi: Double)
+    public let year: (fund: Double, cdi: Double)
+    public let twelveMonths: (fund: Double, cdi: Double)
     
     public init(monthFund: Double, monthCdi: Double, yearFund: Double, yearCdi: Double, twelveMonthsFund: Double, twelveMonthsCdi: Double) {
         self.month = (monthFund, monthCdi)
@@ -31,7 +31,7 @@ public struct FundInfo {
 }
 
 
-public struct Fund {
+public class Fund {
     public let id: String
     public let title: String
     public let fundName: String

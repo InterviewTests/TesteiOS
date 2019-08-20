@@ -17,16 +17,18 @@ class ImageViewCell: UITableViewCell, FormViewCell {
     @IBOutlet var cellImage: UIImageView!
     @IBOutlet var topConstraint: NSLayoutConstraint!
     
+    private var id: Int!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     
-    func configure(message: String, fieldType: FieldType, validateFieldFunction: @escaping (String, FieldType) -> (Bool), hidden: Bool, topSpacing: Double) {
+    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?) {
+        self.id = id
         
         topConstraint.constant = CGFloat(topSpacing)
     }
-    
     
     
 }

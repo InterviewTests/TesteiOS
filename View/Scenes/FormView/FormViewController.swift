@@ -44,6 +44,16 @@ class FormViewController: UITableViewController {
         return cell
     }
     
+    // MARK: Send Button Pressed
+    private func updateUserInputFromForm() {
+        for indexPath in tableView.indexPathsForVisibleRows ?? [IndexPath]() {
+            if let cell = tableView.cellForRow(at: indexPath) as? FormViewCell, let userInput = cell.getUserInput() {
+                presenter.setRowUserInput(userInput, at: indexPath.row)
+            }
+        }
+    }
+    
+    
     
     // MARK: Tap Gesture Dismiss Keyboard
     @IBAction func viewTapped(_ sender: Any) {
@@ -55,6 +65,7 @@ class FormViewController: UITableViewController {
 
 // MARK: FormView
 extension FormViewController: FormView {
+    
     func refresh() {
         tableView.reloadData()
     }

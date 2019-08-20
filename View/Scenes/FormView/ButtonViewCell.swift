@@ -11,10 +11,16 @@ import UIKit
 import MaterialComponents.MaterialButtons
 import Domain
 
+
 class ButtonViewCell: UITableViewCell, FormViewCell {
+    
     
     @IBOutlet var button: MDCRaisedButton!
     @IBOutlet var topConstraint: NSLayoutConstraint!
+    
+    private var id: Int!
+    
+    private weak var buttonDelegate: FormViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,9 +28,13 @@ class ButtonViewCell: UITableViewCell, FormViewCell {
         
         button.layer.cornerRadius = button.frame.height / 2
         button.layer.masksToBounds = true
+        
+        buttonDelegate = nil
     }
     
-    func configure(message: String, fieldType: FieldType, validateFieldFunction: @escaping (String, FieldType) -> (Bool), hidden: Bool, topSpacing: Double) {
+    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?) {
+        self.id = id
+        
         button.setTitle(message, for: .normal)
         button.setTitle(message, for: .disabled)
         button.setTitle(message, for: .focused)
@@ -34,8 +44,13 @@ class ButtonViewCell: UITableViewCell, FormViewCell {
         button.isHidden = hidden
         
         topConstraint.constant = CGFloat(topSpacing)
+        
+        buttonDelegate = delegate
     }
     
     
+    @IBAction func buttonPressed(_ sender: Any) {
+        buttonDelegate?.sendButtonPressed()
+    }
     
 }

@@ -14,21 +14,19 @@ import RxSwift
 extension Domain.FormCell {
     static func newList(count: Int) -> [Domain.FormCell] {
         var list = [Domain.FormCell]()
+        guard count > 0 else { return list }
         var i = 0
-        while i < count {
+        while i < (count-1) {
             i += 1
-            let object = try! Domain.FormCell(id: i, cellType: (i % 5) + 1, fieldType: (i % 3) + 1, message: "message message message message message", topSpacing: 10, show: i % 2, hidden: (i > 15), required: (i % 2 == 1)
-            )
+            let cellType = (i % 4) + 1
+            let object = try! Domain.FormCell(id: i, cellType: cellType, fieldType: "\((i % 3) + 1)", message: "message message message message message", topSpacing: 10, show: nil, hidden: ((i > 15) && cellType == 2), required: true)
             list.append(object)
         }
+        let object = try! Domain.FormCell(id: i, cellType: 5, fieldType: "", message: "send", topSpacing: 10, show: nil, hidden: false, required: true)
+        list.append(object)
         return list
     }
 }
-
-//struct NotificationPublisher {
-//    static let instance = ReplaySubject<[Domain.Notification]>.create(bufferSize: 1)
-//    static func publish(_ object: [Domain.Notification]) { NotificationPublisher.instance.onNext(object) }
-//}
 
 enum TestError: Error {
     case forceError
@@ -36,8 +34,7 @@ enum TestError: Error {
 
 class ApiUseCaseSpy: Domain.ApiUseCase {
     
-    
-    var formCellList = Domain.FormCell.newList(count: 20)
+    var formCellList = Domain.FormCell.newList(count: 15)
     var fund = Domain.Fund(
         id: "1",
         title: "title title title title",
@@ -52,15 +49,14 @@ class ApiUseCaseSpy: Domain.ApiUseCase {
         twelveMonthsFund: 3.0, twelveMonthsCdi: 3.0,
         info: [FundInfo(name: "name", data: "data"), FundInfo(name: "name", data: "data"), FundInfo(name: "name", data: "data")],
         downInfo: [FundInfo(name: "name", data: "data"), FundInfo(name: "name", data: "data"), FundInfo(name: "name", data: "data"), FundInfo(name: "name", data: "data")])
-//    var refreshAllCalled = false
-//    var getAllCalled = false
-//    var markAsReadCalled = false
-//    var deleteCalled = false
 
+    var getFundInfoCalled = false
+    var getFormFieldsCalled = false
     var forceError = false
     
     
     func getFormFields() -> Observable<[FormCell]> {
+        getFormFieldsCalled = true
         guard forceError == false else {
             return Observable.error(TestError.forceError)
         }
@@ -68,6 +64,7 @@ class ApiUseCaseSpy: Domain.ApiUseCase {
     }
     
     func getFundInfo() -> Observable<Fund> {
+        getFundInfoCalled = true
         guard forceError == false else {
             return Observable.error(TestError.forceError)
         }

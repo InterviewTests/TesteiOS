@@ -13,40 +13,11 @@ func localized(_ string: String) -> String {
 }
 
 extension String {
+
     
-    // MARK: String Conversions
-    func asDate() -> Date? {
-        if let date = self.asDate(format: "yyyy-MM-dd") {
-            return date
-        }
-        if let date = self.asDate(format: "dd/MM/yyyy") {
-            return date
-        }
-        if let date = self.asDate(format: "yyyy-MM-dd hh:mm:ss") {
-            return date
-        }//"yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        //"dd/MM/yyyy HH:mm:ss ZZZ"
-        return nil
-    }
-    
-    private func asDate(format: String) -> Date? {
-        let dateFormater = DateFormatter()
-        dateFormater.dateFormat = format
-        return dateFormater.date(from: self)
-    }
-    
-    func asCurrency() -> String {
-        let currFormatter = NumberFormatter()
-        currFormatter.numberStyle = .currency
-        currFormatter.locale = Locale(identifier: "pt_BR")
-        currFormatter.currencySymbol = "R$ "
-        guard let value = self.asNumber() else { return self }
-        return currFormatter.string(from: value) ?? self
-    }
-    
-    func asFloat() -> Float? {
+    func asInt() -> Int? {
         if let number = self.asNumber() {
-            return Float(exactly: number)
+            return Int(exactly: number)
         }
         return nil
     }
@@ -63,37 +34,13 @@ extension String {
     
     
     // MARK: String Format
-    func formatAsCpfcnpj() -> String {
-        let cleanString = self.formatAsNumeric()
-        if cleanString.count > 11 {
-            return cleanString.applyMask(mask: "**.***.***/****-**")
-        } else {
-            return cleanString.applyMask(mask: "***.***.***-**")
-        }
-    }
-    
-    func formatAsPhone() -> String {
-        let cleanString = self.formatAsNumeric()
+    public func formatAsPhone() -> String {
+        let cleanString = String(self.formatAsNumeric().prefix(11))
         
         switch cleanString.count {
         case 11: return cleanString.applyMask(mask: "(**) *****-****")
-        case 9: return cleanString.applyMask(mask: "*****-****")
-        case 8: return cleanString.applyMask(mask: "****-****")
-        default: return cleanString.applyMask(mask: "****-****")
+        default: return cleanString.applyMask(mask: "(**) ****-****")
         }
-    }
-    
-    func formatAsGender() -> String {
-        switch self {
-        case "F": return "Feminino"
-        case "M": return "Feminino"
-        default: return self
-        }
-    }
-    
-    func formatAsCEP() -> String {
-        let cleanString = self.formatAsNumeric()
-        return cleanString.applyMask(mask: "**.***-***")
     }
     
     func formatAsNumeric() -> String {
@@ -126,51 +73,18 @@ extension String {
     
     // MARK: is Valid
     
-    func isValidEmail() -> Bool {
+    public func isValidEmail() -> Bool {
         let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
         return emailPredicate.evaluate(with: self)
     }
     
-    // MARK: encryption
-    
-    func base64Encoded() -> String? {
-        if let data = self.data(using: .utf8) {
-            return data.base64EncodedString()
+    public func isValidPhone() -> Bool {
+        let cleanString = self.formatAsNumeric()
+        if (cleanString.count < 10) || (cleanString.count > 11) {
+            return false
         }
-        return nil
+        return true
     }
     
-    func base64Decoded() -> String? {
-        if let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters) {
-            return String(data: data, encoding: .utf8)
-        }
-        return nil
-    }
-    
-//    func sha256() -> String {
-//        if let stringData = self.data(using: String.Encoding.utf8) {
-//            return hexStringFromData(input: digest(input: stringData as NSData))
-//        }
-//        return ""
-//    }
-    
-//    private func digest(input: NSData) -> NSData {
-//        let digestLength = Int(CC_SHA256_DIGEST_LENGTH)
-//        var hash = [UInt8](repeating: 0, count: digestLength)
-//        CC_SHA256(input.bytes, UInt32(input.length), &hash)
-//        return NSData(bytes: hash, length: digestLength)
-//    }
-    
-    private  func hexStringFromData(input: NSData) -> String {
-        var bytes = [UInt8](repeating: 0, count: input.length)
-        input.getBytes(&bytes, length: input.length)
-        
-        var hexString = ""
-        for byte in bytes {
-            hexString += String(format: "%02x", UInt8(byte))
-        }
-        
-        return hexString
-    }
 }

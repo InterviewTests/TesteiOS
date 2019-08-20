@@ -20,7 +20,10 @@ class CheckBoxViewCell: UITableViewCell, FormViewCell {
     @IBOutlet var label: UILabel!
     @IBOutlet var topConstraint: NSLayoutConstraint!
     
+    private var id: Int!
     private var isChecked = false
+    
+    private weak var buttonDelegate: FormViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,23 +32,29 @@ class CheckBoxViewCell: UITableViewCell, FormViewCell {
         checkButton.layer.cornerRadius = checkButton.frame.height / 7.5
     }
     
-    func configure(message: String, fieldType: FieldType, validateFieldFunction: @escaping (String, FieldType) -> (Bool), hidden: Bool, topSpacing: Double) {
+    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?) {
+        self.id = id
         label.text = message
         label.isHidden = hidden
         checkButton.isHidden = hidden
         outCheckView.isHidden = hidden
         
-        isChecked = true
-        checkButtonPressed(self)
+        isChecked = userInput as? Bool ?? false
+        updateCheckedButton()
         
         topConstraint.constant = CGFloat(topSpacing)
+        
+        buttonDelegate = delegate
     }
     
     
     @IBAction func checkButtonPressed(_ sender: Any) {
         isChecked = !isChecked
-        checkButton.backgroundColor = self.isChecked ? UIColor.red : UIColor.white
+        updateCheckedButton()
+        buttonDelegate?.saveUserInput(isChecked, id: id)
     }
-
     
+    func updateCheckedButton() {
+        checkButton.backgroundColor = self.isChecked ? ThemeManager.current().primaryColor : UIColor.white
+    }
 }

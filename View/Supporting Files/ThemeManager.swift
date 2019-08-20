@@ -29,8 +29,8 @@ fileprivate struct DefaultTheme: AppTheme {
     
     var themeNumber: Int = 1
     
-    var primaryColor       = UIColor(red: 242.0 / 255.0, green: 0, blue: 0, alpha: 1)
-    var primaryColorDarker = UIColor(red: 222.0 / 255.0, green: 0, blue: 0, alpha: 1)
+    var primaryColor       = UIColor(red: 218 / 255.0, green: 1 / 255.0, blue: 1 / 255.0, alpha: 1)
+    var primaryColorDarker = UIColor(red: 200 / 255.0, green: 4 / 255.0, blue: 4 / 255.0, alpha: 1)
     var textColor          = UIColor.white
     var tabTextFont        = UIFont(name: "DINPro-Bold", size: 12) ?? UIFont.boldSystemFont(ofSize: 12)
     
@@ -81,9 +81,9 @@ class ThemeManager {
         
         // MARK: Button
         let buttonColorScheme = MDCSemanticColorScheme()
-        buttonColorScheme.primaryColor = theme.primaryColorDarker
+        buttonColorScheme.primaryColor = theme.primaryColor
         buttonColorScheme.onPrimaryColor = theme.textColor
-        buttonColorScheme.surfaceColor = theme.primaryColorDarker
+        buttonColorScheme.surfaceColor = theme.primaryColor
         buttonColorScheme.onBackgroundColor = theme.textColor
         
         MDCButtonColorThemer.applySemanticColorScheme(buttonColorScheme, to: MDCButton.appearance())
