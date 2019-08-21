@@ -80,11 +80,10 @@ extension String {
     }
     
     func isValidPhone() -> Bool {
-        let cleanString = self.formatAsNumeric()
-        if (cleanString.count < 10) || (cleanString.count > 11) {
-            return false
-        }
-        return true
+        let formatedPhoneFormat = "\\([0-9]{2}\\) ?[0-9]{4,5}-[0-9]{4}"
+        let unformatedPhoneFormat = "[0-9]{10,11}"
+        let predicate = NSPredicate(format: "SELF MATCHES %@ OR SELF MATCHES %@", formatedPhoneFormat, unformatedPhoneFormat)
+        return predicate.evaluate(with: self)
     }
     
 }

@@ -19,7 +19,7 @@ extension SwinjectStoryboard {
 //        app.launchArguments.append("TESTING")
 //        app.launch()
         if ProcessInfo.processInfo.arguments.contains("TESTING") {
-            defaultContainer.register(Domain.ApiUseCase.self) { _ in ApiUseCaseSpy() }
+            defaultContainer.register(Domain.ApiUseCase.self) { _ in ApiUseCaseMock() }
         } else {
             defaultContainer.register(Domain.ApiUseCase.self) { _ in Platform.UseCaseManager.getApiUseCase() }
         }
@@ -32,5 +32,6 @@ extension SwinjectStoryboard {
         }
         defaultContainer.storyboardInitCompleted(MainTabViewController.self) { (r, c) in }
         defaultContainer.storyboardInitCompleted(UIViewController.self) { (r, c) in }
+        defaultContainer.storyboardInitCompleted(UINavigationController.self) { (r, c) in }
     }
 }

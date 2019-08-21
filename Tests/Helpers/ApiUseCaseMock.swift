@@ -1,5 +1,5 @@
 //
-//  ApiUseCaseSpy.swift
+//  ApiUseCaseMock.swift
 //  Tests
 //
 //  Created by Erika de Almeida Segatto on 17/08/19.
@@ -18,7 +18,7 @@ extension Domain.FormCell {
         
         for i in 1...(count-1) {
             let cellType = (i % 4) + 1
-            let object = try! Domain.FormCell(id: i, cellType: cellType, fieldType: "\((i % 3) + 1)", message: "message message message message message", topSpacing: 10, show: nil, hidden: ((i > 15) && cellType == 2), required: true)
+            let object = try! Domain.FormCell(id: i, cellType: cellType, fieldType: "\((i % 3) + 1)", message: "message message message message message \(i)", topSpacing: Double(i), show: nil, hidden: (i % 5 == 1), required: (i % 2 == 1))
             list.append(object)
         }
         let object = try! Domain.FormCell(id: count, cellType: 5, fieldType: "", message: "send", topSpacing: 10, show: nil, hidden: false, required: true)
@@ -27,12 +27,9 @@ extension Domain.FormCell {
     }
 }
 
-enum TestError: Error {
-    case forceError
-}
-
-class ApiUseCaseSpy: Domain.ApiUseCase {
+class ApiUseCaseMock: Domain.ApiUseCase {
     
+    var apiDelay: Bool = true
     var formCellList = Domain.FormCell.newList(count: 5)
     var fund = Domain.Fund(
         id: "1",
@@ -61,8 +58,6 @@ class ApiUseCaseSpy: Domain.ApiUseCase {
             return Observable.error(TestError.forceError)
         }
         return Observable.just(formCellList)
-            .subscribeOn(ConcurrentMainScheduler.instance)
-            .observeOn(MainScheduler.instance)
     }
     
     func getFundInfo() -> Observable<Fund> {
@@ -71,8 +66,6 @@ class ApiUseCaseSpy: Domain.ApiUseCase {
             return Observable.error(TestError.forceError)
         }
         return Observable.just(fund)
-            .subscribeOn(ConcurrentMainScheduler.instance)
-            .observeOn(MainScheduler.instance)
     }
     
     
@@ -81,14 +74,12 @@ class ApiUseCaseSpy: Domain.ApiUseCase {
         guard forceError == false else {
             return Observable.error(TestError.forceError)
         }
-        
-        return Observable.create { observer in
-            observer.onNext(Void())
-            observer.onCompleted()
-            return Disposables.create()
+        if apiDelay {
+            return Observable.just(Void())
+                .delay(0.7, scheduler: ConcurrentMainScheduler.instance)
+                .subscribeOn(ConcurrentMainScheduler.instance)
+                .observeOn(MainScheduler.instance)
         }
-            .delay(0.7, scheduler: ConcurrentMainScheduler.instance)
-            .subscribeOn(ConcurrentMainScheduler.instance)
-            .observeOn(MainScheduler.instance)
+        return Observable.just(Void())
     }
 }
