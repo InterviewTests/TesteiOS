@@ -1,0 +1,33 @@
+//
+//  TextFloatLabelCell.swift
+//  Santander
+//
+//  Created by Orlando Amorim on 11/08/19.
+//  Copyright © 2019 Santander. All rights reserved.
+//
+
+import Eureka
+
+public class TextFloatLabelCell: _FloatLabelCell<String>, CellType {
+    
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override func setup() {
+        super.setup()
+        textField?.autocorrectionType = .default
+        textField?.autocapitalizationType = .sentences
+        textField?.keyboardType = .default
+    }
+}
+
+public final class TextFloatLabelRow: FloatFieldRow<TextFloatLabelCell>, RowType {
+    public required init(tag: String?) {
+        super.init(tag: tag)
+    }
+}
