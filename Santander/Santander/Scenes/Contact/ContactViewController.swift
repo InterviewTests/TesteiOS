@@ -16,7 +16,7 @@ import JGProgressHUD
 
 protocol ContactDisplayLogic: class {
     func displayForm(_ form: ContactForm)
-    func displayError(_ error: Error)
+    func displayError(_ error: String)
     func displaySuccess()
 }
 
@@ -122,9 +122,9 @@ extension ContactViewController: ContactDisplayLogic {
         makeSection(rows: rows)
     }
     
-    func displayError(_ error: Error) {
+    func displayError(_ error: String) {
         progressHud.dismiss()
-        showAlert(title: "Atenção", message: error.localizedDescription)
+        showAlert(title: "Atenção", message: error)
     }
     
     func displaySuccess() {

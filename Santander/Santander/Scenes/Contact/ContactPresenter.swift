@@ -29,7 +29,7 @@ class ContactPresenter: ContactPresentationLogic {
     
     // MARK: Present Error
     func presentError(_ error: Error) {
-        viewController?.displayError(error)
+        viewController?.displayError(error.localizedDescription)
     }
     
     // MARK: Present Success
