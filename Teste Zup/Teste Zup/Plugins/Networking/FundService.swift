@@ -9,13 +9,13 @@
 import Foundation
 
 struct FundService {
-    static func getScreen() {
+    static func getFund(completion: @escaping (Result<Fund, Error>) -> ()) {
         Service<Fund>().get(url: EndPoint.screen) { (result) in
             switch result {
             case .failure(let error):
-                print(error)
+                completion(.failure(error))
             case .success(let fund):
-                print(fund.screen.title!)
+                completion(.success(fund))
             }
         }
     }

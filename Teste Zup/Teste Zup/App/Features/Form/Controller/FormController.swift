@@ -14,8 +14,15 @@ class FormController: UIViewController  {
         super.viewDidLoad()
         view.backgroundColor = .red
         
-        //FormService.getForm()
-        FundService.getScreen()
+        FormService.getForm { (result) in
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let form):
+                print(form)
+            }
+        }
+        
         
     }
     

@@ -10,7 +10,6 @@ import UIKit
 
 class FormView: UIView, ConfigurableView {
     
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         buildViewHierarchy()

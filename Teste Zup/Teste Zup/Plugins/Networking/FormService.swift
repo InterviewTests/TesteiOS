@@ -9,13 +9,13 @@
 import Foundation
 
 struct FormService {
-    static func getForm() {
+    static func getForm(completion: @escaping (Result<FormFormat, Error>) -> ()) {
         Service<FormFormat>().get(url: EndPoint.form) { (result) in
             switch result {
             case .failure(let error):
-                print(error)
+                completion(.failure(error))
             case .success(let form):
-                print(form.cells ?? "")
+                completion(.success(form))
             }
         }
     }

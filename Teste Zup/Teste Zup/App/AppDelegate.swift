@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKey()
-        window?.rootViewController = FormController()
+        window?.rootViewController = FundController()
         
         
         return true

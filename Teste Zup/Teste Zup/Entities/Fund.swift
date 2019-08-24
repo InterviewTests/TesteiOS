@@ -13,26 +13,27 @@ struct Fund: Decodable {
 }
 
 struct Screen: Decodable {
-    let title: String?
-//    let fundName: String
-//    let whatIs: String
-//    let definition: String
-//    let riskTitle: String
-//    let risk: Int
-//    let infoTitle: String
-//    let moreInfo: [MoreInfo]
-//    let info: String
+    let title: String
+    let fundName: String
+    let whatIs: String
+    let definition: String
+    let riskTitle: String
+    let risk: Int
+    let infoTitle: String
+    let moreInfo: MoreInfo
+    let info: Info
 }
 
 struct MoreInfo: Decodable {
-    let month: Period?
-    let year: Period?
-    let twelveMonths: Period?
+    let month: Period
+    let year: Period
 }
 
 struct Period: Decodable {
-    let fund: Int
-    let CDI: Int
+    let fund: Double
+    let CDI: Double
 }
 
-
+struct Info: Decodable {
+    
+}
