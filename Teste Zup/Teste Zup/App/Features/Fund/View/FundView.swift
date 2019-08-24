@@ -17,25 +17,42 @@ class FundView: UIView, ConfigurableView {
             fundDefinition.text = fundViewModel?.fund?.screen.definition
             whatIs.text = fundViewModel?.fund?.screen.whatIs
             riskTitle.text = fundViewModel?.fund?.screen.riskTitle
+            infoTitle.text = fundViewModel?.fund?.screen.infoTitle
         }
     }
     
-    let titleLabel = UILabel(textColor: .black)
-    let fundName = UILabel(textColor: .black)
+    let titleLabel = UILabel(textColor: .lightGray,font: nil)
+    
+    let fundName: UILabel = {
+        let label = UILabel(textColor: .black, font: UIFont.init(name: "Arial", size: 32))
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 2
+        return label
+    }()
+    
     let separatorLine = UIView(style: .separatorStyle)
-    let whatIs = UILabel(textColor: .black)
+    let whatIs = UILabel(textColor: .lightGray, font: nil)
     
     let fundDefinition:  UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = .lightGray
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 3
         return label
     }()
     
-    let riskTitle = UILabel(textColor: .black)
+    let riskTitle = UILabel(textColor: .lightGray, font: nil)
     let customRiskView = CustomRiskView()
+    let infoTitle = UILabel(textColor: .lightGray, font: nil)
+    
+    let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.allowsSelection = false
+        return tableView
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,15 +66,18 @@ class FundView: UIView, ConfigurableView {
     }
     
     func buildViewHierarchy() {
-        addSubviews([titleLabel,fundName, separatorLine, whatIs, fundDefinition, riskTitle, customRiskView])
+        addSubviews([titleLabel,fundName, separatorLine, whatIs, fundDefinition, riskTitle, customRiskView, infoTitle, tableView])
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: self.topAnchor, multiplier: 8),
             titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            
             fundName.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            fundName.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            fundName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 80),
+            fundName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            
             separatorLine.topAnchor.constraint(equalTo: fundName.bottomAnchor, constant: 10),
             separatorLine.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             separatorLine.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
@@ -79,7 +99,17 @@ class FundView: UIView, ConfigurableView {
             customRiskView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             customRiskView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             
-            customRiskView.heightAnchor.constraint(equalToConstant: 10)
+            customRiskView.heightAnchor.constraint(equalToConstant: 10),
+            
+            infoTitle.topAnchor.constraint(equalTo: customRiskView.bottomAnchor, constant: 30),
+            infoTitle.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
+            
+            tableView.topAnchor.constraint(equalTo: infoTitle.bottomAnchor, constant: 20),
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
             ])
+        
     }
 }

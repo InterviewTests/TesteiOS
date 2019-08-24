@@ -15,8 +15,17 @@ class FundController: UIViewController, ConfigurableController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupTableView()
         bindViewModel()
         navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    fileprivate func setupTableView() {
+        if let fundView = self.usedView as? FundView {
+            fundView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
+            fundView.tableView.delegate = self
+            fundView.tableView.dataSource = self
+        }
     }
     
     fileprivate func bindViewModel() {
@@ -24,5 +33,21 @@ class FundController: UIViewController, ConfigurableController {
             self.fundViewModel.fund = fund
             if let fundView = self.usedView as? FundView {fundView.fundViewModel = self.fundViewModel}
         })
+    }
+}
+
+extension FundController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 9
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell?
+        if let fundView = self.usedView as? FundView {
+            cell = fundView.tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        } else {cell = UITableViewCell()}
+        cell?.backgroundColor = .yellow
+        
+        return cell ?? UITableViewCell()
     }
 }

@@ -13,7 +13,7 @@ struct FundViewModel {
     
     init() {}
     
-    func fetchFund(completion: @escaping (Fund) -> Void) {
+    mutating func fetchFund(completion: @escaping (Fund) -> Void) {
         var this = self
         FundService.getFund(completion: ({ (result) in
             switch result {
