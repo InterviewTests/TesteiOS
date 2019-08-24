@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="imageCell" id="ZJn-AR-0cR" customClass="ImageViewCell" customModule="TesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZJn-AR-0cR" id="KMC-eu-sl2">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zMb-1Q-x5W">
+                        <rect key="frame" x="24" y="5" width="327" height="38.5"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="zMb-1Q-x5W" firstAttribute="top" secondItem="KMC-eu-sl2" secondAttribute="top" constant="5" id="MYj-eJ-kjz"/>
+                    <constraint firstItem="zMb-1Q-x5W" firstAttribute="leading" secondItem="KMC-eu-sl2" secondAttribute="leading" constant="24" id="N2J-uj-JNY"/>
+                    <constraint firstAttribute="bottom" secondItem="zMb-1Q-x5W" secondAttribute="bottom" id="UHC-eh-Ow0"/>
+                    <constraint firstAttribute="trailing" secondItem="zMb-1Q-x5W" secondAttribute="trailing" constant="24" id="sO8-oD-2QZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cellImage" destination="zMb-1Q-x5W" id="XRN-ZA-Jne"/>
+                <outlet property="topConstraint" destination="MYj-eJ-kjz" id="rDL-En-wSC"/>
+            </connections>
+            <point key="canvasLocation" x="129" y="309"/>
+        </tableViewCell>
+    </objects>
+</document>

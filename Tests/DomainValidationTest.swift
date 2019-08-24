@@ -39,6 +39,7 @@ class DomainValidationTest: XCTestCase {
             ("0", false),
             ("a", false),
             ("aaaaaa0000000", false),
+            ("", false),
             ("0000000000aaaa", false)
         ]
         
@@ -80,7 +81,8 @@ class DomainValidationTest: XCTestCase {
             ("m@aaaaaaa.com", true),
             ("@bbb.com.br", false),
             ("1@2.com", true),
-            ("a@b.com.", false)
+            ("a@b.com.", false),
+            ("", false)
         ]
         
         for (index, input) in inputList.enumerated() {

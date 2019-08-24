@@ -37,7 +37,6 @@ protocol FormViewPresenter: BasicPresenter {
 class FormViewPresenterImplementation: FormViewPresenter {
     
     private var disposeBag = DisposeBag()
-    //    private let listName = "main"
     private var list = [FormCell]()
     private var apiUseCase: ApiUseCase!
     private var isWaitingServer = false
@@ -74,6 +73,8 @@ class FormViewPresenterImplementation: FormViewPresenter {
     func setRowUserInput(_ input: Any, at row: Int) {
         guard row >= 0 else { return }
         guard row < list.count else { return }
+        var input: Any? = input
+        if input as? String == "" { input = nil }
         list[row].input = input
     }
     
@@ -85,12 +86,15 @@ class FormViewPresenterImplementation: FormViewPresenter {
     
     // MARK: Validate All Form
     private func validateForm(_ form: [FormCell]) -> Bool {
-        for cell in form {
-            guard (cell.cellType != .field) || (!cell.required) || (cell.required && (cell.input != nil)) else {
+        // The only cells that require validation are field and checkbox cells
+        let cells = form.filter({ return $0.cellType == .field || $0.cellType == .checkbox })
+        for cell in cells {
+            if cell.required &&
+               ((cell.input == nil) || ((cell.input as? Bool) == false) || ((cell.input as? String) == "")) {
                 self.view?.showError(ViewError.formIncomplete(cell.message))
                 return false
             }
-            if let text = cell.input as? String {
+            if cell.cellType == .field, let text = cell.input as? String {
                 if !(cell.fieldType.isValid(text)) {
                     self.view?.showError(ViewError.formInvalid(cell.message))
                     return false

@@ -102,4 +102,11 @@ class ThemeManager {
         MDCTabBar.appearance().tintColor = UIColor.cyan
         
     }
+    
+    static func applyNavBarStyle(_ navBar: UINavigationBar?){
+        guard let navBar = navBar else { return }
+        navBar.setBackgroundImage(UIImage(), for: .default)
+        navBar.shadowImage = UIImage()
+        navBar.isTranslucent = true
+    }
 }

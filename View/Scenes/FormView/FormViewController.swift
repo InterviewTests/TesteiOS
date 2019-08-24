@@ -19,6 +19,16 @@ class FormViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 50
         
+        // NavBar styling
+        ThemeManager.applyNavBarStyle(self.navigationController?.navigationBar)
+        
+        // Register cells
+        tableView.register(UINib(nibName: "ButtonViewCell", bundle: nil), forCellReuseIdentifier: "buttonCell")
+        tableView.register(UINib(nibName: "CheckBoxViewCell", bundle: nil), forCellReuseIdentifier: "checkboxCell")
+        tableView.register(UINib(nibName: "FieldViewCell", bundle: nil), forCellReuseIdentifier: "fieldCell")
+        tableView.register(UINib(nibName: "ImageViewCell", bundle: nil), forCellReuseIdentifier: "imageCell")
+        tableView.register(UINib(nibName: "TextViewCell", bundle: nil), forCellReuseIdentifier: "textCell")
+        
         presenter.viewDidLoad()
     }
     
@@ -50,9 +60,16 @@ class FormViewController: UITableViewController {
     }
     
     // MARK: unwind Segue
-    @IBAction func unwindToFormViewController(segue:UIStoryboardSegue) {
+    @IBAction func unwindToFormViewController(segue: UIStoryboardSegue) {
         presenter.clearUserInput()
         refresh()
+    }
+    
+    // Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toFormSentSuccessfully" {
+            segue.destination.navigationController?.setNavigationBarHidden(false, animated: false)
+        }
     }
     
 }

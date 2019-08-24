@@ -30,6 +30,12 @@ extension SwinjectStoryboard {
             let apiUseCase = r.resolve(ApiUseCase.self)!
             c.presenter = FormViewPresenterImplementation(view: c, apiUseCase: apiUseCase)
         }
+        defaultContainer.storyboardInitCompleted(FundViewController.self) { (r, c) in
+            let apiUseCase = r.resolve(ApiUseCase.self)!
+            c.presenter = FundViewPresenterImplementation(view: c, apiUseCase: apiUseCase)
+        }
+        defaultContainer.storyboardInitCompleted(MessageSentViewController.self) { (r, c) in }
+        defaultContainer.storyboardInitCompleted(SafariViewController.self) { (r, c) in }
         defaultContainer.storyboardInitCompleted(MainTabViewController.self) { (r, c) in }
         defaultContainer.storyboardInitCompleted(UIViewController.self) { (r, c) in }
         defaultContainer.storyboardInitCompleted(UINavigationController.self) { (r, c) in }

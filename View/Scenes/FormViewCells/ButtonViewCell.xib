@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="buttonCell" rowHeight="52" id="Hun-Gn-U89" userLabel="ButtonViewCell" customClass="ButtonViewCell" customModule="TesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hun-Gn-U89" id="LTJ-3b-hXr">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udV-bs-2dh" customClass="MDCRaisedButton">
+                        <rect key="frame" x="16" y="5.5" width="343" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="p3E-tK-SAF"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="buttonPressed:" destination="Hun-Gn-U89" eventType="touchUpInside" id="WGh-td-D2W"/>
+                        </connections>
+                    </button>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="OYD-RL-jDm">
+                        <rect key="frame" x="169" y="11" width="37" height="37"/>
+                    </activityIndicatorView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="udV-bs-2dh" secondAttribute="bottom" id="3eL-M9-YSa"/>
+                    <constraint firstItem="udV-bs-2dh" firstAttribute="top" secondItem="LTJ-3b-hXr" secondAttribute="top" constant="5" id="B3Q-Q6-zLY"/>
+                    <constraint firstItem="OYD-RL-jDm" firstAttribute="centerX" secondItem="udV-bs-2dh" secondAttribute="centerX" id="VE3-Wo-eg3"/>
+                    <constraint firstItem="OYD-RL-jDm" firstAttribute="centerY" secondItem="udV-bs-2dh" secondAttribute="centerY" id="chF-wd-kgi"/>
+                    <constraint firstAttribute="trailing" secondItem="udV-bs-2dh" secondAttribute="trailing" constant="16" id="o6H-1g-CDL"/>
+                    <constraint firstItem="udV-bs-2dh" firstAttribute="leading" secondItem="LTJ-3b-hXr" secondAttribute="leading" constant="16" id="yuI-W3-R1M"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="activityIndicator" destination="OYD-RL-jDm" id="q7k-Bs-upz"/>
+                <outlet property="button" destination="udV-bs-2dh" id="aTu-Fs-cWo"/>
+                <outlet property="topConstraint" destination="B3Q-Q6-zLY" id="bwx-ei-Mia"/>
+            </connections>
+            <point key="canvasLocation" x="54" y="24"/>
+        </tableViewCell>
+    </objects>
+</document>

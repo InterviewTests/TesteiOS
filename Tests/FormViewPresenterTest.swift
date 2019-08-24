@@ -281,15 +281,15 @@ class FormViewPresenterTest: XCTestCase {
         
         // Then
         XCTAssertNotNil(mockCell.delegate, "mockCell.delegate")
-        XCTAssertNotNil(view.errorShowed, "view.errorShowed")
-        XCTAssertFalse(apiUseCase.sendFormCalled, "apiUseCase.sendFormCalled")
+        // As the field is not required, currently all inputs are valid
+        XCTAssertNil(view.errorShowed, "view.errorShowed")
+        XCTAssertTrue(apiUseCase.sendFormCalled, "apiUseCase.sendFormCalled")
     }
     
-    
-    func test_validateForm_incompleteForm() {
+    func test_validateForm_invalidInput_nil() {
         // Given
         apiUseCase.formCellList = [
-            try! FormCell(id: 17334, cellType: CellType.field.rawValue, fieldType: String(FieldType.email.rawValue), message: "Message2", topSpacing: 2, show: 1, hidden: true, required: true)
+            try! FormCell(id: 17334, cellType: CellType.field.rawValue, fieldType: String(FieldType.text.rawValue), message: "Message2", topSpacing: 2, show: 1, hidden: true, required: false)
         ]
         apiUseCase.forceError = false
         apiUseCase.sendFormCalled = false
@@ -298,12 +298,61 @@ class FormViewPresenterTest: XCTestCase {
         presenter.viewDidLoad()
         let mockCell = FormViewCellMock()
         presenter.configure(cell: mockCell, at: 0)
-        
         mockCell.delegate?.sendButtonPressed()
         
         // Then
         XCTAssertNotNil(mockCell.delegate, "mockCell.delegate")
-        XCTAssertNotNil(view.errorShowed, "view.errorShowed")
-        XCTAssertFalse(apiUseCase.sendFormCalled, "apiUseCase.sendFormCalled")
+        XCTAssertNil(view.errorShowed, "view.errorShowed")
+        XCTAssertTrue(apiUseCase.sendFormCalled, "apiUseCase.sendFormCalled")
+    }
+    
+    
+    func test_validateForm_incompleteForm_notRequired() {
+        let cellTypesToCheck = [
+            try! FormCell(id: 1, cellType: CellType.field.rawValue, fieldType: String(FieldType.email.rawValue), message: "Message2", topSpacing: 2, show: 1, hidden: true, required: false),
+            try! FormCell(id: 2, cellType: CellType.checkbox.rawValue, fieldType: String(FieldType.email.rawValue), message: "Message2", topSpacing: 2, show: 1, hidden: true, required: false)
+        ]
+        for cell in cellTypesToCheck {
+            // Given
+            apiUseCase.formCellList = [cell]
+            apiUseCase.forceError = false
+            apiUseCase.sendFormCalled = false
+            
+            // When
+            presenter.viewDidLoad()
+            let mockCell = FormViewCellMock()
+            presenter.configure(cell: mockCell, at: 0)
+            
+            mockCell.delegate?.sendButtonPressed()
+            
+            // Then
+            XCTAssertNotNil(mockCell.delegate, "mockCell.delegate in cell \(cell.id)")
+            XCTAssertNil(view.errorShowed, "view.errorShowed in cell \(cell.id)")
+            XCTAssertTrue(apiUseCase.sendFormCalled, "apiUseCase.sendFormCalled in cell \(cell.id)")
+        }
+    }
+    
+    func test_validateForm_incompleteForm_required() {
+        let cellTypesToCheck = [
+            try! FormCell(id: 1, cellType: CellType.field.rawValue, fieldType: String(FieldType.email.rawValue), message: "Message1", topSpacing: 2, show: 1, hidden: false, required: true),
+            try! FormCell(id: 2, cellType: CellType.checkbox.rawValue, fieldType: "", message: "Message2", topSpacing: 2, show: 1, hidden: false, required: true)
+        ]
+        for cell in cellTypesToCheck {
+            // Given
+            apiUseCase.formCellList = [cell]
+            apiUseCase.forceError = false
+            apiUseCase.sendFormCalled = false
+            
+            // When
+            presenter.viewDidLoad()
+            let mockCell = FormViewCellMock()
+            presenter.configure(cell: mockCell, at: 0)
+            mockCell.delegate?.sendButtonPressed()
+            
+            // Then
+            XCTAssertNotNil(mockCell.delegate, "mockCell.delegate in cell \(cell.id)")
+            XCTAssertNotNil(view.errorShowed, "view.errorShowed in cell \(cell.id)")
+            XCTAssertFalse(apiUseCase.sendFormCalled, "apiUseCase.sendFormCalled in cell \(cell.id)")
+        }
     }
 }

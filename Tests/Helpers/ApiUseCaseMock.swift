@@ -30,7 +30,7 @@ extension Domain.FormCell {
 class ApiUseCaseMock: Domain.ApiUseCase {
     
     var apiDelay: Bool = true
-    var formCellList = Domain.FormCell.newList(count: 5)
+    var formCellList = Domain.FormCell.newList(count:5)
     var fund = Domain.Fund(
         id: "1",
         title: "title title title title",
