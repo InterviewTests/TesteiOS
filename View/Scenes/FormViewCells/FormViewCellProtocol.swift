@@ -9,6 +9,6 @@
 import Foundation
 import Domain
 
-protocol FundViewCell {
-    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, enabled: Bool, hidden: Bool, topSpacing: Double)
+protocol FormViewCell {
+    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, enabled: Bool, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?)
 }

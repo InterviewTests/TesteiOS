@@ -16,10 +16,6 @@ protocol FormViewCellDelegate: class {
     func saveUserInput(_ text: Any, id: Int)
 }
 
-protocol FormViewCell {
-    func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, enabled: Bool, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?)
-}
-
 protocol FormView: BasicView {
     func refresh()
     func goToFormSentSuccesfullyPage()

@@ -32,6 +32,7 @@ class FormViewController: UITableViewController {
         presenter.viewDidLoad()
     }
     
+    // MARK: TableView
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.getRowCount()
     }
