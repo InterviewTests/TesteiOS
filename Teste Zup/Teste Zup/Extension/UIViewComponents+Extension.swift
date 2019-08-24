@@ -19,6 +19,7 @@ extension UILabel {
 
 enum StyleView {
     case separatorStyle
+    case shareButton
 }
 
 extension UIView {
@@ -27,9 +28,13 @@ extension UIView {
         
         switch style {
         case .separatorStyle:
-            self.backgroundColor = .black
             self.translatesAutoresizingMaskIntoConstraints = false
-            self.alpha = 0.2
+            let image = UIImageView(image: UIImage(named: "separator_inline"))
+            self.addSubview(image)
+            image.fillSuperview()
+            image.contentMode = .scaleAspectFill
+        default:
+            print("")
         }
     }
     
@@ -39,5 +44,20 @@ extension UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.layer.cornerRadius = 0
         self.backgroundColor = viewColor
+    }
+}
+
+
+extension UIBarButtonItem {
+    convenience init(styleGuide: StyleView) {
+        self.init()
+        switch styleGuide {
+        case .shareButton:
+            self.image = UIImage(named: "share")
+            self.tintColor = .red
+        default:
+            print("")
+        }
+        
     }
 }

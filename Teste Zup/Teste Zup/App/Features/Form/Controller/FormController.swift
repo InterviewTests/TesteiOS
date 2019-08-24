@@ -8,22 +8,20 @@
 
 import UIKit
 
-class FormController: UIViewController  {
+class FormController: UIViewController, ConfigurableController  {
+    
+    var usedView: UIView = FormView()
+    var formViewModel = FormViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
-        
-        FormService.getForm { (result) in
-            switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let form):
-                print(form)
-            }
-        }
-        
-        
+        setupView()
+        bindViewModel()
     }
     
+    fileprivate func bindViewModel() {
+        formViewModel.fetchForm { (form) in
+            self.formViewModel.form = form
+        }
+    }
 }

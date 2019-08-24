@@ -10,8 +10,15 @@ import UIKit
 
 class FormView: UIView, ConfigurableView {
     
+    var formViewModel: FormViewModel? {
+        didSet {
+        }
+    }
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .red
         buildViewHierarchy()
         setupConstraints()
     }

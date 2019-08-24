@@ -11,12 +11,16 @@ import UIKit
 class CustomRiskView: UIView, ConfigurableView {
     
     lazy var firstRisk = UIView(viewColor: .init(red: 0, green: 10, blue: 0, alpha: 0.3))
-    
     lazy var secondRisk = UIView(viewColor: .green)
     lazy var thridRisk = UIView(viewColor: .yellow)
     lazy var fourthRisk = UIView(viewColor: .orange)
     lazy var fithRisk = UIView(viewColor: .red)
     
+    lazy var selector: UIImageView = {
+        let image = UIImageView(image: UIImage(named: "selector"))
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,14 +64,6 @@ class CustomRiskView: UIView, ConfigurableView {
             fithRisk.topAnchor.constraint(equalTo: topAnchor),
             fithRisk.bottomAnchor.constraint(equalTo: bottomAnchor),
             fithRisk.trailingAnchor.constraint(equalTo: fourthRisk.trailingAnchor, constant: 70)
-            
-            
-            
-            
-            
-            
-            
-            
             ])
     }
 }

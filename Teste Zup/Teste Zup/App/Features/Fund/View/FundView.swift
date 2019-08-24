@@ -39,6 +39,7 @@ class FundView: UIView, ConfigurableView {
         label.textColor = .lightGray
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 3
+        label.textAlignment = .center
         return label
     }()
     
@@ -81,7 +82,7 @@ class FundView: UIView, ConfigurableView {
             separatorLine.topAnchor.constraint(equalTo: fundName.bottomAnchor, constant: 10),
             separatorLine.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             separatorLine.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            separatorLine.heightAnchor.constraint(equalToConstant: 1),
+            separatorLine.heightAnchor.constraint(equalToConstant: 5),
             
             
             whatIs.topAnchor.constraint(equalTo: separatorLine.bottomAnchor, constant: 10),

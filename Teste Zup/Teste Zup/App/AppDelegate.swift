@@ -18,12 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKey()
-        let fundController = FundController()
-        fundController.navigationItem.title = "Investimento"
-        window?.rootViewController = UINavigationController(rootViewController: fundController)
-        
-        
-        
+        window?.rootViewController = CustomTabBarController()
         return true
     }
 

@@ -18,6 +18,8 @@ class FundController: UIViewController, ConfigurableController {
         setupTableView()
         bindViewModel()
         navigationController?.navigationBar.shadowImage = UIImage()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(styleGuide: .shareButton)
+        
     }
     
     fileprivate func setupTableView() {
@@ -46,8 +48,6 @@ extension FundController: UITableViewDelegate, UITableViewDataSource {
         if let fundView = self.usedView as? FundView {
             cell = fundView.tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
         } else {cell = UITableViewCell()}
-        cell?.backgroundColor = .yellow
-        
         return cell ?? UITableViewCell()
     }
 }
