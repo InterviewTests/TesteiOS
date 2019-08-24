@@ -18,7 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKey()
-        window?.rootViewController = FundController()
+        let fundController = FundController()
+        fundController.navigationItem.title = "Investimento"
+        window?.rootViewController = UINavigationController(rootViewController: fundController)
+        
         
         
         return true

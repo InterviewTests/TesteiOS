@@ -16,6 +16,7 @@ class FundController: UIViewController, ConfigurableController {
         super.viewDidLoad()
         setupView()
         bindViewModel()
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     fileprivate func bindViewModel() {
