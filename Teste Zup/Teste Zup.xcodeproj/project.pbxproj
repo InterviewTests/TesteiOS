@@ -15,7 +15,7 @@
 		790D4A7A230EA27300D46449 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D4A79230EA27300D46449 /* Service.swift */; };
 		790D4A7D230EA3C600D46449 /* DecodableName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D4A7C230EA3C600D46449 /* DecodableName+Extension.swift */; };
 		790D4A86230EB4B000D46449 /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D4A85230EB4B000D46449 /* FormController.swift */; };
-		790D4A89230EB60100D46449 /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D4A88230EB60100D46449 /* FormView.swift */; };
+		790D4A89230EB60100D46449 /* FormViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D4A88230EB60100D46449 /* FormViewCell.swift */; };
 		790D4A8C230EB64F00D46449 /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D4A8B230EB64F00D46449 /* ConfigurableView.swift */; };
 		790D4A8E230EB73500D46449 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D4A8D230EB73500D46449 /* UIView+Extension.swift */; };
 		790D4A90230EB89000D46449 /* FormFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D4A8F230EB89000D46449 /* FormFormat.swift */; };
@@ -33,6 +33,7 @@
 		79E562B72311A76B00866ACE /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E562B62311A76B00866ACE /* AppCoordinator.swift */; };
 		79E562B92311A96000866ACE /* FundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E562B82311A96000866ACE /* FundTableViewCell.swift */; };
 		79E562BC2311DCFB00866ACE /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E562BB2311DCFB00866ACE /* FormViewModel.swift */; };
+		79E562BE2311FC9700866ACE /* SantanderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E562BD2311FC9700866ACE /* SantanderButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +59,7 @@
 		790D4A79230EA27300D46449 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		790D4A7C230EA3C600D46449 /* DecodableName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecodableName+Extension.swift"; sourceTree = "<group>"; };
 		790D4A85230EB4B000D46449 /* FormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormController.swift; sourceTree = "<group>"; };
-		790D4A88230EB60100D46449 /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
+		790D4A88230EB60100D46449 /* FormViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewCell.swift; sourceTree = "<group>"; };
 		790D4A8B230EB64F00D46449 /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
 		790D4A8D230EB73500D46449 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		790D4A8F230EB89000D46449 /* FormFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFormat.swift; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 		79E562B62311A76B00866ACE /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		79E562B82311A96000866ACE /* FundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundTableViewCell.swift; sourceTree = "<group>"; };
 		79E562BB2311DCFB00866ACE /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
+		79E562BD2311FC9700866ACE /* SantanderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantanderButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				79E562B3231193A000866ACE /* AppCoordinator */,
 				790D4A82230EAED000D46449 /* Features */,
 				790D4A58230EA12900D46449 /* AppDelegate.swift */,
+				79E562BD2311FC9700866ACE /* SantanderButton.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -217,7 +220,7 @@
 		790D4A87230EB5F100D46449 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				790D4A88230EB60100D46449 /* FormView.swift */,
+				790D4A88230EB60100D46449 /* FormViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -389,11 +392,12 @@
 				790D4A92230EB9DE00D46449 /* FormService.swift in Sources */,
 				79E562B5231193F300866ACE /* CustomTabBarController.swift in Sources */,
 				790D4A90230EB89000D46449 /* FormFormat.swift in Sources */,
+				79E562BE2311FC9700866ACE /* SantanderButton.swift in Sources */,
 				790D4A7D230EA3C600D46449 /* DecodableName+Extension.swift in Sources */,
 				790D4A8E230EB73500D46449 /* UIView+Extension.swift in Sources */,
 				790D4A59230EA12900D46449 /* AppDelegate.swift in Sources */,
 				79E562B223116F7400866ACE /* CustomRiskView.swift in Sources */,
-				790D4A89230EB60100D46449 /* FormView.swift in Sources */,
+				790D4A89230EB60100D46449 /* FormViewCell.swift in Sources */,
 				79E562AE23108EB800866ACE /* FundViewModel.swift in Sources */,
 				790D4A94230EBA7800D46449 /* EndPoints.swift in Sources */,
 				79E562B92311A96000866ACE /* FundTableViewCell.swift in Sources */,
