@@ -10,6 +10,10 @@ import Foundation
 import Domain
 import RxSwift
 
+protocol FundCell {
+    func configure(title: String, fundName: String, whatIs: String, definition: String, riskTitle: String, infoTitle: String, riskIndex: Int)
+}
+
 protocol FundView: BasicView {
     func refresh()
     func goToFundDetails()
@@ -17,11 +21,12 @@ protocol FundView: BasicView {
 
 protocol FundViewPresenter: BasicPresenter {
     func getRowCount() -> Int
-    func configure(cell: FundViewCell, at row: Int)
+    func configure(cell: FundCell)
     
 }
 
 class FundViewPresenterImplementation: FundViewPresenter {
+    
     
     private var disposeBag = DisposeBag()
     private var fund: Fund? = nil
@@ -36,7 +41,7 @@ class FundViewPresenterImplementation: FundViewPresenter {
     }
     
     func viewDidLoad() {
-        
+        getFundInfo()
     }
 
     // MARK: Presenter functions
@@ -45,10 +50,20 @@ class FundViewPresenterImplementation: FundViewPresenter {
         return 1 + fund.downInfo.count + fund.info.count
     }
     
-    func configure(cell: FundViewCell, at row: Int) {
-//        guard row >= 0 else { return }
-//        guard row < list.count else { return }
-        
+    func configure(cell: FundCell) {
+        guard let fund = fund else { return }
+        cell.configure(title: fund.title, fundName: fund.fundName, whatIs: fund.whatIs, definition: fund.definition, riskTitle: fund.riskTitle, infoTitle: fund.infoTitle, riskIndex: fund.risk)
     }
 
+    // MARK: Use Case
+    private func getFundInfo() {
+        apiUseCase.getFundInfo()
+            .subscribe(onNext: { [weak self] result in
+                self?.fund = result
+                self?.view?.refresh()
+                }, onError: { [weak self] error in
+                    self?.view?.showError(error)
+            })
+            .disposed(by: disposeBag)
+    }
 }

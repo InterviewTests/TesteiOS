@@ -15,12 +15,21 @@ protocol AppTheme {
     var primaryColor: UIColor { get }
     var primaryColorDarker: UIColor { get }
     
-    var textColor: UIColor { get }
+    var tabTextColor: UIColor { get }
     var tabTextFont: UIFont { get }
     
     var fieldNeutralColor: UIColor { get }
     var fieldValidColor: UIColor { get }
     var fieldInvalidColor: UIColor { get }
+    
+    var fundRisk1Color: UIColor { get }
+    var fundRisk2Color: UIColor { get }
+    var fundRisk3Color: UIColor { get }
+    var fundRisk4Color: UIColor { get }
+    var fundRisk5Color: UIColor { get }
+    
+    var primaryTextColor: UIColor { get }
+    var secondaryTextColor: UIColor { get }
     
     var textFieldType: MDCTextInputController.Type { get }
 }
@@ -31,12 +40,21 @@ fileprivate struct DefaultTheme: AppTheme {
     
     var primaryColor       = UIColor(red: 218 / 255.0, green: 1 / 255.0, blue: 1 / 255.0, alpha: 1)
     var primaryColorDarker = UIColor(red: 200 / 255.0, green: 4 / 255.0, blue: 4 / 255.0, alpha: 1)
-    var textColor          = UIColor.white
+    var tabTextColor       = UIColor.white
     var tabTextFont        = UIFont(name: "DINPro-Bold", size: 12) ?? UIFont.boldSystemFont(ofSize: 12)
     
     var fieldNeutralColor  = UIColor(red: 172 / 255.0, green: 172 / 255.0, blue: 172 / 255.0, alpha: 1)
     var fieldValidColor    = UIColor(red: 101 / 255.0, green: 190 / 255.0, blue: 48 / 255.0, alpha: 1)
     var fieldInvalidColor  = UIColor(red: 255 / 255.0, green: 31 / 255.0, blue: 31 / 255.0, alpha: 1)
+    
+    var fundRisk1Color  = UIColor(red: 116 / 255.0, green: 218 / 255.0, blue: 97 / 255.0, alpha: 1)
+    var fundRisk2Color  = UIColor(red: 74 / 255.0, green: 193 / 255.0, blue: 108 / 255.0, alpha: 1)
+    var fundRisk3Color  = UIColor(red: 255 / 255.0, green: 192 / 255.0, blue: 17 / 255.0, alpha: 1)
+    var fundRisk4Color  = UIColor(red: 255 / 255.0, green: 116 / 255.0, blue: 44 / 255.0, alpha: 1)
+    var fundRisk5Color  = UIColor(red: 254 / 255.0, green: 54 / 255.0, blue: 52 / 255.0, alpha: 1)
+    
+    var primaryTextColor = UIColor.gray
+    var secondaryTextColor = UIColor.lightGray
     
     var textFieldType: MDCTextInputController.Type = MDCTextInputControllerUnderline.self
 }
@@ -82,9 +100,9 @@ class ThemeManager {
         // MARK: Button
         let buttonColorScheme = MDCSemanticColorScheme()
         buttonColorScheme.primaryColor = theme.primaryColor
-        buttonColorScheme.onPrimaryColor = theme.textColor
+        buttonColorScheme.onPrimaryColor = theme.tabTextColor
         buttonColorScheme.surfaceColor = theme.primaryColor
-        buttonColorScheme.onBackgroundColor = theme.textColor
+        buttonColorScheme.onBackgroundColor = theme.tabTextColor
         
         MDCButtonColorThemer.applySemanticColorScheme(buttonColorScheme, to: MDCButton.appearance())
         MDCButtonTypographyThemer.applyTypographyScheme(typographyScheme, to: MDCButton.appearance())
@@ -92,8 +110,8 @@ class ThemeManager {
         UIButton.appearance().tintColor = theme.primaryColor
         
         // MARK: TabBar
-        MDCTabBar.appearance().selectedItemTintColor = theme.textColor
-        MDCTabBar.appearance().unselectedItemTintColor = theme.textColor
+        MDCTabBar.appearance().selectedItemTintColor = theme.tabTextColor
+        MDCTabBar.appearance().unselectedItemTintColor = theme.tabTextColor
         MDCTabBar.appearance().selectedItemTitleFont = theme.tabTextFont
         MDCTabBar.appearance().unselectedItemTitleFont = theme.tabTextFont
         MDCTabBar.appearance().inkColor = .clear
@@ -107,6 +125,6 @@ class ThemeManager {
         guard let navBar = navBar else { return }
         navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
-        navBar.isTranslucent = true
+        navBar.backgroundColor = .white
     }
 }
