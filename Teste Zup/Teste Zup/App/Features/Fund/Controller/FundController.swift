@@ -40,14 +40,20 @@ class FundController: UIViewController, ConfigurableController {
 
 extension FundController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return fundViewModel.countInfo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell?
+        let cell: FundTableViewCell?
         if let fundView = self.usedView as? FundView {
-            cell = fundView.tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
-        } else {cell = UITableViewCell()}
+            cell = fundView.tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as? FundTableViewCell
+        } else {cell = UITableViewCell() as? FundTableViewCell}
+        
+        fundViewModel.fetchFund { (fund) in
+            self.fundViewModel.fund = fund
+            cell?.fundViewModel?.row = indexPath.row
+            cell?.fundViewModel = self.fundViewModel
+        }
         return cell ?? UITableViewCell()
     }
 }

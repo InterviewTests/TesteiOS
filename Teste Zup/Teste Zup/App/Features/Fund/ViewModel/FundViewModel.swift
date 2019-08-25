@@ -10,6 +10,8 @@ import Foundation
 
 struct FundViewModel {
     var fund: Fund?
+    var countInfo: Int = 12
+    var row: Int = 0
     
     init() {}
     
@@ -21,6 +23,7 @@ struct FundViewModel {
                 print(error)
             case .success(let fundSucess):
                 this.fund = fundSucess
+                this.countInfo = fundSucess.screen.info.count + fundSucess.screen.downInfo.count
                 completion(fundSucess)
             }
         }))

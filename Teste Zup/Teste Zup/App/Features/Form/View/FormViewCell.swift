@@ -12,7 +12,6 @@ class FormViewCell: UITableViewCell, ConfigurableView {
     
     var formViewModel: FormViewModel? {
         didSet {
-            print(formViewModel?.presentationOutput ?? "Deu bode")
             self.textLabel?.text = formViewModel?.form?.cells?[formViewModel?.row ?? 1].message
         }
     }

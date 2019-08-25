@@ -21,7 +21,8 @@ struct Screen: Decodable {
     let risk: Int
     let infoTitle: String
     let moreInfo: MoreInfo
-    let info: Info
+    let info: [Info]
+    let downInfo: [DownInfo]
 }
 
 struct MoreInfo: Decodable {
@@ -34,6 +35,16 @@ struct Period: Decodable {
     let CDI: Double
 }
 
-struct Info: Decodable {
-    
+extension Screen {
+    struct Info: Decodable {
+        let name: String
+        let data: String
+    }
+    struct DownInfo: Decodable {
+        let name: String
+        let data: String?
+    }
 }
+
+
+
