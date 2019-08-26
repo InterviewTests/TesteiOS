@@ -11,23 +11,43 @@ import UIKit
 class FormViewCell: UITableViewCell, ConfigurableView {
     
     var formViewModel: FormViewModel? {
+        
         didSet {
-            self.textLabel?.text = formViewModel?.form?.cells?[formViewModel?.row ?? 1].message
+            print(formViewModel?.form?.cells?[formViewModel?.row ?? 1].type)
+            switch formViewModel?.form?.cells?[formViewModel?.row ?? 1].type {
+            case 1:
+                setupView(viewWillAdd: textField)
+                textField.placeholder = formViewModel?.form?.cells?[formViewModel?.row ?? 1].message
+            case 2:
+                setupView(viewWillAdd: titleLabel)
+                titleLabel.text = formViewModel?.form?.cells?[formViewModel?.row ?? 1].message
+            
+            case 5:
+                setupView(viewWillAdd: santanderButton)
+            default:
+                 print("Boa")
+            }
         }
     }
     
-    let fullName: UITextField = {
+    let textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = .black
+        textField.backgroundColor = .white
         return textField
+    }()
+    
+    let santanderButton = SantaderButton(title: "Enviar")
+    
+    let titleLabel = UILabel(textColor: .lightGray, font: UIFont(name: "Arial", size: 18))
+    
+    let checkboxImage: UIImageView = {
+        
     }()
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        buildViewHierarchy()
-        setupConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,14 +56,15 @@ class FormViewCell: UITableViewCell, ConfigurableView {
     
     
     func buildViewHierarchy() {
-        addSubviews([fullName])
+        addSubviews([santanderButton])
     }
     
     func setupConstraints() {
-        NSLayoutConstraint.activate([
-            
-            
-            ])
+        santanderButton.fillSuperview()
     }
     
+    func setupView(viewWillAdd: UIView) {
+        addSubviews([viewWillAdd])
+        viewWillAdd.fillSuperview()
+    }
 }

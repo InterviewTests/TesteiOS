@@ -9,6 +9,7 @@
 import UIKit
 
 class FundController: UIViewController, ConfigurableController {
+    
     var usedView: UIView = FundView()
     var fundViewModel = FundViewModel()
     
@@ -17,19 +18,7 @@ class FundController: UIViewController, ConfigurableController {
         setupView()
         setupTableView()
         bindViewModel()
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(styleGuide: .shareButton)
-        
     }
-    
-    fileprivate func setupTableView() {
-        if let fundView = self.usedView as? FundView {
-            fundView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
-            fundView.tableView.delegate = self
-            fundView.tableView.dataSource = self
-        }
-    }
-    
     fileprivate func bindViewModel() {
         fundViewModel.fetchFund(completion: { (fund) in
             self.fundViewModel.fund = fund
@@ -38,22 +27,3 @@ class FundController: UIViewController, ConfigurableController {
     }
 }
 
-extension FundController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fundViewModel.countInfo
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: FundTableViewCell?
-        if let fundView = self.usedView as? FundView {
-            cell = fundView.tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as? FundTableViewCell
-        } else {cell = UITableViewCell() as? FundTableViewCell}
-        
-        fundViewModel.fetchFund { (fund) in
-            self.fundViewModel.fund = fund
-            cell?.fundViewModel?.row = indexPath.row
-            cell?.fundViewModel = self.fundViewModel
-        }
-        return cell ?? UITableViewCell()
-    }
-}
