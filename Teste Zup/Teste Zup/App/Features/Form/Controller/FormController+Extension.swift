@@ -9,6 +9,14 @@
 import UIKit
 
 extension FormController {
+    
+    func setupTableView() {
+        tableView.tableFooterView = UIView()
+        tableView.register(FormViewCell.self, forCellReuseIdentifier: "cellId")
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = false
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.formViewModel.form?.cells?.count ?? 0
     }
@@ -19,7 +27,6 @@ extension FormController {
         cell.formViewModel = formViewModel
         return cell
     }
-    
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50

@@ -14,11 +14,8 @@ class FormController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
         bindViewModel()
-        tableView.tableFooterView = UIView()
-        tableView.register(FormViewCell.self, forCellReuseIdentifier: "cellId")
-        tableView.separatorStyle = .none
-        tableView.allowsSelection = false
     }
     
     fileprivate func bindViewModel() {

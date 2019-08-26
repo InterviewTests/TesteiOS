@@ -8,12 +8,11 @@
 
 import UIKit
 
-class FormViewCell: UITableViewCell, ConfigurableView {
+class FormViewCell: UITableViewCell {
     
     var formViewModel: FormViewModel? {
         
         didSet {
-            print(formViewModel?.form?.cells?[formViewModel?.row ?? 1].type)
             switch formViewModel?.form?.cells?[formViewModel?.row ?? 1].type {
             case 1:
                 setupView(viewWillAdd: textField)
@@ -21,11 +20,14 @@ class FormViewCell: UITableViewCell, ConfigurableView {
             case 2:
                 setupView(viewWillAdd: titleLabel)
                 titleLabel.text = formViewModel?.form?.cells?[formViewModel?.row ?? 1].message
-            
+            case 4:
+                setupView(viewWillAdd: checkBoxView)
+                checkBoxView.messageLabel.text = formViewModel?.form?.cells?[formViewModel?.row ?? 1].message
             case 5:
                 setupView(viewWillAdd: santanderButton)
+                santanderButton.setTitle(formViewModel?.form?.cells?[formViewModel?.row ?? 1].message, for: .normal)
             default:
-                 print("Boa")
+                 print("")
             }
         }
     }
@@ -37,14 +39,11 @@ class FormViewCell: UITableViewCell, ConfigurableView {
         return textField
     }()
     
-    let santanderButton = SantaderButton(title: "Enviar")
+    let santanderButton = SantaderButton(title: "")
     
     let titleLabel = UILabel(textColor: .lightGray, font: UIFont(name: "Arial", size: 18))
     
-    let checkboxImage: UIImageView = {
-        
-    }()
-    
+    let checkBoxView = CustomCheckBoxView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -52,15 +51,6 @@ class FormViewCell: UITableViewCell, ConfigurableView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    func buildViewHierarchy() {
-        addSubviews([santanderButton])
-    }
-    
-    func setupConstraints() {
-        santanderButton.fillSuperview()
     }
     
     func setupView(viewWillAdd: UIView) {
