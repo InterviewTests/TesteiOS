@@ -18,11 +18,11 @@ extension SwinjectStoryboard {
 //        app = XCUIApplication()
 //        app.launchArguments.append("TESTING")
 //        app.launch()
-//        if ProcessInfo.processInfo.arguments.contains("TESTING") {
-//            defaultContainer.register(Domain.ApiUseCase.self) { _ in ApiUseCaseMock() }
-//        } else {
+        if ProcessInfo.processInfo.arguments.contains("TESTING") {
+            defaultContainer.register(Domain.ApiUseCase.self) { _ in ApiUseCaseMock() }
+        } else {
             defaultContainer.register(Domain.ApiUseCase.self) { _ in Platform.UseCaseManager.getApiUseCase() }
-//        }
+        }
         
         
         // MARK: View Controllers
