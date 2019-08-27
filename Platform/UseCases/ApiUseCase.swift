@@ -104,7 +104,7 @@ final class ApiUseCaseImplementation: ApiUseCase {
                 guard let downInfoList = fund["downInfo"] as? [[String: Any?]] else { throw UseCaseError.invalidField("downInfo", fund) }
                 for downInfo in downInfoList {
                     guard let name = downInfo["name"] as? String else { throw UseCaseError.invalidAttribute("name", downInfo) }
-                    let data = (downInfo["data"] as? String) ?? ""
+                    let data = (downInfo["data"] as? String) ?? "Baixar"
                     fundDownInfo.append(FundInfo(name: name, data: data))
                 }
                 
