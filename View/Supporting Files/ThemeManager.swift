@@ -22,6 +22,9 @@ protocol AppTheme {
     var fieldValidColor: UIColor { get }
     var fieldInvalidColor: UIColor { get }
     
+    var formFieldTextColor: UIColor { get }
+    var formFieldFont: UIFont { get }
+    
     var fundRisk1Color: UIColor { get }
     var fundRisk2Color: UIColor { get }
     var fundRisk3Color: UIColor { get }
@@ -60,6 +63,9 @@ fileprivate struct DefaultTheme: AppTheme {
     var fundPrimaryFont = UIFont(name: "DINPro-Medium", size: 16) ?? UIFont.boldSystemFont(ofSize: 16)
     var fundInfoFont = UIFont(name: "DINMittelschriftStd", size: 15) ?? UIFont.systemFont(ofSize: 15)
     
+    var formFieldFont = UIFont(name: "DINPro-Medium", size: 15) ?? UIFont.systemFont(ofSize: 15)
+    var formFieldTextColor = UIColor.lightGray
+    
     var textFieldType: MDCTextInputController.Type = MDCTextInputControllerUnderline.self
 }
 
@@ -79,18 +85,18 @@ class ThemeManager {
         
         let typographyScheme = MDCTypographyScheme()
         typographyScheme.button = theme.fundInfoFont
-        typographyScheme.caption = theme.tabTextFont
-        typographyScheme.body1 = theme.tabTextFont
-        typographyScheme.body2 = theme.tabTextFont
-        typographyScheme.headline1 = theme.tabTextFont
-        typographyScheme.headline2 = theme.tabTextFont
-        typographyScheme.headline3 = theme.tabTextFont
-        typographyScheme.headline4 = theme.tabTextFont
-        typographyScheme.headline5 = theme.tabTextFont
-        typographyScheme.headline6 = theme.tabTextFont
-        typographyScheme.overline = theme.tabTextFont
-        typographyScheme.subtitle1 = theme.tabTextFont
-        typographyScheme.subtitle1 = theme.tabTextFont
+        typographyScheme.caption = theme.formFieldFont
+        typographyScheme.body1 = theme.formFieldFont
+        typographyScheme.body2 = theme.formFieldFont
+        typographyScheme.headline1 = theme.formFieldFont
+        typographyScheme.headline2 = theme.formFieldFont
+        typographyScheme.headline3 = theme.formFieldFont
+        typographyScheme.headline4 = theme.formFieldFont
+        typographyScheme.headline5 = theme.formFieldFont
+        typographyScheme.headline6 = theme.formFieldFont
+        typographyScheme.overline = theme.formFieldFont
+        typographyScheme.subtitle1 = theme.formFieldFont
+        typographyScheme.subtitle1 = theme.formFieldFont
         
         
         // MARK: Field

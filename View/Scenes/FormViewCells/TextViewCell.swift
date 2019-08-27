@@ -21,6 +21,11 @@ class TextViewCell: UITableViewCell, FormViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        // theming
+        let theme = ThemeManager.current()
+        label.font = theme.formFieldFont
+        label.textColor = theme.formFieldTextColor
     }
     
     func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, enabled: Bool, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?) {

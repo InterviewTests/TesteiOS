@@ -117,16 +117,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FNZ-9M-PMb">
-                                <rect key="frame" x="82.5" y="203.5" width="210.5" height="80.5"/>
+                                <rect key="frame" x="82.5" y="204.5" width="210.5" height="78"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKn-WQ-awf">
-                                        <rect key="frame" x="0.0" y="0.0" width="210.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="210.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcX-fs-5cP">
-                                        <rect key="frame" x="0.0" y="20.5" width="210.5" height="60"/>
+                                        <rect key="frame" x="0.0" y="18" width="210.5" height="60"/>
                                         <string key="text">Mensagem enviada
 com sucesso :)</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -154,6 +154,11 @@ com sucesso :)</string>
                         <viewLayoutGuide key="safeArea" id="Sue-O5-LcD"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="messageSentLabel" destination="xcX-fs-5cP" id="a8W-4K-yPp"/>
+                        <outlet property="sendNewMessageButton" destination="sCY-bc-f0N" id="dzR-1q-vcW"/>
+                        <outlet property="thankyouLabel" destination="nKn-WQ-awf" id="DRg-Jg-edU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88l-1i-Rrs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="EeG-gc-j6S" userLabel="Exit" sceneMemberID="exit"/>

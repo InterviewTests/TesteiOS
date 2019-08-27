@@ -30,6 +30,11 @@ class CheckBoxViewCell: UITableViewCell, FormViewCell {
         outCheckView.layer.cornerRadius = outCheckView.frame.height / 7.5
         inCheckView.layer.cornerRadius = inCheckView.frame.height / 7.5
         checkButton.layer.cornerRadius = checkButton.frame.height / 7.5
+        
+        // theming
+        let theme = ThemeManager.current()
+        label.font = theme.formFieldFont
+        label.textColor = theme.formFieldTextColor
     }
     
     func configure(id: Int, message: String, fieldType: FieldType, userInput: Any?, enabled: Bool, hidden: Bool, topSpacing: Double, delegate: FormViewCellDelegate?) {

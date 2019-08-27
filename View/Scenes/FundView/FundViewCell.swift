@@ -66,7 +66,7 @@ class FundViewCell: UITableViewCell, FundCell {
         infotitleLabel.textColor = theme.fundPrimaryTextColor
         
         fundTitleLabel.font = theme.fundPrimaryFont.withSize(fundTitleLabel.font.pointSize)
-        fundNameLabel.font = theme.fundPrimaryFont.withSize(fundNameLabel.font.pointSize)
+        fundNameLabel.font = theme.fundPrimaryFont.withSize(28)
         whatisLabel.font = theme.fundPrimaryFont
         definitionLabel.font = theme.fundPrimaryFont
         risktitleLabel.font = theme.fundPrimaryFont
