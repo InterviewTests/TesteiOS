@@ -30,6 +30,8 @@ class ButtonViewCell: UITableViewCell, FormViewCell {
         button.layer.cornerRadius = button.frame.height / 2
         button.layer.masksToBounds = true
         
+        button.isUppercaseTitle = false
+        
         buttonDelegate = nil
     }
     

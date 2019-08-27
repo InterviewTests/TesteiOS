@@ -21,6 +21,9 @@ class FundInfoViewCell: UITableViewCell, FundInfoCell {
         let theme = ThemeManager.current()
         titleLabel.textColor = theme.fundSecondaryTextColor
         dataLabel.textColor = theme.fundPrimaryTextColor
+        
+        titleLabel.font = theme.fundInfoFont
+        dataLabel.font = theme.fundInfoFont
     }
     
     func configure(title: String, text: String) {

@@ -18,6 +18,7 @@ class FundViewCell: UITableViewCell, FundCell {
     @IBOutlet var definitionLabel: UILabel!
     @IBOutlet var risktitleLabel: UILabel!
     @IBOutlet var infotitleLabel: UILabel!
+    @IBOutlet var infoStackView: UIStackView!
     
     @IBOutlet var risk1View: UIView!
     @IBOutlet var risk2View: UIView!
@@ -63,9 +64,18 @@ class FundViewCell: UITableViewCell, FundCell {
         definitionLabel.textColor = theme.fundSecondaryTextColor
         risktitleLabel.textColor = theme.fundPrimaryTextColor
         infotitleLabel.textColor = theme.fundPrimaryTextColor
+        
+        fundTitleLabel.font = theme.fundPrimaryFont.withSize(fundTitleLabel.font.pointSize)
+        fundNameLabel.font = theme.fundPrimaryFont.withSize(fundNameLabel.font.pointSize)
+        whatisLabel.font = theme.fundPrimaryFont
+        definitionLabel.font = theme.fundPrimaryFont
+        risktitleLabel.font = theme.fundPrimaryFont
+        infotitleLabel.font = theme.fundPrimaryFont
+        
     }
     
-    func configure(title: String, fundName: String, whatIs: String, definition: String, riskTitle: String, infoTitle: String, riskIndex: Int) {
+    
+    func configure(title: String, fundName: String, whatIs: String, definition: String, riskTitle: String, infoTitle: String, riskIndex: Int, monthInfo: (String, String), yearInfo: (String, String), twelveMonths: (String, String)) {
         fundTitleLabel.text = title
         fundNameLabel.text = fundName
         whatisLabel.text = whatIs
@@ -101,5 +111,43 @@ class FundViewCell: UITableViewCell, FundCell {
             risk5IndicatorArrow.alpha = 1
         default: break
         }
+        
+        
+        // FundInfo
+        for view in infoStackView.subviews {
+            infoStackView.removeArrangedSubview(view)
+        }
+        createFundInfoRow(title: "", data1: "Fundo", data2: "CDI", isHeader: true)
+        createFundInfoRow(title: "No mês", data1: monthInfo.0, data2: monthInfo.1)
+        createFundInfoRow(title: "No ano", data1: yearInfo.0, data2: yearInfo.1)
+        createFundInfoRow(title: "12 meses", data1: twelveMonths.0, data2: twelveMonths.1)
+    }
+    
+    
+    private func createFundInfoRow(title: String, data1: String, data2: String, isHeader: Bool = false) {
+        let theme = ThemeManager.current()
+        // labels
+        let titleLabel = UILabel()
+        let column1Label = UILabel()
+        let column2Label = UILabel()
+        titleLabel.textColor = theme.fundSecondaryTextColor
+        column1Label.textColor = isHeader ? theme.fundSecondaryTextColor : theme.fundPrimaryTextColor
+        column2Label.textColor = isHeader ? theme.fundSecondaryTextColor : theme.fundPrimaryTextColor
+        titleLabel.font = theme.fundInfoFont
+        column1Label.font = theme.fundInfoFont
+        column2Label.font = theme.fundInfoFont
+        column1Label.textAlignment = .right
+        column2Label.textAlignment = .right
+        titleLabel.text = title
+        column1Label.text = data1
+        column2Label.text = data2
+        // stack view
+        let fundInfoRow = UIStackView(arrangedSubviews: [titleLabel, column1Label, column2Label])
+        fundInfoRow.axis = .horizontal
+        fundInfoRow.alignment = .fill
+        fundInfoRow.distribution = .fillEqually
+        fundInfoRow.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        
+        infoStackView.addArrangedSubview(fundInfoRow)
     }
 }

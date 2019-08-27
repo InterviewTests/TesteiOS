@@ -19,6 +19,12 @@ class FundViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 50
         
+        // Refresh Control
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.tintColor = ThemeManager.current().primaryColor
+        tableView?.addSubview(self.refreshControl!)
+        self.refreshControl?.beginRefreshing()
+        
         // NavBar styling
         ThemeManager.applyNavBarStyle(self.navigationController?.navigationBar)
         
@@ -80,6 +86,7 @@ class FundViewController: UITableViewController {
 extension FundViewController: FundView {
     func refresh() {
         tableView.reloadData()
+        self.refreshControl?.endRefreshing()
     }
     
     func goToFundDetails() {

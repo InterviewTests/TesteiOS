@@ -40,9 +40,9 @@ class ApiUseCaseMock: Domain.ApiUseCase {
         riskTitle: "What the risks are?",
         risk: 1,
         infoTitle: "More info: More Info:",
-        monthFund: 1.0, monthCdi: 1.0,
-        yearFund: 2.0, yearCdi: 2.0,
-        twelveMonthsFund: 3.0, twelveMonthsCdi: 3.0,
+        monthFund: 1.0, monthCdi: 2.0,
+        yearFund: 3.0, yearCdi: 4.0,
+        twelveMonthsFund: 5.0, twelveMonthsCdi: 6.0,
         info: [FundInfo(name: "name1", data: "data1"), FundInfo(name: "name2", data: "data2"), FundInfo(name: "name3", data: "data3")],
         downInfo: [FundInfo(name: "name4", data: "data4"), FundInfo(name: "name5", data: "data5"), FundInfo(name: "name6", data: "data6"), FundInfo(name: "name7", data: "data7")])
 

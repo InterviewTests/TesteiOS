@@ -31,7 +31,7 @@ protocol AppTheme {
     var fundPrimaryTextColor: UIColor { get }
     var fundSecondaryTextColor: UIColor { get }
     var fundPrimaryFont: UIFont { get }
-    var fundSecondaryFont: UIFont { get }
+    var fundInfoFont: UIFont { get }
     
     var textFieldType: MDCTextInputController.Type { get }
 }
@@ -57,8 +57,8 @@ fileprivate struct DefaultTheme: AppTheme {
     
     var fundPrimaryTextColor = UIColor(red: 100 / 255.0, green: 100 / 255.0, blue: 100 / 255.0, alpha: 1)
     var fundSecondaryTextColor = UIColor.lightGray
-    var fundPrimaryFont = UIFont(name: "DINPro-Medium", size: 12) ?? UIFont.boldSystemFont(ofSize: 12)
-    var fundSecondaryFont = UIFont(name: "DINPro-Regular", size: 12) ?? UIFont.systemFont(ofSize: 12)
+    var fundPrimaryFont = UIFont(name: "DINPro-Medium", size: 16) ?? UIFont.boldSystemFont(ofSize: 16)
+    var fundInfoFont = UIFont(name: "DINMittelschriftStd", size: 15) ?? UIFont.systemFont(ofSize: 15)
     
     var textFieldType: MDCTextInputController.Type = MDCTextInputControllerUnderline.self
 }
@@ -78,7 +78,7 @@ class ThemeManager {
         selectedTheme = theme
         
         let typographyScheme = MDCTypographyScheme()
-        typographyScheme.button = theme.tabTextFont
+        typographyScheme.button = theme.fundInfoFont
         typographyScheme.caption = theme.tabTextFont
         typographyScheme.body1 = theme.tabTextFont
         typographyScheme.body2 = theme.tabTextFont

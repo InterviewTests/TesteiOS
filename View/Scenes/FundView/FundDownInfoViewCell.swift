@@ -23,6 +23,9 @@ class FundDownInfoViewCell: UITableViewCell, FundDownInfoCell {
         titleLabel.textColor = theme.fundSecondaryTextColor
         button.setTitleColor(theme.primaryColor, for: .normal)
         imageButton.setImage(imageButton.image(for: .normal)?.maskWithColor(theme.primaryColor), for: .normal)
+        
+        titleLabel.font = theme.fundInfoFont
+        imageButton.titleLabel?.font = theme.fundInfoFont
     }
 
     func configure(title: String, buttonText: String) {

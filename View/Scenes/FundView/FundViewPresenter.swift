@@ -11,7 +11,7 @@ import Domain
 import RxSwift
 
 protocol FundCell {
-    func configure(title: String, fundName: String, whatIs: String, definition: String, riskTitle: String, infoTitle: String, riskIndex: Int)
+    func configure(title: String, fundName: String, whatIs: String, definition: String, riskTitle: String, infoTitle: String, riskIndex: Int, monthInfo: (String, String), yearInfo: (String, String), twelveMonths: (String, String))
 }
 
 protocol FundInfoCell {
@@ -74,7 +74,18 @@ class FundViewPresenterImplementation: FundViewPresenter {
     
     func configure(cell: FundCell) {
         guard let fund = fund else { return }
-        cell.configure(title: fund.title, fundName: fund.fundName, whatIs: fund.whatIs, definition: fund.definition, riskTitle: fund.riskTitle, infoTitle: fund.infoTitle, riskIndex: fund.risk)
+        let moreInfo = fund.moreInfo
+        cell.configure(
+            title: fund.title,
+            fundName: fund.fundName,
+            whatIs: fund.whatIs,
+            definition: fund.definition,
+            riskTitle: fund.riskTitle,
+            infoTitle: fund.infoTitle,
+            riskIndex: fund.risk,
+            monthInfo: (moreInfo.month.fund.formatAsPercentage(), moreInfo.month.cdi.formatAsPercentage()),
+            yearInfo: (moreInfo.year.fund.formatAsPercentage(), moreInfo.year.cdi.formatAsPercentage()),
+            twelveMonths: (moreInfo.twelveMonths.fund.formatAsPercentage(), moreInfo.twelveMonths.cdi.formatAsPercentage()))
     }
     
     func configure(cell: FundInfoCell, at row: Int) {
@@ -103,8 +114,8 @@ class FundViewPresenterImplementation: FundViewPresenter {
             .subscribe(onNext: { [weak self] result in
                 self?.fund = result
                 self?.view?.refresh()
-                }, onError: { [weak self] error in
-                    self?.view?.showError(error)
+            }, onError: { [weak self] error in
+                self?.view?.showError(error)
             })
             .disposed(by: disposeBag)
     }
