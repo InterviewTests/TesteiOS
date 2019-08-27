@@ -83,6 +83,8 @@
 		3FFEBAC42312FAAA000878AF /* FundInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEBAC32312FAAA000878AF /* FundInfoViewCell.swift */; };
 		3FFEBAC62312FD6B000878AF /* FundDownInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEBAC52312FD6B000878AF /* FundDownInfoViewCell.swift */; };
 		3FFEBAC82314BB36000878AF /* Number+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEBAC72314BB36000878AF /* Number+ext.swift */; };
+		3FFEBACA2314CF02000878AF /* FundViewPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEBAC92314CF02000878AF /* FundViewPresenterTest.swift */; };
+		3FFEBACE2314CF7D000878AF /* FundViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEBACD2314CF7D000878AF /* FundViewControllerMock.swift */; };
 		C4F36BDB131C132B33F04528 /* Pods_Platform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 695D2E89CC14DF68B24B74FA /* Pods_Platform.framework */; };
 		DD2C02BEB389DC4511213BB6 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474B6E7C380C81BE9F76AB14 /* Pods_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -206,6 +208,8 @@
 		3FFEBAC32312FAAA000878AF /* FundInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundInfoViewCell.swift; sourceTree = "<group>"; };
 		3FFEBAC52312FD6B000878AF /* FundDownInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundDownInfoViewCell.swift; sourceTree = "<group>"; };
 		3FFEBAC72314BB36000878AF /* Number+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+ext.swift"; sourceTree = "<group>"; };
+		3FFEBAC92314CF02000878AF /* FundViewPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundViewPresenterTest.swift; sourceTree = "<group>"; };
+		3FFEBACD2314CF7D000878AF /* FundViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundViewControllerMock.swift; sourceTree = "<group>"; };
 		45E0316D7F351C66A7EAABF7 /* Pods-MedMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedMe/Pods-MedMe.release.xcconfig"; sourceTree = "<group>"; };
 		474B6E7C380C81BE9F76AB14 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6212F99226D89A14034E1293 /* Pods_Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -483,6 +487,7 @@
 			isa = PBXGroup;
 			children = (
 				3FD56E68230CC08C0063D8A6 /* Helpers */,
+				3FFEBAC92314CF02000878AF /* FundViewPresenterTest.swift */,
 				3FD56E66230CBE0E0063D8A6 /* FormViewPresenterTest.swift */,
 				3F4C82F4230E205E008F236C /* DomainValidationTest.swift */,
 				3F922E4723082E5C00B5FCE8 /* Info.plist */,
@@ -493,12 +498,29 @@
 		3FD56E68230CC08C0063D8A6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				3F922E4523082E5C00B5FCE8 /* ApiUseCaseMock.swift */,
-				3FD56E6B230CC1D60063D8A6 /* BasicViewMock.swift */,
-				3FD56E69230CC1240063D8A6 /* FormViewControllerMock.swift */,
 				3FD56E6D230CC8210063D8A6 /* TestError.swift */,
+				3FFEBACC2314CF1E000878AF /* View */,
+				3FFEBACB2314CF14000878AF /* UseCase */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3FFEBACB2314CF14000878AF /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				3F922E4523082E5C00B5FCE8 /* ApiUseCaseMock.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		3FFEBACC2314CF1E000878AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3FD56E6B230CC1D60063D8A6 /* BasicViewMock.swift */,
+				3FFEBACD2314CF7D000878AF /* FundViewControllerMock.swift */,
+				3FD56E69230CC1240063D8A6 /* FormViewControllerMock.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B4588052C3CE91F2C0990281 /* Pods */ = {
@@ -913,9 +935,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F4C82F5230E205E008F236C /* DomainValidationTest.swift in Sources */,
+				3FFEBACA2314CF02000878AF /* FundViewPresenterTest.swift in Sources */,
 				3FD56E6A230CC1240063D8A6 /* FormViewControllerMock.swift in Sources */,
 				3FD56E6E230CC8210063D8A6 /* TestError.swift in Sources */,
 				3FD56E6C230CC1D60063D8A6 /* BasicViewMock.swift in Sources */,
+				3FFEBACE2314CF7D000878AF /* FundViewControllerMock.swift in Sources */,
 				3F922E4623082E5C00B5FCE8 /* ApiUseCaseMock.swift in Sources */,
 				3FD56E67230CBE0E0063D8A6 /* FormViewPresenterTest.swift in Sources */,
 			);
