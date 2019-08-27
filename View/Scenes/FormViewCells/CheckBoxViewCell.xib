@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="checkboxCell" id="K7D-3H-AnI" customClass="CheckBoxViewCell" customModule="TesteiOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K7D-3H-AnI" id="gvW-AV-Zzk">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hc4-WH-OoZ">
+                        <rect key="frame" x="70" y="16" width="281" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82c-7o-iJO">
+                        <rect key="frame" x="24" y="9.5" width="30" height="30"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LPn-1q-Anj">
+                                <rect key="frame" x="2" y="2" width="26" height="26"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wye-iE-NTw">
+                                        <rect key="frame" x="2" y="2" width="22" height="22"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="checkButtonPressed:" destination="K7D-3H-AnI" eventType="touchUpInside" id="8tO-M9-pHI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="wye-iE-NTw" secondAttribute="bottom" constant="2" id="4rB-fM-P8T"/>
+                                    <constraint firstAttribute="trailing" secondItem="wye-iE-NTw" secondAttribute="trailing" constant="2" id="dUE-hf-DDT"/>
+                                    <constraint firstItem="wye-iE-NTw" firstAttribute="leading" secondItem="LPn-1q-Anj" secondAttribute="leading" constant="2" id="mJp-YE-Lpi"/>
+                                    <constraint firstItem="wye-iE-NTw" firstAttribute="top" secondItem="LPn-1q-Anj" secondAttribute="top" constant="2" id="tMv-3L-RTq"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LPn-1q-Anj" firstAttribute="top" secondItem="82c-7o-iJO" secondAttribute="top" constant="2" id="066-bF-0Sz"/>
+                            <constraint firstAttribute="bottom" secondItem="LPn-1q-Anj" secondAttribute="bottom" constant="2" id="2nS-LV-rTW"/>
+                            <constraint firstItem="LPn-1q-Anj" firstAttribute="leading" secondItem="82c-7o-iJO" secondAttribute="leading" constant="2" id="BBL-ed-rHh"/>
+                            <constraint firstAttribute="height" constant="30" id="Ibf-om-NYt"/>
+                            <constraint firstAttribute="trailing" secondItem="LPn-1q-Anj" secondAttribute="trailing" constant="2" id="WRn-EC-5L7"/>
+                            <constraint firstAttribute="width" constant="30" id="cJO-cT-1x9"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="82c-7o-iJO" firstAttribute="leading" secondItem="gvW-AV-Zzk" secondAttribute="leading" constant="24" id="4lZ-ev-yU1"/>
+                    <constraint firstAttribute="trailing" secondItem="Hc4-WH-OoZ" secondAttribute="trailing" constant="24" id="9yx-rP-76V"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Hc4-WH-OoZ" secondAttribute="bottom" id="Bsn-gz-RaH"/>
+                    <constraint firstItem="Hc4-WH-OoZ" firstAttribute="top" secondItem="gvW-AV-Zzk" secondAttribute="topMargin" constant="5" id="jbc-ks-Rcr"/>
+                    <constraint firstItem="Hc4-WH-OoZ" firstAttribute="centerY" secondItem="82c-7o-iJO" secondAttribute="centerY" id="xW3-Cr-RMD"/>
+                    <constraint firstItem="Hc4-WH-OoZ" firstAttribute="leading" secondItem="82c-7o-iJO" secondAttribute="trailing" constant="16" id="zxM-vT-o4N"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="checkButton" destination="wye-iE-NTw" id="gyE-82-s8u"/>
+                <outlet property="inCheckView" destination="LPn-1q-Anj" id="3Nr-uE-14s"/>
+                <outlet property="label" destination="Hc4-WH-OoZ" id="kNN-g1-1de"/>
+                <outlet property="outCheckView" destination="82c-7o-iJO" id="m3i-lc-hVy"/>
+                <outlet property="topConstraint" destination="jbc-ks-Rcr" id="zJu-DX-6Up"/>
+            </connections>
+            <point key="canvasLocation" x="345" y="57"/>
+        </tableViewCell>
+    </objects>
+</document>
