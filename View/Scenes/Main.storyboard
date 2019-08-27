@@ -164,12 +164,12 @@ com sucesso :)</string>
         <scene sceneID="jLh-Zb-bvj">
             <objects>
                 <tableViewController id="WDI-gQ-V7J" customClass="FundViewController" customModule="TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4ig-th-4JV">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4ig-th-4JV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="567"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="dDR-M4-Ibr">
-                            <rect key="frame" x="0.0" y="310" width="375" height="40"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="dDR-M4-Ibr">
+                            <rect key="frame" x="0.0" y="398" width="375" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
@@ -178,7 +178,7 @@ com sucesso :)</string>
                                 <rect key="frame" x="0.0" y="28" width="375" height="282"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Yp-vd-kGo" id="Neo-B5-cgJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="281.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="282"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="255" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" text="Fund Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDu-iQ-Ubj">
@@ -346,6 +346,96 @@ com sucesso :)</string>
                                     <outlet property="whatisLabel" destination="DbQ-fg-4Qf" id="4fP-al-dRE"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="fundInfoCell" id="3uM-sM-fIx" customClass="FundInfoViewCell" customModule="TesteiOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="310" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3uM-sM-fIx" id="J0Q-rT-n4c">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vA-RY-KAt">
+                                            <rect key="frame" x="16" y="5" width="37.5" height="28"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="28" id="PSV-Zo-Yvl"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttt-yC-LGF">
+                                            <rect key="frame" x="321.5" y="10" width="37.5" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="0vA-RY-KAt" firstAttribute="top" secondItem="J0Q-rT-n4c" secondAttribute="top" constant="5" id="FSC-hX-Wfy"/>
+                                        <constraint firstItem="0vA-RY-KAt" firstAttribute="leading" secondItem="J0Q-rT-n4c" secondAttribute="leading" constant="16" id="Q2L-g3-k1v"/>
+                                        <constraint firstAttribute="trailing" secondItem="ttt-yC-LGF" secondAttribute="trailing" constant="16" id="fnB-VU-uKZ"/>
+                                        <constraint firstAttribute="bottom" secondItem="0vA-RY-KAt" secondAttribute="bottom" id="qJp-lF-HFo"/>
+                                        <constraint firstItem="ttt-yC-LGF" firstAttribute="centerY" secondItem="0vA-RY-KAt" secondAttribute="centerY" id="rtq-ji-Mvc"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dataLabel" destination="ttt-yC-LGF" id="9pA-fl-UZ7"/>
+                                    <outlet property="titleLabel" destination="0vA-RY-KAt" id="JDA-DJ-KPP"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="fundDownInfoCell" id="GfM-pB-85y" customClass="FundDownInfoViewCell" customModule="TesteiOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="354" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GfM-pB-85y" id="u1E-rq-Rd5">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="249" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="748" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwk-EX-XMH">
+                                            <rect key="frame" x="16" y="5" width="226" height="28"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="28" id="f3Y-gf-F0X"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vO-xh-gcI">
+                                            <rect key="frame" x="258" y="5" width="28" height="28"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="4vO-xh-gcI" secondAttribute="height" multiplier="1:1" id="UXD-qi-31e"/>
+                                            </constraints>
+                                            <state key="normal" image="download"/>
+                                            <connections>
+                                                <action selector="fundDownButtonPressed:" destination="GfM-pB-85y" eventType="touchUpInside" id="O1f-cJ-LiI"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s4n-Qd-edW">
+                                            <rect key="frame" x="286" y="5" width="73" height="28"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <state key="normal" title="TextoTexto"/>
+                                            <connections>
+                                                <action selector="fundDownButtonPressed:" destination="GfM-pB-85y" eventType="touchUpInside" id="pOw-gj-rDj"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="kwk-EX-XMH" firstAttribute="top" secondItem="u1E-rq-Rd5" secondAttribute="top" constant="5" id="4g5-7c-vbN"/>
+                                        <constraint firstItem="s4n-Qd-edW" firstAttribute="top" secondItem="kwk-EX-XMH" secondAttribute="top" id="CPQ-We-oNS"/>
+                                        <constraint firstAttribute="trailing" secondItem="s4n-Qd-edW" secondAttribute="trailing" constant="16" id="CwZ-EU-XbK"/>
+                                        <constraint firstAttribute="bottom" secondItem="kwk-EX-XMH" secondAttribute="bottom" id="OHu-pk-nT9"/>
+                                        <constraint firstItem="4vO-xh-gcI" firstAttribute="bottom" secondItem="kwk-EX-XMH" secondAttribute="bottom" id="PBV-p2-gaG"/>
+                                        <constraint firstItem="kwk-EX-XMH" firstAttribute="leading" secondItem="u1E-rq-Rd5" secondAttribute="leading" constant="16" id="WN2-3h-lvk"/>
+                                        <constraint firstItem="s4n-Qd-edW" firstAttribute="leading" secondItem="4vO-xh-gcI" secondAttribute="trailing" id="ZCX-Qs-jFv"/>
+                                        <constraint firstItem="4vO-xh-gcI" firstAttribute="top" secondItem="kwk-EX-XMH" secondAttribute="top" id="fJl-rp-BH2"/>
+                                        <constraint firstItem="s4n-Qd-edW" firstAttribute="bottom" secondItem="kwk-EX-XMH" secondAttribute="bottom" id="pU1-XN-2Qi"/>
+                                        <constraint firstItem="4vO-xh-gcI" firstAttribute="leading" secondItem="kwk-EX-XMH" secondAttribute="trailing" constant="16" id="vSo-qm-0CF"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="button" destination="s4n-Qd-edW" id="mbS-qO-jSh"/>
+                                    <outlet property="imageButton" destination="4vO-xh-gcI" id="oVc-XK-Chn"/>
+                                    <outlet property="titleLabel" destination="kwk-EX-XMH" id="8Rk-76-Jxn"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="WDI-gQ-V7J" id="xae-i6-PMr"/>
@@ -413,5 +503,6 @@ com sucesso :)</string>
     </scenes>
     <resources>
         <image name="arrow-down" width="256" height="256"/>
+        <image name="download" width="64" height="64"/>
     </resources>
 </document>

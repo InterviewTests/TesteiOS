@@ -22,6 +22,9 @@ class FundViewController: UITableViewController {
         // NavBar styling
         ThemeManager.applyNavBarStyle(self.navigationController?.navigationBar)
         
+        // Register cells
+        tableView.register(UINib(nibName: "ButtonViewCell", bundle: nil), forCellReuseIdentifier: "buttonCell")
+        
         presenter.viewDidLoad()
     }
     
@@ -33,14 +36,33 @@ class FundViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var result: UITableViewCell!
+        // First Cell
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "fundCell", for: indexPath) as! FundViewCell
             cell.prepareForReuse()
             presenter.configure(cell: cell)
             result = cell
         }
+        // Last cell
+        else if indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "buttonCell", for: indexPath) as! ButtonViewCell
+            cell.prepareForReuse()
+            presenter.configure(cell: cell)
+            result = cell
+        }
+        // Fund Info Cell
+        else if indexPath.row < presenter.getRowStartPositionOfFundDownInfo() {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "fundInfoCell", for: indexPath) as! FundInfoViewCell
+            cell.prepareForReuse()
+            presenter.configure(cell: cell, at: indexPath.row)
+            result = cell
+        }
+        // Fund Down Info Cell
         else {
-            result = UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "fundDownInfoCell", for: indexPath) as! FundDownInfoViewCell
+            cell.prepareForReuse()
+            presenter.configure(cell: cell, at: indexPath.row)
+            result = cell
         }
         
         return result

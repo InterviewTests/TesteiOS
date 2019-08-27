@@ -12,4 +12,8 @@ import UIKit
 
 class SafariViewController: UIViewController {
     
+    
+    override func viewDidLoad() {
+        
+    }
 }

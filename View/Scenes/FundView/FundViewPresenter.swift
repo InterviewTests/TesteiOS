@@ -14,6 +14,14 @@ protocol FundCell {
     func configure(title: String, fundName: String, whatIs: String, definition: String, riskTitle: String, infoTitle: String, riskIndex: Int)
 }
 
+protocol FundInfoCell {
+    func configure(title: String, text: String)
+}
+
+protocol FundDownInfoCell {
+    func configure(title: String, buttonText: String)
+}
+
 protocol FundView: BasicView {
     func refresh()
     func goToFundDetails()
@@ -21,7 +29,12 @@ protocol FundView: BasicView {
 
 protocol FundViewPresenter: BasicPresenter {
     func getRowCount() -> Int
+    func getRowStartPositionOfFundInfo() -> Int
+    func getRowStartPositionOfFundDownInfo() -> Int
     func configure(cell: FundCell)
+    func configure(cell: FormViewCell)
+    func configure(cell: FundInfoCell, at row: Int)
+    func configure(cell: FundDownInfoCell, at row: Int)
     
 }
 
@@ -47,12 +60,41 @@ class FundViewPresenterImplementation: FundViewPresenter {
     // MARK: Presenter functions
     func getRowCount() -> Int {
         guard let fund = fund else { return 0 }
-        return 1 + fund.downInfo.count + fund.info.count
+        return 1 + fund.info.count + fund.downInfo.count  + 1
+    }
+    
+    func getRowStartPositionOfFundInfo() -> Int {
+        return 1
+    }
+    
+    func getRowStartPositionOfFundDownInfo() -> Int {
+        guard let fund = fund else { return 1 }
+        return 1 + fund.info.count
     }
     
     func configure(cell: FundCell) {
         guard let fund = fund else { return }
         cell.configure(title: fund.title, fundName: fund.fundName, whatIs: fund.whatIs, definition: fund.definition, riskTitle: fund.riskTitle, infoTitle: fund.infoTitle, riskIndex: fund.risk)
+    }
+    
+    func configure(cell: FundInfoCell, at row: Int) {
+        guard let fund = fund else { return }
+        let i = row - getRowStartPositionOfFundInfo()
+        let fundInfo = fund.info[i]
+        cell.configure(title: fundInfo.name, text: fundInfo.data)
+    }
+    
+    func configure(cell: FundDownInfoCell, at row: Int) {
+        guard let fund = fund else { return }
+        let i = row - getRowStartPositionOfFundDownInfo()
+        let fundDownInfo = fund.downInfo[i]
+        cell.configure(title: fundDownInfo.name, buttonText: fundDownInfo.data)
+    }
+    
+    // Button cell
+    func configure(cell: FormViewCell) {
+        guard fund != nil else { return }
+        cell.configure(id: 1, message: "Investir", fieldType: .text, userInput: nil, enabled: true, hidden: false, topSpacing: 16, delegate: self)
     }
 
     // MARK: Use Case
@@ -66,4 +108,15 @@ class FundViewPresenterImplementation: FundViewPresenter {
             })
             .disposed(by: disposeBag)
     }
+}
+
+
+extension FundViewPresenterImplementation: FormViewCellDelegate {
+    func sendButtonPressed() {
+        view?.goToFundDetails()
+    }
+    
+    func saveUserInput(_ text: Any, id: Int) { }
+    
+    
 }

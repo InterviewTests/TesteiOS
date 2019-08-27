@@ -51,18 +51,18 @@ class FundViewCell: UITableViewCell, FundCell {
         risk4View.backgroundColor = theme.fundRisk4Color
         risk5View.backgroundColor = theme.fundRisk5Color
         
-        risk1IndicatorArrow.image = risk1IndicatorArrow.image?.maskWithColor(theme.primaryTextColor)
-        risk2IndicatorArrow.image = risk1IndicatorArrow.image?.maskWithColor(theme.primaryTextColor)
-        risk3IndicatorArrow.image = risk1IndicatorArrow.image?.maskWithColor(theme.primaryTextColor)
-        risk4IndicatorArrow.image = risk1IndicatorArrow.image?.maskWithColor(theme.primaryTextColor)
-        risk5IndicatorArrow.image = risk1IndicatorArrow.image?.maskWithColor(theme.primaryTextColor)
+        risk1IndicatorArrow.image = risk1IndicatorArrow.image?.maskWithColor(theme.fundPrimaryTextColor)
+        risk2IndicatorArrow.image = risk1IndicatorArrow.image?.maskWithColor(theme.fundPrimaryTextColor)
+        risk3IndicatorArrow.image = risk1IndicatorArrow.image?.maskWithColor(theme.fundPrimaryTextColor)
+        risk4IndicatorArrow.image = risk1IndicatorArrow.image?.maskWithColor(theme.fundPrimaryTextColor)
+        risk5IndicatorArrow.image = risk1IndicatorArrow.image?.maskWithColor(theme.fundPrimaryTextColor)
         
-        fundTitleLabel.textColor = theme.primaryTextColor
+        fundTitleLabel.textColor = theme.fundPrimaryTextColor
 //        fundNameLabel.textColor = theme.primaryTextColor
-        whatisLabel.textColor = theme.primaryTextColor
-        definitionLabel.textColor = theme.secondaryTextColor
-        risktitleLabel.textColor = theme.primaryTextColor
-        infotitleLabel.textColor = theme.primaryTextColor
+        whatisLabel.textColor = theme.fundPrimaryTextColor
+        definitionLabel.textColor = theme.fundSecondaryTextColor
+        risktitleLabel.textColor = theme.fundPrimaryTextColor
+        infotitleLabel.textColor = theme.fundPrimaryTextColor
     }
     
     func configure(title: String, fundName: String, whatIs: String, definition: String, riskTitle: String, infoTitle: String, riskIndex: Int) {

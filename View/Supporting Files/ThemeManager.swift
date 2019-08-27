@@ -28,8 +28,10 @@ protocol AppTheme {
     var fundRisk4Color: UIColor { get }
     var fundRisk5Color: UIColor { get }
     
-    var primaryTextColor: UIColor { get }
-    var secondaryTextColor: UIColor { get }
+    var fundPrimaryTextColor: UIColor { get }
+    var fundSecondaryTextColor: UIColor { get }
+    var fundPrimaryFont: UIFont { get }
+    var fundSecondaryFont: UIFont { get }
     
     var textFieldType: MDCTextInputController.Type { get }
 }
@@ -53,8 +55,10 @@ fileprivate struct DefaultTheme: AppTheme {
     var fundRisk4Color  = UIColor(red: 255 / 255.0, green: 116 / 255.0, blue: 44 / 255.0, alpha: 1)
     var fundRisk5Color  = UIColor(red: 254 / 255.0, green: 54 / 255.0, blue: 52 / 255.0, alpha: 1)
     
-    var primaryTextColor = UIColor.gray
-    var secondaryTextColor = UIColor.lightGray
+    var fundPrimaryTextColor = UIColor(red: 100 / 255.0, green: 100 / 255.0, blue: 100 / 255.0, alpha: 1)
+    var fundSecondaryTextColor = UIColor.lightGray
+    var fundPrimaryFont = UIFont(name: "DINPro-Medium", size: 12) ?? UIFont.boldSystemFont(ofSize: 12)
+    var fundSecondaryFont = UIFont(name: "DINPro-Regular", size: 12) ?? UIFont.systemFont(ofSize: 12)
     
     var textFieldType: MDCTextInputController.Type = MDCTextInputControllerUnderline.self
 }
