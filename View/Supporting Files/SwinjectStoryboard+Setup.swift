@@ -15,9 +15,6 @@ extension SwinjectStoryboard {
     @objc class func setup() {
         
         // MARK: UseCases
-//        app = XCUIApplication()
-//        app.launchArguments.append("TESTING")
-//        app.launch()
         if ProcessInfo.processInfo.arguments.contains("TESTING") {
             defaultContainer.register(Domain.ApiUseCase.self) { _ in ApiUseCaseMock() }
         } else {
