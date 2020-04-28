@@ -9,12 +9,17 @@
 import UIKit
 
 class DashboardViewController: UIViewController {
-
+    // MARK: - Properties
+    
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        configureUI()
     }
 
-    
+    fileprivate func configureUI() {
+    }
 }
 

@@ -19,7 +19,6 @@ class InvestmentRiskView: UIView {
     // MARK: - Constants
     fileprivate let colors = [#colorLiteral(red: 0.4550000131, green: 0.8550000191, blue: 0.3799999952, alpha: 1), #colorLiteral(red: 0.2899999917, green: 0.7570000291, blue: 0.423999995, alpha: 1), #colorLiteral(red: 1, green: 0.753000021, blue: 0.06700000167, alpha: 1), #colorLiteral(red: 1, green: 0.4550000131, blue: 0.172999993, alpha: 1), #colorLiteral(red: 1, green: 0.2119999975, blue: 0.2039999962, alpha: 1)]
     
-    
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

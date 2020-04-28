@@ -7,6 +7,11 @@
 //
 
 import UIKit
+protocol CustomCheckBoxDelegate {
+    /// Check Box Check Event
+    /// - Parameter isSelected: checkbox state
+    func didCheck(isSelected: Bool)
+}
 
 class CustomCheckBox: UIView {
     // MARK: - Properties
@@ -16,6 +21,9 @@ class CustomCheckBox: UIView {
     
     // MARK: - Control State Variables
     var isSelected: Bool = false
+    
+    // MARK: - Delegate
+    var delegate: CustomCheckBoxDelegate?
     
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -59,5 +67,6 @@ class CustomCheckBox: UIView {
     @objc func didCheck(_ sender: UITapGestureRecognizer?) {
         isSelected = !isSelected
         btnCheck.backgroundColor = isSelected ? #colorLiteral(red: 0.8550000191, green: 0.00400000019, blue: 0.00400000019, alpha: 1) : .white
+        delegate?.didCheck(isSelected: isSelected)
     }
 }
