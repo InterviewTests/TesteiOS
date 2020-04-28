@@ -22,11 +22,11 @@ class RedRoundedButton: UIButton {
     required init?(coder: NSCoder) {
         super .init(coder: coder)
         
-        applyTheme()
+        configureUI()
     }
 
     // MARK: - Private Methods
-    fileprivate func applyTheme() {
+    fileprivate func configureUI() {
         self.layer.cornerRadius = (self.frame.height / 2)
         
         backgroundColor = #colorLiteral(red: 0.8549019608, green: 0.003921568627, blue: 0.003921568627, alpha: 1)

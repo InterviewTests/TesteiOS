@@ -29,17 +29,19 @@ class CustomTextField: UIView, UITextFieldDelegate {
         }
     }
     
+    fileprivate var inputType: TypeFieldEnum = .text
+    
     // MARK: - Initialization
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        initNib()
-        configureUI()
-    }
-
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initNib()
         configureUI()
+    }
+    
+    // MARK: - Public Methods
+    func setup(placeHolderText: String, inputType: TypeFieldEnum) {
+        lblPlaceholder.text = placeHolderText
+        self.inputType = inputType
     }
 
     // MARK: - PrivateMethods
@@ -56,14 +58,29 @@ class CustomTextField: UIView, UITextFieldDelegate {
         txtInput.delegate = self
     }
     
-    // MARK: - Public Methods
-    func setup(placeHolderText: String, inputType: TypeFieldEnum) {
-        lblPlaceholder.text = placeHolderText
+    fileprivate func configureViewValidation(input: String?) {
+        if let input = input, !input.isEmpty {
+            viewValidationStatus.backgroundColor = isValidEmail(input) ? #colorLiteral(red: 0.2899999917, green: 0.7570000291, blue: 0.423999995, alpha: 1) : #colorLiteral(red: 0.8550000191, green: 0.00400000019, blue: 0.00400000019, alpha: 1)
+            
+            return
+        }
+        
+        viewValidationStatus.backgroundColor = #colorLiteral(red: 0.5921568627, green: 0.5921568627, blue: 0.5921568627, alpha: 1)
+    }
+    
+    fileprivate func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        
+        return emailPred.evaluate(with: email)
     }
     
     // MARK: - Actions
     @IBAction func clearInput(_ sender: Any) {
         txtInput.text = ""
+        btnClearInput.isHidden = true
+        viewValidationStatus.backgroundColor = #colorLiteral(red: 0.5921568627, green: 0.5921568627, blue: 0.5921568627, alpha: 1)
+        lblPlaceholder.font = lblPlaceholder.font.withSize(16)
     }
     
     // MARK: - UITextFieldDelegate
@@ -79,5 +96,9 @@ class CustomTextField: UIView, UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         btnClearInput.isHidden = (txtInput.text?.isEmpty ?? true)
+        
+        if inputType == .email {
+            configureViewValidation(input: textField.text)
+        }
     }
 }
