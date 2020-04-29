@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 class ContactFormWorker {
-    class func fetchContactForm(completion: @escaping(_ responseData: Data?) -> (), error: @escaping(_ error: Error?) -> ()) {
+    static func fetchContactForm(completion: @escaping(_ responseData: Data?) -> (), error: @escaping(_ error: Error?) -> ()) {
         let url = APIConstants.baseUrl + APIConstants.contactEndpoint
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in

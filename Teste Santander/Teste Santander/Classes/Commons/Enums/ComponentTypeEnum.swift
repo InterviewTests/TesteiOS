@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TypeEnum: Int {
+enum ComponentTypeEnum: Int {
     case none = 0
     case textField = 1
     case message = 2

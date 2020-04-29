@@ -43,8 +43,8 @@ class CellForm: Codable {
         self.cellRequired = cellRequired
     }
     
-    func getCellType() -> TypeEnum {
-        return TypeEnum(rawValue: type) ?? TypeEnum.none
+    func getCellType() -> ComponentTypeEnum {
+        return ComponentTypeEnum(rawValue: type) ?? ComponentTypeEnum.none
     }
     
     func getCellTypeField() -> TypeFieldEnum {

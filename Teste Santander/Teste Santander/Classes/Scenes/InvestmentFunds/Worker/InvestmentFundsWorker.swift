@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 class InvestmentFundsWorker {
-    class func fetchInvestments(completion: @escaping(_ responseData: Data?) -> (), error: @escaping(_ error: Error?) -> ()) {
+    static func fetchInvestments(completion: @escaping(_ responseData: Data?) -> (), error: @escaping(_ error: Error?) -> ()) {
         let url = APIConstants.baseUrl + APIConstants.investmentEndpoint
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in

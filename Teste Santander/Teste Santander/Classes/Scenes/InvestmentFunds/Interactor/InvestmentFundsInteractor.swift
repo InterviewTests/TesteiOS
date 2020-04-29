@@ -9,10 +9,12 @@
 import Foundation
 
 protocol InvestmentFundsInteractorProtocol {
-    
+    func fetchFunds()
 }
 
 class InvestmentFundsInteractor: InvestmentFundsInteractorProtocol {
+
+    
     // MARK: - Interface Properties
     var viewController: InvestmentFundsViewControllerProtocol?
     var presenter: InvestmentFundsPresenterProtocol?
@@ -21,5 +23,19 @@ class InvestmentFundsInteractor: InvestmentFundsInteractorProtocol {
     init(viewController: InvestmentFundsViewControllerProtocol, presenter: InvestmentFundsPresenterProtocol) {
         self.viewController = viewController
         self.presenter = presenter
+    }
+    
+    func fetchFunds() {
+        InvestmentFundsWorker.fetchInvestments(completion: { (responseData) in
+            do {
+                let fundsModel = try JSONDecoder().decode(Screen.self, from: responseData ?? Data())
+                
+                self.presenter?.handleFunds(funds: fundsModel.screen)
+            } catch {
+                print(error)
+            }
+        }) { (error) in
+            
+        }
     }
 }

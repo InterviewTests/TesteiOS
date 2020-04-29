@@ -8,6 +8,15 @@
 
 import Foundation
 
+// MARK: - Screen
+class Screen: Codable {
+    let screen: InvestmentModel
+
+    init(screen: InvestmentModel) {
+        self.screen = screen
+    }
+}
+
 // MARK: - InvestmentModel
 class InvestmentModel: Codable {
     let title, fundName, whatIs, definition: String
@@ -28,6 +37,20 @@ class InvestmentModel: Codable {
         self.moreInfo = moreInfo
         self.info = info
         self.downInfo = downInfo
+    }
+    
+    func getInfoArrayList() -> [Info] {
+        var infoArray = [Info]()
+        
+        for infoItem in info {
+            infoArray.append(infoItem)
+        }
+        
+        for downInfoItem in downInfo {
+            infoArray.append(downInfoItem)
+        }
+        
+        return infoArray
     }
 }
 
