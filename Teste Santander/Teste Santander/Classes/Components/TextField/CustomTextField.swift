@@ -34,7 +34,21 @@ class CustomTextField: UIView, UITextFieldDelegate {
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
         initNib()
+        configureUI()
+    }
+    
+    override init(frame: CGRect) {
+        super .init(frame: frame)
+        
+        initNib()
+        configureUI()
+    }
+    
+    override func awakeFromNib() {
+        super .awakeFromNib()
+        
         configureUI()
     }
     

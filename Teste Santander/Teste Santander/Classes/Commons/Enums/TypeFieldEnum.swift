@@ -8,8 +8,10 @@
 
 import Foundation
 
-enum TypeFieldEnum {
-    case text
-    case telNumber
-    case email
+enum TypeFieldEnum: Int {
+    case text = 1
+    case telNumber = 2
+    case email = 3
+    case button = 5
+    case none = 0
 }

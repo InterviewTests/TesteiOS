@@ -24,6 +24,12 @@ class RedRoundedButton: UIButton {
         
         configureUI()
     }
+    
+    override init(frame: CGRect) {
+        super .init(frame: frame)
+        
+        configureUI()
+    }
 
     // MARK: - Private Methods
     fileprivate func configureUI() {
@@ -32,5 +38,9 @@ class RedRoundedButton: UIButton {
         backgroundColor = #colorLiteral(red: 0.8549019608, green: 0.003921568627, blue: 0.003921568627, alpha: 1)
         setTitleColor(.white, for: .normal)
         titleLabel?.font = UIFont(name: "DINPro-Medium", size: 16)
+    }
+    
+    func setup(title: String) {
+        setTitle(title, for: .normal)
     }
 }

@@ -30,6 +30,14 @@ class CustomCheckBox: UIView {
         super.init(coder: aDecoder)
         
         initNib()
+        configureUI()
+    }
+    
+    override init(frame: CGRect) {
+        super .init(frame: frame)
+        
+        initNib()
+        configureUI()
     }
     
     override func awakeFromNib() {

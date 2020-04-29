@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DashboardViewController" customModule="Teste_Santander" customModuleProvider="target">
             <connections>
+                <outlet property="containerView" destination="632-gL-Ape" id="Dev-Kk-8bM"/>
+                <outlet property="customTabBar" destination="hq8-GA-Eyl" id="3gj-o9-ffX"/>
                 <outlet property="view" destination="iN0-l3-epB" id="9i9-GD-s4m"/>
             </connections>
         </placeholder>
@@ -25,12 +27,20 @@
                         <constraint firstAttribute="height" constant="57" id="sAh-A8-b0y"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="632-gL-Ape">
+                    <rect key="frame" x="87" y="384" width="240" height="128"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hq8-GA-Eyl" secondAttribute="trailing" id="6pQ-ml-3B3"/>
                 <constraint firstItem="hq8-GA-Eyl" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="HzW-yq-vau"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="632-gL-Ape" secondAttribute="trailing" id="R4X-pE-b3t"/>
                 <constraint firstItem="hq8-GA-Eyl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="d7h-ah-eis"/>
+                <constraint firstItem="632-gL-Ape" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hmI-Rb-PMa"/>
+                <constraint firstItem="hq8-GA-Eyl" firstAttribute="top" secondItem="632-gL-Ape" secondAttribute="bottom" id="nfM-c5-m4P"/>
+                <constraint firstItem="632-gL-Ape" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="ylQ-1h-Dh0"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>

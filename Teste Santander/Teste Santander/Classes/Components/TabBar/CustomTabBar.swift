@@ -57,12 +57,11 @@ class CustomTabBar: UIView {
         }
     }
     
-    // MARK: - Actions
-    @objc func didSelectIndex(_ sender: UIButton) {
+    func setSelectedTab(index: Int) {
         for case let button as UIButton in stackTab.arrangedSubviews {
             let bottomConstraint = button.superview!.constraints.filter({ $0.firstAttribute == .top && $0.firstItem === button}).first!
             
-            if button.tag == sender.tag {
+            if button.tag == index {
                 button.backgroundColor = #colorLiteral(red: 0.7921568627, green: 0, blue: 0, alpha: 1)
                 bottomConstraint.constant = 0
             } else {
@@ -70,6 +69,11 @@ class CustomTabBar: UIView {
                 bottomConstraint.constant = 2
             }
         }
+    }
+    
+    // MARK: - Actions
+    @objc func didSelectIndex(_ sender: UIButton) {
+        setSelectedTab(index: sender.tag)
         
         delegate?.didSelectTab(index: sender.tag)
     }

@@ -26,6 +26,12 @@ class InvestmentRiskView: UIView {
         initNib()
     }
     
+    override init(frame: CGRect) {
+        super .init(frame: frame)
+        
+        initNib()
+    }
+    
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super .awakeFromNib()
