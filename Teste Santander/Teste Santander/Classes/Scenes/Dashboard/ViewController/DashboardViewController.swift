@@ -14,8 +14,9 @@ class DashboardViewController: UIViewController, CustomTabBarDelegate {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var customTabBar: CustomTabBar!
     
-    var childrenVC = [InvestmentFundsViewController.loadFromNib(), ContactFormRouter.rootViewController()]
+    var childrenVC = [InvestmentFundsRouter.rootViewController(), ContactFormRouter.rootViewController()]
     var tabBarItems = ["Investimento", "Contato"]
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()

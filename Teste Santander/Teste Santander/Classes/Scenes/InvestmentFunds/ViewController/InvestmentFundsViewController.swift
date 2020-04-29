@@ -8,9 +8,17 @@
 
 import UIKit
 
-class InvestmentFundsViewController: UIViewController {
+protocol InvestmentFundsViewControllerProtocol {
     
+}
+
+class InvestmentFundsViewController: UIViewController, InvestmentFundsViewControllerProtocol {
+    // MARK: - Interface Properties
+    var interactor: InvestmentFundsInteractorProtocol?
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super .viewDidLoad()
+        
     }
 }

@@ -12,4 +12,5 @@ class APIConstants {
     static let baseUrl = "https://floating-mountain-50292.herokuapp.com"
     
     static let contactEndpoint = "/cells.json"
+    static let investmentEndpoint = "/fund.json"
 }

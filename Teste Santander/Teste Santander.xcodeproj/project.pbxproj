@@ -27,6 +27,10 @@
 		A0A4B5132458E6D800E41FAD /* ContactFormWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A4B5122458E6D800E41FAD /* ContactFormWorker.swift */; };
 		A0BD6DB22459251C0006F875 /* ContactFormRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD6DB12459251C0006F875 /* ContactFormRouter.swift */; };
 		A0BD6DB4245927D10006F875 /* TypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD6DB3245927D10006F875 /* TypeEnum.swift */; };
+		A0BD6DB7245929E00006F875 /* InvestmentFundsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD6DB6245929E00006F875 /* InvestmentFundsWorker.swift */; };
+		A0BD6DBC24592B690006F875 /* InvestmentFundsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD6DBB24592B690006F875 /* InvestmentFundsInteractor.swift */; };
+		A0BD6DBE24592BDF0006F875 /* InvestmentFundsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD6DBD24592BDF0006F875 /* InvestmentFundsPresenter.swift */; };
+		A0BD6DC024592C7B0006F875 /* InvestmentFundsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD6DBF24592C7B0006F875 /* InvestmentFundsRouter.swift */; };
 		A0E2512E2457CDF700EF2443 /* UIImage+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E2512D2457CDF700EF2443 /* UIImage+Scaling.swift */; };
 		A0E251312457DC9100EF2443 /* CustomCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E251302457DC9100EF2443 /* CustomCheckBox.swift */; };
 		A0E251332457DC9900EF2443 /* CustomCheckBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E251322457DC9900EF2443 /* CustomCheckBox.xib */; };
@@ -88,6 +92,10 @@
 		A0A4B5122458E6D800E41FAD /* ContactFormWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormWorker.swift; sourceTree = "<group>"; };
 		A0BD6DB12459251C0006F875 /* ContactFormRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormRouter.swift; sourceTree = "<group>"; };
 		A0BD6DB3245927D10006F875 /* TypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeEnum.swift; sourceTree = "<group>"; };
+		A0BD6DB6245929E00006F875 /* InvestmentFundsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsWorker.swift; sourceTree = "<group>"; };
+		A0BD6DBB24592B690006F875 /* InvestmentFundsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsInteractor.swift; sourceTree = "<group>"; };
+		A0BD6DBD24592BDF0006F875 /* InvestmentFundsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsPresenter.swift; sourceTree = "<group>"; };
+		A0BD6DBF24592C7B0006F875 /* InvestmentFundsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsRouter.swift; sourceTree = "<group>"; };
 		A0E2512D2457CDF700EF2443 /* UIImage+Scaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scaling.swift"; sourceTree = "<group>"; };
 		A0E251302457DC9100EF2443 /* CustomCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCheckBox.swift; sourceTree = "<group>"; };
 		A0E251322457DC9900EF2443 /* CustomCheckBox.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCheckBox.xib; sourceTree = "<group>"; };
@@ -165,8 +173,12 @@
 		A00A3000245897A400ADFBF2 /* InvestmentFunds */ = {
 			isa = PBXGroup;
 			children = (
+				A0BD6DB924592A120006F875 /* Interactor */,
 				A0756CAC2458B65C0043E298 /* Model */,
+				A0BD6DBA24592A170006F875 /* Presenter */,
+				A0BD6DB824592A0C0006F875 /* Router */,
 				A00A3001245897AC00ADFBF2 /* ViewController */,
+				A0BD6DB5245929BF0006F875 /* Worker */,
 			);
 			path = InvestmentFunds;
 			sourceTree = "<group>";
@@ -289,6 +301,38 @@
 				A0BD6DB12459251C0006F875 /* ContactFormRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		A0BD6DB5245929BF0006F875 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				A0BD6DB6245929E00006F875 /* InvestmentFundsWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		A0BD6DB824592A0C0006F875 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A0BD6DBF24592C7B0006F875 /* InvestmentFundsRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A0BD6DB924592A120006F875 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				A0BD6DBB24592B690006F875 /* InvestmentFundsInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		A0BD6DBA24592A170006F875 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A0BD6DBD24592BDF0006F875 /* InvestmentFundsPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		A0E2512F2457DC7C00EF2443 /* CheckBox */ = {
@@ -680,17 +724,21 @@
 				A00A300A245898E100ADFBF2 /* InvestmentFundsViewController.swift in Sources */,
 				A0F6788A24578C0400225C12 /* CustomTextField.swift in Sources */,
 				A0EDD68A2457543700D069E5 /* DashboardViewController.swift in Sources */,
+				A0BD6DB7245929E00006F875 /* InvestmentFundsWorker.swift in Sources */,
 				A0756CBA2458BEBF0043E298 /* ContactFormInteractor.swift in Sources */,
 				A0756CB02458B7F10043E298 /* InvestmentFundsModel.swift in Sources */,
 				A0756CBD2458BF210043E298 /* ContactFormPresenter.swift in Sources */,
 				A05762762458E8AB005B5651 /* APIConstants.swift in Sources */,
 				A0A4B5132458E6D800E41FAD /* ContactFormWorker.swift in Sources */,
 				A00A2FFD245884DB00ADFBF2 /* CustomTabBar.swift in Sources */,
+				A0BD6DBC24592B690006F875 /* InvestmentFundsInteractor.swift in Sources */,
 				A0F678992457BF1900225C12 /* GraduationColorsEnum.swift in Sources */,
 				A0F678942457A9BF00225C12 /* InvestmentRiskView.swift in Sources */,
+				A0BD6DC024592C7B0006F875 /* InvestmentFundsRouter.swift in Sources */,
 				A0EDD6AE2457559900D069E5 /* RedRoundedButton.swift in Sources */,
 				A0756CB62458BBFC0043E298 /* ContactFormResultViewController.swift in Sources */,
 				A0BD6DB22459251C0006F875 /* ContactFormRouter.swift in Sources */,
+				A0BD6DBE24592BDF0006F875 /* InvestmentFundsPresenter.swift in Sources */,
 				A0756CAE2458B6DE0043E298 /* ContactModel.swift in Sources */,
 				A0EDD6862457543700D069E5 /* AppDelegate.swift in Sources */,
 				A0F6788E2457A2B500225C12 /* TypeFieldEnum.swift in Sources */,

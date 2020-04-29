@@ -21,7 +21,7 @@ class ContactModel: Codable {
 class CellForm: Codable {
     let id, type: Int
     let message: String
-    let typefield: Typefield
+    let typefield: TypefieldDataType
     let hidden: Bool
     let topSpacing: Int
     let show: Int?
@@ -32,7 +32,7 @@ class CellForm: Codable {
         case cellRequired = "required"
     }
     
-    init(id: Int, type: Int, message: String, typefield: Typefield, hidden: Bool, topSpacing: Int, show: Int?, cellRequired: Bool) {
+    init(id: Int, type: Int, message: String, typefield: TypefieldDataType, hidden: Bool, topSpacing: Int, show: Int?, cellRequired: Bool) {
         self.id = id
         self.type = type
         self.message = message
@@ -61,7 +61,7 @@ class CellForm: Codable {
     }
 }
 
-enum Typefield: Codable {
+enum TypefieldDataType: Codable {
     case integer(Int)
     case string(String)
     case null
@@ -81,7 +81,7 @@ enum Typefield: Codable {
             return
         }
         
-        throw DecodingError.typeMismatch(Typefield.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Typefield"))
+        throw DecodingError.typeMismatch(TypefieldDataType.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Typefield"))
     }
     
     func encode(to encoder: Encoder) throws {
