@@ -38,20 +38,6 @@ class InvestmentModel: Codable {
         self.info = info
         self.downInfo = downInfo
     }
-    
-    func getInfoArrayList() -> [Info] {
-        var infoArray = [Info]()
-        
-        for infoItem in info {
-            infoArray.append(infoItem)
-        }
-        
-        for downInfoItem in downInfo {
-            infoArray.append(downInfoItem)
-        }
-        
-        return infoArray
-    }
 }
 
 // MARK: - Info

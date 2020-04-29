@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InvestmentFundInfoTableViewCell: UITableViewCell {
+class InvestmentFundMoreInfoTableViewCell: UITableViewCell {
     // MARK: - Properties
     @IBOutlet weak var monthFund: UILabel!
     @IBOutlet weak var monthCDI: UILabel!

@@ -30,7 +30,7 @@ class InvestmentFundsInteractor: InvestmentFundsInteractorProtocol {
             do {
                 let fundsModel = try JSONDecoder().decode(Screen.self, from: responseData ?? Data())
                 
-                self.presenter?.handleFunds(funds: fundsModel.screen)
+                self.presenter?.handleFunds(funds: InvestmentFundsViewModel(funds: fundsModel.screen))
             } catch {
                 print(error)
             }

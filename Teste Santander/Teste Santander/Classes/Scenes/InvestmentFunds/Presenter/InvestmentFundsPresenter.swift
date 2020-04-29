@@ -9,39 +9,41 @@
 import Foundation
 import UIKit
 
-protocol InvestmentFundsPresenterProtocol: UITableViewDataSource {
-    func handleFunds(funds: InvestmentModel)
+protocol InvestmentFundsPresenterProtocol: UITableViewDataSource, UITableViewDelegate {
+    func handleFunds(funds: InvestmentFundsViewModel)
 }
 
-class InvestmentFundsPresenter: NSObject, InvestmentFundsPresenterProtocol {
+class InvestmentFundsPresenter: NSObject, InvestmentFundsPresenterProtocol, InvestmentFundsInfoTableViewCellProtocol {
     
     // MARK: - Interface Properties
     var viewController: InvestmentFundsViewControllerProtocol?
     
-    var funds: InvestmentModel?
-    var infoItems: [Info]?
+    // MARK: - Model Objects
+    var funds: InvestmentFundsViewModel?
     
     // MARK: - Initialization
     init(viewController: InvestmentFundsViewControllerProtocol) {
         self.viewController = viewController
     }
     
-    func handleFunds(funds: InvestmentModel) {
+    // MARK: - InvestmentFundsPresenterProtocol
+    func handleFunds(funds: InvestmentFundsViewModel) {
         self.funds = funds
-        infoItems = funds.getInfoArrayList()
         
-        viewController?.setupHeader(title: funds.title, fundName: funds.fundName,
-                                    whatIs: funds.whatIs, definition: funds.definition,
-                                    riskTitle: funds.riskTitle, investmentValue: funds.risk)
+        viewController?.setupHeader(title: funds.getTitle(), fundName: funds.getFundName(),
+                                    whatIs: funds.getWhatIs(), definition: funds.getDefinition(),
+                                    riskTitle: funds.getRiskTitle(), investmentValue: funds.getRisk())
         
         configureTable()
     }
     
     // MARK: - Private Methods
     fileprivate func configureTable() {
-        viewController?.tblFunds.register(UINib(nibName: String(describing: InvestmentFundInfoTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: InvestmentFundInfoTableViewCell.self))
+        viewController?.tblFunds.register(UINib(nibName: String(describing: InvestmentFundMoreInfoTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: InvestmentFundMoreInfoTableViewCell.self))
+        viewController?.tblFunds.register(UINib(nibName: String(describing: InvestmentFundsInfoTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: InvestmentFundsInfoTableViewCell.self))
         
         viewController?.tblFunds.dataSource = self
+        viewController?.tblFunds.delegate = self
         viewController?.tblFunds.reloadData()
     }
     
@@ -55,7 +57,7 @@ class InvestmentFundsPresenter: NSObject, InvestmentFundsPresenterProtocol {
         case 0:
             return 1
         case 1:
-            return infoItems?.count ?? 0
+            return funds?.getInfoItems().count ?? 0
         default:
             return 0
         }
@@ -64,15 +66,30 @@ class InvestmentFundsPresenter: NSObject, InvestmentFundsPresenterProtocol {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            guard let moreInfo = funds?.moreInfo, let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: InvestmentFundInfoTableViewCell.self), for: indexPath) as? InvestmentFundInfoTableViewCell else {
+            guard let moreInfo = funds?.getMoreInfo(), let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: InvestmentFundMoreInfoTableViewCell.self), for: indexPath) as? InvestmentFundMoreInfoTableViewCell else {
                 return UITableViewCell()
             }
             
             cell.setup(moreInfo: moreInfo)
             
             return cell
+            
+        case 1:
+            guard let info = funds?.getInfoItems()[indexPath.row], let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: InvestmentFundsInfoTableViewCell.self), for: indexPath) as? InvestmentFundsInfoTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            cell.setup(info: info, infoType: funds?.getInfoType(info: info))
+            cell.delegate = self
+            
+            return cell
         default:
             return UITableViewCell()
         }
+    }
+    
+    // MARK: - InvestmentFundsInfoTableViewCellProtocol
+    func downloadRequest() {
+        
     }
 }
