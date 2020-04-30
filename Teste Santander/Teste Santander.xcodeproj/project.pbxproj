@@ -1,0 +1,1331 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		698F7778875413BBA7D2B24F /* Pods_Teste_Santander.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF51C481C9A1AF1E286C3909 /* Pods_Teste_Santander.framework */; };
+		93E084F1360F8608A4BBD9DC /* Pods_Teste_SantanderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 502AE3919AC632C4BB20FC2F /* Pods_Teste_SantanderTests.framework */; };
+		A00A2FFD245884DB00ADFBF2 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A2FFC245884DB00ADFBF2 /* CustomTabBar.swift */; };
+		A00A2FFF245885BA00ADFBF2 /* CustomTabBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = A00A2FFE245885BA00ADFBF2 /* CustomTabBar.xib */; };
+		A00A30062458988700ADFBF2 /* ContactFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A30052458988700ADFBF2 /* ContactFormViewController.swift */; };
+		A00A3008245898A800ADFBF2 /* ContactFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A00A3007245898A800ADFBF2 /* ContactFormViewController.xib */; };
+		A00A300A245898E100ADFBF2 /* InvestmentFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A3009245898E100ADFBF2 /* InvestmentFundsViewController.swift */; };
+		A00A300C245898FC00ADFBF2 /* InvestmentFundsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A00A300B245898FC00ADFBF2 /* InvestmentFundsViewController.xib */; };
+		A03559042457841B00991912 /* CustomTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = A03559032457841B00991912 /* CustomTextField.xib */; };
+		A05762762458E8AB005B5651 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05762752458E8AB005B5651 /* APIConstants.swift */; };
+		A06525BF2459C38F00341469 /* InvestmentFundsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06525BE2459C38F00341469 /* InvestmentFundsViewModel.swift */; };
+		A06525C12459C3F300341469 /* InfoTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06525C02459C3F300341469 /* InfoTypeEnum.swift */; };
+		A06525C32459CA5900341469 /* InvestmentFundsInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06525C22459CA5900341469 /* InvestmentFundsInfoTableViewCell.swift */; };
+		A06525C52459CA9D00341469 /* InvestmentFundsInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A06525C42459CA9D00341469 /* InvestmentFundsInfoTableViewCell.xib */; };
+		A06525C8245A072300341469 /* FontUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06525C7245A072300341469 /* FontUtils.swift */; };
+		A06525CD245A7BED00341469 /* DashboardRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06525CC245A7BED00341469 /* DashboardRouter.swift */; };
+		A06525CF245A9B5200341469 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06525CE245A9B5200341469 /* ColorUtils.swift */; };
+		A06525D3245AAEDE00341469 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06525D2245AAEDE00341469 /* BaseViewController.swift */; };
+		A06525D5245AB12A00341469 /* UIViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06525D4245AB12A00341469 /* UIViewController+Loading.swift */; };
+		A070B681245B2D1E00E4051F /* ContactFormResultViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070B680245B2D1E00E4051F /* ContactFormResultViewControllerTests.swift */; };
+		A070B685245B2FB400E4051F /* ContactFormViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070B684245B2FB400E4051F /* ContactFormViewControllerTests.swift */; };
+		A070B688245B374100E4051F /* DashboardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070B687245B374100E4051F /* DashboardViewControllerTests.swift */; };
+		A070B68C245B3C2D00E4051F /* InvestmentFundsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070B68B245B3C2D00E4051F /* InvestmentFundsViewControllerTests.swift */; };
+		A070B692245B3E7A00E4051F /* cells.json in Resources */ = {isa = PBXBuildFile; fileRef = A070B691245B3E7A00E4051F /* cells.json */; };
+		A070B694245B3EA200E4051F /* funds.json in Resources */ = {isa = PBXBuildFile; fileRef = A070B693245B3EA200E4051F /* funds.json */; };
+		A070B698245B3EEF00E4051F /* ContactFormPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070B697245B3EEF00E4051F /* ContactFormPresenterTests.swift */; };
+		A070B699245B5D4B00E4051F /* cells.json in Resources */ = {isa = PBXBuildFile; fileRef = A070B691245B3E7A00E4051F /* cells.json */; };
+		A070B69A245B5D4D00E4051F /* funds.json in Resources */ = {isa = PBXBuildFile; fileRef = A070B693245B3EA200E4051F /* funds.json */; };
+		A070B69C245B604D00E4051F /* ContactFormInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070B69B245B604D00E4051F /* ContactFormInteractorTests.swift */; };
+		A070B6A0245B64C600E4051F /* InvestmentFundsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070B69F245B64C600E4051F /* InvestmentFundsInteractorTests.swift */; };
+		A070B6A2245B663000E4051F /* InvestmentFundsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070B6A1245B663000E4051F /* InvestmentFundsPresenterTests.swift */; };
+		A070B6A4245B678D00E4051F /* RedRoundedButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070B6A3245B678D00E4051F /* RedRoundedButtonTests.swift */; };
+		A070B6A6245B681B00E4051F /* CustomCheckBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070B6A5245B681B00E4051F /* CustomCheckBoxTests.swift */; };
+		A070B6A8245B6A1E00E4051F /* InvestmentRiskViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070B6A7245B6A1E00E4051F /* InvestmentRiskViewTests.swift */; };
+		A070B6AB245B6C4800E4051F /* CustomTabBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070B6AA245B6C4800E4051F /* CustomTabBarTests.swift */; };
+		A070B6AD245B6D9400E4051F /* CustomTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070B6AC245B6D9400E4051F /* CustomTextFieldTests.swift */; };
+		A0756CAE2458B6DE0043E298 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0756CAD2458B6DE0043E298 /* ContactModel.swift */; };
+		A0756CB02458B7F10043E298 /* InvestmentFundsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0756CAF2458B7F10043E298 /* InvestmentFundsModel.swift */; };
+		A0756CB62458BBFC0043E298 /* ContactFormResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0756CB52458BBFC0043E298 /* ContactFormResultViewController.swift */; };
+		A0756CB82458BC100043E298 /* ContactFormResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0756CB72458BC100043E298 /* ContactFormResultViewController.xib */; };
+		A0756CBA2458BEBF0043E298 /* ContactFormInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0756CB92458BEBF0043E298 /* ContactFormInteractor.swift */; };
+		A0756CBD2458BF210043E298 /* ContactFormPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0756CBC2458BF210043E298 /* ContactFormPresenter.swift */; };
+		A099FA582457E51500AB0FAB /* UIView+InnerBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A099FA572457E51500AB0FAB /* UIView+InnerBorder.swift */; };
+		A0A4B5132458E6D800E41FAD /* ContactFormWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A4B5122458E6D800E41FAD /* ContactFormWorker.swift */; };
+		A0BD6DB22459251C0006F875 /* ContactFormRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD6DB12459251C0006F875 /* ContactFormRouter.swift */; };
+		A0BD6DB4245927D10006F875 /* ComponentTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD6DB3245927D10006F875 /* ComponentTypeEnum.swift */; };
+		A0BD6DB7245929E00006F875 /* InvestmentFundsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD6DB6245929E00006F875 /* InvestmentFundsWorker.swift */; };
+		A0BD6DBC24592B690006F875 /* InvestmentFundsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD6DBB24592B690006F875 /* InvestmentFundsInteractor.swift */; };
+		A0BD6DBE24592BDF0006F875 /* InvestmentFundsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD6DBD24592BDF0006F875 /* InvestmentFundsPresenter.swift */; };
+		A0BD6DC024592C7B0006F875 /* InvestmentFundsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD6DBF24592C7B0006F875 /* InvestmentFundsRouter.swift */; };
+		A0BD6DC3245930100006F875 /* InvestmentFundsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD6DC2245930100006F875 /* InvestmentFundsHeaderView.swift */; };
+		A0BD6DC5245930500006F875 /* InvestmentFundsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BD6DC4245930500006F875 /* InvestmentFundsHeaderView.xib */; };
+		A0BD6DC7245941690006F875 /* InvestmentFundMoreInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BD6DC6245941690006F875 /* InvestmentFundMoreInfoTableViewCell.swift */; };
+		A0BD6DC9245941AE0006F875 /* InvestmentFundMoreInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BD6DC8245941AE0006F875 /* InvestmentFundMoreInfoTableViewCell.xib */; };
+		A0E2512E2457CDF700EF2443 /* UIImage+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E2512D2457CDF700EF2443 /* UIImage+Scaling.swift */; };
+		A0E251312457DC9100EF2443 /* CustomCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E251302457DC9100EF2443 /* CustomCheckBox.swift */; };
+		A0E251332457DC9900EF2443 /* CustomCheckBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E251322457DC9900EF2443 /* CustomCheckBox.xib */; };
+		A0EDD6862457543700D069E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EDD6852457543700D069E5 /* AppDelegate.swift */; };
+		A0EDD68A2457543700D069E5 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EDD6892457543700D069E5 /* DashboardViewController.swift */; };
+		A0EDD68F2457543700D069E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0EDD68E2457543700D069E5 /* Assets.xcassets */; };
+		A0EDD6922457543700D069E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0EDD6902457543700D069E5 /* LaunchScreen.storyboard */; };
+		A0EDD6AE2457559900D069E5 /* RedRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EDD6AD2457559900D069E5 /* RedRoundedButton.swift */; };
+		A0EDD6B024576ABD00D069E5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0EDD6AF24576ABD00D069E5 /* Colors.xcassets */; };
+		A0EDD6B224577B2900D069E5 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0EDD6B124577B2900D069E5 /* DashboardViewController.xib */; };
+		A0F6787E2457869400225C12 /* DINEngschriftStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0EB6D8624577EAA0032747A /* DINEngschriftStd.otf */; };
+		A0F6787F2457869400225C12 /* DINMittelschriftStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0EB6D8A24577EAA0032747A /* DINMittelschriftStd.otf */; };
+		A0F678802457869400225C12 /* DINNeuzeitGroteskStd-BdCond.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0EB6D8C24577EAA0032747A /* DINNeuzeitGroteskStd-BdCond.otf */; };
+		A0F678812457869400225C12 /* DINNeuzeitGroteskStd-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0EB6D8924577EAA0032747A /* DINNeuzeitGroteskStd-Light.otf */; };
+		A0F678822457869400225C12 /* DINPro-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0EB6D8D24577EAA0032747A /* DINPro-Black.otf */; };
+		A0F678832457869400225C12 /* DINPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0EB6D8B24577EAA0032747A /* DINPro-Bold.otf */; };
+		A0F678842457869400225C12 /* DINPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0EB6D8824577EAA0032747A /* DINPro-Light.otf */; };
+		A0F678852457869400225C12 /* DINPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0EB6D8724577EAA0032747A /* DINPro-Medium.otf */; };
+		A0F678862457869400225C12 /* DINPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0EB6D8524577EAA0032747A /* DINPro-Regular.otf */; };
+		A0F6788A24578C0400225C12 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F6788924578C0400225C12 /* CustomTextField.swift */; };
+		A0F6788E2457A2B500225C12 /* TypeFieldEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F6788D2457A2B500225C12 /* TypeFieldEnum.swift */; };
+		A0F678912457A62900225C12 /* UIViewController+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F678902457A62900225C12 /* UIViewController+Nib.swift */; };
+		A0F678942457A9BF00225C12 /* InvestmentRiskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F678932457A9BF00225C12 /* InvestmentRiskView.swift */; };
+		A0F678972457A9CF00225C12 /* InvestmentRiskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0F678962457A9CF00225C12 /* InvestmentRiskView.xib */; };
+		A0F678992457BF1900225C12 /* GraduationColorsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F678982457BF1900225C12 /* GraduationColorsEnum.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A0EDD6992457543800D069E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0EDD67A2457543700D069E5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0EDD6812457543700D069E5;
+			remoteInfo = "Teste Santander";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		25C81458CD214C0648097F44 /* Pods-Teste Santander.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Teste Santander.debug.xcconfig"; path = "Target Support Files/Pods-Teste Santander/Pods-Teste Santander.debug.xcconfig"; sourceTree = "<group>"; };
+		3907E401754D2488DEE3AEF2 /* Pods-Teste SantanderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Teste SantanderTests.release.xcconfig"; path = "Target Support Files/Pods-Teste SantanderTests/Pods-Teste SantanderTests.release.xcconfig"; sourceTree = "<group>"; };
+		502AE3919AC632C4BB20FC2F /* Pods_Teste_SantanderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Teste_SantanderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68CD67B4D31898D95AB82F39 /* Pods-Teste Santander.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Teste Santander.release.xcconfig"; path = "Target Support Files/Pods-Teste Santander/Pods-Teste Santander.release.xcconfig"; sourceTree = "<group>"; };
+		A00A2FFC245884DB00ADFBF2 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		A00A2FFE245885BA00ADFBF2 /* CustomTabBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTabBar.xib; sourceTree = "<group>"; };
+		A00A30052458988700ADFBF2 /* ContactFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormViewController.swift; sourceTree = "<group>"; };
+		A00A3007245898A800ADFBF2 /* ContactFormViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactFormViewController.xib; sourceTree = "<group>"; };
+		A00A3009245898E100ADFBF2 /* InvestmentFundsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsViewController.swift; sourceTree = "<group>"; };
+		A00A300B245898FC00ADFBF2 /* InvestmentFundsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvestmentFundsViewController.xib; sourceTree = "<group>"; };
+		A03559032457841B00991912 /* CustomTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTextField.xib; sourceTree = "<group>"; };
+		A05762752458E8AB005B5651 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		A06525BE2459C38F00341469 /* InvestmentFundsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsViewModel.swift; sourceTree = "<group>"; };
+		A06525C02459C3F300341469 /* InfoTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTypeEnum.swift; sourceTree = "<group>"; };
+		A06525C22459CA5900341469 /* InvestmentFundsInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsInfoTableViewCell.swift; sourceTree = "<group>"; };
+		A06525C42459CA9D00341469 /* InvestmentFundsInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvestmentFundsInfoTableViewCell.xib; sourceTree = "<group>"; };
+		A06525C7245A072300341469 /* FontUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontUtils.swift; sourceTree = "<group>"; };
+		A06525CC245A7BED00341469 /* DashboardRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRouter.swift; sourceTree = "<group>"; };
+		A06525CE245A9B5200341469 /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
+		A06525D2245AAEDE00341469 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		A06525D4245AB12A00341469 /* UIViewController+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Loading.swift"; sourceTree = "<group>"; };
+		A070B680245B2D1E00E4051F /* ContactFormResultViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormResultViewControllerTests.swift; sourceTree = "<group>"; };
+		A070B684245B2FB400E4051F /* ContactFormViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormViewControllerTests.swift; sourceTree = "<group>"; };
+		A070B687245B374100E4051F /* DashboardViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewControllerTests.swift; sourceTree = "<group>"; };
+		A070B68B245B3C2D00E4051F /* InvestmentFundsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsViewControllerTests.swift; sourceTree = "<group>"; };
+		A070B691245B3E7A00E4051F /* cells.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cells.json; sourceTree = "<group>"; };
+		A070B693245B3EA200E4051F /* funds.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = funds.json; sourceTree = "<group>"; };
+		A070B697245B3EEF00E4051F /* ContactFormPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormPresenterTests.swift; sourceTree = "<group>"; };
+		A070B69B245B604D00E4051F /* ContactFormInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormInteractorTests.swift; sourceTree = "<group>"; };
+		A070B69F245B64C600E4051F /* InvestmentFundsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsInteractorTests.swift; sourceTree = "<group>"; };
+		A070B6A1245B663000E4051F /* InvestmentFundsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsPresenterTests.swift; sourceTree = "<group>"; };
+		A070B6A3245B678D00E4051F /* RedRoundedButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedRoundedButtonTests.swift; sourceTree = "<group>"; };
+		A070B6A5245B681B00E4051F /* CustomCheckBoxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCheckBoxTests.swift; sourceTree = "<group>"; };
+		A070B6A7245B6A1E00E4051F /* InvestmentRiskViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentRiskViewTests.swift; sourceTree = "<group>"; };
+		A070B6AA245B6C4800E4051F /* CustomTabBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarTests.swift; sourceTree = "<group>"; };
+		A070B6AC245B6D9400E4051F /* CustomTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldTests.swift; sourceTree = "<group>"; };
+		A0756CAD2458B6DE0043E298 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
+		A0756CAF2458B7F10043E298 /* InvestmentFundsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsModel.swift; sourceTree = "<group>"; };
+		A0756CB52458BBFC0043E298 /* ContactFormResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormResultViewController.swift; sourceTree = "<group>"; };
+		A0756CB72458BC100043E298 /* ContactFormResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactFormResultViewController.xib; sourceTree = "<group>"; };
+		A0756CB92458BEBF0043E298 /* ContactFormInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormInteractor.swift; sourceTree = "<group>"; };
+		A0756CBC2458BF210043E298 /* ContactFormPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormPresenter.swift; sourceTree = "<group>"; };
+		A099FA572457E51500AB0FAB /* UIView+InnerBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+InnerBorder.swift"; sourceTree = "<group>"; };
+		A0A4B5122458E6D800E41FAD /* ContactFormWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormWorker.swift; sourceTree = "<group>"; };
+		A0BD6DB12459251C0006F875 /* ContactFormRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormRouter.swift; sourceTree = "<group>"; };
+		A0BD6DB3245927D10006F875 /* ComponentTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentTypeEnum.swift; sourceTree = "<group>"; };
+		A0BD6DB6245929E00006F875 /* InvestmentFundsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsWorker.swift; sourceTree = "<group>"; };
+		A0BD6DBB24592B690006F875 /* InvestmentFundsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsInteractor.swift; sourceTree = "<group>"; };
+		A0BD6DBD24592BDF0006F875 /* InvestmentFundsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsPresenter.swift; sourceTree = "<group>"; };
+		A0BD6DBF24592C7B0006F875 /* InvestmentFundsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsRouter.swift; sourceTree = "<group>"; };
+		A0BD6DC2245930100006F875 /* InvestmentFundsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundsHeaderView.swift; sourceTree = "<group>"; };
+		A0BD6DC4245930500006F875 /* InvestmentFundsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvestmentFundsHeaderView.xib; sourceTree = "<group>"; };
+		A0BD6DC6245941690006F875 /* InvestmentFundMoreInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentFundMoreInfoTableViewCell.swift; sourceTree = "<group>"; };
+		A0BD6DC8245941AE0006F875 /* InvestmentFundMoreInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvestmentFundMoreInfoTableViewCell.xib; sourceTree = "<group>"; };
+		A0E2512D2457CDF700EF2443 /* UIImage+Scaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scaling.swift"; sourceTree = "<group>"; };
+		A0E251302457DC9100EF2443 /* CustomCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCheckBox.swift; sourceTree = "<group>"; };
+		A0E251322457DC9900EF2443 /* CustomCheckBox.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCheckBox.xib; sourceTree = "<group>"; };
+		A0EB6D8524577EAA0032747A /* DINPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Regular.otf"; sourceTree = "<group>"; };
+		A0EB6D8624577EAA0032747A /* DINEngschriftStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINEngschriftStd.otf; sourceTree = "<group>"; };
+		A0EB6D8724577EAA0032747A /* DINPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Medium.otf"; sourceTree = "<group>"; };
+		A0EB6D8824577EAA0032747A /* DINPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Light.otf"; sourceTree = "<group>"; };
+		A0EB6D8924577EAA0032747A /* DINNeuzeitGroteskStd-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINNeuzeitGroteskStd-Light.otf"; sourceTree = "<group>"; };
+		A0EB6D8A24577EAA0032747A /* DINMittelschriftStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINMittelschriftStd.otf; sourceTree = "<group>"; };
+		A0EB6D8B24577EAA0032747A /* DINPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Bold.otf"; sourceTree = "<group>"; };
+		A0EB6D8C24577EAA0032747A /* DINNeuzeitGroteskStd-BdCond.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINNeuzeitGroteskStd-BdCond.otf"; sourceTree = "<group>"; };
+		A0EB6D8D24577EAA0032747A /* DINPro-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Black.otf"; sourceTree = "<group>"; };
+		A0EDD6822457543700D069E5 /* Teste Santander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Teste Santander.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0EDD6852457543700D069E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A0EDD6892457543700D069E5 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		A0EDD68E2457543700D069E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A0EDD6912457543700D069E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A0EDD6932457543700D069E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0EDD6982457543800D069E5 /* Teste SantanderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Teste SantanderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0EDD69E2457543800D069E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0EDD6AD2457559900D069E5 /* RedRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedRoundedButton.swift; sourceTree = "<group>"; };
+		A0EDD6AF24576ABD00D069E5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		A0EDD6B124577B2900D069E5 /* DashboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
+		A0F6788924578C0400225C12 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		A0F6788D2457A2B500225C12 /* TypeFieldEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeFieldEnum.swift; sourceTree = "<group>"; };
+		A0F678902457A62900225C12 /* UIViewController+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Nib.swift"; sourceTree = "<group>"; };
+		A0F678932457A9BF00225C12 /* InvestmentRiskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentRiskView.swift; sourceTree = "<group>"; };
+		A0F678962457A9CF00225C12 /* InvestmentRiskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvestmentRiskView.xib; sourceTree = "<group>"; };
+		A0F678982457BF1900225C12 /* GraduationColorsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraduationColorsEnum.swift; sourceTree = "<group>"; };
+		ADC4296228CBC064B2BBADAF /* Pods-Teste SantanderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Teste SantanderTests.debug.xcconfig"; path = "Target Support Files/Pods-Teste SantanderTests/Pods-Teste SantanderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EF51C481C9A1AF1E286C3909 /* Pods_Teste_Santander.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Teste_Santander.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A0EDD67F2457543700D069E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				698F7778875413BBA7D2B24F /* Pods_Teste_Santander.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0EDD6952457543800D069E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93E084F1360F8608A4BBD9DC /* Pods_Teste_SantanderTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		021D9085BFDD0E384424541F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				25C81458CD214C0648097F44 /* Pods-Teste Santander.debug.xcconfig */,
+				68CD67B4D31898D95AB82F39 /* Pods-Teste Santander.release.xcconfig */,
+				ADC4296228CBC064B2BBADAF /* Pods-Teste SantanderTests.debug.xcconfig */,
+				3907E401754D2488DEE3AEF2 /* Pods-Teste SantanderTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A00A2FFB245884C300ADFBF2 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				A00A2FFC245884DB00ADFBF2 /* CustomTabBar.swift */,
+				A00A2FFE245885BA00ADFBF2 /* CustomTabBar.xib */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		A00A3000245897A400ADFBF2 /* InvestmentFunds */ = {
+			isa = PBXGroup;
+			children = (
+				A0BD6DB924592A120006F875 /* Interactor */,
+				A0756CAC2458B65C0043E298 /* Model */,
+				A0BD6DBA24592A170006F875 /* Presenter */,
+				A0BD6DB824592A0C0006F875 /* Router */,
+				A0BD6DC124592FF80006F875 /* View */,
+				A00A3001245897AC00ADFBF2 /* ViewController */,
+				A06525BD2459C37200341469 /* ViewModel */,
+				A0BD6DB5245929BF0006F875 /* Worker */,
+			);
+			path = InvestmentFunds;
+			sourceTree = "<group>";
+		};
+		A00A3001245897AC00ADFBF2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A00A3009245898E100ADFBF2 /* InvestmentFundsViewController.swift */,
+				A00A300B245898FC00ADFBF2 /* InvestmentFundsViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A00A3002245897BF00ADFBF2 /* ContactForm */ = {
+			isa = PBXGroup;
+			children = (
+				A0756CB22458BBC10043E298 /* Interactor */,
+				A0756CB12458B8110043E298 /* Model */,
+				A0756CB32458BBC70043E298 /* Presenter */,
+				A0BD6DB02459250F0006F875 /* Router */,
+				A00A3003245897C500ADFBF2 /* ViewController */,
+				A0A4B5112458E6B300E41FAD /* Worker */,
+			);
+			path = ContactForm;
+			sourceTree = "<group>";
+		};
+		A00A3003245897C500ADFBF2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A00A30052458988700ADFBF2 /* ContactFormViewController.swift */,
+				A00A3007245898A800ADFBF2 /* ContactFormViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A00A30042458981400ADFBF2 /* ContactFormResult */ = {
+			isa = PBXGroup;
+			children = (
+				A0756CB42458BBD20043E298 /* ViewController */,
+			);
+			path = ContactFormResult;
+			sourceTree = "<group>";
+		};
+		A05762742458E890005B5651 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				A05762752458E8AB005B5651 /* APIConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		A06525BD2459C37200341469 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A06525BE2459C38F00341469 /* InvestmentFundsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A06525C6245A071300341469 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A06525C7245A072300341469 /* FontUtils.swift */,
+				A06525CE245A9B5200341469 /* ColorUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A06525CB245A7B9E00341469 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A06525CC245A7BED00341469 /* DashboardRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A06525D0245AAEC400341469 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A06525D1245AAECA00341469 /* ViewController */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		A06525D1245AAECA00341469 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A06525D2245AAEDE00341469 /* BaseViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A070B67A245B2CD100E4051F /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				A070B691245B3E7A00E4051F /* cells.json */,
+				A070B693245B3EA200E4051F /* funds.json */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		A070B67B245B2CD800E4051F /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				A070B682245B2F9500E4051F /* ContactForm */,
+				A070B67E245B2CF600E4051F /* ContactFormResult */,
+				A070B67D245B2CED00E4051F /* Dashboard */,
+				A070B689245B3C0A00E4051F /* InvestmentFunds */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		A070B67C245B2CDC00E4051F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A070B68D245B3E3E00E4051F /* Button */,
+				A070B68E245B3E4400E4051F /* CheckBox */,
+				A070B68F245B3E4A00E4051F /* InvestmentRiskView */,
+				A070B690245B3E5200E4051F /* TabBar */,
+				A070B6A9245B6C2A00E4051F /* TextField */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A070B67D245B2CED00E4051F /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				A070B686245B373000E4051F /* ViewController */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		A070B67E245B2CF600E4051F /* ContactFormResult */ = {
+			isa = PBXGroup;
+			children = (
+				A070B67F245B2D0300E4051F /* ViewController */,
+			);
+			path = ContactFormResult;
+			sourceTree = "<group>";
+		};
+		A070B67F245B2D0300E4051F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A070B680245B2D1E00E4051F /* ContactFormResultViewControllerTests.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A070B682245B2F9500E4051F /* ContactForm */ = {
+			isa = PBXGroup;
+			children = (
+				A070B696245B3EC300E4051F /* Interactor */,
+				A070B695245B3EBD00E4051F /* Presenter */,
+				A070B683245B2F9C00E4051F /* ViewController */,
+			);
+			path = ContactForm;
+			sourceTree = "<group>";
+		};
+		A070B683245B2F9C00E4051F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A070B684245B2FB400E4051F /* ContactFormViewControllerTests.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A070B686245B373000E4051F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A070B687245B374100E4051F /* DashboardViewControllerTests.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A070B689245B3C0A00E4051F /* InvestmentFunds */ = {
+			isa = PBXGroup;
+			children = (
+				A070B69E245B639300E4051F /* Interactor */,
+				A070B69D245B638C00E4051F /* Presenter */,
+				A070B68A245B3C1A00E4051F /* ViewController */,
+			);
+			path = InvestmentFunds;
+			sourceTree = "<group>";
+		};
+		A070B68A245B3C1A00E4051F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A070B68B245B3C2D00E4051F /* InvestmentFundsViewControllerTests.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A070B68D245B3E3E00E4051F /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				A070B6A3245B678D00E4051F /* RedRoundedButtonTests.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		A070B68E245B3E4400E4051F /* CheckBox */ = {
+			isa = PBXGroup;
+			children = (
+				A070B6A5245B681B00E4051F /* CustomCheckBoxTests.swift */,
+			);
+			path = CheckBox;
+			sourceTree = "<group>";
+		};
+		A070B68F245B3E4A00E4051F /* InvestmentRiskView */ = {
+			isa = PBXGroup;
+			children = (
+				A070B6A7245B6A1E00E4051F /* InvestmentRiskViewTests.swift */,
+			);
+			path = InvestmentRiskView;
+			sourceTree = "<group>";
+		};
+		A070B690245B3E5200E4051F /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				A070B6AA245B6C4800E4051F /* CustomTabBarTests.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		A070B695245B3EBD00E4051F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A070B697245B3EEF00E4051F /* ContactFormPresenterTests.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A070B696245B3EC300E4051F /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				A070B69B245B604D00E4051F /* ContactFormInteractorTests.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		A070B69D245B638C00E4051F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A070B6A1245B663000E4051F /* InvestmentFundsPresenterTests.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A070B69E245B639300E4051F /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				A070B69F245B64C600E4051F /* InvestmentFundsInteractorTests.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		A070B6A9245B6C2A00E4051F /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				A070B6AC245B6D9400E4051F /* CustomTextFieldTests.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		A0756CAC2458B65C0043E298 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A0756CAF2458B7F10043E298 /* InvestmentFundsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A0756CB12458B8110043E298 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A0756CAD2458B6DE0043E298 /* ContactModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A0756CB22458BBC10043E298 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				A0756CB92458BEBF0043E298 /* ContactFormInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		A0756CB32458BBC70043E298 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A0756CBC2458BF210043E298 /* ContactFormPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A0756CB42458BBD20043E298 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A0756CB52458BBFC0043E298 /* ContactFormResultViewController.swift */,
+				A0756CB72458BC100043E298 /* ContactFormResultViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A0867A1C24577D500094E34D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A0EB6D8624577EAA0032747A /* DINEngschriftStd.otf */,
+				A0EB6D8A24577EAA0032747A /* DINMittelschriftStd.otf */,
+				A0EB6D8C24577EAA0032747A /* DINNeuzeitGroteskStd-BdCond.otf */,
+				A0EB6D8924577EAA0032747A /* DINNeuzeitGroteskStd-Light.otf */,
+				A0EB6D8D24577EAA0032747A /* DINPro-Black.otf */,
+				A0EB6D8B24577EAA0032747A /* DINPro-Bold.otf */,
+				A0EB6D8824577EAA0032747A /* DINPro-Light.otf */,
+				A0EB6D8724577EAA0032747A /* DINPro-Medium.otf */,
+				A0EB6D8524577EAA0032747A /* DINPro-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A0A4B5112458E6B300E41FAD /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				A0A4B5122458E6D800E41FAD /* ContactFormWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		A0BD6DB02459250F0006F875 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A0BD6DB12459251C0006F875 /* ContactFormRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A0BD6DB5245929BF0006F875 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				A0BD6DB6245929E00006F875 /* InvestmentFundsWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		A0BD6DB824592A0C0006F875 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A0BD6DBF24592C7B0006F875 /* InvestmentFundsRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A0BD6DB924592A120006F875 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				A0BD6DBB24592B690006F875 /* InvestmentFundsInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		A0BD6DBA24592A170006F875 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A0BD6DBD24592BDF0006F875 /* InvestmentFundsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A0BD6DC124592FF80006F875 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A0BD6DC2245930100006F875 /* InvestmentFundsHeaderView.swift */,
+				A0BD6DC4245930500006F875 /* InvestmentFundsHeaderView.xib */,
+				A0BD6DC6245941690006F875 /* InvestmentFundMoreInfoTableViewCell.swift */,
+				A0BD6DC8245941AE0006F875 /* InvestmentFundMoreInfoTableViewCell.xib */,
+				A06525C22459CA5900341469 /* InvestmentFundsInfoTableViewCell.swift */,
+				A06525C42459CA9D00341469 /* InvestmentFundsInfoTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A0E2512F2457DC7C00EF2443 /* CheckBox */ = {
+			isa = PBXGroup;
+			children = (
+				A0E251302457DC9100EF2443 /* CustomCheckBox.swift */,
+				A0E251322457DC9900EF2443 /* CustomCheckBox.xib */,
+			);
+			path = CheckBox;
+			sourceTree = "<group>";
+		};
+		A0EB6D9724577F4B0032747A /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				A06525CB245A7B9E00341469 /* Router */,
+				A0EB6D9824577F5F0032747A /* ViewController */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		A0EB6D9824577F5F0032747A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A0EDD6892457543700D069E5 /* DashboardViewController.swift */,
+				A0EDD6B124577B2900D069E5 /* DashboardViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A0EB6D9924577FBE0032747A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A0EDD6902457543700D069E5 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A0EDD6792457543700D069E5 = {
+			isa = PBXGroup;
+			children = (
+				A0EDD6842457543700D069E5 /* Teste Santander */,
+				A0EDD69B2457543800D069E5 /* Teste SantanderTests */,
+				A0EDD6832457543700D069E5 /* Products */,
+				021D9085BFDD0E384424541F /* Pods */,
+				A3FB70B45C428BC15FA0E3DD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A0EDD6832457543700D069E5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A0EDD6822457543700D069E5 /* Teste Santander.app */,
+				A0EDD6982457543800D069E5 /* Teste SantanderTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A0EDD6842457543700D069E5 /* Teste Santander */ = {
+			isa = PBXGroup;
+			children = (
+				A0EDD6A72457546C00D069E5 /* Classes */,
+				A0EDD6A82457547000D069E5 /* Resources */,
+			);
+			path = "Teste Santander";
+			sourceTree = "<group>";
+		};
+		A0EDD69B2457543800D069E5 /* Teste SantanderTests */ = {
+			isa = PBXGroup;
+			children = (
+				A070B67C245B2CDC00E4051F /* Components */,
+				A070B67B245B2CD800E4051F /* Scenes */,
+				A070B67A245B2CD100E4051F /* Mocks */,
+				A0EDD69E2457543800D069E5 /* Info.plist */,
+			);
+			path = "Teste SantanderTests";
+			sourceTree = "<group>";
+		};
+		A0EDD6A72457546C00D069E5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A0F6788B2457A25200225C12 /* Commons */,
+				A0EDD6AC2457556F00D069E5 /* Components */,
+				A0EDD6A92457547700D069E5 /* Scenes */,
+				A0EDD6AB245754B400D069E5 /* SupportingFiles */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A0EDD6A82457547000D069E5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A0EDD68E2457543700D069E5 /* Assets.xcassets */,
+				A0EDD6AF24576ABD00D069E5 /* Colors.xcassets */,
+				A0867A1C24577D500094E34D /* Fonts */,
+				A0EB6D9924577FBE0032747A /* Storyboards */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A0EDD6A92457547700D069E5 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				A06525D0245AAEC400341469 /* Base */,
+				A00A3002245897BF00ADFBF2 /* ContactForm */,
+				A00A30042458981400ADFBF2 /* ContactFormResult */,
+				A0EB6D9724577F4B0032747A /* Dashboard */,
+				A00A3000245897A400ADFBF2 /* InvestmentFunds */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		A0EDD6AA2457548C00D069E5 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				A0EDD6852457543700D069E5 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		A0EDD6AB245754B400D069E5 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				A0EDD6AA2457548C00D069E5 /* AppDelegate */,
+				A0EDD6932457543700D069E5 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		A0EDD6AC2457556F00D069E5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A0F6788724578B0800225C12 /* Button */,
+				A0E2512F2457DC7C00EF2443 /* CheckBox */,
+				A0F678922457A9A500225C12 /* InvestmentRiskView */,
+				A00A2FFB245884C300ADFBF2 /* TabBar */,
+				A0F6788824578B0F00225C12 /* TextField */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A0F6788724578B0800225C12 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				A0EDD6AD2457559900D069E5 /* RedRoundedButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		A0F6788824578B0F00225C12 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				A0F6788924578C0400225C12 /* CustomTextField.swift */,
+				A03559032457841B00991912 /* CustomTextField.xib */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		A0F6788B2457A25200225C12 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				A05762742458E890005B5651 /* Constants */,
+				A0F6788C2457A25600225C12 /* Enums */,
+				A0F6788F2457A5FF00225C12 /* Extensions */,
+				A06525C6245A071300341469 /* Utils */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
+		A0F6788C2457A25600225C12 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				A0F678982457BF1900225C12 /* GraduationColorsEnum.swift */,
+				A0BD6DB3245927D10006F875 /* ComponentTypeEnum.swift */,
+				A0F6788D2457A2B500225C12 /* TypeFieldEnum.swift */,
+				A06525C02459C3F300341469 /* InfoTypeEnum.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		A0F6788F2457A5FF00225C12 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A0E2512D2457CDF700EF2443 /* UIImage+Scaling.swift */,
+				A099FA572457E51500AB0FAB /* UIView+InnerBorder.swift */,
+				A0F678902457A62900225C12 /* UIViewController+Nib.swift */,
+				A06525D4245AB12A00341469 /* UIViewController+Loading.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A0F678922457A9A500225C12 /* InvestmentRiskView */ = {
+			isa = PBXGroup;
+			children = (
+				A0F678932457A9BF00225C12 /* InvestmentRiskView.swift */,
+				A0F678962457A9CF00225C12 /* InvestmentRiskView.xib */,
+			);
+			path = InvestmentRiskView;
+			sourceTree = "<group>";
+		};
+		A3FB70B45C428BC15FA0E3DD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF51C481C9A1AF1E286C3909 /* Pods_Teste_Santander.framework */,
+				502AE3919AC632C4BB20FC2F /* Pods_Teste_SantanderTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A0EDD6812457543700D069E5 /* Teste Santander */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0EDD6A12457543800D069E5 /* Build configuration list for PBXNativeTarget "Teste Santander" */;
+			buildPhases = (
+				DF82A950ACA8A8E0970045CE /* [CP] Check Pods Manifest.lock */,
+				A0EDD67E2457543700D069E5 /* Sources */,
+				A0EDD67F2457543700D069E5 /* Frameworks */,
+				A0EDD6802457543700D069E5 /* Resources */,
+				D010BE460BF147051B27B5D9 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Teste Santander";
+			productName = "Teste Santander";
+			productReference = A0EDD6822457543700D069E5 /* Teste Santander.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A0EDD6972457543800D069E5 /* Teste SantanderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0EDD6A42457543800D069E5 /* Build configuration list for PBXNativeTarget "Teste SantanderTests" */;
+			buildPhases = (
+				05E077CCF31892DC318E25D2 /* [CP] Check Pods Manifest.lock */,
+				A0EDD6942457543800D069E5 /* Sources */,
+				A0EDD6952457543800D069E5 /* Frameworks */,
+				A0EDD6962457543800D069E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0EDD69A2457543800D069E5 /* PBXTargetDependency */,
+			);
+			name = "Teste SantanderTests";
+			productName = "Teste SantanderTests";
+			productReference = A0EDD6982457543800D069E5 /* Teste SantanderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A0EDD67A2457543700D069E5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = "Eduardo Alves Sumiya";
+				TargetAttributes = {
+					A0EDD6812457543700D069E5 = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+					A0EDD6972457543800D069E5 = {
+						CreatedOnToolsVersion = 11.4.1;
+						TestTargetID = A0EDD6812457543700D069E5;
+					};
+				};
+			};
+			buildConfigurationList = A0EDD67D2457543700D069E5 /* Build configuration list for PBXProject "Teste Santander" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A0EDD6792457543700D069E5;
+			productRefGroup = A0EDD6832457543700D069E5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A0EDD6812457543700D069E5 /* Teste Santander */,
+				A0EDD6972457543800D069E5 /* Teste SantanderTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A0EDD6802457543700D069E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0F678832457869400225C12 /* DINPro-Bold.otf in Resources */,
+				A0F6787E2457869400225C12 /* DINEngschriftStd.otf in Resources */,
+				A03559042457841B00991912 /* CustomTextField.xib in Resources */,
+				A0F678812457869400225C12 /* DINNeuzeitGroteskStd-Light.otf in Resources */,
+				A00A300C245898FC00ADFBF2 /* InvestmentFundsViewController.xib in Resources */,
+				A070B699245B5D4B00E4051F /* cells.json in Resources */,
+				A0EDD6B224577B2900D069E5 /* DashboardViewController.xib in Resources */,
+				A0E251332457DC9900EF2443 /* CustomCheckBox.xib in Resources */,
+				A0EDD6922457543700D069E5 /* LaunchScreen.storyboard in Resources */,
+				A0EDD6B024576ABD00D069E5 /* Colors.xcassets in Resources */,
+				A070B69A245B5D4D00E4051F /* funds.json in Resources */,
+				A00A2FFF245885BA00ADFBF2 /* CustomTabBar.xib in Resources */,
+				A0EDD68F2457543700D069E5 /* Assets.xcassets in Resources */,
+				A0F678852457869400225C12 /* DINPro-Medium.otf in Resources */,
+				A06525C52459CA9D00341469 /* InvestmentFundsInfoTableViewCell.xib in Resources */,
+				A0F678842457869400225C12 /* DINPro-Light.otf in Resources */,
+				A0F678972457A9CF00225C12 /* InvestmentRiskView.xib in Resources */,
+				A0F678822457869400225C12 /* DINPro-Black.otf in Resources */,
+				A0BD6DC5245930500006F875 /* InvestmentFundsHeaderView.xib in Resources */,
+				A0F678802457869400225C12 /* DINNeuzeitGroteskStd-BdCond.otf in Resources */,
+				A00A3008245898A800ADFBF2 /* ContactFormViewController.xib in Resources */,
+				A0F678862457869400225C12 /* DINPro-Regular.otf in Resources */,
+				A0BD6DC9245941AE0006F875 /* InvestmentFundMoreInfoTableViewCell.xib in Resources */,
+				A0756CB82458BC100043E298 /* ContactFormResultViewController.xib in Resources */,
+				A0F6787F2457869400225C12 /* DINMittelschriftStd.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0EDD6962457543800D069E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A070B694245B3EA200E4051F /* funds.json in Resources */,
+				A070B692245B3E7A00E4051F /* cells.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05E077CCF31892DC318E25D2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Teste SantanderTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D010BE460BF147051B27B5D9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Teste Santander/Pods-Teste Santander-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Teste Santander/Pods-Teste Santander-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Teste Santander/Pods-Teste Santander-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF82A950ACA8A8E0970045CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Teste Santander-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A0EDD67E2457543700D069E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0E2512E2457CDF700EF2443 /* UIImage+Scaling.swift in Sources */,
+				A06525CF245A9B5200341469 /* ColorUtils.swift in Sources */,
+				A0E251312457DC9100EF2443 /* CustomCheckBox.swift in Sources */,
+				A00A300A245898E100ADFBF2 /* InvestmentFundsViewController.swift in Sources */,
+				A0F6788A24578C0400225C12 /* CustomTextField.swift in Sources */,
+				A06525D3245AAEDE00341469 /* BaseViewController.swift in Sources */,
+				A0EDD68A2457543700D069E5 /* DashboardViewController.swift in Sources */,
+				A0BD6DB7245929E00006F875 /* InvestmentFundsWorker.swift in Sources */,
+				A06525C12459C3F300341469 /* InfoTypeEnum.swift in Sources */,
+				A0756CBA2458BEBF0043E298 /* ContactFormInteractor.swift in Sources */,
+				A0756CB02458B7F10043E298 /* InvestmentFundsModel.swift in Sources */,
+				A0BD6DC7245941690006F875 /* InvestmentFundMoreInfoTableViewCell.swift in Sources */,
+				A0756CBD2458BF210043E298 /* ContactFormPresenter.swift in Sources */,
+				A06525CD245A7BED00341469 /* DashboardRouter.swift in Sources */,
+				A05762762458E8AB005B5651 /* APIConstants.swift in Sources */,
+				A0A4B5132458E6D800E41FAD /* ContactFormWorker.swift in Sources */,
+				A00A2FFD245884DB00ADFBF2 /* CustomTabBar.swift in Sources */,
+				A0BD6DC3245930100006F875 /* InvestmentFundsHeaderView.swift in Sources */,
+				A0BD6DBC24592B690006F875 /* InvestmentFundsInteractor.swift in Sources */,
+				A0F678992457BF1900225C12 /* GraduationColorsEnum.swift in Sources */,
+				A0F678942457A9BF00225C12 /* InvestmentRiskView.swift in Sources */,
+				A06525D5245AB12A00341469 /* UIViewController+Loading.swift in Sources */,
+				A0BD6DC024592C7B0006F875 /* InvestmentFundsRouter.swift in Sources */,
+				A0EDD6AE2457559900D069E5 /* RedRoundedButton.swift in Sources */,
+				A0756CB62458BBFC0043E298 /* ContactFormResultViewController.swift in Sources */,
+				A06525BF2459C38F00341469 /* InvestmentFundsViewModel.swift in Sources */,
+				A0BD6DB22459251C0006F875 /* ContactFormRouter.swift in Sources */,
+				A0BD6DBE24592BDF0006F875 /* InvestmentFundsPresenter.swift in Sources */,
+				A0756CAE2458B6DE0043E298 /* ContactModel.swift in Sources */,
+				A0EDD6862457543700D069E5 /* AppDelegate.swift in Sources */,
+				A0F6788E2457A2B500225C12 /* TypeFieldEnum.swift in Sources */,
+				A099FA582457E51500AB0FAB /* UIView+InnerBorder.swift in Sources */,
+				A06525C8245A072300341469 /* FontUtils.swift in Sources */,
+				A0F678912457A62900225C12 /* UIViewController+Nib.swift in Sources */,
+				A06525C32459CA5900341469 /* InvestmentFundsInfoTableViewCell.swift in Sources */,
+				A0BD6DB4245927D10006F875 /* ComponentTypeEnum.swift in Sources */,
+				A00A30062458988700ADFBF2 /* ContactFormViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0EDD6942457543800D069E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A070B6AB245B6C4800E4051F /* CustomTabBarTests.swift in Sources */,
+				A070B6A8245B6A1E00E4051F /* InvestmentRiskViewTests.swift in Sources */,
+				A070B6A4245B678D00E4051F /* RedRoundedButtonTests.swift in Sources */,
+				A070B69C245B604D00E4051F /* ContactFormInteractorTests.swift in Sources */,
+				A070B685245B2FB400E4051F /* ContactFormViewControllerTests.swift in Sources */,
+				A070B6A6245B681B00E4051F /* CustomCheckBoxTests.swift in Sources */,
+				A070B681245B2D1E00E4051F /* ContactFormResultViewControllerTests.swift in Sources */,
+				A070B68C245B3C2D00E4051F /* InvestmentFundsViewControllerTests.swift in Sources */,
+				A070B6AD245B6D9400E4051F /* CustomTextFieldTests.swift in Sources */,
+				A070B6A0245B64C600E4051F /* InvestmentFundsInteractorTests.swift in Sources */,
+				A070B688245B374100E4051F /* DashboardViewControllerTests.swift in Sources */,
+				A070B6A2245B663000E4051F /* InvestmentFundsPresenterTests.swift in Sources */,
+				A070B698245B3EEF00E4051F /* ContactFormPresenterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A0EDD69A2457543800D069E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0EDD6812457543700D069E5 /* Teste Santander */;
+			targetProxy = A0EDD6992457543800D069E5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A0EDD6902457543700D069E5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A0EDD6912457543700D069E5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A0EDD69F2457543800D069E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A0EDD6A02457543800D069E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A0EDD6A22457543800D069E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25C81458CD214C0648097F44 /* Pods-Teste Santander.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "$(SRCROOT)/Teste Santander/Classes/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.sumiya.testesantander;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A0EDD6A32457543800D069E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68CD67B4D31898D95AB82F39 /* Pods-Teste Santander.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "$(SRCROOT)/Teste Santander/Classes/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.sumiya.testesantander;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A0EDD6A52457543800D069E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADC4296228CBC064B2BBADAF /* Pods-Teste SantanderTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Teste SantanderTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.sumiya.testesantander.Teste-SantanderTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teste Santander.app/Teste Santander";
+			};
+			name = Debug;
+		};
+		A0EDD6A62457543800D069E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3907E401754D2488DEE3AEF2 /* Pods-Teste SantanderTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Teste SantanderTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.sumiya.testesantander.Teste-SantanderTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teste Santander.app/Teste Santander";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A0EDD67D2457543700D069E5 /* Build configuration list for PBXProject "Teste Santander" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0EDD69F2457543800D069E5 /* Debug */,
+				A0EDD6A02457543800D069E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0EDD6A12457543800D069E5 /* Build configuration list for PBXNativeTarget "Teste Santander" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0EDD6A22457543800D069E5 /* Debug */,
+				A0EDD6A32457543800D069E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0EDD6A42457543800D069E5 /* Build configuration list for PBXNativeTarget "Teste SantanderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0EDD6A52457543800D069E5 /* Debug */,
+				A0EDD6A62457543800D069E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A0EDD67A2457543700D069E5 /* Project object */;
+}
