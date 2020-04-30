@@ -10,6 +10,11 @@ import Foundation
 import Alamofire
 
 class ContactFormWorker {
+    /// Request the contact form
+    /// - Parameters:
+    ///   - completion: completion block
+    ///   - error: failure block
+    /// - Returns: Contact Form Data
     static func fetchContactForm(completion: @escaping(_ responseData: Data?) -> (), error: @escaping(_ error: Error?) -> ()) {
         let url = APIConstants.baseUrl + APIConstants.contactEndpoint
         

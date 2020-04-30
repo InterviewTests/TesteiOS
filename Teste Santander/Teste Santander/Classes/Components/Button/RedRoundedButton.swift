@@ -14,7 +14,7 @@ class RedRoundedButton: UIButton {
     // MARK: - Override Variables
     override var isHighlighted: Bool {
         didSet {
-            backgroundColor = isHighlighted ? #colorLiteral(red: 0.9215686275, green: 0.462745098, blue: 0.462745098, alpha: 1) : #colorLiteral(red: 0.8549019608, green: 0.003921568627, blue: 0.003921568627, alpha: 1)
+            backgroundColor = isHighlighted ? ColorUtils.buttonSelectedRed : ColorUtils.buttonRed
         }
     }
     
@@ -35,9 +35,9 @@ class RedRoundedButton: UIButton {
     fileprivate func configureUI() {
         self.layer.cornerRadius = (self.frame.height / 2)
         
-        backgroundColor = #colorLiteral(red: 0.8549019608, green: 0.003921568627, blue: 0.003921568627, alpha: 1)
+        backgroundColor = ColorUtils.buttonRed
         setTitleColor(.white, for: .normal)
-        titleLabel?.font = UIFont(name: "DINPro-Medium", size: 16)
+        titleLabel?.font = FontUtils.mediumInfoTitle
     }
     
     // MARK: - Public Methods

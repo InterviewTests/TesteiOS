@@ -11,6 +11,7 @@ import UIKit
 
 protocol InvestmentFundsPresenterProtocol: UITableViewDataSource, UITableViewDelegate {
     func handleFunds(funds: InvestmentFundsViewModel)
+    func handleError(error: Error?)
 }
 
 class InvestmentFundsPresenter: NSObject, InvestmentFundsPresenterProtocol, InvestmentFundsInfoTableViewCellProtocol {
@@ -36,6 +37,12 @@ class InvestmentFundsPresenter: NSObject, InvestmentFundsPresenterProtocol, Inve
         viewController?.setupFooter()
         
         configureTable()
+    }
+    
+    func handleError(error: Error?) {
+        if let errorMessge = error?.localizedDescription {
+            viewController?.showError(errorMessage: errorMessge)
+        }
     }
     
     // MARK: - Private Methods

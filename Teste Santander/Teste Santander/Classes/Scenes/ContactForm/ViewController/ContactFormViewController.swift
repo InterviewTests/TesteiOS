@@ -9,21 +9,34 @@
 import UIKit
 
 protocol ContactFormTransitionProtocol {
+    /// Requests the Success Screen
     func showSuccessScreen()
 }
 protocol ContactFormViewControllerProtocol {
+    /// Create Message Field
+    /// - Parameter cell: cell field
     func configureMessage(cell: CellForm)
+    /// Create TextField Field
+    /// - Parameter cell: cell field
     func configureTextField(cell: CellForm)
+    /// Create CheckBox Field
+    /// - Parameter cell: cell field
     func configureCheckBox(cell: CellForm)
+    /// Create Button Field
+    /// - Parameter cell: cell field
     func configureButton(cell: CellForm)
+    
+    /// Displays error messages
+    /// - Parameter errorMessage: error message
+    func showError(errorMessage: String)
 }
 
 class ContactFormViewController: UIViewController, ContactFormViewControllerProtocol {
-    
     // MARK: - Properties
     var stackFormView: UIStackView?
     
-    var fieldsWidth = UIScreen.main.bounds.width - 60
+    // MARK: - Constants
+    let fieldsWidth = UIScreen.main.bounds.width - 60
     
     // MARK: - Interface Properties
     var interactor: ContactFormInteractorProtocol?
@@ -51,6 +64,10 @@ class ContactFormViewController: UIViewController, ContactFormViewControllerProt
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        configureStack()
+    }
+    
+    fileprivate func configureStack() {
         stackFormView = UIStackView()
         stackFormView?.axis = .vertical
         stackFormView?.distribution = .equalSpacing
@@ -143,5 +160,9 @@ class ContactFormViewController: UIViewController, ContactFormViewControllerProt
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         separatorView.heightAnchor.constraint(equalToConstant: CGFloat(fieldsWidth)).isActive = true
         separatorView.heightAnchor.constraint(equalToConstant: CGFloat(separatorHeight)).isActive = true
+    }
+    
+    func showError(errorMessage: String) {
+        
     }
 }

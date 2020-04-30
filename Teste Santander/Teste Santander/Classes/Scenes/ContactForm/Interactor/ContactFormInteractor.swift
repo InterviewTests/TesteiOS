@@ -9,6 +9,7 @@
 import Foundation
 
 protocol ContactFormInteractorProtocol {
+    /// Requests the Contact List
     func fetchContactList()
 }
 class ContactFormInteractor: ContactFormInteractorProtocol {
@@ -33,7 +34,7 @@ class ContactFormInteractor: ContactFormInteractorProtocol {
                 print(error)
             }
         }) { (error) in
-            
+            self.presenter?.handleError(error: error)
         }
     }
 }

@@ -10,6 +10,8 @@ import Foundation
 import SafariServices
 
 class InvestmentFundsRouter {
+    /// Requests Investment Funds Screen Instance
+    /// - Returns: Investment Funds Screen Instance
     public static func rootViewController() -> InvestmentFundsViewController {
         let investmentFunds = InvestmentFundsViewController.loadFromNib()
         let investmentFundsPresenter = InvestmentFundsPresenter(viewController: investmentFunds)
@@ -20,6 +22,8 @@ class InvestmentFundsRouter {
         return investmentFunds
     }
     
+    /// Requests Safari View Controller
+    /// - Parameter initialViewController: initial View Controller for navigation
     public static func openSafariViewController(initialViewController: InvestmentFundsViewController) {
         let url = URL(string: APIConstants.downloadUrl)!
         let controller = SFSafariViewController(url: url)

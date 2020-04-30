@@ -26,40 +26,19 @@ class DashboardViewController: UIViewController, CustomTabBarDelegate, ContactFo
         configureUI()
     }
     
+    // MARK: - Private Methods
     fileprivate func configureUI() {
         customTabBar.delegate = self
         customTabBar.setup(tabBarItems: tabBarItems)
         
-        for index in (0...childrenVC.count - 1) {
-            let childVC = childrenVC[index]
-            
-            addChild(childVC)
-            
-            if index == 0 {
-                childVC.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-                childVC.view.frame = containerView.bounds
-                containerView.addSubview(childVC.view)
-                
-                childVC.didMove(toParent: self)
-                customTabBar.setSelectedTab(index: index)
-            }
-        }
+        let indexTab = DashboardRouter.showSelectedTab(parent: self, containerView: containerView, childrenVC: childrenVC, index: 0, addChilds: true)
+
+        customTabBar.setSelectedTab(index: indexTab)
     }
     
     // MARK: - CustomTabBarDelegate
     func didSelectTab(index: Int) {
-        for indexTab in (0...childrenVC.count - 1) {
-            let childVC = childrenVC[indexTab]
-            if index == indexTab {
-                childVC.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-                childVC.view.frame = containerView.bounds
-                
-                containerView.addSubview(childVC.view)
-                childVC.didMove(toParent: self)
-            } else {
-                childVC.view.removeFromSuperview()
-            }
-        }
+        _ = DashboardRouter.showSelectedTab(parent: self, containerView: containerView, childrenVC: childrenVC, index: index, addChilds: false)
     }
     
     // MARK: - ContactFormTransitionProtocol

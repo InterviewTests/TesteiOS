@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CustomTabBarDelegate {
-    /// Tab CLick Event
+    /// Tab Click Event
     /// - Parameter index: index of selected tab
     func didSelectTab(index: Int)
 }
@@ -44,9 +44,9 @@ class CustomTabBar: UIView {
         for index in (0...tabBarItems.count - 1) {
             let button = UIButton()
             
-            button.backgroundColor = #colorLiteral(red: 0.8549019608, green: 0.003921568627, blue: 0.003921568627, alpha: 1)
+            button.backgroundColor = ColorUtils.buttonRed
             button.setTitleColor(.white, for: .normal)
-            button.titleLabel?.font = UIFont(name: "DINPro-Medium", size: 16)
+            button.titleLabel?.font = FontUtils.mediumInfoTitle
             button.setTitle(tabBarItems[index], for: .normal)
             button.tag = index
             
@@ -62,10 +62,10 @@ class CustomTabBar: UIView {
             let bottomConstraint = button.superview!.constraints.filter({ $0.firstAttribute == .top && $0.firstItem === button}).first!
             
             if button.tag == index {
-                button.backgroundColor = #colorLiteral(red: 0.7921568627, green: 0, blue: 0, alpha: 1)
+                button.backgroundColor = ColorUtils.buttonTabSelectedRed
                 bottomConstraint.constant = 0
             } else {
-                button.backgroundColor = #colorLiteral(red: 0.8549019608, green: 0.003921568627, blue: 0.003921568627, alpha: 1)
+                button.backgroundColor = ColorUtils.buttonRed
                 bottomConstraint.constant = 2
             }
         }

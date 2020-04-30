@@ -11,9 +11,25 @@ import UIKit
 protocol InvestmentFundsViewControllerProtocol {
     var tblFunds: UITableView! {get set}
     
+    /// Setups Header for TableView
+    /// - Parameters:
+    ///   - title: title
+    ///   - fundName: fund name
+    ///   - whatIs: what is
+    ///   - definition: definition
+    ///   - riskTitle: risk title
+    ///   - investmentValue: investment risk value
     func setupHeader(title: String, fundName: String, whatIs: String, definition: String, riskTitle: String, investmentValue: Int)
+    
+    /// Setups Footer for TableView
     func setupFooter()
+    
+    /// Requests download
     func downloadRequest()
+    
+    /// Displays error messages
+    /// - Parameter errorMessage: error message
+    func showError(errorMessage: String)
 }
 
 class InvestmentFundsViewController: UIViewController, InvestmentFundsViewControllerProtocol {
@@ -27,8 +43,7 @@ class InvestmentFundsViewController: UIViewController, InvestmentFundsViewContro
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super .viewDidLoad()
-        
-        configureUI()
+
         configureData()
     }
     
@@ -40,7 +55,6 @@ class InvestmentFundsViewController: UIViewController, InvestmentFundsViewContro
             let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize).height
             var headerFrame = headerView.frame
 
-            //Comparison necessary to avoid infinite loop
             if height != headerFrame.size.height {
                 headerFrame.size.height = height
                 headerView.frame = headerFrame
@@ -49,10 +63,7 @@ class InvestmentFundsViewController: UIViewController, InvestmentFundsViewContro
         }
     }
     
-    fileprivate func configureUI() {
-        
-    }
-    
+    // MARK: - Private Methods
     fileprivate func configureData() {
         interactor?.fetchFunds()
     }
@@ -87,5 +98,9 @@ class InvestmentFundsViewController: UIViewController, InvestmentFundsViewContro
     
     func downloadRequest() {
         InvestmentFundsRouter.openSafariViewController(initialViewController: self)
+    }
+    
+    func showError(errorMessage: String) {
+        
     }
 }

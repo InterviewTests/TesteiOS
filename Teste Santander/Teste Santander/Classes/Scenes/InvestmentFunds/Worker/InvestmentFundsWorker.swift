@@ -10,6 +10,11 @@ import Foundation
 import Alamofire
 
 class InvestmentFundsWorker {
+    /// Requests Investments
+    /// - Parameters:
+    ///   - completion: completion block
+    ///   - error: error block
+    /// - Returns: Investments
     static func fetchInvestments(completion: @escaping(_ responseData: Data?) -> (), error: @escaping(_ error: Error?) -> ()) {
         let url = APIConstants.baseUrl + APIConstants.investmentEndpoint
         

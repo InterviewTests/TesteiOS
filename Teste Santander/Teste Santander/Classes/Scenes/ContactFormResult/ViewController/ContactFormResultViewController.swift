@@ -8,10 +8,12 @@
 
 import UIKit
 protocol ContactFormResultProtocol {
+    /// Requests previous form for new message
     func sendNewMessage()
 }
 
 class ContactFormResultViewController: UIViewController {
+    // MARK: - Delegate
     var delegate: ContactFormResultProtocol?
     
     // MARK: - Actions

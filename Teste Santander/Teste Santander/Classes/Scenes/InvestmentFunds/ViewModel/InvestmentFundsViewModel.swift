@@ -9,10 +9,13 @@
 import Foundation
 
 class InvestmentFundsViewModel {
+    // MARK: - Model Object
     fileprivate var funds: InvestmentModel
     
+    // MARK: - Properties
     fileprivate var infoArrayList: [Info]
     
+    // MARK: - Initialization
     init(funds: InvestmentModel) {
         self.funds = funds
         self.infoArrayList = InvestmentFundsViewModel.getInfoArrayList(funds: funds)
