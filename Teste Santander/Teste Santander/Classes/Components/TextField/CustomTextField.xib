@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomTextField" customModule="Teste_Santander" customModuleProvider="target">
+            <connections>
+                <outlet property="btnClearInput" destination="zbt-p4-j2B" id="Go2-LZ-HDG"/>
+                <outlet property="containerView" destination="iN0-l3-epB" id="ibP-SE-MPr"/>
+                <outlet property="lblPlaceholder" destination="hpk-bM-aLW" id="vVN-V3-EgK"/>
+                <outlet property="txtInput" destination="r0I-ut-mSH" id="M7T-8R-CM7"/>
+                <outlet property="viewValidationStatus" destination="F9T-Zi-N25" id="k5F-Zm-QAt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F9T-Zi-N25">
+                    <rect key="frame" x="0.0" y="55" width="414" height="1"/>
+                    <color key="backgroundColor" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="sCF-Al-Ivh"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpk-bM-aLW">
+                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="0JC-Fh-w77"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                    <color key="textColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r0I-ut-mSH" customClass="SwiftMaskTextfield" customModule="SwiftMaskTextfield">
+                    <rect key="frame" x="0.0" y="21" width="414" height="34"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="inputDidChanged:" destination="-1" eventType="editingChanged" id="Tag-z7-4Xc"/>
+                    </connections>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbt-p4-j2B">
+                    <rect key="frame" x="391" y="11" width="20" height="20"/>
+                    <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="1MU-nb-FRZ"/>
+                        <constraint firstAttribute="width" constant="20" id="j1r-VX-3dk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                    <state key="normal" title="X">
+                        <color key="titleColor" red="0.68627450980392157" green="0.66274509803921566" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskstoBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="clearInput:" destination="-1" eventType="touchUpInside" id="gAK-MC-oEq"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="F9T-Zi-N25" secondAttribute="bottom" id="0V9-Lf-Xsa"/>
+                <constraint firstItem="r0I-ut-mSH" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="CYm-LC-b9k"/>
+                <constraint firstItem="r0I-ut-mSH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Cdf-j5-A7Z"/>
+                <constraint firstItem="F9T-Zi-N25" firstAttribute="top" secondItem="r0I-ut-mSH" secondAttribute="bottom" id="Dsr-MH-X1h"/>
+                <constraint firstItem="hpk-bM-aLW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="TxV-Sd-ZmV"/>
+                <constraint firstItem="r0I-ut-mSH" firstAttribute="top" secondItem="hpk-bM-aLW" secondAttribute="bottom" id="U5W-Y9-2x0"/>
+                <constraint firstItem="F9T-Zi-N25" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="XKy-Ga-exg"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="F9T-Zi-N25" secondAttribute="trailing" id="XaV-8g-bWN"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="zbt-p4-j2B" secondAttribute="trailing" constant="3" id="hZv-rs-3sL"/>
+                <constraint firstItem="F9T-Zi-N25" firstAttribute="top" secondItem="zbt-p4-j2B" secondAttribute="bottom" constant="24" id="iUi-ai-I8A"/>
+                <constraint firstItem="hpk-bM-aLW" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="nod-Lq-v3u"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="115.94202898550725" y="124.72826086956523"/>
+        </view>
+    </objects>
+</document>
