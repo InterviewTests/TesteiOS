@@ -9,19 +9,20 @@
 import UIKit
 import Foundation
 
-class DashboardViewController: UIViewController, CustomTabBarDelegate {
+class DashboardViewController: UIViewController, CustomTabBarDelegate, ContactFormTransitionProtocol, ContactFormResultProtocol {
+    
     // MARK: - Properties
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var customTabBar: CustomTabBar!
     
-    var childrenVC = [InvestmentFundsRouter.rootViewController(), ContactFormRouter.rootViewController()]
+    // MARK: - Tab Bar Items
+    lazy var childrenVC = [InvestmentFundsRouter.rootViewController(), ContactFormRouter.rootViewController(delegate: self)]
     var tabBarItems = ["Investimento", "Contato"]
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+
         configureUI()
     }
     
@@ -59,5 +60,15 @@ class DashboardViewController: UIViewController, CustomTabBarDelegate {
                 childVC.view.removeFromSuperview()
             }
         }
+    }
+    
+    // MARK: - ContactFormTransitionProtocol
+    func showSuccessScreen() {
+        DashboardRouter.showSuccessScreen(parent: self, containerView: containerView)
+    }
+    
+    // MARK: - ContactFormResultProtocol
+    func sendNewMessage() {
+        DashboardRouter.sendNewMessage(parent: self, containerView: containerView)
     }
 }

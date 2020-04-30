@@ -20,6 +20,8 @@ class InvestmentFundMoreInfoTableViewCell: UITableViewCell {
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super .awakeFromNib()
+        
+        configureUI()
     }
     
     // MARK: - Public Methods
@@ -30,5 +32,14 @@ class InvestmentFundMoreInfoTableViewCell: UITableViewCell {
         yearCDI.text = "\(moreInfo.year.cdi)%"
         twelveFund.text = "\(moreInfo.the12Months.fund)%"
         twelveCDI.text = "\(moreInfo.the12Months.cdi)%"
+    }
+    
+    fileprivate func configureUI() {
+        monthFund.font = FontUtils.regularDescription
+        monthCDI.font = FontUtils.regularDescription
+        yearFund.font = FontUtils.regularDescription
+        yearCDI.font = FontUtils.regularDescription
+        twelveFund.font = FontUtils.regularDescription
+        twelveCDI.font = FontUtils.regularDescription
     }
 }

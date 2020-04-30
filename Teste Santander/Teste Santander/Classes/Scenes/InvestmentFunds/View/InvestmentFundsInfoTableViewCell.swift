@@ -9,6 +9,7 @@
 import UIKit
 
 protocol InvestmentFundsInfoTableViewCellProtocol {
+    /// Returns the Button Download Action
     func downloadRequest()
 }
 

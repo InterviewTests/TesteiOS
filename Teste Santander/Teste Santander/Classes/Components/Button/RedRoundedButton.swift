@@ -40,6 +40,7 @@ class RedRoundedButton: UIButton {
         titleLabel?.font = UIFont(name: "DINPro-Medium", size: 16)
     }
     
+    // MARK: - Public Methods
     func setup(title: String) {
         setTitle(title, for: .normal)
     }

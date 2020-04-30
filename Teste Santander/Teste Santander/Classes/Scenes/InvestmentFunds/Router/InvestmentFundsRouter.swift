@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SafariServices
 
 class InvestmentFundsRouter {
     public static func rootViewController() -> InvestmentFundsViewController {
@@ -17,5 +18,11 @@ class InvestmentFundsRouter {
         investmentFunds.interactor = investmentFundsInteractor
         
         return investmentFunds
+    }
+    
+    public static func openSafariViewController(initialViewController: InvestmentFundsViewController) {
+        let url = URL(string: APIConstants.downloadUrl)!
+        let controller = SFSafariViewController(url: url)
+        initialViewController.present(controller, animated: true, completion: nil)
     }
 }

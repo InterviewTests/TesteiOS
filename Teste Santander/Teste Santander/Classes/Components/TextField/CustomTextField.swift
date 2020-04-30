@@ -31,6 +31,8 @@ class CustomTextField: UIView, UITextFieldDelegate {
     
     fileprivate var inputType: TypeFieldEnum = .text
     
+    let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+    
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -56,6 +58,10 @@ class CustomTextField: UIView, UITextFieldDelegate {
     func setup(placeHolderText: String, inputType: TypeFieldEnum) {
         lblPlaceholder.text = placeHolderText
         self.inputType = inputType
+        
+        if inputType == .telNumber {
+            
+        }
     }
 
     // MARK: - PrivateMethods
@@ -83,7 +89,6 @@ class CustomTextField: UIView, UITextFieldDelegate {
     }
     
     fileprivate func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         
         return emailPred.evaluate(with: email)
@@ -103,16 +108,15 @@ class CustomTextField: UIView, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if txtInput.text?.isEmpty ?? true {
+        if textField.text?.isEmpty ?? true {
             lblPlaceholder.font = lblPlaceholder.font.withSize(16)
         }
     }
-    
-    func textFieldDidChangeSelection(_ textField: UITextField) {
+    @IBAction func inputDidChanged(_ sender: UITextField) {
         btnClearInput.isHidden = (txtInput.text?.isEmpty ?? true)
         
         if inputType == .email {
-            configureViewValidation(input: textField.text)
+            configureViewValidation(input: txtInput.text)
         }
     }
 }

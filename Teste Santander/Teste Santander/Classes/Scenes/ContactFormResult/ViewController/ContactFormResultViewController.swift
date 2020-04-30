@@ -7,7 +7,15 @@
 //
 
 import UIKit
+protocol ContactFormResultProtocol {
+    func sendNewMessage()
+}
 
 class ContactFormResultViewController: UIViewController {
+    var delegate: ContactFormResultProtocol?
     
+    // MARK: - Actions
+    @IBAction func sendNewMessage(_ sender: Any) {
+        delegate?.sendNewMessage()
+    }
 }

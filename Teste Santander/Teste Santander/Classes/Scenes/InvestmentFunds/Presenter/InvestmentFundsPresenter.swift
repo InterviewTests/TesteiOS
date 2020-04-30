@@ -33,6 +33,7 @@ class InvestmentFundsPresenter: NSObject, InvestmentFundsPresenterProtocol, Inve
         viewController?.setupHeader(title: funds.getTitle(), fundName: funds.getFundName(),
                                     whatIs: funds.getWhatIs(), definition: funds.getDefinition(),
                                     riskTitle: funds.getRiskTitle(), investmentValue: funds.getRisk())
+        viewController?.setupFooter()
         
         configureTable()
     }
@@ -41,6 +42,8 @@ class InvestmentFundsPresenter: NSObject, InvestmentFundsPresenterProtocol, Inve
     fileprivate func configureTable() {
         viewController?.tblFunds.register(UINib(nibName: String(describing: InvestmentFundMoreInfoTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: InvestmentFundMoreInfoTableViewCell.self))
         viewController?.tblFunds.register(UINib(nibName: String(describing: InvestmentFundsInfoTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: InvestmentFundsInfoTableViewCell.self))
+        
+        viewController?.tblFunds.allowsSelection = false
         
         viewController?.tblFunds.dataSource = self
         viewController?.tblFunds.delegate = self
@@ -90,6 +93,6 @@ class InvestmentFundsPresenter: NSObject, InvestmentFundsPresenterProtocol, Inve
     
     // MARK: - InvestmentFundsInfoTableViewCellProtocol
     func downloadRequest() {
-        
+        viewController?.downloadRequest()
     }
 }

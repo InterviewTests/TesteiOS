@@ -61,7 +61,7 @@ class CustomCheckBox: UIView {
         btnCheck.bezierPathBorder(.white, width: 2)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didCheck(_:)))
-        containerView.addGestureRecognizer(tapGesture)
+        self.addGestureRecognizer(tapGesture)
     }
     
     // MARK: - Public Methods

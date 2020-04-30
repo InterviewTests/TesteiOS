@@ -21,6 +21,8 @@ class InvestmentFundsHeaderView: UIView {
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super .awakeFromNib()
+        
+        configureUI()
     }
     
     // MARK: - Public Methods
@@ -32,5 +34,14 @@ class InvestmentFundsHeaderView: UIView {
         lblRiskTitle.text = riskTitle
         
         riskView.setup(graduationRisk: GraduationColorsEnum(rawValue: investmentValue) ?? GraduationColorsEnum.lightGreen)
+    }
+    
+    // MARK: - Private Methods
+    fileprivate func configureUI() {
+        lblTitle.font = FontUtils.mediumInfoTitle
+        lblFundName.font = FontUtils.mediumMainTitle
+        lblWhatIs.font = FontUtils.mediumInfoTitle
+        lblDefinition.font = FontUtils.lightDescription
+        lblRiskTitle.font = FontUtils.mediumInfoTitle
     }
 }
