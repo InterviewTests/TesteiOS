@@ -8,17 +8,14 @@
 
 import Foundation
 import UIKit
-
-protocol CustomTextFieldProtocol {
-    
-}
+import SwiftMaskTextfield
 
 @IBDesignable
 class CustomTextField: UIView, UITextFieldDelegate {
     // MARK: - Properties
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var lblPlaceholder: UILabel!
-    @IBOutlet weak var txtInput: UITextField!
+    @IBOutlet weak var txtInput: SwiftMaskTextfield!
     @IBOutlet weak var btnClearInput: UIButton!
     @IBOutlet weak var viewValidationStatus: UIView!
     
@@ -32,6 +29,8 @@ class CustomTextField: UIView, UITextFieldDelegate {
     fileprivate var inputType: TypeFieldEnum = .text
     
     let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+    let phoneNumberMask = "(##) ####-####"
+    let cellPhoneNumberMask = "(##) #####-####"
     
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -59,8 +58,16 @@ class CustomTextField: UIView, UITextFieldDelegate {
         lblPlaceholder.text = placeHolderText
         self.inputType = inputType
         
-        if inputType == .telNumber {
-            
+        switch inputType {
+        case .text:
+            txtInput.keyboardType = .default
+        case .telNumber:
+            txtInput.formatPattern = phoneNumberMask
+            txtInput.keyboardType = .phonePad
+        case .email:
+            txtInput.keyboardType = .emailAddress
+        default:
+            txtInput.keyboardType = .default
         }
     }
 
@@ -76,6 +83,7 @@ class CustomTextField: UIView, UITextFieldDelegate {
     fileprivate func configureUI() {
         btnClearInput.isHidden = (txtInput.text?.isEmpty ?? true)
         txtInput.delegate = self
+        txtInput.returnKeyType = .done
     }
     
     fileprivate func configureViewValidation(input: String?) {
@@ -99,6 +107,7 @@ class CustomTextField: UIView, UITextFieldDelegate {
         txtInput.text = ""
         btnClearInput.isHidden = true
         viewValidationStatus.backgroundColor = #colorLiteral(red: 0.5921568627, green: 0.5921568627, blue: 0.5921568627, alpha: 1)
+        txtInput.font = FontUtils.mediumTextField
         lblPlaceholder.font = lblPlaceholder.font.withSize(16)
     }
     
@@ -112,7 +121,16 @@ class CustomTextField: UIView, UITextFieldDelegate {
             lblPlaceholder.font = lblPlaceholder.font.withSize(16)
         }
     }
+    
     @IBAction func inputDidChanged(_ sender: UITextField) {
+        if inputType == .telNumber {
+            if txtInput.text?.count ?? 0 <= 14 {
+                txtInput.formatPattern = phoneNumberMask
+            } else {
+                txtInput.formatPattern = cellPhoneNumberMask
+            }
+        }
+        
         btnClearInput.isHidden = (txtInput.text?.isEmpty ?? true)
         
         if inputType == .email {

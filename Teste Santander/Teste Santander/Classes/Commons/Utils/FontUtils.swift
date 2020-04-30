@@ -13,8 +13,9 @@ class FontUtils {
     
     static var regularDescription = UIFont(name: "DINPro-Regular", size: 14)
     
-    static var mediumInfoTitle = UIFont(name: "DINPro-Medium", size: 16)
     static var mediumTitle = UIFont(name: "DINPro-Medium", size: 14)
+    static var mediumInfoTitle = UIFont(name: "DINPro-Medium", size: 16)
+    static var mediumTextField = UIFont(name: "DINPro-Medium", size: 18)
     static var mediumMainTitle = UIFont(name: "DINPro-Medium", size: 28)
     
 }
