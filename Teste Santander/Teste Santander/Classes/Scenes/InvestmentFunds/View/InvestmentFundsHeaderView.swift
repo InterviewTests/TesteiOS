@@ -33,7 +33,7 @@ class InvestmentFundsHeaderView: UIView {
         lblDefinition.text = definition
         lblRiskTitle.text = riskTitle
         
-        riskView.setup(graduationRisk: GraduationColorsEnum(rawValue: investmentValue) ?? GraduationColorsEnum.lightGreen)
+        riskView.setup(graduationRisk: GraduationColorsEnum(rawValue: investmentValue - 1) ?? GraduationColorsEnum.lightGreen)
     }
     
     // MARK: - Private Methods
