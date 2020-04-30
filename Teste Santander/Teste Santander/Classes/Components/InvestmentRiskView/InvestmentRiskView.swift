@@ -17,19 +17,21 @@ class InvestmentRiskView: UIView {
     @IBOutlet weak var viewGraduation: UIView!
     
     // MARK: - Constants
-    fileprivate let colors = [ColorUtils.investment100, ColorUtils.investment80, ColorUtils.investment60, ColorUtils.investment40, ColorUtils.investment20]
+    let colors = [ColorUtils.investment100, ColorUtils.investment80, ColorUtils.investment60, ColorUtils.investment40, ColorUtils.investment20]
     
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         initNib()
+        configureUI()
     }
     
     override init(frame: CGRect) {
         super .init(frame: frame)
         
         initNib()
+        configureUI()
     }
     
     // MARK: - Lifecycle
@@ -49,17 +51,19 @@ class InvestmentRiskView: UIView {
     }
     
     fileprivate func configureUI() {
-        for index in (0...(colors.count - 1)) {
-            let view = UIView()
-            view.backgroundColor = colors[index]
-            view.layer.borderWidth = 1
-            view.layer.borderColor = UIColor.white.cgColor
+        if stackGraduation.arrangedSubviews.count == 0 {
+            for index in (0...(colors.count - 1)) {
+                let view = UIView()
+                view.backgroundColor = colors[index]
+                view.layer.borderWidth = 1
+                view.layer.borderColor = UIColor.white.cgColor
+                
+                stackGraduation.addArrangedSubview(view)
+            }
             
-            stackGraduation.addArrangedSubview(view)
+            viewGraduation.layer.cornerRadius = (viewGraduation.frame.height/2)
+            viewGraduation.layer.masksToBounds = true
         }
-        
-        viewGraduation.layer.cornerRadius = (viewGraduation.frame.height/2)
-        viewGraduation.layer.masksToBounds = true
     }
     
     // MARK: - Public Methods

@@ -8,14 +8,17 @@
 
 import Foundation
 import Alamofire
-
-class InvestmentFundsWorker {
+protocol InvestmentFundsWorkerProtocol {
     /// Requests Investments
     /// - Parameters:
     ///   - completion: completion block
     ///   - error: error block
     /// - Returns: Investments
-    static func fetchInvestments(completion: @escaping(_ responseData: Data?) -> (), error: @escaping(_ error: Error?) -> ()) {
+    func fetchInvestments(completion: @escaping(_ responseData: Data?) -> (), error: @escaping(_ error: Error?) -> ())
+}
+
+class InvestmentFundsWorker: InvestmentFundsWorkerProtocol {
+    func fetchInvestments(completion: @escaping(_ responseData: Data?) -> (), error: @escaping(_ error: Error?) -> ()) {
         let url = APIConstants.baseUrl + APIConstants.investmentEndpoint
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in

@@ -17,17 +17,20 @@ class ContactFormInteractor: ContactFormInteractorProtocol {
     var viewController: ContactFormViewControllerProtocol?
     var presenter: ContactFormPresenterProtocol?
     
+    var contactFormWorker: ContactFormWorkerProtocol?
+    
     // MARK: - Initialization
     init(viewController: ContactFormViewControllerProtocol, presenter: ContactFormPresenterProtocol) {
         self.viewController = viewController
         self.presenter = presenter
+        contactFormWorker = ContactFormWorker()
     }
     
     // MARK: - ContactFormInteractorProtocol
     func fetchContactList() {
         viewController?.startLoading()
         
-        ContactFormWorker.fetchContactForm(completion: { (responseData) in
+        contactFormWorker?.fetchContactForm(completion: { (responseData) in
             self.viewController?.stopLoading()
             
             do {

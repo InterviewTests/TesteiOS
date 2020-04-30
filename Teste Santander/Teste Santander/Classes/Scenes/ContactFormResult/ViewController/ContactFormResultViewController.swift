@@ -13,6 +13,11 @@ protocol ContactFormResultProtocol {
 }
 
 class ContactFormResultViewController: UIViewController {
+    // MARK: - Properties
+    @IBOutlet weak var lblSecondaryTitle: UILabel!
+    @IBOutlet weak var lblMainTitle: UILabel!
+    @IBOutlet weak var btnSendNewMessage: UIButton!
+    
     // MARK: - Delegate
     var delegate: ContactFormResultProtocol?
     

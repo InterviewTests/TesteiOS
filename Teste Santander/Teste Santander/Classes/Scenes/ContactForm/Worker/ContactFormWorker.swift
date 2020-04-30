@@ -9,13 +9,17 @@
 import Foundation
 import Alamofire
 
-class ContactFormWorker {
+protocol ContactFormWorkerProtocol {
     /// Request the contact form
     /// - Parameters:
     ///   - completion: completion block
     ///   - error: failure block
     /// - Returns: Contact Form Data
-    static func fetchContactForm(completion: @escaping(_ responseData: Data?) -> (), error: @escaping(_ error: Error?) -> ()) {
+    func fetchContactForm(completion: @escaping(_ responseData: Data?) -> (), error: @escaping(_ error: Error?) -> ())
+}
+
+class ContactFormWorker: ContactFormWorkerProtocol {
+    func fetchContactForm(completion: @escaping(_ responseData: Data?) -> (), error: @escaping(_ error: Error?) -> ()) {
         let url = APIConstants.baseUrl + APIConstants.contactEndpoint
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in

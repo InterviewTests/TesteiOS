@@ -20,12 +20,20 @@ class CustomTabBar: UIView {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var stackTab: UIStackView!
     
+    var selectedTab = 0
+    
     // MARK: - Delegate
     var delegate: CustomTabBarDelegate?
     
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        initNib()
+    }
+    
+    override init(frame: CGRect) {
+        super .init(frame: frame)
         
         initNib()
     }
@@ -69,6 +77,8 @@ class CustomTabBar: UIView {
                 bottomConstraint.constant = 2
             }
         }
+        
+        selectedTab = index
     }
     
     // MARK: - Actions

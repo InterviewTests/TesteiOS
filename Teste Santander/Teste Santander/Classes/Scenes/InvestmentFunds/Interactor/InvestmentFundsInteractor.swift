@@ -18,17 +18,20 @@ class InvestmentFundsInteractor: InvestmentFundsInteractorProtocol {
     // MARK: - Interface Properties
     var viewController: InvestmentFundsViewControllerProtocol?
     var presenter: InvestmentFundsPresenterProtocol?
+    var investmentFundsWorker: InvestmentFundsWorkerProtocol?
     
     // MARK: - Initialization
     init(viewController: InvestmentFundsViewControllerProtocol, presenter: InvestmentFundsPresenterProtocol) {
         self.viewController = viewController
         self.presenter = presenter
+        
+        investmentFundsWorker = InvestmentFundsWorker()
     }
     
     // MARK: - InvestmentFundsInteractorProtocol
     func fetchFunds() {
         viewController?.startLoading()
-        InvestmentFundsWorker.fetchInvestments(completion: { (responseData) in
+        investmentFundsWorker?.fetchInvestments(completion: { (responseData) in
             self.viewController?.stopLoading()
             
             do {
