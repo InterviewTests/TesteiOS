@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol InvestmentFundsViewControllerProtocol {
+protocol InvestmentFundsViewControllerProtocol: BaseViewControllerProtocol {
     var tblFunds: UITableView! {get set}
     
     /// Setups Header for TableView
@@ -32,7 +32,7 @@ protocol InvestmentFundsViewControllerProtocol {
     func showError(errorMessage: String)
 }
 
-class InvestmentFundsViewController: UIViewController, InvestmentFundsViewControllerProtocol {
+class InvestmentFundsViewController: BaseViewController, InvestmentFundsViewControllerProtocol {
     
     // MARK: - Properties
     @IBOutlet weak var tblFunds: UITableView!
@@ -101,6 +101,6 @@ class InvestmentFundsViewController: UIViewController, InvestmentFundsViewContro
     }
     
     func showError(errorMessage: String) {
-        
+        showErrorMessage(errorMessage: errorMessage)
     }
 }

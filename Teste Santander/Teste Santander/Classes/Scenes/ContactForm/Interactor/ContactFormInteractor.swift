@@ -25,7 +25,11 @@ class ContactFormInteractor: ContactFormInteractorProtocol {
     
     // MARK: - ContactFormInteractorProtocol
     func fetchContactList() {
+        viewController?.startLoading()
+        
         ContactFormWorker.fetchContactForm(completion: { (responseData) in
+            self.viewController?.stopLoading()
+            
             do {
                 let contactModel = try JSONDecoder().decode(ContactModel.self, from: responseData ?? Data())
                 
@@ -34,6 +38,8 @@ class ContactFormInteractor: ContactFormInteractorProtocol {
                 print(error)
             }
         }) { (error) in
+            self.viewController?.stopLoading()
+            
             self.presenter?.handleError(error: error)
         }
     }

@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class DashboardViewController: UIViewController, CustomTabBarDelegate, ContactFormTransitionProtocol, ContactFormResultProtocol {
+class DashboardViewController: BaseViewController, CustomTabBarDelegate, ContactFormTransitionProtocol, ContactFormResultProtocol {
     
     // MARK: - Properties
     @IBOutlet weak var containerView: UIView!

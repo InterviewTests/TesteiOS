@@ -27,7 +27,10 @@ class InvestmentFundsInteractor: InvestmentFundsInteractorProtocol {
     
     // MARK: - InvestmentFundsInteractorProtocol
     func fetchFunds() {
+        viewController?.startLoading()
         InvestmentFundsWorker.fetchInvestments(completion: { (responseData) in
+            self.viewController?.stopLoading()
+            
             do {
                 let fundsModel = try JSONDecoder().decode(Screen.self, from: responseData ?? Data())
                 
@@ -36,6 +39,7 @@ class InvestmentFundsInteractor: InvestmentFundsInteractorProtocol {
                 print(error)
             }
         }) { (error) in
+            self.viewController?.stopLoading()
             self.presenter?.handleError(error: error)
         }
     }

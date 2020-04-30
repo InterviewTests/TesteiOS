@@ -38,6 +38,7 @@ class DashboardRouter {
         
         return index
     }
+    
     /// Displays success form Screen
     /// - Parameters:
     ///   - parent: Parent View
@@ -54,7 +55,6 @@ class DashboardRouter {
         
         contactFormResult.didMove(toParent: parent)
     }
-    
     
     /// Displays contact form Screen
     /// - Parameters:

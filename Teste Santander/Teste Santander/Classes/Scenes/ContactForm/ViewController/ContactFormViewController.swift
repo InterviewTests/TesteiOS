@@ -12,7 +12,7 @@ protocol ContactFormTransitionProtocol {
     /// Requests the Success Screen
     func showSuccessScreen()
 }
-protocol ContactFormViewControllerProtocol {
+protocol ContactFormViewControllerProtocol: BaseViewControllerProtocol {
     /// Create Message Field
     /// - Parameter cell: cell field
     func configureMessage(cell: CellForm)
@@ -31,7 +31,7 @@ protocol ContactFormViewControllerProtocol {
     func showError(errorMessage: String)
 }
 
-class ContactFormViewController: UIViewController, ContactFormViewControllerProtocol {
+class ContactFormViewController: BaseViewController, ContactFormViewControllerProtocol {
     // MARK: - Properties
     var stackFormView: UIStackView?
     
@@ -87,7 +87,29 @@ class ContactFormViewController: UIViewController, ContactFormViewControllerProt
     
     // MARK: - Actions
     @objc func sendMessage(_ sender: Any) {
-        delegate?.showSuccessScreen()
+        var sendMessage = true
+        
+        if let subviews = stackFormView?.arrangedSubviews {
+            for field in subviews {
+                if field.isKind(of: CustomTextField.self) {
+                    guard let textField = field as? CustomTextField else {
+                        return
+                    }
+                    
+                    if !textField.isValidField() {
+                        sendMessage = false
+                    }
+                }
+            }
+            
+            if sendMessage {
+                delegate?.showSuccessScreen()
+                
+                return
+            }
+            
+            displayError(errorMessage: "Campos inválidos")
+        }
     }
     
     // MARK: - Keyboard Methods
@@ -118,7 +140,7 @@ class ContactFormViewController: UIViewController, ContactFormViewControllerProt
         addFormSeparator(separatorHeight: cell.topSpacing)
         
         let textField = CustomTextField(frame: CGRect(x: 0, y: 0, width: fieldsWidth, height: 46))
-        textField.setup(placeHolderText: cell.message, inputType: cell.getCellTypeField())
+        textField.setup(placeHolderText: cell.message, inputType: cell.getCellTypeField(), isRequired: cell.cellRequired)
 
         stackFormView?.addArrangedSubview(textField)
 
@@ -163,6 +185,6 @@ class ContactFormViewController: UIViewController, ContactFormViewControllerProt
     }
     
     func showError(errorMessage: String) {
-        
+        showErrorMessage(errorMessage: errorMessage)
     }
 }

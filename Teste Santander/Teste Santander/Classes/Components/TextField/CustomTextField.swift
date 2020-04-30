@@ -26,12 +26,16 @@ class CustomTextField: UIView, UITextFieldDelegate {
     }
     
     // MARK: - Input Type
-    fileprivate var inputType: TypeFieldEnum = .text
+    var inputType: TypeFieldEnum = .text
     
     // MARK: - Validation Constants
     fileprivate let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
     fileprivate let phoneNumberMask = "(##) ####-####"
     fileprivate let cellPhoneNumberMask = "(##) #####-####"
+    
+    // MARK: - Validation Variables
+    fileprivate var isRequired: Bool = false
+    fileprivate var isValid: Bool = true
     
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -55,9 +59,10 @@ class CustomTextField: UIView, UITextFieldDelegate {
     }
     
     // MARK: - Public Methods
-    func setup(placeHolderText: String, inputType: TypeFieldEnum) {
+    func setup(placeHolderText: String, inputType: TypeFieldEnum, isRequired: Bool) {
         lblPlaceholder.text = placeHolderText
         self.inputType = inputType
+        self.isRequired = isRequired
         
         switch inputType {
         case .text:
@@ -70,6 +75,14 @@ class CustomTextField: UIView, UITextFieldDelegate {
         default:
             txtInput.keyboardType = .default
         }
+    }
+    
+    func isValidField() -> Bool {
+        if isRequired {
+            return isValid && !(txtInput.text?.isEmpty ?? true)
+        }
+        
+        return true
     }
 
     // MARK: - PrivateMethods
@@ -89,7 +102,10 @@ class CustomTextField: UIView, UITextFieldDelegate {
     
     fileprivate func configureViewValidation(input: String?) {
         if let input = input, !input.isEmpty {
-            viewValidationStatus.backgroundColor = isValidEmail(input) ? ColorUtils.investment80 : ColorUtils.buttonRed
+            let validField = isValidEmail(input)
+            
+            viewValidationStatus.backgroundColor = validField ? ColorUtils.investment80 : ColorUtils.buttonRed
+            isValid = validField
             
             return
         }
